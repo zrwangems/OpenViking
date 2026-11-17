@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'YAMNet Preprocess'
-family: 'deep-learning'
+family: 'audio'
 product_id: 'audio'
 product_name: 'Audio Toolbox'
 documentation_release: R2025b
@@ -20,19 +20,19 @@ chinese_source: worker-translation
 
 ### **audioIn** — 声音数据列向量
 
-要分类的声音数据，指定为单通道信号（列向量）。如果 **输入信号的采样率 (Hz)** 为 16e3，则输入帧长度没有限制。如果 **输入信号的采样率 (Hz)** 与 16e3 不同，则输入帧长度必须是该模块执行的重采样操作的抽取因子的倍数。如果输入帧长度不满足此条件，模块将抛出错误消息，其中包含有关抽取因子的信息。
+要分类的声音数据，指定为单通道信号（列向量）。如果 **Sample rate of input signal (Hz)** 为 16e3，则输入帧长度没有限制。如果 **Sample rate of input signal (Hz)** 不等于 16e3，则输入帧长度必须是该模块执行的重采样操作的抽取因子的倍数。如果输入帧长度不满足此条件，该模块将抛出错误消息，其中包含有关抽取因子的信息。
 
 **数据类型：** `single` | `double`
 ### 输出
 
 ### **features** — 可馈送到 YAMNet 预训练网络的梅尔频谱图 96×64 矩阵
 
-从 **audioIn** 生成的梅尔频谱图，返回为 96×64 矩阵，其中：
+从 **audioIn** 生成的梅尔频谱图，以 96×64 矩阵形式返回，其中：
 
-- `96` –– 表示每个梅尔频谱图中 25 ms 帧的数量
-- `64` –– 表示覆盖 125 Hz 到 7.5 kHz 的梅尔频带数量
+- `96` —— 表示每个梅尔频谱图中 25 ms 帧的数量
+- `64` —— 表示跨越 125 Hz 到 7.5 kHz 的梅尔频带数量
 
-连续 96×64 梅尔频谱图之间的重叠由 **重叠百分比 (%)** 参数的值确定。
+连续 96×64 梅尔频谱图之间的重叠由 **Overlap percentage (%)** 参数的值决定。
 
 每个 96×64 矩阵表示单个梅尔频谱图。有关此模块如何生成梅尔频谱图的更多详细信息，请参阅算法。
 
@@ -40,13 +40,13 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **输入信号的采样率 (Hz)** — 输入信号的采样率，以 Hz 为单位 `16e3`（默认值）| 正标量
+### **Sample rate of input signal (Hz)** — 输入信号的采样率（以 Hz 为单位） `16e3`（默认）| 正标量
 
-输入信号的采样率，以 Hz 为单位，指定为正标量。
+输入信号的采样率（以 Hz 为单位），指定为正标量。
 
 **数据类型：** `single` | `double`
 
-### **重叠百分比 (%)** — 连续梅尔频谱图之间的重叠百分比 `50`（默认值）| [0 100)
+### **Overlap percentage (%)** — 连续梅尔频谱图之间的重叠百分比 `50`（默认）| [0 100)
 
 将连续梅尔频谱图之间的重叠百分比指定为范围 [0 100) 内的标量。
 
@@ -68,7 +68,7 @@ Audio Toolbox / Deep Learning
 
 ## 扩展功能
 
-### C/C++ 代码生成：使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -78,4 +78,4 @@ Audio Toolbox / Deep Learning
 
 为 YAMNet 分类预处理音频
 
-YAMNet Preprocess 模块从音频输入生成梅尔频谱图，这些梅尔频谱图可以馈送到 YAMNet 预训练网络，或馈送到接受与 YAMNet 相同输入的网络。
+YAMNet Preprocess 模块从音频输入生成梅尔频谱图，这些频谱图可以馈送到 YAMNet 预训练网络或接受与 YAMNet 相同输入的网络。

@@ -9,7 +9,7 @@ official_category: 'Deep Neural Networks'
 documentation_page: 'imageclassifier'
 documentation_source_path: 'ref/imageclassifier.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Image Classifier
@@ -20,33 +20,49 @@ chinese_source: official
 
 ### **image** — 图像或特征数据 数值数组
 
-*h*×*w*×*c*×*N* 数值数组，其中 *h*、*w* 和 *c* 分别是图像的高度、宽度和通道数，*N* 是图像的数量。
+一个
+*h*×*w*×*c*×*N*
+数值数组，其中 *h*、*w* 和
+*c* 分别是图像的高度、宽度和通道数，
+*N* 是图像的数量。
 
-*N*×`numFeatures` 数值数组，其中 *N* 是观测值数量，`numFeatures` 是输入数据的特征数。
+一个 *N*×`numFeatures` 数值数组，其中
+*N* 是观测值的数量，
+`numFeatures` 是输入数据的特征数量。
 
-如果数组包含 `NaN`，则它们会通过网络传播。
+如果数组中包含 `NaN`，则它们会通过网络传播。
 ### 输出
 
-### **ypred** — 预测的类标签 枚举
+### **ypred** — 预测的类别标签 枚举
 
-具有最高分数的预测类标签，以 *N*×1 标签枚举向量形式返回，其中 *N* 是观测值数量。
+具有最高分数的预测类别标签，以
+*N*×1 的枚举标签向量形式返回，其中 *N* 是
+观测值的数量。
 
-### **scores** — 预测的类分数 矩阵
+### **scores** — 预测的类别分数 矩阵
 
-预测的分数，以 *K*×*N* 矩阵形式返回，其中 *K* 是类数，*N* 是观测值数量。
+预测分数，以 *K*×*N*
+矩阵形式返回，其中 *K* 是类别数，*N*
+是观测值的数量。
 
-### **labels** — 预测的分数的类标签 矩阵
+### **labels** — 预测分数的类别标签 矩阵
 
-与预测分数相关联的标签，以 *N*×*K* 矩阵形式返回，其中 *N* 是观测值数量，*K* 是类数。
+与预测分数相关联的标签，以
+*N*×*K* 矩阵形式返回，其中 *N* 是
+观测值的数量，*K* 是类别数。
 
 ## 参数
 
-### **网络** — 经过训练的网络的源 **从 MAT 文件创建网络** (默认) | **从 MATLAB 函数创建网络**
+### **Network** — 训练网络的来源 `Network from MAT file`（默认）| `Network from MATLAB function`
 
-指定经过训练的网络的源。选择下列项之一：
+指定训练网络的来源。选择以下之一：
 
-- **从 MAT 文件创建网络** - 从包含 `dlnetwork` 对象的 MAT 文件中导入经过训练的网络。
-- **从 MATLAB 函数创建网络** - 从 MATLAB 函数导入预训练网络。例如，要使用预训练的 GoogLeNet，请在 MATLAB M 文件中创建一个函数 `pretrainedGoogLeNet`，然后导入此函数。
+- `Network from MAT file`— 从包含 `dlnetwork`
+  对象的 MAT 文件中导入训练好的网络。
+- `Network from MATLAB function`—
+  从 MATLAB 函数中导入预训练网络。例如，要使用预训练的 GoogLeNet，请在 MATLAB M 文件中创建函数
+  `pretrainedGoogLeNet`，
+  然后导入此函数。
 
   ```
   function net = pretrainedGoogLeNet
@@ -54,35 +70,41 @@ chinese_source: official
   end
   ```
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`Network` |
-| **类型：**字符向量、字符串 |
-| **值：**`'Network from MAT file'` | `'Network from MATLAB function'` |
-| **默认值：** `'Network from MAT file'` |
+| **模块参数：** `Network` |
+| **类型：** 字符向量、字符串 |
+| **值：** `'Network from MAT file'` | `'Network from MATLAB function'` |
+| **默认：** `'Network from MAT file'` |
 
-### **文件路径** — 包含经过训练的网络的 MAT 文件 `untitled.mat` (默认) | MAT 文件路径或名称
+### **File path** — 包含训练网络的 MAT 文件 `untitled.mat`（默认）| MAT 文件路径或名称
 
-此参数用于指定 MAT 文件的名称，该文件包含要加载的经过训练的深度学习网络。如果该文件不在 MATLAB 路径中，请使用**浏览**按钮找到该文件。
+此参数
+指定包含要加载的训练深度学习网络的 MAT 文件的名称。如果该文件不在 MATLAB 路径上，请使用 **Browse** 按钮
+定位该文件。
 
 #### 依赖关系
 
-要启用此参数，请将**网络**参数设置为**从 MAT 文件创建网络**。
+要启用此参数，请将 **Network**
+参数设置为 `Network from MAT
+file`。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`NetworkFilePath` |
-| **类型：**字符向量、字符串 |
-| **值：**MAT 文件路径或名称 |
-| **默认值：** `'untitled.mat'` |
+| **模块参数：** `NetworkFilePath` |
+| **类型：** 字符向量、字符串 |
+| **值：** MAT 文件路径或名称 |
+| **默认：**  `'untitled.mat'` |
 
-### **MATLAB 函数** — MATLAB 函数名称 `squeezenet` (默认) | MATLAB 函数名称
+### **MATLAB function** — MATLAB 函数名称 `squeezenet`（默认）| MATLAB 函数名称
 
-此参数指定预训练深度学习网络的 MATLAB 函数的名称。例如，要使用预训练的 GoogLeNet，请在 MATLAB M 文件中创建一个函数 `pretrainedGoogLeNet`，然后导入此函数。
+此参数指定预训练深度学习网络的 MATLAB 函数的名称。例如，要使用预训练的 GoogLeNet，请在 MATLAB M 文件中创建函数
+`pretrainedGoogLeNet`，然后导入此
+函数。
 
 ```
 function net = pretrainedGoogLeNet
@@ -92,90 +114,94 @@ end
 
 #### 依赖关系
 
-要启用此参数，请将**网络**参数设置为**从 MATLAB 函数创建网络**。
+要启用此参数，请将 **Network** 参数设置为 `Network from MATLAB function`。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：**`NetworkFunction` |
-| **类型：**字符向量、字符串 |
-| **值：**MATLAB 函数名称 |
-| **默认值：** `'squeezenet'` |
-
-### **小批量大小** — 小批量的大小 128 (默认) | 正整数
-
-用于预测的小批量的大小，指定为正整数。小批量大小越大，需要的内存越多，但预测速度可能更快。
-
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`MiniBatchSize` |
-| **类型：**字符向量、字符串 |
-| **值：**正整数 |
-| **默认值：** `'128'` |
+| **模块参数：** `NetworkFunction` |
+| **类型：** 字符向量、字符串 |
+| **值：** MATLAB 函数名称 |
+| **默认：** `'squeezenet'` |
 
-### **调整输入大小** — 调整输入维度大小 `on` (默认) | `off`
+### **Mini-batch size** — 小批量的大小 128（默认）| 正整数
 
-将输入端口的数据大小调整为网络的输入大小。
+用于预测的小批量的大小，指定为正整数。较大的小批量大小需要更多内存，但可以加快预测速度。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：**`ResizeInput` |
-| **类型：**字符向量、字符串 |
-| **值：**`'off'` | `'on'` |
-| **默认值：** `'on'` |
-
-### **分类** — 输出具有最高分数的预测标签 `on` (默认) | `off`
-
-启用输出具有最高分数的标签的输出端口 `ypred`。
-
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`Classification` |
-| **类型：**字符向量、字符串 |
-| **值：**`'off'` | `'on'` |
-| **默认值：** `'on'` |
+| **模块参数：** `MiniBatchSize` |
+| **类型：** 字符向量、字符串 |
+| **值：** 正整数 |
+| **默认：** `'128'` |
 
-### **预测** — 输出所有分数和相关联的标签 `off` (默认) | `on`
+### **Resize input** — 调整输入维度 `on`（默认）| `off`
 
-启用输出所有预测分数和相关联的类标签的输出端口 `scores` 和 `labels`。
+将输入端口的数据调整为
+网络的输入大小。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`Predictions` |
-| **类型：**字符向量、字符串 |
-| **值：**`'off'` | `'on'` |
-| **默认值：** `'off'` |
+| **模块参数：** `ResizeInput` |
+| **类型：** 字符向量、字符串 |
+| **值：** `'off'` | `'on'` |
+| **默认：** `'on'` |
 
-### **类名称工作区变量** — 包含网络输出类名称的工作区变量 `classNames` (默认) | 分类向量变量 | 字符串数组变量 | 字符向量元胞数组变量名称
+### **Classification** — 输出具有最高分数的预测标签 `on`（默认）| `off`
 
-包含类名称的变量，指定为分类向量、字符串数组或字符向量元胞数组。
+启用输出端口 `ypred`，输出具有最高分数的标签。
 
-网络的输出大小必须与类的数量匹配。
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数：** `Classification` |
+| **类型：** 字符向量、字符串 |
+| **值：** `'off'` | `'on'` |
+| **默认：** `'on'` |
+
+### **Predictions** — 输出所有分数和相关标签 `off`（默认）| `on`
+
+启用输出端口 `scores` 和 `labels`，输出所有预测分数和相关的类别标签。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数：** `Predictions` |
+| **类型：** 字符向量、字符串 |
+| **值：** `'off'` | `'on'` |
+| **默认：** `'off'` |
+
+### **Class names workspace variable** — 包含网络输出类别名称的工作区变量 `classNames`（默认）| 分类向量变量 | 字符串数组变量 | 字符向量元胞数组变量名称
+
+包含类别名称的变量，指定为分类
+向量、字符串数组或字符向量元胞数组。
+
+网络的输出大小必须与类别数匹配。
 
 #### 依赖关系
 
-要启用此参数，请将**网络**参数设置为**从 MAT 文件创建网络**，以便从 MAT 文件导入经过训练的 `dlnetwork` 对象。
+要启用此参数，请将 **Network**
+参数设置为 `Network from MAT file`，以
+从 MAT 文件中导入训练好的 `dlnetwork` 对象。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：**`classNames` |
-| **类型：**分类向量、字符串数组或字符向量元胞数组的变量名称。 |
-| **值：**包含类名称的变量的名称，指定为分类向量、字符串数组或字符向量元胞数组。 |
+#### 程序化使用
 
 |  |
 | --- |
-| **默认值：**工作区变量 `classNames`。 |
+| **模块参数：** `classNames` |
+| **类型：** 分类向量、字符串数组或字符向量元胞数组的变量名称。 |
+| **值：** 包含类别名称的变量名称，指定为分类向量、字符串数组或字符向量元胞数组。 |
+
+|  |
+| --- |
+| **默认：** 工作区变量 `classNames`。 |
 
 ## 所属库
 
@@ -183,47 +209,69 @@ Deep Learning Toolbox / Deep Neural Networks
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-用法说明和限制：
+使用说明和限制：
 
-- 要生成不依赖第三方库的通用 C 代码，请在**配置参数** > **代码生成**常规类别中，将**语言**参数设置为 **C**。
-- 要生成 C++ 代码，请在**配置参数** > **代码生成**常规类别中，将**语言**参数设置为 **C++**。要指定代码生成的目标库，请在**代码生成** > **接口**类别中，设置**目标库**参数。将此参数设置为**无**会生成不依赖第三方库的泛型 C++ 代码。
-- 有关代码生成支持的网络和层的列表，请参阅代码生成支持的网络和层 (MATLAB Coder)。
+- 要生成不依赖于第三方库的通用 C 代码，请在
+  **Configuration Parameters** > **Code
+  Generation** 常规类别中，将 **Language**
+  参数设置为 `C`。
+- 要生成 C++ 代码，请在 **Configuration Parameters** >
+  **Code Generation** 常规类别中，将
+  **Language** 参数设置为 `C++`。要
+  指定代码生成的目标库，请在 **Code
+  Generation** > **Interface** 类别中，设置
+  **Target Library** 参数。将此参数设置为
+  `None` 会生成不依赖于第三方库的通用 C++ 代码。
+- 有关支持代码生成的网络和层列表，请参阅 Networks and Layers Supported for Code Generation (MATLAB Coder)。
 
 ### GPU 代码生成 使用 GPU Coder™ 为 NVIDIA® GPU 生成 CUDA® 代码。
 
-用法说明和限制：
+使用说明和限制：
 
-- **配置参数** > **代码生成**常规类别中的**语言**参数必须设置为 **C++**。
-- 有关 CUDA® 代码生成支持的网络和层的列表，请参阅Supported Networks, Layers, and Classes (GPU Coder)。
-- 要了解有关为包含 Image Classifier 模块的 Simulink 模型生成代码的详细信息，请参阅Code Generation for a Deep Learning Simulink Model to Classify ECG Signals (GPU Coder)。
+- **Configuration
+  Parameters** > **Code Generation** 常规类别中的 **Language** 参数必须
+  设置为 `C++`。
+- 有关支持 CUDA® 代码生成的网络和层列表，请参阅 Supported Networks, Layers, and Classes (GPU Coder)。
+- 要详细了解如何为包含 Image Classifier 模块的 Simulink 模型生成代码，请参阅 Code Generation for a Deep Learning Simulink Model to Classify ECG Signals (GPU Coder)。
 
 ## 版本历史
 
-**在 R2020b 中推出**
+**在 R2020b 中引入**
 
-### R2024a: 不推荐使用 `SeriesNetwork` 和 `DAGNetwork`
+### R2024a：不推荐使用 `SeriesNetwork` 和 `DAGNetwork`
 
-从 R2024a 开始，不推荐使用 `SeriesNetwork` 和 `DAGNetwork` 对象。这意味着，不推荐将 `SeriesNetwork` 和 `DAGNetwork` 用作 Image Classifier 模块的输入。请改用 `dlnetwork` 对象。`dlnetwork` 对象具有以下优势：
+从 R2024a 开始，不推荐使用 `SeriesNetwork` 和 `DAGNetwork`
+对象。此建议意味着不推荐将 `SeriesNetwork`
+和 `DAGNetwork` 输入用于 Image Classifier 模块。请改用 `dlnetwork` 对象。
+`dlnetwork` 对象具有以下优势：
 
 - `dlnetwork` 对象是一种统一的数据类型，支持网络构建、预测、内置训练、可视化、压缩、验证和自定义训练循环。
-- `dlnetwork` 对象支持更广泛的网络架构，您可以创建或从外部平台导入这些网络架构。
-- `trainnet` 函数支持 `dlnetwork` 对象，这使您能够轻松指定损失函数。您可以从内置损失函数中进行选择或指定自定义损失函数。
-- 使用 `dlnetwork` 对象进行训练和预测通常比使用 `LayerGraph` 和 `trainNetwork` 工作流更快。
+- `dlnetwork` 对象支持更广泛的网络架构，您可以创建这些架构或从外部平台导入。
+- `trainnet` 函数支持 `dlnetwork` 对象，这使您能够轻松指定损失函数。您可以从内置损失函数中选择，或指定自定义损失函数。
+- 使用 `dlnetwork` 对象进行训练和预测通常比 `LayerGraph` 和 `trainNetwork` 工作流更快。
 
-包含 `dlnetwork` 对象的 Simulink 模块模型具有不同的行为。预测分数以 *K*×*N* 矩阵形式返回，其中 *K* 是类数，*N* 是观测值的数量。如果您有一个现有的 Simulink 模块模型，其中包含 `SeriesNetwork` 或 `DAGNetwork` 对象，请按照以下步骤改用 `dlnetwork` 对象：
+包含 `dlnetwork` 对象的 Simulink 模块模型行为有所不同。预测分数以 *K*×*N* 矩阵形式返回，其中 *K* 是
+类别数，*N* 是观测值的数量。
+如果您有包含 `SeriesNetwork` 或
+`DAGNetwork` 对象的现有 Simulink 模块模型，请按照以下步骤改用 `dlnetwork` 对象：
 
-1. 使用 `dag2dlnetwork` 函数将 `SeriesNetwork` 或 `DAGNetwork` 对象转换为 `dlnetwork`。
-2. 定义包含网络输出类名称的工作区变量，该变量与模块参数**类名称工作区变量**相对应。
-3. 使用转置模块将预测分数转置为 *N*×*K* 数组，其中 *N* 是观测值数量，*K* 是类数。
+1. 使用 `dag2dlnetwork` 函数将 `SeriesNetwork` 或 `DAGNetwork` 对象转换为
+   `dlnetwork`。
+2. 定义一个工作区变量，其中包含与模块参数 **Class names workspace
+   variable** 对应的网络输出类别名称。
+3. 使用转置模块将预测分数转置为
+   *N*×*K* 数组，其中 *N* 是
+   观测值的数量，*K* 是类别数。
 
 ## 描述
 
-使用经过训练的深度学习神经网络对数据进行分类
+使用训练好的深度学习神经网络对数据进行分类
 
-Image Classifier 模块使用通过模块参数指定的已训练网络来预测输入端数据的类标签。此模块允许从 MAT 文件或使用 MATLAB® 函数将预训练网络加载到 Simulink® 模型中。
+Image Classifier 模块通过使用由模块参数指定的训练网络，对输入处的数据进行预测类别标签。此模块允许从 MAT 文件或 MATLAB® 函数将预训练网络加载到
+Simulink® 模型中。

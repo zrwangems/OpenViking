@@ -9,7 +9,7 @@ official_category: 'Electrical Systems / Motors'
 documentation_page: 'surfacemountpmsm'
 documentation_source_path: 'ref/surfacemountpmsm.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Surface Mount PMSM
@@ -20,330 +20,399 @@ chinese_source: official
 
 ### **LdTrq** — 电机上的负载转矩 `scalar`
 
-电机轴上的负载转矩 *Tm*，以 N·m 为单位。
+电机轴上的负载转矩，
+*Tm*，单位为 N·m。
 
-#### 依赖关系
+#### 依赖
 
-要创建此端口，请为**机械输入配置**参数选择**转矩**。
+要创建此端口，请为
+**Mechanical input configuration**
+参数选择 `Torque`。
 
 ### **Spd** — 电机轴转速 `scalar`
 
-电机的角速度 *ωm*，以弧度/秒为单位。
+电机的角速度，
+*ωm*，单位为 rad/s。
 
-#### 依赖关系
+#### 依赖
 
-要创建此端口，请为**机械输入配置**参数选择**转速**。
+要创建此端口，请为
+**Mechanical input configuration**
+参数选择 `Speed`。
 
-### **PhaseVolt** — 定子端电压 `1`×`3` 数组
+### **PhaseVolt** — 定子端电压 `1`-by-`3` array
 
-定子端电压 *Va*、*Vb* 和 *Vc*，以 V 为单位。
+定子端电压，
+*Va*、
+*Vb* 和
+*Vc*，单位为 V。
 ### 输出
 
-### **Info** — 总线信号 总线
+### **Info** — 总线信号 bus
 
-总线信号包含以下模块计算。
+该总线信号包含以下模块计算量。
 
 | 信号 | | | 描述 | 变量 | 单位 |
 | --- | --- | --- | --- | --- | --- |
-| `IaStator` | | | 定子相电流 A | *ia* | A |
-| `IbStator` | | | 定子相电流 B | *ib* | A |
-| `IcStator` | | | 定子相电流 C | *ic* | A |
+| `IaStator` | | | 定子 A 相电流 | *ia* | A |
+| `IbStator` | | | 定子 B 相电流 | *ib* | A |
+| `IcStator` | | | 定子 C 相电流 | *ic* | A |
 | `IdSync` | | | 直轴电流 | *id* | A |
 | `IqSync` | | | 交轴电流 | *iq* | A |
 | `VdSync` | | | 直轴电压 | *vd* | V |
 | `VqSync` | | | 交轴电压 | *vq* | V |
-| `MtrSpd` | | | 电机的机械角速度 | *ωm* | 弧度/秒 |
-| `MtrPos` | | | 电机的机械角位置 | *θm* | 弧度 |
+| `MtrSpd` | | | 电机的机械角速度 | *ωm* | rad/s |
+| `MtrPos` | | | 电机机械角位置 | *θm* | rad |
 | `MtrTrq` | | | 电磁转矩 | *Te* | N·m |
 | `PwrInfo` | `PwrTrnsfrd` | `PwrMtr` | 机械功率 | *Pmot* | W |
 | `PwrBus` | 电功率 | *Pbus* | W |
-| `PwrNotTrnsfrd` | `PwrElecLoss` | 电阻功率损失 | *Pelec* | W |
-| `PwrMechLoss` | 机械功率损失 | *Pmech* | W |
-| `PwrStored` | `PwrMtrStored` | 储存的电机功率 | *Pstr* | W |
+| `PwrNotTrnsfrd` | `PwrElecLoss` | 电阻功率损耗 | *Pelec* | W |
+| `PwrMechLoss` | 机械功率损耗 | *Pmech* | W |
+| `PwrStored` | `PwrMtrStored` | 电机储能功率 | *Pstr* | W |
 
-### **PhaseCurr** — a、b、c 相电流 `1`×`3` 数组
+### **PhaseCurr** — a、b、c 相电流 `1`-by-`3` array
 
-a、b、c 相电流 *ia*、*ib* 和 *ic*，以 A 为单位。
+a、b、c 相电流，*ia*、
+*ib* 和
+*ic*，单位为 A。
 
 ### **MtrTrq** — 电机转矩 `scalar`
 
-电机转矩 *Tmtr*，以 N·m 为单位。
+电机转矩，*Tmtr*，单位为
+N·m。
 
-#### 依赖关系
+#### 依赖
 
-要创建此端口，请为**机械输入配置**参数选择**转速**。
+要创建此端口，请为
+**Mechanical input configuration**
+参数选择 `Speed`。
 
 ### **MtrSpd** — 电机转速 `scalar`
 
-电机的角速度 *ωmtr*，以弧度/秒为单位。
+电机的角速度，
+*ωmtr*，单位为 rad/s。
 
-#### 依赖关系
+#### 依赖
 
-要创建此端口，请为**机械输入配置**参数选择**转矩**。
+要创建此端口，请为
+**Mechanical input configuration**
+参数选择 `Torque`。
 
 ## 参数
 
 #### 模块选项
 
-### **机械输入配置** — 选择端口配置 **转矩** (默认) | **转速**
+### **Mechanical input configuration** — 选择端口配置 `Torque` (default) | `Speed`
 
 下表总结了端口配置。
 
 | 端口配置 | 创建输入端口 | 创建输出端口 |
 | --- | --- | --- |
-| **转矩** | `LdTrq` | `MtrSpd` |
-| **转速** | `Spd` | `MtrTrq` |
+| `Torque` | `LdTrq` | `MtrSpd` |
+| `Speed` | `Spd` | `MtrTrq` |
 
-#### 编程用法
+#### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，
+请使用 `set_param` 函数。
 
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `port_config` |
-| **值:** | **Torque** (默认) | **Speed** |
-| **数据类型:** | `character vector` |
-
-### **仿真类型** — 选择仿真类型 **连续** (默认) | **离散**
-
-默认情况下，模块在仿真期间使用连续采样时间。如果要为单精度目标生成代码，请考虑将该参数设置为**离散**。
-
-#### 编程用法
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `sim_type` |
-| **值:** | **Continuous** (默认) | **Discrete** |
-| **数据类型:** | `character vector` |
+| **Parameter:** | `port_config` |
+| **值**：| `Torque` (default) | `Speed` |
+| **Data Types:** | `character vector` |
+
+### **Simulation type** — 选择仿真类型 `Continuous` (default) | `Discrete`
+
+默认情况下，该模块在仿真期间使用连续采样时间。如果要为单精度目标生成代码，请考虑将该参数设置为 `Discrete`。
+
+#### 编程使用
+
+要以编程方式设置模块参数值，
+请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `sim_type` |
+| **值**：| `Continuous` (default) | `Discrete` |
+| **Data Types:** | `character vector` |
+
+#### 依赖
+
+将 **Simulation type** 设置为 `Discrete` 会创建 **Sample Time, Ts** 参数。
+
+### **Sample Time (Ts)** — 离散积分采样时间 `0.001` (default) | `scalar`
+
+离散仿真的积分采样时间，单位为 s。
+
+#### 编程使用
+
+要以编程方式设置模块
+参数值，请使用 `set_param`
+函数。
+
+要以编程方式获取模块
+参数值，请使用 `get_param`
+函数。
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Ts` |
+| **值**：| `0.001` (default) | `scalar` |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-将**仿真类型**设置为**离散**会创建**采样时间 Ts** 参数。
+将 **Simulation type** 设置为
+`Discrete` 会创建 **Sample
+Time, Ts** 参数。
 
-### **采样时间(Ts)** — 离散积分的采样时间 `0.001` (默认) | `scalar`
+#### 负载参数
 
-离散仿真的积分采样时间，以秒为单位。
+### **File** — 电机参数 ".m" 或 ".mat" 文件的路径 文件名
 
-#### 编程用法
+输入使用 Motor Control Blockset™ 参数估计工具保存的电机参数
+".m" 或 ".mat" 文件的路径。您也可以点击
+**Browse** 按钮来浏览并选择 ".m" 或
+".mat" 文件，并使用文件名和路径更新 **File** 参数。有关电机参数估计
+过程的详细信息，请参阅 Estimate PMSM Parameters Using Parameter Estimation Blocks。
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `Ts` |
-| **值:** | `0.001` (默认) | `scalar` |
-| **数据类型:** | `double` |
-
-#### 依赖关系
-
-将**仿真类型**设置为**离散**会创建**采样时间 Ts** 参数。
-
-#### 加载参数
-
-### **文件** — 电机参数 .m 或 .mat 文件的路径 文件名
-
-输入您使用 Motor Control Blockset™ 参数估计工具保存的电机参数 .m 或 .mat 文件的路径。您也可以点击**浏览**按钮导航并选择 .m 或 .mat 文件，并用文件名和路径更新**文件**参数。有关电机参数估计过程的详细信息，请参阅Estimate PMSM Parameters Using Parameter Estimation Blocks。
-
-- **从文件加载** - 点击此按钮以从 .m 或 .mat 文件（由**文件**参数指示）读取估计的电机参数并将其加载到电机模块。
-- **保存到文件** - 点击此按钮以从电机模块读取电机参数并将其保存到 .m 或 .mat 文件（使用您在**文件**参数中指定的文件名和位置）。
+- **Load from file** - 点击此按钮从 ".m" 或 ".mat" 文件
+  （由 **File** 参数指示）中读取估计的电机参数，并将其加载
+  到电机模块中。
+- **Save to file** - 点击此按钮从电机模块中读取
+  电机参数，并将其保存到 ".m"
+  或 ".mat" 文件中（文件名和位置由您在
+  **File** 参数中指定）。
 
 **注意**
 
-在您点击**保存到文件** 按钮之前，请确保**文件**参数中的目标文件名具有 .m 或 .mat 扩展名。如果使用任何其他文件扩展名，模块将显示一条错误消息。
+在点击 **Save to file** 按钮之前，请确保
+**File** 参数中的目标文件名具有
+".m" 或 ".mat" 扩展名。如果您使用任何其他文件扩展名，
+模块将显示错误消息。
 
 #### 参数
 
-### **极对数(P)** — 极对 `4` (默认) | `scalar`
+### **Number of pole pairs (P)** — 极对数 `4` （默认） | `scalar`
 
-电机极对 *P*。
+电机极对数，*P*。
 
-#### 编程用法
+#### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块
+参数值，请使用 `set_param`
+函数。
 
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `P` |
-| **值:** | `4` (默认) | `scalar` |
-| **数据类型:** | `double` |
-
-### **每相定子电阻(Rs)** — 电阻 `0.02` (默认) | `scalar`
-
-每相的定子相电阻 *Rs*，以欧姆为单位。
-
-#### 编程用法
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块
+参数值，请使用 `get_param`
+函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `Rs` |
-| **值:** | `0.02` (默认) | `scalar` |
-| **数据类型:** | `double` |
+| **Parameter:** | `P` |
+| **值**：| `4` （默认） | `scalar` |
+| **Data Types:** | `double` |
 
-### **定子 d 轴电感(Ldq\_)** — 电感 `1.7e-3` (默认) | `scalar`
+### **Stator resistance per phase (Rs)** — 电阻 `0.02` （默认） | `scalar`
 
-定子电感 *Ldq*，以 H 为单位。
+每相定子相电阻，
+*Rs*，单位为欧姆。
 
-#### 编程用法
+#### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块
+参数值，请使用 `set_param`
+函数。
 
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `Ldq_` |
-| **值:** | `1.7e-3` (默认) | `scalar` |
-| **数据类型:** | `double` |
-
-### **永磁链常量(lambda\_pm)** — 磁通 `0.2205` (默认) | `scalar`
-
-永磁链常量 *λpm*，以 Wb 为单位。
-
-#### 编程用法
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块
+参数值，请使用 `get_param`
+函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `lambda_pm` |
-| **值:** | `0.2205` (默认) | `scalar` |
-| **数据类型:** | `double` |
+| **Parameter:** | `Rs` |
+| **值**：| `0.02` （默认） | `scalar` |
+| **Data Types:** | `double` |
 
-### **反电动势常量(Ke)** — 反电动势 `159.9771` (默认) | `scalar`
+### **Stator d-axis inductance (Ldq\_)** — 电感 `1.7e-3` （默认） | `scalar`
 
-反电动势、电动势、*Ke*，以峰值 Vpk\_LL/krpm 为单位。Vpk\_LL 是线电压峰值。
+定子电感，*Ldq*，单位为
+H。
 
-为了计算永磁链常量，该模块实现以下方程。
+#### 编程使用
+
+要以编程方式设置模块
+参数值，请使用 `set_param`
+函数。
+
+要以编程方式获取模块
+参数值，请使用 `get_param`
+函数。
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Ldq_` |
+| **值**：| `1.7e-3` （默认） | `scalar` |
+| **Data Types:** | `double` |
+
+### **Permanent flux linkage constant (lambda\_pm)** — 磁链 `0.2205` （默认） | `scalar`
+
+永磁磁链常数，
+*λpm*，单位为 Wb。
+
+#### 编程使用
+
+要以编程方式设置模块
+参数值，请使用 `set_param`
+函数。
+
+要以编程方式获取模块
+参数值，请使用 `get_param`
+函数。
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `lambda_pm` |
+| **值**：| `0.2205` （默认） | `scalar` |
+| **Data Types:** | `double` |
+
+### **Back-emf constant (Ke)** — 反电动势 `159.9771` （默认） | `scalar`
+
+反电动势，EMF，
+*Ke*，单位为峰值 Vpk\_LL/krpm。
+Vpk\_LL 是峰值线电压测量值。
+
+为了计算永磁磁链常数，模块实现
+以下方程。
 
 λpm=13⋅Ke1000P⋅602π
 
-#### 编程用法
+#### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块
+参数值，请使用 `set_param`
+函数。
 
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块
+参数值，请使用 `get_param`
+函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `Ke` |
-| **值:** | `159.9771` (默认) | `scalar` |
-| **数据类型:** | `double` |
+| **Parameter:** | `Ke` |
+| **值**：| `159.9771` （默认） | `scalar` |
+| **Data Types:** | `double` |
 
-### **转矩常量(Kt)** — 转矩常量 `1.323` (默认) | `scalar`
+### **Torque constant (Kt)** — 转矩常数 `1.323` （默认） | `scalar`
 
-转矩常量 *Kt*，以 N·m/A 为单位。
+转矩常数，*Kt*，单位为
+N·m/A。
 
-*Kt* = 电机的额定转矩 / *Ia\_peak\_rated*，其中，*Ia\_peak\_rated* 是 *a* 相在额定电流操作时的峰值振幅。
+*Kt* = 电机额定转矩 /
+*Ia\_peak\_rated*，其中 *Ia\_peak\_rated*
+是额定电流运行下 *a* 相的峰值幅度。
 
-为了计算永磁链常量，该模块实现以下方程。
+为了计算永磁磁链常数，模块实现
+以下方程。
 
 λpm=23⋅KtP
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `Kt` |
-| **值:** | `1.323` (默认) | `scalar` |
-| **数据类型:** | `double` |
+| **参数：** | `Kt` |
+| **值：** | `1.323`（默认） | `scalar` |
+| **数据类型：** | `double` |
 
-### **物理惯量、粘性阻尼、静态摩擦(机械)** — 惯量、阻尼、摩擦 `[0.002700,4.924e-4,0]` (默认) | `vector`
+### **物理惯量、粘性阻尼、静摩擦（机械）** — 惯量、阻尼、摩擦 `[0.002700,4.924e-4,0]`（默认） | `vector`
 
-电机的机械属性：
+电机的机械特性：
 
-- 惯量 *J*，以 kg.m^2 为单位
-- 粘性阻尼 *F*，以 N·m/（弧度/秒）为单位
-- 静态摩擦 *Tf*，以 N·m 为单位
+- 惯量，*J*，单位为 kg.m^2
+- 粘性阻尼，*F*，单位为 N·m/(rad/s)
+- 静摩擦，*Tf*，单位为 N·m
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `mechanical` |
-| **值:** | `[0.002700,4.924e-4,0]` (默认) | `vector` |
-| **数据类型:** | `double` |
+| **参数：** | `mechanical` |
+| **值：** | `[0.002700,4.924e-4,0]`（默认） | `vector` |
+| **数据类型：** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请将**机械输入配置**参数设置为**转矩**。
+要启用此参数，请将 **Mechanical input configuration** 参数设置为 `Torque`。
 
 #### 初始值
 
-### **初始 d 轴和 q 轴电流(idq0)** — 电流 `[0 0]` (默认) | `vector`
+### **初始 d 轴和 q 轴电流（idq0）** — 电流 `[0 0]`（默认） | `vector`
 
-初始 q 轴和 d 轴电流 *iq, id*，以 A 为单位。
+初始 q 轴和 d 轴电流，*iq, id*，单位为 A。
 
-#### 编程用法
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `idq0` |
-| **值:** | `[0 0]` (默认) | `vector` |
-| **数据类型:** | `double` |
-
-### **初始机械位置(theta\_init)** — 角 `0` (默认) | `scalar`
-
-初始电机角位置 *θm0*，以弧度为单位。
-
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `theta_init` |
-| **值:** | `0` (默认) | `scalar` |
-| **数据类型:** | `double` |
+| **参数：** | `idq0` |
+| **值：** | `[0 0]`（默认） | `vector` |
+| **数据类型：** | `double` |
 
-### **初始机械转速(omega\_init)** — 转速 `0` (默认) | `scalar`
+### **初始机械位置（theta\_init）** — 角度 `0`（默认） | `scalar`
 
-电机的初始角速度 *ωm0*，以弧度/秒为单位。
+初始电机角位置，*θm0*，单位为 rad。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获得模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `omega_init` |
-| **值:** | `0` (默认) | `scalar` |
-| **数据类型:** | `double` |
+| **参数：** | `theta_init` |
+| **值：** | `0`（默认） | `scalar` |
+| **数据类型：** | `double` |
+
+### **初始机械转速（omega\_init）** — 转速 `0`（默认） | `scalar`
+
+电机的初始角速度，*ωm0*，单位为 rad/s。
+
+#### 程序化使用
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `omega_init` |
+| **值：** | `0`（默认） | `scalar` |
+| **数据类型：** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请将**机械输入配置**参数设置为**转矩**。
+要启用此参数，请将 **Mechanical input configuration** 参数设置为 `Torque`。
 
 ## 所属库
 
@@ -351,44 +420,44 @@ Powertrain Blockset / Propulsion / Electric Motors and Inverters Motor Control B
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2017a 中推出**
+**在 R2017a 中引入**
 
 ## 描述
 
 具有正弦反电动势的三相外置式永磁同步电机
 
-Surface Mount PMSM 模块可实现具有正弦反电动势的三相外置式永磁同步电机 (PMSM)。该模块使用三相输入电压来调节各相电流，从而控制电机转矩或转速。
+Surface Mount PMSM 模块实现了一个具有正弦反电动势的三相外置式永磁同步电机（PMSM）。该模块使用三相输入电压来调节各相电流，从而控制电机转矩或转速。
 
-默认情况下，该模块将**仿真类型**参数设置为**连续**以便在仿真期间使用连续采样时间。如果要为定步长双精度和单精度目标生成代码，请考虑将参数设置为**离散**。然后指定**采样时间 Ts** 参数。
+默认情况下，该模块将 **Simulation type** 参数设置为 `Continuous`，以在仿真期间使用连续采样时间。如果要为固定步长双精度和单精度目标生成代码，请考虑将该参数设置为 `Discrete`。然后指定 **Sample Time, Ts** 参数。
 
-在**参数**选项卡上，如果您选择**反电动势常量(Ke)** 或**转矩常量(Kt)**，该模块将执行其中一个方程来计算永磁链常量。
+在 **Parameters** 选项卡上，如果选择 `Back-emf constant (Ke)` 或 `Torque constant (Kt)`，该模块将实现以下其中一个方程来计算永磁磁链常数。
 
 | 设置 | 方程 |
 | --- | --- |
-| **反电动势常量(Ke)** | λpm=13⋅Ke1000P⋅602π |
-| **转矩常量(Kt)** | λpm=23⋅KtP |
+| `Back-emf constant (Ke)` | λpm=13⋅Ke1000P⋅602π |
+| `Torque constant (Kt)` | λpm=23⋅KtP |
 
-### 电机构造
+### Motor Construction
 
-下图显示转子上具有单极对的电机构造。
+下图展示了转子上具有单对极的电机结构。
 
-PMSM surface mount motor with a two-pole rotor
+PMSM 表贴式电机，带两极转子
 
-永磁体产生的电机磁场会随着电机角度的变化而产生正弦磁通变化率。
+由永磁体产生的电机磁场会随电机角度产生正弦变化的磁通变化率。
 
-对于轴约定，当电机角度 *θr* 为零时，*a* 相位和永磁通对齐。
+对于坐标轴约定，当电机角度 *θr* 为零时，*a* 相磁通与永磁体磁通对齐。
 
-### 三相正弦模型电气系统
+### Three-Phase Sinusoidal Model Electrical System
 
-该模块实现下列方程，以电机磁通参考系（dq 系）表示。电机参考系中的所有量都是相对于定子来描述的。
+该模块实现以下方程，这些方程以电机磁通参考坐标系（dq 坐标系）表示。电机参考坐标系中的所有量均折算到定子侧。
 
 ωe=Pωmddtid=1Ldvd−RLdid+LqLdPωmiq
 
@@ -396,82 +465,82 @@ ddtiq=1Lqvq−RLqiq−LdLqPωmid−λpmPωmLq
 
 Te=1.5P[λpmiq+(Ld−Lq)idiq]
 
-由于电机电磁的凸极率，*Lq* 和 *Ld* 电感表示相电感和电机位置之间的关系。对于表贴式 PMSM，Ld=Lq。
+*Lq* 和 *Ld* 电感表示由于电机磁体凸极效应导致的相电感与电机位置之间的关系。对于表贴式 PMSM，Ld=Lq。
 
-上述方程用到了以下变量。
+这些方程使用以下变量。
 
 |  |  |
 | --- | --- |
-| *Lq*, *Ld* | q 轴和 d 轴电感 (H) |
-| *R* | 定子绕组的电阻 (ohm) |
-| *iq*, *id* | q 轴和 d 轴电流 (A) |
-| *vq*, *vd* | q 轴和 d 轴电压 (V) |
-| *ωm* | 电机的机械角速度（弧度/秒） |
-| *ωe* | 电机的电气角速度（弧度/秒） |
-| *λpm* | 永磁磁链(Wb) |
-| *Ke* | 反电动势 (EMF)（Vpk\_LL/krpm，其中 Vpk\_LL 是线电压峰值） |
-| *Kt* | 转矩常量 (N·m/A)  *Kt* = 电机的额定转矩 / *Ia\_peak\_rated*，其中，*Ia\_peak\_rated* 是 *a* 相在额定电流操作时的峰值振幅。 |
+| *Lq*，*Ld* | q 轴和 d 轴电感（H） |
+| *R* | 定子绕组电阻（ohm） |
+| *iq*，*id* | q 轴和 d 轴电流（A） |
+| *vq*，*vd* | q 轴和 d 轴电压（V） |
+| *ωm* | 电机机械角速度（rad/s） |
+| *ωe* | 电机电角速度（rad/s） |
+| *λpm* | 永磁体磁链（Wb） |
+| *Ke* | 反电动势（EMF）（Vpk\_LL/krpm，其中 Vpk\_LL 是线电压峰值测量值） |
+| *Kt* | 转矩常数（N·m/A）  *Kt* = 电机额定转矩 / *Ia\_peak\_rated*，其中 *Ia\_peak\_rated* 是额定电流运行时 *a* 相电流的峰值幅值。 |
 | *P* | 极对数 |
-| *Te* | 电磁转矩 (Nm) |
-| *Θe* | 电气角（弧度） |
+| *Te* | 电磁转矩（Nm） |
+| *Θe* | 电角度（rad） |
 
-### 机械系统
+### Mechanical System
 
 电机角速度由下式给出：
 
 ddtωm=1J(Te−Tf−Fωm−Tm)dθmdt=ωm
 
-上述方程用到了以下变量。
+这些方程使用以下变量。
 
 |  |  |
 | --- | --- |
-| *J* | 电机和负载的组合惯量 (kgm^2) |
-| *F* | 电机和负载的组合粘性摩擦（N·m/（弧度/秒）） |
-| *θm* | 电机机械角位置（弧度） |
-| *Tm* | 电机轴转矩 (Nm) |
-| *Te* | 电磁转矩 (Nm) |
-| *Tf* | 电机轴静态摩擦转矩 (Nm) |
-| *ωm* | 电机的机械角速度（弧度/秒） |
+| *J* | 电机与负载的合成惯量（kgm^2） |
+| *F* | 电机与负载的合成粘性摩擦（N·m/(rad/s)） |
+| *θm* | 电机机械角位置（rad） |
+| *Tm* | 电机轴转矩（Nm） |
+| *Te* | 电磁转矩（Nm） |
+| *Tf* | 电机轴静摩擦转矩（Nm） |
+| *ωm* | 电机机械角速度（rad/s） |
 
-### 功率计算
+### Power Accounting
 
-对于功率计算，该模块实现下列方程。
+对于功率核算，该模块实现以下方程。
 
-| 总线信号 | | | 描述 | 变量 | 方程 |
+| Bus Signal | | | Description | Variable | Equations |
 | --- | --- | --- | --- | --- | --- |
-| `PwrInfo` | `PwrTrnsfrd` - 模块之间传输的功率  - 正信号表示流入模块 - 负信号表示流出模块 | `PwrMtr` | 机械功率 | *Pmot* | Pmot= −ωmTe |
+| `PwrInfo` | `PwrTrnsfrd` — 模块之间传输的功率  - 正信号表示流入模块 - 负信号表示流出模块 | `PwrMtr` | 机械功率 | *Pmot* | Pmot= −ωmTe |
 | `PwrBus` | 电功率 | *Pbus* | Pbus= vania+ vbnib+vcnic |
-| `PwrNotTrnsfrd` - 功率越过模块边界，但未传输  - 正信号表示输入 - 负信号表示损失 | `PwrElecLoss` | 电阻功率损失 | *Pelec* | Pelec= −32(Rsisd2+Rsisq2) |
-| `PwrMechLoss` | 机械功率损失 | *Pmech* | 当**机械输入配置**设置为**转矩**时：  Pmech= −(ωm2F+ |ωm|Tf)  当**机械输入配置**设置为**转速**时：  Pmech= 0 |
-| `PwrStored` - 储存的能量变化率  - 正信号表示增加 - 负信号表示减少 | `PwrMtrStored` | 储存的电机功率 | *Pstr* | Pstr= Pbus+ Pmot+ Pelec + Pmech |
+| `PwrNotTrnsfrd` — 穿过模块边界但未传输的功率  - 正信号表示输入 - 负信号表示损耗 | `PwrElecLoss` | 电阻功率损耗 | *Pelec* | Pelec= −32(Rsisd2+Rsisq2) |
+| `PwrMechLoss` | 机械功率损耗 | *Pmech* | 当 **Mechanical input configuration** 设置为 `Torque` 时：  Pmech= −(ωm2F+ |ωm|Tf)  当 **Mechanical input configuration** 设置为 `Speed` 时：  Pmech= 0 |
+| `PwrStored` — 存储能量的变化率  - 正信号表示增加 - 负信号表示减少 | `PwrMtrStored` | 电机存储功率 | *Pstr* | Pstr= Pbus+ Pmot+ Pelec + Pmech |
 
-上述方程用到了以下变量。
+这些方程使用以下变量。
 
 |  |  |
 | --- | --- |
-| *Rs* | 定子电阻(欧姆) |
-| *ia*, *ib*, *ic* | 定子相 a、b 和 c 电流 (A) |
-| *isq*, *isd* | 定子 q 轴和 d 轴电流 (A) |
-| *van*, *vbn*, *vcn* | 定子相 a、b 和 c 电压 (V) |
-| *ωm* | 电机的机械角速度（弧度/秒） |
-| *F* | 电机和负载组合粘性阻尼 N·m/（弧度/秒） |
-| *Te* | 电磁转矩 (Nm) |
-| *Tf* | 电机和负载组合摩擦转矩 (Nm) |
+| *Rs* | 定子电阻（ohm） |
+| *ia*，*ib*，*ic* | 定子 a、b 和 c 相电流（A） |
+| *isq*，*isd* | 定子 q 轴和 d 轴电流（A） |
+| *van*，*vbn*，*vcn* | 定子 a、b 和 c 相电压（V） |
+| *ωm* | 电机机械角速度（rad/s） |
+| *F* | 电机与负载的合成粘性阻尼 N·m/(rad/s) |
+| *Te* | 电磁转矩（Nm） |
+| *Tf* | 电机与负载的合成摩擦转矩（Nm） |
 
-### 振幅不变的 *dq* 变换
+### Amplitude Invariant *dq* Transformation
 
-该模块使用下列方程来实现幅值不变的 *dq* 变换，以确保 *dq* 和三相振幅相等。
+该模块使用以下方程实现幅值不变 *dq* 变换，以确保 *dq* 幅值与三相幅值相等。
 
 [vsdvsq]= 23 [cos(Θda)cos(Θda−2π3)cos(Θda+2π3)−sin(Θda)−sin(Θda−2π3)−sin(Θda+2π3)][vavbvc]
 
 [iaibic]=   [cos(Θda)−sin(Θda)cos(Θda−2π3)cos(Θda+2π3)−sin(Θda−2π3)−sin(Θda+2π3)][isdisq]
 
-上述方程用到了以下变量。
+这些方程使用以下变量。
 
 |  |  |
 | --- | --- |
-| *Θda* | *dq* 定子相对于转子 *a* 轴的电角（弧度） |
-| *vsq*, *vsd* | 定子 *q* 轴和 *d* 轴电压 (V) |
-| *isq*, *isd* | 定子 *q* 轴和 *d* 轴电流 (A) |
-| *va*, *vb*, *vc* | 定子电压相位 *a*、*b*、*c* (V) |
-| *ia*, *ib*, *ic* | 定子电流相 *a*、*b*、*c* (A) |
+| *Θda* | 相对于转子 *a* 轴的 *dq* 定子电角度（rad） |
+| *vsq*、*vsd* | 定子 *q* 轴和 *d* 轴电压（V） |
+| *isq*、*isd* | 定子 *q* 轴和 *d* 轴电流（A） |
+| *va*、*vb*、*vc* | 定子电压相 *a*、*b*、*c*（V） |
+| *ia*、*ib*、*ic* | 定子电流相 *a*、*b*、*c*（A） |

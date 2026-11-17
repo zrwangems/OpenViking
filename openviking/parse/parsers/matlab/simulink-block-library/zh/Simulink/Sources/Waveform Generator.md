@@ -9,7 +9,7 @@ official_category: 'Sources'
 documentation_page: 'waveformgenerator'
 documentation_source_path: 'slref/waveformgenerator.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Waveform Generator
@@ -20,19 +20,19 @@ chinese_source: official
 
 ### **Port\_1** — 生成的输出信号 标量 | 向量
 
-由**波形定义**表中的条目指定的输出信号。
+由 **Waveform Definition** 表中的条目指定的输出信号。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `bus`
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `bus`
 
 ## 参数
 
-### 常设
+### 主
 
-### **输出信号** — 输出信号的波形 1 (默认) | 整数
+### **Output Signal** — 输出信号 1 的波形（默认）| 整数
 
-选择波形定义以指定输出信号。该数字对应于**波形定义**表中的行项。您可以在仿真运行时更改此参数。
+选择波形定义以指定输出信号。该数字对应于 **Waveform Definition** 表中的行项。您可以在仿真运行期间更改此参数。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
@@ -41,80 +41,80 @@ chinese_source: official
 | **值**：标量 |
 | **默认值**：`'1'` |
 
-### **波形定义** — 波形信号符号 常量 | `gaussian(mean,variance,seed)` | `pulse(amplitude,trigger_time,duration)` | `sawtooth(amplitude,frequence,phase_offset)` | `sin(amplitude,frequence,phase_offset)` | `square(amplitude,frequence,phase_offset)` | `step(step_time,initial_value,final_value)`
+### **Waveform Definition** — 波形信号表示法 constant | `gaussian(mean,variance,seed)` | `pulse(amplitude,trigger_time,duration)` | `sawtooth(amplitude,frequence,phase_offset)` | `sin(amplitude,frequence,phase_offset)` | `square(amplitude,frequence,phase_offset)` | `step(step_time,initial_value,final_value)`
 
-在**波形定义**表中输入信号符号，每行一个波形定义。有关语法的详细信息，请参阅算法。
+在 **Waveform Definition** 表中输入信号表示法，每行一个波形定义。有关语法详细信息，请参阅算法。
 
 ### 信号属性
 
-**数据类型助手**可帮助您设置数据属性。要使用**数据类型助手**，请点击 the Show data type assistant button。有关详细信息，请参阅使用数据类型助手指定数据类型。
+**Data Type Assistant** 可帮助您设置数据属性。要使用 **Data Type Assistant**，请点击 Show data type assistant 按钮。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
-### **输出最小值** — 范围检查的最小输出值 `[]` (默认) | 标量
+### **Output minimum** — 用于范围检查的最小输出值 `[]`（默认）| 标量
 
 软件检查的输出范围的下限值。
 
-软件使用最小值执行下列操作：
+软件使用最小值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值）。
-- 仿真范围检查（请参阅指定信号范围和启用仿真范围检查）。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters）。
+- 仿真范围检查（请参阅 Specify Signal Ranges 和 Enable Simulation Range Checking）。
 - 定点数据类型的自动定标。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 从模型生成的代码的优化。此优化可能会移除算法代码并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 #### 提示
 
-**输出最小值**不会对实际输出信号进行饱和处理或截断。请改用 Saturation 模块。
+**Output minimum** 不会饱和或裁剪实际输出信号。请改用 Saturation 模块。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `OutMin` |
-| **值:** | `'[]'` (默认) | scalar in quotes |
+| **Parameter：** | `OutMin` |
+| **值**：| `'[]'`（默认）| 带引号的标量 |
 
-### **输出最大值** — 范围检查的最大输出值 `[]` (默认) | 标量
+### **Output maximum** — 用于范围检查的最大输出值 `[]`（默认）| 标量
 
 软件检查的输出范围的上限值。
 
-软件使用最大值执行下列操作：
+软件使用最大值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值）。
-- 仿真范围检查（请参阅指定信号范围和启用仿真范围检查）。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters）。
+- 仿真范围检查（请参阅 Specify Signal Ranges 和 Enable Simulation Range Checking）。
 - 定点数据类型的自动定标。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 从模型生成的代码的优化。此优化可能会移除算法代码并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 #### 提示
 
-**输出最大值**不会对实际输出信号进行饱和处理或截断。请改用 Saturation 模块。
+**Output maximum** 不会饱和或裁剪实际输出信号。请改用 Saturation 模块。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `OutMax` |
-| **值:** | `'[]'` (默认) | scalar in quotes |
+| **Parameter：** | `OutMax` |
+| **值**：| `'[]'`（默认）| 带引号的标量 |
 
-### **输出数据类型** — 指定输出数据类型 **double** (默认) | **继承: 通过反向传播继承** | **single** | **int8** | **int32** | **uint32** | **int64** | **uint64** | **fixdt(1,16,2^0,0)** | **<数据类型表达式>** | ...
+### **Output data type** — 指定输出数据类型 `double`（默认）| `Inherit: Inherit via back propagation` | `single` | `int8` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16,2^0,0)` | `<data type expression>` | ...
 
-为输出选择数据类型。该类型可以继承、直接指定或表示为数据类型对象，如 `Simulink.NumericType`。
+选择输出的数据类型。该类型可以继承、直接指定，或表示为数据类型对象（如 `Simulink.NumericType`）。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`OutDataTypeStr` |
 | **类型**：字符向量 |
-| **值**：`'Inherit: Inherit via back propagation'` | `'double'` | `'single'` | `'int8'` | `'uint8'` | `int16` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `fixdt(1,16,0)` | **fixdt(1,16,2^0,0)** | `fixdt(1,16,2^0,0)` | `'<data type expression>'` |
+| **值**：`'Inherit: Inherit via back propagation'` | `'double'` | `'single'` | `'int8'` | `'uint8'` | `int16` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `fixdt(1,16,2^0,0)` | `'<data type expression>'` |
 | **默认值**：`'double'` |
 
-### **锁定输出数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 `off` (默认) | `on`
+### **Lock output data type setting against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
-选中此选项将锁定此模块的输出数据类型设置，从而防止通过定点工具和定点顾问进行更改。有关详细信息，请参阅Use Lock Output Data Type Setting (Fixed-Point Designer)。
+选择此项可锁定此模块的输出数据类型设置，防止被 Fixed-Point Tool 和 Fixed-Point Advisor 更改。有关详细信息，请参阅 Use Lock Output Data Type Setting (Fixed-Point Designer)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
@@ -123,32 +123,32 @@ chinese_source: official
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
 
-### **整数舍入模式** — 指定定点运算的舍入模式 **向下** (默认) | **向上** | **收敛** | **最邻近值** | **舍入** | **最简** | **零**
+### **Integer rounding mode** — 指定定点运算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
-选择下列舍入模式之一。
+选择以下舍入模式之一。
 
-**向上**
-:   将正值和负值朝正无穷方向舍入。等同于 MATLAB® `ceil` 函数。
+`Ceiling`
+:   将正数和负数都向正无穷方向舍入。等效于 MATLAB® 的 `ceil` 函数。
 
-**收敛**
-:   将数值舍入到最邻近的可表示值。如果出现结值，则舍入到最邻近的偶数整数。等同于 Fixed-Point Designer™ `convergent` 函数。
+`Convergent`
+:   将数字舍入到最接近的可表示值。如果出现平局，则舍入到最接近的偶数整数。等效于 Fixed-Point Designer™ 的 `convergent` 函数。
 
-**向下**
-:   将正值和负值朝负无穷方向舍入。等同于 MATLAB `floor` 函数。
+`Floor`
+:   将正数和负数都向负无穷方向舍入。等效于 MATLAB 的 `floor` 函数。
 
-**最邻近值**
-:   将数值舍入到最邻近的可表示值。如果出现结值，则朝正无穷方向舍入。等同于 Fixed-Point Designer `nearest` 函数。
+`Nearest`
+:   将数字舍入到最接近的可表示值。如果出现平局，则向正无穷方向舍入。等效于 Fixed-Point Designer 的 `nearest` 函数。
 
-**舍入**
-:   将数值舍入到最邻近的可表示值。如果出现结值，则将正数朝正无穷方向舍入，将负数朝负无穷方向舍入。等同于 Fixed-Point Designer `round` 函数。
+`Round`
+:   将数字舍入到最接近的可表示值。如果出现平局，则将正数向正无穷方向舍入，将负数向负无穷方向舍入。等效于 Fixed-Point Designer 的 `round` 函数。
 
-**最简**
-:   自动选择是向负无穷大方向舍入还是向零舍入，以生成尽可能有效的舍入代码。
+`Simplest`
+:   自动在向 floor 舍入和向零舍入之间选择，以生成尽可能高效的舍入代码。
 
-**零**
-:   将数值向零舍入。等同于 MATLAB `fix` 函数。
+`Zero`
+:   将数字向零方向舍入。等效于 MATLAB 的 `fix` 函数。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
@@ -159,41 +159,41 @@ chinese_source: official
 
 #### 另请参阅
 
-有关详细信息，请参阅舍入模式 (Fixed-Point Designer)。
+有关详细信息，请参阅 Rounding Modes (Fixed-Point Designer)。
 
-### **对整数溢出进行饱和处理** — 溢出操作的方法 `off` (默认) | `on`
+### **Saturate on integer overflow** — 溢出操作的方法 `off`（默认）| `on`
 
-指定对溢出是进行饱和处理还是绕回处理。
+指定溢出时是饱和还是回绕。
 
-- `on` - 将溢出饱和处理为数据类型能够表示的最小值或最大值。
-- `off` - 溢出将绕回到数据类型可以表示的合适值。
+- `on` — 溢出饱和到数据类型能够表示的最小值或最大值。
+- `off` — 溢出回绕到数据类型能够表示的相应值。
 
-例如，有符号 8 位整数 `int8` 可以表示的最大值是 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。
+例如，有符号 8 位整数 `int8` 能够表示的最大值是 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。
 
-- 选择此参数后，模块输出将在达到 127 时饱和。类似地，模块输出将在达到最小输出值 -128 时饱和。
-- 清除此参数后，软件会将导致溢出的值解释为 `int8`，这可能产生意外结果。例如，以 `int8` 表示的模块结果 130（二进制 1000 0010）为 -126。
+- 选中此参数时，模块输出饱和于 127。类似地，模块输出饱和于最小输出值 -128。
+- 清除此参数时，软件将导致溢出的值解释为 `int8`，这可能会产生意外结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时为 -126。
 
 #### 提示
 
-- 如果您的模型存在可能的溢出，而您希望在生成的代码中进行显式饱和保护，请考虑选中此参数。
-- 如果您希望优化生成的代码的效率，请考虑清除此参数。清除此参数还可以帮助您避免过度地指定信号超出范围时模块的处理方式。有关详细信息，请参阅信号范围错误故障排除。
-- 如果选中此参数，饱和将应用于模块中的每个内部操作，而不仅仅应用于输出或结果。
-- 一般情况下，代码生成进程可以检测到何时不可能发生溢出。在这种情况下，代码生成器不会生成饱和代码。
+- 当您的模型可能存在溢出并且您希望在生成的代码中显式提供饱和保护时，请考虑选中此参数。
+- 当您希望优化生成代码的效率时，请考虑清除此参数。清除此参数还有助于避免过度指定模块处理超出范围信号的方式。有关详细信息，请参阅 Troubleshoot Signal Range Errors。
+- 选中此参数时，饱和适用于模块上的每个内部运算，而不仅仅是输出或结果。
+- 通常，代码生成过程可以检测到不可能发生溢出的情况。在这种情况下，代码生成器不会生成饱和代码。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `SaturateOnIntegerOverflow` |
-| **值:** | `'off'` (默认) | `'on'` |
+| **Parameter：** | `SaturateOnIntegerOverflow` |
+| **值**：| `'off'`（默认）| `'on'` |
 
-### **采样时间** — 采样时间间隔 `0.1` (默认) | 标量
+### **Sample time** — 采样之间的时间间隔 `0.1`（默认）| 标量
 
-指定采样时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅 指定采样时间。
+指定采样之间的时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅 Specify Sample Time。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
@@ -210,36 +210,36 @@ Simulink / Sources
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Boolean` | `double` | `fixed point` | `integer` | `single` |
-| **直接馈通** | `否` |
-| **多维信号** | `否` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **Data Types** | `Boolean` | `double` | `fixed point` | `integer` | `single` |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ Code Generation 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 不建议用于生产代码。
 
-### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
+### Fixed-Point Conversion 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2015b 中推出**
+**在 R2015b 中引入**
 
 ## 描述
 
-使用信号符号输出波形
+使用信号表示法输出波形
 
-Waveform Generator 模块根据您在**波形定义**表中输入的信号符号输出波形。
+Waveform Generator 模块根据您在 **Waveform Definition** 表中输入的信号表示法输出波形。
 
-此模块支持下列用于信号符号的语法：
+此模块支持以下信号表示法语法：
 
-- 函数语法 - 以信号语法的特定顺序指定所有参量（请参阅算法）。
-- 名称-值语法 - 指定可选的、以逗号分隔的 `Name,Value` 对组参量。`Name` 为参量名称，`Value` 为对应的值。`Name` 必须显示在单引号 (`' '`) 内。您可采用任意顺序指定多个名称-值对组参量，如 `Name1,Value1,...,NameN,ValueN`。有关详细信息，请参阅算法。
+- 函数语法 — 按信号语法的特定顺序指定所有参数（请参阅算法）。
+- 名称-值语法 — 指定可选的逗号分隔的 `Name,Value` 参数对。`Name` 是参数名称，`Value` 是对应的值。`Name` 必须出现在单引号（`' '`）内。您可以按任意顺序指定多个名称和值对参数，如 `Name1,Value1,...,NameN,ValueN`。有关详细信息，请参阅算法。
 
-此模块支持普通、快速和快速加速模式以及快速重启。
+此模块支持普通、加速和快速加速模式以及快速重启。
 
 ### 支持的运算符
 
@@ -251,25 +251,25 @@ Waveform Generator 模块根据您在**波形定义**表中输入的信号符号
 | 乘法 | `*` |
 | 括号 | `()` |
 | 减法 | `-` |
-| 一元减法 | `-` |
+| 一元负号 | `-` |
 
-Waveform 模块遵循以下运算符优先规则：
+Waveform 模块遵循以下运算符优先级规则：
 
 1. `( )`
-2. `+ -` （一元）
+2. `+ -`（一元）
 3. `* /`
 4. `+ -`
 
-### 支持的运算
+### 支持的操作
 
-Waveform Generator 模块一次输出一个信号。您可以更改此输出信号。以弧度表示频率和相位偏移量参数。您还可以：
+Waveform Generator 模块一次输出一个信号。您可以更改此输出信号。频率和相位偏移参数以弧度表示。您还可以：
 
-- 嵌套信号符号，例如：
+- 嵌套信号表示法，例如：
 
   ```
   sin('Amplitude',sin('Amplitude',1,'Frequency',1,'Phase',0),'Frequency',1,'Phase',1)
   ```
-- 在基础工作区或模型工作区中引用实数标量变量，例如：
+- 引用基础工作区或模型工作区中的实标量变量，例如：
 
   ```
   sin('Amplitude',x,'Frequency',y,'Phase',z)
@@ -279,4 +279,4 @@ Waveform Generator 模块一次输出一个信号。您可以更改此输出信�
 
 有关波形的详细信息，请参阅算法。
 
-要快速确定系统对不同类型输入的响应，您可以在仿真过程中更改 Waveform Generator 模块的输出信号。
+要快速确定系统对不同类型输入的响应，您可以在仿真进行期间更改 Waveform Generator 模块的输出信号。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Linear S-shaped MF'
-family: 'membership-functions'
+family: 'fuzzy'
 product_id: 'fuzzy'
 product_name: 'Fuzzy Logic Toolbox'
 documentation_release: R2025b
@@ -18,18 +18,19 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **x** — 输入值 scalar | vector
+### **x** — 输入值 标量 | 向量
 
-用于计算隶属度值的输入值，指定为 scalar 或 vector。
+用于计算隶属度值的输入值，指定为标量或向量。
+
 ### 输出
 
-### **MF** — 隶属度值 scalar | vector
+### **MF** — 隶属度值 标量 | 向量
 
-隶属度值，以 scalar 或 vector 形式返回。**MF** 的维度与 **x** 的维度匹配。**MF** 的每个元素都是为 **x** 的对应元素计算出的隶属度值。
+隶属度值，以标量或向量形式返回。**MF** 的维度与 **x** 的维度一致。**MF** 的每个元素是对 **x** 中对应元素计算得到的隶属度值。
 
 ## 参数
 
-### **左点 a** — 过渡区域的最左点 `4`（默认）| scalar
+### **Left point a** — 过渡区域最左点 `4`（默认）| 标量
 
 过渡区域的最左点 *a*。
 
@@ -37,11 +38,11 @@ chinese_source: worker-translation
 
 |  |
 | --- |
-| **模块参数：** `a` |
-| **类型：** string, character vector |
-| **默认：** `"4"` |
+| **模块参数**：`a` |
+| **类型**：string, character vector |
+| **默认值**：`"4"` |
 
-### **右点 b** — 过渡区域的最右点 `6`（默认）| scalar
+### **Right point b** — 过渡区域最右点 `6`（默认）| 标量
 
 过渡区域的最右点 *b*。
 
@@ -49,9 +50,9 @@ chinese_source: worker-translation
 
 |  |
 | --- |
-| **模块参数：** `b` |
-| **类型：** string, character vector |
-| **默认：** `"6"` |
+| **模块参数**：`b` |
+| **类型**：string, character vector |
+| **默认值**：`"6"` |
 
 ## 所属库
 
@@ -73,9 +74,9 @@ R2025b 中未记录。
 
 ## 描述
 
-线性 S 形饱和隶属度函数
+线性 S 形饱和隶属函数
 
-Linear S-Shaped MF 模块实现线性 S 形饱和隶属度函数。
+Linear S-Shaped MF 模块实现线性 S 形饱和隶属函数。
 
 - 当 *a* < *b* 时：
 
@@ -84,6 +85,6 @@ Linear S-Shaped MF 模块实现线性 S 形饱和隶属度函数。
 
   f(x;a,b)={0,x<a1,x≥a}
 
-参数 *a* 和 *b* 分别控制隶属度函数的底部和肩部。将 *a* 设置为等于 *b* 会生成清晰隶属度函数。
+参数 *a* 和 *b* 分别控制隶属函数的足部和肩部。将 *a* 设为等于 *b* 会生成一个清晰隶属函数。
 
 此模块与 Triangular MF、Trapezoidal MF 和 Linear Z-shaped MF 模块相关。

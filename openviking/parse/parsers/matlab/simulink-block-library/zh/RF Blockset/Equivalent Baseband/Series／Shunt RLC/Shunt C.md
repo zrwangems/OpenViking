@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Shunt C'
-family: 'equivalent-baseband'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -20,11 +20,11 @@ R2025b 中未记录。
 
 ## 参数
 
-### 主要
+### 主
 
-### **Capacitance (F)** — 并联元件的电容 `1e-12`（默认）| scalar
+### **Capacitance (F)** — 并联元件的电容 `1e-12`（默认）| 标量
 
-电容的 scalar 值。该值必须为非负。
+电容的标量值。该值必须为非负。
 
 ### 可视化
 
@@ -32,26 +32,26 @@ R2025b 中未记录。
 
 频率数据源，指定为 `User-specified`。
 
-### **Frequency data (Hz)** — 频率数据范围 `[1:1.0e5:4e6]`（默认）| vector
+### **Frequency data (Hz)** — 频率数据范围 `[1:1.0e5:4e6]`（默认）| 向量
 
-频率数据范围，指定为以 hertz 为单位的 vector。
+频率数据范围，指定为以赫兹为单位的向量。
 
-### **Reference impedance (ohms)** — 参考阻抗 `50`（默认）| nonnegative scalar
+### **Reference impedance (ohms)** — 参考阻抗 `50`（默认）| 非负标量
 
-参考阻抗，指定为以 ohms 为单位的 nonnegative scalar。
+参考阻抗，指定为以欧姆为单位的非负标量。
 
 ### **Plot type** — 数据绘图类型 `X-Y plane`（默认）| `Composite data` | `Polar plane` | `Z Smith chart` | `Y Smith chart` | `ZY Smith chart`
 
-用于使用给定数据进行可视化的数据绘图类型，指定为以下之一：
+使用给定数据可视化的数据绘图类型，指定为以下之一：
 
-- `X-Y plane` — 生成数据随频率变化的 Cartesian 图。要创建 linear、semilog 或 log-log 图，请相应地设置 **Y-axis scale** 和 **X-axis scale**。
-- `Composite data` — 绘制 composite data。有关详细信息，请参阅 Create Plots Using Equivalent Baseband Library Blocks。
+- `X-Y plane` — 生成数据随频率变化的笛卡尔图。要创建线性、半对数或双对数图，请相应地设置 **Y-axis scale** 和 **X-axis scale**。
+- `Composite data` — 绘制复合数据。有关详细信息，请参阅 Create Plots Using Equivalent Baseband Library Blocks。
 - `Polar plane` — 生成数据的极坐标图。该模块仅绘制与指定频率对应的数据范围。
-- `Z smith chart`、`Y smith chart` 和 `ZY smith chart` — 生成 Smith® chart。该模块仅绘制与指定频率对应的数据范围。
+- `Z smith chart`、`Y smith chart` 和 `ZY smith chart` — 生成 Smith® 圆图。该模块仅绘制与指定频率对应的数据范围。
 
 ### **Y parameter1** — 要绘制的参数类型 `S11`（默认）| `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | ...
 
-基于设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
+基于您设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
 
 | Plot type | Y parameter1 |
 | --- | --- |
@@ -64,7 +64,7 @@ R2025b 中未记录。
 
 ### **Y parameter2** — 要绘制的参数类型 `S11`（默认）| `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | ...
 
-基于设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
+基于您设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
 
 | Plot type | Y parameter2 |
 | --- | --- |
@@ -109,38 +109,40 @@ R2025b 中未记录。
 
 要启用 **Y format2**，请将 **Plot type** 设置为 `X-Y plane`。
 
-### **X parameter** — 频率绘图 `Freq`（默认）
+### **X parameter** — 频率图 `Freq`（默认值）
 
-频率绘图，指定为 `Freq`。
+频率图，指定为 `Freq`。
 
-### **X format** — 频率绘图格式 `Auto`（默认）| `Hz` | `kHz` | `MHz` | `GHz` | `THz`
+### **X format** — 频率图格式 `Auto`（默认值）| `Hz` | `kHz` | `MHz` | `GHz` | `THz`
 
-频率绘图格式，指定为以下之一。
+频率图格式，指定为以下之一。
 
 |  |  |  |  |
 | --- | --- | --- | --- |
 | `Auto` | `Hz` | `kHz` | `MHz` |
 | `GHz` | `THz` |  |  |
 
-### **Y scale** — Y 轴刻度 `Linear`（默认）| `Log`
+### **Y scale** — Y 轴刻度 `Linear`（默认值）| `Log`
 
 Y 轴刻度，指定为 `Linear` 或 `Log`。
 
 #### 依赖关系
 
-要启用此参数，请将 **Plot type** 设置为 `X-Y plane`。
+要启用此参数，请将 **Plot type** 设置为 `X-Y
+plane`。
 
-### **X scale** — X 轴刻度 `Linear`（默认）| `Log`
+### **X scale** — X 轴刻度 `Linear`（默认值）| `Log`
 
 X 轴刻度，指定为 `Linear` 或 `Log`。
 
 #### 依赖关系
 
-要启用此参数，请将 **Plot type** 设置为 `X-Y plane`。
+要启用此参数，请将 **Plot type** 设置为 `X-Y
+plane`。
 
 ### **Plot** — 绘制指定数据按钮
 
-使用绘图按钮绘制指定数据。
+使用绘制按钮绘制指定的数据。
 
 ## 所属库
 
@@ -162,8 +164,8 @@ R2025b 中未记录。
 
 对并联电容器建模
 
-Shunt C 模块根据其频率相关 S 参数对模块对话框中描述的串联电感建模
+Shunt C 模块根据其频率相关 S 参数，对模块对话框中描述的串联电感器进行建模
 
-shunt C 对象是一个二端口网络，如下图所示。
+并联 C 对象是一个二端口网络，如下图所示电路图所示。
 
-二端口 shunt C 网络
+二端口并联 C 网络

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SM ST3C'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -20,7 +20,7 @@ chinese_source: worker-translation
 
 ### **V\_REF** — 电压参考标量
 
-电压调节器参考设定点，采用标幺值表示，指定为标量。
+电压调节器参考设定值，采用标幺值表示，指定为标量。
 
 **数据类型：** `single` | `double`
 
@@ -30,15 +30,15 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 
-### **V\_T** — 端电压标量
+### **V\_T** — 机端电压标量
 
-采用标幺值表示的端电压幅值，指定为标量。
+机端电压幅值，采用标幺值表示，指定为标量。
 
 **数据类型：** `single` | `double`
 
-### **I\_T** — 端电流标量
+### **I\_T** — 机端电流标量
 
-采用标幺值表示的端电流幅值，指定为标量。
+机端电流幅值，采用标幺值表示，指定为标量。
 
 **数据类型：** `single` | `double`
 
@@ -48,9 +48,15 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-- 要忽略来自过励限制器的输入，请将 **备用 OEL 输入位置 (V\_OEL)** 设置为 `Unused`。
-- 要在求和点使用来自过励限制器的输入，请将 **备用 OEL 输入位置 (V\_OEL)** 设置为 `Summation point`。
-- 要在接管点使用来自过励限制器的输入，请将 **备用 OEL 输入位置 (V\_OEL)** 设置为 `Take-over`。
+- 要忽略来自过励限制器的输入，请将 **Alternate OEL input locations
+  (V\_OEL)** 设置为
+  `Unused`。
+- 要在求和点使用来自过励限制器的输入，请将 **Alternate OEL input
+  locations (V\_OEL)** 设置为
+  `Summation point`。
+- 要在接管点使用来自过励限制器的输入，请将 **Alternate OEL input
+  locations (V\_OEL)** 设置为
+  `Take-over`。
 
 **数据类型：** `single` | `double`
 
@@ -60,9 +66,15 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-- 要忽略来自欠励限制器的输入，请将 **备用 UEL 输入位置 (V\_UEL)** 设置为 `Unused`。
-- 要在求和点使用来自欠励限制器的输入，请将 **备用 UEL 输入位置 (V\_UEL)** 设置为 `Summation point`。
-- 要在接管点使用来自欠励限制器的输入，请将 **备用 UEL 输入位置 (V\_UEL)** 设置为 `Take-over`。
+- 要忽略来自欠励限制器的输入，请将 **Alternate UEL input locations
+  (V\_UEL)** 设置为
+  `Unused`。
+- 要在求和点使用来自欠励限制器的输入，请将 **Alternate UEL input
+  locations (V\_UEL)** 设置为
+  `Summation point`。
+- 要在接管点使用来自欠励限制器的输入，请将 **Alternate UEL input
+  locations (V\_UEL)** 设置为
+  `Take-over`。
 
 **数据类型：** `single` | `double`
 
@@ -72,164 +84,177 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-- 要忽略来自定子电流限制器的输入，请将 **备用 SCL 输入位置 (V\_SCL)** 设置为 `Unused`。
-- 要在求和点使用来自定子电流限制器的输入，请将 **备用 SCL 输入位置 (V\_SCL)** 设置为 `Summation point`。
+- 要忽略来自定子电流限制器的输入，请将 **Alternate SCL input locations
+  (V\_SCL)** 设置为
+  `Unused`。
+- 要在求和点使用来自定子电流限制器的输入，请将 **Alternate SCL input
+  locations (V\_SCL)** 设置为
+  `Summation point`。
 
 **数据类型：** `single` | `double`
 
-### **V\_SCLoel** — 接管点定子电流限制 (OEL) 标量
+### **V\_SCLoel** — 接管定子电流限制（OEL）标量
 
-使用接管点时，来自定子电流限制器且防止励磁过励的输入，采用标幺值表示，指定为标量。
+使用接管点时来自定子电流限制器的输入，用于防止励磁过励，采用标幺值表示，指定为标量。
 
 #### 依赖关系
 
-- 要忽略来自定子电流限制器的输入，请将 **备用 SCL 输入位置 (V\_SCL)** 设置为 `Unused`。
-- 要在接管点使用来自定子电流限制器的输入，请将 **备用 SCL 输入位置 (V\_SCL)** 设置为 `Take-over`。
+- 要忽略来自定子电流限制器的输入，请将 **Alternate SCL input locations
+  (V\_SCL)** 设置为
+  `Unused`。
+- 要在接管点使用来自定子电流限制器的输入，请将 **Alternate SCL input
+  locations (V\_SCL)** 设置为
+  `Take-over`。
 
 **数据类型：** `single` | `double`
 
-### **V\_SCLuel** — 接管点定子电流限制 (UEL) 标量
+### **V\_SCLuel** — 接管定子电流限制（UEL）标量
 
-使用接管点时，来自定子电流限制器且防止励磁欠励的输入，采用标幺值表示，指定为标量。
+使用接管点时来自定子电流限制器的输入，用于防止励磁欠励，采用标幺值表示，指定为标量。
 
 #### 依赖关系
 
-- 要忽略来自定子电流限制器的输入，请将 **备用 SCL 输入位置 (V\_SCL)** 设置为 `Unused`。
-- 要在接管点使用来自定子电流限制器的输入，请将 **备用 SCL 输入位置 (V\_SCL)** 设置为 `Take-over`。
+- 要忽略来自定子电流限制器的输入，请将 **Alternate SCL input locations
+  (V\_SCL)** 设置为
+  `Unused`。
+- 要在接管点使用来自定子电流限制器的输入，请将 **Alternate SCL input
+  locations (V\_SCL)** 设置为
+  `Take-over`。
 
 **数据类型：** `single` | `double`
 
-### **Ifd\_pu** — 测得的励磁电流标量
+### **Ifd\_pu** — 测量的励磁电流标量
 
-同步电机测得的标幺励磁电流，指定为标量。
+同步电机的测量标幺励磁电流，指定为标量。
 
 **数据类型：** `single` | `double`
-
 ### 输出
 
 ### **Efd\_pu** — 励磁电压标量
 
-要施加到同步电机励磁电路的标幺励磁电压，以标量形式返回。
+要施加到同步电机励磁绕组的标幺励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
 
 ## 参数
 
-### 通用
+### 常规
 
-### **初始励磁电压，Efd0 (pu)** — 初始输出电压 `1`（默认） | real number
+### **Initial field voltage, Efd0 (pu)** — 初始输出电压 `1`（默认）| 实数
 
-要施加到同步电机励磁电路的初始标幺电压。
+要施加到同步电机励磁绕组的初始标幺电压。
 
-### **初始端电压，Vt0 (pu)** — 初始端电压 `1`（默认） | real number
+### **Initial terminal voltage, Vt0 (pu)** — 初始机端电压 `1`（默认）| 实数
 
-初始标幺端电压。
+初始标幺机端电压。
 
-### **初始端电流，It0 (pu)** — 初始端电流 `1`（默认） | real number
+### **Initial terminal current, It0 (pu)** — 初始机端电流 `1`（默认）| 实数
 
-初始标幺端电流。
+初始标幺机端电流。
 
-### **采样时间（-1 表示继承）** — 模块采样时间 `-1`（默认） | `0` | positive scalar
+### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| `0` | 正标量
 
-连续模块执行之间的时间。在执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅什么是采样时间？和指定采样时间。
+连续模块执行之间的时间。在执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 对于继承的离散时间操作，请将此参数设置为 `-1`。对于离散时间操作，请将此参数设置为正整数。对于连续时间操作，请将此参数设置为 `0`。
 
-如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数，以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅提升掩码上的模块参数。
+如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
 
 ### 预控制
 
-### **负载补偿的电阻分量，R\_C (pu)** — 补偿电阻 `0`（默认） | positive number
+### **Resistive component of load compensation, R\_C (pu)** — 补偿电阻 `0`（默认）| 正数
 
-电流补偿系统中使用的电阻。将此参数和 **负载补偿的电抗分量，X\_C (pu)** 设置为 `0`，以禁用电流补偿。
+电流补偿系统中使用的电阻。将此参数和 **Reactance component of load compensation, X\_C
+(pu)** 设置为 `0` 以禁用电流补偿。
 
-### **负载补偿的电抗分量，X\_C (pu)** — 补偿电抗 `0`（默认） | positive number
+### **Reactance component of load compensation, X\_C (pu)** — 补偿电抗 `0`（默认）| 正数
 
-电流补偿系统中使用的电抗。将此参数和 **负载补偿的电阻分量，R\_C (pu)** 设置为 `0`，以禁用电流补偿。
+电流补偿系统中使用的电抗。将此参数和 **Resistive component of load compensation, R\_C
+(pu)** 设置为 `0` 以禁用电流补偿。
 
-### **调节器输入滤波器时间常数，T\_R (s)** — 调节器时间常数 `0`（默认） | positive number
+### **Regulator input filter time constant, T\_R (s)** — 调节器时间常数 `0`（默认）| 正数
 
-电压变送器滤波的等效时间常数。
+电压传感器滤波的等效时间常数。
 
 ### 控制
 
-### **电压调节器增益，K\_A (pu)** — 调节器增益 `200`（默认） | positive number
+### **Voltage regulator gain, K\_A (pu)** — 调节器增益 `200`（默认）| 正数
 
-与电压调节器关联的增益。
+与电压调节器相关的增益。
 
-### **调节器分母（滞后）时间常数，T\_B (s)** — 第一个超前-滞后环节的调节器滞后时间常数 `10`（默认） | positive number
+### **Regulator denominator (lag) time constant, T\_B (s)** — 第一个超前-滞后环节的调节器滞后时间常数 `10`（默认）| 正数
 
-电压调节器中的等效滞后时间常数。当附加滞后动态可忽略时，将此参数设置为 `0`。
+电压调节器中的等效滞后时间常数。当附加滞后动态可忽略时，请将此参数设置为 `0`。
 
-### **调节器分子（超前）时间常数，T\_C (s)** — 第一个超前-滞后环节的调节器超前时间常数 `1`（默认） | positive number
+### **Regulator numerator (lead) time constant, T\_C (s)** — 第一个超前-滞后环节的调节器超前时间常数 `1`（默认）| 正数
 
-电压调节器中的等效超前时间常数。当附加超前动态可忽略时，将此参数设置为 `0`。
+电压调节器中的等效超前时间常数。当附加超前动态可忽略时，请将此参数设置为 `0`。
 
-### **电压调节器比例增益，K\_PR (pu)** — 调节器比例增益 `1`（默认） | positive number
+### **Voltage regulator proportional gain, K\_PR (pu)** — 调节器比例增益 `1`（默认）| 正数
 
-与电压调节器 PI 控制环节关联的比例增益。
+与电压调节器 PI 控制环节相关的比例增益。
 
-### **电压调节器积分增益，K\_IR (pu/s)** — 调节器积分增益 `0`（默认） | positive number
+### **Voltage regulator integral gain, K\_IR (pu/s)** — 调节器积分增益 `0`（默认）| 正数
 
-与电压调节器 PI 控制环节关联的积分增益。
+与电压调节器 PI 控制环节相关的积分增益。
 
-### **电压调节器最大输出，V\_PImax (pu)** — PI 控制的调节器输出上限 `99`（默认） | real number
+### **Maximum voltage regulator output, V\_PImax (pu)** — PI 控制的调节器输出上限 `99`（默认）| 实数
 
 调节器 PI 控制环节的最大标幺输出电压。
 
-### **电压调节器最小输出，V\_PImin (pu)** — PI 控制的调节器输出下限 `-99`（默认） | real number
+### **Minimum voltage regulator output, V\_PImin (pu)** — PI 控制的调节器输出下限 `-99`（默认）| 实数
 
 调节器 PI 控制环节的最小标幺输出电压。
 
-### **调节器最大输出，V\_Rmax (pu)** — 调节器输出上限 `10`（默认） | real number
+### **Maximum regulator output, V\_Rmax (pu)** — 调节器输出上限 `10`（默认）| 实数
 
 调节器的最大标幺输出电压。
 
-### **调节器最小输出，V\_Rmin (pu)** — 调节器输出下限 `-10`（默认） | real number
+### **Minimum regulator output, V\_Rmin (pu)** — 调节器输出下限 `-10`（默认）| 实数
 
 调节器的最小标幺输出电压。
 
-### **最大电压误差（调节器输入），V\_Imax (pu)** — 电压上限 `0.2`（默认） | real number
+### **Maximum voltage error (regulator input), V\_Imax (pu)** — 电压上限 `0.2`（默认）| 实数
 
 作为调节器输入给出的最大标幺电压。
 
-### **最小电压误差（调节器输入），V\_Imax (pu)** — 电压下限 `-0.2`（默认） | real number
+### **Minimum voltage error (regulator input), V\_Imax (pu)** — 电压下限 `-0.2`（默认）| 实数
 
 作为调节器输入给出的最小标幺电压。
 
-### **内环励磁调节器前向增益，K\_M (pu)** — 内环前向增益 `7.93`（默认） | positive number
+### **Forward gain of inner loop field regulator, K\_M (pu)** — 内环前向增益 `7.93`（默认）| 正数
 
 内环励磁调节器中的标幺前向增益。
 
-### **内环励磁调节器前向时间常数，T\_M (s)** — 内环前向时间常数 `0.4`（默认） | positive number
+### **Forward time constant of inner loop field regulator, T\_M (s)** — 内环前向时间常数 `0.4`（默认）| 正数
 
 内环励磁调节器中的前向时间常数，以秒为单位。
 
-### **励磁电流调节器最大输出，V\_Mmax (pu)** — 励磁电流调节器输出上限 `1`（默认） | real number
+### **Maximum output of field current regulator, V\_Mmax (pu)** — 励磁电流调节器输出上限 `1`（默认）| 实数
 
 励磁电流调节器的最大标幺输出电压。
 
-### **调节器最小输出，V\_Mmin (pu)** — 励磁电流调节器输出下限 `0`（默认） | real number
+### **Minimum regulator output, V\_Mmin (pu)** — 励磁电流调节器输出下限 `0`（默认）| 实数
 
 励磁电流调节器的最小标幺输出电压。
 
-### **励磁电流调节器反馈增益，K\_G (pu)** — 励磁电流调节器反馈增益 `1`（默认） | positive number
+### **Feedback gain of field current regulator, K\_G (pu)** — 励磁电流调节器的反馈增益 `1`（默认）| 正数
 
 励磁电流调节器中的标幺反馈增益。
 
-### **励磁电流调节器最大反馈电压，V\_Gmax (pu)** — 励磁电流调节器最大反馈电压 `5.8`（默认） | positive number
+### **Maximum feedback voltage for field current regulator, V\_Gmax (pu)** — 励磁电流调节器的最大反馈电压 `5.8`（默认）| 正数
 
 励磁电流调节器的最大标幺反馈电压。
 
-### **备用 OEL 输入位置 (V\_OEL)** — OEL 输入位置 `Unused`（默认） | `Summation point` | `Take-over`
+### **Alternate OEL input locations (V\_OEL)** — OEL 输入位置 `Unused`（默认）| `Summation point` | `Take-over`
 
 过励限制器输入位置。
 
-### **备用 UEL 输入位置 (V\_UEL)** — UEL 输入位置 `Unused`（默认） | `Summation point` | `Take-over`
+### **Alternate UEL input locations (V\_UEL)** — UEL 输入位置 `Unused`（默认）| `Summation point` | `Take-over`
 
 欠励限制器输入位置。
 
-### **备用 SCL 输入位置 (V\_SCL)** — SCL 输入位置 `Unused`（默认） | `Summation point` | `Take-over`
+### **Alternate SCL input locations (V\_SCL)** — SCL 输入位置 `Unused`（默认）| `Summation point` | `Take-over`
 
 定子电流限制器输入位置：
 
@@ -238,49 +263,55 @@ chinese_source: worker-translation
 
 ### 励磁机
 
-### **与换相电抗成比例的整流器负载系数，K\_C (pu)** — 整流器负载系数 `0.2`（默认） | positive number
+### **Rectifier loading factor proportional to commutating reactance, K\_C (pu)** — 整流器负载系数 `0.2`（默认）| 正数
 
 与换相电抗成比例的整流器负载系数。
 
-### **电势电路（电压）增益系数，K\_P (pu)** — 电势电路电压增益系数 `6.15`（默认） | positive number
+### **Potential circuit (voltage) gain coefficient, K\_P (pu)** — 电势回路电压增益系数 `6.15`（默认）| 正数
 
-电源电路中的标幺电压增益系数。
-
-#### 依赖关系
-
-要启用此参数，请将 **电源选择器** 设置为 `Position A: power source derived from generator terminal voltage`。
-
-### **复励电路（电流）增益系数，K\_I (pu)** — 电势电路电流增益系数 `0`（默认） | positive number
-
-电源电路中的标幺电流增益系数。
+电源回路中的标幺电压增益系数。
 
 #### 依赖关系
 
-要启用此参数，请将 **电源选择器** 设置为 `Position A: power source derived from generator terminal voltage`。
+要启用此参数，请将 **Power source selector** 设置为 `Position A: power source derived from generator
+terminal voltage`。
 
-### **与电势源关联的电抗，X\_L (pu)** — 电势源电抗 `0.081`（默认） | positive number
+### **Compound circuit (current) gain coefficient, K\_I (pu)** — 电势回路电流增益系数 `0`（默认）| 正数
 
-电源电路中的标幺电抗。
-
-#### 依赖关系
-
-要启用此参数，请将 **电源选择器** 设置为 `Position A: power source derived from generator terminal voltage`。
-
-### **电势电路相位角 (degrees)** — 电势电路相位角 `0`（默认） | positive number
-
-电源电路的相位角，以度为单位。
+电源回路中的标幺电流增益系数。
 
 #### 依赖关系
 
-要启用此参数，请将 **电源选择器** 设置为 `Position A: power source derived from generator terminal voltage`。
+要启用此参数，请将 **Power source selector** 设置为 `Position A: power source derived from generator
+terminal voltage`。
 
-### **最大可用励磁机电压，V\_Bmax (pu)** — 励磁机电压上限 `6.9`（默认） | positive number
+### **Reactance associated with potential source, X\_L (pu)** — 电势源电抗 `0.081`（默认）| 正数
 
-最大可用励磁机标幺电压值。
+电源回路中的标幺电抗。
 
-### **电源选择器** — 电源选择器 `Position A: power source derived from generator terminal voltage`（默认） | `Position B: power source independent of generator terminal conditions`
+#### 依赖关系
 
-电源选择器的位置，指定为 `Position A: power source derived from generator terminal voltage` 或 `Position B: power source independent of generator terminal conditions`。
+要启用此参数，请将 **Power source selector** 设置为 `Position A: power source derived from generator
+terminal voltage`。
+
+### **Potential circuit phase angle (degrees)** — 电势回路相位角 `0`（默认）| 正数
+
+电源回路的相位角，以度为单位。
+
+#### 依赖关系
+
+要启用此参数，请将 **Power source selector** 设置为 `Position A: power source derived from generator
+terminal voltage`。
+
+### **Maximum available exciter voltage, V\_Bmax (pu)** — 励磁机电压上限 `6.9`（默认）| 正数
+
+最大可用标幺励磁机电压值。
+
+### **Power source selector** — 电源选择器 `Position A: power source derived from generator terminal voltage`（默认）| `Position B: power source independent of generator terminal conditions`
+
+电源选择器的位置，指定为 `Position A: power source derived from generator
+terminal voltage` 或 `Position B: power source independent of generator
+terminal conditions`。
 
 ## 所属库
 
@@ -288,7 +319,7 @@ Simscape / Electrical / Control / SM Control
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -300,47 +331,48 @@ Simscape / Electrical / Control / SM Control
 
 ## 描述
 
-带自动电压调节器的离散时间或连续时间同步电机 ST3C 静态励磁系统
+具有自动电压调节器的离散时间或连续时间同步电机 ST3C 静态励磁系统
 
-SM ST3C 模块实现了一个符合 IEEE 421.5-2016[1] 的同步电机型 ST3C 静态励磁系统模型。
+SM ST3C 模块实现了符合 IEEE 421.5-2016[1] 的同步电机型 ST3C 静态励磁系统模型。
 
-使用此模块对同步电机励磁电压的控制和调节进行建模。
+使用此模块可对同步电机励磁电压的控制和调节进行建模。
 
-您可以通过使用 **采样时间（-1 表示继承）** 参数在模块的连续实现和离散实现之间切换。要将积分器配置为连续时间，请将 **采样时间（-1 表示继承）** 属性设置为 `0`。要将积分器配置为离散时间，请将 **采样时间（-1 表示继承）** 属性设置为正非零值，或设置为 `-1` 以从上游模块继承采样时间。
+您可以使用 **Sample time (-1 for inherited)** 参数在模块的连续实现和离散实现之间切换。要将积分器配置为连续时间，请将 **Sample time (-1 for
+inherited)** 属性设置为 `0`。要将积分器配置为离散时间，请将 **Sample time (-1 for inherited)** 属性设置为正的非零值，或设置为 `-1` 以从上游模块继承采样时间。
 
 SM ST3C 模块包含四个主要组件：
 
-- 电流补偿器根据端电流修改测得的端电压。
-- 电压测量变送器使用低通滤波器模拟端电压变送器的动态特性。
-- 励磁控制元件组件将电压变送器输出与端电压参考进行比较，以产生电压误差。然后，该电压误差经过电压调节器以产生励磁电压。
-- 电源组件对受控整流器的电源进行建模，此时该电源与端电压无关。
+- 电流补偿器根据机端电流修改测量的机端电压。
+- 电压测量传感器使用低通滤波器模拟机端电压传感器的动态特性。
+- 励磁控制元件将电压传感器输出与机端电压参考进行比较以产生电压误差。然后该电压误差通过电压调节器以产生励磁电压。
+- 电源对受控整流器的电源进行建模，当其独立于机端电压时。
 
 此图显示了 ST3C 励磁系统模型的整体结构：
 
-图中：
+在图中：
 
-- *VT* 和 *IT* 是同步电机测得的端电压和端电流。
-- *VC1* 是电流补偿后的端电压。
-- *VC* 是经过滤波的电流补偿后端电压。
-- *VREF* 是参考端电压。
+- *VT* 和 *IT* 是同步电机的测量机端电压和电流。
+- *VC1* 是电流补偿后的机端电压。
+- *VC* 是滤波后的电流补偿机端电压。
+- *VREF* 是参考机端电压。
 - *VS* 是电力系统稳定器电压。
-- *VB* 是励磁机磁场电压。
-- *EFD* 和 *IFD* 分别是励磁电压和励磁电流。
+- *VB* 是励磁机励磁电压。
+- *EFD* 和 *IFD* 分别是励磁电压和电流。
 
-以下各节详细描述了该模块的每个主要部分。
+以下各节详细描述了模块的每个主要部分。
 
-### 电流补偿器和电压测量变送器
+### 电流补偿器和电压测量传感器
 
 电流补偿器建模为：
 
-VC1=VT+ITRC2+XC2,
+VC1=VT+ITRC2+XC2，
 
 其中：
 
 - *RC* 是负载补偿电阻。
 - *XC* 是负载补偿电抗。
 
-电压测量变送器实现为具有时间常数 *TR* 的 Low-Pass Filter 模块。有关离散实现和连续实现，请参阅 Low-Pass Filter 模块的文档。
+电压测量传感器实现为具有时间常数 *TR* 的低通滤波器模块。有关离散和连续实现，请参阅低通滤波器模块的文档。
 
 ### Excitation Control Elements
 
@@ -348,46 +380,29 @@ VC1=VT+ITRC2+XC2,
 
 图中：
 
-- Summation Point Logic 子系统对过励限制器 (OEL)、欠励限制器
-  (UEL)、定子电流限制器 (SCL) 和功率开关选择器 (V\_S) 电压的
-  求和点输入位置进行建模。有关将此模块与限制器一起使用的详细信息，请参阅
-  励磁电流限制器。
-- Take-over Logic 子系统对 OEL、UEL 和 SCL 电压的接管点输入
-  位置进行建模。有关将此模块与限制器一起使用的详细信息，请参阅
-  励磁电流限制器。
-- PI 子系统对 PI 控制器进行建模，该控制器用作自动电压调节器的
-  控制结构，并允许表示采用现代数字控制器的设备改造。该模块的
-  最小和最大抗饱和饱和限值分别为 *VPImin* 和 *VPImax*。
-- Lead-Lag 模块对与电压调节器相关的附加动态进行建模，并表示
-  系统稳定器。其中，*TC* 是超前时间常数，*TB* 是滞后
-  时间常数。有关精确的离散和连续实现，请参阅此模块的文档。
-- 使用内环励磁电压控制回路来线性化励磁机控制特性，它由增益
-  *KM* 和 *KG* 以及时间常数 *TM* 组成。该模块的最小和
-  最大抗饱和饱和限值分别为 *VMmin* 和 *VMmax*。
+- Summation Point Logic 子系统为过励限制器（OEL）、欠励限制器（UEL）、定子电流限制器（SCL）以及功率开关选择器（V\_S）电压建模了求和点输入位置。有关将此模块与限制器配合使用的详细信息，请参阅 Field Current Limiters。
+- Take-over Logic 子系统为 OEL、UEL 和 SCL 电压建模了接管点输入位置。有关将此模块与限制器配合使用的详细信息，请参阅 Field Current Limiters。
+- PI 子系统为 PI 控制器建模，该控制器用作自动电压调节器的控制结构，并允许表示采用现代数字控制器的设备改造。该模块的最小和最大抗积分饱和限幅分别为 *VPImin* 和 *VPImax*。
+- Lead-Lag 模块为电压调节器相关的附加动态建模，并表示系统稳定器。此处，*TC* 为超前时间常数，*TB* 为滞后时间常数。有关精确的离散和连续实现，请参阅该模块的文档。
+- 采用内部励磁电压控制环来线性化励磁机控制特性，它由增益 *KM* 和 *KG* 以及时间常数 *TM* 组成。该模块的最小和最大抗积分饱和限幅分别为 *VMmin* 和 *VMmax*。
 
-### 励磁电流限制器
+### Field Current Limiters
 
 您可以使用各种励磁电流限制器在不安全运行条件下修改电压调节器的输出：
 
 - 使用过励限制器防止因励磁电流需求过大而导致励磁绕组过热。
-- 使用欠励限制器在励磁过低时提升励磁，这会带来失步风险。
+- 使用欠励限制器在励磁过低时提升励磁，因为励磁过低存在失步风险。
 - 使用定子电流限制器防止因电流过大而导致定子绕组过热。
 
-将任意这些限制器的输出连接到以下点之一：
+将上述任一限制器的输出连接到以下任一位置：
 
-- 作为自动电压调节器 (AVR) 反馈回路一部分的求和点
-- 用于覆盖 AVR 常规行为的接管点
+- 求和点，作为自动电压调节器（AVR）反馈回路的一部分
+- 接管点，以覆盖 AVR 的常规行为
 
-如果在求和点使用定子电流限制器，请使用单一输入 *VSCLsum*。如果
-在接管点使用定子电流限制器，请同时使用过励输入 *VSCLoel* 和
-欠励输入 *VSCLuel*。
+如果在求和点使用定子电流限制器，请使用单输入 *VSCLsum*。如果在接管点使用定子电流限制器，请同时使用过励输入 *VSCLoel* 和欠励输入 *VSCLuel*。
 
-### 电源
+### Power Source
 
-通过选择 **Power source selector** 参数中的相关选项，可以为受控
-整流器采用不同的电源表示形式。受控整流器的电源可以
-派生自端电压（`Position A: power source derived from generator terminal voltage`），
-也可以独立于端电压（`Position B: power source independent of generator terminal conditions`）。
+通过在 **Power source selector** 参数中选择相关选项，可以采用受控整流器电源的不同表示方式。受控整流器的电源既可以来自机端电压（`Position A: power source derived from generator terminal voltage`），也可以独立于机端电压（`Position B: power source independent of generator terminal conditions`）。
 
-此图展示了利用端电压 *VT* 和端电流 *IT* 的相量
-组合的励磁机电源模型：
+此图展示了一个利用机端电压 *VT* 和机端电流 *IT* 的相量组合来表示励磁机电源的模型：

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Aperture Jitter Measurement'
-family: 'adc'
+family: 'msblks'
 product_id: 'msblks'
 product_name: 'Mixed-Signal Blockset'
 documentation_release: R2025b
@@ -18,24 +18,24 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **clk** — 时钟信号输入标量
+### **clk** — 时钟信号输入 标量
 
-时钟信号输入，指定为以 volts 为单位的标量。
+时钟信号输入，指定为以伏特为单位的标量。
 
 **数据类型：** `double`
 ### 输出
 
-### **jitter** — 抖动输出标量
+### **jitter** — 抖动输出 标量
 
-孔径抖动输出，以 seconds 为单位的标量形式返回。
+孔径抖动输出，以秒为单位返回标量。
 
 **数据类型：** `double`
 
 ## 参数
 
-### **Frequency** — 输入时钟频率 `1e6`（默认）| 实数正标量
+### **Frequency** — 输入时钟频率 `1e6`（默认）| 正实数标量
 
-输入时钟频率，指定为以 Hz 为单位的实数正标量。
+输入时钟频率，指定为以 Hz 为单位的正实数标量。
 
 #### 编程用法
 
@@ -44,13 +44,13 @@ chinese_source: worker-translation
 
 ### **Recommended min. simulation stop time** — 仿真必须运行以获得有意义结果的最短时间 `9.901e-05`（默认）| 标量
 
-仿真必须运行以获得有意义结果的最短时间，指定为以 seconds 为单位的标量。此值根据用于测量孔径抖动的 JEDEC Standards 计算。
+仿真必须运行以获得有意义结果的最短时间，指定为以秒为单位的标量。这是使用用于测量孔径抖动的 JEDEC 标准计算得出的。
 
 #### 信号范围
 
 ### **Min** — 时钟信号的最小值 `0`（默认）| 实数标量
 
-时钟信号的最小值，指定为以 volts 为单位的实数标量。
+时钟信号的最小值，指定为以伏特为单位的实数标量。
 
 #### 编程用法
 
@@ -59,7 +59,7 @@ chinese_source: worker-translation
 
 ### **Max** — 时钟信号的最大值 `1`（默认）| 实数标量
 
-时钟信号的最大值，指定为以 volts 为单位的实数标量。
+时钟信号的最大值，指定为以伏特为单位的实数标量。
 
 #### 编程用法
 
@@ -68,7 +68,7 @@ chinese_source: worker-translation
 
 ### **Hold off time (s)** — 测量分析前的延迟 `0`（默认）| 非负实数标量
 
-延迟测量分析，以避免瞬态导致测量结果损坏，指定为以 seconds 为单位的非负实数标量。
+将测量分析延迟以避免瞬态造成的失真，指定为以秒为单位的非负实数标量。
 
 #### 编程用法
 
@@ -97,4 +97,4 @@ R2025b 中未记录。
 
 测量周期信号的孔径抖动
 
-Aperture Jitter Measurement 测量周期信号的孔径抖动。在实际数据转换器中，采样时钟信号的采样边沿与实际采集样本的时刻之间存在延迟。此延迟称为孔径延迟。孔径抖动是孔径延迟的逐样本变化。
+Aperture Jitter Measurement 测量周期信号的孔径抖动。在实际数据转换器中，采样时钟信号的采样边沿与实际采集样本之间存在延迟。此延迟称为孔径延迟。孔径抖动是孔径延迟之间的逐样本变化。

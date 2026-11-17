@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Center-Tapped Transformer'
-family: 'passive'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,89 +16,89 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **1+** — 初级绕组正极性的电气
+### **1+** — 一次绕组正极性电气端口
 
-与初级绕组正极性关联的电气守恒端口。
+与一次绕组正极性相关联的电气守恒端口。
 
-### **1-** — 初级绕组负极性的电气
+### **1-** — 一次绕组负极性电气端口
 
-与初级绕组负极性关联的电气守恒端口。
+与一次绕组负极性相关联的电气守恒端口。
 
-### **2+** — 次级绕组正极性的电气
+### **2+** — 二次绕组正极性电气端口
 
-与次级绕组正极性关联的电气守恒端口。
+与二次绕组正极性相关联的电气守恒端口。
 
-### **2-** — 次级绕组负极性的电气
+### **2-** — 二次绕组负极性电气端口
 
-与次级绕组负极性关联的电气守恒端口。
+与二次绕组负极性相关联的电气守恒端口。
 
-### **c** — 次级绕组中心抽头的电气
+### **c** — 二次绕组中心抽头电气端口
 
-与次级绕组中心抽头关联的电气守恒端口。
+与二次绕组中心抽头相关联的电气守恒端口。
 
 ## 参数
 
-### **建模选项** — 用于对理想或非理想中心抽头变压器建模的选项 `Ideal`（默认）| `Non-Ideal`
+### **Modeling option** — 用于选择对理想或非理想中心抽头变压器进行建模的选项 `Ideal`（默认）| `Non-Ideal`
 
-用于对理想或非理想中心抽头变压器建模的选项。如果将此参数设置为 `Non-Ideal`，则该模块还会对绕组、基波磁阻和涡流建模。
+用于选择对理想或非理想中心抽头变压器进行建模的选项。如果将此参数设置为 `Non-Ideal`，则该模块还会对绕组、基本磁阻和涡流进行建模。
 
-### **绕组比** — 变压器的绕组比 `1`（默认）| 正标量
+### **Winding ratio** — 变压器的绕组比 `1`（默认）| 正标量
 
-变压器的绕组比，等于初级线圈匝数与次级线圈匝数之比。
+变压器的绕组比，等于一次线圈匝数与二次线圈匝数之比。
 
-### **中心抽头位置 (0~1)** — 中心抽头在次级绕组上的位置 `0.5`（默认）| 范围 (0, 1) 内的标量
+### **Center tap position (0~1)** — 中心抽头在二次绕组上的位置 `0.5`（默认）| 范围 (0, 1) 内的标量
 
-中心抽头在次级绕组上的位置。
+中心抽头在二次绕组上的位置。
 
-### **初级绕组电阻** — 初级绕组的串联电阻 `0.01` `Ohm`（默认）| 正标量
+### **Primary winding resistance** — 一次绕组的串联电阻 `0.01` `Ohm`（默认）| 正标量
 
-初级绕组的串联电阻。
+一次绕组的串联电阻。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **建模选项** 设置为 `Non-Ideal`。
+要启用此参数，请将 **Modeling option** 设置为 `Non-Ideal`。
 
-### **初级漏感** — 初级绕组的漏感 `0.0001` `H`（默认）| 正标量
+### **Primary leakage inductance** — 一次绕组的漏电感 `0.0001` `H`（默认）| 正标量
 
-初级绕组的漏感。
+一次绕组的漏电感。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **建模选项** 设置为 `Non-Ideal`。
+要启用此参数，请将 **Modeling option** 设置为 `Non-Ideal`。
 
-### **次级绕组电阻** — 次级绕组的串联电阻 `0.01` `Ohm`（默认）| 正标量
+### **Secondary winding resistance** — 二次绕组的串联电阻 `0.01` `Ohm`（默认）| 正标量
 
-次级绕组的串联电阻。
+二次绕组的串联电阻。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **建模选项** 设置为 `Non-Ideal`。
+要启用此参数，请将 **Modeling option** 设置为 `Non-Ideal`。
 
-### **次级漏感** — 次级绕组的漏感 `0.0001` `H`（默认）| 正标量
+### **Secondary leakage inductance** — 二次绕组的漏电感 `0.0001` `H`（默认）| 正标量
 
-次级绕组的漏感。
+二次绕组的漏电感。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **建模选项** 设置为 `Non-Ideal`。
+要启用此参数，请将 **Modeling option** 设置为 `Non-Ideal`。
 
-### **磁化电阻** — 变压器的磁化电阻 `100` `Ohm`（默认）| 正标量
+### **Magnetization resistance** — 变压器的磁化电阻 `100` `Ohm`（默认）| 正标量
 
 变压器的磁化电阻。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **建模选项** 设置为 `Non-Ideal`。
+要启用此参数，请将 **Modeling option** 设置为 `Non-Ideal`。
 
-### **磁化电感** — 变压器的磁化电感 `0.04` `H`（默认）| 正标量
+### **Magnetization inductance** — 变压器的磁化电感 `0.04` `H`（默认）| 正标量
 
 变压器的磁化电感。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **建模选项** 设置为 `Non-Ideal`。
+要启用此参数，请将 **Modeling option** 设置为 `Non-Ideal`。
 
 ## 所属库
 
@@ -106,7 +106,7 @@ Simscape / Electrical / Passive / Transformers
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -120,28 +120,28 @@ Simscape / Electrical / Passive / Transformers
 
 单相中心抽头变压器
 
-Center-Tapped Transformer 模块实现了一个中心抽头变压器。在开关模式电源应用中，通常在全波整流器内使用中心抽头变压器，该整流器需要从交流输入获得完整的直流输出。
+Center-Tapped Transformer 模块实现了一个中心抽头变压器。在开关电源应用中，您经常在全波整流器内使用中心抽头变压器，这需要从交流输入获得完整的直流输出。
 
-连接到 Center-Tapped Transformer 模块初级和次级绕组的两个电气网络必须各自具有自己的 Electrical Reference 模块。通常，还会将次级绕组的中心抽头连接到 Electrical Reference 模块。
+连接到 Center-Tapped Transformer 模块一次绕组和二次绕组的两个电气网络必须各自拥有自己的 Electrical Reference 模块。通常，您还需要将二次绕组的中心抽头连接到 Electrical Reference 模块。
 
 ### 方程
 
-下图显示了当您将 **建模选项** 参数设置为 `Ideal` 时 Center-Tapped Transformer 模块的等效电路：
+此图显示了当您将 **Modeling option** 参数设置为 `Ideal` 时 Center-Tapped Transformer 模块的等效电路：
 
-下图显示了当您将 **建模选项** 参数设置为 `Non-Ideal` 时 Center-Tapped Transformer 模块的等效电路：
+此图显示了当您将 **Modeling option** 参数设置为 `Non-Ideal` 时 Center-Tapped Transformer 模块的等效电路：
 
-您必须确定模块封装中的电气域参数与等效电路模型中使用的磁域参数之间的关系：
+您必须确定模块掩码中的电气域参数与等效电路模型中使用的磁域参数之间的关系：
 
-- *n* 是 **绕组比** 参数的值。
-- *L*1 是 **初级漏感** 参数的值。
-- *R*m 是 **磁化电阻** 参数的值。
-- *L*m 是 **磁化电感** 参数的值。
-- *T* 是 **中心抽头位置 (0~1)** 参数的值。
-- *L*2 是 **次级漏感** 参数的值。
-- *Rw*2 是 **次级绕组电阻** 参数的值。
-- R1=n2L1 是初级绕组漏磁阻。
+- *n* 是 **Winding ratio** 参数的值。
+- *L*1 是 **Primary leakage inductance** 参数的值。
+- *R*m 是 **Magnetization resistance** 参数的值。
+- *L*m 是 **Magnetization inductance** 参数的值。
+- *T* 是 **Center tap position (0~1)** 参数的值。
+- *L*2 是 **Secondary leakage inductance** 参数的值。
+- *Rw*2 是 **Secondary winding resistance** 参数的值。
+- R1=n2L1 是一次绕组漏磁阻。
 - R=n2Lm 是并联磁化电阻。
 - Leddy=n2Rm 是涡流回路的电导。
-- R2=(1−T)2+T2L2 是次级绕组漏磁阻。
-- Rw2p=Rw2(1−T) 是次级上半绕组电阻。
-- Rw2n=Rw2T 是次级下半绕组电阻。
+- R2=(1−T)2+T2L2 是二次绕组漏磁阻。
+- Rw2p=Rw2(1−T) 是二次上绕组电阻。
+- Rw2n=Rw2T 是二次下绕组电阻。

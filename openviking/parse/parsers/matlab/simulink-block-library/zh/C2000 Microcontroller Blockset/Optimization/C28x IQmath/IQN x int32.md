@@ -46,10 +46,10 @@ R2025b 中未记录。
 
 将 IQ 数与长整数相乘
 
-此模块将 IQ 输入和长整数输入相乘，并生成与 IQ 输入具有相同 Q 值的 IQ 输出。
+此模块将一个 IQ 输入和一个长整数输入相乘，并生成一个与 IQ 输入具有相同 Q 值的 IQ 输出。
 
 **注意**
 
-此模块的实现不会在代码生成期间调用相应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关详细信息，请参阅 Using the IQmath Library。
+此模块的实现不会在代码生成期间调用相应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关更多信息，请参阅 Using the IQmath Library。
 
 - C2000 IQN x int32 模块

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DSB AM Modulator Passband'
-family: 'modulation'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -18,40 +18,40 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **In** — 输入信号标量
+### **In** — 输入信号 标量
 
 输入信号，指定为标量。
 
-该端口在模块上未命名。
+此端口在模块上未命名。
 
 **数据类型：** `double`
 ### 输出
 
-### **Out** — 输出信号标量
+### **Out** — 输出信号 标量
 
-输出信号，以标量形式返回。输出是已调信号的通带表示。
+输出信号，以标量形式返回。输出是已调制信号的通带表示。
 
-该端口在模块上未命名。
+此端口在模块上未命名。
 
 **数据类型：** `double`
 
 ## 参数
 
-要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条上的 **Simulation** 选项卡中，在 **Prepare** 库中，选择 **Property Inspector**。
+要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
-### **输入信号偏移** — 输入信号偏移因子 `1`（默认）| 标量
+### **Input signal offset** — 输入信号偏移因子 `1`（默认）| 标量
 
 输入信号偏移因子，指定为标量。此值应大于或等于输入信号最小值的绝对值。
 
-### **载波频率 (Hz)** — 载波频率，以 Hz 为单位 `300`（默认）| 正标量
+### **Carrier frequency (Hz)** — 载波频率（Hz） `300`（默认）| 正标量
 
-载波频率，以 Hz 为单位，指定为正标量。
+载波频率（Hz），指定为正标量。
 
-通常，合适的载波频率远高于输入信号的最高频率。根据 Nyquist 采样定理，1 / *T*s > (2 × *f*c)，其中 *T*s 表示输入信号的采样时间。有关详细信息，请参阅基带仿真与通带仿真。
+通常，合适的载波频率远高于输入信号的最高频率。根据奈奎斯特采样定理，1 / *T*s > (2 × *f*c)，其中 *T*s 表示输入信号的采样时间。有关详细信息，请参阅基带与通带仿真。
 
-### **初始相位 (rad)** — 载波初始相位偏移，以弧度为单位 `0`（默认）| 标量
+### **Initial phase (rad)** — 初始相位偏移（弧度） `0`（默认）| 标量
 
-载波的初始相位偏移，以弧度为单位，指定为标量。
+载波的初始相位偏移（弧度），指定为标量。
 
 ## 所属库
 

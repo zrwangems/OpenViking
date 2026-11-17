@@ -9,20 +9,20 @@ official_category: 'Electrical / Electrical Elements'
 documentation_page: 'translationalelectromechanicalconverter'
 documentation_source_path: 'ref/translationalelectromechanicalconverter.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Translational Electromechanical Converter
 
 ## 端口
 
-模块具有以下端口：
+该模块具有以下端口：
 
 `+`
-:   与转换器正极端子关联的电气守恒端口。
+:   与转换器正极端子相关联的电学守恒端口。
 
 `-`
-:   与转换器负极端子关联的电气守恒端口。
+:   与转换器负极端子相关联的电学守恒端口。
 
 `C`
 :   机械平移守恒端口。
@@ -32,30 +32,31 @@ chinese_source: official
 
 ## 参数
 
-**比例常数 K**
-:   机电转换的比例常数。默认值为 `0.1` V/(m/s)。
+**Constant of proportionality K**
+:   机电转换的比例常数。
+    默认值为 `0.1` V/(m/s)。
 
 ## 所属库
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2007a 中推出**
+**在 R2007a 中引入**
 
 ## 描述
 
-电气平移域和机械平移域之间的接口
+电气域与机械平移域之间的接口
 
-Translational Electromechanical Converter 模块提供电气平移域和机械平移域之间的接口。它以平移运动形式将电能转换为机械能，反之亦然。转换器用以下方程描述：
+Translational Electromechanical Converter 模块提供了电气域与机械平移域之间的接口。它将电能转换为平移运动形式的机械能，反之亦然。该转换器由以下方程描述：
 
 F=K·I
 
@@ -65,18 +66,18 @@ V=K·U
 
 |  |  |
 | --- | --- |
-| *`V`* | 转换器的电气端口两端的电压 |
-| *`I`* | 通过转换器的电气端口的电流 |
+| *`V`* | 转换器电学端口两端的电压 |
+| *`I`* | 流过转换器电学端口的电流 |
 | *`F`* | 力 |
 | *`U`* | 速度 |
 | *`K`* | 比例常数 |
 
-Translational Electromechanical Converter 模块表示无损机电能量转换，因此两个方程式都使用相同的比例常数。
+Translational Electromechanical Converter 模块表示无损耗的机电能量转换，因此两个方程中使用相同的比例常数。
 
-连接端 + 和 - 是分别对应于转换器的正极端子和负极端子的守恒电气端口。连接端 C 和 R 是守恒机械平移端口。如果电流从正极端子到负极端子的方向为正，则产生的力从端口 C 到端口 R 的方向也为正。这一方向可通过对 K 使用负值来改变。
+连接 + 和 – 是对应于转换器正极和负极端子的守恒电学端口。连接 C 和 R 是守恒机械平移端口。如果从正极端子流向负极端子的电流为正，则产生的力为正，方向从端口 C 作用到端口 R。可以通过为 K 使用负值来改变该方向。
 
 ### 变量
 
-要在仿真之前设置模块变量的优先级和初始目标值，请使用模块对话框或属性检查器中的**初始目标**部分。有关详细信息，请参阅设置模块变量的优先级和初始目标值。
+要在仿真之前为模块变量设置优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-标称值提供了一种指定模型中变量的预期模的方法。使用基于标称值的系统缩放可提高仿真的稳健性。标称值可以来自不同的来源，其中之一是模块对话框或属性检查器中的的**标称值**部分。有关详细信息，请参阅Modify Nominal Values for a Block Variable。
+标称值提供了一种指定模型中变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。标称值可以来自不同来源，其中之一是模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 Modify Nominal Values for a Block Variable。

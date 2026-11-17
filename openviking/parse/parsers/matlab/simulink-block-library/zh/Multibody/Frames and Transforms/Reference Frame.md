@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Reference Frame'
-family: 'frames-and-transforms'
+family: 'sm'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b
@@ -20,11 +20,11 @@ chinese_source: worker-translation
 
 ### **R** — 参考坐标系 frame
 
-由该模块表示的局部参考坐标系。连接到坐标系连线或坐标系端口，以定义该参考坐标系的相对位置和方向。
+由该模块表示的局部参考坐标系。连接到 frame 线或 frame 端口，以定义参考坐标系的相对位置和方向。
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -32,7 +32,7 @@ Simscape / Multibody / Frames and Transforms
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -46,4 +46,4 @@ Simscape / Multibody / Frames and Transforms
 
 非惯性参考坐标系
 
-该模块表示一个参考坐标系，您可以相对于该参考坐标系定义其他坐标系。该参考坐标系通常是非惯性的。它可以相对于 World frame 加速。该模块在模型中是可选的。
+该模块表示一个参考坐标系，您可以相对于它定义其他 frame。该参考坐标系通常是非惯性的。它可以相对于 World frame 加速。该模块在模型中是可选的。

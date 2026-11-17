@@ -21,7 +21,7 @@ chinese_source: worker-translation
 ### **A(i,:)** — 实矩阵 *A* 的行 向量
 
 实矩阵 *A* 的行，指定为向量。
-*A* 是 *m* 乘 *n* 矩阵，其中 *m* ≥ 2 且 *n* ≥ 2。如果 *A* 是定点数据类型，
+*A* 是 *m*×*n* 矩阵，其中 *m* ≥ 2 且 *n* ≥ 2。如果 *A* 是定点数据类型，
 *A* 必须是有符号的并使用二进制小数点定标。定点数据类型不支持
 斜率-偏置表示。
 
@@ -29,28 +29,27 @@ chinese_source: worker-translation
 
 ### **validIn** — 输入是否有效 `Boolean` 标量
 
-输入是否有效，指定为 Boolean 标量。此控制信号
+输入是否有效，指定为布尔标量。此控制信号
 指示来自 `A(i,:)` 输入端口的数据何时有效。当
-此值为 1（`true`）且 `ready` 的值为
-1（`true`）时，模块捕获
+此值为 1（`true`）且 `ready`
+的值为 1（`true`）时，模块捕获
 `A(i,:)` 输入端口的值。当此值为 0
-（`false`）时，模块忽略输入样本。
+（`false`）时，模块忽略输入采样。
 
-发送 `true`
-`validIn` 信号后，在
-`ready` 设置为 `false` 之前可能会有一些延迟。为确保所有数据
-都已处理，你必须等待直到 `ready` 设置为
-`false`，然后再发送另一个 `true`
+在发送 `true`
+`validIn` 信号后，`ready` 被设置为 `false` 之前可能会有一些延迟。为确保所有数据
+都被处理，您必须等待 `ready` 被设置为
+`false` 后再发送另一个 `true`
 `validIn` 信号。
 
 **数据类型：** `Boolean`
 
 ### **restart** — 是否清除内部状态 `Boolean` 标量
 
-是否清除内部状态，指定为 Boolean 标量。当此值
-为 1（`true`）时，模块停止当前计算并清除所有
+是否清除内部状态，指定为布尔标量。当此值为
+1（`true`）时，模块停止当前计算并清除所有
 内部状态。当此值为 0（`false`）且
-`validIn` 处的值为 1（`true`）时，模块开始新的
+`validIn` 处的值为 1（`true`）时，模块开始一个新的
 子帧。
 
 **数据类型：** `Boolean`
@@ -58,16 +57,16 @@ chinese_source: worker-translation
 
 ### **R(i,:)** — 上三角矩阵 *R* 的行 标量 | 向量
 
-经济型 QR 分解矩阵 *R* 的行，以
-标量或向量形式返回。*R* 是上三角矩阵。矩阵
-*R* 的大小为 min(*m*,*n*) 乘 *n*。`R(i,:)` 处的输出
+经济型 QR 分解矩阵 *R* 的行，返回为
+标量或向量。*R* 是上三角矩阵。矩阵 *R* 的大小
+为 min(*m*,*n*)×*n*。`R(i,:)` 处的输出
 与 `A(i,:)` 处的输入具有相同的数据类型。
 
 **数据类型：** `single` | `double` | `fixed point`
 
 ### **validOut** — 输出数据是否有效 `Boolean` 标量
 
-输出数据是否有效，指定为 Boolean 标量。此控制
+输出数据是否有效，指定为布尔标量。此控制
 信号指示输出端口 `R(i,:)` 处的数据何时有效。
 当此值为 1（`true`）时，模块已成功计算
 矩阵 *R*。当此值为 0（`false`）时，
@@ -77,25 +76,24 @@ chinese_source: worker-translation
 
 ### **ready** — 模块是否就绪 `Boolean` 标量
 
-模块是否就绪，以 Boolean 标量形式返回。此控制信号
-指示模块何时准备好接收新输入数据。当此值为
+模块是否就绪，返回为布尔标量。此控制信号
+指示模块何时准备好接收新的输入数据。当此值为
 `1`（`true`）且 `validIn` 为
 `1`（`true`）时，模块在
 下一个时间步接受输入数据。当此值为 `0`（`false`）时，
 模块在下一个时间步忽略输入数据。
 
-发送 `true`
-`validIn` 信号后，在
-`ready` 设置为 `false` 之前可能会有一些延迟。为确保所有数据
-都已处理，你必须等待直到 `ready` 设置为
-`false`，然后再发送另一个 `true`
+在发送 `true`
+`validIn` 信号后，`ready` 被设置为 `false` 之前可能会有一些延迟。为确保所有数据
+都被处理，您必须等待 `ready` 被设置为
+`false` 后再发送另一个 `true`
 `validIn` 信号。
 
 **数据类型：** `Boolean`
 
 ## 参数
 
-### **矩阵 A 的行数** — 矩阵 *A* 的行数 `4`（默认）| 正整数值标量
+### **Number of rows in matrix A** — 矩阵 *A* 的行数 `4`（默认）| 正整数值标量
 
 输入矩阵 *A* 的行数，指定为正
 整数值标量。
@@ -104,12 +102,12 @@ chinese_source: worker-translation
 
 |  |
 | --- |
-| **模块参数：** `m` |
-| **类型：** 字符向量 |
-| **值：** 正整数值标量 |
-| **默认值：** `4` |
+| **模块参数**：`m` |
+| **类型**：character vector |
+| **值**：positive integer-valued scalar |
+| **默认值**：`4` |
 
-### **矩阵 A 的列数** — 矩阵 *A* 的列数 `4`（默认）| 正整数值标量
+### **Number of columns in matrix A** — 矩阵 *A* 的列数 `4`（默认）| 正整数值标量
 
 输入矩阵 *A* 的列数，指定为正
 整数值标量。
@@ -118,26 +116,26 @@ chinese_source: worker-translation
 
 |  |
 | --- |
-| **模块参数：** `n` |
-| **类型：** 字符向量 |
-| **值：** 正整数值标量 |
-| **默认值：** `4` |
+| **模块参数**：`n` |
+| **类型**：character vector |
+| **值**：positive integer-valued scalar |
+| **默认值**：`4` |
 
-### **正则化参数** — 正则化参数 0（默认）| 实非负标量
+### **Regularization parameter** — 正则化参数 0（默认）| 实非负标量
 
-正则化参数，指定为非负标量。较小、正的
-正则化参数值可以改善问题的条件并减少
-估计的方差。虽然有偏，但与最小二乘估计相比，估计方差的降低通常会
-带来更小的均方误差。
+正则化参数，指定为非负标量。正则化参数的小的正值
+可以改善问题的条件数并减少
+估计的方差。虽然有偏，但与最小二乘估计相比，估计的减小方差通常
+导致更小的均方误差。
 
 #### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `regularizationParameter` |
-| **类型：** 字符向量 |
-| **值：** 实非负标量 |
-| **默认值：** `0` |
+| **模块参数**：`regularizationParameter` |
+| **类型**：character vector |
+| **值**：real nonnegative scalar |
+| **默认值**：`0` |
 
 ## 所属库
 
@@ -160,15 +158,15 @@ HDL Coder™ 提供影响 HDL 实现和
 
 **HDL 架构**
 
-此模块具有一个默认 HDL 架构。
+此模块有一个默认 HDL 架构。
 
 **HDL 模块属性**
 
-| 常规 | |
+| General | |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出处的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要插入到生成代码中的输入流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要插入到生成代码中的输出流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟在输出处放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 
 **限制**
 
@@ -187,13 +185,13 @@ Real Burst Q-less QR Decomposition 模块现在支持 Tikhonov
 
 实值矩阵的无 Q QR 分解
 
-Real Burst Q-less QR Decomposition 模块使用 QR 分解来
+Real Burst Q-less QR Decomposition 模块使用 QR 分解
 计算 QR 分解 *A* = *Q**R* 的经济型上三角 *R* 因子，其中 *A* 是实值矩阵，而不计算
 *Q*。*A*'*A**x* =
 *B* 的解为 *x* =
 *R*\*R*'\*b*。
 
-当正则化参数非零时，
+当 Regularization parameter 非零时，
 Real Burst Q-less QR Decomposition 模块计算
 [λInA] 的经济型 QR 分解的上三角因子
 *R*，其中 *λ* 是正则化参数。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Tanh Layer'
-family: 'deep-learning-layers'
+family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
@@ -20,7 +20,7 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 输入数据 标量 | 向量 | 矩阵
 
-要对其执行双曲正切运算的矩阵。
+要执行双曲正切运算的矩阵。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
@@ -33,48 +33,48 @@ chinese_source: worker-translation
 
 ## 参数
 
-要以交互方式编辑模块参数，请使用属性检查器。从 Simulink® 工具条中，在 **仿真** 选项卡上的 **准备** 库中，选择 **属性检查器**。
+要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
 ### 数据类型
 
-### **逼近方法** — 用于计算层输出的逼近方法 `None`（默认）| `CORDIC` | `Lookup`
+### **Approximation method** — 用于计算层输出的近似方法 `None`（默认）| `CORDIC` | `Lookup`
 
-指定用于计算输出的逼近类型。
+指定用于计算输出的近似方法类型。
 
-| 逼近方法 | 支持的数据类型 | 何时使用此方法 |
+| 近似方法 | 支持的数据类型 | 何时使用此方法 |
 | --- | --- | --- |
 | `None`（默认） | 浮点 | 仅处理浮点数据时。 |
-| `CORDIC` | 浮点（double 和 single）以及定点，其中 **Bias** 值为 `0`，**Slope** 值为 2 的幂 | 处理定点数据并希望部署到 FPGA 硬件时。 |
+| `CORDIC` | 浮点（double 和 single）以及 **Bias** 值为 `0` 且 **Slope** 值为 2 的幂的定点 | 处理定点数据并希望部署到 FPGA 硬件时。 |
 | `Lookup` | 浮点和定点 | 处理定点数据并希望生成 C/C++ 代码时。 |
 
-有关 CORDIC 逼近方法的更多信息，请参阅 `cordictanh` (Fixed-Point Designer)。
+有关 CORDIC 近似方法的详细信息，请参阅 `cordictanh` (Fixed-Point Designer)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `ApproximationMethod` |
-| **类型：** character vector |
-| **值：** `'none'` | `'CORDIC'` | `'Lookup'` |
-| **默认：** `'none'` |
+| **模块参数**：`ApproximationMethod` |
+| **类型**：character vector |
+| **值**：`'none'` | `'CORDIC'` | `'Lookup'` |
+| **默认值**：`'none'` |
 
 ### 执行
 
-### **采样时间** — 用于指定采样时间的选项 `-1`（默认）| 标量
+### **Sample time** — 用于指定采样时间的选项 `-1`（默认）| 标量
 
-指定采样时间命中之间的离散间隔，或指定另一种采样时间类型，例如连续 (`0`) 或继承 (`-1`)。有关更多选项，请参阅采样时间类型 (Simulink)。
+指定采样时间命中之间的离散间隔，或指定其他类型的采样时间，例如连续（`0`）或继承（`-1`）。有关更多选项，请参阅 Types of Sample Time (Simulink)。
 
-默认情况下，模块会根据其在模型中的上下文继承采样时间。
+默认情况下，模块根据其在模型中的上下文继承采样时间。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` (Simulink) 函数。
 
 |  |
 | --- |
-| **参数：** `SampleTime` |
-| **数据类型：** `char` |
-| **值：** `'-1'`（默认）| 标量 |
+| **Parameter:** `SampleTime` |
+| **Data Types:** `char` |
+| **值**：`'-1'`（默认）| 标量 |
 
 ## 所属库
 
@@ -98,5 +98,4 @@ R2025b 中未记录。
 
 Tanh Layer 模块对层输入应用 tanh 函数。
 
-`exportNetworkToSimulink` 函数生成此模块以表示 `tanhLayer` 对象。
-由于它应用逐元素运算，此模块支持任意格式的输入数据，并输出与输入具有相同维度和格式的数据。
+`exportNetworkToSimulink` 函数生成此模块以表示 `tanhLayer` 对象。由于它执行逐元素运算，此模块支持任意格式的输入数据，并输出与输入具有相同维度和格式的数据。

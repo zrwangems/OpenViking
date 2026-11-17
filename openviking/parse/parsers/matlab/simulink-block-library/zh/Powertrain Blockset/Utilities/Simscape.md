@@ -9,78 +9,70 @@ official_category: 'Utilities'
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Powertrain Blockset
 
-Learn the basics of Powertrain Blockset
+了解 Powertrain Blockset 的基础知识
 
-Model and simulate automotive powertrain systems
+对汽车动力总成系统进行建模和仿真
 
-- Release Notes
-- PDF Documentation
-- PDF Documentation
+- 发行说明
+- PDF 文档
+- PDF 文档
 
-- **Release Notes**
-- **PDF Documentation**
-- **PDF Documentation**
+- **发行说明**
+- **PDF 文档**
+- **PDF 文档**
 
-Powertrain Blockset™ provides preassembled automotive vehicle reference applications for gasoline,
-diesel, hybrid, fuel cell, and battery electric propulsion systems. The blockset includes a
-component library for engines, traction motors, batteries, transmissions, tires, and driver
-models, as well as component and supervisory controllers.
+Powertrain Blockset™ 为汽油、柴油、混合动力、燃料电池和纯电动推进系统提供预组装的汽车车辆参考应用。该模块集包含发动机、牵引电机、电池、变速器、轮胎和驾驶员模型的组件库，以及组件控制器和监督控制器。
 
-Powertrain Blockset offers the Virtual Vehicle Composer app for configuring and parameterizing
-models, as well as prebuilt workflows for resizing components, calibrating models from data,
-optimizing shift schedules, and generating deep learning dynamic plant and state estimators.
-You can use these models for design tradeoff analysis and component sizing, control
-parameter optimization, and hardware-in-the-loop (HIL) testing. The models are open, so you
-can incorporate your own subsystems and customize them as needed.
+Powertrain Blockset 提供 Virtual Vehicle Composer 应用，用于配置和参数化模型，以及用于组件尺寸调整、基于数据校准模型、优化换挡策略以及生成深度学习动态被控对象和状态估计器的预构建工作流。您可以使用这些模型进行设计权衡分析和组件尺寸调整、控制参数优化以及硬件在环（HIL）测试。这些模型是开放的，因此您可以整合自己的子系统并根据需要进行自定义。
 
-## Get Started
+## 入门
 
-Learn the basics of Powertrain Blockset
+了解 Powertrain Blockset 的基础知识
 
-## Powertrain Reference Applications
+## 动力总成参考应用
 
-Internal combustion engine, hybrid, and electric vehicle reference applications
+内燃机、混合动力和纯电动车辆参考应用
 
-## Virtual Vehicles
+## 虚拟车辆
 
-Configure, build, and test virtual vehicles
+配置、构建和测试虚拟车辆
 
-## Drivetrain and Transmission
+## 传动系统和变速器
 
-Transmissions, torque converters, differentials, and controllers
+变速器、液力变矩器、差速器和控制器
 
-## Energy Storage
+## 储能
 
-Batteries, starters, and alternators
+电池、起动机和交流发电机
 
-## Propulsion
+## 推进
 
-Internal combustion engines, electric motors, and controllers
+内燃机、电动机和控制器
 
-## Vehicle Dynamics and Scenarios
+## 车辆动力学和场景
 
-Vehicle motion and driving scenarios
+车辆运动和驾驶场景
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个与以下 MATLAB 命令对应的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择网站以获取翻译内容（如有），并查看本地活动和优惠。根据您的位置，我们建议您选择：。
 
 - (English)
 - (Deutsch)
@@ -89,11 +81,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -124,7 +116,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

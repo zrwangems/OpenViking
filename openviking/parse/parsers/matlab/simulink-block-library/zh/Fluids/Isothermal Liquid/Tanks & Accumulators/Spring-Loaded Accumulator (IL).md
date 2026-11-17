@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Spring-Loaded Accumulator (IL)'
-family: 'isothermal-liquid'
+family: 'hydro'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b
@@ -16,33 +16,33 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
 ### **A** — 液压守恒端口 hydraulic conserving
 
-与蓄能器入口关联的液压守恒端口。如果液体流入蓄能器，则流量为正。
+与蓄能器入口相关联的液压守恒端口。如果液体流入蓄能器，则流量为正。
 
 ## 参数
 
-### **液体容量** — 液体容量 `8e-3 m^3`（默认） | 正标量
+### **Liquid capacity** — 液体容量 `8e-3 m^3`（默认）| 正标量
 
-蓄能器可容纳的液体量。
+蓄能器能够容纳的液体量。
 
-### **预加载压力** — 弹簧压力 `1.01325 MPa`（默认） | 正标量
+### **Preload pressure** — 弹簧压力 `1.01325 MPa`（默认）| 正标量
 
 液体腔为空时的弹簧压力。
 
-### **满容量压力** — 弹簧压力 `3.01325 MPa`（默认） | 正标量
+### **Pressure at full capacity** — 弹簧压力 `3.01325 MPa`（默认）| 正标量
 
-液体腔处于满容量时的弹簧压力。
+液体腔达到容量时的弹簧压力。
 
-### **硬限位刚度系数** — 比例常数 `1e4 MPa/m^3`（默认） | 正标量
+### **Hard stop stiffness coefficient** — 比例常数 `1e4 MPa/m^3`（默认）| 正标量
 
-硬限位接触压力相对于进入硬限位的液体体积的比例常数。硬限位用于将液体体积限制在零和液体腔容量之间。
+硬限位接触压力相对于压入硬限位的液体体积的比例常数。硬限位用于将液体体积限制在零和液体腔容量之间。
 
-### **启用动态可压缩性** — 流体可压缩性 `on`（默认） | `off`
+### **Enable dynamic compressibility** — 流体可压缩性 `on`（默认）| `off`
 
-是否对由流体可压缩性引起的任何流体密度变化进行建模。当选择 **启用动态可压缩性** 时，除因压力变化引起的密度变化外，还会计算因流入模块的质量流量引起的变化。在 Isothermal Liquid 库中，所有模块都将密度计算为压力的函数。
+是否对由流体可压缩性引起的流体密度变化进行建模。当您选择 **Enable dynamic compressibility** 时，除了由压力变化引起的密度变化外，还会计算由流入模块的质量流量引起的变化。在 Isothermal Liquid 库中，所有模块都将密度计算为压力的函数。
 
 ## 所属库
 
@@ -50,7 +50,7 @@ Simscape / Fluids / Isothermal Liquid / Tanks & Accumulators
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -62,15 +62,15 @@ Simscape / Fluids / Isothermal Liquid / Tanks & Accumulators
 
 ## 描述
 
-用于等温液体系统中能量存储的带弹簧蓄能器
+用于等温液体系统中能量存储的弹簧式蓄能器
 
-该模块对等温液体网络中的弹簧充能蓄能器进行建模。蓄能器由预加载弹簧和液体腔组成。
+该模块对等温液体网络中的弹簧充能蓄能器进行建模。该蓄能器由一个预加载弹簧和一个液体腔组成。
 
-当蓄能器入口处的液体压力大于预加载压力时，液体进入蓄能器并压缩弹簧。液体压力降低会使弹簧卸压，并将储存的液体排放到系统中。当液体体积为零以及当液体体积达到液体腔容量时，隔板运动受到硬限位限制。
+当蓄能器入口处的液体压力大于预加载压力时，液体进入蓄能器并压缩弹簧。液体压力降低会导致弹簧减压，并将储存的液体排入系统。当液体体积为零以及液体体积达到液体腔容量时，分离器的运动受到硬限位的限制。
 
 入口液体阻力和弹簧特性（例如弹簧惯性和阻尼）未建模。假设弹簧压力相对于液体体积呈线性关系。如果液体流入蓄能器，则流量为正。
 
-此图表示弹簧加载式蓄能器。
+下图表示弹簧式蓄能器。
 
 |  |  |
 | --- | --- |
@@ -88,13 +88,13 @@ Simscape / Fluids / Isothermal Liquid / Tanks & Accumulators
 
 模块中的质量守恒为
 
-{p˙IdρIdpIVL+ρIV˙L=m˙A,     compressibility onρ0V˙L=m˙A,                       compressibility off
+{p˙IdρIdpIVL+ρIV˙L=m˙A,     compressibility onρ0V˙L=m˙A,                       compressibility off
 
 其中
 
-V˙L={p˙IKspring,            if 0 <VL<VCp˙IKspring+Kstiff,                  else
+V˙L={p˙IKspring,            if 0 <VL<VCp˙IKspring+Kstiff,                  else
 
-*ρ0* 是恒定液体密度。该模块根据 **预加载压力** 参数计算此值。
+*ρ0* 是恒定液体密度。模块根据 **Preload pressure** 参数计算该值。
 
 ### 动量守恒
 
@@ -106,10 +106,10 @@ pI=pspring+pHS
 
 pspring=ppr+KspringVL
 
-pHS={(VL−VC)Kstiff,    if VL≥VCVLKstiff,                          if VL ≤ 00,                                    else
+pHS={(VL−VC)Kstiff,    if VL≥VCVLKstiff,                          if VL ≤ 00,                                    else
 
 ### 变量
 
-要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **初始目标** 部分。有关详细信息，请参阅设置模块变量的优先级和初始目标。
+要在仿真之前设置模块变量的优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-标称值提供了一种指定模型中变量预期量级的方法。使用基于标称值的系统缩放可提高仿真稳健性。标称值可以来自不同来源，其中之一是模块对话框或 Property Inspector 中的 **标称值** 部分。有关详细信息，请参阅修改模块变量的标称值。
+标称值提供了一种指定模型中变量预期量级的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。标称值可以来自不同来源，其中之一是模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 Modify Nominal Values for a Block Variable。

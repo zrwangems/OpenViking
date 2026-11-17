@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SPICE-Imported MOSFET'
-family: 'semiconductors-converters'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,45 +16,45 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **g** — 栅极端子电气
+### **g** — 栅极端子电气端口
 
-与所选预参数化 MOSFET 的栅极端子关联的电气守恒端口。
+与所选预参数化 MOSFET 的栅极端子相关联的电气守恒端口。
 
-### **d** — 漏极端子电气
+### **d** — 漏极端子电气端口
 
-与所选预参数化 MOSFET 的漏极端子关联的电气守恒端口。
+与所选预参数化 MOSFET 的漏极端子相关联的电气守恒端口。
 
-### **tj** — 结温电气
+### **tj** — 结温电气端口
 
-与所选预参数化 MOSFET 的结温关联的电气守恒端口。
+与所选预参数化 MOSFET 的结温相关联的电气守恒端口。
 
-此端口测得的电压对应于结的温度。例如，如果此端口的值等于 25V，则结温等于 25 degrees Celsius。
+该端口测得的电压对应结温。例如，如果该端口的值等于 25V，则结温等于 25 摄氏度。
 
-**Tj** 通常是一个监测节点，并且不连接。
+**Tj** 通常是一个监测节点，不进行连接。
 
-### **tc** — 壳温电气
+### **tc** — 壳温电气端口
 
-与所选预参数化 MOSFET 的壳温关联的电气守恒端口。
+与所选预参数化 MOSFET 的壳温相关联的电气守恒端口。
 
-此端口测得的电压对应于壳的温度。例如，如果此端口的值等于 25V，则壳温等于 25 degrees Celsius。
+该端口测得的电压对应壳温。例如，如果该端口的值等于 25V，则壳温等于 25 摄氏度。
 
-**Tc** 要么连接到表示环境温度的电压源，要么连接到由电气电阻和电容表示的散热器热网络。
+**Tc** 连接到表示环境温度的电压源，或连接到由电阻和电容表示的散热器热网络。
 
-### **s** — 源极端子电气
+### **s** — 源极端子电气端口
 
-与所选预参数化 MOSFET 的源极关联的电气守恒端口。
+与所选预参数化 MOSFET 的源极端子相关联的电气守恒端口。
 
 ## 参数
 
-### **Series** — MOSFET 系列 `Infineon OptiMOS6 40V` (default) | `Infineon OptiMOS5 80V` | `Infineon OptiMOS4 60V` | `Infineon OptiMOST 120V`
+### **Series** — MOSFET 系列 `Infineon OptiMOS6 40V`（默认）| `Infineon OptiMOS5 80V` | `Infineon OptiMOS4 60V` | `Infineon OptiMOST 120V`
 
-预参数化 MOSFET 的系列，指定为 `Infineon OptiMOS6 40V`、`Infineon OptiMOS5 80V`、`Infineon OptiMOS4 60V` 或 `Infineon OptiMOST 120V` 之一。
+预参数化 MOSFET 的系列，指定为 `Infineon OptiMOS6 40V`、`Infineon OptiMOS5 80V`、`Infineon OptiMOS4 60V` 或 `Infineon OptiMOST 120V`。
 
 ### **Device** — 器件名称 `IPB015N08N5` | `IAUC120N04S6N009` | `IAUC120N04S6N010` | `IAUC120N04S6N013` | `IAUC100N04S6N015` | ...
 
-器件名称，指定为可用的参数化表中列出的选项之一。
+器件名称，指定为可用参数化表中列出的选项之一。
 
 ## 所属库
 
@@ -62,11 +62,11 @@ Simscape / Electrical / Semiconductors & Converters
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -76,13 +76,13 @@ Simscape / Electrical / Semiconductors & Converters
 
 由外部 SPICE 子电路参数化的预定义 MOSFET
 
-SPICE-Imported MOSFET 模块对已使用外部 SPICE 子电路参数化的金属氧化物半导体场效应晶体管 (MOSFET) 进行建模。
+SPICE-Imported MOSFET 模块对使用外部 SPICE 子电路参数化的金属氧化物半导体场效应晶体管（MOSFET）进行建模。
 
-您可以使用此模块对表中列出的 MOSFET 器件进行建模。这些参数化已经使用 `subcircuit2ssc` 函数导入到 Simscape，并且已针对使用 SPICE 仿真工具生成的结果进行了数值验证。
+您可以使用此模块对表中列出的 MOSFET 器件进行建模。这些参数化已使用 `subcircuit2ssc` 函数导入到 Simscape 中，并且已针对使用 SPICE 仿真工具生成的结果进行了数值验证。
 
-**可用的参数化**
+**可用参数化**
 
-| Series | Device |
+| 系列 | 器件 |
 | --- | --- |
 | **Infineon OptiMOS6 40V** | `IAUC120N04S6N009` |
 | `IAUC120N04S6N010` |

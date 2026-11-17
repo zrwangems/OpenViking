@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'I/Q Imbalance to Compensator Coefficient'
-family: 'rf-impairments-correction'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -16,23 +16,23 @@ chinese_source: worker-translation
 
 ## 端口
 
-在 R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 参数
 
-在 R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 所属库
 
-在 R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 模块特性
 
-在 R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
 ## 版本历史
 
@@ -42,6 +42,6 @@ chinese_source: worker-translation
 
 将幅度和相位不平衡转换为 I/Q 补偿器系数
 
-I/Q Imbalance to Compensator Coefficient 模块返回一个复系数，用于补偿幅度和相位不平衡。
+I/Q Imbalance to Compensator Coefficient 模块返回一个复数系数，用于补偿幅度和相位不平衡。
 
-此模块具有一个幅度不平衡输入端口和一个相位不平衡输入端口，其中幅度不平衡是以 dB 表示的实数，相位不平衡是以 degrees 表示的实数。不平衡输入为向量。复系数通过单个输出端口返回。
+该模块有一个幅度不平衡输入端口和一个相位不平衡输入端口，其中幅度不平衡是以 dB 表示的实数，相位不平衡是以度表示的实数。不平衡输入为向量。复数系数从单个输出端口返回。

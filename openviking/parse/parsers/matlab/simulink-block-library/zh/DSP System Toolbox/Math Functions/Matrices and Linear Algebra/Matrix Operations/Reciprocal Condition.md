@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Reciprocal Condition'
-family: 'math-functions'
+family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
@@ -25,11 +25,13 @@ chinese_source: worker-translation
 **数据类型：** `single` | `double`
 ### 输出
 
-### **Output** — 倒数条件数输出标量
+### **Output** — 倒数条件输出 标量
 
-方阵输入矩阵 *A* 的条件数的倒数，以标量形式返回。
+方阵输入
+*A* 的条件数的倒数，以标量形式返回。
 
-如果输入为良态，则输出接近 1.0。如果输入为病态，则输出接近 0.0。
+如果输入是良态的，输出接近 1.0。如果输入是
+病态的，输出接近 0.0。
 
 **数据类型：** `single` | `double`
 
@@ -55,7 +57,8 @@ DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Opera
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-生成的代码在某些条件下依赖 `memcpy` 或 `memset` 函数（`string.h`）。
+生成的代码在某些条件下依赖 `memcpy` 或
+`memset` 函数（`string.h`）。
 
 ## 版本历史
 
@@ -65,7 +68,8 @@ DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Opera
 
 计算方阵在 1-范数下的倒数条件数
 
-Reciprocal Condition 模块计算方阵输入矩阵 *A* 的条件数的倒数。
+Reciprocal Condition 模块计算方阵输入矩阵 *A* 的条件数的
+倒数。
 
 以下是等效的 MATLAB® 代码。
 
@@ -77,9 +81,11 @@ y = rcond(A)
 
 y=1κ=1‖A−1‖1‖A‖1,
 
-其中 κ 是条件数（κ ≥ 1），*y* 是标量输出（0 ≤ *y* < 1）。
+其中 κ 是条件数（κ ≥ 1），*y* 是标量
+输出（0 ≤ *y* < 1）。
 
-矩阵 1-范数 ‖A‖1 是 *M*×*M* 矩阵 *A* 中的最大列和。
+矩阵 1-范数 ‖A‖1 是
+*M*×*M* 矩阵 *A* 中的最大列和。
 
 ‖A‖1=1≤j≤Mmax∑i=1M|aij|
 

@@ -9,99 +9,84 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Audio Toolbox
 
-Learn the basics of Audio Toolbox
+了解 Audio Toolbox 的基础知识
 
-Design and analyze speech, acoustic, and audio processing
-systems
+设计并分析语音、声学和音频处理系统
 
-- Release Notes
-- PDF Documentation
-- PDF Documentation
+- 发行说明
+- PDF 文档
+- PDF 文档
 
-- **Release Notes**
-- **PDF Documentation**
-- **PDF Documentation**
+- **发行说明**
+- **PDF 文档**
+- **PDF 文档**
 
-Audio Toolbox™ provides signal processing and analysis tools for audio, speech, and
-acoustics. It includes algorithms for processing audio signals, estimating acoustic metrics,
-labeling and augmenting audio data sets, and extracting audio features.
+Audio Toolbox™ 提供用于音频、语音和声学的信号处理与分析工具。它包含用于处理音频信号、估计声学指标、标注和增强音频数据集以及提取音频特征的算法。
 
-You can run measurements or prototype algorithms in real time by streaming low-latency
-audio to and from ASIO, CoreAudio, and other sound cards. The toolbox lets you control
-algorithm parameters via graphical interfaces or MIDI events. You can validate your
-algorithm by turning it into a VST or Audio Unit plugin to run in external host
-applications. The toolbox also offers plugin hosting, so you can process MATLAB® arrays using external audio plugins.
+您可以通过将低延迟音频流式传输到 ASIO、CoreAudio 和其他声卡或从中传出，实时运行测量或原型算法。该工具箱允许您通过图形界面或 MIDI 事件控制算法参数。您可以将算法转换为 VST 或 Audio Unit 插件，以便在外部宿主应用程序中运行，从而验证算法。该工具箱还提供插件托管功能，因此您可以使用外部音频插件处理 MATLAB® 数组。
 
-The toolbox includes pre-trained machine learning and deep learning models that support
-transfer learning. You can apply the models directly to speech and acoustic signals for
-high-level tasks such as embedding extraction, sound classification, speaker verification,
-speech transcription and synthesis, source separation, and background noise
-reduction.
+该工具箱包含支持迁移学习的预训练机器学习和深度学习模型。您可以将这些模型直接应用于语音和声学信号，以完成嵌入提取、声音分类、说话人验证、语音转写与合成、源分离和背景噪声降低等高级任务。
 
-## Get Started
+## 入门
 
-Learn the basics of Audio Toolbox
+了解 Audio Toolbox 的基础知识
 
-## Audio I/O and Waveform Generation
+## 音频 I/O 和波形生成
 
-Record and play audio from devices, read and write audio files, generate
-waveforms
+从设备录制和播放音频，读写音频文件，生成波形
 
-## Audio Processing Algorithm Design
+## 音频处理算法设计
 
-Audio processing tools, algorithm design and modularization, stream
-processing
+音频处理工具、算法设计与模块化、流处理
 
-## AI for Audio
+## 音频 AI
 
-Dataset management, labeling, and augmentation; segmentation and feature
-extraction for audio, speech, and acoustic applications
+数据集管理、标注和增强；面向音频、语音和声学应用的分割与特征提取
 
-## Psychoacoustics
+## 心理声学
 
-Perceptual metrics and sound quality evaluation
+感知指标和音质评估
 
-## Measurements and Spatial Audio
+## 测量和空间音频
 
-Acoustics, impulse responses, and ambisonics
+声学、脉冲响应和 Ambisonics
 
-## Simulation, Tuning, and Visualization
+## 仿真、调优和可视化
 
-Real-time prototyping and tuning, MIDI, audio test bench
+实时原型设计和调优、MIDI、音频测试台
 
-## Musical Instrument Digital Interface (MIDI)
+## 乐器数字接口（MIDI）
 
-Create, send, and receive MIDI messages
+创建、发送和接收 MIDI 消息
 
-## Audio Plugin Creation and Hosting
+## 音频插件创建和托管
 
-VST and AU generation, testing, validation, and hosting
+VST 和 AU 生成、测试、验证和托管
 
-## Code Generation and Deployment
+## 代码生成和部署
 
-Generate standalone applications for desktop computers, mobile devices,
-and embedded targets
+为台式计算机、移动设备和嵌入式目标生成独立应用程序
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击的链接对应于以下 MATLAB 命令：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+请在 MATLAB 命令窗口中输入命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择网站以获取翻译后的内容（如果可用），并查看本地活动和优惠。根据您的位置，我们建议您选择：.
 
 - (English)
 - (Deutsch)
@@ -110,11 +95,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您还可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -145,7 +130,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

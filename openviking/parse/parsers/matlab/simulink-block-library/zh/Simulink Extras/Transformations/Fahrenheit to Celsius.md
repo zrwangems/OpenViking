@@ -18,16 +18,16 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — Fahrenheit degree 输入标量
+### **Port\_1** — 华氏度输入 标量
 
-指定 Fahrenheit degrees 的输入信号。
+指定华氏度的输入信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 ### 输出
 
-### **Port\_1** — Celsius degree 输出标量
+### **Port\_1** — 摄氏度输出 标量
 
-指定 Celsius degrees 的输出信号。
+指定摄氏度的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 
@@ -53,11 +53,12 @@ R2025b 中未记录。
 
 ## 描述
 
-将 degrees Fahrenheit 转换为 degrees Celsius
+将华氏度转换为摄氏度
 
-Fahrenheit to Celsius 模块根据以 degrees Fahrenheit 为单位的输入温度，计算以 degrees Celsius 为单位的输出温度。
+Fahrenheit to Celsius 模块根据输入的华氏温度计算输出的摄氏温度。
 
 *T*C=
 (5/9)(*T*F − 32)
 
-*T*F 是以 degrees Fahrenheit 为单位的温度，*T*C 是以 degrees Celsius 为单位的温度。
+*T*F 是以华氏度表示的温度，
+*T*C 是以摄氏度表示的温度。

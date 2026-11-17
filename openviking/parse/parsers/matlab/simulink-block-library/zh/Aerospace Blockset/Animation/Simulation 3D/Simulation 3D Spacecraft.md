@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simulation 3D Spacecraft'
-family: 'animation'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -25,9 +25,9 @@ chinese_source: worker-translation
 - 10×3 数组 — 航天器 **Type** 为 `CubeSat`。
 - 20×3 数组 — 航天器 **Type** 为 `SmallSat`。
 
-该信号包含平移 [*X*, *Y*, *Z*]，以 meters 为单位，数组的每一行对应航天器的一个骨骼。
+该信号包含平移 [*X*, *Y*, *Z*]，单位为米，数组的每一行对应航天器的一个骨骼。
 
-平移应用于 `CubeSat` 类型的以下骨骼。
+平移适用于 `CubeSat` 类型的以下骨骼。
 
 | 骨骼 | 索引 |
 | --- | --- |
@@ -42,7 +42,7 @@ chinese_source: worker-translation
 | SOLAR\_ARRAY2\_2 | 9 |
 | THRUSTER | 10 |
 
-平移应用于 `SmallSat` 类型的以下骨骼。
+平移适用于 `SmallSat` 类型的以下骨骼。
 
 | 骨骼 | 索引 |
 | --- | --- |
@@ -76,9 +76,9 @@ chinese_source: worker-translation
 - 10×3 数组 — 航天器 **Type** 为 `CubeSat`。
 - 20×3 数组 — 航天器 **Type** 为 `SmallSat`。
 
-旋转应用于为 Translation 端口列出的相同骨骼。
+旋转适用于 Translation 端口所列出的相同骨骼。
 
-该信号包含旋转 [roll, pitch, yaw]，以 radians 为单位，数组的每一行对应航天器的一个骨骼。
+该信号包含旋转 [roll, pitch, yaw]，单位为弧度，数组的每一行对应航天器的一个骨骼。
 
 **数据类型：** `single` | `double`
 
@@ -92,7 +92,7 @@ chinese_source: worker-translation
 
 ## 参数
 
-要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink Toolstrip 中，在 **Simulation** 选项卡上的 **Prepare** 库中，选择 **Property Inspector**。
+要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
 ### **Type** — 航天器类型 `CubeSat`（默认）| `SmallSat`
 
@@ -100,9 +100,9 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要设置此参数，请将 **Initial translation** 和 **Initial rotation** 参数设置为匹配的数组大小。未能适当设置这些数组大小会导致错误。
+要设置此参数，请将 **Initial translation** 和 **Initial rotation** 参数设置为匹配的数组大小。未能正确设置这些数组大小会导致错误。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -115,15 +115,15 @@ chinese_source: worker-translation
 
 **示例：** `CubeSat`
 
-### **Path to CubeSat mesh** — CubeSat 网格路径 `/MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat`（默认）| character vector
+### **Path to CubeSat mesh** — CubeSat 网格路径 `/MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat`（默认）| 字符向量
 
-CubeSat 网格路径，指定为 character vector。要创建自定义航空航天网格，请参阅 Prepare Custom Aircraft Mesh for the Unreal Editor。
+CubeSat 网格路径，指定为字符向量。要创建自定义航空航天网格，请参阅 Prepare Custom Aircraft Mesh for the Unreal Editor。
 
 #### 依赖关系
 
 要启用此参数，请将 **Type** 设置为 `CubeSat`。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -132,19 +132,19 @@ CubeSat 网格路径，指定为 character vector。要创建自定义航空航�
 |  |  |
 | --- | --- |
 | **参数：** | `MeshPath` |
-| **值：** | `/MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat` | character vector |
+| **值：** | `/MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat` | 字符向量 |
 
 **示例：** `/MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat`
 
-### **Path to SmallSat mesh** — SmallSat 网格路径 `/MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat`（默认）| character vector
+### **Path to SmallSat mesh** — SmallSat 网格路径 `/MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat`（默认）| 字符向量
 
-SmallSat 网格路径，指定为 character vector。要创建自定义航空航天网格，请参阅 Prepare Custom Aircraft Mesh for the Unreal Editor。
+SmallSat 网格路径，指定为字符向量。要创建自定义航空航天网格，请参阅 Prepare Custom Aircraft Mesh for the Unreal Editor。
 
 #### 依赖关系
 
 要启用此参数，请将 **Type** 设置为 `SmallSat`。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -153,15 +153,15 @@ SmallSat 网格路径，指定为 character vector。要创建自定义航空航
 |  |  |
 | --- | --- |
 | **参数：** | `MeshPathSmall` |
-| **值：** | `/MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat` | character vector |
+| **值：** | `/MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat` | 字符向量 |
 
 **示例：** `/MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat`
 
-### **Name** — 航天器名称 `SimulinkVehicle1`（默认）| character vector
+### **Name** — 航天器名称 `SimulinkVehicle1`（默认）| 字符向量
 
-航天器名称，指定为 character vector。默认情况下，当你在模型中使用 Simulation 3D Spacecraft 模块时，该模块会将 **Name** 参数设置为 `SimulinkVehicleX`。`X` 的值取决于模型中其他 Simulation 3D 模块的数量。
+航天器名称，指定为字符向量。默认情况下，当您在模型中使用 Simulation 3D Spacecraft 模块时，该模块将 **Name** 参数设置为 `SimulinkVehicleX`。`X` 的值取决于模型中其他 Simulation 3D 模块的数量。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -170,19 +170,19 @@ SmallSat 网格路径，指定为 character vector。要创建自定义航空航
 |  |  |
 | --- | --- |
 | **参数：** | `ActorName` |
-| **值：** | `SimulinkVehicle1`（默认）| character vector |
+| **值：** | `SimulinkVehicle1`（默认）| 字符向量 |
 
 **示例：** `SimulinkVehicle1`
 
-### **Initial translation (m)** — 航天器的初始平移 `zeros(10,3)`（默认）| 10×3 数组 | 20×3 数组
+### **Initial translation (m)** — 航天器初始平移 `zeros(10,3)`（默认）| 10×3 数组 | 20×3 数组
 
-航天器的初始平移，指定为 10×3 数组或 20×3 数组。
+航天器初始平移，指定为 10×3 数组或 20×3 数组。
 
 #### 依赖关系
 
-此参数必须与你在 **Type** 中设置的航天器类型匹配。未能适当设置这些数组大小会导致错误。
+此参数必须与您在 **Type** 中设置的航天器类型匹配。未能正确设置这些数组大小会导致错误。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -196,15 +196,15 @@ SmallSat 网格路径，指定为 character vector。要创建自定义航空航
 
 **示例：** `zeros(10,3)`
 
-### **Initial rotation (rad)** — 航天器的初始旋转 `zeros(10,3)`（默认）| 10×3 数组 | 20×3 数组
+### **Initial rotation (rad)** — 航天器初始旋转 `zeros(10,3)`（默认）| 10×3 数组 | 20×3 数组
 
-航天器的初始旋转，指定为 10×3 或 20×3 数组。
+航天器初始旋转，指定为 10×3 或 20×3 数组。
 
 #### 依赖关系
 
-此参数必须与你在 **Type** 中设置的航天器类型匹配。未能适当设置这些数组大小会导致错误。
+此参数必须与您在 **Type** 中设置的航天器类型匹配。未能正确设置这些数组大小会导致错误。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -218,11 +218,11 @@ SmallSat 网格路径，指定为 character vector。要创建自定义航空航
 
 **示例：** `zeros(10,3)`
 
-### **Scale source** — 缩放源 `Dialog`（默认）| `Port`
+### **Scale source** — 缩放来源 `Dialog`（默认）| `Port`
 
-缩放源，指定为 `Dialog` 或 `Port`。
+缩放来源，指定为 `Dialog` 或 `Port`。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -243,7 +243,7 @@ SmallSat 网格路径，指定为 character vector。要创建自定义航空航
 
 要启用此参数，请将 **Scale source** 设置为 `Port`。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -265,7 +265,7 @@ SmallSat 网格路径，指定为 character vector。要创建自定义航空航
 
 要启用此参数，请将 **Scale source** 设置为 `Dialog`。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -279,11 +279,11 @@ SmallSat 网格路径，指定为 character vector。要创建自定义航空航
 
 **示例：** `[1 1 1]`
 
-### **Sample time** — 采样时间 `0.02`（默认）| real scalar
+### **Sample time** — 采样时间 `0.02`（默认）| 实数标量
 
 采样时间，*Ts*。图形帧率是采样时间的倒数。
 
-#### 程序化使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -292,7 +292,7 @@ SmallSat 网格路径，指定为 character vector。要创建自定义航空航
 |  |  |
 | --- | --- |
 | **参数：** | `SampleTime` |
-| **值：** | `'-1'`（默认）| real scalar |
+| **值：** | `'-1'`（默认）| 实数标量 |
 
 **示例：** `'-1'`
 
@@ -312,11 +312,11 @@ R2025b 中未记录。
 
 **在 R2024a 中引入**
 
-### R2024b：Simulation 3D Environment：为 Simulation 3D Spacecraft 缩放网格
+### R2024b: Simulation 3D Environment: 为 Simulation 3D Spacecraft 缩放网格
 
-现在，你可以使用 **Scale** 参数或 **Scale** 端口更改 Simulation 3D Spacecraft 模块的网格大小。默认缩放是 1×3 向量 `[1 1 1]`。
+您现在可以使用 **Scale** 参数或 **Scale** 端口更改 Simulation 3D Spacecraft 模块的网格大小。默认缩放为 `[1 1 1]` 的 1×3 向量。
 
-要启用这些参数或端口，请使用 **Scale source** 参数。
+要启用参数或端口，请使用 **Scale source** 参数。
 
 - `Dialog` — 启用 **Scale** 参数。
 - `Port` — 启用 **Scale** 端口和 **Initial scale** 参数。
@@ -327,13 +327,13 @@ R2025b 中未记录。
 
 **注意**
 
-使用 Simulation 3D Spacecraft 模块对模型进行仿真需要 Simulink® 3D Animation™。
+使用 Simulation 3D Spacecraft 模块仿真模型需要 Simulink® 3D Animation™。
 
-Simulation 3D Spacecraft 模块使用平移和旋转在 3D 可视化环境中实现航天器，以放置航天器。
+Simulation 3D Spacecraft 模块使用平移和旋转在 3D 可视化环境中实现航天器以放置航天器。
 
-要使用此模块，你的模型必须包含 Simulation 3D Scene Configuration 模块。如果将 Simulation 3D Spacecraft 模块的 **Sample time** 参数设置为 `-1`，则该模块使用 Simulation 3D Scene Configuration 模块中指定的采样时间。
+要使用此模块，您的模型必须包含一个 Simulation 3D Scene Configuration 模块。如果您将 Simulation 3D Spacecraft 模块的 **Sample time** 参数设置为 `-1`，则该模块使用 Simulation 3D Scene Configuration 模块中指定的采样时间。
 
-该模块输入使用航天器北-东-下（NED）*右手*（RH）*笛卡尔*坐标系。
+该模块输入使用航天器北东下（NED）*右手*（RH）*笛卡尔*坐标系。
 
 - *X* 轴 — 沿航天器纵轴，指向正前方
 - *Y* 轴 — 沿航天器横轴，指向右侧
@@ -352,6 +352,6 @@ Simulation 3D Spacecraft 模块使用平移和旋转在 3D 可视化环境中实
 
 ### 骨架、骨骼和网格
 
-Unreal Engine 使用*骨架*、*骨骼*和*网格*来定义 3D 模型。骨架由一组骨骼组成。网格是骨架的外层覆盖物。航天器部件是链接到骨骼的网格区段，例如天线或推进器。有关详细信息，请参阅 https://docs.unrealengine.com/4.27/AnimatingObjects/SkeletalMeshAnimation/Skeleton/。
+Unreal Engine 使用*骨架*、*骨骼*和*网格*来定义 3D 模型。骨架由一组骨骼组成。网格是骨架的外覆盖层。航天器部件是网格的各个部分，例如天线或推进器，它们链接到骨骼。有关详细信息，请参阅 https://docs.unrealengine.com/4.27/AnimatingObjects/SkeletalMeshAnimation/Skeleton/。
 
-有关 Simulation 3D Space block 平移输入数组如何连接到航天器类型的详细信息，请参阅 Algorithms。
+有关 Simulation 3D Space 模块平移输入数组如何连接到航天器类型的详细信息，请参阅 Algorithms。

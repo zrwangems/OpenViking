@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'CREPE Postprocess'
-family: 'deep-learning'
+family: 'audio'
 product_id: 'audio'
 product_name: 'Audio Toolbox'
 documentation_release: R2025b
@@ -20,35 +20,28 @@ chinese_source: worker-translation
 
 ### **Port\_1** — CREPE 网络激活矩阵
 
-CREPE 网络激活值，指定为 *N*×360
-矩阵，其中 *N* 是
-CREPE 神经网络输出的帧数。
+CREPE 网络激活，指定为 *N*×360 矩阵，其中 *N* 是 CREPE 神经网络输出的帧数。
 
-**数据类型:** `single` | `double`
+**数据类型：** `single` | `double`
 ### 输出
 
 ### **Port\_1** — 估计的基频列向量
 
-估计的基频，以 Hz 为单位，返回为
-*N*×1 向量，其中 *N* 是
-输入中的帧数。
+估计的基频，以 Hz 为单位返回，为 *N*×1 向量，其中 *N* 是输入中的帧数。
 
-**数据类型:** `single` | `double`
+**数据类型：** `single` | `double`
 
 ## 参数
 
-### **置信度阈值** — 音高置信度阈值 `0.5`（默认）| [0, 1) 范围内的标量
+### **Confidence threshold** — 音高置信度阈值 `0.5`（默认值） | 范围 [0, 1) 内的标量
 
-音高置信度阈值，指定为 [0, 1) 范围内的标量。在
-后处理中，模块抑制网络置信度低于阈值的基频。
+音高置信度阈值，指定为范围 [0, 1) 内的标量。在后处理中，该模块会抑制网络置信度低于阈值的基频。
 
 **注意**
 
-如果网络输出的最大值小于
-置信度阈值，模块返回
-`NaN`。
+如果网络输出的最大值小于置信度阈值，该模块返回 `NaN`。
 
-**可调:** Yes
+**可调：** 是
 
 ## 所属库
 
@@ -74,7 +67,6 @@ Audio Toolbox / Deep Learning
 
 ## 描述
 
-后处理 CREPE 音高估计网络的输出
+对 CREPE 音高估计网络的输出进行后处理
 
-CREPE Postprocess 模块将 CREPE
-预训练网络的输出转换为以 Hz 为单位的音高估计。
+CREPE Postprocess 模块将 CREPE 预训练网络的输出转换为以 Hz 为单位的音高估计值。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Testbench Task'
-family: 'processor-testbench'
+family: 'soc'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b
@@ -18,13 +18,13 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Timer Task Function Call** — 来自定时器驱动任务标量的函数调用输入端口
+### **Timer Task Function Call** — 来自定时器驱动任务的函数调用输入端口 scalar
 
 此端口接受来自 Task Manager 模块的定时器驱动任务事件端口的函数调用事件信号。
 
 ## 参数
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -32,7 +32,7 @@ SoC Blockset / Processor Testbench
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -46,10 +46,10 @@ Embedded Coder™ 不为该模块生成代码。
 
 ## 描述
 
-对您的 SoC 处理器应用程序的外部定时器驱动任务负载
+SoC 处理器应用上的外部定时器驱动任务负载
 
-Testbench Task 模块模拟软件应用程序外部的定时器驱动任务负载。使用 Testbench Task 模块，您可以模拟当其他进程竞争处理器执行时间时对您的软件应用程序的影响。
+Testbench Task 模块模拟软件应用外部的定时器驱动任务负载。使用 Testbench Task 模块，您可以模拟软件应用在存在其他竞争处理器执行时间的进程时的影响。
 
 **注意**
 
-作为处理器测试平台的一部分，Testbench Task 模块必须放置在 SoC 模型的顶层。
+作为处理器测试台的一部分，Testbench Task 模块必须放置在 SoC 模型的顶层。

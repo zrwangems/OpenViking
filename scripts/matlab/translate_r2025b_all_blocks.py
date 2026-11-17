@@ -53,17 +53,122 @@ def table_shapes(markdown: str) -> list[int]:
     return shapes
 
 
+GENERIC_HEADINGS = {
+    "Description": "描述",
+    "Ports": "端口",
+    "Parameters": "参数",
+    "Libraries": "所属库",
+    "Block Characteristics": "模块特性",
+    "Extended Capabilities": "扩展功能",
+    "Version History": "版本历史",
+    "Input": "输入",
+    "Inputs": "输入",
+    "Output": "输出",
+    "Outputs": "输出",
+    "Conserving": "守恒端口",
+    "Dependencies": "依赖关系",
+    "Dependency": "依赖关系",
+    "Programmatic Use": "编程使用",
+    "Tips": "提示",
+    "Tip": "提示",
+    "See Also": "另请参阅",
+    "MATLAB Command": "MATLAB 命令",
+    "Get Started": "快速入门",
+    "Main": "主要参数",
+    "Variables": "变量",
+    "Equations": "方程",
+    "Data Types": "数据类型",
+    "Assumptions and Limitations": "假设和限制",
+    "Faults": "故障",
+    "Signal Attributes": "信号属性",
+    "Initial Conditions": "初始条件",
+    "Parameter Dependencies": "参数依赖关系",
+    "Limitations": "限制",
+    "Code Generation": "代码生成",
+    "General": "常规",
+    "Advanced": "高级",
+    "Configuration": "配置",
+    "Simulation": "仿真",
+}
+
+
+def localize_generic_labels(markdown: str) -> str:
+    """Localize recurrent documentation chrome that models often leave in English."""
+    for source, translated in GENERIC_HEADINGS.items():
+        markdown = re.sub(
+            rf"(?m)^(#{{2,6}}) {re.escape(source)}( Tab)?$",
+            lambda match, translated=translated: f"{match.group(1)} {translated}"
+            + ("选项卡" if match.group(2) else ""),
+            markdown,
+        )
+    for source, translated in {
+        "Block Parameter": "模块参数",
+        "Type": "类型",
+        "Values": "值",
+        "Default": "默认值",
+    }.items():
+        markdown = re.sub(
+            rf"\*\*{re.escape(source)}\*\*\s*[:：]\s*", f"**{translated}**：", markdown
+        )
+        markdown = re.sub(
+            rf"\*\*{re.escape(source)}[:：]\*\*\s*", f"**{translated}**：", markdown
+        )
+    markdown = re.sub(
+        r"\*\*Introduced in (R20\d\d[ab])\*\*", r"**在 \1 中引入**", markdown
+    )
+    markdown = re.sub(
+        r"\*\*Introduced before (R20\d\d[ab])\*\*", r"**在 \1 之前引入**", markdown
+    )
+    return markdown
+
+
+def preserve_source_heading_structure(source: str, translated: str) -> str:
+    """Keep the block name and exact source heading levels after translation."""
+    source_levels = re.findall(r"^#{1,6} ", source, re.MULTILINE)
+    translated_levels = re.findall(r"^#{1,6} ", translated, re.MULTILINE)
+    if len(source_levels) != len(translated_levels):
+        return translated
+    source_title = re.search(r"^# .+$", source, re.MULTILINE)
+    lines = translated.splitlines()
+    heading_index = 0
+    for index, line in enumerate(lines):
+        if re.match(r"^#{1,6} ", line):
+            if source_levels[heading_index] == "# " and source_title:
+                lines[index] = source_title.group(0)
+            else:
+                lines[index] = source_levels[heading_index] + line.split(" ", 1)[1]
+            heading_index += 1
+    return "\n".join(lines)
+
+
 def validate_translation(source: str, translated: str) -> None:
     if len(translated) < len(source) * 0.25:
         raise ValueError(f"translation too short: {len(translated)} vs {len(source)}")
-    source_headings = len(re.findall(r"^#{1,6} ", source, re.MULTILINE))
-    translated_headings = len(re.findall(r"^#{1,6} ", translated, re.MULTILINE))
-    if translated_headings != source_headings:
-        raise ValueError(f"heading count changed: {translated_headings} vs {source_headings}")
+    source_heading_levels = re.findall(r"^(#{1,6}) ", source, re.MULTILINE)
+    translated_heading_levels = re.findall(r"^(#{1,6}) ", translated, re.MULTILINE)
+    if translated_heading_levels != source_heading_levels:
+        raise ValueError(
+            "heading count/levels changed: "
+            f"{len(translated_heading_levels)} vs {len(source_heading_levels)}"
+        )
+    source_title = re.search(r"^# (.+)$", source, re.MULTILINE)
+    translated_title = re.search(r"^# (.+)$", translated, re.MULTILINE)
+    if source_title and source_title.group(1) != translated_title.group(1):
+        raise ValueError("block title changed")
     source_shapes = table_shapes(source)
     translated_shapes = table_shapes(translated)
     if translated_shapes != source_shapes:
         raise ValueError(f"table shapes changed: {translated_shapes} vs {source_shapes}")
+    source_blocks = [block for block in re.split(r"\n\s*\n", source) if block.strip()]
+    translated_blocks = [
+        block for block in re.split(r"\n\s*\n", translated) if block.strip()
+    ]
+    # A translator may insert a blank line inside a paragraph without dropping
+    # content. Fewer blocks are always rejected as possible omitted prose.
+    if len(translated_blocks) < len(source_blocks):
+        raise ValueError(
+            f"paragraph/block count changed: {len(translated_blocks)} vs {len(source_blocks)}"
+        )
     if not re.search(r"[\u4e00-\u9fff]", translated):
         raise ValueError("translation contains no Chinese text")
 
@@ -175,6 +280,10 @@ def main() -> None:
     if args.limit:
         work = work[: args.limit]
     print(f"TRANSLATING {len(work)} unique documents", flush=True)
+    # A completed run must never replace freshly written Chinese pages with a
+    # stale manifest taken before earlier translator processes finished.
+    if not work:
+        return
 
     def translate(item) -> tuple[dict, str, int]:
         product, entry = item
@@ -205,7 +314,10 @@ def main() -> None:
                     "技术描述必须准确，不得省略任何段落、表格行或参数。一级标题模块名保持原文。"
                     "将 Description、Ports、Parameters、Libraries、Block Characteristics、"
                     "Extended Capabilities、Version History 分别译为描述、端口、参数、所属库、"
-                    "模块特性、扩展功能、版本历史。仅输出翻译后的 Markdown 正文，不要代码围栏，不要解释。\n\n"
+                    "模块特性、扩展功能、版本历史；Input、Output、Dependencies、Programmatic Use、"
+                    "See Also 也要翻译。除技术标识符外不得留下英文句子，表格里的 Block Parameter、"
+                    "Type、Values、Default 等通用标签均须翻译。逐段翻译并保持空行分段数量不变，"
+                    "不得合并或省略段落。仅输出翻译后的 Markdown 正文，不要代码围栏，不要解释。\n\n"
                     + chunk
                 )
                 payload = {
@@ -214,6 +326,8 @@ def main() -> None:
                     "temperature": args.temperature,
                     "max_tokens": 32768,
                 }
+                if config.get("provider") == "volcengine":
+                    payload["thinking"] = {"type": "disabled"}
                 for attempt in range(5):
                     try:
                         response = requests.post(url, headers=headers, json=payload, timeout=360)
@@ -221,6 +335,8 @@ def main() -> None:
                         result = response.json()["choices"][0]["message"]["content"].strip()
                         if result.startswith("```"):
                             result = re.sub(r"^```(?:markdown)?\s*|\s*```$", "", result).strip()
+                        result = localize_generic_labels(result)
+                        result = preserve_source_heading_structure(chunk, result)
                         validate_translation(chunk, result)
                         return result
                     except Exception:
@@ -241,6 +357,8 @@ def main() -> None:
             validate_translation(source, translated)
             cached.parent.mkdir(parents=True, exist_ok=True)
             cached.write_text(translated + "\n", encoding="utf-8")
+        translated = localize_generic_labels(translated)
+        translated = preserve_source_heading_structure(source, translated)
         validate_translation(source, translated)
         chinese_metadata = []
         for line in metadata:

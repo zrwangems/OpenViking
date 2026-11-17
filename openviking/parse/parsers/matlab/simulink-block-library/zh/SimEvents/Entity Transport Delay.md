@@ -5,7 +5,7 @@ family: 'simevents'
 product_id: 'simevents'
 product_name: 'SimEvents'
 documentation_release: R2025b
-official_category: 'SimEvents'
+official_category: ''
 documentation_page: 'entitytransportdelay'
 documentation_source_path: 'ref/entitytransportdelay.html'
 language: zh-CN
@@ -20,9 +20,9 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 输入实体 SimEvents 实体
 
-SimEvents 实体或消息。有关 SimEvents 中实体的详细信息，请参阅《SimEvents 模型中的实体》。
+SimEvents 实体或消息。有关 SimEvents 中实体的详细信息，请参阅 SimEvents 模型中的实体。
 
-此端口没有直接馈通。
+此端口不具有直接馈通。
 
 ### **ti** — 瞬时延迟 标量 | 向量 | 矩阵
 
@@ -35,11 +35,11 @@ SimEvents 实体传输中的瞬时延迟。*ti* 是实体速度的倒数。有�
 
 ### **Port\_1** — 延迟实体 SimEvents 实体
 
-已应用瞬时延迟 *ti* 的 SimEvents 实体。
+应用了瞬时延迟 *ti* 的 SimEvents 实体。
 
-### **n** — 延迟实体数 实数标量
+### **n** — 延迟实体数量 实数标量
 
-该模块的辅助输出信号，显示在一个时间步中处理的实体数。
+模块的辅助输出信号，显示在一个时间步内处理的实体数量。
 
 #### 依赖关系
 
@@ -49,9 +49,9 @@ SimEvents 实体传输中的瞬时延迟。*ti* 是实体速度的倒数。有�
 
 ## 参数
 
-### **Capacity** — 指定模块的容量 inf（默认）| 标量
+### **Capacity** — 指定模块的容量 inf（默认） | 标量
 
-指定用于接受要延迟的实体的容量。
+指定接受待延迟实体的容量。
 
 #### 编程用法
 
@@ -62,9 +62,9 @@ SimEvents 实体传输中的瞬时延迟。*ti* 是实体速度的倒数。有�
 | **值**：`'inf'` | 实数标量 |
 | **默认值**：`'inf'` |
 
-### **Output number of entities in block, n** — 输出模块中存在的延迟实体数 `off`（默认）| `on`
+### **Output number of entities in block, n** — 输出模块中存在的延迟实体数量 `off`（默认） | `on`
 
-模块中正在被延迟的实体数。
+模块中正在被延迟的实体数量。
 
 #### 编程用法
 
@@ -101,8 +101,8 @@ Simulink / Continuous SimEvents
 
 在 SimEvents 消息的传播中引入延迟
 
-Entity Transport Delay 模块将实体延迟一段时间，该时间称为*传输延迟*。第一个输入是从点 A 传输到点 B 的实体，点 A 和点 B 位于一个长度恒定但速度随时间变化的移动表面上。第二个输入的值是*瞬时延迟*。该表面的速度是瞬时延迟的倒数。瞬时延迟与速度的乘积为 1。
+Entity Transport Delay 模块将实体延迟一段时间，称为*传输延迟*。第一个输入是从点 A 传输到点 B 的实体，传输发生在一个长度恒定、速度随时间变化的移动表面上。第二个输入的值是*瞬时延迟*。表面的速度是瞬时延迟的倒数。瞬时延迟与速度的乘积为 1。
 
-该模块通过距离-速度-时间关系计算所实现的传输延迟，其中表面长度（距离）等于可变表面速度在传输延迟持续时间（时间）上的积分。有关此计算的详细信息，请参阅 Variable Transport Delay。
+该模块通过距离-速度-时间关系计算实现的传输延迟，其中表面长度（距离）等于可变表面速度在传输延迟持续时间（时间）内的积分。有关此计算的详细信息，请参阅 Variable Transport Delay。
 
-Entity Transport Delay 模块通过来自 Simulink 信号的输入将 SimEvents® 连接到 Simulink®，并以连续过程计算传输延迟，然后将此延迟应用于离散事件过程中的实体。有关使用 Entity Transport Delay 模块的示例，请参阅信息物理系统建模。
+Entity Transport Delay 模块通过 Simulink 信号的输入将 SimEvents® 连接到 Simulink®，将传输延迟作为连续过程进行计算，并将此延迟应用于离散事件过程中的实体。有关使用 Entity Transport Delay 模块的示例，请参阅 Modeling Cyber-Physical Systems。

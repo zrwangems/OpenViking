@@ -9,14 +9,14 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Simulink
 
-Simulink 基础知识学习
+学习 Simulink 基础知识
 
-仿真和基于模型的设计
+仿真与基于模型的设计
 
 - 发行说明
 - PDF 文档
@@ -26,59 +26,59 @@ Simulink 基础知识学习
 - **PDF 文档**
 - **PDF 文档**
 
-Simulink® 是一个模块图环境，用于多域仿真以及基于模型的设计。它支持系统级设计、仿真、自动代码生成以及嵌入式系统的连续测试和验证。Simulink 提供图形编辑器、可自定义的模块库以及求解器，能够进行动态系统建模和仿真。Simulink 与 MATLAB® 相集成，这样您不仅能够在 Simulink 中将 MATLAB 算法融入模型，还能将仿真结果导出至 MATLAB 做进一步分析。
+Simulink® 是一个用于多领域仿真和基于模型的设计的框图环境。它支持系统级设计、仿真、自动代码生成以及嵌入式系统的持续测试和验证。Simulink 提供图形编辑器、可自定义的模块库以及用于建模和仿真动态系统的求解器。它与 MATLAB® 集成，使您能够将 MATLAB 算法纳入模型中，并将仿真结果导出到 MATLAB 以进行进一步分析。
 
-## Simulink 快速入门
+## 入门
 
-Simulink 基础知识学习
+学习 Simulink 基础知识
 
-## 应用领域
+## 应用
 
-说明特定功能和应用的示例模型
+展示特定功能与应用的示例模型
 
-## Simulink 环境基础知识
+## Simulink 环境基础
 
-以交互方式或编程方式构建模块图，从模块库中选择模块
+以交互方式或编程方式构建框图，从模块库中选择模块
 
 ## 建模
 
-设计动态系统的模型
+设计动态系统模型
 
 ## 仿真
 
-运行模型、查看结果并验证系统行为
+运行模型、查看结果、验证系统行为
 
-## 工程管理
+## 项目管理
 
-在 Simulink 中使用 MATLAB 工程工具
+在 Simulink 中使用 MATLAB 项目工具
 
-## 模块和模块集创建
+## 模块与模块集创作
 
-创建可重用的模块、模块集和模块封装以扩展 Simulink 的建模功能
+创建可复用的模块、模块集和模块掩码，以扩展 Simulink 的建模功能
 
 ## 仿真集成
 
-执行系统集成；组合、编译和仿真大型模型
+执行系统集成；组装、编译和仿真大规模模型
 
 ## Simulink 支持的硬件
 
-支持第三方硬件，例如 Arduino® 和 Raspberry Pi®
+对第三方硬件的支持，例如 Arduino® 和 Raspberry Pi®
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个对应于以下 MATLAB 命令的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：.
 
 - (English)
 - (Deutsch)
@@ -87,11 +87,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您还可以从以下列表中选择一个网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -122,7 +122,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

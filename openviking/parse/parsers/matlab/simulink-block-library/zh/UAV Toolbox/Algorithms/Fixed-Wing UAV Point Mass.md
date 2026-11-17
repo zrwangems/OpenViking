@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Fixed-Wing UAV Point Mass'
-family: 'algorithms'
+family: 'uav'
 product_id: 'uav'
 product_name: 'UAV Toolbox'
 documentation_release: R2025b
@@ -20,146 +20,152 @@ chinese_source: worker-translation
 
 ### **Lift** — 升力标量
 
-Lift，指定为以力为单位的标量。
+升力，指定为以力为单位的标量。
 
 **数据类型：** `double`
 
 ### **Drag** — 阻力标量
 
-Drag，指定为以力为单位的标量。
+阻力，指定为以力为单位的标量。
 
 **数据类型：** `double`
 
-### **Weight** — 重量标量
+### **Weight** — 重力标量
 
-Weight，指定为以力为单位的标量。
+重力，指定为以力为单位的标量。
 
 **数据类型：** `double`
 
 ### **Thrust** — 推力标量
 
-Thrust，指定为以力为单位的标量。
+推力，指定为以力为单位的标量。
 
 **数据类型：** `double`
 
-### **ɣa** — 相对于空气团的飞行路径角标量
+### **ɣa** — 相对于气流的航迹角标量
 
-Flight path angle relative to the air mass，指定为以 radians 为单位的标量。
+相对于气流的航迹角，指定为以弧度为单位的标量。
 
 **数据类型：** `double`
 
 ### **μ** — 滚转角标量
 
-Bank angle，指定为以 radians 为单位的标量。
+滚转角，指定为以弧度为单位的标量。
 
 **数据类型：** `double`
 
 ### **ɑ** — 迎角标量
 
-Angle of attack，指定为以 radians 为单位的标量。
+迎角，指定为以弧度为单位的标量。
 
 **数据类型：** `double`
 
-### **Vwind** — 风向量三元素向量
+### **Vwind** — 风矢量三元向量
 
-Wind vector in the direction in which the air mass is moving，指定为三元素向量。
+沿气流运动方向的风矢量，指定为三元向量。
 
 **数据类型：** `double`
 ### 输出
 
 ### **V** — 空速标量
 
-Airspeed，返回为标量。
+空速，以标量形式返回。
 
 **数据类型：** `double`
 
 ### **G** — 地速投影标量
 
-Ground speed over the Earth (speed of motion over the ground)，返回为标量。
+相对于地球的地速（地面运动速度），以标量形式返回。
 
 **数据类型：** `double`
 
-### **Va** — 相对于空气团的速度向量三元素向量
+### **Va** — 相对于气流的速度矢量三元向量
 
-Velocity vector relative to the air mass，返回为三元素向量。
-
-**数据类型：** `double`
-
-### **Ve** — 相对于地球且采用 [North East Down] 取向的速度向量三元素向量
-
-Velocity vector relative to Earth with `[North East Down]` orientation，返回为三元素向量。
-
-#### 依赖关系
-
-要启用此端口，请将 **参考坐标系方向** 设置为 `[North East Down]`。
+相对于气流的速度矢量，以三元向量形式返回。
 
 **数据类型：** `double`
 
-### **VENU** — 相对于地球的速度向量三元素向量
+### **Ve** — 相对于地球的速度矢量，`[North East Down]` 方向三元向量
 
-Velocity vector relative to Earth with `[East North Up]` orientation，返回为三元素向量。
+相对于地球的速度矢量，方向为 `[North East Down]`，以三元向量形式返回。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请将 **参考坐标系方向** 设置为 `[East North Up]`。
-
-**数据类型：** `double`
-
-### **Xe** — 相对于地球的位置向量三元素向量
-
-Position vector relative to Earth with `[North East Down]` orientation，返回为三元素向量。
-
-#### 依赖关系
-
-要启用此端口，请将 **参考坐标系方向** 设置为 `[North East Down]`。
+要启用此端口，请将 **Reference frame orientation** 设置为
+`[North East Down]`。
 
 **数据类型：** `double`
 
-### **XENU** — 相对于地球的位置向量三元素向量
+### **VENU** — 相对于地球的速度矢量三元向量
 
-Position vector relative to Earth with `[East North Up]` orientation，返回为三元素向量。
+相对于地球的速度矢量，方向为 `[East North Up]`，以三元向量形式返回。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请将 **参考坐标系方向** 设置为 `[East North Up]`。
-
-**数据类型：** `double`
-
-### **γa** — 相对于空气团的飞行路径角标量
-
-Flight path angle relative to the air mass，返回为标量。
+要启用此端口，请将 **Reference frame orientation** 设置为
+`[East North Up]`。
 
 **数据类型：** `double`
 
-### **γ** — 相对于地球的飞行路径角标量
+### **Xe** — 相对于地球的位置矢量三元向量
 
-Flight path angle relative to Earth，返回为标量。
+相对于地球的位置矢量，方向为 `[North East Down]`，以三元向量形式返回。
+
+#### 依赖
+
+要启用此端口，请将 **Reference frame orientation** 设置为
+`[North East Down]`。
 
 **数据类型：** `double`
 
-### **χa** — 相对于空气团的航向角标量
+### **XENU** — 相对于地球的位置矢量三元向量
 
-Heading angle relative to air mass，返回为标量。
+相对于地球的位置矢量，方向为 `[East North Up]`，以三元向量形式返回。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请将 **自由度** 设置为 `6th Order (Coordinated Flight)`。
+要启用此端口，请将 **Reference frame orientation** 设置为
+`[East North Up]`。
+
+**数据类型：** `double`
+
+### **γa** — 相对于气流的航迹角标量
+
+相对于气流的航迹角，以标量形式返回。
+
+**数据类型：** `double`
+
+### **γ** — 相对于地球的航迹角标量
+
+相对于地球的航迹角，以标量形式返回。
+
+**数据类型：** `double`
+
+### **χa** — 相对于气流的航向角标量
+
+相对于气流的航向角，以标量形式返回。
+
+#### 依赖
+
+要启用此端口，请将 **Degrees of Freedom** 设置为 `6th
+Order (Coordinated Flight)`。
 
 **数据类型：** `double`
 
 ### **χ** — 相对于地球的航向角标量
 
-Heading angle relative to Earth，返回为标量。
+相对于地球的航向角，以标量形式返回。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请将 **自由度** 设置为 `6th Order (Coordinated Flight)`。
+要启用此端口，请将 **Degrees of Freedom** 设置为 `6th
+Order (Coordinated Flight)`。
 
 **数据类型：** `double`
 
 ## 参数
 
-### **单位** — 单位 `Metric (MKS)` (默认) | `English (velocity in ft/s)` | `English (velocity in kts)`
+### **Units** — 单位 `Metric (MKS)`（默认）| `English (velocity in ft/s)` | `English (velocity in kts)`
 
 输入和输出单位，指定如下：
 
@@ -169,44 +175,44 @@ Heading angle relative to Earth，返回为标量。
 | `English (velocity in ft/s)` | pounds | feet per second | feet | slugs |
 | `English (velocity in kts)` | pounds | knots | feet | slugs |
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `units` |
-| **类型**: character vector |
-| **值**: `'Metric (MKS)'` | `'English (velocity in ft/s)'` | `'English (velocity in kts)'` |
-| **默认值**: `'Metric (MKS)'` |
+| **模块参数**：`units` |
+| **类型**：字符向量 |
+| **值**：`'Metric (MKS)'` | `'English (velocity in ft/s)'` | `'English (velocity in kts)'` |
+| **默认值**：`'Metric (MKS)'` |
 
-### **参考坐标系方向** — 参考坐标系 `[North East Down]` (默认) | `[East North Up]`
+### **参考坐标系方向** — 参考坐标系 `[North East Down]`（默认）| `[East North Up]`
 
 用于输入端口和输出端口的参考坐标系，指定为 `[East North Up]` 或 `[North East Down]`。
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `frame` |
-| **类型**: character vector |
-| **值**: `'[East North Up]'` | `'[North East Down]'` |
-| **默认值**: `'[North East Down]'` |
+| **模块参数**：`frame` |
+| **类型**：字符向量 |
+| **值**：`'[East North Up]'` | `'[North East Down]'` |
+| **默认值**：`'[North East Down]'` |
 
-### **自由度** — 自由度 `6th Order (Coordinated Flight)` (默认) | `4th Order (Longitudinal)`
+### **自由度** — 自由度 `6th Order (Coordinated Flight)`（默认）| `4th Order (Longitudinal)`
 
 自由度，指定为 `4th Order (Longitudinal)` 或 `6th Order (Coordinated Flight)`。
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `order` |
-| **类型**: character vector |
-| **值**: `'4th Order (Longitudinal)'` | `'6th Order (Coordinated Flight)'` |
-| **默认值**: `'6th Order (Coordinated Flight)'` |
+| **模块参数**：`order` |
+| **类型**：字符向量 |
+| **值**：`'4th Order (Longitudinal)'` | `'6th Order (Coordinated Flight)'` |
+| **默认值**：`'6th Order (Coordinated Flight)'` |
 
-### **初始横向距离** — 初始 East (Earth) 横向距离位置 `0` (默认) | scalar
+### **初始横向距离** — 初始东向（地球）横向距离位置 `0`（默认）| 标量
 
-`[North East Down]` 取向中的初始 East（地球）位置，指定为标量。
+在 `[North East Down]` 方向下的初始东向（地球）位置，指定为标量。
 
 #### 依赖关系
 
@@ -217,18 +223,18 @@ Heading angle relative to Earth，返回为标量。
 | East | [North East Down] | 6th Order (Coordinated Flight) |
 | North | [East North Up] | 6th Order (Coordinated Flight) |
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `east` |
-| **类型**: character vector |
-| **值**: scalar |
-| **默认值**: `'0'` |
+| **模块参数**：`east` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认值**：`'0'` |
 
-### **初始纵向距离** — 初始 North (Earth) 纵向距离 `0` (默认) | scalar
+### **初始纵向距离** — 初始北向（地球）纵向距离 `0`（默认）| 标量
 
-质点的初始 North（地球）纵向距离，指定为标量。
+质点模型的初始北向（地球）纵向距离，指定为标量。
 
 #### 依赖关系
 
@@ -241,83 +247,83 @@ Heading angle relative to Earth，返回为标量。
 | East | [East North Up] | 6th Order (Coordinated Flight) |
 | East | [East North Up] | 4th Order (Longitudinal) |
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `north` |
-| **类型**: character vector |
-| **值**: scalar |
-| **默认值**: `'0'` |
+| **模块参数**：`north` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认值**：`'0'` |
 
-### **初始高度** — 初始高度 `0` (默认) | scalar
+### **初始高度** — 初始高度 `0`（默认）| 标量
 
-质点的初始高度，指定为标量。
+质点模型的初始高度，指定为标量。
 
-#### 编程使用
-
-|  |
-| --- |
-| **模块参数**: `altitude` |
-| **类型**: character vector |
-| **值**: scalar |
-| **默认值**: `'0'` |
-
-### **初始空速** — 初始空速 `50` (默认) | scalar
-
-质点的初始空速，指定为标量。
-
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `'airspeed'` |
-| **类型**: character vector |
-| **值**: scalar |
-| **默认值**: `'50'` |
+| **模块参数**：`altitude` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认值**：`'0'` |
 
-### **初始飞行路径角** — 初始飞行路径角 `0` (默认) | scalar
+### **初始空速** — 初始空速 `50`（默认）| 标量
 
-质点的初始飞行路径角，指定为标量。
+质点模型的初始空速，指定为标量。
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `gamma` |
-| **类型**: character vector |
-| **值**: scalar |
-| **默认值**: `'0'` |
+| **模块参数**：`'airspeed'` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认值**：`'50'` |
 
-### **初始航向角** — 初始航向角 `0` (默认) | scalar
+### **初始航迹角** — 初始航迹角 `0`（默认）| 标量
 
-质点的初始航向角，指定为标量。
+质点模型的初始航迹角，指定为标量。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数**：`gamma` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认值**：`'0'` |
+
+### **初始航向角** — 初始航向角 `0`（默认）| 标量
+
+质点模型的初始航向角，指定为标量。
 
 #### 依赖关系
 
 要启用此参数，请将 **自由度** 设置为 `6th Order (Coordinated Flight)`。
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `chi` |
-| **类型**: character vector |
-| **值**: scalar |
-| **默认值**: `'0'` |
+| **模块参数**：`chi` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认值**：`'0'` |
 
-### **质量** — 质点质量 `10` (默认) | scalar
+### **质量** — 质点质量 `10`（默认）| 标量
 
-质点质量，指定为标量。
+质点模型的质量，指定为标量。
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `mass` |
-| **类型**: character vector |
-| **值**: scalar |
-| **默认值**: `'10'` |
+| **模块参数**：`mass` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认值**：`'10'` |
 
 ## 所属库
 

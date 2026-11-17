@@ -9,67 +9,60 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Vision HDL Toolbox
 
-Learn the basics of Vision HDL Toolbox
+了解 Vision HDL Toolbox 的基础知识
 
-Design image processing, video, and computer vision systems for
-FPGAs and ASICs
+为 FPGA 和 ASIC 设计图像处理、视频和计算机视觉系统
 
-- Release Notes
-- PDF Documentation
-- PDF Documentation
+- 发行说明
+- PDF 文档
+- PDF 文档
 
-- **Release Notes**
-- **PDF Documentation**
-- **PDF Documentation**
+- **发行说明**
+- **PDF 文档**
+- **PDF 文档**
 
-Vision HDL Toolbox™ provides pixel-streaming algorithms for the design and implementation of
-vision systems on FPGAs and ASICs. It provides a design framework that supports a diverse
-set of interface types, frame sizes, and frame rates. The image processing, video, and
-computer vision algorithms in the toolbox use an architecture appropriate for HDL
-implementations.
+Vision HDL Toolbox™ 提供像素流算法，用于在 FPGA 和 ASIC 上设计和实现视觉系统。它提供了一个设计框架，支持多种接口类型、帧尺寸和帧速率。工具箱中的图像处理、视频和计算机视觉算法使用适合 HDL 实现的架构。
 
-The toolbox algorithms are designed to generate readable, synthesizable code in
-VHDL® and Verilog® (with HDL Coder™). The generated HDL code is FPGA-proven for frame sizes up to 8k resolution
-and for high frame rate (HFR) video.
+工具箱算法旨在生成可读、可综合的 VHDL® 和 Verilog® 代码（配合 HDL Coder™）。生成的 HDL 代码经过 FPGA 验证，支持高达 8k 分辨率的帧尺寸和高帧率 (HFR) 视频。
 
-Toolbox capabilities are available as MATLAB® functions, System objects and Simulink® blocks.
+工具箱功能以 MATLAB® 函数、System object 和 Simulink® 模块的形式提供。
 
-## Get Started
+## 入门
 
-Learn the basics of Vision HDL Toolbox
+了解 Vision HDL Toolbox 的基础知识
 
-## Video Formats and Interfaces
+## 视频格式和接口
 
-Convert between frame-based video and pixel streams
+在基于帧的视频和像素流之间转换
 
-## HDL-Optimized Algorithm Design
+## HDL 优化算法设计
 
-Select blocks or System objects for streaming video processing
+选择模块或 System object 进行流视频处理
 
-## HDL Code Generation and Deployment
+## HDL 代码生成和部署
 
-Generate HDL code using HDL Coder, verify using HDL Verifier™, prototype using hardware support packages
+使用 HDL Coder 生成 HDL 代码，使用 HDL Verifier™ 进行验证，使用硬件支持包进行原型设计
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击的链接对应以下 MATLAB 命令：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择网站以获取翻译内容（如可用），并查看本地活动和优惠。根据您的位置，我们建议您选择：
 
 - (English)
 - (Deutsch)
@@ -78,11 +71,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -113,7 +106,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

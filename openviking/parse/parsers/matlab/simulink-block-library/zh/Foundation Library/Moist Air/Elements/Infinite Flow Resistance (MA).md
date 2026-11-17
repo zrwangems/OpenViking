@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Infinite Flow Resistance (MA)'
-family: 'moist-air'
+family: 'simscape'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b
@@ -16,7 +16,7 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
 ### **A** — 质量流量和能量流量均为零的湿空气
 
@@ -28,7 +28,7 @@ chinese_source: worker-translation
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -36,7 +36,7 @@ Simscape / Foundation Library / Moist Air / Elements
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -48,12 +48,12 @@ Simscape / Foundation Library / Moist Air / Elements
 
 ## 描述
 
-湿空气网络中的完全绝热断开
+湿空气网络中的完全隔热断口
 
-Infinite Flow Resistance (MA) 模块表示湿空气网络中的一个断开。没有质量或能量流过该断开。但是，由连接到回路的 Moist Air Properties (MA) 模块指定的湿空气属性在断开的两侧相同。使用此模块可为端口 **A** 和端口 **B** 之间的压力、温度、比湿度和痕量气体质量分数差值设置优先级和初始目标值。
+Infinite Flow Resistance (MA) 模块表示湿空气网络中的一个断口。没有质量或能量流过该断口。然而，连接到回路的 Moist Air Properties (MA) 模块所指定的湿空气属性在断口两侧是相同的。使用此模块可设置端口 **A** 和端口 **B** 之间压力、温度、比湿度和示踪气体质量分数差的优先级和初始目标值。
 
 ### 变量
 
-若要在仿真前为模块变量设置优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables 和 Initial Conditions for Blocks with Finite Moist Air Volume。
+要在仿真之前设置模块变量的优先级和初始目标值，请使用模块对话框或属性检查器中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables 和 Initial Conditions for Blocks with Finite Moist Air Volume。
 
-标称值提供了一种在模型中指定变量预期量值的方法。使用基于标称值的系统缩放可提高仿真稳健性。标称值可来自不同来源，其中之一是模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 Modify Nominal Values for a Block Variable。
+标称值提供了一种指定模型中变量预期量级的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。标称值可以来自不同的来源，其中之一是模块对话框或属性检查器中的 **Nominal Values** 部分。有关详细信息，请参阅 Modify Nominal Values for a Block Variable。

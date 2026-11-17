@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Environment Parameters'
-family: 'utilities'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,19 +18,19 @@ chinese_source: worker-translation
 
 ### 守恒端口
 
-### **OUT** — 电气输出端口
+### **OUT** — 输出端口电气
 
-与环境参数输出关联的电气守恒端口。
+与环境参数输出相关联的电气守恒端口。
 
 ## 参数
 
-### **Temperature** — SPICE 温度 `300.15` `K`（默认值） | 正标量
+### **Temperature** — SPICE 温度 `300.15` `K`（默认）| 正标量
 
-已连接 SPICE 兼容模块的温度。
+所连接的 SPICE 兼容模块的温度。
 
-### **GMIN** — 最小电导 `1e-12` `1/Ohm`（默认值） | 正标量
+### **GMIN** — 最小电导 `1e-12` `1/Ohm`（默认）| 正标量
 
-适用于已连接 SPICE 兼容模块的最小电导。
+适用的所连接 SPICE 兼容模块的最小电导。
 
 ## 所属库
 
@@ -50,15 +50,15 @@ R2025b 中未记录。
 
 ## 描述
 
-设置适用于所有已连接 SPICE 兼容模块的参数
+设置适用于所有连接的 SPICE 兼容模块的参数
 
-Environment Parameters 模块允许你设置适用于电气网络中所有 SPICE 兼容模块的参数：
+Environment Parameters 模块允许您设置适用于电气网络中所有 SPICE 兼容模块的参数：
 
 - 电路温度
 - 最小电导
 
-如果你的模型不包含 Environment Parameters 模块，则所有模块都使用这些参数的默认值。要覆盖默认值，请将系统中的每个网络连接到 Environment Parameters 模块。
+如果您的模型不包含 Environment Parameters 模块，则所有模块使用这些参数的默认值。要覆盖默认值，请将系统中的每个网络连接到 Environment Parameters 模块。
 
 **注意**
 
-Semiconductors 子库中的简单半导体模型不依赖于温度，因此 Environment Parameters 模块仅更改指数二极管和双极型晶体管模型使用的最小电导参数。
+Semiconductors 子库中的简单半导体模型与温度无关，因此 Environment Parameters 模块仅更改指数二极管和双极晶体管模型所使用的最小电导参数。

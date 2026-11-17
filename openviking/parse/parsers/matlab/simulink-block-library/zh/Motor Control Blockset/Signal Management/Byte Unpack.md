@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Byte Unpack'
-family: 'signal-management'
+family: 'mcb'
 product_id: 'mcb'
 product_name: 'Motor Control Blockset'
 documentation_release: R2025b
@@ -18,9 +18,9 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 要转换的向量信号
+### **Port\_1** — 要转换的信号向量
 
-`uint8` 的输入向量。
+`uint8` 类型的输入向量。
 
 **数据类型：** `uint8`
 ### 输出
@@ -33,9 +33,9 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **Output port dimensions (cell array)** — 模块输出信号的维度 {[1]}（默认）| 数据维度规格的元胞数组
+### **Output port dimensions (cell array)** — 模块输出信号的维度 {[1]}（默认）| 数据维度说明的元胞数组
 
-在一个元胞数组中指定模块输出的输出信号的维度。数组中的每个元素指定 MATLAB® `size` 函数为对应信号返回的维度。指定的维度应与模型中对应的 Byte Pack (Embedded Coder) 模块转换的数据对齐。
+在元胞数组中指定模块输出的输出信号维度。数组中的每个元素指定 MATLAB® `size` 函数为对应信号返回的维度。指定的维度应与模型中对应 Byte Pack (Embedded Coder) 模块转换的数据一致。
 
 例如，假设对应的 Byte Pack 模块指定了以下输入端口数据类型：
 
@@ -43,31 +43,31 @@ chinese_source: worker-translation
  {'uint32','uint32','uint16','double','uint8','double','single'}
 ```
 
-要指定标量和矩阵输出，您可以将 **Output port dimensions (cell array)** 参数设置为：
+要指定标量和矩阵输出，可以将 **Output port dimensions (cell array)** 参数设置为：
 
 ```
  {1,1,[2,4],[4,4],[2,2],1,[3,3]}
 ```
 
-要在输出信号中应用相同的维度，可以指定一个维度值。
+要对所有输出信号应用相同的维度，可以只指定一个维度值。
 
 ### **Output port data types (cell array)** — 模块输出信号的数据类型 {'double'}（默认）| Simulink 数据类型的元胞数组
 
-在一个元胞数组中指定模型中对应的 Byte Pack 模块接收的各个输入信号的 Simulink 数据类型。
+在元胞数组中指定模型中对应 Byte Pack 模块接收的各个输入信号的 Simulink 数据类型。
 
-例如，如果对应的 Byte Pack 模块指定了以下输入端口数据类型，则为此参数指定相同的元胞数组。
+例如，如果对应的 Byte Pack 模块指定了以下输入端口数据类型，请为此参数指定相同的元胞数组。
 
 ```
  {'uint32','uint32','uint16','double','uint8','double','single'}
 ```
 
-要对每个输出信号应用相同的数据类型，只需指定一次数据类型。
+要对每个输出信号应用相同的数据类型，只需指定一次该数据类型。
 
 ### **Byte Alignment** — 数据类型对齐的字节边界 1（默认）| 2 | 4 | 8
 
-指定如何以字节为单位对齐输出数据的数据类型，以形成 `uint8` 向量输入。指定的对齐值应与模型中对应的 Byte Pack (Embedded Coder) 模块指定的值匹配。
+指定如何对齐输出数据的数据类型，以按字节形成 `uint8` 向量输入。指定的对齐值应与模型中对应 Byte Pack (Embedded Coder) 模块指定的值一致。
 
-例如，如果对应的 Byte Pack 模块将字节对齐设置为 2，则将此参数设置为 2。
+例如，如果对应的 Byte Pack 模块将字节对齐设置为 2，请将此参数设置为 2。
 
 ## 所属库
 
@@ -75,7 +75,7 @@ Motor Control Blockset / Signal Management C2000 Microcontroller Blockset / Targ
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 

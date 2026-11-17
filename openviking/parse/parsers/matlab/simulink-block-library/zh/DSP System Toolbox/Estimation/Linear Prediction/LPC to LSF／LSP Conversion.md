@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'LPC to LSF/LSP Conversion'
-family: 'estimation'
+family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
@@ -18,110 +18,110 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **A** — 线性预测系数 列向量 | 未定向向量 | 矩阵
+### **A** — 线性预测系数 列向量 | 无向向量 | 矩阵
 
-将输入线性预测系数指定为列向量、未定向向量或矩阵。输入的每个通道必须至少有两个采样。
+将输入线性预测系数指定为列向量、无向向量或矩阵。输入的每个通道必须至少有两个采样。
 
-每个通道的输入 LPC，1, *a1*, *a*2*, ..., *a**m*, 必须是稳定全极点滤波器传递函数的分母，其形式在有效输出的要求的第一个方程中给出。长度为 *M*+1 的输入通道产生长度为 *M* 的输出通道。
+每个通道的输入 LPC，1、*a1*、*a*2、...、*a**m*，必须是稳定全极点滤波器传递函数的分母，其形式如有效输出要求中第一个方程所示。长度为 *M*+1 的输入通道产生长度为 *M* 的输出通道。
 
 **数据类型：** `single` | `double`
 ### 输出
 
-### **LSP** — 线谱对 列向量 | 未定向向量 | 矩阵
+### **LSP** — 线谱对 列向量 | 无向向量 | 矩阵
 
-线谱对，以列向量、未定向向量或矩阵形式返回。
-
-**数据类型：** `single` | `double`
-
-### **LSFn** — 归一化在范围 (0 0.5) 内的线谱频率 列向量 | 未定向向量 | 矩阵
-
-归一化在范围 (0 0.5) 内的线谱频率，以列向量、未定向向量或矩阵形式返回。
+线谱对，返回为列向量、无向向量或矩阵。
 
 **数据类型：** `single` | `double`
 
-### **LSFr** — 范围 (0 π) 内的线谱频率 列向量 | 未定向向量 | 矩阵
+### **LSFn** — 归一化在 (0 0.5) 范围内的线谱频率 列向量 | 无向向量 | 矩阵
 
-范围 (0 π) 内的线谱频率，以列向量、未定向向量或矩阵形式返回。
+归一化在 (0 0.5) 范围内的线谱频率，返回为列向量、无向向量或矩阵。
+
+**数据类型：** `single` | `double`
+
+### **LSFr** — 在 (0 π) 范围内的线谱频率 列向量 | 无向向量 | 矩阵
+
+在 (0 π) 范围内的线谱频率，返回为列向量、无向向量或矩阵。
 
 **数据类型：** `single` | `double`
 
 ### **Status** — 输出的有效性状态 标量 | 行向量
 
-输出的有效性状态，以标量或布尔值行向量形式返回。
+输出的有效性状态，返回为标量或布尔值行向量。
 
 - `1` 表示对应通道的输出有效。
 - `0` 表示对应通道的输出无效。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请选择 **显示输出有效性状态** 参数。
+要启用此端口，请选择 **Show output validity status** 参数。
 
 **数据类型：** `Boolean`
 
 ## 参数
 
-### **输出** — 转换输出 `LSP in range (-1 1)` (默认) | `LSF normalized in range (0 0.5)` | `LSF in range (0 pi)`
+### **Output** — 转换输出 `LSP in range (-1 1)`（默认）| `LSF normalized in range (0 0.5)` | `LSF in range (0 pi)`
 
-指定模块是将输入线性预测多项式系数 (LPC) 转换为线谱对 (LSP) 还是线谱频率 (LSF)。您可以将此参数设置为以下选项之一：
+指定模块是将输入线性预测多项式系数（LPC）转换为线谱对（LSP）还是线谱频率（LSF）。您可以将此参数设置为以下选项之一：
 
-- `LSP in range (-1 1)` — 模块按降序输出 LSP 值，这些值等于 0 到 *π* 弧度之间的 LSF 值的余弦。模块不输出保证的 LSP 值 −1 和 1。
+- `LSP in range (-1 1)` — 模块按降序输出 LSP 值，等于 0 到 *π* 弧度之间的 LSF 值的余弦。模块不输出保证的 LSP 值 −1 和 1。
 - `LSF in radians (0 pi)` — 模块按升序输出 0 到 *π* 弧度之间的 LSF 值。模块不输出保证的 LSF 值 0 和 *π*。
-- `LSF normalized in range (0 0.5)` — 模块按升序输出归一化 LSF 值，这些值通过将 0 到 *π* 弧度之间的 LSF 值除以 2*π* 计算得到。模块不输出保证的归一化 LSF 值 0 和 0.5。
+- `LSF normalized in range (0 0.5)` — 模块按升序输出归一化 LSF 值，通过将 0 到 *π* 弧度之间的 LSF 值除以 2*π* 计算得到。模块不输出保证的归一化 LSF 值 0 和 0.5。
 
-### **根查找粗网格点** — 搜索步数 `64` (默认) | 大于 1 的正整数
+### **Root finding coarse grid points** — 搜索步数 `64`（默认）| 大于 1 的正整数
 
-将搜索步数 *n* 指定为大于 1 的正整数。模块将区间 (−1, 1) 分成 *n* 个等长子区间，并在每个子区间中查找根（LSP 值）。您必须选择足够大的 *n*，否则模块输出可能无效，如有效输出的要求中所述。要了解模块如何使用此参数计算输出，请参阅 LSF 和 LSP 计算方法：用于求根的 Chebyshev 多项式方法。另请参阅使用求根参数调整输出计算时间和精度。
+将搜索步数 *n* 指定为大于 1 的正整数。模块将区间 (−1, 1) 分成 *n* 个等长子区间，并在每个子区间中查找根（LSP 值）。您必须选择足够大的 *n*，否则模块输出可能无效，如有效输出要求中所述。要了解模块如何使用此参数计算输出，请参阅 LSF and LSP Computation Method: Chebyshev Polynomial Method for Root Finding。另请参阅 Adjusting Output Computation Time and Accuracy with Root Finding Parameters。
 
 **可调：** 是
 
-### **根查找二分细化** — 二分次数 `4` (默认) | 非负整数
+### **Root finding bisection refinement** — 二分次数 `4`（默认）| 非负整数
 
-将二分次数 *k* 指定为非负整数。指定值 *k*，其中每个 LSP 输出与实际 LSP 值的差距在 1/(n⋅2k) 以内，*n* 是 **根查找粗网格点** 参数的值。要了解模块如何使用此参数计算输出，请参阅 LSF 和 LSP 计算方法：用于求根的 Chebyshev 多项式方法。您还可以参阅使用求根参数调整输出计算时间和精度。可调（Simulink）。
+将二分次数 *k* 指定为非负整数。指定值 *k*，其中每个 LSP 输出在实际 LSP 值的 1/(n⋅2k) 范围内，其中 *n* 是 **Root finding coarse grid points** 参数的值。要了解模块如何使用此参数计算输出，请参阅 LSF and LSP Computation Method: Chebyshev Polynomial Method for Root Finding。您还可以参阅 Adjusting Output Computation Time and Accuracy with Root Finding Parameters。可调（Simulink）。
 
-### **显示输出有效性状态** — 显示输出有效性状态 `off` (默认) | `on`
+### **Show output validity status** — 显示输出有效性状态 `off`（默认）| `on`
 
-选择此参数以显示输出的有效性状态。选择此参数后，模块将启用输出端口 **Status**。**Status** 端口输出一个标量或一个行向量，其中每个通道对应一个布尔元素。
+选择此参数以显示输出的有效性状态。当您选择此参数时，模块启用输出端口 **Status**。**Status** 端口输出一个标量或行向量，每个通道对应一个布尔元素。
 
 - `1` 表示对应通道的输出有效。
 - `0` 表示对应通道的输出无效。
 
-当模块未能找到所有 LSF 或 LSP 值，或者输入 LPC 不稳定时，LSF 和 LSP 输出无效。有关详细信息，请参阅有效输出的要求。
+当模块未能找到所有 LSF 或 LSP 值，或者输入 LPC 不稳定时，LSF 和 LSP 输出无效。有关详细信息，请参阅有效输出要求。
 
-### **如果当前输出无效，则用前一个输出覆盖** — 用前一个输出覆盖无效输出 `off` (默认) | `on`
+### **If current output is invalid, overwrite with previous output** — 用前一个输出覆盖无效输出 `off`（默认）| `on`
 
-选中此复选框后，模块将用前一个输出覆盖无效输出。选择此参数会激活其他参数，用于处理初始覆盖值（当模块的第一个输出无效时）。有关详细信息，请参阅用于处理无效输入和输出的参数。
+当您选中此复选框时，模块用前一个输出覆盖无效输出。选择此参数会激活其他参数，用于处理初始覆盖值（当模块的第一个输出无效时）。有关详细信息，请参阅 Parameters for Handling Invalid Inputs and Outputs。
 
-### **当第一个输出无效时，用用户定义的值覆盖** — 用用户定义的值覆盖无效的第一个输出 `off` (默认) | `on`
+### **When first output is invalid, overwrite with user-defined values** — 用用户定义的值覆盖无效的第一个输出 `off`（默认）| `on`
 
-当第一个输入不稳定时，您可以通过以下方式覆盖无效的第一个输出：
+当第一个输入不稳定时，您可以用以下方式覆盖无效的第一个输出：
 
-- 清除此复选框，使用默认值
-- 选中此复选框，使用您指定的值
+- 通过清除此复选框使用默认值
+- 通过选中此复选框使用您指定的值
 
-默认初始覆盖值是全通滤波器的 LSF 或 LSP 表示。模块用于覆盖无效第一个输出的向量存储为内部状态。有关详细信息，请参阅用于处理无效输入和输出的参数。
+默认初始覆盖值是全通滤波器的 LSF 或 LSP 表示。模块用于覆盖无效第一个输出的向量存储为内部状态。有关详细信息，请参阅 Parameters for Handling Invalid Inputs and Outputs。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请选择 **如果当前输出无效，则用前一个输出覆盖** 参数。
+要启用此参数，请选择 **If current output is invalid, overwrite with previous output** 参数。
 
-### **用于覆盖无效第一个输出的用户定义 LSP/LSF 值** — 用户定义 LSP/LSF 值向量 (默认) | 矩阵
+### **User-defined LSP/LSF values for overwriting invalid first output** — 用于覆盖无效第一个输出的用户定义 LSP/LSF 值 向量（默认）| 矩阵
 
-如果您选择了 **当第一个输出无效时，用用户定义的值覆盖** 参数，请指定用于覆盖无效第一个输出的 LSP/LSF 值向量。对于多通道输入，请提供与输入通道数相同的矩阵，或提供一个模块应用于每个通道的向量。您指定的 LSP/LSF 值向量或矩阵必须与其他输出具有相同的维度、大小和帧状态。
+如果您选择了 **When first output is invalid, overwrite with user-defined values** 参数，请指定用于覆盖无效第一个输出的 LSP/LSF 值向量。对于多通道输入，请提供与输入通道数相同的矩阵，或提供一个模块应用于每个通道的向量。您指定的 LSP/LSF 值向量或矩阵必须与其他输出具有相同的维度、大小和帧状态。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请选择 **当第一个输出无效时，用用户定义的值覆盖** 参数。
+要启用此参数，请选择 **When first output is invalid, overwrite with user-defined values** 参数。
 
-### **如果第一个输入值不为 1** — 当第一个输入值不为 1 时采取的操作 `Ignore` (默认) | `Normalize` | `Normalize and warn` | `Error`
+### **If first input value is not 1** — 第一个输入值不为 1 时采取的操作 `Ignore`（默认）| `Normalize` | `Normalize and warn` | `Error`
 
 指定当输入的第一个系数不为 `1` 时采取的操作。将此参数设置为以下之一：
 
 - `Ignore` –– 模块将第一个系数视为 1。
 - `Normalize` –– 模块在计算输出之前将输入 LPC 除以第一个系数的值。
-- `Normalize and warn` ––- 模块对输入 LPC 进行归一化并显示警告消息。
-- `Error` –– 模块停止仿真，并在 MATLAB® 命令行显示错误消息。
+- `Normalize and warn` –– 模块对输入 LPC 进行归一化并显示警告消息。
+- `Error` –– 模块停止仿真并在 MATLAB® 命令行显示错误消息。
 
-有关详细信息，请参阅用于处理无效输入和输出的参数。
+有关详细信息，请参阅 Parameters for Handling Invalid Inputs and Outputs。
 
 ## 所属库
 
@@ -151,4 +151,4 @@ DSP System Toolbox / Estimation / Linear Prediction
 
 将线性预测系数转换为线谱对或线谱频率
 
-LPC to LSF/LSP Conversion 模块将线性预测系数 (LPC) 转换为线谱对 (LSP) 或线谱频率 (LSF)。将 LPC 转换为 LSF 时，模块输出与 `poly2lsf` 函数的输出匹配。
+LPC to LSF/LSP Conversion 模块将线性预测系数（LPC）转换为线谱对（LSP）或线谱频率（LSF）。当将 LPC 转换为 LSF 时，模块的输出与 `poly2lsf` 函数的输出匹配。

@@ -9,63 +9,61 @@ official_category: ''
 documentation_page: 'common-design-patterns'
 documentation_source_path: 'gs/common-design-patterns.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # SimEvents Common Design Patterns
 
-The SimEvents ® library provides design patterns that you can refer to while modeling. To access these patterns, open the SimEvents library and double-click the Design Patterns block.
+SimEvents ® 库提供了可供您在建模时参考的设计模式。要访问这些模式，请打开 SimEvents 库并双击 Design Patterns 模块。
 
-The SimEvents® library provides design patterns that you
-can refer to while modeling. To access these patterns, open the SimEvents library
-and double-click the Design Patterns block.
+SimEvents® 库提供了可供您在建模时参考的设计模式。要访问这些模式，请打开 SimEvents 库并双击 Design Patterns 模块。
 
-SimEvents custom design patterns provided in the library
+库中提供的 SimEvents 自定义设计模式
 
-Consider these design patterns while modeling:
+建模时请考虑以下设计模式：
 
-| Design Pattern | Description | Input Specifications | Output Specifications | Application |
+| 设计模式 | 描述 | 输入规格 | 输出规格 | 应用 |
 | --- | --- | --- | --- | --- |
-| Entities with exponential random inter-generation times | Generates entities with random inter-generation times in exponential distribution fashion. | Not applicable | Structured entity with specified attributes | Model:  - Customers entering a store - Incoming phone calls of a hotline |
-| Service time from random distribution | Specifies waiting time in the Entity Server as a random number uniformly distributed from 0 through 1. | Any entity type | Inherited from the input | Model:  - Extension of an event that is random within a range   (for example, length of a call - Purposeful holding of an entity for a random   time |
-| Extract attributes of entities as signals | Extracts one or more attributes of entities as signals. | A structured entity or bus object with specified attribute | `getAttribute` — Real double scalar signal  Extracted Attribute — Inherited from the input | Inspect or use a specific entity attribute |
-| Timestamp entities upon generation | Generates entities with an attribute **TimeStamp** that records the simulation time upon generation. | Not applicable | Structured entity with attributes `Data` and `TimeStamp` | Use when generation time of entities is needed, for example, when calculating the priority in a combined scheduling algorithm. |
-| Release entity upon signal value change | Releases an incoming entity when there is a jump in the step function. | Any entity type | Inherited from the input | Use to control the passing of entities based on the change of a function. |
-| Open gate on service completion | Upon service completion, the gate opens and releases an entity. | Any entity type | Inherited from the input | Use task completion to trigger entity processing. |
-| Sense an entity passing from A to B and open a gate | Passing an entity from *A* to *B* opens the gate and releases an entity. | Any entity type | Inherited from the input | Use to model the passing of an entity in one route to control the passing of another route. |
-| Select an entity with a matching attribute | Select entities to advance whose specified attributes are matching the anonymous entity at the control port | A structured entity or bus object with a specified attribute | Inherited from the input | Select entities with a specified attribute to output |
-| Discrete Event Chart: Single Server with Pause | A Ctrl message triggers pause of service for the incoming entity. A second Ctrl message continues the service. Entity data conveys the service time. | Ctrl — Anonymous entity specifying the pause and resume  Entity — Anonymous entity specifying service time | Inherited from the input | Use external events or signals to pause the service of entities. |
-| Discrete Event Chart: Single Server with Timeout | If the service time (which is random) exceeds the timeout limit specified by the entity data, the entity leaves the server. | Anonymous entity with specified timeout limit | Inherited from the input | Model:  - A protocol that explicitly calls for timeouts. - Implementation of special routing or other handling of   entities that exceed a time limit. - Entities that represent perishable items. |
-| Discrete Event Chart: Custom Output Switch | Randomly routes entities to one of the three output ports. | Anonymous entity | Inherited from the input | Implement a more complicated routing algorithm for an output switch. |
-| MATLAB Discrete Event System: Custom Generator | The Custom Generator block, defined using the MATLAB Discrete Event System block, is a basic entity generator. The generator block requires specification of generation period. | Not applicable | Anonymous entity | Implement a more complicated entity generator. |
-| MATLAB Discrete Event System: Custom Server | Custom Server block, defined using the MATLAB Discrete Event System block, is a basic entity server. The server block requires specification of server number and service time. | Any entity type | Inherited from the input | Implement a more complicated entity server. |
-| MATLAB Discrete Event System: Selection Queue | The Selection Queue block, defined using the MATLAB Discrete Event System block, stores entities of bus type `passenger` arriving at the IN port. Keys from the call port select `passenger` entities with the matching `trainNum` field and send them to the OUT port. | Key — Anonymous entity carrying the selection key  IN — A structured entity or bus object with specified attribute | Inherit from IN | Select a specific entity to output from a queue. |
+| 具有指数随机生成间隔的实体 | 以指数分布方式生成具有随机生成间隔的实体。 | 不适用 | 具有指定属性的结构化实体 | 建模：  - 进入商店的顾客 - 热线的来电 |
+| 来自随机分布的服务时间 | 将 Entity Server 中的等待时间指定为从 0 到 1 均匀分布的随机数。 | 任意实体类型 | 继承自输入 | 建模：  - 在某个范围内随机的事件的扩展   （例如，通话时长 - 有意将实体保持随机  时间 |
+| 将实体属性提取为信号 | 将一个或多个实体属性提取为信号。 | 具有指定属性的结构化实体或总线对象 | `getAttribute` — 实数双精度标量信号  提取的属性 — 继承自输入 | 检查或使用特定实体属性 |
+| 在生成时对实体加时间戳 | 生成具有属性 **TimeStamp** 的实体，该属性记录生成时的仿真时间。 | 不适用 | 具有属性 `Data` 和 `TimeStamp` 的结构化实体 | 当需要实体的生成时间时使用，例如，在组合调度算法中计算优先级时。 |
+| 在信号值变化时释放实体 | 当阶跃函数发生跳变时释放传入实体。 | 任意实体类型 | 继承自输入 | 用于基于函数的变化控制实体的通过。 |
+| 在服务完成时打开门 | 服务完成后，门打开并释放一个实体。 | 任意实体类型 | 继承自输入 | 使用任务完成来触发实体处理。 |
+| 感测实体从 A 传递到 B 并打开门 | 将实体从 *A* 传递到 *B* 会打开门并释放一个实体。 | 任意实体类型 | 继承自输入 | 用于对一个路由中实体的传递进行建模，以控制另一个路由的通过。 |
+| 选择具有匹配属性的实体 | 选择要推进的实体，其指定属性与控制端口处的匿名实体匹配 | 具有指定属性的结构化实体或总线对象 | 继承自输入 | 选择具有指定属性的实体进行输出 |
+| 离散事件图表：带暂停的单服务器 | 一条 Ctrl 消息触发传入实体的服务暂停。第二条 Ctrl 消息继续服务。实体数据传达服务时间。 | Ctrl — 指定暂停和恢复的匿名实体  实体 — 指定服务时间的匿名实体 | 继承自输入 | 使用外部事件或信号暂停实体的服务。 |
+| 离散事件图表：带超时的单服务器 | 如果服务时间（随机）超过实体数据指定的超时限制，则实体离开服务器。 | 具有指定超时限制的匿名实体 | 继承自输入 | 建模：  - 明确要求超时的协议。 - 对超过时间限制的实体实现特殊路由或其他  处理。 - 表示易腐物品的实体。 |
+| 离散事件图表：自定义输出开关 | 将实体随机路由到三个输出端口之一。 | 匿名实体 | 继承自输入 | 为输出开关实现更复杂的路由算法。 |
+| MATLAB 离散事件系统：自定义生成器 | 使用 MATLAB Discrete Event System 模块定义的 Custom Generator 模块是一个基本实体生成器。该生成器模块需要指定生成周期。 | 不适用 | 匿名实体 | 实现更复杂的实体生成器。 |
+| MATLAB 离散事件系统：自定义服务器 | 使用 MATLAB Discrete Event System 模块定义的 Custom Server 模块是一个基本实体服务器。该服务器模块需要指定服务器数量和服务时间。 | 任意实体类型 | 继承自输入 | 实现更复杂的实体服务器。 |
+| MATLAB 离散事件系统：选择队列 | 使用 MATLAB Discrete Event System 模块定义的 Selection Queue 模块存储到达 IN 端口的 `passenger` 总线类型实体。来自 call 端口的键选择具有匹配 `trainNum` 字段的 `passenger` 实体，并将它们发送到 OUT 端口。 | Key — 携带选择键的匿名实体  IN — 具有指定属性的结构化实体或总线对象 | 继承自 IN | 从队列中选择特定实体进行输出。 |
 
-## See Also
+## 另请参阅
 
 MATLAB Discrete-Event System | Discrete-Event Chart
 
-### Topics
+### 主题
 
-- Block Authoring
-- Discrete-Event System Objects
-- Implement Discrete-Event Systems with Charts
+- 模块创作
+- 离散事件系统对象
+- 使用图表实现离散事件系统
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个对应于以下 MATLAB 命令的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择网站以获取翻译后的内容（如果可用），并查看本地活动和优惠。根据您的位置，我们建议您选择：.
 
 - (English)
 - (Deutsch)
@@ -74,11 +72,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您还可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -109,7 +107,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

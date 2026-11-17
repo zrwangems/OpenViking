@@ -9,7 +9,7 @@ official_category: 'C2803x'
 documentation_page: 'clamath'
 documentation_source_path: 'ref/clamath.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # CLA Math
@@ -18,24 +18,24 @@ chinese_source: official
 
 ### 输入
 
-### **u** — 输入数据 向量
+### **u** — 输入数据向量
 
-该模块接受以 *N*×1 数组形式指定的数据。
+该模块接受指定为 *N*×1 数组的数据。
 
-**数据类型:** `single`
+**数据类型：** `single`
 ### 输出
 
-### **y** — 输出数据 标量
+### **y** — 输出数据标量
 
-该模块以 *N*×1 数组的形式输出单个数据。该模块输出所选函数参数的值。
+该模块输出 single 类型的 *N*×1 数组数据。该模块输出所选函数参数的值。
 
-**数据类型:** `single`
+**数据类型：** `single`
 
 ## 参数
 
-### **函数** — 选择 CLA 数学函数 **CLAsin** (默认) | **CLAcos** | **CLAasin** | **CLAacos** | **CLAatan** | **CLAatan2** | **CLAsinPU** | **CLAcosPU** | **CLAatan2PU** | **CLAexp** | **CLAexp2** | **CLAexp10** | **CLAexpN** | **CLALn** | **CLALog10** | **CLALogN** | **CLAdiv** | **CLAsqrt** | **CLAisqrt**
+### **Function** — 选择 CLA Math 函数 `CLAsin`（默认）| `CLAcos` | `CLAasin` | `CLAacos` | `CLAatan` | `CLAatan2` | `CLAsinPU` | `CLAcosPU` | `CLAatan2PU` | `CLAexp` | `CLAexp2` | `CLAexp10` | `CLAexpN` | `CLALn` | `CLALog10` | `CLALogN` | `CLAdiv` | `CLAsqrt` | `CLAisqrt`
 
-选择 CLA 数学函数，其中包括三角函数、对数函数、指数函数和幂函数。
+选择 CLA Math 函数，其中包括三角函数、对数函数、指数函数和幂函数。
 
 ## 所属库
 
@@ -43,26 +43,26 @@ C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x 
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 版本历史
 
-**在 R2023a 中推出**
+**在 R2023a 中引入**
 
 ## 描述
 
 实现 CLA Math 库中的 CLA Math 函数
 
-CLA Math 实现了 CLA Math 库中的 CLA Math 函数。CLA 数学函数包括三角函数、对数函数、指数函数和幂函数。
+CLA Math 实现 CLA Math 库中的 CLA Math 函数。CLA Math 函数包括三角函数、对数函数、指数函数和幂函数。
 
 **注意**
 
-CLA Math 模块仅在为 CLA 配置的模型中有效。
+CLA Math 模块仅在为 CLA 配置的模型中工作。
 
-三角函数接受弧度作为输入。PU 三角函数接受单位输入。
+三角函数接受以弧度表示的输入。PU 三角函数接受以标幺值表示的输入。
 
-该模块只接受 single 数据类型的输入，并输出 single 类型的数据。
+该模块仅接受 single 数据类型的输入，并输出 single 类型的数据。

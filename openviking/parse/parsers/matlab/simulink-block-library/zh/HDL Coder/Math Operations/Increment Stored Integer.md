@@ -9,7 +9,7 @@ official_category: 'Math Operations'
 documentation_page: 'incrementstoredinteger'
 documentation_source_path: '../simulink/slref/incrementstoredinteger.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Increment Stored Integer
@@ -22,18 +22,18 @@ chinese_source: official
 
 输入信号，指定为标量、向量或矩阵。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
 ### **Port\_1** — 输出信号 标量 | 向量 | 矩阵
 
-输出是输入信号的存储的整数值加 1。浮点信号也加 1，并且溢出始终绕回。输出具有与输入相同的数据类型和维度。
+输出是输入信号的存储整数值加一。浮点信号也加一，溢出始终回绕。输出与输入具有相同的数据类型和维度。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ## 参数
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -44,20 +44,20 @@ Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement H
 |  |  |
 | --- | --- |
 | **数据类型** | `double` | `fixed point` | `integer` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `是` |
-| **可变大小信号** | `是` |
-| **过零检测** | `否` |
+| **直接馈通** | `yes` |
+| **多维信号** | `yes` |
+| **可变大小信号** | `yes` |
+| **过零检测** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-代码生成器不会在生成的代码中将构成非原子封装子系统模块的原始模块显式组合在一起。这种灵活性可以提高代码生成效率。在某些情况下，通过选择**视为原子单元**选项，可以通过将封装子系统模块配置为以原子单元执行来进行组合。
+代码生成器不会在生成的代码中显式地将构成非原子掩码子系统模块的基本模块分组。这种灵活性允许更高效的代码生成。在某些情况下，您可以通过选择 **Treat as atomic unit** 选项将掩码子系统模块配置为作为原子单元执行来实现分组。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
+HDL Coder™ 提供了影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 架构**
 
@@ -67,20 +67,20 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 |  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过移动设计中现有延迟的方式来放置在输出端的寄存器的数量。分布式流水线不会重新分发这些寄存器。默认值为 `0`。有关详细信息，请参阅ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出端的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成的代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成的代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2006a 之前引入**
 
 ## 描述
 
-将信号的存储整数值加 1
+将信号的存储整数值加一
 
-Increment Stored Integer 模块将信号的存储整数值加 1。
+Increment Stored Integer 模块将信号的存储整数值加一。
 
-浮点信号也加 1，并且溢出始终绕回。
+浮点信号也加一，溢出始终回绕。

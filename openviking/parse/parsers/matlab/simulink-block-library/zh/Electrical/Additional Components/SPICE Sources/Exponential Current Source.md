@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Exponential Current Source'
-family: 'additional-components'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,54 +16,54 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **+** — 正电压电气
+### **+** — 正电压电气端口
 
-与直流电流源正电压关联的电气守恒端口
+与直流电流源正电压相关联的电气守恒端口
 
-### **-** — 负电压电气
+### **-** — 负电压电气端口
 
-与直流电流源负电压关联的电气守恒端口
+与直流电流源负电压相关联的电气守恒端口
 
 ## 参数
 
-### **初始值, I1** — 输出电流初始值 `0` `A`（默认）
+### **Initial value, I1** — 输出电流初始值 `0` `A`（默认值）
 
-时间零点的输出电流值，单位为 A。
+时间零点时的输出电流值，单位为 A。
 
-### **脉冲值, I2** — 输出电流渐近值 `0` `A`（默认）
+### **Pulse value, I2** — 输出电流渐近值 `0` `A`（默认值）
 
-输出为高时输出电流的渐近值，单位为 A。
+输出为高电平时输出电流的渐近值，单位为 A。
 
-### **上升延迟时间, TDR** — 上升延迟时间 `0` `s`（默认）
+### **Rise delay time, TDR** — 上升延迟时间 `0` `s`（默认值）
 
 上升时间延迟，单位为 s。
 
-### **上升时间, TR** — 上升时间 `1e-9` `s`（默认） | 正标量
+### **Rise time, TR** — 上升时间 `1e-9` `s`（默认值）| 正标量
 
-输出电流从 **初始值, I1** 值上升到 **脉冲值, I2** 值所需的时间。
+输出电流从 **Initial Value, I1** 值上升到 **Pulse Value, I2** 值所需的时间。
 
-### **下降延迟时间, TDF** — 下降延迟时间 `0` `s`（默认）
+### **Fall delay time, TDF** — 下降延迟时间 `0` `s`（默认值）
 
 下降时间延迟。默认值为 `0``s`，与 SPICE 默认值不同。
 
-### **下降时间, TF** — 下降时间 `1e-9` `s`（默认） | 正标量
+### **Fall time, TF** — 下降时间 `1e-9` `s`（默认值）| 正标量
 
-输出电流从 **脉冲值, I2** 值下降到 **初始值, I1** 值所需的时间。
+输出电流从 **Pulse value, I2** 值下降到 **Initial value, I1** 值所需的时间。
 
-### **包括并联电导, GMIN** — 是否包括并联电导 `Yes`（默认） | `No`
+### **Include parallel conductance, GMIN** — 是否包含并联电导 `Yes`（默认值）| `No`
 
-指定电流源是否包括并联电导。并联电导 *GMIN* 的值取决于模型是否包含 Environment Parameters 模块。
+指定电流源是否包含并联电导。并联电导 *GMIN* 的值取决于您的模型是否包含 Environment Parameters 模块。
 
 下表显示了并联电导 *GMIN* 的可能值：
 
 **并联电导 GMIN 的值**
 
-| 包括并联电导, GMIN | | | | |
+| Include parallel conductance, GMIN | | | | |
 | --- | --- | --- | --- | --- |
 | *`Yes`* | | *`No`* | | |
-| **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 并联电导 *GMIN* 未包括，且不影响电流源。 | | |
+| **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，且其不影响电流源。 | | |
 | *GMIN* 等于 Environment Parameters 模块中 **GMIN** 参数的值。 | *GMIN* = `1e-12` `Ohm` |
 
 ## 所属库
@@ -92,24 +92,14 @@ Iout(0≤Time≤TDR))=I1Iout(TDR<Time≤TDF)=I1+(I2-I1)\*(1-e-(Time-TDR)/TR)Iout
 
 其中：
 
-- *I1* 是 **初始值, I1**
-  参数值。
-- *I2* 是 **脉冲值, I2**
-  参数值。
-- *TDR* 是 **上升延迟时间, TDR**
-  参数值。
-- *TR* 是 **上升时间, TR** 参数
-  值。
-- *TDF* 是 **下降延迟时间, TDF**
-  参数值。
-- *TF* 是 **下降时间, TF**
-  参数值。
+- *I1* 是 **Initial value, I1** 参数值。
+- *I2* 是 **Pulse value, I2** 参数值。
+- *TDR* 是 **Rise delay time, TDR** 参数值。
+- *TR* 是 **Rise time, TR** 参数值。
+- *TDF* 是 **Fall delay time, TDF** 参数值。
+- *TF* 是 **Fall time, TF** 参数值。
 
-该模块内部使用一个小电导来防止数值仿真问题。该电导连接设备的 **+** 和 **-** 端口，并具有电导 *GMIN*：
+该模块内部使用一个小电导来防止数值仿真问题。该电导连接器件的 **+** 和 **-** 端口，其电导为 *GMIN*：
 
-- 默认情况下，*GMIN* 与 Environment Parameters
-  模块的 **GMIN**
-  参数匹配，其默认值为 `1e–12`。
-- 要更改 *GMIN*，请将 Environment
-  Parameters 模块添加到模型中，并将
-  **GMIN** 参数设置为所需值。
+- 默认情况下，*GMIN* 与 Environment Parameters 模块的 **GMIN** 参数匹配，其默认值为 `1e–12`。
+- 要更改 *GMIN*，请将 Environment Parameters 模块添加到您的模型中，并将 **GMIN** 参数设置为所需的值。

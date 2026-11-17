@@ -9,93 +9,80 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Wireless HDL Toolbox
 
-Learn the basics of Wireless HDL Toolbox
+了解 Wireless HDL Toolbox 的基础知识
 
-Design and implement wireless communications subsystems for FPGAs, ASICs, and SoCs
+为 FPGA、ASIC 和 SoC 设计和实现无线通信子系统
 
-- Release Notes
-- PDF Documentation
-- PDF Documentation
+- 发行说明
+- PDF 文档
+- PDF 文档
 
-- **Release Notes**
-- **PDF Documentation**
-- **PDF Documentation**
+- **发行说明**
+- **PDF 文档**
+- **PDF 文档**
 
-Wireless HDL Toolbox™ provides pre-verified, hardware-ready Simulink® blocks and subsystems for developing 5G, LTE, WLAN, satellite (DVB-S2, GPS,
-and CCSDS), and custom OFDM-based wireless communication applications. The toolbox includes
-reference applications for wireless standards and IP blocks.
+Wireless HDL Toolbox™ 提供经过预验证、硬件就绪的 Simulink® 模块和子系统，用于开发 5G、LTE、WLAN、卫星（DVB-S2、GPS 和 CCSDS）以及自定义基于 OFDM 的无线通信应用。该工具箱包含针对无线标准的参考应用和 IP 模块。
 
-You can modify the reference applications for integration into your own design. HDL
-implementations of the toolbox algorithms are optimized for efficient resource usage and
-performance for prototyping or for production deployment on FPGA, ASIC, and SoC
-devices.
+您可以修改参考应用以集成到自己的设计中。工具箱算法的 HDL 实现针对高效的资源使用和性能进行了优化，适用于在 FPGA、ASIC 和 SoC 设备上进行原型设计或生产部署。
 
-The toolbox algorithms generate readable, synthesizable code in VHDL® and Verilog® (with HDL Coder™). You can verify the generated HDL code on FPGA hardware from Simulink using FPGA in the loop cosimulation. Also, you can generate SystemVerilog DPI components to verify wireless applications in an HDL environment (with
-HDL Verifier™). For over-the-air testing, you can connect transmitter and receiver models to
-radio devices (with Communications Toolbox™ and SoC Blockset™ hardware support packages).
+工具箱算法可生成可读、可综合的 VHDL® 和 Verilog® 代码（使用 HDL Coder™）。您可以使用 FPGA 在环协同仿真在 Simulink 中于 FPGA 硬件上验证生成的 HDL 代码。此外，您可以生成 SystemVerilog DPI 组件以在 HDL 环境中验证无线应用（使用 HDL Verifier™）。对于空中测试，您可以将发射机和接收机模型连接到无线电设备（使用 Communications Toolbox™ 和 SoC Blockset™ 硬件支持包）。
 
-## Get Started
+## 入门
 
-Learn the basics of Wireless HDL Toolbox
+了解 Wireless HDL Toolbox 的基础知识
 
-## Model Architecture
+## 模型架构
 
-Set up model for designing wireless communications hardware systems with streaming sample
-interface
+设置模型以使用流式样本接口设计无线通信硬件系统
 
-## HDL-Optimized System Design
+## HDL 优化系统设计
 
-Choose algorithms for wireless communications hardware system design
+选择用于无线通信硬件系统设计的算法
 
-## 5G Reference Applications
+## 5G 参考应用
 
-Integrate prebuilt and verified 5G NR transmitter and receiver subsystems into system
-design
+将预构建且经过验证的 5G NR 发射机和接收机子系统集成到系统设计中
 
-## LTE Reference Applications
+## LTE 参考应用
 
-Integrate prebuilt and verified LTE transmitter and receiver subsystems into system
-design
+将预构建且经过验证的 LTE 发射机和接收机子系统集成到系统设计中
 
-## Satellite Communications Reference Applications
+## 卫星通信参考应用
 
-Integrate prebuilt and verified satellite communications transmitter and receiver
-subsystems into system design
+将预构建且经过验证的卫星通信发射机和接收机子系统集成到系统设计中
 
-## WLAN Reference Applications
+## WLAN 参考应用
 
-Integrate prebuilt and verified WLAN transmitter and receiver subsystems into system
-design
+将预构建且经过验证的 WLAN 发射机和接收机子系统集成到系统设计中
 
-## Custom Communications Systems Reference Applications
+## 自定义通信系统参考应用
 
-Integrate prebuilt and verified custom transmitter and receiver subsystems into system
-design
+将预构建且经过验证的自定义发射机和接收机子系统集成到系统设计中
 
-## HDL Code Generation, Verification, and Deployment
+## HDL 代码生成、验证和部署
 
-Generate HDL code using HDL Coder, verify using HDL Verifier, and prototype using hardware support packages
+使用 HDL Coder 生成 HDL 代码，使用 HDL Verifier 进行验证，并使用硬件支持包进行原型设计
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击的链接对应于以下 MATLAB 命令：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+请在 MATLAB 命令行窗口中输入以运行该命令。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择网站以获取翻译后的内容（如果可用），并查看本地活动和优惠。根据您的位置，我们建议您选择：。
 
 - (English)
 - (Deutsch)
@@ -104,7 +91,7 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您还可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
@@ -139,7 +126,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

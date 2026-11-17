@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Get Parameter'
-family: 'ros-2'
+family: 'ros'
 product_id: 'ros'
 product_name: 'ROS Toolbox'
 documentation_release: R2025b
@@ -26,13 +26,13 @@ chinese_source: worker-translation
 
 ### **Length** — 数组参数的长度 标量
 
-数组参数的长度，以整数标量形式返回。此长度是数组的元素数，或者强制转换为 `uint8` 的字符串中的字符数。
+数组参数的长度，以整数标量形式返回。此长度是数组的元素个数，或者是转换为 `uint8` 的字符串中的字符数。
 
 **注意**
 
-从 ROS 2 网络获取字符串参数时，ASCII 值 13 会因其字符类型不兼容而返回错误。
+从 ROS 2 网络获取字符串参数时，ASCII 值 13 会因其不兼容的字符类型而返回错误。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此端口，请将 **Data type** 参数设置为 `uint8[]`、`double[]`、`int64[]` 或 `boolean[]`。
 
@@ -47,27 +47,27 @@ chinese_source: worker-translation
 
 ### **Data type** — 参数的数据类型 `double`（默认）| `int64` | `boolean` | `uint8[]` | `double[]` | `int64[]` | `boolean[]`
 
-参数的数据类型，指定为字符串。诸如 `uint8[]`、`double[]`、`int64[]` 和 `boolean[]` 等数组数据类型会启用 **Maximum length** 参数。如果数据类型在运行时发生更改，该模块会发出警告。
+参数的数据类型，指定为字符串。数组数据类型（如 `uint8[]`、`double[]`、`int64[]` 和 `boolean[]`）会启用 **Maximum length** 参数。如果数据类型在运行时发生更改，模块会发出警告。
 
 **注意**
 
-`uint8[]` 数据类型是一个 ASCII 值数组，对应于字符串中的字符。获取字符串参数时，可以创建一个 MATLAB Function (Simulink) 模块来将该字符串与所需的参数值进行比较。
+`uint8[]` 数据类型是与字符串中字符对应的 ASCII 值数组。获取字符串参数时，您可以创建一个 MATLAB Function (Simulink) 模块，将字符串与所需的参数值进行比较。
 
 ### **Maximum length** — 数组的最大长度 16（默认）| 数值标量
 
-数组的最大长度，指定为标量。如果数组的长度大于 **Maximum length**，该模块会返回警告。
+数组的最大长度，指定为标量。如果数组的长度大于 **Maximum length**，模块会返回警告。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Data type** 参数设置为 `uint8[]`、`double[]`、`int64[]` 或 `boolean[]`。
 
 ### **Initial value** — 默认参数值输出 `0.0`（默认）| 数值标量 | 向量
 
-当发生错误且未从参数接收到有效值时，输出的默认参数值。指定的值必须是指定 **Data type** 的有效值。
+当发生错误且未从参数接收到有效值时，输出的默认参数值。指定的值必须是指定的 **Data type** 的有效值。
 
 ### **Sample time** — 输出之间的间隔 `-1`（默认）| 数值标量
 
-输出之间的间隔，指定为数值标量。默认值 `-1` 表示该模块从模型继承输出采样时间。否则，该模块在 `Sample time` 的每个间隔输出一条新的空白消息。
+输出之间的间隔，指定为数值标量。默认值 `-1` 表示模块从模型继承输出采样时间。否则，模块在 `Sample time` 的每个间隔输出一个新的空白消息。
 
 有关详细信息，请参阅 Specify Sample Time (Simulink)。
 
@@ -81,9 +81,7 @@ R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成
-
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -93,6 +91,6 @@ R2025b 中未记录。
 
 获取 ROS 2 参数值
 
-Get Parameter 模块输出与 Simulink® 模型的节点关联的指定 ROS 2 参数的值。Simulink 在运行模型时创建此节点，并在模型终止时删除它。如果模型没有参数，则该模块会创建一个参数。
+Get Parameter 模块输出与 Simulink® 模型节点关联的指定 ROS 2 参数的值。Simulink 在您运行模型时创建此节点，并在模型终止时删除它。如果模型没有参数，模块会创建一个。
 
-在仿真开始时，该模块使用指定的初始值初始化 ROS 2 参数。在每个采样命中时，该模块检查 ROS 2 参数并输出其值。
+在仿真开始时，模块使用指定的初始值初始化 ROS 2 参数。对于每个采样命中，模块检查 ROS 2 参数并输出其值。

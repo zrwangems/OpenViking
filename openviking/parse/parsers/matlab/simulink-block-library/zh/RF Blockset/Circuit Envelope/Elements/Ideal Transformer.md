@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Ideal Transformer'
-family: 'circuit-envelope'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -16,11 +16,11 @@ chinese_source: worker-translation
 
 ## 端口
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 参数
 
-### **绕组比 n** — 理想变压器的绕组比 `1`（默认）| 正标量
+### **Winding ratio n** — 理想变压器的绕组比 `1`（默认）| 正标量
 
 理想变压器的绕组比，指定为正标量。
 
@@ -30,11 +30,11 @@ RF Blockset / Circuit Envelope / Elements
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 版本历史
 

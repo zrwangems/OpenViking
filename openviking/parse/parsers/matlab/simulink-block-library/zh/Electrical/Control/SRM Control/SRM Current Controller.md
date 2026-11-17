@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SRM Current Controller'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -26,19 +26,19 @@ chinese_source: worker-translation
 
 ### **Is** — 测量电流标量
 
-测量的电流。
+测量电流。
 
 **数据类型：** `single` | `double`
 
 ### **Reset** — 积分器复位标量
 
-用于积分器的外部复位信号（上升沿）。
+积分器的外部复位信号（上升沿）。
 
 **数据类型：** `Boolean`
 
 ### **theta** — Theta 转子角度标量
 
-转子角度，位于区间 [0, *β* ] 内。
+区间 [0, *β* ] 内的转子角度。
 
 **数据类型：** `single` | `double`
 
@@ -53,7 +53,6 @@ chinese_source: worker-translation
 用于接通相电源的角度。
 
 **数据类型：** `single` | `double`
-
 ### 输出
 
 ### **abcRef** — 参考电压矢量
@@ -64,31 +63,29 @@ chinese_source: worker-translation
 
 ### **abcOnOff** — 开关信号矢量
 
-用于 *a*、*b* 和
-*c* 相的开关信号。`1` 表示开通条件，`0` 表示关断条件
+用于 *a*、*b* 和 *c* 相的开关信号。`1` 表示开通条件，`0` 表示关断条件
 
 **数据类型：** `single` | `double`
 
 ## 参数
 
-### **比例增益** — 控制器比例增益，*Kp* `1`（默认）| 正标量
+### **Proportional gain** — 控制器比例增益，*Kp* `1`（默认）| 正标量
 
 控制器的比例增益 *Kp*。
 
-### **积分增益** — 控制器积分增益，*Ki* `5`（默认）| 正标量
+### **Integral gain** — 积分增益，*Ki* `5`（默认）| 正标量
 
 控制器的积分增益 *Ki*。
 
-### **抗饱和增益** — 控制器抗饱和增益，*Kaw* `1`（默认）| 正标量
+### **Anti-windup gain** — 抗积分饱和增益，*Kaw* `1`（默认）| 正标量
 
-控制器的抗饱和增益 *Kaw*。
+控制器的抗积分饱和增益 *Kaw*。
 
-### **采样时间（-1 表示继承）** — 模块采样时间 `-1`（默认）| 正标量
+### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| 正标量
 
-连续模块执行之间的时间，以 s 为单位。执行期间，模块生成输出，并在适当时更新其内部状态。
-有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
+连续模块执行之间的时间，以 s 为单位。在执行期间，模块产生输出，并在适当的情况下更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
-如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果此模块位于连续可变步长模型中，请使用正标量显式指定采样时间。
+如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果此模块位于连续变步长模型中，请使用正标量显式指定采样时间。
 
 ## 所属库
 
@@ -96,7 +93,7 @@ Simscape / Electrical / Control / SRM Control
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -114,7 +111,7 @@ SRM Current Controller 模块为 Switched Reluctance Machine (SRM) 模块执行�
 
 ### 方程
 
-为确定占空比，模块根据以下方程实现离散时间比例积分 (PI) 电流控制。
+为确定占空比，该模块根据以下方程执行离散时间比例积分 (PI) 电流控制。
 
 D=(Kp+KiTszz−1)(Is\_ref−Is)
 
@@ -127,4 +124,4 @@ D=(Kp+KiTszz−1)(Is\_ref−Is)
 - *Is\_ref* 是参考电流。
 - *Is* 是测量电流。
 
-为获得三相控制信号，模块随后将占空比与换相信号相乘。得到的三路控制信号在区间 [0, 1] 上归一化。
+为获得三相的控制信号，该模块随后将占空比与换相信号相乘。得到的三路控制信号在区间 [0, 1] 内归一化。

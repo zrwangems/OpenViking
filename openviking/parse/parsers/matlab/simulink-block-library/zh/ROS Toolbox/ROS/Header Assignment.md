@@ -18,33 +18,32 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **InputMsg** — 要更新的 ROS 消息，nonvirtual bus
+### **InputMsg** — 要更新非虚拟总线的 ROS 消息
 
-具有 `std_msgs/Header` 字段的 ROS 消息，指定为
-nonvirtual bus。
+包含 `std_msgs/Header` 字段的 ROS 消息，指定为非虚拟总线。
 
 **数据类型：** `bus`
 ### 输出
 
-### **OutputMsg** — 带有已更新 header 的 ROS 消息，nonvirtual bus
+### **OutputMsg** — 带有更新后 header 的 ROS 消息非虚拟总线
 
-带有已更新 header 的 ROS 消息，以 nonvirtual bus 形式返回。
+带有更新后 header 的 ROS 消息，以非虚拟总线形式返回。
 
 **数据类型：** `bus`
 
 ## 参数
 
-### **Set Frame ID** — 指定与消息数据关联的帧 `off`（默认） | `on`
+### **Set Frame ID** — 指定与消息数据关联的坐标系 `off`（默认）| `on`
 
-选择此参数可指定与消息数据关联的帧。在选中此参数时启用的文本框中指定 frame ID。该模块使用指定的帧填充 ROS 消息 header 的 `frame_id` 字段。
+选择此参数以指定消息数据关联的坐标系。在选中此参数时启用的文本框中指定坐标系 ID。该模块将 ROS 消息 header 的 `frame_id` 字段填充为指定的坐标系。
 
 **示例：** `base_link`
 
-### **Set Timestamp** — 在 header 中设置时间戳 `off`（默认） | `on`
+### **Set Timestamp** — 在 header 中设置时间戳 `off`（默认）| `on`
 
-选择此参数可将 header 的 `stamp` 值设置为当前 ROS 系统时间。要使用发布在 `/clock` 主题上的自定义时间而不是 ROS 系统时间，请将 `use_sim_time` ROS 参数设置为 `true`。
+选择此参数以将 header 的 `stamp` 值设置为当前 ROS 系统时间。若要使用发布在 `/clock` 主题上的自定义时间而非 ROS 系统时间，请将 `use_sim_time` ROS 参数设置为 `true`。
 
-### **Header field name** — 指定 Header 字段名称 `Use the default Header field name`（默认） | `Specify your own`
+### **Header field name** — 指定 Header 字段名称 `Use the default Header field name`（默认）| `Specify your own`
 
 将 Header 字段的名称指定为以下之一：
 
@@ -59,7 +58,7 @@ ROS Toolbox / ROS
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -73,4 +72,4 @@ ROS Toolbox / ROS
 
 更新 ROS 消息 header 的字段
 
-Header Assignment 模块更新 ROS 消息的 header 字段中的值。当 ROS 消息包含类型为 `std_msgs/Header` 的 header 字段时，您可以使用此模块更新其 header 字段中的 `frame_id` 和 `stamp` 值。在每个采样命中期间，该模块会更新 header 中的 `frame_id` 和 `stamp` 字段。时间戳的精度取决于求解器的步长。较小的步长会产生更精确的时间戳。
+Header Assignment 模块更新 ROS 消息 header 字段中的值。当 ROS 消息包含类型为 `std_msgs/Header` 的 header 字段时，您可以使用此模块更新其 header 字段中的 `frame_id` 和 `stamp` 值。在每次采样命中期间，该模块更新 header 中的 `frame_id` 和 `stamp` 字段。时间戳的精度取决于求解器的步长。较小的步长会产生更精确的时间戳。

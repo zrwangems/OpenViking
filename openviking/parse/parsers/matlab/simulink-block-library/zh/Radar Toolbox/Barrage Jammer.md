@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Barrage Jammer'
-family: 'radar-toolbox'
+family: 'radar'
 product_id: 'radar'
 product_name: 'Radar Toolbox'
 documentation_release: R2025b
-official_category: 'Radar Toolbox'
+official_category: ''
 documentation_page: 'barragejammer'
 documentation_source_path: 'ref/barragejammer.html'
 language: zh-CN
@@ -22,28 +22,28 @@ chinese_source: worker-translation
 
 | 端口 | 描述 | 支持的数据类型 |
 | --- | --- | --- |
-| `Ref` | 参考信号输入 | Double-precision floating point |
-| `Out` | 干扰机输出 | Double-precision floating point |
+| `Ref` | 参考信号输入 | 双精度浮点 |
+| `Out` | 干扰机输出 | 双精度浮点 |
 
 ## 参数
 
-**有效辐射功率 (W)**
-:   将干扰信号的有效辐射功率 (ERP) 指定为正标量，其数值以 watts 表示。
+**Effective radiated power (W)**
+:   以正标量形式指定干扰信号的有效辐射功率（ERP），单位为瓦特。
 
-**每帧采样点数的来源**
-:   将每帧采样点数的来源指定为 `Property` 或 `Derive from reference input port`。选择 `Property` 时，模块从 **每帧采样点数** 参数获取采样点数。选择 `Derive from reference input port` 时，模块使用传入 `Ref` 输入端口的参考信号的采样点数。
+**Source of number of samples per frame**
+:   将每帧采样数的来源指定为 `Property` 或 `Derive from reference input port`。当选择 `Property` 时，模块从 **Number of samples per frame** 参数获取采样数。当选择 `Derive from reference input port` 时，模块使用传入 `Ref` 输入端口的参考信号的采样数。
 
-**每帧采样点数**
-:   将干扰信号输出中的采样点数指定为正整数。采样点数必须与信号源生成的采样点数一致。仅当 **每帧采样点数的来源** 设置为 `Property` 时，才会显示此参数。例如，如果使用 Rectangular Waveform 模块作为信号源，并将其 **输出信号格式** 设置为 `Samples`，则 **每帧采样点数** 的值应与 Rectangular Waveform 模块的 **输出中的采样点数** 参数一致。如果将 **输出信号格式** 设置为 `Pulses`，则 **每帧采样点数** 应等于 **采样率** 与 **输出中的脉冲数** 的乘积除以 **脉冲重复频率** 所得的值。
+**Number of samples per frame**
+:   以正整数形式指定干扰信号输出中的采样数。采样数必须与信号源产生的采样数匹配。此参数仅在 **Source of number of samples per frame** 设置为 `Property` 时显示。例如，如果您使用 Rectangular Waveform 模块作为信号源，并将其 **Output signal format** 设置为 `Samples`，则 **Number of samples per frame** 的值应与 Rectangular Waveform 模块的 **Number of samples in output** 参数匹配。如果将 **Output signal format** 设置为 `Pulses`，则 **Number of samples per frame** 应等于 **Sample rate** 与 **Number of pulses in output** 的乘积除以 **Pulse repetition frequency**。
 
-**仿真方式**
-:   模块仿真方法，指定为 `Interpreted Execution` 或 `Code Generation`。如果希望模块使用 MATLAB® 解释器，请选择 `Interpreted Execution`。如果希望模块作为编译代码运行，请选择 `Code Generation`。编译代码需要一定的编译时间，但通常运行速度更快。
+**Simulate using**
+:   模块仿真方法，指定为 `Interpreted Execution` 或 `Code Generation`。如果您希望模块使用 MATLAB® 解释器，请选择 `Interpreted Execution`。如果您希望模块作为编译代码运行，请选择 `Code Generation`。编译代码需要时间进行编译，但通常运行更快。
 
-    在开发和调优模型时，解释执行很有用。模块在 MATLAB 中运行底层 System object™。您可以快速更改并执行模型。对结果满意后，即可使用 `Code Generation` 运行模块。与解释执行相比，长时间仿真的运行速度更快。您无需重新编译即可重复执行。但是，如果更改任何模块参数，模块会在执行前自动重新编译。
+    解释执行在开发和调整模型时非常有用。模块在 MATLAB 中运行底层 System object™。您可以快速更改并执行模型。当您对结果满意时，可以使用 `Code Generation` 运行模块。长时间仿真比解释执行运行更快。您可以重复执行而无需重新编译。但是，如果您更改任何模块参数，模块将在执行前自动重新编译。
 
-    设置此参数时，必须考虑模型的整体仿真模式。下表显示了 **仿真方式** 参数与整体仿真模式的交互方式。
+    设置此参数时，必须考虑整体模型仿真模式。下表显示了 **Simulate using** 参数与整体仿真模式的交互方式。
 
-    当 Simulink® 模型处于 `Accelerator` 模式时，通过 **仿真方式** 指定的模块模式将覆盖仿真模式。
+    当 Simulink® 模型处于 `Accelerator` 模式时，使用 **Simulate using** 指定的模块模式将覆盖仿真模式。
 
     **加速模式**
 
@@ -51,18 +51,18 @@ chinese_source: worker-translation
     | --- | --- | --- | --- |
     | 模块仿真 | 仿真行为 | | |
     | `Normal` | `Accelerator` | `Rapid Accelerator` |
-    | `Interpreted Execution` | 模块使用 MATLAB 解释器执行。 | 模块使用 MATLAB 解释器执行。 | 根据模型创建独立可执行文件。 |
-    | `Code Generation` | 编译模块。 | 编译模型中的所有模块。 |
+    | `Interpreted Execution` | 模块使用 MATLAB 解释器执行。 | 模块使用 MATLAB 解释器执行。 | 从模型创建独立可执行文件。 |
+    | `Code Generation` | 模块被编译。 | 模型中的所有模块被编译。 |
 
-    有关详细信息，请参阅选择仿真模式 (Simulink)。
+    有关更多信息，请参阅 Choosing a Simulation Mode (Simulink)。
 
 ## 所属库
 
-在 R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 模块特性
 
-在 R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -70,10 +70,10 @@ chinese_source: worker-translation
 
 ## 版本历史
 
-**在 R2021a 中推出**
+**在 R2021a 中引入**
 
 ## 描述
 
-阻塞式干扰机干扰源
+Barrage jammer interference source
 
-Barrage Jammer 模块生成类似噪声的宽带干扰信号。
+Barrage Jammer 模块生成宽带类噪声干扰信号。

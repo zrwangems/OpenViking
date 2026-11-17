@@ -9,28 +9,28 @@ official_category: 'Electrical / Electrical Sources'
 documentation_page: 'dcvoltagesource'
 documentation_source_path: 'ref/dcvoltagesource.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # DC Voltage Source
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **+** — 正极端子 电气
+### **+** — 正极端子电气
 
-与电气源正极端子相关联的电气守恒端口。
+与电源正极端子关联的电气守恒端口。
 
-### **-** — 负极端子 电气
+### **-** — 负极端子电气
 
-与电气源负极端子相关联的电气守恒端口。
+与电源负极端子关联的电气守恒端口。
 
 ## 参数
 
-### **恒定电压** — 输出电压 `1 V` (默认) | 标量
+### **Constant voltage** — 输出电压 `1 V`（默认）| 标量
 
-电压源两端的电压。您可以指定正值，也可以指定负值。
+电源两端的电压。您可以指定正值或负值。
 
 ## 所属库
 
@@ -38,22 +38,22 @@ Simscape / Foundation Library / Electrical / Electrical Sources
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2007a 中推出**
+**在 R2007a 中引入**
 
 ## 描述
 
-理想的恒定电压源
+理想恒压源
 
-DC Voltage Source 模块表示理想的电压源，无论流过该电压源的电流多大，它都能将其两端的电压保持在指定值。
+DC Voltage Source 模块表示一个理想电压源，其功率足以在其端子之间维持指定的电压，无论流过电源的电流是多少。
 
-您可以使用**恒定电压**参数指定输出电压，可以是正值，也可以是负值。
+您可以使用 **Constant voltage** 参数指定输出电压，该参数可以为正值或负值。
 
-连接端 **+** 和 **-** 是分别对应于电压源的正极端子和负极端子的守恒电气端口。如果电流从正极流向负极，则电流为正，电压源两端的电压等于正极端子电压与负极端子电压之差，即 *V*(+) – *V*(-)。
+连接 **+** 和 **-** 是对应于电压源正极和负极端子的守恒电气端口。如果电流从正极流向负极，则电流为正，电源两端的电压等于正极端子电压与负极端子电压之差，*V*(+) – *V*(-)。

@@ -9,7 +9,7 @@ official_category: 'ALG'
 documentation_page: 'dotproduct'
 documentation_source_path: '../simulink/slref/dotproduct.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Dot Product
@@ -22,173 +22,173 @@ chinese_source: official
 
 表示点积计算的第一个操作数的信号。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ### **Port\_2** — 第二个操作数输入信号 标量 | 向量
 
-代表点积计算的第二个操作数的信号。
+表示点积计算的第二个操作数的信号。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
 ### **Port\_1** — 点积输出信号 标量 | 向量
 
 由两个输入信号的点积计算得到的输出信号。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ## 参数
 
-### **要求所有输入具有相同的数据类型** — 要求所有输入具有相同的数据类型 `on` (默认) | `off`
+### **Require all inputs to have the same data type** — 要求所有输入具有相同的数据类型 `on`（默认） | `off`
 
-清除此复选框可使各个输入具有不同数据类型。
+清除此复选框可使所有输入具有不同的数据类型。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`InputSameDT` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'on'` |
 
-### **输出最小值** — 范围检查的最小输出值 `[]` (默认) | 标量
+### **Output minimum** — 用于范围检查的最小输出值 `[]`（默认） | 标量
 
 软件检查的输出范围的下限值。
 
-软件使用最小值执行下列操作：
+软件使用最小值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值）。
-- 仿真范围检查（请参阅指定信号范围和启用仿真范围检查）。
+- 某些模块的参数范围检查（参见 Specify Minimum and Maximum Values for Block Parameters）。
+- 仿真范围检查（参见 Specify Signal Ranges and Enable Simulation Range Checking）。
 - 定点数据类型的自动定标。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 从模型生成的代码的优化。此优化可能会移除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参见 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 #### 提示
 
-**输出最小值**不会对实际输出信号进行饱和处理或截断。请改用 Saturation 模块。
+**Output minimum** 不会饱和或裁剪实际输出信号。请改用 Saturation 模块。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `OutMin` |
-| **值:** | `'[]'` (默认) | scalar in quotes |
+| **Parameter：** | `OutMin` |
+| **值**：| `'[]'`（默认） | 带引号的标量 |
 
-### **输出最大值** — 范围检查的最大输出值 `[]` (默认) | 标量
+### **Output maximum** — 用于范围检查的最大输出值 `[]`（默认） | 标量
 
-将 Simulink® 检查的输出范围的上限值指定为有限的双精度实数标量值。
+将 Simulink® 检查的输出范围的上限值指定为有限、实数、double 类型的标量值。
 
 **注意**
 
-如果您指定总线对象作为此模块的数据类型，请不要为模块的总线数据设置最大值。因为 Simulink 会忽略此设置。但请为指定作为数据类型的总线对象的总线元素设置最大值。有关总线元素的“最大值”参数的信息，请参阅 `Simulink.BusElement`。
+如果为此模块的数据类型指定总线对象，请不要在模块上设置总线数据的最大值。Simulink 会忽略此设置。而应设置指定为数据类型的总线对象的总线元素的最大值。有关总线元素的 Maximum 参数的信息，请参见 `Simulink.BusElement`。
 
-Simulink 使用最大值执行下列操作：
+Simulink 使用最大值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值）。
-- 仿真范围检查（请参阅指定信号范围和启用仿真范围检查）。
+- 某些模块的参数范围检查（参见 Specify Minimum and Maximum Values for Block Parameters）。
+- 仿真范围检查（参见 Specify Signal Ranges and Enable Simulation Range Checking）。
 - 定点数据类型的自动定标。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 从模型生成的代码的优化。此优化可能会移除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参见 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出最大值**不会对实际输出信号进行饱和处理或截断。请改用 Saturation 模块。
+**Output maximum** 不会饱和或裁剪实际输出信号。请改用 Saturation 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`OutMax` |
-| **类型**：字符向量 |
-| **值**：标量 |
+| **类型**：character vector |
+| **值**：scalar |
 | **默认值**：`'[ ]'` |
 
-### **输出数据类型** — 指定输出数据类型 **继承: 从内部规则继承** (默认) | **继承: 通过反向传播继承** | **继承: 与第一个输入相同** | **double** | **single** | **half** | **int8** | **uint8** | **int16** | **uint16** | **int32** | **uint32** | **int64** | **uint64** | **fixdt(1,16)** | **fixdt(1,16,0)** | **fixdt(1,16,2^0,0)** | **<数据类型表达式>**
+### **Output data type** — 指定输出数据类型 `Inherit: Inherit via internal rule`（默认） | `Inherit: Inherit via back propagation` | `Inherit: Same as first input` | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16)` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-为输出选择数据类型。该类型可以继承、直接指定或表示为数据类型对象，如 `Simulink.NumericType`。有关详细信息，请参阅 控制信号的数据类型。
+选择输出的数据类型。该类型可以是继承的、直接指定的，或表示为数据类型对象（如 `Simulink.NumericType`）。有关详细信息，请参见 Control Data Types of Signals。
 
-当您选择继承的选项时，模块的行为如下所示：
+当您选择继承选项时，模块的行为如下：
 
-- **继承: 从内部规则继承** - Simulink 在考虑嵌入式目标硬件的属性的同时，会选择相应的数据类型来平衡数值准确性、性能和生成的代码大小。如果更改了嵌入式目标的设置，则依内部规则选择的数据类型可能会发生变化。例如，如果该模块将 `int8` 类型的输入乘以 `int16` 的增益，并且将 **ASIC/FPGA** 指定为目标硬件类型，则输出数据类型为 `sfix24`。如果指定**未指定(假定通用 32 位)**（即通用 32 位微处理器）为目标硬件，则输出数据类型为 `int32`。如果目标微处理器不能提供适应输出范围的字长，Simulink 软件将在诊断查看器中显示错误。
+- `Inherit: Inherit via internal rule` — Simulink 选择一种数据类型，以在数值精度、性能和生成的代码大小之间取得平衡，同时考虑嵌入式目标硬件的属性。如果更改嵌入式目标设置，内部规则所选择的数据类型可能会改变。例如，如果模块将 `int8` 类型的输入乘以 `int16` 的增益，并且将 `ASIC/FPGA` 指定为目标硬件类型，则输出数据类型为 `sfix24`。如果指定 `Unspecified (assume 32-bit Generic)`（即通用 32 位微处理器）作为目标硬件，则输出数据类型为 `int32`。如果目标微处理器提供的字长都无法容纳输出范围，Simulink 软件将在 Diagnostic Viewer 中显示错误。
 
-  有时软件不能同时满足优化代码效率和保证数值准确性这两个需求。如果内部规则不能满足您对数值准确性或性能的特定需求，请使用下列选项之一：
+  软件并不总是能够同时优化代码效率和数值精度。如果内部规则不能满足您对数值精度或性能的特定需求，请使用以下选项之一：
 
   - 显式指定输出数据类型。
-  - 使用简单的选项**继承: 与输入相同**。
-  - 显式指定默认数据类型（例如 `fixdt(1,32,16)`），然后使用定点工具为您的模型提供数据类型建议。有关详细信息，请参阅 `fxptdlg` (Fixed-Point Designer)。
-  - 要指定您自己的继承规则，请使用**继承: 通过反向传播继承**，然后使用 Data Type Propagation 模块。有关如何使用此模块的示例说明，请参阅 Signal Attributes 模块库中的 Data Type Propagation Examples 模块。
+  - 使用 `Inherit: Same as input` 这一简单选择。
+  - 显式指定默认数据类型（如 `fixdt(1,32,16)`），然后使用 Fixed-Point Tool 为您的模型提议数据类型。有关详细信息，请参见 `fxptdlg` (Fixed-Point Designer)。
+  - 要指定您自己的继承规则，请使用 `Inherit: Inherit via back propagation`，然后使用 Data Type Propagation 模块。有关如何使用此模块的示例，请参见 Signal Attributes 库中的 Data Type Propagation Examples 模块。
 
   **注意**
 
-  当输入是小于单精度的浮点数据类型时，**Inherit: Inherit via internal rule** 取决于 Inherit floating-point output type smaller than single precision 配置参数的设置。当对数据类型进行编码所需的位数小于对单精度数据类型编码所需的 32 位时，数据类型小于单精度。例如，`half` 和 `int16` 小于单精度。
-- **继承: 通过反向传播继承** - 使用驱动模块的数据类型。
-- **继承: 与第一个输入相同** - 使用第一个输入信号的数据类型。
+  当输入是小于单精度的浮点数据类型时，`Inherit: Inherit via internal rule` 取决于 Inherit floating-point output type smaller than single precision 配置参数的设置。当编码数据类型所需的位数小于编码单精度数据类型所需的 32 位时，数据类型小于单精度。例如，`half` 和 `int16` 小于单精度。
+- `Inherit: Inherit via back propagation` — 使用驱动模块的数据类型。
+- `Inherit: Same as first input` — 使用第一个输入信号的数据类型。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`OutDataTypeStr` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'Inherit: Inherit via internal rule` | `'Inherit: Same as first input'` | `'Inherit: Inherit via back propagation'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
 | **默认值**：`'Inherit: Inherit via internal rule'` |
 
-### **锁定输出数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 `off` (默认) | `on`
+### **Lock output data type setting against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认） | `on`
 
-选中此选项将锁定此模块的输出数据类型设置，从而防止通过定点工具和定点顾问进行更改。有关详细信息，请参阅Use Lock Output Data Type Setting (Fixed-Point Designer)。
+选择此项可锁定此模块的输出数据类型设置，防止 Fixed-Point Tool 和 Fixed-Point Advisor 对其进行更改。有关详细信息，请参见 Use Lock Output Data Type Setting (Fixed-Point Designer)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`LockScale` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
 
-### **整数舍入模式** — 定点运算的舍入模式 **向下** (默认) | **向上** | **收敛** | **最邻近值** | **舍入** | **最简** | **零**
+### **Integer rounding mode** — 定点运算的舍入模式 `Floor`（默认） | `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
-指定定点运算的舍入模式。有关详细信息，请参阅舍入模式 (Fixed-Point Designer)。
+指定定点运算的舍入模式。有关详细信息，请参见 Rounding Modes (Fixed-Point Designer)。
 
-模块参数始终舍入到最邻近的可表示值。要控制模块参数的舍入方法，请在封装字段中使用 MATLAB 舍入函数输入表达式。
+模块参数始终舍入到最接近的可表示值。要控制模块参数的舍入，请在掩码字段中输入使用 MATLAB 舍入函数的表达式。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `RndMeth` |
-| **值:** | `'Floor'` (默认) | `'Ceiling'` | `'Convergent'` | `'Nearest'` | `'Round'` | `'Simplest'` | `'Zero'` |
+| **Parameter：** | `RndMeth` |
+| **值**：| `'Floor'`（默认） | `'Ceiling'` | `'Convergent'` | `'Nearest'` | `'Round'` | `'Simplest'` | `'Zero'` |
 
-### **对整数溢出进行饱和处理** — 溢出操作的方法 `off` (默认) | `on`
+### **Saturate on integer overflow** — 溢出操作的方法 `off`（默认） | `on`
 
-指定对溢出是进行饱和处理还是绕回处理。
+指定溢出时是饱和还是回绕。
 
-- `on` - 将溢出饱和处理为数据类型能够表示的最小值或最大值。
-- `off` - 溢出将绕回到数据类型可以表示的合适值。
+- `on` — 溢出饱和到数据类型所能表示的最小值或最大值。
+- `off` — 溢出回绕到数据类型所能表示的相应值。
 
-例如，有符号 8 位整数 `int8` 可以表示的最大值是 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。
+例如，有符号 8 位整数 `int8` 所能表示的最大值是 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。
 
-- 选择此参数后，模块输出将在达到 127 时饱和。类似地，模块输出将在达到最小输出值 -128 时饱和。
-- 清除此参数后，软件会将导致溢出的值解释为 `int8`，这可能产生意外结果。例如，以 `int8` 表示的模块结果 130（二进制 1000 0010）为 -126。
+- 选中此参数时，模块输出饱和于 127。类似地，模块输出饱和于最小值 -128。
+- 清除此参数时，软件将导致溢出的值解释为 `int8`，这可能会产生意外结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时为 -126。
 
 #### 提示
 
-- 如果您的模型存在可能的溢出，而您希望在生成的代码中进行显式饱和保护，请考虑选中此参数。
-- 如果您希望优化生成的代码的效率，请考虑清除此参数。清除此参数还可以帮助您避免过度地指定信号超出范围时模块的处理方式。有关详细信息，请参阅信号范围错误故障排除。
-- 如果选中此参数，饱和将应用于模块中的每个内部操作，而不仅仅应用于输出或结果。
-- 一般情况下，代码生成进程可以检测到何时不可能发生溢出。在这种情况下，代码生成器不会生成饱和代码。
+- 当您的模型可能存在溢出，并且您希望在生成的代码中显式提供饱和保护时，请考虑选中此参数。
+- 当您希望优化生成代码的效率时，请考虑清除此参数。清除此参数还有助于避免过度指定模块处理超出范围信号的方式。有关详细信息，请参见 Troubleshoot Signal Range Errors。
+- 选中此参数时，饱和适用于模块上的每个内部运算，而不仅仅是输出或结果。
+- 通常，代码生成过程可以检测到不可能发生溢出的情况。在这种情况下，代码生成器不会生成饱和代码。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `SaturateOnIntegerOverflow` |
-| **值:** | `'off'` (默认) | `'on'` |
+| **Parameter：** | `SaturateOnIntegerOverflow` |
+| **值**：| `'off'`（默认） | `'on'` |
 
 ## 所属库
 
@@ -198,15 +198,15 @@ Simulink / Math Operations HDL Coder / Math Operations
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Boolean` | `double` | `fixed point` | `half` | `integer` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `是` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **Data Types** | `Boolean` | `double` | `fixed point` | `half` | `integer` | `single` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `yes` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
@@ -216,22 +216,22 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 | 架构 | 描述 |
 | --- | --- |
-| **线性**（默认值） | 生成线性加法器链来计算乘积之和。 |
-| **树** | 生成加法器树形结构来计算乘积之和。 |
+| `Linear`（默认） | 生成用于计算乘积之和的线性加法器链。 |
+| `Tree` | 生成用于计算乘积之和的树形加法器结构。 |
 
 **HDL 模块属性**
 
-| 通用 | |
+| General | |
 | --- | --- |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
-| **ConstrainedOutputPipeline** | 通过移动设计中现有延迟的方式来放置在输出端的寄存器的数量。分布式流水线不会重新分发这些寄存器。默认值为 `0`。有关详细信息，请参阅ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 要在生成代码中插入的输入流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参见 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 要在生成代码中插入的输出流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参见 OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟而在输出端放置的寄存器数。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参见 ConstrainedOutputPipeline (HDL Coder)。 |
 
-| 原生浮点 | |
+| Native Floating Point | |
 | --- | --- |
-| **HandleDenormals** | 指定是否希望 HDL Coder 在设计中插入额外的逻辑来处理非正规数字。非正规数是大小非常小、必须使用包含前导零的尾数才能表示的浮点数。默认值为 **inherit**。另请参阅HandleDenormals (HDL Coder)。 |
-| **LatencyStrategy** | 指定对于浮点运算符是否将设计中的模块映射到 `inherit`、`Max`、`Min` 或 `Zero`。默认值为 **inherit**。另请参阅LatencyStrategy (HDL Coder)。 |
-| **MantissaMultiplyStrategy** | 指定在代码生成期间如何实现尾数乘法运算。通过使用不同设置，您可以控制目标 FPGA 设备上 DSP 的使用。默认值为 **inherit**。另请参阅MantissaMultiplyStrategy (HDL Coder)。 |
+| **HandleDenormals** | 指定是否希望 HDL Coder 插入额外逻辑来处理设计中的非规格化数。非规格化数是幅值小于尾数中没有前导零时可表示的最小浮点数的数。默认值为 `inherit`。另请参见 HandleDenormals (HDL Coder)。 |
+| **LatencyStrategy** | 指定是将设计中的模块映射为 `inherit`、`Max`、`Min` 还是 `Zero` 以用于浮点运算符。默认值为 `inherit`。另请参见 LatencyStrategy (HDL Coder)。 |
+| **MantissaMultiplyStrategy** | 指定在代码生成期间如何实现尾数乘法运算。通过使用不同的设置，您可以控制目标 FPGA 器件上的 DSP 使用量。默认值为 `inherit`。另请参见 MantissaMultiplyStrategy (HDL Coder)。 |
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
@@ -251,13 +251,13 @@ Dot Product 模块生成输入向量的点积。标量输出 `y` 等于 MATLAB®
 y = sum(conj(u1) .* u2 )
 ```
 
-其中 `u1` 和 `u2` 表示输入向量。输入可以是向量、列向量（单列矩阵）或标量。如果两个输入都是向量或者都是列向量，它们的长度必须相同。如果 `u1` 和 `u2` 都是列向量，模块将输出 MATLAB 表达式 `u1'*u2` 的等效项。
+其中 `u1` 和 `u2` 表示输入向量。输入可以是向量、列向量（单列矩阵）或标量。如果两个输入都是向量或列向量，则它们必须具有相同的长度。如果 `u1` 和 `u2` 都是列向量，则模块输出的结果等效于 MATLAB 表达式 `u1'*u2`。
 
-输入向量的元素可以是实数值或复数值信号。输出的信号类型（复信号或实信号）取决于输入的信号类型。
+输入向量的元素可以是实值或复值信号。输出的信号类型（复数或实数）取决于输入的信号类型。
 
 | 输入 1 | 输入 2 | 输出 |
 | --- | --- | --- |
-| 实信号 | 实数 | 实数 |
-| 实数 | 复数 | 复数 |
-| 复信号 | 实信号 | 复数 |
-| 复数 | 复数 | 复信号 |
+| real | real | real |
+| real | complex | complex |
+| complex | real | complex |
+| complex | complex | complex |

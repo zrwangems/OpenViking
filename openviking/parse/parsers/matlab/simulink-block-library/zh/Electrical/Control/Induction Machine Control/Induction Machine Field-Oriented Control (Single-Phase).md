@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Induction Machine Field-Oriented Control (Single-Phase)'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,9 +18,9 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Reference** — 转矩或角速度参考标量
+### **Reference** — 转矩或角速度参考值标量
 
-指定角速度参考，单位为 rad/s，或转矩参考，单位为 Nm。
+指定角速度参考值，单位为 rad/s，或转矩参考值，单位为 Nm。
 
 **数据类型：** `single` | `double`
 
@@ -35,12 +35,11 @@ chinese_source: worker-translation
 测得的转子角速度，单位为 rad/s。
 
 **数据类型：** `single` | `double`
-
 ### 输出
 
 ### **G** — 逆变器门极脉冲 `0` | `1`
 
-逆变器门极脉冲，指定为 Boolean。未考虑死区时间。
+逆变器门极脉冲，指定为布尔值。不考虑死区时间。
 
 **数据类型：** `single` | `double`
 
@@ -50,11 +49,11 @@ chinese_source: worker-translation
 
 - 参考转矩或速度
 - 转子速度，单位为 rad/s
-- *θ*，单位为 radians
+- *θ*，单位为弧度
 - 定子电流（*iab*），单位为 A
-- 定子电流参考（*iabRef*），单位为 A
-- 转矩参考（*TqRef*），单位为 Nm
-- 磁链参考（*FluxRef*），单位为 Wb
+- 定子电流参考值（*iabRef*），单位为 A
+- 转矩参考值（*TqRef*），单位为 Nm
+- 磁链参考值（*FluxRef*），单位为 Wb
 
 **数据类型：** `single` | `double` | `bus`
 
@@ -64,45 +63,45 @@ chinese_source: worker-translation
 
 ### **Control mode** — 指定控制模式 `Speed control`（默认） | `Torque control`
 
-指定控制模式。对于 `Speed control`，参考输入被视为角速度，单位为 rad/s；对于 `Torque control`，参考输入被视为转矩，单位为 Nm。
+指定控制模式。对于 `Speed control`，参考输入为角速度，单位为 rad/s；对于 `Torque control`，参考输入为转矩，单位为 Nm。
 
-### **Rated electrical frequency (Hz)** — 指定额定电气频率 `60`（默认） | positive scalar
+### **Rated electrical frequency (Hz)** — 指定额定电频率 `60`（默认） | 正标量
 
-额定电气频率，单位为 Hz。
+额定电频率，单位为 Hz。
 
-### **Number of pole pairs** — 指定极对数 `2`（默认） | positive scalar
+### **Number of pole pairs** — 指定极对数 `2`（默认） | 正标量
 
 极对数。
 
-### **Main winding rotor resistance, Rar' (Ohm)** — 指定主绕组转子电阻 `3.7080`（默认） | positive scalar
+### **Main winding rotor resistance, Rar' (Ohm)** — 指定主绕组转子电阻 `3.7080`（默认） | 正标量
 
-主绕组转子电阻，单位为 Ohms。
+主绕组转子电阻，单位为欧姆。
 
-### **Main winding rotor leakage inductance, Llar' (H)** — 指定主绕组转子漏感 `0.0050`（默认） | positive scalar
+### **Main winding rotor leakage inductance, Llar' (H)** — 指定主绕组转子漏电感 `0.0050`（默认） | 正标量
 
-主绕组转子漏感，单位为 H。
+主绕组转子漏电感，单位为 H。
 
-### **Main winding mutual inductance, Lms (H)** — 指定主绕组互感 `0.1595`（默认） | positive scalar
+### **Main winding mutual inductance, Lms (H)** — 指定主绕组互感 `0.1595`（默认） | 正标量
 
 主绕组互感，单位为 H。
 
-### **Auxiliary/main windings turn ratio** — 指定辅助绕组与主绕组匝数比 `1.1`（默认） | positive scalar
+### **Auxiliary/main windings turn ratio** — 指定辅助绕组与主绕组的匝数比 `1.1`（默认） | 正标量
 
-辅助绕组与主绕组匝数比。
+辅助绕组与主绕组的匝数比。
 
-### **Fundamental sample time (s)** — 指定模块采样时间 `5e-6`（默认） | positive scalar
+### **Fundamental sample time (s)** — 指定模块采样时间 `5e-6`（默认） | 正标量
 
 模块的采样时间，单位为 s。
 
-### **Control sample time (s)** — 指定控制采样时间 `5e-5`（默认） | positive scalar
+### **Control sample time (s)** — 指定控制采样时间 `5e-5`（默认） | 正标量
 
 控制采样时间，单位为 s。
 
 ### 外环
 
-下表显示 **Outer Loop** 选项卡中某些参数的可见性如何取决于您在 **General** 选项卡中为 **Control mode** 参数选择的选项。
+下表显示了 **Outer Loop** 选项卡中某些参数的可见性如何取决于 **General** 选项卡中 **Control mode** 参数所选的选项。
 
-| Control mode | 可用参数 |
+| 控制模式 | 可用参数 |
 | --- | --- |
 | Speed control | Speed controller proportional gain |
 | Speed controller integral gain |
@@ -112,35 +111,35 @@ chinese_source: worker-translation
 | Rated flux (Wb) |
 | Torque control | Rated flux (Wb) |
 
-### **Speed controller proportional gain** — 指定速度控制器比例增益 `1`（默认） | positive scalar
+### **Speed controller proportional gain** — 指定速度控制器比例增益 `1`（默认） | 正标量
 
 PI 速度控制器的比例增益。
 
-### **Speed controller integral gain** — 指定速度控制器积分增益 `10`（默认） | positive scalar
+### **Speed controller integral gain** — 指定速度控制器积分增益 `10`（默认） | 正标量
 
 PI 速度控制器的积分增益。
 
-### **Speed controller integral anti-windup gain** — 指定速度控制器积分抗饱和增益 `1000`（默认） | positive scalar
+### **Speed controller integral anti-windup gain** — 指定速度控制器积分抗饱和增益 `1000`（默认） | 正标量
 
 积分抗饱和增益。
 
-### **Maximum torque (Nm)** — 指定最大转矩 `5`（默认） | positive scalar
+### **Maximum torque (Nm)** — 指定最大转矩 `5`（默认） | 正标量
 
-用于速度控制器饱和的最大转矩，单位为 Nm。
+速度控制器饱和中使用的最大转矩，单位为 Nm。
 
-### **Minimum torque (Nm)** — 指定最小转矩 `-5`（默认） | scalar
+### **Minimum torque (Nm)** — 指定最小转矩 `-5`（默认） | 标量
 
-用于速度控制器饱和的最小转矩，单位为 Nm。
+速度控制器饱和中使用的最小转矩，单位为 Nm。
 
-### **Rated flux (Wb)** — 指定额定磁链 `0.5`（默认） | positive scalar
+### **Rated flux (Wb)** — 指定额定磁链 `0.5`（默认） | 正标量
 
-额定磁链，单位为 Wb。额定磁链用于计算磁链参考。
+额定磁链，单位为 Wb。额定磁链用于计算磁链参考值。
 
 ### 内环
 
-下表显示 **Inner Loop** 选项卡中某些参数的可见性如何取决于您为 **Control type** 参数选择的选项。
+下表显示了 **Inner Loop** 选项卡中某些参数的可见性如何取决于 **Control type** 参数所选的选项。
 
-| Control type | 可用参数 |
+| 控制类型 | 可用参数 |
 | --- | --- |
 | Hysteresis control | Current hysteresis band (A) |
 | PI control | A-phase current proportional gain |
@@ -152,13 +151,13 @@ PI 速度控制器的积分增益。
 
 ### **Control type** — 指定控制类型 `Hysteresis control`（默认） | `PI control`
 
-电流控制环路的控制类型。
+电流控制环的控制类型。
 
-### **Current hysteresis band (A)** — 指定电流滞环带宽 `0.5`（默认） | positive scalar
+### **Current hysteresis band (A)** — 指定电流滞环带宽 `0.5`（默认） | 正标量
 
 控制器的电流滞环带宽，单位为 A。
 
-### **A-phase current proportional gain** — 主绕组电流比例增益 `1`（默认） | positive scalar
+### **A-phase current proportional gain** — 主绕组电流比例增益 `1`（默认） | 正标量
 
 A 相（主绕组）控制器电流的比例增益。
 
@@ -188,7 +187,7 @@ Simscape / Electrical / Control / Induction Machine Control
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -208,13 +207,13 @@ Induction Machine Field-Oriented Control (Single-Phase) 模块实现单相感应
 
 单相感应电机的磁场定向控制架构为：
 
-您可以将转矩参考作为输入提供，或者在速度控制的情况下，使用 PI 速度控制器在内部生成该参考。由 PI 速度控制器导出的转矩参考为：
+您可以将转矩参考值作为输入提供，或者在速度控制的情况下，使用 PI 速度控制器内部生成参考值。由 PI 速度控制器导出的转矩参考值为：
 
 T\*=(Kp\_ω+Ki\_ωTszz−1)(ωref−ωr)
 
-其中 *ωr* 是转子机械角速度，单位为 rad/s。
+其中 *ωr* 是转子角机械速度，单位为 rad/s。
 
-该模块生成磁链参考如下
+该模块生成磁链参考值为
 
 ψ\*=2πfnψnpmin(|ωr|,2πfnp)
 
@@ -224,7 +223,7 @@ T\*=(Kp\_ω+Ki\_ωTszz−1)(ωref−ωr)
 - *fn* 是额定频率。
 - *ψn* 是额定磁链。
 
-电流参考由电机参数获得：
+电流参考值由电机参数获得：
 
 iq\*=(Lms+Llar)T\*paLmsψ\*
 
@@ -233,17 +232,17 @@ id\*=ψ\*a2Lms
 其中：
 
 - *Lms* 是主绕组互感。
-- *Llar* 是主绕组转子漏感。
-- *a* 是辅助绕组与主绕组匝数比。
+- *Llar* 是主绕组转子漏电感。
+- *a* 是辅助绕组与主绕组的匝数比。
 
 角度通过求解以下方程计算：
 
 dθdt=pωr+a3LmsRarψ\*(Lms+Llar)
 
-到静止参考坐标系的变换通过下式完成：
+到静止参考坐标系的变换通过使用以下公式完成：
 
 (iaib)=(a2sin(θ)a2cos(θ)cos(θ)−sin(θ))(idiq)
 
 ### 限制
 
-该控制结构以单个采样率实现。
+- 该控制结构以单一采样率实现。

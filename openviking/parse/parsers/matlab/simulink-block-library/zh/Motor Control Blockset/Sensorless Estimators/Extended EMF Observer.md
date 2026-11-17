@@ -9,7 +9,7 @@ official_category: 'Sensorless Estimators'
 documentation_page: 'extendedemfobserver'
 documentation_source_path: 'ref/extendedemfobserver.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Extended EMF Observer
@@ -18,249 +18,258 @@ chinese_source: official
 
 ### 输入
 
-### **Vα** — *α* 轴电压 标量
+### **Vα** — *α* 轴电压标量
 
-沿静止 *αβ* 参考系的 *α* 轴的标幺电压分量。
+静止 *αβ* 参考坐标系中沿 *α* 轴的标幺电压分量。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Vβ** — *β* 轴电压 标量
+### **Vβ** — *β* 轴电压标量
 
-沿静止 *αβ* 参考系的 *β* 轴的标幺电压分量。
+静止 *αβ* 参考坐标系中沿 *β* 轴的标幺电压分量。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Iα** — *α* 轴电流 标量
+### **Iα** — *α* 轴电流标量
 
-沿静止 *αβ* 参考系的 *α* 轴的标幺电流分量。
+静止 *αβ* 参考坐标系中沿 *α* 轴的标幺电流分量。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Iβ** — *β* 轴电流 标量
+### **Iβ** — *β* 轴电流标量
 
-沿静止 *αβ* 参考系的 *β* 轴的标幺电流分量。
+静止 *αβ* 参考坐标系中沿 *β* 轴的标幺电流分量。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Rst** — 重置模块 标量
+### **Rst** — 复位模块标量
 
-重置和重启模块算法处理的脉冲（true 值）。
+用于复位并重新启动模块算法处理的脉冲（真值）。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **ParameterBus** — 扩展 EMF 观测器的计算参数 总线
+### **ParameterBus** — Extended EMF Observer 的计算参数总线
 
-Extended EMF Observer 模块的计算参数。输入端口接受以下参数：
+Extended EMF Observer 模块的计算参数。该输入端口接受以下参数：
 
-- **极对数**
-- **定子电阻(欧姆)**
-- **定子 d 轴电感(H)**
-- **定子 q 轴电感(H)**
-- **最大应用转速(RPM)**
-- **EEMF 观测器增益**
-- **EEMF 滤波器截止频率(Hz)**
-- **比例(P)**
-- **积分(I)**
-- **转速滤波器截止频率(Hz)**
+- **Number of pole pairs**
+- **Stator resistance (ohm)**
+- **Stator d-axis inductance (H)**
+- **Stator q-axis inductance (H)**
+- **Maximum application speed (RPM)**
+- **EEMF observer gain**
+- **EEMF filter cutoff frequency (Hz)**
+- **Proportional (P)**
+- **Integral (I)**
+- **Speed filter cutoff frequency (Hz)**
 
-将此端口与 Compute Parameter 模块结合使用，以便在运行时以最佳方式更新前述模块参数。
+将此端口与 Compute Parameter 模块配合使用，以在运行时最优地更新上述模块参数。
 
 #### 依赖关系
 
-要启用此端口，请选择**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
+要启用此端口，请选择 **Advanced Options** 部分中提供的 **Use input port for computed parameters (run-time motor swap)** 参数。
 
-**数据类型:** `single` | `double`
+**数据类型：** `single` | `double`
 ### 输出
 
-### **θe** — PMSM 的电气位置 标量
+### **θe** — PMSM 电位置标量
 
-估计的转子电气位置。
-
-#### 依赖关系
-
-要启用此端口，请将**位置输出**参数设置为**电气位置**。
-
-**数据类型:** `single` | `double` | `fixed point`
-
-### **Sin θe** — PMSM 电气位置的正弦值 标量
-
-估计的转子电气位置的正弦值。
+转子的估计电位置。
 
 #### 依赖关系
 
-要启用此端口，请将**位置输出**参数设置为**正弦和余弦电气位置**。
+要启用此端口，请将 **Position output** 参数设置为 `Electrical position`。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Cos θe** — PMSM 的电气位置的余弦值 标量
+### **Sin θe** — PMSM 电位置的正弦标量
 
-估计的转子电气位置的余弦值。
+转子估计电位置的正弦。
 
 #### 依赖关系
 
-要启用此端口，请将**位置输出**参数设置为**正弦和余弦电气位置**。
+要启用此端口，请将 **Position output** 参数设置为 `Sine and Cosine electrical position`。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **⍵m** — PMSM 的机械转速 标量
+### **Cos θe** — PMSM 电位置的余弦标量
 
-估计的转子机械转速。
+转子估计电位置的余弦。
 
-**数据类型:** `single` | `double` | `fixed point`
+#### 依赖关系
+
+要启用此端口，请将 **Position output** 参数设置为 `Sine and Cosine electrical position`。
+
+**数据类型：** `single` | `double` | `fixed point`
+
+### **⍵m** — PMSM 机械转速标量
+
+转子的估计机械转速。
+
+**数据类型：** `single` | `double` | `fixed point`
 
 ## 参数
 
-### **使用输入端口提供计算参数(运行时电机更换)** — 启用输入端口以接受计算参数的选项 `off` (默认) | 打开
+### **Use input port for computed parameters (run-time motor swap)** — 启用输入端口以接受计算参数的选项 `off`（默认）| on
 
 选择此参数可启用 **ParameterBus** 输入端口并禁用以下参数：
 
-- **极对数**
-- **定子电阻(欧姆)**
-- **定子 d 轴电感(H)**
-- **定子 q 轴电感(H)**
-- **最大应用转速(RPM)**
-- **EEMF 观测器增益**
-- **EEMF 滤波器截止频率(Hz)**
-- **比例(P)**
-- **积分(I)**
-- **转速滤波器截止频率(Hz)**
+- **Number of pole pairs**
+- **Stator resistance (ohm)**
+- **Stator d-axis inductance (H)**
+- **Stator q-axis inductance (H)**
+- **Maximum application speed (RPM)**
+- **EEMF observer gain**
+- **EEMF filter cutoff frequency (Hz)**
+- **Proportional (P)**
+- **Integral (I)**
+- **Speed filter cutoff frequency (Hz)**
 
-此参数使您能够将输入端口与 Compute Parameter 模块结合使用，以便在运行时以最佳方式更新模块参数。
+此参数使您能够将输入端口与 Compute Parameter 模块配合使用，以在运行时最优地更新模块参数。
 
-### **输入单位** — 模块输入的单位 **SI 单位** (默认) | **标幺**
+### **Input units** — 模块输入的单位 `SI unit`（默认）| `Per-unit`
 
 模块输入的单位。
 
-### **位置输出** — 位置输出的类型 **电气位置** (默认) | **正弦和余弦电气位置**
+### **Position output** — 位置输出的类型 `Electrical position`（默认）| `Sine and Cosine electrical position`
 
-模块输出的位置的类型。
+模块输出的位置类型。
 
-- **电气位置** - 选择此值以启用 `θe` 端口。
-- **正弦和余弦电气位置** - 选择此值以启用 `Sin θe` 和 `Cos θe` 端口。
+- `Electrical position` — 选择此值可启用 `θe` 端口。
+- `Sine and Cosine electrical position` — 选择此值可启用 `Sin θe` 和 `Cos θe` 端口。
 
-### **离散步长(秒)** — 采样时间，在此采样时间过后模块将再次执行 `50e-6` (默认) | 标量
+### **Discrete step size (s)** — 模块再次执行前的采样时间 `50e-6`（默认）| 标量
 
-两个连续的模块执行实例之间的固定时间间隔（以秒为单位）。
+模块两次连续执行之间的固定时间间隔（以秒为单位）。
 
-### 电机参数
+### Motor Parameters
 
-### **定子电阻(欧姆)** — 电阻 `0.36` (默认) | 标量
+### **Stator resistance (ohm)** — 电阻 `0.36`（默认）| 标量
 
-定子相绕组电阻（以 ohm 为单位）。
-
-#### 依赖关系
-
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
-
-### **定子 d 轴电感(H)** — *D* 轴电感 `0.2e-3` (默认) | 标量
-
-沿旋转 *d-q* 参考系的 *d* 轴的定子相绕组电感（以亨为单位）。
+定子相绕组电阻（以欧姆为单位）。
 
 #### 依赖关系
 
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
+要启用此参数，请清除 **Advanced Options** 部分中提供的 **Use input port for computed
+parameters (run-time motor swap)** 参数。
 
-### **定子 d 轴电感(H)** — *Q* 轴电感 `0.2e-3` (默认) | 标量
+### **Stator d-axis inductance (H)** — *D* 轴电感 `0.2e-3`（默认）| 标量
 
-沿旋转 *d-q* 参考系的 *q* 轴的定子相绕组电感（以亨为单位）。
-
-#### 依赖关系
-
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
-
-### **最大应用转速(RPM)** — 支持的最大机械转速 `6000` (默认) | 标量
-
-该模块可以支持的最大机械转速（以 RPM 为单位）。如果您为转速设置的值高于此值，模块将生成不正确的输出。
-
-**注意**
-
-该模块使用此参数来滤除估计的转速信号中的噪声。
+沿旋转 *d-q* 参考坐标系 *d* 轴的定子相绕组电感（以亨利为单位）。
 
 #### 依赖关系
 
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
+要启用此参数，请清除 **Advanced Options** 部分中提供的 **Use input port for computed
+parameters (run-time motor swap)** 参数。
 
-### **极对数** — 电机中可用的极对数 `4` (默认) | 标量
+### **Stator d-axis inductance (H)** — *Q* 轴电感 `0.2e-3`（默认）| 标量
+
+沿旋转 *d-q* 参考坐标系 *q* 轴的定子相绕组电感（以亨利为单位）。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Advanced Options** 部分中提供的 **Use input port for computed
+parameters (run-time motor swap)** 参数。
+
+### **Maximum application speed (RPM)** — 支持的最大机械转速 `6000`（默认）| 标量
+
+模块可支持的最大机械转速（以 RPM 为单位）。如果将转速设置为高于此值的值，模块将生成不正确的输出。
+
+**Note**
+
+模块使用此参数滤除估计转速信号中的噪声。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Advanced Options** 部分中提供的 **Use input port for computed
+parameters (run-time motor swap)** 参数。
+
+### **Number of pole pairs** — 电机中可用的极对数 `4`（默认）| 标量
 
 电机中可用的极对数。
 
 #### 依赖关系
 
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
+要启用此参数，请清除 **Advanced Options** 部分中提供的 **Use input port for computed
+parameters (run-time motor swap)** 参数。
 
-### **最大电压(V)** — 对应于一个标幺的标称电压 `13.8564` (默认) | 标量
+### **Maximum voltage (V)** — 对应一标幺值的标称电压 `13.8564`（默认）| 标量
 
-施加于 PMSM 上的最大相电压。有关详细信息，请参阅标幺制。
+施加到 PMSM 的最大相电压。有关详细信息，请参阅 Per-Unit System。
 
-### **最大电流(A)** — 对应于一个标幺的标称电流 `21.4286` (默认) | 标量
+### **Maximum current (A)** — 对应一标幺值的标称电流 `21.4286`（默认）| 标量
 
-施加于 PMSM 的最大可测量电流。有关详细信息，请参阅标幺制。
+提供给 PMSM 的最大可测量电流。有关详细信息，请参阅 Per-Unit System。
 
-### 观测器参数
+### Observer Parameters
 
-### **EEMF 观测器增益** — 扩展电动势观测器增益 `10` (默认) | 标量
+### **EEMF observer gain** — 扩展 EMF 观测器增益 `10`（默认）| 标量
 
-线性扩展电动势状态观测器的增益。
-
-#### 依赖关系
-
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
-
-### **EEMF 滤波器截止频率(Hz)** — EEMF 滤波器的截止频率 `7500` (默认) | 标量
-
-低通滤波器的截止频率，模块使用该截止频率来消除估计的反电动势值中的噪声。
+线性扩展 EMF 状态观测器的增益。
 
 #### 依赖关系
 
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
+要启用此参数，请清除 **Advanced Options** 部分中提供的 **Use input port for computed
+parameters (run-time motor swap)** 参数。
 
-### **比例(P)** — 转速观测器的比例增益 `250` (默认) | 标量
+### **EEMF filter cutoff frequency (Hz)** — EEMF 滤波器截止频率 `7500`（默认）| 标量
+
+模块用于去除估计反 EMF 值中噪声的低通滤波器的截止频率。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Advanced Options** 部分中提供的 **Use input port for computed
+parameters (run-time motor swap)** 参数。
+
+### **Proportional (P)** — 转速观测器的比例增益 `250`（默认）| 标量
 
 模块使用的转速观测器的比例增益。
 
 #### 依赖关系
 
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
+要启用此参数，请清除 **Advanced Options** 部分中提供的 **Use input port for computed
+parameters (run-time motor swap)** 参数。
 
-### **积分(I)** — 转速观测器的积分增益 `200000` (默认) | 标量
+### **Integral (I)** — 转速观测器的积分增益 `200000`（默认）| 标量
 
 模块使用的转速观测器的积分增益。
 
 #### 依赖关系
 
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
+要启用此参数，请清除 **Advanced Options** 部分中提供的 **Use input port for computed
+parameters (run-time motor swap)** 参数。
 
-### **正弦-余弦查找表的数据点数** — 用于转速计算的数据点数 `1024` (默认) | 标量
+### **正弦-余弦查找表的数据点数量** — 用于速度计算的数据点数量 `1024`（默认）| 标量
 
-查找表中的数据点数，转速观测器使用这些数据点根据扩展反电动势值计算转速。
+速度观测器用于根据扩展反电动势值计算速度的查找表中的数据点数量。
 
-### **转速滤波器截止频率(Hz)** — 转速滤波器的截止频率 `15` (默认) | 标量
+### **速度滤波器截止频率 (Hz)** — 速度滤波器的截止频率 `15`（默认）| 标量
 
-低通滤波器的截止频率，模块使用该截止频率来消除估计的转速中的噪声。
+该模块用于消除估计速度中噪声的低通滤波器的截止频率。
 
 #### 依赖关系
 
-要启用此参数，请清除**高级选项**部分中提供的**使用输入端口提供计算参数(运行时电机更换)** 参数。
+要启用此参数，请清除 **高级选项** 部分中提供的 **使用输入端口计算参数（运行时电机切换）** 参数。
 
 ### 数据类型
 
-### **位置单位** — 位置输出的单位 **度** (默认) | **弧度** | **标幺**
+### **位置单位** — 位置输出的单位 `Degrees`（默认）| `Radians` | `Per-unit`
 
 位置输出的单位。
 
-### **位置数据类型** — 位置输出的数据类型 **单精度** (默认) | **双精度** | **定点**
+### **位置数据类型** — 位置输出的数据类型 `single`（默认）| `double` | `fixed point`
 
 位置输出的数据类型。
 
-### **转速单位** — 转速输出单位 **度/秒** (默认) | **弧度/秒** | **RPM** | **标幺**
+### **速度单位** — 速度输出的单位 `Degrees/sec`（默认）| `Radians/sec` | `RPM` | `Per-unit`
 
-转速输出的单位。
+速度输出的单位。
 
-### **转速数据类型** — 转速输出的数据类型 **单精度** (默认) | **双精度** | **定点**
+### **速度数据类型** — 速度输出的数据类型 `single`（默认）| `double` | `fixed point`
 
-转速输出的数据类型。
+速度输出的数据类型。
 
-### **表数据类型** — 表的数据类型 **单精度** (默认) | **双精度** | **定点**
+### **表数据类型** — 表的数据类型 `single`（默认）| `double` | `fixed point`
 
 表的数据类型。
 
@@ -270,27 +279,27 @@ Motor Control Blockset / Sensorless Estimators
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2023a 中推出**
+**在 R2023a 中引入**
 
 ## 描述
 
-计算永磁同步电机 (PMSM) 的电气位置和机械转速
+计算永磁同步电机 (PMSM) 的电气位置和机械速度
 
-Extended EMF Observer 模块会计算电气位置 *θe*（或 sin *θe* 和 cos *θe*），此外还根据静止 *αβ* 参考系中测得的电压和电流计算 PMSM 的机械转速。
+Extended EMF Observer 模块根据静止 *αβ* 参考坐标系中测得的电压和电流，计算 PMSM 的电气位置 *θe*（或 sin *θe* 和 cos *θe*），以及机械速度。
 
-该模块包括线性扩展电动势状态观测器，用于估计扩展反电动势。它使用低通滤波器来去除估计的反电动势值中的任何噪声。此外，该模块还包括一个基于转速前馈的正交锁相环 (PLL)，用作转速观测器。转速观测器使用计算出的扩展反电动势来确定电机转速。它计算速度的误差为零，即使在恒定角加速度的情况下也是如此。然后，该模块根据估计的电机电角速度计算位置输出。
+该模块包含一个线性扩展反电动势状态观测器，用于估计扩展反电动势。它使用低通滤波器消除估计反电动势值中的任何噪声。此外，该模块包含一个基于速度前馈的正交锁相环 (PLL)，用作速度观测器。速度观测器使用计算出的扩展反电动势来确定电机速度。即使在恒定角加速度期间，它也能以零误差计算速度。然后，该模块根据估计的电机电气速度计算位置输出。
 
-此外，您还可以使用高级选项来启用 **ParameterBus** 输入端口，该端口可与 Compute Parameter 模块结合使用，以便在运行时以最佳方式更新模块参数。当电机参数可能随时间变化时（例如，构建可能需要在运行时更换电机的应用时），您可以使用此功能。
+此外，您可以使用高级选项启用 **ParameterBus** 输入端口，您可以将其与 Compute Parameter 模块一起使用，以在运行时最优地更新模块参数。当电机参数可能随时间变化时，例如在构建可能需要在运行时切换电机的应用时，您可以使用此功能。
 
 ### 方程
 
@@ -298,44 +307,55 @@ IPMSM 状态方程定义为：
 
 [i·e·]=[A11A120A22][ie]+[B10]v+[0W]i=C[ie]
 
-下列方程描述降阶的 PMSM 状态模型：
+这些方程描述了降阶 PMSM 状态模型：
 
 i·=A11i+A12e+B1ve·=A22e
 
-扩展反电动势 e={(Ld−Lq)(ωreid−i·q)+ωreKE}[−sinθrecosθre]
+扩展反电动势，e={(Ld−Lq)(ωreid−i·q)+ωreKE}[−sinθrecosθre]
 
-以下方程描述降维状态观测器：
+该方程描述了降维状态观测器：
 
 e^·=(A^22−ξA12)e^+ξ(i·−A^11i−B1v)
 
-下列方程描述扩展的电动势观测器参数：
+这些方程描述了扩展 EMF 观测器参数：
 
 A22−ξA12=ωreJ−(αI+βJ)(−1Ld)Iξ=(αI+βJ)
 
-为确保收敛，如果将 β=ωre×Ld 和 *α* 设置为负值，则扩展电动势观测器增益可由下式确定：
+为确保收敛，如果您设置 β=ωre×Ld 并将 *α* 设置为负值，则扩展 EMF
+观测器增益可确定为：
 
 Extended EMF ​observer gain=−αLd
 
 其中：
 
-- i=[iαiβ]、e=[eαeβ] 且 v=[vαvβ]。
-- W=(Ld−Lq)(ωreid·−iq··)[−sinθrecosθre].
-- A=[A11A120A22]、B=[B10] 且 C=[I0]。
-- A11=−(RLd)I+(ωre(Ld−Lq)Ld)J、A12=(−1Ld)I 且 A22=ωreJ。
-- B1=(1Ld)I、I=[1001] 且 J=[0−110]。
+- i=[iαiβ]、e=[eαeβ] 和 v=[vαvβ]。
+- W=(Ld−Lq)(ωreid·−iq··)[−sinθrecosθre]。
+- A=[A11A120A22]、B=[B10] 和 C=[I0]。
+- A11=−(RLd)I+(ωre(Ld−Lq)Ld)J、A12=(−1Ld)I 和 A22=ωreJ。
+- B1=(1Ld)I、I=[1001] 和 J=[0−110]。
 
   **注意**
 
-  A 和 C 是一个可观察对组。
-- “·”和“··”分别是一阶和二阶微分运算子。
-- *vα* 和 *vβ* 分别是沿 *α* 和 *β* 轴的定子电压。
-- *iα* 和 *iβ* 分别是沿 *α* 和 *β* 轴的定子电流。
-- *eα* 和 *eβ* 分别是沿 *α* 和 *β* 轴的扩展反电动势。
-- *id* 和 *iq* 分别是沿 *d* 和 *q* 轴的定子电流。
+  A 和 C 是一对可观测对。
+- “·”和“··”分别是一阶和二阶微分算子。
+- *vα* 和
+  *vβ* 分别是沿
+  *α*- 和 *β*- 轴的定子电压。
+- *iα* 和
+  *iβ* 分别是沿
+  *α*- 和 *β*- 轴的定子电流。
+- *eα* 和
+  *eβ* 分别是沿
+  *α*- 和 *β*- 轴的扩展反电动势。
+- *id* 和
+  *iq* 分别是沿
+  *d*- 和 *q*- 轴的定子电流。
 - *R* 是 PMSM 的定子电阻。
-- *Ld* 和 *Lq* 分别是跨 *d* 和 *q* 轴的 PMSM 定子电感。
-- *KE* 是电动势常量
-- *ωre* 是电角处的角速度。
-- *θre* 是电角处的转子位置。
-- e^, A^22, and A^11 是估计值。
+- *Ld* 和
+  *Lq* 分别是 PMSM 在
+  *d* 和 *q* 轴上的定子电感。
+- *KE* 是 EMF 常数。
+- *ωre* 是电角度下的角速度。
+- *θre* 是电角度下的转子位置。
+- e^、A^22 和 A^11 是估计值。
 - *ξ* 是反馈增益。

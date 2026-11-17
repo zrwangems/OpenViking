@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Quaternion Conjugate'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -18,9 +18,9 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **q** — 输入四元数 quaternion | vector of quaternions
+### **q** — 输入四元数 四元数 | 四元数向量
 
-四元数采用以下形式
+以
 [*q*0,
 *r*0, ... ,
 *q*1,
@@ -28,15 +28,15 @@ chinese_source: worker-translation
 *q*2,
 *r*2, ... ,
 *q*3,
-*r*3, ...]，指定为
+*r*3, ...] 形式表示的四元数，指定为
 四元数或向量。
 
 **数据类型：** `double` | `bus`
 ### 输出
 
-### **q'** — 四元数共轭 quaternion conjugate | vector of quaternion conjugates
+### **q'** — 四元数共轭 四元数共轭 | 四元数共轭向量
 
-四元数共轭采用以下形式
+以
 [*q*0′,
 *r*0′, ... ,
 *q*1′,
@@ -44,7 +44,7 @@ chinese_source: worker-translation
 *q*2′,
 *r*2′, ... ,
 *q*3′,
-*r*3′, ...]，以
+*r*3′, ...] 形式表示的四元数共轭，以
 四元数或向量形式返回。
 
 **数据类型：** `double` | `bus`
@@ -73,4 +73,4 @@ R2025b 中未记录。
 
 计算四元数的共轭
 
-Quaternion Conjugate 模块计算给定四元数的共轭。Aerospace Blockset™ 使用按标量优先约定定义的四元数。有关四元数形式的更多信息，请参阅 Algorithms。
+Quaternion Conjugate 模块计算给定四元数的共轭。Aerospace Blockset™ 使用按标量优先约定定义的四元数。有关四元数形式的更多信息，请参阅 Algorithms

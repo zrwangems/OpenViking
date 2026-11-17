@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DCT Controller'
-family: 'transmission'
+family: 'autoblks'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b
@@ -18,9 +18,9 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **GearReq** — 要接合的挡位编号 `scalar`
+### **GearReq** — 要接合的挡位号 `scalar`
 
-挡位编号请求，*Greq*。
+挡位号请求，*Greq*。
 ### 输出
 
 ### **Info** — 总线信号 bus
@@ -29,121 +29,140 @@ chinese_source: worker-translation
 
 | 信号 | 描述 | 变量 |
 | --- | --- | --- |
-| `GearReq` | 挡位编号请求 | *Greq* |
+| `GearReq` | 挡位号请求 | *Greq* |
 | `GearEngd` | 控制器指令的标称挡位 | *Go* |
 | `GearEffct` | 有效挡位 | NA |
-| `CltchACmd` | 奇数挡的离合器压力命令，介于 `0` 和 `1` 之间 | NA |
-| `CltchBCmd` | 偶数挡的离合器压力命令，介于 `0` 和 `1` 之间 | NA |
+| `CltchACmd` | 奇数挡的离合器压力指令，介于 `0` 和 `1` 之间 | NA |
+| `CltchBCmd` | 偶数挡的离合器压力指令，介于 `0` 和 `1` 之间 | NA |
 
 ### **NomGear** — 用于换挡的标称挡位 `scalar`
 
-用于换挡的标称挡位。Dual Clutch Transmission 模块使用此信号来平滑应用惯性、效率、传动比和阻尼参数。
+用于换挡的标称挡位。Dual Clutch Transmission 模块
+使用此信号来平滑应用惯性、效率、
+传动比和阻尼参数。
 
-### **CltchACmd** — 奇数挡命令 `scalar`
+### **CltchACmd** — 奇数挡指令 `scalar`
 
-奇数挡的离合器压力命令，介于 `0` 和 `1` 之间。
+奇数挡的离合器压力指令，介于
+`0` 和 `1` 之间。
 
-### **CltchBCmd** — 偶数挡命令 `scalar`
+### **CltchBCmd** — 偶数挡指令 `scalar`
 
-偶数挡的离合器压力命令，介于 `0` 和 `1` 之间。
+偶数挡的离合器压力指令，介于
+`0` 和 `1` 之间。
 
 ## 参数
 
-### **初始挡位, G\_o** — 接合挡位 `0`（默认） | `scalar`
+### **Initial gear, G\_o** — 接合的挡位 `0` (default) | `scalar`
 
-要接合的初始挡位，*Go*。
-
-#### 编程使用
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数：** | `G_o` |
-| **值：** | `0`（默认） | `scalar` |
-| **数据类型：** | `double` |
-
-### **离合器致动时间, tc** — 时间 `.1`（默认） | `scalar`
-
-在换挡事件期间接合和分离离合器所需的时间，*tc*，以 s 为单位。
+要接合的初始挡位，
+*Go*。
 
 #### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `tc` |
-| **值：** | `.1`（默认） | `scalar` |
-| **数据类型：** | `double` |
+| **Parameter:** | `G_o` |
+| **值**：| `0` (default) | `scalar` |
+| **Data Types:** | `double` |
 
-### **同步器时间, ts** — 时间 `.01`（默认） | `scalar`
+### **Clutch actuation time, tc** — 时间 `.1` (default) | `scalar`
 
-挡位选择和同步所需的时间，*ts*，以 s 为单位。
+在换挡事件期间接合和分离离合器所需的时间，
+*tc*，单位为 s。
 
 #### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `ts` |
-| **值：** | `.01`（默认） | `scalar` |
-| **数据类型：** | `double` |
+| **Parameter:** | `tc` |
+| **值**：| `.1` (default) | `scalar` |
+| **Data Types:** | `double` |
 
-### **采样周期, dt** — 时间 `-1`（默认） | `scalar`
+### **Synchronizer time, ts** — 时间 `.01` (default) | `scalar`
 
-采样周期，*dt*，以 s 为单位。
+挡位选择和同步所需的时间，
+*ts*，单位为 s。
 
 #### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `dt` |
-| **值：** | `-1`（默认） | `scalar` |
-| **数据类型：** | `double` |
+| **Parameter:** | `ts` |
+| **值**：| `.01` (default) | `scalar` |
+| **Data Types:** | `double` |
 
-### **在离合器锁止状态下开始仿真** — 选择以初始锁定离合器 `off`（默认） | `on`
+### **Sample period, dt** — 时间 `-1` (default) | `scalar`
+
+采样周期，*dt*，单位为 s。
+
+#### 编程使用
+
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
+
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `dt` |
+| **值**：| `-1` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+### **Start simulation with clutch locked** — 选择以初始锁定离合器 `off` (default) | `on`
 
 选择此参数将初始锁定离合器。
 
 #### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `ClutchLocked` |
-| **值：** | `off`（默认） | `on` |
-| **数据类型：** | `character vector` |
+| **Parameter:** | `ClutchLocked` |
+| **值**：| `off` (default) | `on` |
+| **Data Types:** | `character vector` |
 
-### **在同步器锁止状态下开始仿真** — 选择以初始锁定同步器 `off`（默认） | `on`
+### **Start simulation with synchronizer locked** — 选择以初始锁定同步器 `off` (default) | `on`
 
 选择此参数将初始锁定同步器。
 
 #### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `SynchLocked` |
-| **值：** | `off`（默认） | `on` |
-| **数据类型：** | `character vector` |
+| **Parameter:** | `SynchLocked` |
+| **值**：| `off` (default) | `on` |
+| **Data Types:** | `character vector` |
 
 ## 所属库
 
@@ -151,7 +170,7 @@ Powertrain Blockset / Transmission / Transmission Controllers
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -163,6 +182,6 @@ Powertrain Blockset / Transmission / Transmission Controllers
 
 ## 描述
 
-双离合器变速器控制器
+双离合变速器控制器
 
-DCT Controller 模块实现双离合器变速器（DCT）控制器。您可以指定离合器打开、关闭和同步定时参数。该模块使用基于积分器的计时器和锁存逻辑确定离合器命令，这些计时器和逻辑基于指定的定时参数和挡位请求。
+DCT Controller 模块实现双离合变速器（DCT）控制器。您可以指定离合器打开、关闭和同步正时参数。该模块使用基于积分器的定时器和基于指定正时参数与挡位请求的锁存逻辑来确定离合器命令。

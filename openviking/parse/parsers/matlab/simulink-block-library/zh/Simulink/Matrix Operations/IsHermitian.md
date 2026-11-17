@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IsHermitian'
-family: 'matrix-operations'
+family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -25,26 +25,27 @@ chinese_source: worker-translation
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
-### **Port\_1** — Hermitian 或 skew-Hermitian 矩阵 real scalar Boolean
+### **Port\_1** — Hermitian 或斜 Hermitian 矩阵 real scalar Boolean
 
-一个 Hermitian 或 skew-Hermitian 矩阵，以 real scalar Boolean 形式返回。
+Hermitian 或斜 Hermitian 矩阵，以实数标量布尔值形式返回。
 
 **数据类型：** `Boolean`
 
 ## 参数
 
-### **Mode** — 矩阵是 Hermitian 还是 skew-Hermitian `Hermitian`（默认） | `Skew-Hermitian`
+### **Mode** — 矩阵是 Hermitian 还是斜 Hermitian `Hermitian` (默认) | `Skew-Hermitian`
 
-将矩阵标识为 `Hermitian` 或 `Skew-Hermitian`。
+将矩阵标识为 `Hermitian` 或
+`Skew-Hermitian`。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `Mode` |
-| **类型：** character vector |
-| **取值：** `'Hermitian'` | `'Skew-Hermitian'` |
-| **默认值：** `'Hermitian'` |
+| **类型：** 字符向量 |
+| **值：** `'Hermitian'` | `'Skew-Hermitian'` |
+| **默认：** `'Hermitian'` |
 
 ## 所属库
 
@@ -61,7 +62,7 @@ Simulink / Matrix Operations
 | **过零检测** | `no` |
 |  |  |
 | --- | --- |
-| a 此模块仅对 skew-symmetric 模式支持有符号整数类型。 | |
+| a 此模块在斜对称模式下仅支持有符号整数类型。 | |
 
 ## 扩展功能
 
@@ -73,6 +74,6 @@ Simulink / Matrix Operations
 
 ## 描述
 
-检查矩阵是否为 Hermitian 或 skew-Hermitian
+检查矩阵是 Hermitian 还是斜 Hermitian
 
-IsHermitian 模块确定输入是否为 Hermitian 或 skew-Hermitian 矩阵。
+IsHermitian 模块确定输入是 Hermitian 矩阵还是斜 Hermitian 矩阵。

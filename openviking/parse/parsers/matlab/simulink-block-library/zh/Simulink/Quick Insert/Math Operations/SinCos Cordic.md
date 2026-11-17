@@ -9,7 +9,7 @@ official_category: 'TRG'
 documentation_page: 'trigonometricfunction'
 documentation_source_path: 'slref/trigonometricfunction.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Trigonometric Function
@@ -20,70 +20,70 @@ chinese_source: official
 
 ### **Port\_1** — 输入信号 标量 | 向量 | 矩阵
 
-指定为标量、向量或矩阵的输入。此模块接受以下数据类型的输入信号：
+输入指定为标量、向量或矩阵。该模块接受以下数据类型的输入信号：
 
 | 函数 | 输入数据类型 |
 | --- | --- |
-| - `sin` - `cos` - `sincos` - `cos + jsin` - `atan2` | - 浮点 - 定点（仅当**逼近方法**为 **CORDIC** 或**查找**时） |
+| - `sin` - `cos` - `sincos` - `cos + jsin` - `atan2` | - 浮点 - 定点（仅当 **Approximation method** 为 `CORDIC` 或 `Lookup` 时） |
 | - `tan` - `asin` - `acos` - `atan` - `sinh` - `cosh` - `tanh` - `asinh` - `acosh` - `atanh` | - 浮点 |
 
-CORDIC 逼近定点类型传播：
+CORDIC 近似的定点类型传播：
 
 | 输入数据类型 | 函数 | 输出数据类型 |
 | --- | --- | --- |
-| 定点，有符号或无符号 | `sin`、`cos`、`sincos` 和 `cos + jsin` | `fixdt``(1, WL, WL - 2)`，其中 *`WL`* 是输入的字长  此定点类型为 CORDIC 算法提供最佳精度。 |
+| 定点，有符号或无符号 | `sin`、`cos`、`sincos` 和 `cos + jsin` | `fixdt``(1, WL, WL - 2)`，其中 *`WL`* 是输入字长 此定点类型为 CORDIC 算法提供最佳精度。 |
 | 定点，有符号 | `atan2` | `fixdt``(1, WL, WL – 3)` |
 | 定点，无符号 | `atan2` | `fixdt``(1, WL, WL – 2)` |
 
-查找逼近定点类型传播：
+查找近似的定点类型传播：
 
 | 输入数据类型 | 函数 | 输出数据类型 |
 | --- | --- | --- |
-| 定点，有符号 | `sin`, `cos`, `sincos`, `cos + jsin`, `atan2` | `fixdt``(1, WL, FL)` |
-| 定点，无符号 | `sin`, `cos`, `sincos`, `cos + jsin`, `atan2` | `fixdt``(1, WL - 1, FL)` |
+| 定点，有符号 | `sin`、`cos`、`sincos`、`cos + jsin`、`atan2` | `fixdt``(1, WL, FL)` |
+| 定点，无符号 | `sin`、`cos`、`sincos`、`cos + jsin`、`atan2` | `fixdt``(1, WL - 1, FL)` |
 
 #### 依赖关系
 
-- 当您将**函数**设置为 `atan2` 时，模块显示两个输入端口。第一个输入 (**Port\_1**) 是函数参量的 *y* 轴坐标，即虚部。第二个输入 (**Port\_2**) 是函数参量的 *x* 轴坐标，即实部。
-- 如果您将**逼近方法**设置为**无**、**CORDIC** 或**查找**，则可以使用浮点输入信号。但是，模块输出的数据类型取决于您选择的逼近方法选项。
+- 当您将 **Function** 设置为 `atan2` 时，该模块显示两个输入端口。第一个输入（**Port\_1**）是函数参数的 *y* 轴或虚部。第二个输入（**Port\_2**）是函数参数的 *x* 轴或实部。
+- 当您将 **Approximation method** 设置为 `None`、`CORDIC` 或 `Lookup` 时，可以使用浮点输入信号。但是，模块输出数据类型取决于您选择这些近似方法选项中的哪一个。
 
-  | 输入数据类型 | 逼近方法 | 输出数据类型 |
+  | 输入数据类型 | 近似方法 | 输出数据类型 |
   | --- | --- | --- |
-  | 浮点 | **无** | 取决于您选择的**输出信号类型**。选项为 `auto`（与输入的数据类型相同）、`real` 或 `complex`。 |
-  | 浮点 | **CORDIC** | 与输入相同。当您使用 CORDIC 逼近方法计算模块输出时，**输出信号类型**不可用。 |
-  | 浮点 | **查找** | 与输入相同。当您使用 Lookup 逼近方法计算模块输出时，**输出信号类型**不可用。 |
+  | 浮点 | `None` | 取决于您对 **Output signal type** 的选择。选项为 `auto`（与输入相同的数据类型）、`real` 或 `complex`。 |
+  | 浮点 | `CORDIC` | 与输入相同。当您使用 CORDIC 近似方法计算模块输出时，**Output signal type** 不可用。 |
+  | 浮点 | `Lookup` | 与输入相同。当您使用 Lookup 近似方法计算模块输出时，**Output signal type** 不可用。 |
 
-对于 CORDIC 和查找逼近：
+对于 CORDIC 和 Lookup 近似：
 
-- `sin`、`cos`、`sincos`、`cos + jsin` 和 `atan2` 函数的输入必须是实数。
-- `sin`、`cos`、`sincos` 和 `atan2` 函数的输出为实数。
-- `cos + jsin` 函数的输出为复数。
+- 对于 `sin`、`cos`、`sincos`、`cos + jsin` 和 `atan2` 函数，输入必须为实数。
+- 对于 `sin`、`cos`、`sincos` 和 `atan2` 函数，输出为实数。
+- 对于 `cos + jsin` 函数，输出为复数。
 
 有关详细信息，请参阅限制。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
-### **Port\_2** — `atan2` 的函数参量的 *x* 轴坐标，即实部 标量 | 向量 | 矩阵
+### **Port\_2** — `atan2` 的函数参数的 *x* 轴或实部 标量 | 向量 | 矩阵
 
-输入 `atan2` 的函数参量的 *x* 轴坐标，即实部。当您将**函数**设置为 `atan2` 时，模块显示两个输入端口。第一个输入 (**Port\_1**) 是函数参量的 *y* 轴坐标，即虚部。第二个输入 (**Port\_2**) 是函数参量的 *x* 轴坐标，即实部。（有关各种模块方向的端口顺序的描述，请参阅标识旋转或翻转模块上的端口位置。）
+输入 `atan2` 的函数参数的 *x* 轴或实部。当您将 **Function** 设置为 `atan2` 时，该模块显示两个输入端口。第一个输入（**Port\_1**）是函数参数的 *y* 轴或虚部。第二个输入（**Port\_2**）是函数参数的 *x* 轴或实部。（有关各种模块方向的端口顺序说明，请参阅识别旋转或翻转模块上的端口位置。）
 
-仅当**逼近**方法设置为 **CORDIC** 或**查找**时才支持定点输入信号。
+仅当您将 **Approximation** 方法设置为 `CORDIC` 或 `Lookup` 时，才支持定点输入信号。
 
 #### 依赖关系
 
-要启用此端口，请将**函数**设置为 **atan2**。
+要启用此端口，请将 **Function** 设置为 `atan2`。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
-### **Port\_1** — 指定输入信号的三角函数 标量 | 向量 | 矩阵
+### **Port\_1** — 输入的指定三角函数 标量 | 向量 | 矩阵
 
-将指定的三角函数应用于一个或多个输入（以 rad 为单位）的结果。每个函数支持：
+将一个或多个输入（以 rad 为单位）应用于指定三角函数的结果。每个函数支持：
 
 - 标量运算
-- 按元素的向量和矩阵运算
+- 逐元素的向量和矩阵运算
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ### **sin** — 输入信号的正弦 标量 | 向量 | 矩阵
 
@@ -91,9 +91,9 @@ CORDIC 逼近定点类型传播：
 
 #### 依赖关系
 
-要启用此端口，请将**函数**设置为 **sincos**。
+要启用此端口，请将 **Function** 设置为 `sincos`。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ### **cos** — 输入信号的余弦 标量 | 向量 | 矩阵
 
@@ -101,190 +101,190 @@ CORDIC 逼近定点类型传播：
 
 #### 依赖关系
 
-要启用此端口，请将**函数**设置为 **sincos**。
+要启用此端口，请将 **Function** 设置为 `sincos`。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ## 参数
 
 ### 算法
 
-### **函数** — 三角函数 **sin** (默认) | **cos** | **tan** | **asin** | **acos** | **atan** | **atan2** | **sinh** | **cosh** | **Tanh** | **asinh** | **acosh** | **atanh** | **sincos** | **cos + jsin**
+### **Function** — 三角函数 `sin`（默认） | `cos` | `tan` | `asin` | `acos` | `atan` | `atan2` | `sinh` | `cosh` | `tanh` | `asinh` | `acosh` | `atanh` | `sincos` | `cos + jsin`
 
-指定三角函数。模块图标上的函数名称发生变化以反映您的选择。
+指定三角函数。模块图标上的函数名称会更改以匹配您的选择。
 
-有关何时将**函数**设置为 `sin`、`cos`、`sincos` 或 `cos + jsin`，并将**逼近方法**设置为 **CORDIC** 的详细信息，请参阅 限制。
+有关何时将 **Function** 设置为 `sin`、`cos`、`sincos` 或 `cos + jsin` 并将 **Approximation method** 设置为 `CORDIC` 的详细信息，请参阅限制。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`Operator` |
-| **类型：**字符向量 |
-| **值：**`'sin' | 'cos' | 'tan' | 'asin' | 'acos' | 'atan' | 'atan2' | 'sinh' | 'cosh' | 'tanh' | 'asinh' | 'acosh' | 'atanh' | 'sincos' | 'cos + jsin'` |
-| **默认值：**`'sin'` |
+| **模块参数：** `Operator` |
+| **类型：** 字符向量 |
+| **值：** `'sin' | 'cos' | 'tan' | 'asin' | 'acos' | 'atan' | 'atan2' | 'sinh' | 'cosh' | 'tanh' | 'asinh' | 'acosh' | 'atanh' | 'sincos' | 'cos + jsin'` |
+| **默认值：** `'sin'` |
 
-### **逼近方法** — CORDIC、查找或无 **无** (默认) | **CORDIC** | **查找**
+### **Approximation method** — CORDIC、Lookup 或无 `None`（默认） | `CORDIC` | `Lookup`
 
-指定计算输出的逼近方法类型。
+指定用于计算输出的近似类型。
 
-| 逼近方法 | 支持的数据类型 | 何时使用此方法 |
+| 近似方法 | 支持的数据类型 | 何时使用此方法 |
 | --- | --- | --- |
-| **无**（默认值） | 浮点 | 您想使用默认的泰勒级数算法。 |
-| **CORDIC** | 浮点和定点 | 您需要快速的近似迭代计算。 |
-| **查找** | 浮点（双精度和单精度）和定点，其**偏置**值为 `0`，**斜率**值为 2 的幂 | 您需要快速的近似查找表实现。 |
+| `None`（默认） | 浮点 | 您想要使用默认的泰勒级数算法。 |
+| `CORDIC` | 浮点和定点 | 您想要快速、近似的迭代计算。 |
+| `Lookup` | 浮点（double 和 single）以及 **Bias** 值为 `0` 且 **Slope** 值为 2 的幂的定点 | 您想要快速、近似的查找表实现。 |
 
-有关何时将**函数**设置为 `sin`、`cos`、`sincos` 或 `cos + jsin`，并将**逼近方法**设置为 **CORDIC** 的详细信息，请参阅 限制。
+有关何时将 **Function** 设置为 `sin`、`cos`、`sincos` 或 `cos + jsin` 并将 **Approximation method** 设置为 `CORDIC` 的详细信息，请参阅限制。
 
 #### 依赖关系
 
-- 要启用此参数，请将**函数**设置为 **sin**、**cos**、**sincos**、**cos + jsin** 或 `atan2`。
-- 要使用定点输入信号，必须将**逼近方法**设置为 **CORDIC** 或**查找**。
-- 要启用**表数据类型**参数，请将此方法设置为**查找**。
+- 要启用此参数，请将 **Function** 设置为 `sin`、`cos`、`sincos`、`cos + jsin` 或 `atan2`。
+- 要使用定点输入信号，您必须将 **Approximation method** 设置为 `CORDIC` 或 `Lookup`。
+- 要启用 **Table data type** 参数，请将此方法设置为 `Lookup`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`ApproximationMethod` |
-| **类型：**字符向量 |
-| **值：**`'None' | 'CORDIC' | 'Lookup'` |
-| **默认值：**`'None'` |
+| **模块参数：** `ApproximationMethod` |
+| **类型：** 字符向量 |
+| **值：** `'None' | 'CORDIC' | 'Lookup'` |
+| **默认值：** `'None'` |
 
-### **插值方法** — 断点值之间插值的方法 **线性点-斜率** (默认) | **均一**
+### **Interpolation method** — 断点值之间的插值方法 `Linear point-slope`（默认） | `Flat`
 
-当输入位于两个断点值之间时，模块将根据相邻断点内插输出值。有关插值方法的详细信息，请参阅内插方法。
+当输入落在断点值之间时，该模块使用相邻断点对输出值进行插值。有关插值方法的详细信息，请参阅插值方法。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`InterpMethod` |
-| **类型：**字符向量 |
-| **值：**`'Linear point-slope' | 'Flat'` |
-| **默认值：**`'Linear point-slope'` |
+| **模块参数：** `InterpMethod` |
+| **类型：** 字符向量 |
+| **值：** `'Linear point-slope' | 'Flat'` |
+| **默认值：** `'Linear point-slope'` |
 
-### **迭代次数** — CORDIC 算法的迭代次数 `11` (默认) | 正整数，小于或等于定点输入的字长
+### **Number of iterations** — CORDIC 算法的迭代次数 `11`（默认） | 小于或等于定点输入字长的正整数
 
-指定要执行 CORDIC 算法的迭代次数。默认值为 11。
+指定执行 CORDIC 算法的迭代次数。默认值为 11。
 
 - 当模块输入使用浮点数据类型时，迭代次数可以是正整数。
-- 当模块输入是定点数据类型时，迭代次数不能超过字长。
+- 当模块输入为定点数据类型时，迭代次数不能超过字长。
 
-  例如，如果模块输入是 `fixdt(1,16,15)`，字长为 16。在这种情况下，迭代次数不能超过 16。
+  例如，如果模块输入为 `fixdt(1,16,15)`，则字长为 16。在这种情况下，迭代次数不能超过 16。
 
 #### 依赖关系
 
-要启用此参数，必须按如下所示设置**函数**和**逼近方法**参数：
+要启用此参数，您必须按如下方式设置 **Function** 和 **Approximation method** 参数：
 
-- 将**函数**设置为 **sin**、**cos**、**sincos**、**cos + jsin** 或 `atan2`。
-- 将**逼近方法**设置为 **CORDIC**。
+- 将 **Function** 设置为 `sin`、`cos`、`sincos`、`cos + jsin` 或 `atan2`。
+- 将 **Approximation method** 设置为 `CORDIC`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`NumberOfIterations` |
-| **类型：**字符向量 |
-| **值：**正整数，小于等于定点输入的字长 |
-| **默认值：**`'11'` |
+| **模块参数：** `NumberOfIterations` |
+| **类型：** 字符向量 |
+| **值：** 小于或等于定点输入字长的正整数 |
+| **默认值：** `'11'` |
 
-### **角度单位** — 角度单位 **radian** (默认) | **revolution**
+### **Angle unit** — 角度单位 `radian`（默认） | `revolution`
 
-将查找方法的角度单位指定为 **radian** 或 **revolution**。
+将查找方法的角度单位指定为 `radian` 或 `revolution`。
 
 #### 依赖关系
 
-要启用此参数，请进行如下设置：
+要启用此参数：
 
-- 将**函数**设置为 **sin**、**cos**、**sincos**、**cos + jsin** 或 `atan2`。
-- 将**逼近方法**设置为**查找**。
+- 将 **Function** 设置为 `sin`、`cos`、`sincos`、`cos + jsin` 或 `atan2`。
+- 将 **Approximation method** 设置为 `Lookup`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`AngleUnit` |
-| **类型：**字符向量 |
-| **值：**`'radian' | 'revolution'` |
-| **默认值：**`'radian'` |
+| **模块参数：** `AngleUnit` |
+| **类型：** 字符向量 |
+| **值：** `'radian' | 'revolution'` |
+| **默认值：** `'radian'` |
 
-### **数据点数** — 查找表的数据点数 `16` (默认) | 标量
+### **Number of data points** — 查找表的数据点数 `16`（默认） | 标量
 
 将查找表的数据点数指定为标量实数。
 
 #### 依赖关系
 
-要启用此参数，请进行如下设置：
+要启用此参数：
 
-- 将**函数**设置为 **sin**、**cos**、**sincos**、**cos + jsin** 或 `atan2`。
-- 将**逼近方法**设置为**查找**。
+- 将 **Function** 设置为 `sin`、`cos`、`sincos`、`cos + jsin` 或 `atan2`。
+- 将 **Approximation method** 设置为 `Lookup`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`NumberOfDataPoints` |
-| **类型：**字符向量 |
-| **值：**标量 |
-| **默认值：**`'16'` |
+| **模块参数：** `NumberOfDataPoints` |
+| **类型：** 字符向量 |
+| **值：** 标量 |
+| **默认值：** `'16'` |
 
-### **输出信号类型** — 输出信号的复/实性 **自动** (默认) | **实数** | **复**
+### **Output signal type** — 输出信号的复/实性 `auto`（默认） | `real` | `complex`
 
-将 Trigonometric Function 模块输出信号类型指定为 `auto`、`real` 或 `complex`。
+将 Trigonometric Function 模块的输出信号类型指定为 `auto`、`real` 或 `complex`。
 
 | 函数 | 输入信号类型 | 输出信号类型 | | |
 | --- | --- | --- | --- | --- |
-| 自动 | 实数 | 复数 |
-| 任意**函数**参数选择项 | 实数 | 实数 | 实数 | 复数 |
-| 复数 | 复数 | 错误 | 复数 |
+| Auto | Real | Complex |
+| **Function** 参数的任意选择 | real | real | real | complex |
+| complex | complex | error | complex |
 
 #### 依赖关系
 
-将**逼近方法**设置为 **CORDIC** 将禁用此参数。
+将 **Approximation method** 设置为 `CORDIC` 会禁用此参数。
 
 **注意**
 
-当**函数**为 `atan2` 时，仿真或代码生成不支持复输入信号。
+当 **Function** 为 `atan2` 时，仿真或代码生成不支持复数输入信号。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`OutputSignalType` |
-| **类型：**字符向量 |
-| **值：**`'auto' | 'real' | 'complex'` |
-| **默认值：**`'auto'` |
+| **模块参数：** `OutputSignalType` |
+| **类型：** 字符向量 |
+| **值：** `'auto' | 'real' | 'complex'` |
+| **默认值：** `'auto'` |
 
-### **删除防止超范围输入的代码** — 删除防止超范围输入的代码 off (默认) | on
+### **Remove protection against out-of-range input** — 移除对超出范围输入的保护 off（默认） | on
 
-对于 **acos** 和 **asin**，选中此复选框将不会防范超出范围的输入，从而减少冗余。
+对于 `acos` 和 `asin`，选中此复选框可移除对超出范围输入的保护，从而减少冗余。
 
-- 如果清除此复选框，则会启用防范。在执行任何操作之前，模块会将超出范围的输入饱和处理为 `1` 或 `-1`。生成的代码包含用于检查超出范围输入的代码。
-- 如果选中此复选框，则会取消防范。模块将对输入值执行所有运算而不进行任何更改。生成的代码不包含用于检查超出范围输入的代码。
+- 当您清除此复选框时，保护处于启用状态。该模块在执行任何操作之前将超出范围的输入饱和为 `1` 或 `-1`。生成的代码包含用于检查超出范围输入的代码。
+- 当您选中此复选框时，保护被移除。该模块对输入值执行所有操作而不做任何更改。生成的代码不包含用于检查超出范围输入的代码。
 
 如果输入已在范围内，启用此复选框可以消除冗余。
 
 #### 依赖关系
 
-将**函数**设置为 **acos** 和 **asin** 会启用此参数。
+将 **Function** 设置为 `acos` 和 `asin` 会启用此参数。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`RemoveProtectionAgainstOutOfRangeInput` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **模块参数：** `RemoveProtectionAgainstOutOfRangeInput` |
+| **类型：** 字符向量 |
+| **值：** `'off' | 'on'` |
+| **默认值：** `'off'` |
 
-### **采样时间(-1 表示继承)** — 采样之间的时间间隔 `-1` (默认) | 标量 | 向量
+### **Sample time (-1 for inherited)** — 采样之间的间隔 `-1`（默认） | 标量 | 向量
 
-指定采样时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅指定采样时间。
+指定采样之间的时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅指定采样时间。
 
 #### 依赖关系
 
-仅当您将此参数设置为 `-1` 以外的值时才可见。要了解详细信息，请参阅不建议设置采样时间的模块。
+仅当您将其设置为 `-1` 以外的值时，此参数才可见。要了解更多信息，请参阅不建议使用采样时间的模块。
 
 #### 编程用法
 
@@ -292,20 +292,20 @@ CORDIC 逼近定点类型传播：
 
 |  |  |
 | --- | --- |
-| **参数:** | `SampleTime` |
-| **值:** | `"-1"` (默认) | scalar or vector in quotes |
+| **参数：** | `SampleTime` |
+| **值：** | `"-1"`（默认） | 带引号的标量或向量 |
 
 ### 数据类型
 
-### **表数据类型** — 表的数据类型 **继承: 从输入继承** (默认) | **double** | **single** | **fixdt(1,16,0)** | **<数据类型表达式>**
+### **Table data type** — 表的数据类型 `Inherit: Inherit via input`（默认） | `double` | `single` | `fixdt(1,16,0)` | `<data type expression>`
 
 查找表的数据类型，指定为：
 
-- **继承: 从输入继承**
-- **double**
-- **single**
-- **fixdt(1,16,0)**
-- **<数据类型表达式>**
+- `Inherit: Inherit via input`
+- `double`
+- `single`
+- `fixdt(1,16,0)`
+- `<data type expression>`
 
 有关设置数据类型的详细信息，请参阅控制信号的数据类型。
 
@@ -313,75 +313,75 @@ CORDIC 逼近定点类型传播：
 
 |  |
 | --- |
-| **模块参数**：`TableDataTypeStr` |
-| **类型：**字符串标量或字符向量 |
+| **模块参数：** `TableDataTypeStr` |
+| **类型：** 字符串标量或字符向量 |
 | **值：** `Inherit: Inherit via input` | `single` | `double` | `fixdt(1,16,0)` | 数据类型表达式 |
-| **默认值：**`Inherit: Inherit via input` |
+| **默认值：** `Inherit: Inherit via input` |
 
-### **模式** — 要指定的数据的类别 **继承** (默认) | **内置** | **定点** | **表达式**
+### **Mode** — 要指定的数据类别 `Inherit`（默认） | `Built in` | `Fixed point` | `Expression`
 
-选择您要如何指定**输出**数据类型的数据类型属性。您可以选择：
+选择您希望如何指定 **Output** 数据类型的数据类型属性。您可以选择：
 
-- **继承** - 用于指定继承数据类型的规则，例如**继承: 从内部规则继承**
-- **内置** - 用于指定内置数据类型。
-- **定点** - 用于指定数据类型的定点属性。
-- **表达式** - 用于指定计算结果为有效数据类型的表达式，例如 `fixdt([],16,0)`
-
-#### 依赖关系
-
-要启用此参数，请在**输出数据类型**参数处点击 **>>**。
-
-### **符号性** — 指定有符号或无符号 `Signed` (默认) | `Unsigned`
-
-为**输出**数据类型指定**符号性**。
+- `Inherit` — 允许您指定继承数据类型的规则，例如 `Inherit: Inherit via internal rule`
+- `Built in`— 允许您指定内置数据类型。
+- `Fixed point` — 允许您指定数据类型的定点属性。
+- `Expression` — 允许您指定一个求值为有效数据类型的表达式，例如 `fixdt([],16,0)`
 
 #### 依赖关系
 
-要启用此参数，请将**模式**设置为**定点**。
+要启用此参数，请单击 **Output data type** 参数处的 **>>**。
 
-### **定标** — 定标定点数据的方法 **二进制小数点** (默认)
+### **Signedness** — 指定有符号或无符号 `Signed`（默认） | `Unsigned`
 
-为**输出**数据类型指定**定标**。
+指定 **Output** 数据类型的 **Signedness**。
 
 #### 依赖关系
 
-要启用此参数，请将**模式**设置为**定点**。
+要启用此参数，请将 **Mode** 设置为 `Fixed point`。
 
-### **数据类型覆盖** — 为此信号指定数据类型覆盖模式 `Inherit` | `Off`
+### **Scaling** — 定点数据的定标方法 `Binary point`（默认）
 
-为此信号选择数据类型覆盖模式。
+指定 **Output** 数据类型的 **Scaling**。
 
-- **继承** - 继承为模型指定的数据类型覆盖设置。
-- **关闭** - 忽略为模型指定的数据类型覆盖设置，并使用您指定的定点数据类型
+#### 依赖关系
+
+要启用此参数，请将 **Mode** 设置为 `Fixed point`。
+
+### **Data type override** — 为此信号指定数据类型覆盖模式 `Inherit` | `Off`
+
+选择此信号的数据类型覆盖模式。
+
+- `Inherit` — 继承为模型指定的数据类型覆盖设置。
+- `Off` — 忽略为模型指定的数据类型覆盖设置，并使用您指定的定点数据类型
 
 有关详细信息，请参阅 Simulink® 文档中的使用数据类型助手指定数据类型。
 
 #### 提示
 
-由于能够关闭单个数据类型的数据类型覆盖，您可以在应用数据类型覆盖时更好地控制模型中的数据类型。例如，您可以使用此选项确保数据类型满足下游模块的要求，而忽略数据类型覆盖设置。
+为单个数据类型关闭数据类型覆盖的能力，使您可以在应用数据类型覆盖时更好地控制模型中的数据类型。例如，您可以使用此选项确保数据类型满足下游模块的要求，而不管数据类型覆盖设置如何。
 
 #### 依赖关系
 
-要启用此参数，请点击**显示数据类型助手**按钮，并将**模式**设置为**内置**或**定点**。
+要启用此参数，请单击 **Show data type assistant** 按钮，并将 **Mode** 设置为 `Built in` 或 `Fixed point`。
 
-### **字长** — 存储量化整数的字的位大小 `16` (默认) | 从 0 到 32 的整数
+### **Word length** — 保存量化整数的字的位大小 `16`（默认） | 从 0 到 32 的整数
 
-指定存储量化整数的字的位大小。有关详细信息，请参阅指定定点数据类型。
+指定保存量化整数的字的位大小。有关详细信息，请参阅指定定点数据类型。
 
 #### 依赖关系
 
-要启用此参数，请将**模式**设置为**定点**。
+要启用此参数，请将 **Mode** 设置为 `Fixed point`。
 
-### **小数长度** — 指定定点数据类型的小数长度 `0` (默认) | 整数标量
+### **Fraction length** — 指定定点数据类型的小数长度 `0`（默认） | 标量整数
 
 将定点数据类型的小数长度指定为正整数或负整数。有关详细信息，请参阅指定定点数据类型。
 
 #### 依赖关系
 
-要启用此参数，请进行如下设置：
+要启用此参数，请设置：
 
-- 将**模式**设置为**定点**
-- 将**定标**设置为**二进制小数点**
+- **Mode** 为 `Fixed point`
+- **Scaling** 为 `Binary point`
 
 ## 所属库
 
@@ -392,19 +392,19 @@ Simulink / Math Operations HDL Coder / Math Operations HDL Coder / HDL Floating 
 |  |  |
 | --- | --- |
 | **数据类型** | `double` | `fixed pointa` | `half` | `integera` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `是` |
-| **可变大小信号** | `是` |
-| **过零检测** | `否` |
+| **直接馈通** | `yes` |
+| **多维信号** | `yes` |
+| **可变大小信号** | `yes` |
+| **过零检测** | `no` |
 |  |  |
 | --- | --- |
-| a 当采用 CORDIC 逼近方法时，此模块支持定点和基整数数据类型。 | |
+| a 此模块支持 'Approximation method' 为 CORDIC 时的定点和基本整数数据类型。 | |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-并非所有编译器都支持 `asinh`、`acosh` 和 `atanh` 函数。如果您使用不支持这些函数的编译器，将会出现警告，且生成的代码无法链接。
+并非所有编译器都支持 `asinh`、`acosh` 和 `atanh` 函数。如果使用的编译器不支持这些函数，则会出现警告，并且生成的代码无法链接。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
@@ -412,16 +412,16 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 架构**
 
-要从使用定点数据的模块中生成 HDL 代码，请将**架构**设置为 `Cordic` 或 `LUT`。下表显示模块支持这些设置的函数：
+要从使用定点数据的模块生成 HDL 代码，请将 **Architecture** 设置为 `Cordic` 或 `LUT`。下表显示了模块在这些设置下支持的函数：
 
 | 模块参数 | HDL 模块属性 | 支持的函数 |
 | --- | --- | --- |
-| 将**逼近方法**设置为 **CORDIC**，将**数据点数**设置为任何标量实数。 | 将**架构**设置为 **Cordic**。 | - **sin** - **cos** - **sincos** - **cos+jsin** - **atan2** |
-| 将**逼近方法**设置为**查找**，将**插值方法**设置为**均一**，将**角度单位**设置为**转**，将**数据点数**设置为任何标量实数。 | 将**架构**设置为 **LUT**。 | - **sin** - **cos** - **sincos** - **cos+jsin** |
+| 将 **Approximation method** 设置为 `CORDIC`，**Number of data Points** 设置为任意标量实数。 | 将 **Architecture** 设置为 `Cordic`。 | - `sin` - `cos` - `sincos` - `cos+jsin` - `atan2` |
+| 将 **Approximation method** 设置为 `Lookup`，**Interpolation method** 设置为 `Flat`，**Angle Unit** 设置为 `revolution`，**Number of data Points** 设置为任意标量实数。 | 将 **Architecture** 设置为 `LUT`。 | - `sin` - `cos` - `sincos` - `cos+jsin` |
 
-要为使用浮点数据的模块的所有函数生成 HDL 代码，请将**逼近方法**模块参数设置为**无**，并将**输出信号类型**参数设置为**自动**或**实数**或**复数**。此外，将 HDL 模块属性中的**架构**参数设置为**三角函数**。
+要为使用浮点数据的模块的所有函数生成 HDL 代码，请将 **Approximation method** 模块参数设置为 `none`，并将 **Output signal type** 参数设置为 `auto` 或 `real` 或 `complex`。此外，将 HDL 模块属性中的 **Architecture** 参数设置为 `Trigonometric`。
 
-此模块具有多周期实现，这会在生成的代码中引入额外的延迟。要查看增加的延迟，请查看生成的模型或验证模型。请参阅Generated Model and Validation Model (HDL Coder)。
+此模块具有多周期实现，会在生成的代码中引入额外延迟。要查看增加的延迟，请查看生成的模型或验证模型。请参阅 Generated Model and Validation Model (HDL Coder)。
 
 延迟计算取决于字长和 **LatencyStrategy** 设置。要查看定点数据类型的延迟计算，请参阅：
 
@@ -433,95 +433,95 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 模块属性**
 
-| 通用 | |
+| 常规 | |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过移动设计中现有延迟的方式来放置在输出端的寄存器的数量。分布式流水线不会重新分发这些寄存器。默认值为 `0`。有关详细信息，请参阅ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
-| **LatencyStrategy** | 要为定点类型启用此属性，请将**函数**设置为 `sin`、`cos`、`sincos`、`cos+jsin`，或 `atan2` 并将**逼近方法**设置为 `CORDIC`。对于定点和浮点类型，指定是将设计中的模块映射到 `MAX`、`Min`、`CUSTOM` 还是 `ZERO` 延迟。默认值为 **MAX**。另请参阅LatencyStrategy (HDL Coder)。 |
-| **CustomLatency** | 要为定点类型启用此属性，请将**函数**设置为 `sin`、`cos`、`sincos`、`cos+jsin`，或 `atan2` 并将**逼近方法**设置为 `CORDIC`。当 **LatencyStrategy** 设置为 `CUSTOM` 时，使用此属性为定点类型指定介于 `ZERO` 和 `MAX` 之间的自定义延迟值。另请参阅LatencyStrategy (HDL Coder)。 |
-| **IterationsPerPipeline** | 要为定点类型启用此属性，请将**函数**设置为 `sin`、`cos`、`sincos`、`cos+jsin`，或 `atan2` 并将**逼近方法**设置为 `CORDIC`。  当 **LatencyStrategy** 设置为 `Custom(PerIterations)` 时，使用此设置指定每个流水线阶段的迭代次数。有关详细信息，请参阅Atan2 (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成的代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成的代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+| **LatencyStrategy** | 要为定点类型启用此属性，请将 **Function** 设置为 `sin`、`cos`、`sincos`、`cos+jsin` 或 `atan2`，并将 **Approximation method** 设置为 `CORDIC`。指定是将设计中的模块映射为定点类型和浮点类型的 `MAX`、`Min`、`CUSTOM` 还是 `ZERO` 延迟。默认值为 `MAX`。另请参阅 LatencyStrategy (HDL Coder)。 |
+| **CustomLatency** | 要为定点类型启用此属性，请将 **Function** 设置为 `sin`、`cos`、`sincos`、`cos+jsin` 或 `atan2`，并将 **Approximation method** 设置为 `CORDIC`。当 **LatencyStrategy** 设置为 `CUSTOM` 时，使用此属性为定点类型指定介于 `ZERO` 和 `MAX` 之间的自定义延迟值。另请参阅 LatencyStrategy (HDL Coder)。 |
+| **IterationsPerPipeline** | 要为定点类型启用此属性，请将 **Function** 设置为 `sin`、`cos`、`sincos`、`cos+jsin` 或 `atan2`，并将 **Approximation method** 设置为 `CORDIC`。当将 **LatencyStrategy** 设置为 `Custom(PerIterations)` 时，使用此设置指定每个流水线级的迭代次数。有关更多信息，请参阅 Atan2 (HDL Coder)。 |
 
-| 原生浮点 | |
+| 本机浮点 | |
 | --- | --- |
-| **InputRangeReduction** | 将此属性用于 `sin`、`cos`、`sincos`、`cos+jsin` 和 `atan2` 函数。如果您的输入范围是无界的，请为 HDL Coder 启用此属性，以插入额外的逻辑来缩小 `[-pi, pi]` 的输入范围。另请参阅InputRangeReduction (HDL Coder)。 |
-| **HandleDenormals** | 指定是否希望 HDL Coder 在设计中插入额外的逻辑来处理非正规数字。非正规数是大小非常小、必须使用包含前导零的尾数才能表示的浮点数。默认值为 **inherit**。另请参阅HandleDenormals (HDL Coder)。 |
-| **LatencyStrategy** | 指定对于浮点运算符是否将设计中的模块映射到 `inherit`、`Max`、`Min` 或 `Zero`。默认值为 **inherit**。另请参阅LatencyStrategy (HDL Coder)。 |
-| **MultiplyStrategy** | 将此属性用于 `sin`、`cos`、`sincos`、`cos+jsin` 和 `atan2` 函数。默认值为 `inherit`。指定您要使用 `FullMultiplier` 还是 `PartMultiplierPartAddShift`。另请参阅MantissaMultiplyStrategy (HDL Coder)。 |
+| **InputRangeReduction** | 将此属性用于 `sin`、`cos`、`sincos`、`cos+jsin` 和 `atan2` 函数。如果输入范围无界，请启用此属性，以便 HDL Coder 插入额外逻辑将输入范围缩减到 `[-pi, pi]`。另请参阅 InputRangeReduction (HDL Coder)。 |
+| **HandleDenormals** | 指定是否希望 HDL Coder 插入额外逻辑来处理设计中的非规格化数。非规格化数是幅值小于尾数中没有前导零时可表示的最小浮点数的数。默认值为 `inherit`。另请参阅 HandleDenormals (HDL Coder)。 |
+| **LatencyStrategy** | 指定是将设计中的模块映射为浮点运算符的 `inherit`、`Max`、`Min` 还是 `Zero`。默认值为 `inherit`。另请参阅 LatencyStrategy (HDL Coder)。 |
+| **MultiplyStrategy** | 将此属性用于 `sin`、`cos`、`sincos`、`cos+jsin` 和 `atan2` 函数。默认值为 `inherit`。指定要使用 `FullMultiplier` 还是 `PartMultiplierPartAddShift`。另请参阅 MantissaMultiplyStrategy (HDL Coder)。 |
 
 **ULP 注意事项**
 
-对于浮点运算，Trigonometric Function 模块的最后一位非零单位 (ULP) 误差。有关详细信息，请参阅ULP Considerations of Native Floating-Point Operators (HDL Coder)。
+Trigonometric Function 模块在浮点运算中具有非零的最低有效位 (ULP) 误差。有关更多信息，请参阅 ULP Considerations of Native Floating-Point Operators (HDL Coder)。
 
 **限制**
 
-- 对于 **sin** 和 **cos** 函数，该模块仅支持将有符号定点数据类型用于 CORDIC 逼近。
-- 对于具有 CORDIC 模式的函数，如 **sin**、**cos**、**sincos**、**atan2** 和 **cos+jsin**，HDL 代码生成不支持大于 `127` 位的定点数据类型。
-- HDL 代码生成不支持对三角函数使用双精度数据类型，但 **sin** 和 **cos** 函数除外。
-- 在以下情况下，HDL 代码生成不支持查找逼近方法：
+- 对于 `sin` 和 `cos` 函数，模块仅支持用于 CORDIC 逼近的有符号定点数据类型。
+- 对于具有 CORDIC 模式的函数，例如 `sin`、`cos`、`sincos`、`atan2` 和 `cos+jsin`，HDL 代码生成不支持大于 `127` 位的定点数据类型。
+- HDL 代码生成不支持三角函数中的双精度数据类型，`sin` 和 `cos` 函数除外。
+- HDL 代码生成在以下情况下不支持查找逼近方法：
 
-  - **插值方法**参数设置为**线性点-斜率**，**角度单位**参数设置为**弧度**或**旋转**。
-  - **插值方法**参数为**均一**，**角度单位**参数为**弧度**。
-- 当 Trigonometric Function 模块位于反馈环中且采用以下设置时，HDL Coder 会显示错误：
+  - **Interpolation method** 参数设置为 `Linear point-slope`，且 **Angle Unit** 参数设置为 `radian` 或 `revolution`。
+  - **Interpolation method** 参数为 `Flat`，且 **Angle Unit** 参数为 `radian`。
+- 当 Trigonometric Function 模块位于反馈环路内且设置了以下内容时，HDL Coder 会显示错误：
 
-  - 将**架构**设置为 `Cordic`
-  - 将 **UsePipelinedKernel** 设置为 `On`
+  - **Architecture** 设置为 `Cordic`
+  - **UsePipelinedKernel** 设置为 `On`
 
-  出现错误是因为该模块处于反馈环中，并且代码生成器无法插入额外的延迟。为避免此错误，请在模块附近添加长度等于**迭代次数** + 3 的延迟。然后，代码生成器吸收该延迟以满足 Trigonometric Function 模块的额外延迟。
+  出现该错误是因为模块位于反馈环路中，代码生成器无法插入额外延迟。要避免此错误，请在模块相邻位置添加一个长度等于 **Number of iterations** 加 3 的延迟。然后代码生成器会吸收此延迟以满足 Trigonometric Function 模块的额外延迟。
 
-  例如，此 Trigonometric Function 模块将**迭代次数**设置为 `30`。添加与该模块相邻的长度为 `33` 的 Delay 模块满足额外的延迟。
+  例如，此 Trigonometric Function 模块的 **Number of iterations** 设置为 `30`。在模块相邻位置添加长度为 `33` 的 Delay 模块即可满足额外延迟。
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-当**函数**设置为 **sin**、**cos**、**sincos**、**cos + jsin** 或 `atan2` 且**逼近方法**设置为 **CORDIC** 时，此模块支持定点和基整数数据类型。
+当将 **Function** 设置为 `sin`、`cos`、`sincos`、`cos + jsin` 或 `atan2`，并将 **Approximation method** 设置为 `CORDIC` 时，此模块支持定点和基整数数据类型。
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2006a 之前引入**
 
 ## 描述
 
-指定应用于输入信号的三角函数
+对输入执行指定的三角函数
 
-Trigonometric Function 模块执行常见的三角函数，并以 rad 或 rev 为单位输出结果。
+Trigonometric Function 模块执行常见三角函数并以 rad 或 rev 输出结果。
 
 ### 支持的函数
 
-可以从**函数**下拉列表中选择以下函数之一。
+可以从 **Function** 参数列表中选择以下函数之一。
 
 | 函数 | 描述 | 数学表达式 | MATLAB® 等效函数 |
 | --- | --- | --- | --- |
-| `sin` | 输入信号的正弦 | `sin(u)` | `sin` |
-| `cos` | 输入信号的余弦 | `cos(u)` | `cos` |
-| `tan` | 输入信号的正切 | `tan(u)` | `tan` |
-| `asin` | 输入信号的反正弦 | `asin(u)` | `asin` |
-| `acos` | 输入信号的反余弦 | `acos(u)` | `acos` |
-| `atan` | 输入信号的反正切 | `atan(u)` | `atan` |
-| `atan2` | 输入信号的四象限反正切 | `atan2(u)` | `atan2` |
-| `sinh` | 输入信号的双曲正弦 | `sinh(u)` | `sinh` |
-| `cosh` | 输入信号的双曲余弦 | `cosh(u)` | `cosh` |
-| `tanh` | 输入信号的双曲正切 | `tanh(u)` | `tanh` |
-| `asinh` | 输入信号的反双曲正弦 | `asinh(u)` | `asinh` |
-| `acosh` | 输入信号的反双曲余弦 | `acosh(u)` | `acosh` |
-| `atanh` | 输入信号的反双曲正切 | `atanh(u)` | `atanh` |
-| `sincos` | 输入信号的正弦；输入信号的余弦 | — | — |
-| `cos + jsin` | 输入信号的复指数 | — | — |
+| `sin` | 输入的正弦 | `sin(u)` | `sin` |
+| `cos` | 输入的余弦 | `cos(u)` | `cos` |
+| `tan` | 输入的正切 | `tan(u)` | `tan` |
+| `asin` | 输入的反正弦 | `asin(u)` | `asin` |
+| `acos` | 输入的反余弦 | `acos(u)` | `acos` |
+| `atan` | 输入的反正切 | `atan(u)` | `atan` |
+| `atan2` | 输入的四象限反正切 | `atan2(u)` | `atan2` |
+| `sinh` | 输入的双曲正弦 | `sinh(u)` | `sinh` |
+| `cosh` | 输入的双曲余弦 | `cosh(u)` | `cosh` |
+| `tanh` | 输入的双曲正切 | `tanh(u)` | `tanh` |
+| `asinh` | 输入的反双曲正弦 | `asinh(u)` | `asinh` |
+| `acosh` | 输入的反双曲余弦 | `acosh(u)` | `acosh` |
+| `atanh` | 输入的反双曲正切 | `atanh(u)` | `atanh` |
+| `sincos` | 输入的正弦；输入的余弦 | — | — |
+| `cos + jsin` | 输入的复指数 | — | — |
 
 ### CORDIC 逼近方法
 
-CORDIC 是 COordinate Rotation DIgital Computer（坐标旋转数字计算方法）的缩写。基于吉文斯旋转的 CORDIC 算法是最节省硬件资源的可用算法之一，因为它只需进行迭代移位相加运算。有关详细信息，请参阅详细信息。模块输入有进一步的要求。
+CORDIC 是 COordinate Rotation DIgital Computer（坐标旋转数字计算机）的缩写。基于 Givens 旋转的 CORDIC 算法是可用的硬件效率最高的算法之一，因为它只需要迭代移位加法运算。有关更多信息，请参阅更多信息。模块输入有进一步要求。
 
-有关何时将**函数**设置为 `sin`、`cos`、`sincos` 或 `cos + jsin`，并将**逼近方法**设置为 **CORDIC** 的详细信息，请参阅 Port\_1。
+有关将 **Function** 设置为 `sin`、`cos`、`sincos` 或 `cos + jsin` 并将 **Approximation method** 设置为 `CORDIC` 时的更多信息，请参阅 Port\_1。
 
-下表概述了输入无效时发生的情况。
+下表总结了无效输入的情况。
 
-| 模块用法 | 无效输入的影响 |
+| 模块使用 | 无效输入的影响 |
 | --- | --- |
 | 仿真模式 | 出现错误。 |
-| 生成的代码 | 发生未定义的行为。对于生成的代码，避免依赖未定义的行为。 |
+| 生成的代码 | 出现未定义行为。避免依赖生成代码的未定义行为。 |
 
 ### 查找逼近方法
 
-有关何时将**函数**设置为 `sin`、`cos`、`sincos` 或 `cos + jsin`，并将**逼近方法**设置为**查找**的详细信息，请参阅 Port\_1。
+有关将 **Function** 设置为 `sin`、`cos`、`sincos` 或 `cos + jsin` 并将 **Approximation method** 设置为 `Lookup` 时的更多信息，请参阅 Port\_1。

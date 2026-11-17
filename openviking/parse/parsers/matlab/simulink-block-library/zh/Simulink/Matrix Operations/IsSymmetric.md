@@ -9,7 +9,7 @@ official_category: 'Matrix Operations'
 documentation_page: 'issymmetric'
 documentation_source_path: 'slref/issymmetric.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # IsSymmetric
@@ -18,32 +18,33 @@ chinese_source: official
 
 ### 输入
 
-### **Port\_1** — 输入矩阵 矩阵
+### **Port\_1** — 输入矩阵 matrix
 
 输入，指定为矩阵。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
-### **Port\_1** — 对称或斜对称矩阵 实数标量布尔值
+### **Port\_1** — 对称或反对称矩阵 real scalar boolean
 
-对称或斜对称矩阵，以实数标量布尔值返回。
+对称或反对称矩阵，返回为实数标量布尔值。
 
-**数据类型:** `Boolean`
+**数据类型：** `Boolean`
 
 ## 参数
 
-### **模式** — 矩阵是对称矩阵还是斜对称矩阵 **对称** (默认) | **斜对称**
+### **Mode** — 矩阵是对称还是反对称 `Symmetric` (默认) | `Skew-Symmetric`
 
-将矩阵标识为**对称**或**斜对称**。
+将矩阵标识为 `Symmetric` 或
+`Skew-Symmetric`。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Mode` |
-| **类型：**字符向量 |
-| **值：**`'Symmetric'` | `'Skew-Symmetric'` |
+| **类型**：character vector |
+| **值**：`'Symmetric'` | `'Skew-Symmetric'` |
 | **默认值**：`'Symmetric'` |
 
 ## 所属库
@@ -54,25 +55,25 @@ Simulink / Matrix Operations
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Boolean` | `double` | `fixed point` | `half` | `integera` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `否` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **Data Types** | `Boolean` | `double` | `fixed point` | `half` | `integera` | `single` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 |  |  |
 | --- | --- |
-| a 此模块仅支持斜对称模式的有符号整数类型。 | |
+| a 此模块在反对称模式下仅支持有符号整数类型。 | |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2021b 中推出**
+**在 R2021b 中引入**
 
 ## 描述
 
-检查矩阵是否对称或斜对称
+检查矩阵是对称还是反对称
 
-IsSymmetric 模块确定输入是对称矩阵还是斜对称矩阵。
+IsSymmetric 模块确定输入是对称矩阵还是反对称矩阵。

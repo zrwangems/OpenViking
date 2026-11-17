@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simplified Synchronous Machine Measurement'
-family: 'electromechanical'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,9 +18,9 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **pu** — 来自所连接同步电机的标幺值测量，物理信号向量
+### **pu** — 来自所连接同步电机的标幺值测量值，物理信号向量
 
-与来自所连接 Simplified Synchronous Machine 的标幺值测量相关联的物理信号，指定为：
+与来自所连接的 Simplified Synchronous Machine 的标幺值测量值相关联的物理信号，指定为：
 
 - `pu_EMFa`
 - `pu_EMFb`
@@ -33,18 +33,17 @@ chinese_source: worker-translation
 - `pu_id`
 - `pu_iq`
 - `pu_i0`
-
 ### 输出
 
-### **o** — 标幺值测量输出端口的物理信号
+### **o** — 标幺值测量输出端口，物理信号
 
-与标幺值测量相关联的物理信号输出端口，以物理信号形式返回。
+与标幺值测量值相关联的物理信号输出端口，以物理信号形式返回。
 
 ## 参数
 
-### **Output** — 来自同步电机的标幺值测量 `EMF phase A`（默认） | `EMF phase B` | `EMF phase C` | `Electrical torque` | `Rotor velocity` | `Stator d-axis voltage` | `Stator q-axis voltage` | `Stator zero-sequence voltage` | `Stator d-axis current` | `Stator q-axis current` | `Stator zero-sequence current` | `Apparent power` | `Real power` | `Reactive power` | `Terminal voltage` | `Terminal current` | `Power factor angle` | `Power factor` | `Load angle` | `Rotor electrical angle`
+### **Output** — 来自同步电机的标幺值测量值 `EMF phase A`（默认）| `EMF phase B` | `EMF phase C` | `Electrical torque` | `Rotor velocity` | `Stator d-axis voltage` | `Stator q-axis voltage` | `Stator zero-sequence voltage` | `Stator d-axis current` | `Stator q-axis current` | `Stator zero-sequence current` | `Apparent power` | `Real power` | `Reactive power` | `Terminal voltage` | `Terminal current` | `Power factor angle` | `Power factor` | `Load angle` | `Rotor electrical angle`
 
-来自简化同步电机的标幺值测量。默认值为 `EMF phase A`。
+来自简化同步电机的标幺值测量值。默认值为 `EMF phase A`。
 
 ## 所属库
 
@@ -56,8 +55,7 @@ Simscape / Electrical / Electromechanical / Synchronous
 
 ## 扩展功能
 
-### C/C++ 代码生成
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -65,16 +63,16 @@ Simscape / Electrical / Electromechanical / Synchronous
 
 ## 描述
 
-来自简化同步电机的标幺值测量
+来自简化同步电机的标幺值测量值
 
-Simplified Synchronous Machine Measurement 模块输出与所连接的 Simplified Synchronous Machine 模块相关联的标幺值测量。Simplified Synchronous Machine Measurement 模块的输入连接到 Simplified Synchronous Machine 模块的 `pu` 输出端口。
+Simplified Synchronous Machine Measurement 模块输出与所连接的 Simplified Synchronous Machine 模块相关联的标幺值测量值。Simplified Synchronous Machine Measurement 模块的输入连接到 Simplified Synchronous Machine 模块的 `pu` 输出端口。
 
-将 **Output** 参数设置为与简化同步电机相关联的标幺值测量。根据您选择的值，Simplified Synchronous Machine Measurement 模块：
+将 **Output** 参数设置为与简化同步电机相关联的标幺值测量值。根据所选择的值，Simplified Synchronous Machine Measurement 模块会：
 
 - 直接输出输入信号向量中某个元素的值
-- 通过数学表达式使用输入信号向量中元素的值计算标幺值测量。
+- 通过数学表达式使用输入信号向量中元素的值来计算标幺值测量值。
 
-Simplified Synchronous Machine Measurement 模块根据表中的输出值表达式，输出来自简化同步电机的标幺值测量。例如，当您将 **Output** 设置为 `Stator d-axis voltage` 时，该模块直接输出输入信号向量中 `pu_ed` 元素的值。但是，当您将 **Output** 设置为 `Reactive power` 时，该模块根据 `pu_ed`、`pu_eq`、`pu_id` 和 `pu_iq` 元素计算该值。
+Simplified Synchronous Machine Measurement 模块根据表中的输出值表达式输出简化同步电机的标幺值测量值。例如，当将 **Output** 设置为 `Stator d-axis voltage` 时，模块直接输出输入信号向量中 `pu_ed` 元素的值。然而，当将 **Output** 设置为 `Reactive power` 时，模块根据 `pu_ed`、`pu_eq`、`pu_id` 和 `pu_iq` 元素计算该值。
 
 | 输出参数设置 | 输出值表达式 |
 | --- | --- |

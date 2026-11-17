@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Discrete Wind Gust Model'
-family: 'environment'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -33,102 +33,102 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **单位** — 单位 `Metric (MKS)` (默认) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
+### **Units** — 单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
-阵风单位，指定为：
+阵风的单位，指定为：
 
-| 单位 | 风速 | 高度 |
+| 单位 | 风 | 高度 |
 | --- | --- | --- |
-| `Metric (MKS)` | Meters/second | Meters |
-| `English (Velocity in ft/s)` | Feet/second | Feet |
-| `English (Velocity in kts)` | Knots | Feet |
+| `Metric (MKS)` | 米/秒 | 米 |
+| `English (Velocity in ft/s)` | 英尺/秒 | 英尺 |
+| `English (Velocity in kts)` | 节 | 英尺 |
 
 #### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `units` |
-| **类型**: character vector |
-| **值**: `'Metric (MKS)'` | `'English (Velocity in ft/s)'` | `'English (Velocity in kts)'` |
-| **默认值**: `'Metric (MKS)'` |
+| **模块参数**：`units` |
+| **类型**：字符向量 |
+| **值**：`'Metric (MKS)'` | `'English (Velocity in ft/s)'` | `'English (Velocity in kts)'` |
+| **默认值**：`'Metric (MKS)'` |
 
-### **u 轴上的阵风** — 施加到 *u* 轴的阵风 `on` (默认) | `off`
+### **Gust in u-axis** — 作用于 *u* 轴的阵风 `on`（默认）| `off`
 
-要将阵风施加到机体坐标系中的 *u* 轴，请选中此复选框。否则，请清除此复选框。
-
-#### 编程使用
-
-|  |
-| --- |
-| **模块参数**: `Gx` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'on'` |
-
-### **v 轴上的阵风** — 施加到 *v* 轴的阵风 `on` (默认) | `off`
-
-要将阵风施加到机体坐标系中的 *v* 轴，请选中此复选框。否则，请清除此复选框。
+要将阵风施加到机体坐标系中的 *u* 轴，请选中此复选框。否则，清除此复选框。
 
 #### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Gy` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'on'` |
+| **模块参数**：`Gx` |
+| **类型**：字符向量 |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'on'` |
 
-### **w 轴上的阵风** — 施加到 *w* 轴的阵风 `on` (默认) | `off`
+### **Gust in v-axis** — 作用于 *v* 轴的阵风 `on`（默认）| `off`
 
-要将阵风施加到机体坐标系中的 *w* 轴，请选中此复选框。否则，请清除此复选框。
-
-#### 编程使用
-
-|  |
-| --- |
-| **模块参数**: `Gz` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'on'` |
-
-### **阵风开始时间 (sec)** — 阵风开始时间 `5` (默认) | scalar
-
-模型时间，指定为 scalar，阵风开始的时间，以 seconds 为单位。
+要将阵风施加到机体坐标系中的 *v* 轴，请选中此复选框。否则，清除此复选框。
 
 #### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `t_0` |
-| **类型**: character vector |
-| **值**: scalar |
-| **默认值**: `'5'` |
+| **模块参数**：`Gy` |
+| **类型**：字符向量 |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'on'` |
 
-### **阵风长度 [dx dy dz] (m)** — 阵风长度 `[120 120 80]` (默认)
+### **Gust in w-axis** — 作用于 *w* 轴的阵风 `on`（默认）| `off`
 
-长度，以 meters 或 feet 为单位（取决于单位选择），阵风在每个轴上增强所经过的长度。这些值必须为正。
-
-#### 编程使用
-
-|  |
-| --- |
-| **模块参数**: `d_m` |
-| **类型**: character vector |
-| **值**: vector |
-| **默认值**: `'[120 120 80]'` |
-
-### **阵风幅度 [ug vg wg] (m/s)** — 阵风幅度 `[3.5 3.5 3.0]` (默认)
-
-由阵风在每个轴上引起的风速增量的幅值。这些值可以为正或负。
+要将阵风施加到机体坐标系中的 *w* 轴，请选中此复选框。否则，清除此复选框。
 
 #### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `d_m` |
-| **类型**: character vector |
-| **值**: vector |
-| **默认值**: `'[3.5 3.5 3.0]'` |
+| **模块参数**：`Gz` |
+| **类型**：字符向量 |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'on'` |
+
+### **Gust start time (sec)** — 阵风开始时间 `5`（默认）| 标量
+
+阵风开始的模型时间，指定为标量，单位为秒。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`t_0` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认值**：`'5'` |
+
+### **Gust length [dx dy dz] (m)** — 阵风长度 `[120 120 80]`（默认）
+
+阵风在每个轴上累积的长度，单位为米或英尺（取决于所选单位）。这些值必须为正。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`d_m` |
+| **类型**：字符向量 |
+| **值**：向量 |
+| **默认值**：`'[120 120 80]'` |
+
+### **Gust amplitude [ug vg wg] (m/s)** — 阵风幅值 `[3.5 3.5 3.0]`（默认）
+
+阵风在每个轴上引起的风速增量的幅值。这些值可以为正或负。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`d_m` |
+| **类型**：字符向量 |
+| **值**：向量 |
+| **默认值**：`'[3.5 3.5 3.0]'` |
 
 ## 所属库
 
@@ -136,7 +136,7 @@ Aerospace Blockset / Environment / Wind
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -150,6 +150,6 @@ Aerospace Blockset / Environment / Wind
 
 生成离散阵风
 
-Discrete Wind Gust Model 模块实现标准 “1-cosine” 形状的阵风。该模块实现军用规范 MIL-F-8785C [1] 中的数学表示。阵风可分别施加到每个轴，或同时施加到所有三个轴。您指定阵风幅度（由阵风产生的风速增量）、阵风长度（阵风增强所经过的长度，以 meters 为单位）和阵风开始时间。有关阵风形状的更多信息，请参阅算法。
+Discrete Wind Gust Model 模块实现标准“1-cosine”形状的阵风。此模块实现了军用规范 MIL-F-8785C [1] 中的数学表示。阵风可分别施加到每个轴，或同时施加到所有三个轴。您可以指定阵风幅值（阵风产生的风速增量）、阵风长度（阵风累积的长度，单位为米）以及阵风开始时间。有关阵风形状的详细信息，请参阅算法。
 
-Discrete Wind Gust Model 模块可以以 feet per second、meters per second 或 knots 为单位表示风速。
+Discrete Wind Gust Model 模块可以以英尺/秒、米/秒或节为单位表示风速。

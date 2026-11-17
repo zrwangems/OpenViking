@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Angular Acceleration Conversion'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -18,22 +18,22 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 角加速度输入 标量 | 数组
+### **Port\_1** — 角输入加速度 标量 | 数组
 
-Angle，指定为标量，采用初始加速度单位。
+角度，指定为标量，采用初始加速度单位。
 
-#### 依赖项
+#### 依赖关系
 
 输入端口标签取决于 **Initial unit** 设置。
 
 **数据类型：** `double`
 ### 输出
 
-### **Port\_1** — 角加速度输出 标量 | 数组
+### **Port\_1** — 角输出加速度 标量 | 数组
 
-Angle，返回为标量，采用最终加速度单位。
+角度，返回为标量，采用最终加速度单位。
 
-#### 依赖项
+#### 依赖关系
 
 输出端口标签取决于 **Final unit** 设置。
 
@@ -41,7 +41,7 @@ Angle，返回为标量，采用最终加速度单位。
 
 ## 参数
 
-### **Initial unit** — 输入单位 `deg/s2`（默认） | `rad/s2` | `rpm/s`
+### **Initial unit** — 输入单位 `deg/s2`（默认）| `rad/s2` | `rpm/s`
 
 指定输入单位，指定为：
 
@@ -51,20 +51,20 @@ Angle，返回为标量，采用最终加速度单位。
 | `rad/s`2 | 弧度每二次方秒 |
 | `rpm/s` | 每分钟转数每秒 |
 
-#### 依赖项
+#### 依赖关系
 
 输入端口标签取决于 **Initial unit** 设置。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`IU` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'deg/s^2'` | `'rad/s^2'` | `'rpm/s'` |
 | **默认值**：`'deg/s^2'` |
 
-### **Final unit** — 输出单位 `rad/ss`（默认） | `deg/ss` | `rpm/s`
+### **Final unit** — 输出单位 `rad/ss`（默认）| `deg/ss` | `rpm/s`
 
 输出单位，指定为：
 
@@ -74,16 +74,16 @@ Angle，返回为标量，采用最终加速度单位。
 | `rad/s`2 | 弧度每二次方秒 |
 | `rpm/s` | 每分钟转数每秒 |
 
-#### 依赖项
+#### 依赖关系
 
 输出端口标签取决于 **Final unit** 设置。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`OU` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'deg/s^2'` | `'rad/s^2'` | `'rpm/s'` |
 | **默认值**：`'rad/s^2'` |
 
@@ -93,7 +93,7 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -105,8 +105,8 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 描述
 
-将角加速度单位转换为所需的角加速度单位
+从角加速度单位转换为所需的角加速度单位
 
-Angular Acceleration Conversion 模块计算从指定输入角加速度单位到指定输出角加速度单位的转换因子，并将该转换因子应用于输入信号。
+Angular Acceleration Conversion 模块计算从指定的输入角加速度单位到指定的输出角加速度单位的转换因子，并将该转换因子应用于输入信号。
 
-Angular Acceleration Conversion 模块的端口标签会根据从 **Initial unit** 和 **Final unit** 列表中选择的输入和输出单位而变化。
+Angular Acceleration Conversion 模块的端口标签根据从 **Initial unit** 和 **Final unit** 列表中选择的输入和输出单位而变化。

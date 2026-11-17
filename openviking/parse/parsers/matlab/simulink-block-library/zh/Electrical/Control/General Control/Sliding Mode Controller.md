@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sliding Mode Controller'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -39,25 +39,25 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **Sliding factor** — 滑动因子 `1`（默认值）| 非负标量
+### **Sliding factor** — 滑模因子 `1`（默认）| 非负标量
 
 *自 R2024b 起*
 
-滑动因子，会影响误差收敛到零的速度。
+影响误差收敛至零的速度的滑模因子。
 
-### **Hysteresis band** — 总滞环带宽 `0.2`（默认值）
+### **Hysteresis band** — 总滞环带宽 `0.2`（默认）
 
 总滞环带宽，围绕设定点对称分布。
 
-### **Control action upper limit** — 控制信号上限，*umax* `10`（默认值）| 大于 **Control action lower limit** 参数值的标量
+### **Control action upper limit** — 控制信号上限，*umax* `10`（默认）| 大于 **Control action lower limit** 参数值的标量
 
 控制输出信号的上限。
 
-### **Control action lower limit** — 控制信号下限，*umin* `-10`（默认值）| 标量
+### **Control action lower limit** — 控制信号下限，*umin* `-10`（默认）| 标量
 
 控制输出信号的下限。
 
-### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认值）| 正标量
+### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| 正标量
 
 连续模块执行之间的时间，以 s 为单位。在执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
@@ -69,7 +69,7 @@ Simscape / Electrical / Control / General Control
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -79,9 +79,9 @@ Simscape / Electrical / Control / General Control
 
 **在 R2018a 中引入**
 
-### R2024b：指定控制器的滑动因子
+### R2024b：指定控制器的滑模因子
 
-现在可以使用 **Sliding factor** 参数指定控制器的滑动因子值。**Sliding factor** 参数会影响误差收敛到零的速度，使您可以更快地获得所需响应。
+现在，您可以使用 **Sliding factor** 参数指定控制器的滑模因子值。**Sliding factor** 参数影响误差收敛至零的速度，使您能够更快地获得所需的响应。
 
 ## 描述
 
@@ -91,6 +91,6 @@ Sliding Mode Controller 模块实现基于滞环的滑模控制（SMC）。
 
 滑模控制器具有以下结构。
 
-Simulink 中滑模控制器的实现。有两个输入端口 r 和 y，以及一个输出端口 u。
+滑模控制器在 Simulink 中的实现。有两个输入端口 r 和 y，以及一个输出端口 u。
 
-在此控制器中，*lambda* 是 **Sliding factor** 参数的值。要改变误差收敛到零的速度，请为 **Sliding factor** 参数指定大于 `0` 的值。
+在此控制器中，*lambda* 是 **Sliding factor** 参数的值。要更改误差收敛至零的速度，请为 **Sliding factor** 参数指定大于 `0` 的值。

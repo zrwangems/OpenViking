@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Split Torsional Compliance'
-family: 'drivetrain'
+family: 'autoblks'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b
@@ -18,112 +18,127 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **RSpd** — 输入轴速度 `scalar`
+### **RSpd** — 输入轴转速 `scalar`
 
-输入轴角速度，*ωin*，单位为 rad/s。
+输入轴旋转速度，
+*ωin*，单位为 rad/s。
 
-#### 依赖关系
-
-要启用此端口，请设置以下两个参数：
-
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft split`
-
-### **C1Spd** — 第一输出轴速度 `scalar`
-
-第一输出轴角速度，*ω1out*，单位为 rad/s。
-
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请设置以下两个参数：
 
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft split`
+- **Port Configuration** 为 `Simulink`
+- **Coupling Configuration** 为 `Shaft split`
 
-### **C2Spd** — 第二输出轴速度 `scalar`
+### **C1Spd** — 第一输出轴转速 `scalar`
 
-第二输出轴角速度，*ω2out*，单位为 rad/s。
+第一输出轴旋转速度，
+*ω1out*，单位为
+rad/s。
 
-#### 依赖关系
-
-要启用此端口，请设置以下两个参数：
-
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft split`
-
-### **CSpd** — 输入速度 `scalar`
-
-输出轴角速度，*ωout*，单位为 rad/s。
-
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请设置以下两个参数：
 
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft merge`
+- **Port Configuration** 为 `Simulink`
+- **Coupling Configuration** 为 `Shaft split`
 
-### **R1Spd** — 第一输入轴速度 `scalar`
+### **C2Spd** — 第二输出轴转速 `scalar`
 
-第一输入轴角速度，*ω1in*，单位为 rad/s。
+第二输出轴旋转速度，
+*ω2out*，单位为
+rad/s。
 
-#### 依赖关系
-
-要启用此端口，请设置以下两个参数：
-
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft merge`
-
-### **R2Spd** — 第二输入轴速度 `scalar`
-
-第二输入轴角速度，*ω2in*，单位为 rad/s。
-
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请设置以下两个参数：
 
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft merge`
+- **Port Configuration** 为 `Simulink`
+- **Coupling Configuration** 为 `Shaft split`
 
-### **R** — 输入轴角速度和扭矩双向连接器端口
+### **CSpd** — 输入转速 `scalar`
 
-输入轴角速度，*ωin*，单位为 rad/s 和扭矩，*Tin*，单位为 N·m。
+输出轴旋转速度，
+*ωout*，单位为 rad/s。
 
-#### 依赖关系
+#### 依赖
+
+要启用此端口，请设置以下两个参数：
+
+- **Port Configuration** 为 `Simulink`
+- **Coupling Configuration** 为 `Shaft merge`
+
+### **R1Spd** — 第一输入轴转速 `scalar`
+
+第一输入轴旋转速度，
+*ω1in*，单位为 rad/s。
+
+#### 依赖
+
+要启用此端口，请设置以下两个参数：
+
+- **Port Configuration** 为 `Simulink`
+- **Coupling Configuration** 为 `Shaft merge`
+
+### **R2Spd** — 第二输入轴转速 `scalar`
+
+第二输入轴旋转速度，
+*ω2in*，单位为 rad/s。
+
+#### 依赖
+
+要启用此端口，请设置以下两个参数：
+
+- **Port Configuration** 为 `Simulink`
+- **Coupling Configuration** 为 `Shaft merge`
+
+### **R** — 输入轴角速度和扭矩双向连接端口
+
+输入轴角速度，
+*ωin*，单位为 rad/s，以及扭矩，
+*Tin*，单位为 N·m。
+
+#### 依赖
 
 要启用此端口，请选择：
 
-- **端口配置**>`Two-way connection`
-- **耦合配置**>`Shaft split`
+- **Port Configuration**>`Two-way connection`
+- **Coupling Configuration**>`Shaft split`
 
-### **R1** — 第一输入轴角速度和扭矩双向连接器端口
+### **R1** — 第一输入轴角速度和扭矩双向连接端口
 
-第一输入轴角速度，*ω1in*，单位为 rad/s 和扭矩，*T1in*，单位为 N·m。
+第一输入轴角速度，
+*ω1in*，单位为 rad/s，以及
+扭矩，*T1in*，单位为 N·m。
 
-#### 依赖关系
-
-要启用此端口，请选择：
-
-- **端口配置**>`Two-way connection`
-- **耦合配置**>`Shaft merge`
-
-### **R2** — 第二输入轴角速度和扭矩双向连接器端口
-
-第二输入轴角速度，*ω2in*，单位为 rad/s 和扭矩，*T2in*，单位为 N·m。
-
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选择：
 
-- **端口配置**>`Two-way connection`
-- **耦合配置**>`Shaft merge`
+- **Port Configuration**>`Two-way connection`
+- **Coupling Configuration**>`Shaft merge`
 
+### **R2** — 第二输入轴角速度和扭矩双向连接端口
+
+第二输入轴角速度，
+*ω2in*，单位为 rad/s，以及
+扭矩，*T2in*，单位为 N·m。
+
+#### 依赖
+
+要启用此端口，请选择：
+
+- **Port Configuration**>`Two-way connection`
+- **Coupling Configuration**>`Shaft merge`
 ### 输出
 
-### **Info** — 总线信号 bus
+### **Info** — 总线信号总线
 
-如果将 **耦合配置** 设置为 `Shaft split`，Info 总线包含以下信号。
+如果将 **Coupling Configuration** 设置为
+`Shaft split`，则 Info 总线包含这些
+信号。
 
-| 信号 | | | 描述 | 变量 | 单位 |
+| Signal | | | Description | Variable | Units |
 | --- | --- | --- | --- | --- | --- |
 | Trq | `R` | | 输入轴扭矩 | *Tin* | N·m |
 | `C1` | | 第一输出轴扭矩 | *T1out* | N·m |
@@ -141,11 +156,13 @@ chinese_source: worker-translation
 | `PwrC1` | 来自第一输出轴的机械功率 | *PTC1* | W |
 | `PwrC2` | 来自第二输出轴的机械功率 | *PTC2* | W |
 | `PwrNotTrnsfrd` | `PwrDampLoss` | 机械阻尼损失 | *Pd* | W |
-| `PwrStored` | `PwrStoredShft` | 存储的内部扭转能量变化率 | *Ps* | W |
+| `PwrStored` | `PwrStoredShft` | 存储的内部扭转能量的变化率 | *Ps* | W |
 
-如果将 **耦合配置** 设置为 `Shaft merge`，Info 总线包含以下信号。
+如果将 **Coupling Configuration** 设置为
+`Shaft merge`，则 Info 总线包含这些
+信号。
 
-| 信号 | | | 描述 | 变量 | 单位 |
+| Signal | | | Description | Variable | Units |
 | --- | --- | --- | --- | --- | --- |
 | Trq | `C` | | 输出轴扭矩 | *Tout* | N·m |
 | `R1` | | 第一输入轴扭矩 | *T1in* | N·m |
@@ -163,92 +180,89 @@ chinese_source: worker-translation
 | `PwrR1` | 来自第一输入轴的机械功率 | *PTR1* | W |
 | `PwrR2` | 来自第二输入轴的机械功率 | *PTR2* | W |
 | `PwrNotTrnsfrd` | `PwrDampLoss` | 机械阻尼损失 | *Pd* | W |
-| `PwrStored` | `PwrStoredShft` | 存储的内部扭转能量变化率 | *Ps* | W |
+| `PwrStored` | `PwrStoredShft` | 存储的内部扭转能量的变化率 | *Ps* | W |
 
 #### 依赖关系
 
-要启用此端口，请选择 **输出 Info 总线**。
+要启用此端口，请选择 **Output Info bus**。
 
 ### **RTrq** — 输入轴扭矩 `scalar`
 
-输入轴扭矩，*Tin*，单位为 N·m。
+输入轴扭矩，*Tin*，单位为
+N·m。
 
 #### 依赖关系
 
 要启用此端口，请设置以下两个参数：
 
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft split`
+- **Port Configuration** 设置为 `Simulink`
+- **Coupling Configuration** 设置为 `Shaft split`
 
 ### **C1Trq** — 第一输出轴扭矩 `scalar`
 
-第一输出轴扭矩，*T1out*，单位为 N·m。
+第一输出轴扭矩，
+*T1out*，单位为 N·m。
 
 #### 依赖关系
 
 要启用此端口，请设置以下两个参数：
 
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft split`
+- **Port Configuration** 设置为 `Simulink`
+- **Coupling Configuration** 设置为 `Shaft split`
 
 ### **C2Trq** — 第二输出轴扭矩 `scalar`
 
-第二输出轴扭矩，*T2out*，单位为 N·m。
+第二输出轴扭矩，
+*T2out*，单位为 N·m。
 
 #### 依赖关系
 
 要启用此端口，请设置以下两个参数：
 
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft split`
+- **Port Configuration** 设置为 `Simulink`
+- **Coupling Configuration** 设置为 `Shaft split`
 
 ### **CTrq** — 输出轴扭矩 `scalar`
 
-输出轴扭矩，*Tout*，单位为 N·m。
+输出轴扭矩，*Tout*，
+单位为 N·m。
 
 #### 依赖关系
 
 要启用此端口，请设置以下两个参数：
 
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft merge`
+- **Port Configuration** 设置为 `Simulink`
+- **Coupling Configuration** 设置为 `Shaft merge`
 
 ### **R1Trq** — 第一输入轴扭矩 `scalar`
 
-第一输入轴扭矩，*T1in*，单位为 N·m。
+第一输入轴扭矩，
+*T1in*，单位为 N·m。
 
 #### 依赖关系
 
 要启用此端口，请设置以下两个参数：
 
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft merge`
+- **端口配置**为 `Simulink`
+- **耦合配置**为 `Shaft merge`
 
 ### **R2Trq** — 第二输入轴扭矩 `scalar`
 
-第二输入轴扭矩，*T2in*，单位为 N·m。
+第二输入轴扭矩，
+*T2in*，单位为 N·m。
 
 #### 依赖关系
 
 要启用此端口，请设置以下两个参数：
 
-- 将 **端口配置** 设置为 `Simulink`
-- 将 **耦合配置** 设置为 `Shaft merge`
+- **端口配置**为 `Simulink`
+- **耦合配置**为 `Shaft merge`
 
-### **C1** — 第一输出轴角速度和扭矩双向连接器端口
+### **C1** — 第一输出轴角速度和扭矩双向连接端口
 
-第一输出轴角速度，*ω1out*，单位为 rad/s 和扭矩，*T1out*，单位为 N·m。
-
-#### 依赖关系
-
-要启用此端口，请选择：
-
-- **端口配置**>`Two-way connection`
-- **耦合配置**>`Shaft split`
-
-### **C2** — 第二输出轴角速度和扭矩双向连接器端口
-
-第二输出轴角速度，*ω2out*，单位为 rad/s 和扭矩，*T2out*，单位为 N·m。
+第一输出轴角速度，
+*ω1out*，单位为 rad/s，以及
+扭矩，*T1out*，单位为 N·m。
 
 #### 依赖关系
 
@@ -257,9 +271,24 @@ chinese_source: worker-translation
 - **端口配置**>`Two-way connection`
 - **耦合配置**>`Shaft split`
 
-### **C** — 输出轴角速度和扭矩双向连接器端口
+### **C2** — 第二输出轴角速度和扭矩双向连接端口
 
-输出轴角速度，*ωout*，单位为 rad/s 和扭矩，*Tout*，单位为 N·m。
+第二输出轴角速度，
+*ω2out*，单位为 rad/s，以及
+扭矩，*T2out*，单位为 N·m。
+
+#### 依赖关系
+
+要启用此端口，请选择：
+
+- **端口配置**>`Two-way connection`
+- **耦合配置**>`Shaft split`
+
+### **C** — 输出轴角速度和扭矩双向连接端口
+
+输出轴角速度，
+*ωout*，单位为 rad/s，以及扭矩，
+*Tout*，单位为 N·m。
 
 #### 依赖关系
 
@@ -276,11 +305,13 @@ chinese_source: worker-translation
 
 指定端口配置。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -292,11 +323,13 @@ chinese_source: worker-translation
 
 指定耦合类型。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -304,108 +337,117 @@ chinese_source: worker-translation
 | **值：** | `Shaft split`（默认）| `Shaft merge` |
 | **数据类型：** | `character vector` |
 
-### **输出 Info 总线** — 选择 `off`（默认）| `on`
+### **输出信息总线** — 选择 `off`（默认）| `on`
 
 选择以创建 `Info` 输出端口。
 
 #### 耦合 1
 
-### **扭转刚度, k1** — 刚度 `5e4`（默认）| 大于或等于 0 的 scalar
+### **扭转刚度，k1** — 刚度 `5e4`（默认）| 大于或等于 0 的标量
 
-转动惯量，*k1*，单位为 N·m/rad。
+转动惯量，*k1*，单位为
+N·m/rad。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `k1` |
-| **值：** | `5e4`（默认）| 大于或等于 0 的 scalar |
+| **值：** | `5e4`（默认）| 大于或等于 0 的标量 |
 | **数据类型：** | `double` |
 
-### **扭转阻尼, b1** — 阻尼 `1e2`（默认）| 大于或等于 0 的 scalar
+### **扭转阻尼，b1** — 阻尼 `1e2`（默认）| 大于或等于 0 的标量
 
-扭转阻尼，*b1*，单位为 N·m· s/rad。
+扭转阻尼，*b1*，单位为 N·m·
+s/rad。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `b1` |
-| **值：** | `1e2`（默认）| 大于或等于 0 的 scalar |
+| **值：** | `1e2`（默认）| 大于或等于 0 的标量 |
 | **数据类型：** | `double` |
 
-### **阻尼截止频率, omega1\_c** — 频率 `3000`（默认）| 正 scalar
+### **阻尼截止频率，omega1\_c** — 频率 `3000`（默认）| 正标量
 
 阻尼截止频率，单位为 rad/s。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `omega1_c` |
-| **值：** | `3000`（默认）| 正 scalar |
+| **值：** | `3000`（默认）| 正标量 |
 | **数据类型：** | `double` |
 
 #### 耦合 2
 
-### **扭转刚度, k2** — 刚度 `5e4`（默认）| 大于或等于 0 的 scalar
+### **扭转刚度，k2** — 刚度 `5e4`（默认）| 大于或等于 0 的标量
 
-转动惯量，*k2*，单位为 N·m/rad。
+转动惯量，*k2*，单位为
+N·m/rad。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `k2` |
-| **值：** | `5e4`（默认）| 大于或等于 0 的 scalar |
+| **值：** | `5e4`（默认）| 大于或等于 0 的标量 |
 | **数据类型：** | `double` |
 
-### **扭转阻尼, b2** — 阻尼 `1e2`（默认）| `scalar`
+### **扭转阻尼，b2** — 阻尼 `1e2`（默认）| `标量`
 
-扭转阻尼，*b2*，单位为 N·m· s/rad。
+扭转阻尼，*b2*，单位为 N·m·s/rad。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `b2` |
-| **值：** | `1e2`（默认）| 大于或等于 0 的 scalar |
+| **值：** | `1e2`（默认）| 大于或等于 0 的标量 |
 | **数据类型：** | `double` |
 
-### **阻尼截止频率, omega2\_c** — 频率 `3000`（默认）| 正 scalar
+### **阻尼截止频率，omega2\_c** — 频率 `3000`（默认）| 正标量
 
 阻尼截止频率，单位为 rad/s。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `omega2_c` |
-| **值：** | `3000`（默认）| 正 scalar |
+| **值：** | `3000`（默认）| 正标量 |
 | **数据类型：** | `double` |
 
 ## 所属库
@@ -414,7 +456,7 @@ Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertr
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -426,20 +468,20 @@ Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertr
 
 ## 描述
 
-分流扭转耦合器
+分裂式扭转耦合器
 
-Split Torsional Compliance 模块实现轴之间的并联弹簧-阻尼耦合。您可以通过选择 **耦合配置** 参数之一来指定耦合类型：
+Split Torsional Compliance 模块实现轴之间的并联弹簧-阻尼耦合。您可以通过选择以下 **Coupling Configuration** 参数之一来指定耦合类型：
 
-- `Shaft split` — 单输入轴耦合到两个输出轴
+- `Shaft split` — 单个输入轴耦合到两个输出轴
 - `Shaft merge` — 两个输入轴耦合到单个输出轴
 
-在燃油经济性和排放研究中，您可以使用 Split Torsional Compliance 模块来对常见传动系统元件（例如电机、行星齿轮和离合器）之间的机械旋转柔度进行建模。例如，使用 `Shaft split` 配置将电机和两个行星齿轮组耦合。使用 `Shaft merge` 配置将双离合器变速器耦合到输出轴。
+在燃油经济性和排放研究中，您可以使用 Split Torsional Compliance 模块来对常见传动系统元件（如电机、行星齿轮和离合器）之间的机械旋转柔度进行建模。例如，使用 `Shaft split` 配置来耦合一个电机和两个行星齿轮组。使用 `Shaft merge` 配置来将双离合器变速器耦合到输出轴。
 
-### 轴分流
+### 轴分裂
 
-对于 `Shaft split` 配置，模块实现以下示意图和方程。
+对于 `Shaft split` 配置，该模块实现以下原理图和方程。
 
-轴分流旋转柔度示意图
+轴分裂旋转柔度原理图
 
 Tin=−(ωin−ω1out)b1−(ωin−ω2out)b2−θ1k1−θ2k2T1out=(ωin−ω1out)b1+θ1k1T2out=(ωin−ω2out)b2+θ2k2θ˙1=(ωin−ω1out)θ˙2=(ωin−ω2out)
 
@@ -449,21 +491,21 @@ Tin=−(ωin−ω1out)b1−(ωin−ω2out)b2−θ1k1−θ2k2T1out=(ωin−ω1out
 
 |  |  |
 | --- | --- |
-| *Tin* | 产生的输入反作用扭矩 |
-| *ωin* | 输入轴角速度 |
-| *T1out* | 施加到第一输出轴的产生扭矩 |
-| *ω1out* | 第一输出轴角速度 |
-| *T2out* | 施加到第二输出轴的产生扭矩 |
-| *ω2out* | 第二输出轴角速度 |
-| *θ1*, *θ2* | 分别为第一、第二轴旋转 |
-| *b1*, *b2* | 分别为第一、第二轴粘性阻尼 |
-| *k1*, *k2* | 分别为第一、第二轴扭转刚度 |
+| *Tin* | 产生的施加输入反作用扭矩 |
+| *ωin* | 输入轴旋转速度 |
+| *T1out* | 施加到第一个输出轴的合成扭矩 |
+| *ω1out* | 第一个输出轴旋转速度 |
+| *T2out* | 施加到第二个输出轴的合成扭矩 |
+| *ω2out* | 第二个输出轴旋转速度 |
+| *θ1*、*θ2* | 分别为第一个、第二个轴的旋转 |
+| *b1*、*b2* | 分别为第一个、第二个轴的粘性阻尼 |
+| *k1*、*k2* | 分别为第一个、第二个轴的扭转刚度 |
 
-### 轴合流
+### Shaft Merge
 
-对于 `Shaft merge` 配置，模块实现以下示意图和方程。
+对于 `Shaft merge` 配置，该模块实现以下原理图和方程。
 
-轴合流旋转柔度示意图
+轴合并旋转柔度原理图
 
 Tout=(−ωout+ω1in)b1+(−ωout+ω2in)b2+θ1k1+θ2k2T1out=(ωout−ω1in)b1−θ1k1T2out=(ωout−ω2in)b2−θ2k2θ˙1=(ω1in−ωout)θ˙2=(ω2in−ωout)
 
@@ -473,30 +515,30 @@ Tout=(−ωout+ω1in)b1+(−ωout+ω2in)b2+θ1k1+θ2k2T1out=(ωout−ω1in)b1−
 
 |  |  |
 | --- | --- |
-| *Tout* | 产生的输出施加扭矩 |
-| *ωout* | 输出轴角速度 |
+| *Tout* | 产生的施加输出扭矩 |
+| *ωout* | 输出轴旋转速度 |
 | *T1in* | 对第一输入轴产生的反作用扭矩 |
-| *ω1in* | 第一输入轴角速度 |
+| *ω1in* | 第一输入轴旋转速度 |
 | *T2in* | 对第二输入轴产生的反作用扭矩 |
-| *ω2in* | 第二输入轴角速度 |
+| *ω2in* | 第二输入轴旋转速度 |
 | *θ1*, *θ2* | 分别为第一、第二轴旋转 |
 | *b1*, *b2* | 分别为第一、第二轴粘性阻尼 |
 | *k1*, *k2* | 分别为第一、第二轴扭转刚度 |
 
 ### 功率核算
 
-对于功率核算，模块实现以下方程。
+对于功率核算，该模块实现以下方程。
 
 | 总线信号 | | | 描述 | 变量 | 方程 |
 | --- | --- | --- | --- | --- | --- |
-| `PwrInfo` | `PwrTrnsfrd` — 模块之间传输的功率  - 正信号表示流入模块 - 负信号表示流出模块 | `PwrR` | 对于 `Shaft split` 配置，来自输入轴的机械功率 | *PTR* | PTR= −TRωR |
+| `PwrInfo` | `PwrTrnsfrd` — 模块之间传递的功率  - 正信号表示流入模块 - 负信号表示流出模块 | `PwrR` | 对于 `Shaft split` 配置，来自输入轴的机械功率 | *PTR* | PTR= −TRωR |
 | `PwrC1` | 对于 `Shaft split` 配置，来自第一输出轴的机械功率 | *PTC1* | PTC1= −TC1ωC1 |
 | `PwrC2` | 对于 `Shaft split` 配置，来自第二输出轴的机械功率 | *PTC2* | PTC2= −TC2ωC2 |
 | `PwrC` | 对于 `Shaft merge` 配置，来自输出轴的机械功率 | *PTC* | PTC= TCωC |
 | `PwrR1` | 对于 `Shaft merge` 配置，来自第一输入轴的机械功率 | *PTR1* | PTR1= TR1ωR1 |
 | `PwrR2` | 对于 `Shaft merge` 配置，来自第二输入轴的机械功率 | *PTR2* | PTR2= TR2ωR2 |
-| `PwrNotTrnsfrd` — 穿过模块边界但未传输的功率  - 正信号表示输入 - 负信号表示损失 | `PwrDampLoss` | 机械阻尼损失 | *Pd* | Pd=−(b1|θ˙1|2+b2|θ˙2|2) |
-| `PwrStored` — 存储能量变化率  - 正信号表示增加 - 负信号表示减少 | `PwrStoredShft` | 弹簧能量变化率 | *Ps* | Ps=(k1θ1θ˙1+k2θ2θ˙2) |
+| `PwrNotTrnsfrd` — 穿过模块边界但未传递的功率  - 正信号表示输入 - 负信号表示损失 | `PwrDampLoss` | 机械阻尼损失 | *Pd* | Pd=−(b1|θ˙1|2+b2|θ˙2|2) |
+| `PwrStored` — 存储能量的变化率  - 正信号表示增加 - 负信号表示减少 | `PwrStoredShft` | 弹簧能量的变化率 | *Ps* | Ps=(k1θ1θ˙1+k2θ2θ˙2) |
 
 这些方程使用以下变量。
 
@@ -510,5 +552,5 @@ Tout=(−ωout+ω1in)b1+(−ωout+ω2in)b2+θ1k1+θ2k2T1out=(ωout−ω1in)b1−
 | *k* | 轴扭转刚度 |
 | *b* | 旋转粘性阻尼 |
 | *Pt* | 总机械功率 |
-| *Pd* | 因阻尼导致的功率损失 |
-| *Ps* | 存储的弹簧能量变化率 |
+| *Pd* | 阻尼导致的功率损失 |
+| *Ps* | 存储弹簧能量的变化率 |

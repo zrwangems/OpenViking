@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Signal Combiner'
-family: 'circuit-envelope'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -20,9 +20,9 @@ R2025b 中未记录。
 
 ## 参数
 
-### **接地并隐藏负端子** — 将 RF 电路端子接地 on (默认) | off
+### **Ground and hide negative terminals** — 将射频电路端子接地 on（默认）| off
 
-选择此参数可将负端子接地并隐藏。要暴露负端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其他部分。
+选择此参数可将负极端子接地并隐藏。要暴露负极端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其他部分。
 
 ## 所属库
 
@@ -42,6 +42,6 @@ R2025b 中未记录。
 
 ## 描述
 
-计算 RF 信号之和
+计算射频信号之和
 
-Signal Combiner 模块在电路包络仿真环境中对每个载波频率的信号求和。
+Signal Combiner 模块在电路包络仿真环境中对每个载波频率的信号进行求和。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'LC Ladder'
-family: 'circuit-envelope'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -20,9 +20,9 @@ R2025b 中未记录。
 
 ## 参数
 
-### **Ladder topology** — 梯形拓扑的类型 `LC Lowpass Tee`（默认）
+### **Ladder topology** — 梯形拓扑类型 `LC Lowpass Tee`（默认）
 
-梯形拓扑的类型，指定为以下之一：
+梯形拓扑类型，指定为以下之一：
 
 **梯形拓扑**
 
@@ -39,17 +39,17 @@ R2025b 中未记录。
 
 ### **Inductance** — 电感值 `[1.3324e-5 1.3324e-5] H`（默认）| 实数
 
-电感值，指定为以 Henries 为单位的实数。从相应的下拉菜单中指定电感的单位。
+电感值，指定为以亨利为单位的实数。从相应的下拉菜单中指定电感的单位。
 
 **数据类型：** `double`
 
 ### **Capacitance** — 电容值 `1.1327e-9 F`（默认）| 实数
 
-电容值，指定为以 Farads 为单位的实数。从相应的下拉菜单中指定电容的单位。
+电容值，指定为以法拉为单位的实数。从相应的下拉菜单中指定电容的单位。
 
 ### **Ground and hide negative terminals** — 在内部将负端子接地并隐藏 `on`（默认）| `off`
 
-选择此选项可在内部将负端子接地并隐藏。清除此选项可暴露负端子。通过暴露这些端子，您可以将它们连接到模型的其它部分。
+选择此选项可在内部将负端子接地并隐藏。清除此选项可暴露负端子。通过暴露这些端子，您可以将它们连接到模型的其他部分。
 
 ## 所属库
 
@@ -65,7 +65,7 @@ R2025b 中未记录。
 
 ## 版本历史
 
-**R2015b 中引入**
+**在 R2015b 中引入**
 
 ## 描述
 

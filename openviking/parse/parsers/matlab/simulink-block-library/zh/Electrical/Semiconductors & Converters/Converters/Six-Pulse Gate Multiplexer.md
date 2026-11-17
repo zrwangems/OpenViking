@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Six-Pulse Gate Multiplexer'
-family: 'semiconductors-converters'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -20,7 +20,7 @@ chinese_source: worker-translation
 
 ### **Ga(H),Gb(H),Gc(H)** — Ga(H),Gb(H),Gc(H) 物理信号
 
-与 Converter (Three-Phase) 模块的高侧开关器件的栅极端子关联的物理信号端口。
+与 Converter (Three-Phase) 模块高侧开关器件栅极端子关联的物理信号端口。
 
 #### 依赖关系
 
@@ -28,17 +28,16 @@ chinese_source: worker-translation
 
 ### **Ga(L),Gb(L),Gc(L)** — Ga(L),Gb(L),Gc(L) 物理信号
 
-与 Converter (Three-Phase) 模块的低侧开关器件的栅极端子关联的物理信号端口。
+与 Converter (Three-Phase) 模块低侧开关器件栅极端子关联的物理信号端口。
 
 #### 依赖关系
 
 要启用此端口，请将 **Gate-control port** 设置为 `PS`。
-
 ### 守恒
 
 ### **Ga(H),Gb(H),Gc(H)** — Ga(H),Gb(H),Gc(H) 电气
 
-与 Converter (Three-Phase) 模块的高侧开关器件的栅极端子关联的电气守恒端口。
+与 Converter (Three-Phase) 模块高侧开关器件栅极端子关联的电气守恒端口。
 
 #### 依赖关系
 
@@ -46,7 +45,7 @@ chinese_source: worker-translation
 
 ### **Ga(L),Gb(L),Gc(L)** — Ga(L),Gb(L),Gc(L) 电气
 
-与 Converter (Three-Phase) 模块的低侧开关器件的栅极端子关联的电气守恒端口。
+与 Converter (Three-Phase) 模块低侧开关器件栅极端子关联的电气守恒端口。
 
 #### 依赖关系
 
@@ -58,7 +57,7 @@ chinese_source: worker-translation
 
 ### **a** — *A* 相交流参考点 电气
 
-与 Converter (Three-Phase) 模块的高侧开关器件的 *A* 相相关联的电气守恒端口。
+与 Converter (Three-Phase) 模块高侧开关器件的 *A* 相关联的电气守恒端口。
 
 #### 依赖关系
 
@@ -66,7 +65,7 @@ chinese_source: worker-translation
 
 ### **b** — *B* 相交流参考点 电气
 
-与 Converter (Three-Phase) 模块的高侧开关器件的 *B* 相相关联的电气守恒端口。
+与 Converter (Three-Phase) 模块高侧开关器件的 *B* 相关联的电气守恒端口。
 
 #### 依赖关系
 
@@ -74,7 +73,7 @@ chinese_source: worker-translation
 
 ### **c** — *C* 相交流参考点 电气
 
-与 Converter (Three-Phase) 模块的高侧开关器件的 *C* 相相关联的电气守恒端口。
+与 Converter (Three-Phase) 模块高侧开关器件的 *C* 相关联的电气守恒端口。
 
 #### 依赖关系
 
@@ -82,7 +81,7 @@ chinese_source: worker-translation
 
 ### **L** — L 电气
 
-与 Converter (Three-Phase) 模块中每个低侧开关器件共用的负直流电压关联的电气守恒端口。
+与 Converter (Three-Phase) 模块中每个低侧开关器件共用的直流负电压关联的电气守恒端口。
 
 #### 依赖关系
 
@@ -90,9 +89,9 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **Gate-control port** — 栅极控制端口 `PS` (默认) | `Electrical`
+### **Gate-control port** — 栅极控制端口 `PS`（默认）| `Electrical`
 
-是否公开 PS 或电气控制端口。
+选择暴露 PS 端口还是电气控制端口。
 
 ## 所属库
 
@@ -100,7 +99,7 @@ Simscape / Electrical / Semiconductors & Converters / Converters
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -110,16 +109,16 @@ Simscape / Electrical / Semiconductors & Converters / Converters
 
 **在 R2013b 中引入**
 
-### R2021b: 物理和电气连接端口更新
+### R2021b：物理和电气连接端口更新
 
-从 R2021b 开始，要在物理端口和电气端口之间切换，请将 **Gate-control port** 参数设置为 `PS` 或 `Electrical`。
+从 R2021b 起，要在物理端口和电气端口之间切换，请将 **Gate-control port** 参数设置为 `PS` 或 `Electrical`。
 
-由于这些更改，在较早版本中保存的模型内，请检查此模块的 **Gate-control port** 参数。
+由于这些更改，在早期版本保存的模型中，请检查此模块的 **Gate-control port** 参数。
 
 ## 描述
 
-将栅极输入信号多路复用到 Converter 模块
+将栅极输入信号多路复用至 Converter 模块
 
-Six-Pulse Gate Multiplexer 模块将栅极电压信号路由到 Converter (Three-Phase) 模块中的六个开关器件。该模块将六个单独的栅极信号多路复用为单个向量。
+Six-Pulse Gate Multiplexer 模块将栅极电压信号路由至 Converter (Three-Phase) 模块中的六个开关器件。该模块将六个独立的栅极信号多路复用为单个向量。
 
-当您将模块输入切换为电气端口时，该模块会显示附加电气参考输入端口。附加电气参考端口与连接至 Converter (Three-Phase) 模块中高侧开关器件的各相电压，以及 Converter (Three-Phase) 模块中每个低侧开关器件共用的负直流电压相关联。
+当您将模块输入切换为电气端口时，模块会显示额外的电气参考输入端口。额外的电气参考端口与连接到 Converter (Three-Phase) 模块中高侧开关器件的各相电压以及 Converter (Three-Phase) 模块中每个低侧开关器件共用的直流负电压相关联。

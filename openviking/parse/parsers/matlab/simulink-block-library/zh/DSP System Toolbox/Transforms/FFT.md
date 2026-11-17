@@ -9,7 +9,7 @@ official_category: 'Transforms'
 documentation_page: 'fft'
 documentation_source_path: 'ref/fft.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # FFT
@@ -20,189 +20,192 @@ chinese_source: official
 
 ### **Port\_1** — 输入信号 向量 | 矩阵 | *N* 维数组
 
-用于计算 FFT 的输入信号。模块沿 *N* 维输入信号的第一个维度计算 FFT。
+用于计算 FFT 的输入信号。该模块沿 *N* 维输入信号的第一个维度计算 FFT。
 
-有关模块如何计算 FFT 的详细信息，请参阅描述和算法。
+有关该模块如何计算 FFT 的更多信息，请参阅描述和算法。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-**复数支持:** 是
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**复数支持：** 是
 ### 输出
 
 ### **Port\_1** — 输入的 FFT 向量 | 矩阵 | *N* 维数组
 
-沿 *N* 维输入数组的第一个维度计算的 FFT。当模块的输出具有整数或定点数据类型时，它始终为有符号。
+沿 *N* 维输入数组的第一个维度计算的 FFT。当模块的输出为整数或定点数据类型时，它始终为有符号类型。
 
-第 *L* 个输出通道的第 *k* 个条目 *y*(*k*,*L*) 等于第 *L* 个输入通道的 *M* 点离散傅里叶变换 (DFT) 的第 *k* 个点：
+第 *L* 个输出通道的第 *k* 个元素，
+*y*(*k*,*L*)，
+等于第 *L* 个输入通道的
+*M* 点离散傅里叶变换（DFT）的第 *k* 个点：
 
 y(k,L)=∑p=1Pu(p,L)e−j2π(p−1)(k−1)/M        k=1,…,M
 
-有关模块如何计算 FFT 的详细信息，请参阅描述和算法。
+有关该模块如何计算 FFT 的更多信息，请参阅描述和算法。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-**复数支持:** 是
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
+**复数支持：** 是
 
 ## 参数
 
-### 主要
+### 主
 
-### **FFT 实现** — FFT 实现 **自动** (默认) | **基数-2** | **FFTW**
+### **FFT implementation** — FFT 实现 `Auto`（默认）| `Radix-2` | `FFTW`
 
-将此参数设置为 **FFTW** 可支持任意长度的输入信号。使用 FFTW 实现时，模块会将生成的代码限制为仅在能够运行 MATLAB® 的主机上运行。
+将此参数设置为 `FFTW` 以支持任意长度的输入信号。该模块将使用 FFTW 实现生成的代码限制为能够运行 MATLAB® 的主机。
 
-将此参数设置为**基数-2** 可支持位反转处理、定点或浮点数据，或使用 Simulink® Coder™ 生成可移植 C 代码。*M*×*N* 输入矩阵的维度 *M* 必须为 2 的幂。要处理其他输入大小，请使用 Pad 模块将这些维度填充或截断至 2 的幂，或尽可能选择 FFTW 实现。有关**基数-2** 模式所用算法的详细信息，请参阅 基数-2 实现。
+将此参数设置为 `Radix-2` 以进行位反转处理、定点或浮点数据，或使用 Simulink® Coder™ 生成可移植的 C 代码。*M*×*N* 输入矩阵的维度 *M* 必须是 2 的幂。要处理其他输入大小，请使用 Pad 模块将这些维度填充或截断为 2 的幂，或者如果可能，选择 FFTW 实现。有关 `Radix-2` 模式所用算法的更多信息，请参阅 Radix-2 实现。
 
-将此参数设置为**自动**可让模块选择 FFT 实现。对于具有非 2 的幂变换长度的浮点输入，会自动选择 FFTW 算法。在其他情况下，会自动选择基数-2 算法。对于非 2 的幂变换长度，模块将生成的代码限制为只能在 MATLAB 主机上运行。
+将此参数设置为 `Auto` 以让模块选择 FFT 实现。对于具有非 2 的幂变换长度的浮点输入，会自动选择 FFTW 算法。否则会自动选择 Radix-2 算法。对于非 2 的幂变换长度，该模块将生成的代码限制为 MATLAB 主机。
 
-### **输出采用位反转顺序** — 输出采用位反转顺序 `off` (默认) | `on`
+### **Output in bit-reversed order** — 以位反转顺序输出 `off`（默认）| `on`
 
-指定输出通道元素相对于输入元素的排序顺序。当您选中此复选框时，输出通道元素相对于输入排序以位反转顺序显示。如果清除此复选框，输出通道元素相对于输入排序以线性顺序显示。
+指定输出通道元素相对于输入元素顺序的顺序。选中此复选框时，输出通道元素相对于输入顺序以位反转顺序出现。清除此复选框时，输出通道元素相对于输入顺序以线性顺序出现。
 
 **注意**
 
-FFT 模块以位反转顺序计算其输出。线性排序 FFT 模块输出需要额外的位反转运算。在许多情况下，您可以通过选中**输出采用位反转顺序**复选框来提高 FFT 模块的速度。
+FFT 模块以位反转顺序计算其输出。对 FFT 模块输出进行线性排序需要额外的位反转操作。在许多情况下，您可以通过选中 **Output in bit-reversed order** 复选框来提高 FFT 模块的速度。
 
-有关输出排序的详细信息，请参阅Linear and Bit-Reversed Output Order。
-
-#### 依赖关系
-
-要启用此参数，请将 **FFT 实现**设置为**自动**或**基数-2**。
-
-### **将输出除以 FFT 长度** — 将输出除以 FFT 长度 `off` (默认) | `on`
-
-当您选中此参数时，模块会将 FFT 的输出除以 FFT 长度。当您需要 FFT 的输出保持在与其输入相同的振幅范围内时，此选项很有用。这在处理定点数据类型时特别有用。
-
-### **从输入维度继承 FFT 长度** — 从输入维度继承 FFT 长度 `on` (默认) | `off`
-
-选中它即可从输入维度继承 FFT 长度。如果选中此复选框，输入长度必须为 2 的幂。
+有关输出顺序的更多信息，请参阅线性和位反转输出顺序。
 
 #### 依赖关系
 
-如果未选中此复选框，**FFT 长度**参数将变为可用，您可以指定长度。
+要启用此参数，请将 **FFT implementation** 设置为 `Auto` 或 `Radix-2`。
 
-### **FFT 长度** — FFT 长度 `64` (默认) | 整数
+### **Divide output by FFT length** — 将输出除以 FFT 长度 `off`（默认）| `on`
 
-将 FFT 长度指定为大于或等于二的整数。
+选中此参数时，模块将 FFT 的输出除以 FFT 长度。当您希望 FFT 的输出保持与其输入相同的幅度范围时，此选项很有用。这在处理定点数据类型时特别有用。
 
-当您将 **FFT 实现**参数设置为 `Radix-2` 或选中**输出采用位反转顺序**复选框时，此值必须为 2 的幂。
+### **Inherit FFT length from input dimensions** — 从输入维度继承 FFT 长度 `on`（默认）| `off`
 
-#### 依赖关系
-
-要启用此参数，请清除**从输入维度继承 FFT 长度**复选框。
-
-### **当 FFT 长度小于输入长度时对输入数据进行绕回处理** — 对输入进行绕回或截断处理 `on` (默认) | `off`
-
-选择根据 FFT 长度对输入进行绕回或截断处理。如果选中此参数，则当 FFT 长度短于输入长度时，在 FFT 运算前会发生模长度数据绕回。如果清除此复选框，则会在 FFT 运算前将输入数据截断至 FFT 长度。
+选择以从输入维度继承 FFT 长度。选中此复选框时，输入长度必须是 2 的幂。
 
 #### 依赖关系
 
-要启用此参数，请清除**从输入维度继承 FFT 长度**复选框。
+当您不选中此复选框时，**FFT length** 参数将变为可用，以指定长度。
+
+### **FFT length** — FFT 长度 `64`（默认）| 整数
+
+将 FFT 长度指定为大于或等于 2 的整数。
+
+当您将 **FFT implementation** 参数设置为 `Radix-2`，或选中 **Output in bit-reversed order** 复选框时，此值必须是 2 的幂。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Inherit FFT length from input dimensions** 复选框。
+
+### **Wrap input data when FFT length is shorter than input length** — 环绕或截断输入 `on`（默认）| `off`
+
+根据 FFT 长度选择环绕或截断输入。如果选中此参数，当 FFT 长度短于输入长度时，在 FFT 操作之前会进行模长数据环绕。如果清除此复选框，则在 FFT 操作之前会将输入数据截断为 FFT 长度。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Inherit FFT length from input dimensions** 复选框。
 
 ### 数据类型
 
-### **舍入模式** — 舍入方法 **向下** (默认) | **向上** | **收敛** | **最邻近值** | **舍入** | **最简** | **零**
+### **Rounding mode** — 舍入方法 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
-为定点运算选择舍入模式。
-
-#### 限制
-
-正弦表值不遵守此参数；相反，它们始终舍入到**最邻近值**。
-
-当满足以下所有条件时，**舍入模式**参数对数值结果无影响：
-
-- **乘积输出**数据类型为**继承:通过内部规则继承**。
-- **累加器**数据类型为**继承:通过内部规则继承**。
-
-使用这些数据类型设置时，模块将以全精度模式运行。
-
-### **对整数溢出进行饱和处理** — 对整数溢出进行饱和处理 `off` (默认) | `on`
-
-选中此参数时，模块会对其定点运算的结果进行饱和处理。清除此参数时，模块会对其定点运算的结果进行绕回处理。有关 `saturate` 和 `wrap` 的详细信息，请参阅定点运算的溢出模式。
+选择定点运算的舍入模式。
 
 #### 限制
 
-当满足以下所有条件时，**对整数溢出进行饱和处理**参数对数值结果无影响：
+正弦表值不遵循此参数；相反，它们始终舍入到 `Nearest`。
 
-- **乘积输出**数据类型为**继承:通过内部规则继承**。
-- **累加器**数据类型为**继承:通过内部规则继承**。
+当满足以下所有条件时，**Rounding mode** 参数对数值结果没有影响：
 
-使用这些数据类型设置时，模块将以全精度模式运行。
+- **Product output** 数据类型为 `Inherit: Inherit via internal rule`。
+- **Accumulator** 数据类型为 `Inherit: Inherit via internal rule`。
 
-### **正弦表** — 正弦表值的数据类型 **继承:与输入的字长相同** (默认) | **fixdt(1,16)**
+使用这些数据类型设置时，模块以全精度模式运行。
 
-选择如何指定正弦表值的字长。正弦表值的小数长度始终等于字长减一。您可将此参数设置为：
+### **Saturate on integer overflow** — 整数溢出时饱和 `off`（默认）| `on`
 
-- 继承数据类型的规则，例如，**继承:与输入的字长相同**
-- 计算结果为有效数据类型的表达式，例如，`fixdt(1,16)`
-
-点击**显示数据类型助手**按钮  以显示**数据类型助手**，它可帮助您设置**正弦表**参数。
-
-有关详细信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
+选中此参数时，模块对其定点运算的结果进行饱和处理。清除此参数时，模块对其定点运算的结果进行环绕处理。有关 `saturate` 和 `wrap` 的详细信息，请参阅定点运算的溢出模式。
 
 #### 限制
 
-正弦表值不遵守**舍入模式**和**对整数溢出进行饱和处理**参数；相反，它们始终经过饱和处理并舍入到**最邻近值**。
+当满足以下所有条件时，**Saturate on integer overflow** 参数对数值结果没有影响：
 
-### **乘积输出** — 乘积输出数据类型 **继承:通过内部规则继承** (默认) | **继承:与输入相同** | **fixdt(1,16,0)**
+- **Product output** 数据类型为 `Inherit: Inherit via internal rule`。
+- **Accumulator** 数据类型为 `Inherit: Inherit via internal rule`。
 
-指定乘积输出数据类型。有关描述此模块中使用的乘积输出数据类型的图示，请参阅定点数据类型和Multiplication Data Types。您可将此参数设置为：
+使用这些数据类型设置时，模块以全精度模式运行。
 
-- 继承数据类型的规则，例如，**继承:通过内部规则继承**。有关此规则的详细信息，请参阅Inherit via Internal Rule。
-- 计算结果为有效数据类型的表达式，例如，`fixdt(1,16,0)`
+### **Sine table** — 正弦表值的数据类型 `Inherit: Same word length as input`（默认）| `fixdt(1,16)`
 
-点击**显示数据类型助手**按钮  以显示**数据类型助手**，它可帮助您设置**乘积输出**参数。
+选择如何指定正弦表值的字长。正弦表值的小数长度始终等于字长减一。您可以将此参数设置为：
 
-有关详细信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
+- 继承数据类型的规则，例如 `Inherit: Same word length as input`
+- 求值为有效数据类型的表达式，例如 `fixdt(1,16)`
 
-### **累加器** — 累加器数据类型 **继承:通过内部规则继承** (默认) | **继承:与输入相同** | **继承:与乘积输出相同** | **fixdt(1,16,0)**
+单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置 **Sine table** 参数。
 
-指定累加器数据类型。有关描述此模块中使用的累加器数据类型的图示，请参阅定点数据类型。您可将此参数设置为：
+有关更多信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
-- 继承数据类型的规则，例如，**继承:通过内部规则继承**。有关此规则的详细信息，请参阅Inherit via Internal Rule。
-- 计算结果为有效数据类型的表达式，例如，`fixdt(1,16,0)`
+#### 限制
 
-点击**显示数据类型助手**按钮  以显示**数据类型助手**，它可帮助您设置**累加器**参数。
+正弦表值不遵循 **Rounding mode** 和 **Saturate on integer overflow** 参数；相反，它们始终饱和并舍入到 `Nearest`。
 
-有关详细信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
+### **Product output** — 乘积输出数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Same as input` | `fixdt(1,16,0)`
 
-### **输出** — 输出数据类型 **继承:通过内部规则继承** (默认) | **继承:与输入相同** | **fixdt(1,16,0)**
+指定乘积输出数据类型。有关说明此模块中乘积输出数据类型使用的图示，请参阅定点数据类型和乘法数据类型。您可以将此参数设置为：
 
-指定输出数据类型。有关描述此模块中使用的输出数据类型的图示，请参阅定点数据类型。您可将此参数设置为：
+- 继承数据类型的规则，例如 `Inherit: Inherit via internal rule`。有关此规则的更多信息，请参阅 Inherit via Internal Rule。
+- 求值为有效数据类型的表达式，例如 `fixdt(1,16,0)`
 
-- 继承数据类型的规则，例如，**继承:通过内部规则继承**。
+单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置 **Product output** 参数。
 
-  当您选择**继承:通过内部规则继承**时，模块会自动计算输出字长和小数长度。模块用于计算理想输出字长和小数长度的方程取决于**将输出除以 FFT 长度**复选框的设置。
+有关更多信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
-  - 当您选中**将输出除以 FFT 长度**复选框时，理想输出字长和小数长度与输入字长和小数长度相同。
-  - 当您清除**将输出除以 FFT 长度**复选框时，模块根据以下方程计算理想输出字长和小数长度：
+### **Accumulator** — 累加器数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Same as input` | `Inherit: Same as product output` | `fixdt(1,16,0)`
+
+指定累加器数据类型。有关说明此模块中累加器数据类型使用的图示，请参阅定点数据类型。您可以将此参数设置为：
+
+- 继承数据类型的规则，例如 `Inherit: Inherit via internal rule`。有关此规则的更多信息，请参阅 Inherit via Internal Rule。
+- 求值为有效数据类型的表达式，例如 `fixdt(1,16,0)`
+
+单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置 **Accumulator** 参数。
+
+有关更多信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
+
+### **Output** — 输出数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Same as input` | `fixdt(1,16,0)`
+
+指定输出数据类型。有关说明此模块中输出数据类型使用的图示，请参阅定点数据类型。您可以将此参数设置为：
+
+- 继承数据类型的规则，例如 `Inherit: Inherit via internal rule`。
+
+  当您选择 `Inherit: Inherit via internal rule` 时，模块会自动计算输出字长和小数长度。模块用于计算理想输出字长和小数长度的方程取决于 **Divide output by FFT length** 复选框的设置。
+
+  - 当您选中 **Divide output by FFT length** 复选框时，理想的输出字长和小数长度与输入字长和小数长度相同。
+  - 当您清除 **Divide output by FFT length** 复选框时，模块根据以下方程计算理想的输出字长和小数长度：
 
     WLideal output=WLinput+floor(log2(FFT length−1))+1
 
     FLideal output=FLinput
 
-  然后，内部规则使用这些理想结果选择适合您硬件的字长和小数长度。有关详细信息，请参阅Inherit via Internal Rule。
-- 计算结果为有效数据类型的表达式，例如，`fixdt(1,16,0)`
+  使用这些理想结果，内部规则随后会选择适合您硬件的字长和小数长度。有关更多信息，请参阅 Inherit via Internal Rule。
+- 求值为有效数据类型的表达式，例如 `fixdt(1,16,0)`
 
-点击**显示数据类型助手**按钮  以显示**数据类型助手**，它可帮助您设置**输出**参数。
+单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置 **Output** 参数。
 
-有关详细信息，请参阅控制信号的数据类型 (Simulink)。
+有关更多信息，请参阅 Control Data Types of Signals (Simulink)。
 
-### **输出最小值** — 模块应输出的最小值 `[]` (默认) | 标量
+### **Output Minimum** — 模块应输出的最小值 `[]`（默认）| 标量
 
 指定模块应输出的最小值。默认值为 `[]`（未指定）。Simulink 软件使用此值执行：
 
-- 仿真范围检查（请参阅指定信号范围 (Simulink)）
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink)）
 - 定点数据类型的自动定标
 
-### **输出最大值** — 模块应输出的最大值 `[]` (默认) | 标量
+### **Output Maximum** — 模块应输出的最大值 `[]`（默认）| 标量
 
 指定模块应输出的最大值。默认值为 `[]`（未指定）。Simulink 软件使用此值执行：
 
-- 仿真范围检查（请参阅指定信号范围 (Simulink)）
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink)）
 - 定点数据类型的自动定标
 
-### **锁定数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 `off` (默认) | `on`
+### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
-选择此参数可防止定点工具覆盖您在“模块”对话框中指定的数据类型。
+选中此参数以防止定点工具覆盖您在模块对话框中指定的数据类型。
 
 ## 所属库
 
@@ -213,47 +216,47 @@ DSP System Toolbox / Transforms
 |  |  |
 | --- | --- |
 | **数据类型** | `double` | `fixed point` | `integer` | `single` |
-| **直接馈通** | `否` |
-| **多维信号** | `是` |
-| **可变大小信号** | `是a` |
-| **过零检测** | `否` |
+| **直接馈通** | `no` |
+| **多维信号** | `yes` |
+| **可变大小信号** | `yesa` |
+| **过零检测** | `no` |
 |  |  |
 | --- | --- |
-| a 仅当选中 Inherit FFT length from input dimensions 复选框时，才支持可变大小信号。 | |
+| a 仅当选中 Inherit FFT length from input dimensions 复选框时，才支持可变大小信号。 | |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-用法说明和限制：
+使用说明和限制：
 
-- 当以下条件适用时，从此模块生成的可执行文件依赖 MATLAB 附带的预置动态库文件（`.dll` 文件）：
+- 当以下条件适用时，从此模块生成的可执行文件依赖于 MATLAB 附带的预构建动态库文件（`.dll` 文件）：
 
-  - **FFT 实现**设置为 **FFTW**。
-  - **从输入维度继承 FFT 长度**处于清除状态，且 **FFT 长度**设置为非 2 的幂的值。
+  - **FFT implementation** 设置为 `FFTW`。
+  - **Inherit FFT length from input dimensions** 已清除，并且 **FFT length** 设置为非 2 的幂的值。
 
-  使用 `packNGo` 函数将从此模块生成的代码及所有相关文件打包到一个压缩 zip 文件中。使用此 zip 文件，您可以将工程转移到另一个未安装 MATLAB 的开发环境中并解包和重新编译它。有关详细信息，请参阅How To Run a Generated Executable Outside MATLAB。
+  使用 `packNGo` 函数将此模块生成的代码及所有相关文件打包到一个压缩 zip 文件中。使用此 zip 文件，您可以在未安装 MATLAB 的另一个开发环境中重新定位、解包并重建您的项目。有关更多详细信息，请参阅 How To Run a Generated Executable Outside MATLAB。
 - 当 FFT 长度为 2 的幂时，您可以从此模块生成独立的 C 和 C++ 代码。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2006a 之前引入**
 
 ## 描述
 
-输入的快速傅里叶变换 (FFT)
+输入的快速傅里叶变换（FFT）
 
-FFT 模块计算一个 *N* 维输入数组 *u* 的第一个维度上的快速傅里叶变换 (FFT)。该模块使用两种可能的 FFT 实现之一。您可以选择基于 FFTW 库的实现或基于一组基数-2 算法的实现。要允许该模块选择实现，您可以选择**自动**。有关 FFT 实现的详细信息，请参阅算法。
+FFT 模块沿 *N* 维输入数组 *u* 的第一个维度计算快速傅里叶变换（FFT）。该模块使用两种可能的 FFT 实现之一。您可以选择基于 FFTW 库的实现或基于一组 Radix-2 算法的实现。要允许模块选择实现，您可以选择 `Auto`。有关 FFT 实现的更多信息，请参阅算法。
 
-如果用户指定的 FFT 长度不等于 *P*，则在执行 FFT 运算之前会发生零填充或截断，或模长度数据绕回。对于 *P* ≤ *M* 的 FFT：
+对于不等于 *P* 的用户指定 FFT 长度，在 FFT 操作之前会进行零填充或截断，或模长数据环绕。对于 *P* ≤ *M* 的 FFT：
 
 ```
 y = fft(u,M) % P ≤ M
 ```
 
-绕回：
+环绕：
 
 ```
 y(:,L) = fft(datawrap(u(:,L),M)) % P > M; L = 1,...,N
@@ -267,6 +270,6 @@ y (:,L) = fft(u,M) % P > M; L = 1,...,N
 
 **提示**
 
-当输入长度 *P* 大于 FFT 长度 *M* 时，您可能会在 FFT 输出中看到幅值增大。发生这些幅值增大是因为 FFT 模块使用模 *M* 数据绕回来保留所有可用的输入采样。
+当输入长度 *P* 大于 FFT 长度 *M* 时，您可能会看到 FFT 输出中的幅度增加。这些幅度增加是因为 FFT 模块使用模 *M* 数据环绕来保留所有可用的输入样本。
 
-为避免此类幅值增大，您可以将输入采样的长度 *P* 截断至 FFT 长度 *M*。为此，请在您的模型中的 FFT 模块前放置一个 Pad 模块。
+为避免此类幅度增加，您可以将输入样本的长度 *P* 截断为 FFT 长度 *M*。为此，请在模型中将 Pad 模块放在 FFT 模块之前。

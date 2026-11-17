@@ -9,7 +9,7 @@ official_category: 'Discrete'
 documentation_page: 'resettabledelay'
 documentation_source_path: '../simulink/slref/resettabledelay.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Resettable Delay
@@ -20,308 +20,308 @@ chinese_source: official
 
 ### **u** — 数据输入信号 标量 | 向量
 
-根据参数设置延迟的输入数据信号。
+根据参数设置进行延迟的输入数据信号。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
 
 ### **d** — 延迟长度 标量
 
-指定为从输入端口继承的延迟长度。当您对**延迟长度:源**参数选择**输入端口**时启用。
+延迟长度，指定为从输入端口继承。当您将 **Delay length: Source** 参数选择为 `Input port` 时启用。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ### **Enable** — 外部使能信号 标量
 
-使能信号，用于启用或禁用模块的执行。要创建此端口，请选择**显示使能端口**参数。
+使能信号，用于启用或禁用模块的执行。要创建此端口，请选择 **Show enable port** 参数。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 
-### **External reset** — 外部重置信号 标量
+### **External reset** — 外部复位信号 标量
 
-将模块的执行重置为初始状态的外部信号。要创建此端口，请选择**外部重置**参数。
+外部信号，用于将模块的执行复位到初始条件。要创建此端口，请选择 **External reset** 参数。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 
 ### **x0** — 初始条件 标量 | 向量
 
-指定为从输入端口继承的初始条件。当您对**初始条件:源**参数选择**输入端口**时启用。
+初始条件，指定为从输入端口继承。当您将 **Initial Condition: Source** 参数选择为 `Input port` 时启用。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
 ### **Port\_1** — 输出信号 标量 | 向量
 
-输出信号，它是按参数**延迟长度**指定的时间长度延迟后的输入信号。输出信号的初始值取决于几个条件。请参阅初始模块输出。
+输出信号，即输入信号延迟由 **Delay length** 参数指定的时间长度。输出信号的初始值取决于若干条件。请参阅初始模块输出。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 
 ## 参数
 
-### 常设
+### 主要
 
-### **延迟长度** — 延迟长度 **对话框** (默认) | **输入端口**
+### **Delay length** — 延迟长度 `Dialog`（默认）| `Input port`
 
-指定是直接在对话框中输入延迟长度（固定延迟），还是从输入端口继承（可变延迟）。
+指定是直接在对话框上输入延迟长度（固定延迟），还是从输入端口继承延迟（可变延迟）。
 
-- 如果将**源**设置为**对话框**，请在**值**下面的编辑框中输入延迟长度。
-- 如果将**源**设置为**输入端口**，请验证上游信号为 `d` 输入端口提供了延迟长度。您还可以通过指定参数**上限**来指定其最大值。
+- 如果将 **Source** 设置为 `Dialog`，请在 **Value** 下的编辑字段中输入延迟长度。
+- 如果将 **Source** 设置为 `Input port`，请验证上游信号为 `d` 输入端口提供延迟长度。您还可以通过指定 **Upper limit** 参数来指定其最大值。
 
-将标量延迟长度指定为非负实数整数。如果对话框中的值（固定延迟）超出范围或者为非整数，将返回错误。如果来自输入端口的值（可变延迟）超出范围，将被转换为位于范围之内的值。如果来自输入端口的值（可变延迟）为非整数，将截断为整数。
+将标量延迟长度指定为实数非负整数。对话框中的超出范围或非整数值（固定延迟）会返回错误。来自输入端口的超出范围值（可变延迟）会将其强制转换到范围内。来自输入端口的非整数值（可变延迟）会将其截断为整数。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`DelayLengthSource` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'Dialog'` | `'Input port'` | |
 | **默认值**：`'Dialog'` |
 
 |  |
 | --- |
 | **模块参数**：`DelayLength` |
-| **类型**：字符向量 |
-| **值**：标量 |
+| **类型**：character vector |
+| **值**：scalar |
 | **默认值**：`'2'` |
 
 |  |
 | --- |
 | **模块参数**：`DelayLengthUpperLimit` |
-| **类型**：字符向量 |
-| **值**：标量 |
+| **类型**：character vector |
+| **值**：scalar |
 | **默认值**：`'100'` |
 
-### **初始条件** — 初始条件 **输入端口** (默认) | **对话框**
+### **Initial condition** — 初始条件 `Input port`（默认）| `Dialog`
 
-指定是直接在对话框中输入初始条件，还是从输入端口继承初始条件。
+指定是直接在对话框上输入初始条件，还是从输入端口继承初始条件。
 
-- 如果将**源**设置为**对话框**，请在**值**下面的编辑框中输入初始条件。
-- 如果将**源**设置为**输入端口**，请验证上游信号为 `x0` 输入端口提供了初始条件。
+- 如果将 **Source** 设置为 `Dialog`，请在 **Value** 下的编辑字段中输入初始条件。
+- 如果将 **Source** 设置为 `Input port`，请验证上游信号为 `x0` 输入端口提供初始条件。
 
-Simulink® 使用舍入到最邻近值运算和饱和处理，将**初始条件**的数据类型脱机转换为输入信号 `u` 的数据类型。
+Simulink® 使用舍入到最近操作和饱和，离线将 **Initial condition** 的数据类型转换为输入信号 `u` 的数据类型。
 
 **注意**
 
-如果选中了**状态属性**窗格上的**状态名称必须解析为 Simulink 信号对象**，模块会将信号对象的初始值复制到**初始条件**参数中。但是，如果**初始条件**的源是**输入端口**，模块将忽略信号对象的初始值。
+当在 **State Attributes** 窗格上选择 **State name must resolve to Simulink signal object** 时，模块会将信号对象的初始值复制到 **Initial condition** 参数。但是，当 **Initial condition** 的源为 `Input port` 时，模块会忽略信号对象的初始值。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`InitialConditionSource` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'Dialog'` | `'Input port'` | |
 | **默认值**：`'Input Port'` |
 
 |  |
 | --- |
 | **模块参数**：`InitialCondition` |
-| **类型**：字符向量 |
-| **值**：标量 |
+| **类型**：character vector |
+| **值**：scalar |
 | **默认值**：`''` |
 
-### **输入处理** — 指定基于采样或基于帧的处理 **元素作为通道(基于采样)** (默认) | **列作为通道(基于帧)**
+### **Input processing** — 指定基于采样或基于帧的处理 `Elements as channels (sample based)`（默认）| `Columns as channels (frame based)`
 
-指定模块是执行基于采样还是基于帧的处理：
+指定模块执行基于采样还是基于帧的处理：
 
-- **列作为通道(基于帧)** - 将输入信号的每一列视为一个单独的通道（基于帧的处理）。
+- `Columns as channels (frame based)` — 将输入的每一列视为单独通道（基于帧的处理）。
 
   **注意**
 
-  基于帧的处理需要具有 DSP System Toolbox™ 许可证。
+  基于帧的处理需要 DSP System Toolbox™ 许可证。
 
-  有关详细信息，请参阅Sample- and Frame-Based Concepts (DSP System Toolbox)。
-- **元素作为通道(基于采样)** - 将输入信号的每个元素视为一个单独的通道（基于采样的处理）。
+  有关详细信息，请参阅 Sample- and Frame-Based Concepts (DSP System Toolbox)。
+- `Elements as channels (sample based)` — 将输入的每个元素视为单独通道（基于采样的处理）。
 
-可以使用**输入处理**指定模块是执行基于采样的处理还是基于帧的处理。有关这两种处理模式的详细信息，请参阅Sample- and Frame-Based Concepts (DSP System Toolbox)。
+使用 **Input processing** 指定模块执行基于采样还是基于帧的处理。有关这两种处理模式的详细信息，请参阅 Sample- and Frame-Based Concepts (DSP System Toolbox)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`InputProcessing` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'Columns as channels (frame based)'` | `'Elements as channels (sample based)'` |
 | **默认值**：`'Elements as channels (sample based)'` |
 
-### **使用环形缓冲区保存状态** — 存储状态的环形缓冲区 `off` (默认) | `on`
+### **Use circular buffer for state** — 用于存储状态的循环缓冲区 `off`（默认）| `on`
 
-选择在仿真和代码生成时使用环形缓冲区来存储状态。在其他情况下，则使用数组缓冲区来存储状态。
+选择以在仿真和代码生成中使用循环缓冲区存储状态。否则，数组缓冲区存储状态。
 
-当延迟长度值很大时，使用环形缓冲区可以提高执行速度。对于数组缓冲区，复制操作的数量随着延迟长度的增加而增加。对于环形缓冲区，不管延迟长度如何增加，复制操作的数量保持不变。
+当延迟长度较大时，使用循环缓冲区可以提高执行速度。对于数组缓冲区，复制操作的数量会随着延迟长度的增加而增加。对于循环缓冲区，复制操作的数量在延迟长度增加时保持不变。
 
-如果符合下列任一条件，都应使用数组缓冲区来存储状态，因为环形缓冲区不会提高执行速度：
+如果以下条件之一为真，则始终使用数组缓冲区存储状态，因为循环缓冲区不会提高执行速度：
 
 - 对于基于采样的信号，延迟长度为 1。
 - 对于基于帧的信号，延迟长度不大于帧大小。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`UseCircularBuffer` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
 
-### **防止直接馈通** — 防止直接馈通 `off` (默认) | `on`
+### **Prevent direct feedthrough** — 防止直接馈通 `off`（默认）| `on`
 
-对于**输入处理**模式，选择此项可将延迟长度从零增加到下限值：
+选择以将延迟长度从零增加到 **Input processing** 模式的下限：
 
 - 对于基于采样的信号，将最小延迟长度增加到 1。
-- 对于基于帧的信号，将最小延迟长度增加到帧的长度。
+- 对于基于帧的信号，将最小延迟长度增加到帧长度。
 
-选中此复选框可防止从输入端口 `u` 到输出端口的直接馈通。但是，此复选框无法阻止从初始条件端口 `x0` 到输出端口的直接馈通。
+选择此复选框可防止从输入端口 `u` 到输出端口的直接馈通。但是，此复选框无法防止从初始条件端口 `x0` 到输出端口的直接馈通。
 
 #### 依赖关系
 
-要启用此参数，请将**延迟长度:源**设置为**输入端口**时，此复选框可用。
+要启用此参数，请将 **Delay length: Source** 设置为 `Input port`。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`PreventDirectFeedthrough` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
 
-### **在生成代码中去除延迟长度检查** — 删除延迟长度超出范围检查 `off` (默认) | `on`
+### **Remove delay length check in generated code** — 移除延迟长度超出范围检查 `off`（默认）| `on`
 
-选择此选项可删除用来检查超出范围的延迟长度的代码。
+选择以移除检查延迟长度是否超出范围的代码。
 
 | 复选框 | 结果 | 何时使用 |
 | --- | --- | --- |
-| 选中 | 生成的代码中未包含用来检查超出范围的延迟长度的条件语句。 | 提高代码效率 |
-| 清除 | 生成的代码中包含检查超范围延迟长度的条件语句。 | 适用于安全性至关重要的应用领域 |
+| 选中 | 生成的代码不包含用于检查延迟长度是否超出范围的条件语句。 | 为了提高代码效率 |
+| 清除 | 生成的代码包含用于检查延迟长度是否超出范围的条件语句。 | 用于安全关键型应用 |
 
 #### 依赖关系
 
-要启用此参数，请将**延迟长度:源**设置为**输入端口**时，此复选框可用。
+要启用此参数，请将 **Delay length: Source** 设置为 `Input port`。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`RemoveDelayLengthCheckInGeneratedCode` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
 
-### **延迟长度的诊断** — 延迟长度的诊断检查 **无** (默认) | **警告** | **错误**
+### **Diagnostic for delay length** — 延迟长度的诊断检查 `None`（默认）| `Warning` | `Error`
 
-指定当输入 `d` 小于下限或大于**延迟长度:上限**时是否生成警告或错误。下限取决于**防止直接馈通**的设置。
+指定当输入 `d` 小于下限或大于 **Delay length: Upper limit** 时是否生成警告或错误。下限取决于 **Prevent direct feedthrough** 的设置。
 
-- 如果清除此复选框，则下限为零。
-- 如果选中此复选框，对于基于采样的信号，下限为 1；对于基于帧的信号，下限为帧的长度。
+- 如果清除该复选框，则下限为零。
+- 如果选中该复选框，则对于基于采样的信号，下限为 1；对于基于帧的信号，下限为帧长度。
 
 诊断选项包括：
 
-- `None` - Simulink 软件不执行任何操作。
-- `Warning` - Simulink 软件显示警告并继续进行仿真。
-- `Error` - Simulink 软件终止仿真并显示错误。
+- `None` — Simulink 软件不采取任何操作。
+- `Warning` — Simulink 软件显示警告并继续仿真。
+- `Error` — Simulink 软件终止仿真并显示错误。
 
 #### 依赖关系
 
-要启用此参数，请将**延迟长度:源**设置为**输入端口**时，此复选框可用。
+要启用此参数，请将 **Delay length: Source** 设置为 `Input port`。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`DiagnosticForDelayLength` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'None'` | `'Warning'` | `'Error'` |
 | **默认值**：`'None'` |
 
-### **显示使能端口** — 创建使能端口 `off` (默认) | `on`
+### **Show enable port** — 创建使能端口 `off`（默认）| `on`
 
-此选项使用使能端口来控制此模块的执行。当此端口的输入非零时，模块被视为启用；当输入为 `0` 时，模块被视为禁用。输入的值在执行模块的同一时间步进行检查。
+选择以使用使能端口控制此模块的执行。当此端口的输入为非零时，模块被视为已启用；当输入为 `0` 时，模块被视为已禁用。输入值在与模块执行相同的时间步进行检查。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`ShowEnablePort` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **类型**：character vector |
+| **值**：`'off' | 'on'` |
+| **默认值**：`'off'` |
 
-### **外部重置** — 外部状态重置 **上升沿** (默认) | **无** | **下降沿** | **任一沿** | **电平** | **电平保持**
+### **External reset** — 外部状态复位 `Rising`（默认）| `None` | `Falling` | `Either` | `Level` | `Level hold`
 
-指定用于将状态重置为初始条件的触发事件。
+指定用于将状态复位到初始条件的触发事件。
 
-| 重置模式 | 行为 |
+| 复位模式 | 行为 |
 | --- | --- |
-| **无** | 不重置。 |
-| **上升沿** | 基于上升沿重置。 |
-| **下降沿** | 基于下降沿重置。 |
-| **任一沿** | 基于上升或下降沿重置。 |
-| **电平** | 在下列任一情况下重置：  - 当重置信号在当前时间步为非零值时 - 当重置信号值从上一时间步的非零更改为当前时间步的零时 |
-| **电平保持** | 当重置信号在当前时间步为非零值时重置 |
+| `None` | 不复位。 |
+| `Rising` | 在上升沿复位。 |
+| `Falling` | 在下降沿复位。 |
+| `Either` | 在上升沿或下降沿复位。 |
+| `Level` | 在以下任一情况下复位：  - 当复位信号在当前时间步为非零时 - 当复位信号值从前一时间步的非零变为当前时间步的零时 |
+| `Level hold` | 当复位信号在当前时间步为非零时复位 |
 
-重置信号必须是类型为 `single`、`double`、`boolean` 或 `integer` 的标量。除了 `ufix1` 之外，不支持定点数据类型。
+复位信号必须是 `single`、`double`、`boolean` 或 `integer` 类型的标量。不支持定点数据类型，`ufix1` 除外。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`ExternalReset` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'None'` | `'Rising'` | `'Falling'` | `'Either'` | `'Level'` | `'Level hold'` |
 | **默认值**：`'Rising'` |
 
-### **采样时间(-1 表示继承)** — 采样时间命中点之间的离散间隔 `-1` (默认) | `scalar`
+### **Sample time (-1 for inherited)** — 采样时间命中之间的离散间隔 `-1`（默认）| `scalar`
 
-指定采样时间间隔。要继承采样时间，请将此参数设置为 `-1`。此模块支持离散采样时间，但不支持连续采样时间。
+指定采样之间的时间间隔。要继承采样时间，请将此参数设置为 `-1`。此模块支持离散采样时间，但不支持连续采样时间。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`SampleTime` |
-| **类型**：字符向量 |
-| **值**：实数标量 |
+| **类型**：character vector |
+| **Value**: real scalar |
 | **默认值**：`'-1'` |
 
 ### 状态属性
 
-### **状态名称** — 模块状态的唯一名称 `''` (默认) | 字母数字字符串
+### **State name** — 模块状态的唯一名称 `''`（默认）| 字母数字字符串
 
-使用此参数为模块状态指定唯一名称。默认值为 `' '`。如果此字段为空，则表示未指定任何名称。使用此参数时，请记住以下注意事项：
+使用此参数为模块状态分配唯一名称。默认值为 `' '`。当此字段为空时，不分配名称。使用此参数时，请记住以下注意事项：
 
-- 有效的标识符以字母或下划线字符开始，后跟字母数字或下划线字符。
+- 有效标识符以字母或下划线字符开头，后跟字母数字或下划线字符。
 - 状态名称仅适用于所选模块。
 
-当您点击**应用**时，此参数将启用**状态名称必须解析为 Simulink 信号对象**。
+当您点击 **Apply** 时，此参数会启用 **State name must resolve to Simulink signal object**。
 
-有关详细信息，请参阅模型接口元素的 C 数据代码接口配置 (Simulink Coder)。
+有关详细信息，请参阅 C Data Code Interface Configuration for Model Interface Elements (Simulink Coder)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`StateName` |
-| **类型：**字符向量 |
-| **值：**唯一名称 |
-| **默认值：**`''` |
+| **类型**：character vector |
+| **值**：unique name |
+| **默认值**：`''` |
 
-### **状态名称必须解析为 Simulink 信号对象** — 要求将状态名称解析为信号对象 `off` (默认) | `on`
+### **State name must resolve to Simulink signal object** — 要求状态名称解析为信号对象 `off`（默认）| `on`
 
-选中此复选框会要求将状态名称解析为 Simulink 信号对象。
+选择此复选框以要求状态名称解析为 Simulink 信号对象。
 
 #### 依赖关系
 
-要启用此参数，请为**状态名称**指定值。仅当将模型配置参数**信号解析**设置为除**无**以外的值时，才会显示此参数。
+要启用此参数，请为 **State name** 指定一个值。仅当您将模型配置参数 **Signal resolution** 设置为 `None` 以外的值时，此参数才会出现。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`StateMustResolveToSignalObject` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **类型**：character vector |
+| **值**：`'off' | 'on'` |
+| **默认值**：`'off'` |
 
 ## 所属库
 
@@ -332,30 +332,30 @@ Simulink / Discrete HDL Coder / Discrete
 |  |  |
 | --- | --- |
 | **数据类型** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` | `string` |
-| **直接馈通** | `是` |
-| **多维信号** | `是` |
-| **可变大小信号** | `是` |
-| **过零检测** | `否` |
+| **直接馈通** | `yes` |
+| **多维信号** | `yes` |
+| **可变大小信号** | `yes` |
+| **过零检测** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-- 考虑使用模型离散化器将连续模块映射到以下支持代码生成的离散等效模块。从模型中，在 **App** 选项卡的**控制系统**下，点击**模型离散化器**。
-- 生成的代码在特定条件下依赖于 `memcpy` 或 `memset` 函数 (`string.h`)。
+- 考虑使用 Model Discretizer 将这些连续模块映射为支持代码生成的离散等效模块。在模型中，在 **Apps** 选项卡的 **Control Systems** 下，点击 **Model Discretizer**。
+- 生成的代码在某些条件下依赖 `memcpy` 或 `memset` 函数（`string.h`）。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-有关 HDL 代码生成的信息，请参阅第 Delay 页上的 HDL 代码生成 部分。
+有关 HDL 代码生成的信息，请参阅 Delay 页面上的 HDL Code Generation 部分。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2012b 中推出**
+**在 R2012b 中引入**
 
 ## 描述
 
-按可变采样周期延迟输入信号，并用外部信号重置
+通过可变采样周期延迟输入信号，并使用外部信号复位
 
-Resettable Delay 模块是 Delay 模块的变体，默认情况下，初始条件的来源设置为 `Input port`，外部重置算法设置为 `Rising`。
+Resettable Delay 模块是 Delay 模块的变体，默认情况下，其初始条件源设置为 `Input port`，外部复位算法设置为 `Rising`。

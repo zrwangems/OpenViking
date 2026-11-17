@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: '2-D IDCT'
-family: 'transforms'
+family: 'vision'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b
@@ -20,23 +20,22 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 输入数据矩阵 | 向量
 
-将输入数据指定为强度值的向量或矩阵。输入数据中的元素数必须为 2 的幂。
+将输入数据指定为强度值的向量或矩阵。输入数据中的元素数量必须是 2 的幂。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ### 输出
 
 ### **Port\_1** — 输出数据矩阵 | 向量
 
-输出数据包含输入的 2-D IDCT，以矩阵或向量形式返回。输出的大小和数据类型与输入相同。
+包含输入的 2-D IDCT 的输出数据，以矩阵或向量形式返回。输出的大小和数据类型与输入相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 
 ## 参数
 
-**主要**
+**主**
 
-### **正弦和余弦计算** — 模块如何计算正弦和余弦项 `Table lookup`（默认） | `Trigonometric fcn`
+### **Sine and cosine computation** — 模块如何计算正弦和余弦项 `Table lookup`（默认）| `Trigonometric fcn`
 
 指定模块如何计算正弦和余弦项以求得 2-D IDCT。
 
@@ -47,7 +46,7 @@ chinese_source: worker-translation
 
 有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
 
-### **锁定数据类型设置，防止定点工具更改** — 数据类型覆盖 `off`（默认） | `on`
+### **Lock data type settings against change by the fixed-point tools** — 数据类型覆盖 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
 
@@ -69,14 +68,14 @@ Computer Vision Toolbox / Transforms
 
 ## 版本历史
 
-**在 R2006a 之前引入**
+**在 R2006a 之前推出**
 
 ## 描述
 
-计算 2-D 离散余弦逆变换 (IDCT)
+计算 2-D 逆离散余弦变换（IDCT）
 
-2-D IDCT 模块计算输入信号的二维离散余弦逆变换。输入信号的二维 IDCT 方程为：
+2-D IDCT 模块计算输入信号的二维逆离散余弦变换。输入信号的二维 IDCT 方程为：
 
 f(x,y)=2MN∑m=0M−1∑n=0N−1C(m)C(n)F(m,n)cos(2x+1)mπ2Mcos(2y+1)nπ2N,
 
-其中 *F*(*m*,*n*) 是信号 *f*(*x*,*y*) 的离散余弦变换 (DCT)。如果 m=n=0，则 C(m)=C(n)=1/2。否则 C(m)=C(n)=1。
+其中 *F*(*m*,*n*) 是信号 *f*(*x*,*y*) 的离散余弦变换（DCT）。如果 m=n=0，则 C(m)=C(n)=1/2。否则 C(m)=C(n)=1。

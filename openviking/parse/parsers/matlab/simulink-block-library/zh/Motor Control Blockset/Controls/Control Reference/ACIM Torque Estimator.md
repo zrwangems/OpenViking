@@ -9,7 +9,7 @@ official_category: 'Controls / Control Reference'
 documentation_page: 'acimtorqueestimator'
 documentation_source_path: 'ref/acimtorqueestimator.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # ACIM Torque Estimator
@@ -18,106 +18,187 @@ chinese_source: official
 
 ### 输入
 
-### **Isd** — D 轴定子电流 标量
+### **Isd** — *d* 轴定子电流标量
 
-沿旋转 *dq* 参考系的 *d* 轴的定子电流。
+沿旋转 *dq* 参考坐标系的 *d* 轴的定子电流。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Isq** — Q 轴定子电流 标量
+### **Isq** — *q* 轴定子电流标量
 
-沿旋转 *dq* 参考系的 *q* 轴的定子电流。
+沿旋转 *dq* 参考坐标系的 *q* 轴的定子电流。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **ωm** — 转子的机械转速 标量
+### **ωm** — 转子机械速度标量
 
-转子的机械转速。
+转子的机械速度。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 ### 输出
 
-### **Te** — 机电转矩 标量
+### **Te** — 机电转矩标量
 
 转子的机电转矩。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Pe** — 机电功率 标量
+### **Pe** — 机电功率标量
 
 转子的机电功率。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
 ## 参数
 
-### **极对数** — 电机中可用的极对数 `2` (默认) | 标量
+### **Number of pole pairs** — 电机中可用的极对数 `2`（默认）| 标量
 
 感应电机中可用的极对数。
 
-### **定子泄漏电感(H)** — 定子绕组的泄漏电感 `6.81e-3` (默认) | 标量
+### **Motor parameter input method** — 电机参数类型 `Linear model with lumped parameters`（默认）| `Non-linear model with D,Q-flux linkage LUTs`
 
-与定子绕组相关的泄漏磁通产生的电感（以亨为单位）。
+*自 R2025a 起*
 
-### **转子泄漏电感(H)** — 转子绕组的漏感 `6.81e-3` (默认) | 标量
+模块用于生成功率和转矩估计的电机参数。将该参数设置为以下值之一：
 
-与转子绕组相关的泄漏磁通产生的电感（以亨为单位）。
+- `Linear model with lumped parameters` — 使用电机电感
+  *Ls*、*Lr*、*Lm* 的集中电路值和额定磁通来生成转矩
+  和功率估计。
+- `Non-linear model with D,Q-flux linkage LUTs` —
+  使用 *d* 轴和
+  *q* 轴磁链查找表来生成转矩和功率估计。
 
-### **磁化电感(H)** — 感应电机的磁化电感 `30e-3` (默认) | 标量
+### **Stator leakage inductance (H)** — 定子绕组的漏电感 `6.81e-3`（默认）| 标量
 
-由磁化磁通产生的电感（以亨为单位）。
+与定子绕组交链的漏磁通引起的电感（单位：亨利）。
 
-### **额定磁通(Wb)** — 电机的额定磁通 `38.2e-3` (默认) | 标量
+#### 依赖关系
 
-感应电机的额定磁通（以韦伯为单位）。
+要启用此参数，请将 **Motor parameter input
+method** 参数设置为 `Linear model with lumped
+parameters`。
 
-### **输入单位** — 输入值的单位 **标幺(PU)** (默认) | **SI 单位**
+### **Rotor leakage inductance (H)** — 转子绕组的漏电感 `6.81e-3`（默认）| 标量
+
+与转子绕组交链的漏磁通引起的电感（单位：亨利）。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input
+method** 参数设置为 `Linear model with lumped
+parameters`。
+
+### **Magnetizing Inductance (H)** — 感应电机的励磁电感 `30e-3`（默认）| 标量
+
+励磁磁通引起的电感（单位：亨利）。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input
+method** 参数设置为 `Linear model with lumped
+parameters`。
+
+### **Rated Flux (Wb)** — 电机额定磁通 `38.2e-3`（默认）| 标量
+
+感应电机的额定磁通（单位：韦伯）。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input
+method** 参数设置为 `Linear model with lumped
+parameters`。
+
+### **D-axis current breakpoint vector, id (A)** — *d* 轴电流查找向量 `[0, 150, 350, 500]`（默认）| 向量
+
+*自 R2025a 起*
+
+用于磁链查找表的 *d* 轴电流查找向量（以百分比表示）。该向量可以包含任意数量的元素。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input
+method** 参数设置为 `Non-linear model with D,Q-flux linkage
+LUTs`。
+
+### **Q-axis current breakpoint vector, id (A)** — *q* 轴电流查找向量 `[0, 250, 500]`（默认）| 向量
+
+*自 R2025a 起*
+
+用于磁链查找表的 *q* 轴电流查找向量（以百分比表示）。该向量可以包含任意数量的元素。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input
+method** 参数设置为 `Non-linear model with D,Q-flux linkage
+LUTs`。
+
+### **D-axis flux linkage LUT, FluxD (id,iq) (Wb)** — 参考 *d* 轴磁链查找数据 `4.4e-2 * repmat([0, 150, 350, 500]', 1, 3)`（默认）| 向量
+
+*自 R2025a 起*
+
+*d* 轴磁链查找表数据（单位：韦伯）。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Non-linear model with D,Q-flux linkage LUTs`。
+
+### **Q-axis flux linkage LUT, FluxD (id,iq) (Wb)** — 参考 *q* 轴磁链查找数据 `2.1e-3 * repmat([0, 250, 500], 4, 1)`（默认）| 向量
+
+*自 R2025a 起*
+
+*q* 轴磁链查找表数据（单位：韦伯）。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Non-linear model with D,Q-flux linkage LUTs`。
+
+### **Input units** — 输入值的单位 `Per-Unit (PU)`（默认）| `SI Units`
 
 输入值的单位。
 
-### **基电压(V)** — 标幺制的基电压 `24/sqrt(3)` (默认) | 标量
+### **Base Voltage (V)** — 标幺制系统的基准电压 `24/sqrt(3)`（默认）| 标量
 
-标幺制的基电压（以伏特为单位）。
+标幺制系统的基准电压（单位：伏特）。
 
-#### 依存关系
+#### 依赖关系
 
-要启用此参数，请将**输入单位**设置为**标幺(PU)**。
+要启用此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
 
-### **基电流(A)** — 标幺制的基电流 `5.3611` (默认) | 标量
+### **Base Current (A)** — 标幺制系统的基准电流 `5.3611`（默认）| 标量
 
-标幺制的基电流（以安培为单位）。
+标幺制系统的基准电流（单位：安培）。
 
-#### 依存关系
+#### 依赖关系
 
-要启用此参数，请将**输入单位**设置为**标幺(PU)**。
+要启用此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
 
-### **基转速(rpm)** — 标幺制的基转速 `1500` (默认) | 标量
+### **Base Speed (rpm)** — 标幺制系统的基准转速 `1500`（默认）| 标量
 
-标幺制的基转速（以 rpm 为单位）。
+标幺制系统的基准转速（单位：rpm）。
 
-#### 依存关系
+#### 依赖关系
 
-要启用此参数，请将**输入单位**设置为**标幺(PU)**。
+要启用此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
 
-### **基转矩(Nm)** — 标幺制的基转矩 `0.50072` (默认) | 标量
+### **Base torque (Nm)** — 标幺制系统的基准转矩 `0.50072`（默认）| 标量
 
-标幺制的基转矩（以 Nm 为单位）。有关详细信息，请参阅标幺制页。
+标幺制系统的基准转矩（单位：Nm）。有关更多详细信息，请参阅 Per-Unit System 页面。
 
-此参数不可配置，它使用的值是使用其他参数内部计算获得的。
+此参数不可配置，使用由其他参数内部计算得出的值。
 
-#### 依存关系
+#### 依赖关系
 
-要显示此参数，请将**输入单位**设置为**标幺(PU)**。
+要显示此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
 
-### **基功率(W)** — 标幺制的基功率 `111.4284` (默认) | 标量
+### **Base power (W)** — 标幺制系统的基准功率 `111.4284`（默认）| 标量
 
-标幺制的基功率（以 W 为单位）。有关详细信息，请参阅标幺制页。
+标幺制系统的基准功率（单位：W）。有关更多详细信息，请参阅 Per-Unit System 页面。
 
-此参数不可配置，它使用的值是使用其他参数内部计算获得的。
+此参数不可配置，使用由其他参数内部计算得出的值。
 
-#### 依存关系
+#### 依赖关系
 
-要显示此参数，请将**输入单位**设置为**标幺(PU)**。
+要显示此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
 
 ## 所属库
 
@@ -125,15 +206,15 @@ Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供了影响 HDL 实现和综合逻辑的额外配置选项。
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 架构**
 
@@ -144,42 +225,46 @@ HDL Coder™ 提供了影响 HDL 实现和综合逻辑的额外配置选项。
 |  |  |
 | --- | --- |
 |  |  |
-| **ConstrainedOutputPipeline** | 要通过移动设计中的现有延迟来放置在输出端的寄存器的数量。分布式流水线不会重新分布这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
-| **SharingFactor** | 要映射到单个共享资源的功能等效的资源数量。默认值为 0。另请参阅Resource Sharing (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+| **SharingFactor** | 映射到单个共享资源的功能等效资源数量。默认值为 0。另请参阅 Resource Sharing (HDL Coder)。 |
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2020b 中推出**
+**在 R2020b 中引入**
+
+### R2025a：使用新的模块参数计算功率和转矩估计值
+
+模块参数对话框现在包含一些参数，使您能够根据磁链查找表数据计算功率和转矩估计值。
 
 ## 描述
 
 估计机电转矩和功率
 
-ACIM Torque Estimator 模块生成感应电机的机电转矩和功率估计值。该模块在电机参数不变的情况下输出以数学方式计算的机电转矩。为了测量精确的转矩值，我们建议您使用物理传感器。
+ACIM Torque Estimator 模块为感应电机生成机电转矩和功率估计值。该模块针对恒定电机参数输出数学计算得到的机电转矩。若要测量准确的转矩值，我们建议您使用物理传感器。
 
-该模块接受 *d-* 轴和 *q* 轴定子电流和机械转速的反馈值作为输入。
+该模块接受 *d* 轴和 *q* 轴定子电流以及机械转速的反馈值作为输入。
 
 ### 方程
 
-如果您在**输入单位**参数中选择**标幺(PU)**，则该模块会在执行任何计算之前将输入转换为 SI 单位。在计算输出后，该模块将输出转换回标幺单位值。
+如果您在 **Input units** 参数中选择 `Per-Unit (PU)`，则该模块在执行任何计算之前会将输入转换为 SI 单位。在计算输出之后，该模块会将输出转换回标幺值。
 
-下列方程描述了该模块对机电转矩和功率估计的计算。
+这些方程描述了该模块对机电转矩和功率估计值的计算。
 
 Te=32p(LmLr)λrdisq
 
 Pe=Te⋅ωm
 
-有关详细的方程组和假设，请参阅感应电机的数学模型。
+有关详细的方程组和假设，请参阅 Mathematical Model of Induction Motor。
 
 其中：
 
 - p 是电机中可用的极对数。
-- Lm 是电机的磁化电感（亨）。
-- Lr 是转子电感（亨）。
+- Lm 是电机的励磁电感（亨利）。
+- Lr 是转子电感（亨利）。
 - λrd 是转子的 *d* 轴磁链（韦伯）。
 - isq 是定子 *q* 轴电流（安培）。
 - ωm 是转子的机械转速（弧度/秒）。

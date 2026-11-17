@@ -24,10 +24,12 @@ chinese_source: worker-translation
 
 - `Prs` — 压力，单位为 Pa
 - `Temp` — 温度，单位为 K
-- `Enth` — 比焓，单位为 J/kg
-- `MassFrac` — 入口质量分数，无量纲。
+- `Enth` — 比焓，
+  单位为 J/kg
+- `MassFrac` — 入口质量分数，
+  无量纲。
 
-  具体而言，包含以下质量分数的总线：
+  具体而言，是具有以下质量分数的总线：
 
   - `O2MassFrac` — 氧气
   - `N2MassFrac` — 氮气
@@ -48,10 +50,12 @@ chinese_source: worker-translation
 
 - `Prs` — 压力，单位为 Pa
 - `Temp` — 温度，单位为 K
-- `Enth` — 比焓，单位为 J/kg
-- `MassFrac` — 出口质量分数，无量纲。
+- `Enth` — 比焓，
+  单位为 J/kg
+- `MassFrac` — 出口质量分数，
+  无量纲。
 
-  具体而言，包含以下质量分数的总线：
+  具体而言，是具有以下质量分数的总线：
 
   - `O2MassFrac` — 氧气
   - `N2MassFrac` — 氮气
@@ -70,30 +74,31 @@ chinese_source: worker-translation
 
 孔口面积的外部输入，Aorf\_ext，单位为 m^2。
 
-#### 依赖项
+#### 依赖关系
 
-要创建此端口，请为 **孔口面积模型** 参数选择 `External input`。
+要创建此端口，请为 **Orifice area model** 参数选择 `External input`。
 
-### **ThrPct** — 节气门体开启百分比 `scalar`
+### **ThrPct** — 节气门体开度百分比 `scalar`
 
-节气门体开启的百分比，Pctthr。
+节气门体打开的百分比，Pctthr。
 
-#### 依赖项
+#### 依赖关系
 
-要创建此端口，请为 **孔口面积模型** 参数选择 `Throttle body geometry`。
-
+要创建此端口，请为 **Orifice area model** 参数选择 `Throttle body geometry`。
 ### 输出
 
-### **A** — 入口质量流率、热流率、温度双向连接端口
+### **A** — 入口质量流量、热流量、温度双向连接端口
 
-包含：
+包含以下内容的总线：
 
-- `MassFlw` — 通过入口的质量流率，单位为 kg/s
-- `HeatFlw` — 入口热流率，单位为 J/s
-- `Temp` — 入口温度，单位为 K
-- `MassFrac` — 入口质量分数，无量纲。
+- `MassFlw` — 通过入口的质量流量，单位为 kg/s
+- `HeatFlw` — 入口热流量，单位为 J/s
+- `Temp` — 入口温度，
+  单位为 K
+- `MassFrac` — 入口质量分数，
+  无量纲。
 
-  具体而言，包含以下质量分数的总线：
+  具体而言，是具有以下质量分数的总线：
 
   - `O2MassFrac` — 氧气
   - `N2MassFrac` — 氮气
@@ -108,16 +113,18 @@ chinese_source: worker-translation
   - `AirMassFrac` — 空气
   - `BrndGasMassFrac` — 已燃气体
 
-### **B** — 出口质量流率、热流率、温度双向连接端口
+### **B** — 出口质量流量、热流量、温度双向连接端口
 
-包含：
+包含以下内容的总线：
 
-- `MassFlw` — 出口质量流率，单位为 kg/s
-- `HeatFlw` — 出口热流率，单位为 J/s
-- `Temp` — 出口温度，单位为 K
-- `MassFrac` — 出口质量分数，无量纲。
+- `MassFlw` — 出口质量流量，单位为 kg/s
+- `HeatFlw` — 出口热流量，单位为 J/s
+- `Temp` — 出口温度，
+  单位为 K
+- `MassFrac` — 出口质量分数，
+  无量纲。
 
-  具体而言，包含以下质量分数的总线：
+  具体而言，是具有以下质量分数的总线：
 
   - `O2MassFrac` — 氧气
   - `N2MassFrac` — 氮气
@@ -143,241 +150,241 @@ chinese_source: worker-translation
 | `PrsRatio` | 压力比 | NA |
 | `DwnstrmTemp` | 下游温度 | K |
 | `UpstrmTemp` | 上游温度 | K |
-| `OrfMassFlw` | | | 通过孔口的质量流率 | kg/s |
-| `Species` | | `O2MassFlw` | 氧气质量流率 | kg/s |
-| `N2MassFlw` | 氮气质量流率 | kg/s |
-| `UnbrndFuelMassFlw` | 未燃气体质量流率 | kg/s |
-| `CO2MassFlw` | 二氧化碳质量流率 | kg/s |
-| `H2OMassFlw` | 水质量流率 | kg/s |
-| `COMassFlw` | 一氧化碳质量流率 | kg/s |
-| `NOMassFlw` | 一氧化氮质量流率 | kg/s |
-| `NO2MassFlw` | 二氧化氮质量流率 | kg/s |
-| `NOxMassFlw` | 一氧化氮和二氧化氮质量流率 | kg/s |
-| `PmMassFlw` | 颗粒物质量流率 | kg/s |
-| `AirMassFlw` | 空气质量流率 | kg/s |
-| `BrnedGasMassFlw` | 已燃气体质量流率 | kg/s |
-| `PwrInfo` | `PwrTrnsfrd` | `PwrHeatFlwIn` | 端口 A 的热流率 | W |
-| `PwrHeatFlwOut` | 端口 B 的热流率 | W |
+| `OrfMassFlw` | | | 通过孔口的质量流量 | kg/s |
+| `Species` | | `O2MassFlw` | 氧气质量流量 | kg/s |
+| `N2MassFlw` | 氮气质量流量 | kg/s |
+| `UnbrndFuelMassFlw` | 未燃烧气体质量流量 | kg/s |
+| `CO2MassFlw` | 二氧化碳质量流量 | kg/s |
+| `H2OMassFlw` | 水质量流量 | kg/s |
+| `COMassFlw` | 一氧化碳质量流量 | kg/s |
+| `NOMassFlw` | 一氧化氮质量流量 | kg/s |
+| `NO2MassFlw` | 二氧化氮质量流量 | kg/s |
+| `NOxMassFlw` | 一氧化氮和二氧化氮质量流量 | kg/s |
+| `PmMassFlw` | 颗粒物质量流量 | kg/s |
+| `AirMassFlw` | 空气质量流量 | kg/s |
+| `BrnedGasMassFlw` | 燃烧气体质量流量 | kg/s |
+| `PwrInfo` | `PwrTrnsfrd` | `PwrHeatFlwIn` | 端口 A 处的热流率 | W |
+| `PwrHeatFlwOut` | 端口 B 处的热流率 | W |
 | `PwrNotTrnsfrd` | | *未使用* | |
 | `PwrStored` | | *未使用* | |
 | `Area` | `FlwArea` | | | 横截流通面积 | m^2 |
 | `EffctArea` | | | 有效孔口横截面积 | m^2 |
-| `ThrAng` | | | 节气门面积（如果适用） | deg |
+| `ThrAng` | | | 节气门面积（如适用） | deg |
 
 ## 参数
 
 #### 模块选项
 
-### **孔口面积模型** — 选择模型 `Constant`（默认） | `External input` | `Throttle body geometry`
+### **孔口面积模型** — 选择模型 `Constant`（默认）| `External input` | `Throttle body geometry`
 
 孔口面积模型。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `AreaPopup` |
-| **值：** | `Constant`（默认） | `External input` | `Throttle body geometry` |
+| **值：** | `Constant`（默认）| `External input` | `Throttle body geometry` |
 | **数据类型：** | `character vector` |
 
-#### 依赖项
+#### 依赖关系
 
 孔口面积模型会启用 **Area Parameters** 选项卡上的参数。
 
-### **图像类型** — 图标颜色 `Cold`（默认） | `Hot`
+### **图像类型** — 图标颜色 `Cold`（默认）| `Hot`
 
 模块图标颜色：
 
 - `Cold` 表示蓝色。
 - `Hot` 表示红色。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `ImageTypePopup` |
-| **值：** | `Cold`（默认） | `Hot` |
+| **值：** | `Cold`（默认）| `Hot` |
 | **数据类型：** | `character vector` |
 
 #### 常规
 
-### **比热比, gamma** — 比值 `1.3998`（默认） | `scalar`
+### **比热比，gamma** — 比值 `1.3998`（默认）| `scalar`
 
 比热比，*γ*。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `gamma` |
-| **值：** | `1.3998`（默认） | `scalar` |
+| **值：** | `1.3998`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
-### **理想气体常数, R** — 常数 `287.05`（默认） | `scalar`
+### **理想气体常数，R** — 常数 `287.05`（默认）| `scalar`
 
-理想气体常数，R，单位为 J/(kg·K)。
+理想气体常数 R，单位为 J/(kg·K)。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `R` |
-| **值：** | `287.05`（默认） | `scalar` |
+| **值：** | `287.05`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
-### **压力比线性化限值, Plim** — 限值 `0.95`（默认） | `scalar`
+### **压力比线性化限值，Plim** — 限值 `0.95`（默认）| `scalar`
 
-压力比限值，用于避免当压力比接近 1 时出现奇异，Plim。
+用于避免当压力比接近 1 时出现奇异性的压力比限值，Plim。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Plim` |
-| **值：** | `0.95`（默认） | `scalar` |
+| **值：** | `0.95`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
 #### 面积
 
-### **恒定面积值, Aorf\_cnst** — 面积 `.1`（默认） | `scalar`
+### **Constant area value, Aorf\_cnst** — 面积 `.1`（默认）| `scalar`
 
-恒定面积值，Aorf\_cnst，单位为 m^2。
+恒定面积值 Aorf\_cnst，单位为 m^2。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Aorf_cnst` |
-| **值：** | `.1`（默认） | `scalar` |
+| **值：** | `.1`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请为 **孔口面积模型** 参数选择 `Constant`。
+要启用此参数，请为 **Orifice area model** 参数选择 `Constant`。
 
-### **流量系数, Cd\_cnst** — 系数 `1`（默认） | `scalar`
+### **Discharge coefficient, Cd\_cnst** — 系数 `1`（默认）| `scalar`
 
-恒定面积的流量系数，Cdcnst。
+恒定面积的流量系数 Cdcnst。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Cd_cnst` |
-| **值：** | `1`（默认） | `scalar` |
+| **值：** | `1`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请为 **孔口面积模型** 参数选择 `Constant`。
+要启用此参数，请为 **Orifice area model** 参数选择 `Constant`。
 
-### **流量系数, Cd\_ext** — 系数 `1`（默认） | `scalar`
+### **Discharge coefficient, Cd\_ext** — 系数 `1`（默认）| `scalar`
 
-外部面积输入的流量系数，Cdext。
+外部面积输入的流量系数 Cdext。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Cd_ext` |
-| **值：** | `1`（默认） | `scalar` |
+| **值：** | `1`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请为 **孔口面积模型** 参数选择 `External input`。
+要启用此参数，请为 **Orifice area model** 参数选择 `External input`。
 
-### **节气门直径, Dthr** — 直径 `50`（默认） | `scalar`
+### **Throttle diameter, Dthr** — 直径 `50`（默认）| `scalar`
 
-开启时节气门体直径，Dthr，单位为 mm。
+开启时的节气门体直径 Dthr，单位为 mm。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Dthr` |
-| **值：** | `50`（默认） | `scalar` |
+| **值：** | `50`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请为 **孔口面积模型** 参数选择 `Throttle body geometry`。
+要启用此参数，请为 **Orifice area model** 参数选择 `Throttle body geometry`。
 
-### **流量系数表, ThrCd** — 系数 `[0.001; 0.735]`（默认） | `vector`
+### **Discharge coefficient table, ThrCd** — 系数 `[0.001; 0.735]`（默认）| `vector`
 
-流量系数表，*Cd\_thr*。
+流量系数表 *Cd\_thr*。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `ThrCd` |
-| **值：** | `[0.001; 0.735]`（默认） | `vector` |
+| **值：** | `[0.001; 0.735]`（默认）| `vector` |
 | **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请为 **孔口面积模型** 参数选择 `Throttle body geometry`。
+要启用此参数，请为 **Orifice area model** 参数选择 `Throttle body geometry`。
 
-### **角度断点, ThrAngBpts** — 角度 `[0; 90]`（默认） | `vector`
+### **Angle breakpoints, ThrAngBpts** — 角度 `[0; 90]`（默认）| `vector`
 
-角度断点，Thrang\_bpts，单位为 deg。
+角度断点 Thrang\_bpts，单位为 deg。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `ThrAngBpts` |
-| **值：** | `[0; 90]`（默认） | `vector` |
+| **值：** | `[0; 90]`（默认）| `vector` |
 | **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请为 **孔口面积模型** 参数选择 `Throttle body geometry`。
+要启用此参数，请为 **Orifice area model** 参数选择 `Throttle body geometry`。
 
 ## 所属库
 
@@ -399,13 +406,13 @@ R2025b 中未记录。
 
 通过孔口的等熵理想气体流动
 
-Flow Restriction 模块对通过孔口的等熵理想气体流动进行建模。该模块使用质量和能量守恒来确定质量流率。流速受阻塞流限制。
+Flow Restriction 模块对通过孔口的等熵理想气体流动进行建模。该模块使用质量和能量守恒来确定质量流量。流速受阻塞流限制。
 
 您可以指定以下孔口面积模型：
 
-- Constant
-- External input
-- Throttle body geometry
+- 恒定
+- 外部输入
+- 节气门体几何
 
 ### 方程
 
@@ -414,13 +421,13 @@ Flow Restriction 模块实现以下方程。
 | 计算 | 方程 |
 | --- | --- |
 | 标准孔口 | m˙orf=Γ⋅Ψ(Pratio)  Pratio=PdownstrPupstr  Γ=Aeff⋅PupstrR⋅Tupstr  Pcr=(2γ+1)γγ−1  Ψ={γ(2γ+1)γ+1γ−1Pratio<Pcr2γγ−1(Pratio2γ−Pratioγ+1γ)Pcr≤Pratio≤PlimPratio−1Plim−12γγ−1(Plim2γ−Plimγ+1γ)Plim<Pratio |
-| 组分质量流率 | m˙i=m˙orfyupstr,i |
+| 组分质量流量 | m˙i=m˙orfyupstr,i |
 | 恒定孔口面积 | Aeff=Aorf\_cnst⋅Cdcnst |
 | 外部输入孔口面积 | Aeff=Aorf\_ext⋅Cdext |
 | 节气门体几何 | θthr=Pctthr⋅90100  Aeff\_thr=π4Dthr2Cd\_thr(θthr) |
 | 热流率 | qorf=m˙orfhupstr |
 
-方程使用以下变量。
+这些方程使用以下变量。
 
 |  |  |
 | --- | --- |
@@ -430,22 +437,22 @@ Flow Restriction 模块实现以下方程。
 | R | 理想气体常数 |
 | Pcr | 发生阻塞流的临界压力 |
 | *γ* | 比热比 |
-| Γ | 基于压力比的流动函数 |
+| Γ | 基于压力比的流量函数 |
 | Pratio | 压力比 |
 | Pupstr | 上游孔口压力 |
 | Pdownstr | 下游孔口压力 |
-| Plim | 压力比限值，用于避免当压力比接近 1 时出现奇异 |
+| Plim | 压力比限值，用于在压力比接近 1 时避免奇异性 |
 | *yupstr,i* | 上游组分质量分数，i = O2、N2、未燃燃料、CO2、H2O、CO、NO、NO2、PM、空气和已燃气体 |
-| m˙i | 质量流率，i = O2、N2、未燃燃料、CO2、H2O、CO、NO、NO2、PM、空气和已燃气体 |
+| m˙i | 质量流量，i = O2、N2、未燃燃料、CO2、H2O、CO、NO、NO2、PM、空气和已燃气体 |
 | θthr | 节气门角度 |
-| Pctthr | 节气门体开启百分比 |
+| Pctthr | 节气门体打开的百分比 |
 | *Cd\_thr* | 节气门流量系数 |
-| Dthr | 开启时节气门体直径 |
+| Dthr | 开口处节气门体直径 |
 | m˙orf | 孔口质量流量 |
 | *hupstr* | 上游比焓 |
 | *qorf* | 热流率 |
 
-该模块使用内部信号 `FlwDir` 跟踪流动方向。
+该模块使用内部信号 `FlwDir` 来跟踪流动方向。
 
 ### 功率核算
 
@@ -453,7 +460,7 @@ Flow Restriction 模块实现以下方程。
 
 | 总线信号 | | | 描述 | 方程 |
 | --- | --- | --- | --- | --- |
-| `PwrInfo` | `PwrTrnsfrd` — 模块之间传递的功率  - 正信号表示流入模块 - 负信号表示流出模块 | `PwrHeatFlwIn` | 端口 A 的热流率 | *qorf* |
-| `PwrHeatFlwOut` | 端口 B 的热流率 | -*qorf* |
-| `PwrNotTrnsfrd` — 穿过模块边界但不传递的功率  - 正信号表示输入 - 负信号表示损失 | *未使用* | | |
+| `PwrInfo` | `PwrTrnsfrd` — 模块之间传递的功率  - 正信号表示流入模块 - 负信号表示流出模块 | `PwrHeatFlwIn` | 端口 A 处的热流率 | *qorf* |
+| `PwrHeatFlwOut` | 端口 B 处的热流率 | -*qorf* |
+| `PwrNotTrnsfrd` — 穿过模块边界但未传递的功率  - 正信号表示输入 - 负信号表示损失 | *未使用* | | |
 | `PwrStored` — 存储能量的变化率  - 正信号表示增加 - 负信号表示减少 | *未使用* | | |

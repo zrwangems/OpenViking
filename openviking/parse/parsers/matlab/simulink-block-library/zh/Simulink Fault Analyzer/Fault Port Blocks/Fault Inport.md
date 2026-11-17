@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Fault Inport'
-family: 'fault-port-blocks'
+family: 'fault-analyzer'
 product_id: 'fault-analyzer'
 product_name: 'Simulink Fault Analyzer'
 documentation_release: R2025b
@@ -18,15 +18,15 @@ chinese_source: worker-translation
 
 ### 输出
 
-### **Port\_1** — 来自分配的故障信号到行为的输入 标量 | 向量 | 矩阵
+### **Port\_1** — 来自所分配故障信号的输入 标量 | 向量 | 矩阵
 
-来自分配的故障信号并输入到行为的输入，指定为标量、向量或矩阵。此端口表示模型中截获的信号。
+来自所分配故障信号到行为的输入，指定为标量、向量或矩阵。此端口表示模型中截获的信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumeration` | `bus`
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -44,7 +44,7 @@ Simulink Fault Analyzer / Fault Port Blocks
 
 ## 扩展功能
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -52,7 +52,7 @@ Simulink Fault Analyzer / Fault Port Blocks
 
 ## 描述
 
-捕获用于故障行为的入口信号
+捕获故障行为的入口信号
 
 Fault Inport 模块将来自外部模型的信号链接到故障行为的模型。该模块直接从包含关联故障的信号中检索数据。您可以使用这些模块从 Simulink® 和 System Composer™ 模型中捕获信号数据。
 

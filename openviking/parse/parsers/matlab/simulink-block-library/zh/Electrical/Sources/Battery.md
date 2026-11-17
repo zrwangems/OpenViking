@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Battery'
-family: 'sources'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -20,12 +20,12 @@ chinese_source: worker-translation
 
 ### **q** — 电池电荷水平，C 物理信号
 
-物理信号端口，输出内部电荷，单位为库仑 (C)。使用此输出端口根据电荷改变负载行为，而无需构建电荷状态估计器的复杂性。
+物理信号端口，输出内部电荷，单位为库仑（C）。使用此输出端口可根据电荷改变负载行为，而无需构建电荷状态估计器的复杂性。
 
 #### 依赖关系
 
-要启用此端口，请将 **公开电荷测量端口** 设置为 `Yes`。
-
+要启用此端口，请将 **Expose charge measurement port** 设置为
+`Yes`。
 ### 守恒
 
 ### **+** — 正极端子电气
@@ -38,478 +38,505 @@ chinese_source: worker-translation
 
 ### **H** — 电池热质量热
 
-表示电池热质量的热守恒端口。当您公开此端口时，请提供额外参数以定义电池在第二温度下的行为。有关详细信息，请参阅热效应建模。
+表示电池热质量的热守恒端口。当您暴露此端口时，请提供附加参数以定义第二个温度下的电池行为。有关详细信息，请参阅建模热效应。
 
 #### 依赖关系
 
-要启用此端口，请在 **热端口** 部分中，将 **热端口** 设置为 `Model`。
+要启用此端口，请在 **Thermal Port** 部分中，将 **Thermal
+port** 设置为 `Model`。
 
 ## 参数
 
 ### 主要
 
-### **标称电压，Vnom** — 电池完全充电时的输出电压 `12` `V` (default) | 正数
+### **Nominal voltage, Vnom** — 电池完全充电时的输出电压 `12` `V`（默认）| 正数
 
-电池完全充电时电池两端的空载电压。
+电池完全充电时的空载电压。
 
-### **电流方向性** — 启用电流方向 `Disabled` (default) | `Enabled`
+### **Current directionality** — 启用电流方向性 `Disabled`（默认）| `Enabled`
 
 是否启用电流方向性。如果将此参数设置为 `Enabled`，则端子电阻取决于电流方向。
 
-### **内部电阻** — 电池内部电阻 `2` `Ohm` (default) | 正数
+### **Internal resistance** — 电池内阻 `2` `Ohm`（默认）| 正数
 
 电池的内部连接电阻。
 
 #### 依赖关系
 
-要启用此参数，请将 **电流方向性** 设置为 `Disabled`。
+要启用此参数，请将 **Current directionality** 设置为 `Disabled`。
 
-### **充电期间的内部电阻** — 充电期间的电池内部电阻 `2` `Ohm` (default) | 正数
+### **Internal resistance during charging** — 充电期间的电池内阻 `2` `Ohm`（默认）| 正数
 
 充电阶段电池的内部连接电阻。
 
 #### 依赖关系
 
-要启用此参数，请将 **电流方向性** 设置为 `Enabled`。
+要启用此参数，请将 **Current directionality** 设置为 `Enabled`。
 
-### **放电期间的内部电阻** — 放电期间的电池内部电阻 `2` `Ohm` (default) | 正数
+### **Internal resistance during discharging** — 放电期间的电池内阻 `2` `Ohm`（默认）| 正数
 
 放电阶段电池的内部连接电阻。
 
 #### 依赖关系
 
-要启用此参数，请将 **电流方向性** 设置为 `Enabled`。
+要启用此参数，请将 **Current directionality** 设置为 `Enabled`。
 
-### **电池电荷容量** — 选择电池模型 `Infinite` (default) | `Finite`
+### **Battery charge capacity** — 选择电池模型 `Infinite`（默认）| `Finite`
 
 选择用于对电池电荷容量建模的选项之一：
 
 - `Infinite` — 电池电压与从电池汲取的电荷无关。
-- `Finite` — 电池电压随着电荷减少而降低。
+- `Finite` — 电池电压随电荷减少而降低。
 
-### **电芯容量（Ah 额定值）** — 完全充电时的标称电池容量 `50` `hr*A` (default) | 正数
+### **Cell capacity (Ah rating)** — 完全充电时的标称电池容量 `50` `hr*A`（默认）| 正数
 
-以安培小时为单位的最大（标称）电池电荷。要为仿真开始时的初始电池电荷指定目标值，请使用高优先级 **Charge** 变量。有关详细信息，请参阅变量。
-
-#### 依赖关系
-
-要启用此参数，请将 **电池电荷容量** 设置为 `Finite`。
-
-### **电荷为 AH1 时的电压 V1** — 电荷水平为 AH1 时的输出电压 `11.5` `V` (default) | 正数
-
-当电荷水平为 AH1 时的基础电池输出电压，由 **空载电压为 V1 时的电荷 AH1** 参数指定。此参数必须小于 **标称电压，Vnom**。
+最大（标称）电池电荷，单位为安培小时。要在仿真开始时指定初始电池电荷的目标值，请使用高优先级 **Charge** 变量。有关详细信息，请参阅变量。
 
 #### 依赖关系
 
-要启用此参数，请将 **电池电荷容量** 设置为 `Finite`。
+要启用此参数，请将 **Battery charge capacity** 设置为
+`Finite`。
 
-### **空载电压为 V1 时的电荷 AH1** — 空载输出电压为 V1 时的电荷水平 `25` `hr*A` (default) | 正数
+### **Voltage V1 when charge is AH1** — 电荷水平为 AH1 时的输出电压 `11.5` `V`（默认）| 正数
 
-对应于由 **电荷为 AH1 时的电压 V1** 参数指定的空载输出电压的电池电荷水平。
-
-#### 依赖关系
-
-要启用此参数，请将 **电池电荷容量** 设置为 `Finite`。
-
-### **自放电** — 选择是否对电池的自放电电阻建模 `Disabled` (default) | `Enabled`
-
-选择是否对电池的自放电电阻建模。该模块将此效应建模为基础电池模型端子两端的一个电阻。
-
-随着温度升高，自放电电阻降低，导致自放电增加。如果电阻下降过快，可能会发生电池热失控和数值不稳定。您可以通过执行以下任一操作来解决此问题：
-
-- 降低热阻
-- 降低自放电电阻相对于温度的梯度
-- 提高自放电电阻
+当电荷水平为 AH1 时的基本电池输出电压，由 **Charge AH1 when no-load voltage is V1** 参数指定。此参数必须小于 **Nominal voltage, Vnom**。
 
 #### 依赖关系
 
-要启用此参数，请将 **电池电荷容量** 设置为 `Finite`。
+要启用此参数，请将 **Battery charge
+capacity** 设置为 `Finite`。
 
-### **自放电电阻** — 表示电池自放电的电阻 `2000` `Ohm` (default) | 正数
+### **Charge AH1 when no-load voltage is V1** — 空载输出电压为 V1 时的电荷水平 `25` `hr*A`（默认）| 正数
 
-基础电池模型两端表示电池自放电的电阻。
-
-#### 依赖关系
-
-要启用此参数，请将 **自放电** 设置为 `Enabled`。
-
-### **测量温度** — 测量模块参数时的温度 `298.15` `K` (default) | 正数
-
-温度 *T1*，在此温度下测量 **主要** 部分中的模块参数。有关详细信息，请参阅热效应建模。
+对应于由 **Voltage V1 when charge is AH1** 参数指定的空载输出电压的电池电荷水平。
 
 #### 依赖关系
 
-要启用此参数，请在 **热端口** 部分中，将 **热端口** 设置为 `Model`。
+要启用此参数，请将 **Battery charge
+capacity** 设置为 `Finite`。
 
-### **公开电荷测量端口** — 是否公开电荷测量端口 `No` (default) | `Yes`
+### **Self-discharge** — 选择是否对电池的自放电电阻建模 `Disabled`（默认）| `Enabled`
+
+选择是否对电池的自放电电阻建模。该模块将此效应建模为基本电池模型端子两端的电阻器。
+
+随着温度升高，自放电电阻减小，导致自放电增加。如果电阻减小过快，可能会发生电池热失控和数值不稳定。您可以通过执行以下任一操作来解决此问题：
+
+- 减小热阻
+- 减小自放电电阻相对于温度的梯度
+- 增大自放电电阻
+
+#### 依赖关系
+
+要启用此参数，请将 **Battery charge
+capacity** 设置为 `Finite`。
+
+### **Self-discharge resistance** — 表示电池自放电的电阻 `2000` `Ohm`（默认）| 正数
+
+基本电池模型两端的电阻，表示电池自放电。
+
+#### 依赖关系
+
+要启用此参数，请将 **Self-discharge** 设置为
+`Enabled`。
+
+### **Measurement temperature** — 测量模块参数时的温度 `298.15` `K`（默认）| 正数
+
+温度 *T1*，在该温度下测量 **Main** 部分中的模块参数。有关详细信息，请参阅建模热效应。
+
+#### 依赖关系
+
+要启用此参数，请在 **Thermal Port** 部分中，将
+**Thermal port** 设置为
+`Model`。
+
+### **Expose charge measurement port** — 是否暴露电荷测量端口 `No`（默认）| `Yes`
 
 *自 R2023a 起*
 
-是否公开电荷测量端口并测量电池的内部电荷水平。
+是否暴露电荷测量端口并测量电池的内部电荷水平。
 
 ### 动态
 
-### **电荷动态** — 电池电荷动态模型 `No dynamics` (default) | `One time-constant dynamics` | `Two time-constant dynamics` | `Three time-constant dynamics` | `Four time-constant dynamics` | `Five time-constant dynamics`
+### **Charge dynamics** — 电池电荷动态模型 `No dynamics`（默认）| `One time-constant dynamics` | `Two time-constant dynamics` | `Three time-constant dynamics` | `Four time-constant dynamics` | `Five time-constant dynamics`
 
-选择如何对电池电荷动态建模。此参数确定等效电路中并联 RC 部分的数量：
+选择如何对电池电荷动态建模。此参数确定等效电路中的并联 RC 段数：
 
-- `No dynamics` — 等效电路不包含并联 RC 部分。电池的端子电压与内部充电电压之间没有延迟。
-- `One time-constant dynamics` — 等效电路包含一个并联 RC 部分。使用 **第一时间常数** 参数指定时间常数。
-- `Two time-constant dynamics` — 等效电路包含两个并联 RC 部分。使用 **第一时间常数** 和 **第二时间常数** 参数指定时间常数。
-- `Three time-constant dynamics` — 等效电路包含三个并联 RC 部分。使用 **第一时间常数**、**第二时间常数** 和 **第三时间常数** 参数指定时间常数。
-- `Four time-constant dynamics` — 等效电路包含四个并联 RC 部分。使用 **第一时间常数**、**第二时间常数**、**第三时间常数** 和 **第四时间常数** 参数指定时间常数。
-- `Five time-constant dynamics` — 等效电路包含五个并联 RC 部分。使用 **第一时间常数**、**第二时间常数**、**第三时间常数**、**第四时间常数** 和 **第五时间常数** 参数指定时间常数。
+- `No dynamics` — 等效电路不包含并联 RC 段。电池的端子电压与内部充电电压之间没有延迟。
+- `One time-constant dynamics` — 等效电路包含一个并联 RC 段。使用 **First time constant** 参数指定时间常数。
+- `Two time-constant dynamics` — 等效电路包含两个并联 RC 段。使用 **First time constant** 和 **Second time constant** 参数指定时间常数。
+- `Three time-constant dynamics` — 等效电路包含三个并联 RC 段。使用 **First time constant**、**Second time constant** 和 **Third time constant** 参数指定时间常数。
+- `Four time-constant dynamics` — 等效电路包含四个并联 RC 段。使用 **First time constant**、**Second time constant**、**Third time constant** 和 **Fourth time constant** 参数指定时间常数。
+- `Five time-constant dynamics` — 等效电路包含五个并联 RC 段。使用 **First time constant**、**Second time constant**、**Third time constant**、**Fourth time constant** 和 **Fifth time constant** 参数指定时间常数。
 
-### **第一极化电阻** — 第一 RC 电阻 `0.005` `Ohm` (default) | 正数
+### **First polarization resistance** — 第一个 RC 电阻 `0.005` `Ohm`（默认）| 正数
 
-第一并联 RC 部分的电阻。此参数主要影响 RC 部分的欧姆损耗。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `One time-constant dynamics`、`Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
-
-### **第一时间常数** — 第一 RC 时间常数 `30` `s` (default) | 正数
-
-第一并联 RC 部分的时间常数。此值等于 *RC*，并影响 RC 部分的动态。
+第一个并联 RC 段的电阻。此参数主要影响 RC 段的欧姆损耗。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `One time-constant dynamics`、`Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+要启用此参数，请将 **Charge dynamics** 设置为 `One time-constant dynamics`、`Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
 
-### **第二极化电阻** — 第二 RC 电阻 `0.005` `Ohm` (default) | 正数
+### **First time constant** — 第一个 RC 时间常数 `30` `s`（默认）| 正数
 
-第二并联 RC 部分的电阻。此参数主要影响 RC 部分的欧姆损耗。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
-
-### **第二时间常数** — 第二 RC 时间常数 `30` `s` (default) | 正数
-
-第二并联 RC 部分的时间常数。此值等于 *RC*，并影响 RC 部分的动态。
+第一个并联 RC 段的时间常数。此值等于 *RC*，并影响 RC 段的动态。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+要启用此参数，请将 **Charge dynamics** 设置为 `One time-constant dynamics`、`Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
 
-### **第三极化电阻** — 第三 RC 电阻 `0.005` `Ohm` (default) | 正数
+### **Second polarization resistance** — 第二个 RC 电阻 `0.005` `Ohm`（默认）| 正数
 
-第三并联 RC 部分的电阻。此参数主要影响 RC 部分的欧姆损耗。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
-
-### **第三时间常数** — 第三 RC 时间常数 `30` `s` (default) | 正数
-
-第三并联 RC 部分的时间常数。此值等于 *RC*，并影响 RC 部分的动态。
+第二个并联 RC 段的电阻。此参数主要影响 RC 段的欧姆损耗。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+要启用此参数，请将 **Charge dynamics** 设置为 `Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
 
-### **第四极化电阻** — 第四 RC 电阻 `0.005` `Ohm` (default) | 正数
+### **Second time constant** — 第二个 RC 时间常数 `30` `s`（默认）| 正数
 
-第四并联 RC 部分的电阻。此参数主要影响 RC 部分的欧姆损耗。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `Four time-constant dynamics` 或 `Five time-constant dynamics`。
-
-### **第四时间常数** — 第四 RC 时间常数 `30` `s` (default) | 正数
-
-第四并联 RC 部分的时间常数。此值等于 *RC*，并影响 RC 部分的动态。
+第二个并联 RC 段的时间常数。此值等于 *RC*，并影响 RC 段的动态。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `Four time-constant dynamics` 或 `Five time-constant dynamics`。
+要启用此参数，请将 **Charge dynamics** 设置为 `Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
 
-### **第五极化电阻** — 第五 RC 电阻 `0.005` `Ohm` (default) | 正数
+### **Third polarization resistance** — 第三个 RC 电阻 `0.005` `Ohm`（默认）| 正数
 
-第五并联 RC 部分的电阻。此参数主要影响 RC 部分的欧姆损耗。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `Five time-constant dynamics`。
-
-### **第五时间常数** — 第五 RC 时间常数 `30` `s` (default) | 正数
-
-第五并联 RC 部分的时间常数。此值等于 *RC*，并影响 RC 部分的动态。
+第三个并联 RC 段的电阻。此参数主要影响 RC 段的欧姆损耗。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `Five time-constant dynamics`。
+要启用此参数，请将 **Charge dynamics** 设置为 `Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+
+### **Third time constant** — 第三个 RC 时间常数 `30` `s`（默认）| 正数
+
+第三个并联 RC 段的时间常数。此值等于 *RC*，并影响 RC 段的动态。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+
+### **Fourth polarization resistance** — 第四个 RC 电阻 `0.005` `Ohm`（默认）| 正数
+
+第四个并联 RC 段的电阻。此参数主要影响 RC 段的欧姆损耗。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Four time-constant dynamics` 或 `Five time-constant dynamics`。
+
+### **Fourth time constant** — 第四个 RC 时间常数 `30` `s`（默认）| 正数
+
+第四个并联 RC 段的时间常数。此值等于 *RC*，并影响 RC 段的动态。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Four time-constant dynamics` 或 `Five time-constant dynamics`。
+
+### **Fifth polarization resistance** — 第五个 RC 电阻 `0.005` `Ohm`（默认）| 正数
+
+第五个并联 RC 段的电阻。此参数主要影响 RC 段的欧姆损耗。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Five time-constant dynamics`。
+
+### **Fifth time constant** — 第五个 RC 时间常数 `30` `s`（默认）| 正数
+
+第五个并联 RC 段的时间常数。此值等于 *RC*，并影响 RC 段的动态。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Five time-constant dynamics`。
 
 ### 衰减
 
-### **电池衰减** — 选择是否对电池性能随老化的劣化建模 `Disabled` (default) | `Enabled`
+### **Battery fade** — 选择是否对电池性能随老化的退化建模 `Disabled`（默认）| `Enabled`
 
-选择是否包括电池衰减建模：
+选择是否包含电池衰减建模：
 
 - `Disabled` — 电池性能不依赖于老化。
-- `Enabled` — 电池性能根据已完成的充放电循环次数而变化。选择此选项会在此部分中公开额外参数，这些参数定义在一定次数放电循环后的电池性能。该模块使用这些参数值来计算缩放系数 *k1*、*k2* 和 *k3*。有关详细信息，请参阅电池衰减建模。
+- `Enabled` — 电池性能
+  根据已完成的充放电循环次数而变化。选择此选项将在此部分中暴露附加参数，这些参数定义了一定放电循环次数后的电池性能。该模块使用这些参数值来计算缩放系数
+  *k1*、
+  *k2* 和
+  *k3*。有关详细信息，请参阅建模电池衰减。
 
 #### 依赖关系
 
-要启用此参数，请在 **主要** 部分中，将 **电池电荷容量** 设置为 `Finite`。如果 **电池电荷容量** 为 `Infinite`，则 **衰减** 部分为空。
+要启用此参数，请在 **Main** 部分中，将 **Battery
+charge capacity** 设置为 `Finite`。
+如果 **Battery charge capacity** 为
+`Infinite`，则
+**Fade** 部分为空。
 
-### **放电循环次数，N** — 定义第二组数据点的循环次数 `100` (default) | 正数
+### **Number of discharge cycles, N** — 定义第二组数据点的循环次数 `100`（默认）| 正数
 
-在此次数充放电循环后测量本节中的其他参数。这第二组数据点定义用于电池衰减建模的缩放系数 *k1*、*k2* 和 *k3*。
-
-#### 依赖关系
-
-要启用此参数，请将 **电池衰减** 设置为 `Enabled`。
-
-### **N 次放电循环后的电芯容量** — N 次放电循环后的最大电池容量 `45` `hr*A` (default) | 正数
-
-在由 **放电循环次数，N** 参数指定的放电循环次数之后，以安培小时为单位的最大电池电荷。
+测量此部分中其他参数所经过的充放电循环次数。此第二组数据点定义了用于建模电池衰减的缩放系数 *k1*、*k2* 和 *k3*。
 
 #### 依赖关系
 
-要启用此参数，请将 **电池衰减** 设置为 `Enabled`。
+要启用此参数，请将 **Battery fade** 设置为
+`Enabled`。
 
-### **N 次放电循环后的内部电阻** — N 次放电循环后的电池内部电阻 `2.02` `Ohm` (default) | 正数
+### **Cell capacity after N discharge cycles** — N 次放电循环后的最大电池容量 `45` `hr*A`（默认）| 正数
 
-在由 **放电循环次数，N** 参数指定的放电循环次数之后，电池的内部电阻。
-
-#### 依赖关系
-
-要启用此参数，请将 **电池衰减** 设置为 `Enabled`，并在 **主要** 部分中，将 **电流方向性** 设置为 `Disabled`。
-
-### **N 次放电循环后的平均内部电阻** — N 次放电循环后的电池平均内部电阻 `2.02` `Ohm` (default) | 正数
-
-在由 **放电循环次数，N** 参数指定的放电循环次数之后，电池充电和放电内部电阻的平均值。
+在由 **Number of discharge cycles, N** 参数指定的放电循环次数后的最大电池电荷，单位为安培小时。
 
 #### 依赖关系
 
-要启用此参数，请将 **电池衰减** 设置为 `Enabled`，并在 **主要** 部分中，将 **电流方向性** 设置为 `Enabled`。
+要启用此参数，请将 **Battery fade** 设置为
+`Enabled`。
 
-### **N 次放电循环后电荷为 AH1 时的电压 V1** — N 次放电循环后电荷水平为 AH1 时的输出电压 `10.35` `V` (default) | 正数
+### **Internal resistance after N discharge cycles** — N 次放电循环后的电池内阻 `2.02` `Ohm`（默认）| 正数
 
-在由 **放电循环次数，N** 参数指定的放电循环次数之后，电荷水平为 AH1 时的基础电池模型输出电压。
+在由 **Number of discharge cycles, N** 参数指定的放电循环次数后的电池内阻。
 
 #### 依赖关系
 
-要启用此参数，请将 **电池衰减** 设置为 `Enabled`。
+要启用此参数，请将 **Battery fade** 设置为
+`Enabled`，并在
+**Main** 部分中，将 **Current
+Directionality** 设置为
+`Disabled`。
+
+### **Average internal resistance after N discharge cycles** — N 次放电循环后的电池平均内阻 `2.02` `Ohm`（默认）| 正数
+
+在由 **Number of discharge cycles, N** 参数指定的放电循环次数后的电池充电和放电内阻的平均值。
+
+#### 依赖关系
+
+要启用此参数，请将 **Battery fade** 设置为
+`Enabled`，并在
+**Main** 部分中，将 **Current
+Directionality** 设置为
+`Enabled`。
+
+### **Voltage V1 at charge AH1 after N discharge cycles** — N 次放电循环后电荷水平为 AH1 时的输出电压 `10.35` `V`（默认）| 正数
+
+在由 **Number of discharge cycles, N** 参数指定的放电循环次数后，电荷水平为 AH1 时的基本电池模型输出电压。
+
+#### 依赖关系
+
+要启用此参数，请将 **Battery fade** 设置为
+`Enabled`。
 
 ### 日历老化
 
-要公开这些参数，请在 **主要** 选项卡中，将 **电池电荷容量** 设置为 `Finite`。
+要暴露这些参数，请在 **Main** 选项卡中，将 **Battery charge capacity** 设置为 `Finite`。
 
-### **日历老化** — 日历老化选项 `Disabled` (default) | `Enabled`
+### **Calendar aging** — 日历老化选项 `Disabled`（默认）| `Enabled`
 
 是否启用电池的日历老化。
 
-### **存储条件** — 存储条件 `Fixed open-circuit voltage` (default) | `Fixed state of charge`
+### **Storage condition** — 存储条件 `Fixed open-circuit voltage`（默认）| `Fixed state of charge`
 
-是否指定存储期间的开路电压或荷电状态。
+在存储期间指定开路电压还是荷电状态。
 
 #### 依赖关系
 
-要启用此参数，请将 **日历老化** 设置为 `Enabled`。
+要启用此参数，请将 **Calendar aging** 设置为 `Enabled`。
 
-### **存储期间的归一化开路电压，V/Vnom** — 存储期间的归一化开路电压 `0.9` (default) | scalar
+### **Normalized open-circuit voltage during storage, V/Vnom** — 存储期间的归一化开路电压 `0.9`（默认）| 标量
 
 存储期间的归一化开路电压。
 
 #### 依赖关系
 
-要启用此参数，请将 **日历老化** 设置为 `Enabled`，并将 **存储条件** 设置为 `Fixed open-circuit voltage`。
+要启用此参数，请将 **Calendar aging** 设置为 `Enabled`，并将 **Storage condition** 设置为 `Fixed open-circuit voltage`。
 
-### **开路测量温度** — 开路温度 `298.15` `K` (default) | 正数
+### **Open-circuit measurement temperature** — 开路测量温度 `298.15` `K`（默认）| 正数
 
 开路测量温度。
 
 #### 依赖关系
 
-要启用此参数，请公开模块热端口，并将 **日历老化** 设置为 `Enabled`，将 **存储条件** 设置为 `Fixed open-circuit voltage`。
+要启用此参数，请暴露模块热端口，并将 **Calendar aging** 设置为 `Enabled`，将 **Storage condition** 设置为 `Fixed open-circuit voltage`。
 
-### **存储期间的荷电状态（%）** — 存储期间荷电状态的百分比 `60` (default) | 正数
+### **State of charge during storage (%)** — 存储期间的荷电状态百分比 `60`（默认）| 正数
 
 存储期间的荷电状态，以百分比表示。
 
 #### 依赖关系
 
-要启用此参数，请将 **日历老化** 设置为 `Enabled`，并将 **存储条件** 设置为 `Fixed state of charge`。
+要启用此参数，请将 **Calendar aging** 设置为 `Enabled`，并将 **Storage condition** 设置为 `Fixed state of charge`。
 
-### **时间间隔向量** — 时间间隔 `[0]` `d` (default) | scalar
+### **Vector of time intervals** — 时间间隔 `[0]` `d`（默认）| 标量
 
-时间间隔。此参数的大小必须与 **温度向量** 相等。
-
-#### 依赖关系
-
-要启用此参数，请将 **日历老化** 设置为 `Enabled`。
-
-### **温度向量** — 存储温度 `[273]` `K` (default) | scalar
-
-存储温度集合。此参数的大小必须与 **时间间隔向量** 相等。
+时间间隔。此参数的大小必须与 **Vector of temperatures** 相等。
 
 #### 依赖关系
 
-要启用此参数，请将 **日历老化** 设置为 `Enabled`。
+要启用此参数，请将 **Calendar aging** 设置为 `Enabled`。
 
-### **电压线性缩放, b** — 电压线性缩放 `2.2134e6` (默认) | scalar
+### **Vector of temperatures** — 存储温度 `[273]` `K`（默认）| 标量
+
+存储温度集合。此参数的大小必须与 **Vector of time intervals** 相等。
+
+#### 依赖关系
+
+要启用此参数，请将 **Calendar aging** 设置为 `Enabled`。
+
+### **Linear scaling for voltage, b** — 电压线性缩放 `2.2134e6`（默认）| 标量
 
 开路电压的线性缩放系数。
 
 #### 依赖关系
 
-要启用此参数，请将 **日历老化** 设置为 `Enabled`。
+要启用此参数，请将 **Calendar aging** 设置为 `Enabled`。
 
-### **电压恒定偏移, c** — 电压恒定偏移 `1.632e6` (默认) | scalar
+### **Constant offset for voltage, c** — 电压恒定偏移 `1.632e6`（默认）| 标量
 
 开路电压的恒定偏移。
 
 #### 依赖关系
 
-要启用此参数，请将 **日历老化** 设置为 `Enabled`。
+要启用此参数，请将 **Calendar aging** 设置为 `Enabled`。
 
-### **温度相关指数增长, d** — 温度相关指数增长 `0.515833569` `V` (默认) | scalar
+### **Temperature-dependent exponential increase, d** — 温度相关指数增长 `0.515833569` `V`（默认）| 标量
 
 温度相关指数增长。
 
 #### 依赖关系
 
-要启用此参数，请将 **日历老化** 设置为 `Enabled`。
+要启用此参数，请将 **Calendar aging** 设置为 `Enabled`。
 
-### **时间指数, a** — 时间指数 `0.75` (默认) | scalar
+### **Time exponent, a** — 时间指数 `0.75`（默认）| 标量
 
 时间指数。
 
 #### 依赖关系
 
-要启用此参数，请将 **日历老化** 设置为 `Enabled`。
+要启用此参数，请将 **Calendar aging** 设置为 `Enabled`。
 
 ### 温度依赖性
 
-此部分仅对暴露热端口的模块出现。要暴露热端口，请在 **热端口** 部分中，将 **热端口** 设置为 `Model`。有关详细信息，请参阅热效应建模。
+本节仅对具有暴露热端口的模块显示。要暴露热端口，请在 **Thermal Port** 部分中，将 **Thermal port** 设置为 `Model`。有关详细信息，请参阅 Modeling Thermal Effects。
 
-### **第二测量温度下的标称电压** — 电池充满电时的输出电压 `12` `V` (默认) | positive number
+### **Nominal voltage at second measurement temperature** — 电池完全充电时的输出电压 `12` `V`（默认）| 正数
 
-电池在第二测量温度下充满电时的空载电压。
+电池在第二测量温度下完全充电时的空载电压。
 
-### **第二测量温度下的内阻** — 电池内阻 `2.2` `Ohm` (默认) | positive number
+### **Internal resistance at second measurement temperature** — 电池内阻 `2.2` `Ohm`（默认）| 正数
 
 电池在第二测量温度下的内部连接电阻。
 
-### **第二测量温度下的电压 V1** — 电荷水平 AH1 时的输出电压 `11.4` `V` (默认) | positive number
+### **Voltage V1 at second measurement temperature** — 充电水平 AH1 时的输出电压 `11.4` `V`（默认）| 正数
 
-在第二测量温度和电荷水平 AH1 下，基本电池模型的输出电压，由 **当空载电压为 V1 时的电荷 AH1** 参数指定。
-
-#### 依赖关系
-
-要启用此参数，请在 **主要** 部分中，将 **电池电荷容量** 参数设置为 `Finite`。
-
-### **第二测量温度下的自放电电阻** — 表示电池自放电的电阻 `2200` `Ohm` (默认) | positive number
-
-在第二测量温度下，基本电池模型两端的电阻。此电阻表示自放电。
+基本电池模型在第二测量温度下以及由 **Charge AH1 when no-load voltage is V1** 参数指定的充电水平 AH1 时的输出电压。
 
 #### 依赖关系
 
-要启用此参数，请在 **主要** 部分中，将 **自放电电阻** 参数设置为 `Enabled`。
+要启用此参数，请在 **Main** 部分中，将 **Battery charge capacity** 参数设置为 `Finite`。
 
-### **第二测量温度下的第一极化电阻** — 第二测量温度下的第一个 RC 电阻 `0.005` `Ohm` (默认) | positive number
+### **Self-discharge resistance at second measurement temperature** — 表示电池自放电的电阻 `2200` `Ohm`（默认）| 正数
 
-在第二测量温度下，第一个并联 RC 部分的电阻。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `One time-constant dynamics`、`Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
-
-### **第二测量温度下的第一时间常数** — 第二测量温度下的第一个 RC 时间常数 `30` `s` (默认) | positive number
-
-在第二测量温度下，第一个并联 RC 部分的时间常数。
+基本电池模型在第二测量温度下的电阻。此电阻表示自放电。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `One time-constant dynamics`、`Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+要启用此参数，请在 **Main** 部分中，将 **Self-discharge resistance** 参数设置为 `Enabled`。
 
-### **第二测量温度下的第二极化电阻** — 第二测量温度下的第二个 RC 电阻 `0.005` `Ohm` (默认) | positive number
+### **First polarization resistance at second measurement temperature** — 第二测量温度下的第一 RC 电阻 `0.005` `Ohm`（默认）| 正数
 
-在第二测量温度下，第二个并联 RC 部分的电阻。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
-
-### **第二测量温度下的第二时间常数** — 第二测量温度下的第二个 RC 时间常数 `30` `s` (默认) | positive number
-
-在第二测量温度下，第二个并联 RC 部分的时间常数。
+第一并联 RC 部分在第二测量温度下的电阻。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+要启用此参数，请将 **Charge dynamics** 设置为 `One time-constant dynamics`、`Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
 
-### **第二测量温度下的第三极化电阻** — 第二测量温度下的第三个 RC 电阻 `0.005` `Ohm` (默认) | positive number
+### **First time constant at second measurement temperature** — 第二测量温度下的第一 RC 时间常数 `30` `s`（默认）| 正数
 
-在第二测量温度下，第三个并联 RC 部分的电阻。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
-
-### **第二测量温度下的第三时间常数** — 第二测量温度下的第三个 RC 时间常数 `30` `s` (默认) | positive number
-
-在第二测量温度下，第三个并联 RC 部分的时间常数。
+第一并联 RC 部分在第二测量温度下的时间常数。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+要启用此参数，请将 **Charge dynamics** 设置为 `One time-constant dynamics`、`Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
 
-### **第二测量温度下的第四极化电阻** — 第二测量温度下的第四个 RC 电阻 `0.005` `Ohm` (默认) | positive number
+### **Second polarization resistance at second measurement temperature** — 第二测量温度下的第二 RC 电阻 `0.005` `Ohm`（默认）| 正数
 
-在第二测量温度下，第四个并联 RC 部分的电阻。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `Four time-constant dynamics` 或 `Five time-constant dynamics`。
-
-### **第二测量温度下的第四时间常数** — 第二测量温度下的第四个 RC 时间常数 `30` `s` (默认) | positive number
-
-在第二测量温度下，第四个并联 RC 部分的时间常数。
+第二并联 RC 部分在第二测量温度下的电阻。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `Four time-constant dynamics` 或 `Five time-constant dynamics`。
+要启用此参数，请将 **Charge dynamics** 设置为 `Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
 
-### **第二测量温度下的第五极化电阻** — 第二测量温度下的第五个 RC 电阻 `0.005` `Ohm` (默认) | positive number
+### **Second time constant at second measurement temperature** — 第二测量温度下的第二 RC 时间常数 `30` `s`（默认）| 正数
 
-在第二测量温度下，第五个并联 RC 部分的电阻。
-
-#### 依赖关系
-
-要启用此参数，请将 **电荷动态** 设置为 `Five time-constant dynamics`。
-
-### **第二测量温度下的第五时间常数** — 第二测量温度下的第五个 RC 时间常数 `30` `s` (默认) | positive number
-
-在第二测量温度下，第五个并联 RC 部分的时间常数。
+第二并联 RC 部分在第二测量温度下的时间常数。
 
 #### 依赖关系
 
-要启用此参数，请将 **电荷动态** 设置为 `Five time-constant dynamics`。
+要启用此参数，请将 **Charge dynamics** 设置为 `Two time-constant dynamics`、`Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
 
-### **第二测量温度** — 测量此部分中模块参数时的温度 `273.15` `K` (默认) | positive number
+### **Third polarization resistance at second measurement temperature** — 第二测量温度下的第三 RC 电阻 `0.005` `Ohm`（默认）| 正数
 
-温度 *T*2，即测量 **温度依赖性** 部分中模块参数时的温度。有关详细信息，请参阅热效应建模。
+第三并联 RC 部分在第二测量温度下的电阻。
 
-要在仿真开始时指定初始温度，请使用高优先级 **Temperature** 变量。有关详细信息，请参阅变量。
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+
+### **Third time constant at second measurement temperature** — 第二测量温度下的第三 RC 时间常数 `30` `s`（默认）| 正数
+
+第三并联 RC 部分在第二测量温度下的时间常数。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Three time-constant dynamics`、`Four time-constant dynamics` 或 `Five time-constant dynamics`。
+
+### **Fourth polarization resistance at second measurement temperature** — 第二测量温度下的第四 RC 电阻 `0.005` `Ohm`（默认）| 正数
+
+第四并联 RC 部分在第二测量温度下的电阻。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Four time-constant dynamics` 或 `Five time-constant dynamics`。
+
+### **Fourth time constant at second measurement temperature** — 第二测量温度下的第四 RC 时间常数 `30` `s`（默认）| 正数
+
+第四并联 RC 部分在第二测量温度下的时间常数。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Four time-constant dynamics` 或 `Five time-constant dynamics`。
+
+### **Fifth polarization resistance at second measurement temperature** — 第二测量温度下的第五 RC 电阻 `0.005` `Ohm`（默认）| 正数
+
+第五并联 RC 部分在第二测量温度下的电阻。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Five time-constant dynamics`。
+
+### **Fifth time constant at second measurement temperature** — 第二测量温度下的第五 RC 时间常数 `30` `s`（默认）| 正数
+
+第五并联 RC 部分在第二测量温度下的时间常数。
+
+#### 依赖关系
+
+要启用此参数，请将 **Charge dynamics** 设置为 `Five time-constant dynamics`。
+
+### **Second measurement temperature** — 测量本节中模块参数时的温度 `273.15` `K`（默认）| 正数
+
+温度 *T*2，即测量 **Temperature Dependence** 部分中模块参数时的温度。有关详细信息，请参阅 Modeling Thermal Effects。
+
+要指定仿真开始时的初始温度，请使用高优先级 **Temperature** 变量。有关详细信息，请参阅 Variables。
 
 ### 热端口
 
-### **热端口** — 是否暴露热端口 `Omit` (默认) | `Model`
+### **Thermal port** — 是否暴露热端口 `Omit`（默认）| `Model`
 
 *自 R2023a 起*
 
-是否暴露模块的热端口并模拟电池的热效应。
+是否暴露模块的热端口并仿真电池的热效应。
 
-### **热质量** — 与热端口关联的热质量 `30000` `J/K` (默认) | positive number
+### **Thermal mass** — 与热端口关联的热质量 `30000` `J/K`（默认）| 正数
 
-与热端口 H 关联的热质量。它表示将热端口的温度升高一度所需的能量。
+与热端口 H 关联的热质量。它表示将热端口温度升高一度所需的能量。
 
 #### 依赖关系
 
-要启用此参数，请将 **热端口** 设置为 `Model`。
+要启用此参数，请将 **Thermal port** 设置为 `Model`。
 
 ## 所属库
 
@@ -517,7 +544,7 @@ Simscape / Electrical / Sources Simscape / Battery / Cells
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -527,11 +554,11 @@ Simscape / Electrical / Sources Simscape / Battery / Cells
 
 **在 R2008b 中引入**
 
-### R2023a: **建模选项** 参数已被替换
+### R2023a：**Modeling option** 参数已被替换
 
-模块的 **建模选项** 参数已被移除，并替换为 **暴露电荷测量端口** 和 **热端口** 参数。要暴露内部电荷输出端口，请将 **暴露电荷测量端口** 参数设置为 `Yes`。要暴露热端口并模拟热效应，请将 **热端口** 参数设置为 `Model`。
+模块的 **Modeling option** 参数已被移除，并替换为 **Expose charge measurement port** 和 **Thermal port** 参数。要暴露内部电荷输出端口，请将 **Expose charge measurement port** 参数设置为 `Yes`。要暴露热端口并仿真热效应，请将 **Thermal port** 参数设置为 `Model`。
 
-由于此更改，如果您在较早版本中使用 Battery 模块创建了自定义组件，则必须相应地更新该自定义组件。
+由于此更改，如果您在早期版本中使用 Battery 模块创建了自定义组件，则必须相应地更新该自定义组件。
 
 ```
 For batteryecm.battery_thermal:
@@ -555,31 +582,31 @@ charge_measurement_port=simscape.enum.battery.enable.yes
 
 Battery 模块表示一个简单的电池模型。您还可以暴露电池的电荷输出端口和热端口。
 
-要测量电池的内部电荷水平，请在 **主要** 部分中，将 **暴露电荷测量端口** 设置为 `Yes`。此操作会暴露一个额外的物理信号端口，用于输出内部荷电状态。使用此功能可以按荷电状态改变负载行为，而无需构建荷电状态估计器的复杂性。
+要测量电池的内部电荷水平，请在 **Main** 部分中，将 **Expose charge measurement port** 设置为 `Yes`。此操作会暴露一个额外的物理信号端口，用于输出内部荷电状态。使用此功能可以根据荷电状态改变负载行为，而无需构建荷电状态估计器的复杂性。
 
-要模拟电池的热效应，请在 **热端口** 部分中，将 **热端口** 参数设置为 `Model`。此操作会暴露一个额外的热端口，它表示电池热质量。选择此选项时，请提供其他参数以定义电池在第二温度下的行为。有关详细信息，请参阅热效应建模。
+要仿真电池的热效应，请在 **Thermal Port** 部分中，将 **Thermal port** 参数设置为 `Model`。此操作会暴露一个额外的热端口，该端口表示电池热质量。当您选择此选项时，请提供额外参数以定义电池在第二温度下的行为。有关详细信息，请参阅 Modeling Thermal Effects。
 
-电池等效电路由基本电池模型、自放电电阻 *RSD*、电荷动态模型和串联电阻 *R0* 组成。
+电池等效电路由基本电池模型、自放电电阻 *RSD*、充电动态模型和串联电阻 *R0* 组成。
 
 ### 电池模型
 
-如果您为 **电池电荷容量** 参数选择 `Infinite`，则模块将电池建模为串联电阻和恒定电压源。如果您为 **电池电荷容量** 参数选择 `Finite`，则模块将电池建模为串联电阻和电荷相关电压源。在有限情况下，电压是电荷的函数，并具有以下关系：
+如果您为 **Battery charge capacity** 参数选择 `Infinite`，则模块将电池建模为串联电阻和恒定电压源。如果您为 **Battery charge capacity** 参数选择 `Finite`，则模块将电池建模为串联电阻和电荷相关电压源。在有限情况下，电压是电荷的函数，并具有以下关系：
 
 V=V0(SOC1−β(1−SOC))
 
 其中：
 
-- `SOC`（荷电状态）是当前电荷与额定电池容量之比。
-- *V*0 是电池在空载完全充电时的电压，由 **标称电压, Vnom** 参数定义。
-- *β* 是一个常数，其计算使得当电荷为 *AH1* 时电池电压为 *V1*。使用模块参数指定电压 *V1* 和电池容量 *AH1*。*AH1* 是空载（开路）电压为 *V1* 时的电荷，并且 *V1* 小于标称电压。
+- `SOC`（荷电状态）是当前电荷与额定电池容量的比值。
+- *V*0 是电池在空载下完全充电时的电压，由 **Nominal voltage, Vnom** 参数定义。
+- *β* 是一个常数，其计算使得当电荷为 *AH1* 时电池电压为 *V1*。使用模块参数指定电压 *V1* 和电池容量 *AH1*。*AH1* 是空载（开路）电压为 *V1* 时的电荷，且 *V1* 小于标称电压。
 
-该方程定义了电压与剩余电荷之间的近似关系。此近似再现了低电荷值时电压下降速率增加的情况，并确保当电荷水平为零时电池电压变为零。此模型的优点是它需要很少的参数，这些参数在大多数数据表中都容易获得。
+该方程定义了电压与剩余电荷之间的近似关系。此近似再现了低电荷值时电压下降速率增加的现象，并确保当电荷水平为零时电池电压变为零。该模型的优点是所需参数很少，且大多数数据表中均可轻松获得。
 
-### 对电池衰减建模
+### 电池衰减建模
 
-对于具有有限电池电荷容量的电池模型，您可以根据放电循环次数对电池性能劣化建模。这种劣化称为 *电池衰减*。要启用电池衰减，请将 **电池衰减** 参数设置为 `Enabled`。此设置将在 **衰减** 部分中暴露其他参数。
+对于具有有限电池电荷容量的电池模型，您可以根据放电循环次数对电池性能退化进行建模。这种退化称为*电池衰减*。要启用电池衰减，请将 **Battery fade** 参数设置为 `Enabled`。此设置会在 **Fade** 部分中暴露额外参数。
 
-模块通过根据已完成的放电循环次数，对您在 **主要** 部分中指定的某些电池参数值进行缩放来实现电池衰减。模块分别对 **电池容量（Ah 额定值）**、**内阻** 和 **当电荷为 AH1 时的电压 V1** 参数值使用乘数 *λ*AH、*λ*R0 和 *λ*V1。这些乘数又取决于放电循环次数：
+模块通过根据已完成的放电循环次数缩放您在 **Main** 部分中指定的某些电池参数值来实现电池衰减。模块分别在 **Cell capacity (Ah rating)**、**Internal resistance** 和 **Voltage V1 when charge is AH1** 参数值上使用乘数 *λ*AH、*λ*R0 和 *λ*V1。这些乘数又取决于放电循环次数：
 
 λAH=1−k1N0.5
 
@@ -596,25 +623,25 @@ N=N0+1AH∫0ti(t)⋅H(i(t))λAH(t)dt
 - *λV1* 是电压 *V1* 的乘数。
 - *N* 是已完成的放电循环次数。
 - *N0* 是仿真开始前已完成的全放电循环次数。
-- *AH* 是以安培小时为单位的额定电池容量。
+- *AH* 是电池额定容量，单位为安培小时。
 - *i(t)* 是瞬时电池输出电流。
 - *H(i(t))* 是瞬时电池输出电流的 Heaviside 函数。如果参数为负，此函数返回 0；如果参数为正，则返回 1。
 
 **注意**
 
-Battery 模块跟踪电流并对其进行时间积分。每当提取等效电池放电容量时，已完成的放电循环次数 *N* 增加 1。
+Battery 模块跟踪电流并对其随时间进行积分。每当提取等效电池放电容量时，已完成的放电循环次数 *N* 增加 1。
 
-模块通过将您在 **衰减** 部分中提供的参数值代入这些电池方程来计算系数 *k1*、*k2* 和 *k3*。例如，默认模块参数集对应于以下系数值：
+模块通过将您在 **Fade** 部分中提供的参数值代入这些电池方程来计算系数 *k1*、*k2* 和 *k3*。例如，默认模块参数集对应于以下系数值：
 
 - *k1* = 1e-2
 - *k2* = 1e-3
 - *k3* = 1e-3
 
-您还可以通过使用高优先级变量 **Discharge cycles** 来基于先前的充放电历史定义仿真的起点。有关详细信息，请参阅变量。
+您还可以使用高优先级变量 **Discharge cycles** 根据先前的充放电历史定义仿真的起点。有关详细信息，请参阅 Variables。
 
-### 对热效应建模
+### 热效应建模
 
-如果您将 **热端口** 参数设置为 `Model`，则必须提供其他参数来定义电池在第二温度下的行为。暴露热端口时，电压的扩展方程为：
+如果您将 **Thermal port** 参数设置为 `Model`，则必须提供额外参数以定义电池在第二温度下的行为。当您暴露热端口时，电压的扩展方程为：
 
 V=V0T(SOC1−βT(1−SOC))
 
@@ -625,17 +652,17 @@ V0T=V0(1+λV(T−T1))
 - *T* 是电池温度。
 - *T1* 是标称测量温度。
 - *λV* 是 *V*0 的参数温度依赖系数。
-- βT=β[1+λβ(T−T1)].
+- βT=β[1+λβ(T−T1)]。
 - *λβ* 是 *β* 的参数温度依赖系数。
 - *β* 的计算方式与电池模型相同，使用温度修正后的标称电压 *V0T*。
 
-内串联电阻、自放电电阻以及任何电荷动态电阻也是温度的函数：
+内部串联电阻、自放电电阻以及任何充电动态电阻也是温度的函数：
 
 RT=R(1+λR(T−T1))
 
 其中 *λR* 是参数温度依赖系数。
 
-所有温度依赖系数都根据您在标称测量温度和第二测量温度下提供的对应值确定。如果您在模型中包含电荷动态，则时间常数以相同方式随温度变化。
+所有温度依赖系数均由您在标称温度和第二测量温度下提供的相应值确定。如果模型中包含充电动态，则时间常数以相同方式随温度变化。
 
 电池温度由模型中包含的所有欧姆损耗之和确定：
 
@@ -648,48 +675,42 @@ MthT˙=∑iVT,i2/RT,i
 
   - 串联电阻
   - 自放电电阻
-  - 第一电荷动态段
-  - 第二电荷动态段
-  - 第三电荷动态段
-  - 第四电荷动态段
-  - 第五电荷动态段
-- *VT,i* 是电阻 *i* 两端的电压降。
+  - 第一充电动态段
+  - 第二充电动态段
+  - 第三充电动态段
+  - 第四充电动态段
+  - 第五充电动态段
+- *VT,i* 是电阻 *i* 上的电压降。
 - *RT,i* 是电阻 *i*。
 
-### 充电动态建模
+### 对电荷动态建模
 
-可以通过 **Charge dynamics** 参数对电池充电动态进行建模：
+您可以使用 **Charge dynamics** 参数对电池电荷动态建模：
 
-- `No dynamics` — 等效电路
-  不包含并联 RC 部分。电池的端电压与内部充电电压之间没有延迟。
-- `One time-constant dynamics` — 等效电路
-  包含一个并联 RC 部分。使用 **First time constant** 参数指定时间常数。
-- `Two time-constant dynamics` — 等效电路包含两个并联 RC 部分。使用 **First time constant** 和 **Second time constant** 参数指定时间常数。
-- `Three time-constant dynamics` — 等效电路包含三个并联 RC 部分。使用 **First time constant**、**Second time constant** 和 **Third time constant** 参数指定时间常数。
-- `Four time-constant dynamics` — 等效电路包含四个并联 RC 部分。使用 **First time constant**、**Second time constant**、**Third time constant** 和 **Fourth time constant** 参数指定时间常数。
-- `Five time-constant dynamics` — 等效电路包含五个并联 RC 部分。使用 **First time constant**、**Second time constant**、**Third time constant**、**Fourth time constant** 和 **Fifth time constant** 参数指定时间常数。
+- `No dynamics` — 等效电路不包含并联 RC 段。端子电压与电池内部充电电压之间没有延迟。
+- `One time-constant dynamics` — 等效电路包含一个并联 RC 段。使用 **First time constant** 参数指定时间常数。
+- `Two time-constant dynamics` — 等效电路包含两个并联 RC 段。使用 **First time constant** 和 **Second time constant** 参数指定时间常数。
+- `Three time-constant dynamics` — 等效电路包含三个并联 RC 段。使用 **First time constant**、**Second time constant** 和 **Third time constant** 参数指定时间常数。
+- `Four time-constant dynamics` — 等效电路包含四个并联 RC 段。使用 **First time constant**、**Second time constant**、**Third time constant** 和 **Fourth time constant** 参数指定时间常数。
+- `Five time-constant dynamics` — 等效电路包含五个并联 RC 段。使用 **First time constant**、**Second time constant**、**Third time constant**、**Fourth time constant** 和 **Fifth time constant** 参数指定时间常数。
 
-此图显示了配置为 two time-constant dynamics 的模块的等效电路。
+下图显示了配置为两个时间常数动态的模块的等效电路。
 
 在图中：
 
 - *RRC1* 和 *RRC2* 是并联 RC 电阻。分别使用 **First polarization resistance** 和 **Second polarization resistance** 参数指定这些值。
-- *CRC1* 和
-  *CRC2* 是并联
-  RC 电容。每个并联部分的时间常数 *τ* 通过关系 C=τ/R 关联 *R* 和
-  *C* 值。分别使用 **First time constant** 和 **Second time
-  constant** 参数指定每个部分的 *τ*。
+- *CRC1* 和 *CRC2* 是并联 RC 电容。每个并联段的时间常数 *τ* 通过关系式 C=τ/R 将 *R* 和 *C* 值关联起来。分别使用 **First time constant** 和 **Second time constant** 参数指定每个段的 *τ*。
 - *R0* 是串联电阻。使用 **Internal resistance** 参数指定此值。
 
-### 电池老化建模
+### 对电池老化建模
 
-对于具有有限电池电荷容量的电池模型，您可以对电池不使用时发生的电池性能退化进行建模。日历老化同时影响内阻和容量。具体而言，电阻增加取决于各种机制，例如在阳极和阴极处形成固体电解质界面（SEI）以及集流体腐蚀。这些过程主要取决于存储温度、存储荷电状态和时间。
+对于具有有限电池电荷容量的电池模型，您可以对电池不使用时发生的电池性能退化建模。日历老化同时影响内阻和容量。特别是，电阻增加取决于多种机制，例如在阳极和阴极形成固体电解质界面（SEI）以及集流体腐蚀。这些过程主要取决于存储温度、存储荷电状态和时间。
 
 **注意**
 
-Battery 模块仅在初始化期间应用日历老化。当您将 **Calendar aging** 参数设置为 `Enabled` 时，模块会显示 **Vector of time intervals** 参数，该参数表示电池在仿真开始之前已老化的时间。此选项不涵盖仿真期间的日历老化。
+Battery 模块仅在初始化期间应用日历老化。当您将 **Calendar aging** 参数设置为 `Enabled` 时，模块会显示 **Vector of time intervals** 参数，该参数表示电池在仿真开始前已经老化的时间。此选项不涵盖仿真期间的日历老化。
 
-此方程定义了电池由于日历老化导致的端子电阻增加：
+此方程定义了由于日历老化导致的电池端子电阻增加：
 
 αr(T,Voc)=(bVoc−c)e−qdkT,R=R0(1+∑i=1i=nαr(Ti,Voc)(tia−ti−1a)),
 
@@ -698,7 +719,7 @@ Battery 模块仅在初始化期间应用日历老化。当您将 **Calendar agi
 - *Voc* 是 **Normalized open-circuit voltage during storage, V/Vnom**。
 - *R0* 是 **Internal resistance**。
 - *ti* 是从 **Vector of time intervals** 参数导出的时间样本。
-- *Ti* 从 **Vector of temperatures** 参数导出。
+- *Ti* 是从 **Vector of temperatures** 参数导出的。
 - *b* 是 **Linear scaling for voltage, b**。
 - *c* 是 **Constant offset for voltage, c**。
 - *d* 是 **Temperature-dependent exponential increase, d**。
@@ -708,36 +729,36 @@ Battery 模块仅在初始化期间应用日历老化。当您将 **Calendar agi
 
 **Simscape Results Explorer** 中的 *R1\_age\_multiplier* 变量以电阻增加的形式存储电池的日历老化：
 
-R1\_age\_multiplier=RR0.
+R1\_age\_multiplier=RR0。
 
-对于模块的热建模选项，如果您将 **Storage condition** 参数设置为 `Fixed open-circuit voltage`，则必须指定附加的 **Open-circuit voltage measurement temperature** 参数，以在存储期间将存储开路电压转换为与温度无关的荷电状态：
+对于模块的热建模选项，如果您将 **Storage condition** 参数设置为 `Fixed open-circuit voltage`，则必须指定额外的 **Open-circuit voltage measurement temperature** 参数，以将存储开路电压转换为存储期间与温度无关的荷电状态：
 
-SOC=OCV(1−β(TOCVmeasurement))1−β(TOCVmeasurement)OCV.
+SOC=OCV(1−β(TOCVmeasurement))1−β(TOCVmeasurement)OCV。
 
 然后，根据存储温度的开路电压由以下方程定义：
 
-OCVTstorage=SOC1−β(Tstorage)(1−β(Tstorage)SOC).
+OCVTstorage=SOC1−β(Tstorage)(1−β(Tstorage)SOC)。
 
-最后，以下方程根据存储温度定义电池由于日历老化导致的端子电阻增加：
+最后，此方程定义了根据存储温度由于日历老化导致的电池端子电阻增加：
 
-R=R0(1+∑i=1i=nαr(Tstoragei,OCVTstoragei)(tia−ti−1a)).
+R=R0(1+∑i=1i=nαr(Tstoragei,OCVTstoragei)(tia−ti−1a))。
 
 ### 变量
 
-要在仿真前为模块变量设置优先级和初始目标值，请使用模块对话框或属性检查器中的 **Initial Targets** 部分。有关详细信息，请参见“为模块变量设置优先级和初始目标”。
+要在仿真前为模块变量设置优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-使用标称值指定模型中变量的预期量级。使用基于标称值的系统缩放可提高仿真稳健性。标称值可来自不同来源。其中一个来源是模块对话框或属性检查器中的 **Nominal Values** 部分。有关详细信息，请参见“按标称值进行系统缩放”。
+使用标称值指定模型中变量的预期量级。使用基于标称值的系统缩放可提高仿真鲁棒性。标称值可以来自不同来源。其中一个来源是模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 System Scaling by Nominal Values。
 
-当您对电池衰减建模时，**Discharge cycles** 变量允许您指定在仿真开始之前完成的充放电循环次数。如果您禁用电池衰减建模，则模块不使用此变量。
+当您对电池衰减建模时，**Discharge cycles** 变量允许您指定仿真开始前已完成的充放电循环次数。如果您禁用电池衰减建模，则模块不使用此变量。
 
 ### 绘制基本电压-电荷特性
 
-您可以在不构建完整模型的情况下绘制 Battery 模块的基本电压-电荷特性。使用这些图可探究参数选择对设备特性的影响。如果您从数据表对模块进行参数化，则可以将图与数据表进行比较，以检查是否正确地对模块进行了参数化。如果您有完整的工作模型但不知道使用哪个制造部件，则可以将图与数据表进行比较以帮助决定。
+您可以在不构建完整模型的情况下绘制 Battery 模块的基本电压-电荷特性。使用这些图来探究您的参数选择对设备特性的影响。如果您根据数据表对模块进行参数化，可以将图与数据表进行比较，以检查您是否正确地对模块进行了参数化。如果您有一个完整的工作模型但不知道使用哪个制造部件，可以将图与数据表进行比较以帮助您做出决定。
 
-要绘制基本特性，请右键单击该模块，然后从上下文菜单中选择 **Battery** > **Basic characteristics**。有关 **Basic characteristics** 选项的详细信息，请参见“绘制 Battery 模块的基本电压-电荷特性”。
+要绘制基本特性，请右键单击模块，然后从上下文菜单中选择 **Battery** > **Basic characteristics**。有关 **Basic characteristics** 选项的详细信息，请参阅 Plot Basic Voltage-Charge Characteristics of Battery Blocks。
 
 ### 假设和限制
 
 - 假设自放电电阻不强烈依赖于放电循环次数。
-- 对于电池的热建模选项，您仅提供参考温度运行的衰减数据。模块将相同的派生 *λAH*、*λR0* 和 *λV1* 乘数应用于对应于第二温度的参数值。
-- 使用热模块建模选项时，在 **Measurement temperature** 和 **Second measurement temperature** 值所限定的温度范围之外的温度下运行时要小心。模块对导出的方程系数使用线性插值，仿真结果在指定范围之外可能变得非物理。模块检查内部串联电阻、自放电电阻和标称电压始终为正。如果存在违反，模块会发出错误消息。
+- 对于电池的热建模选项，您仅提供参考温度运行的衰减数据。模块将相同的导出 *λAH*、*λR0* 和 *λV1* 乘数应用于对应于第二温度的参数值。
+- 使用热模块建模选项时，在超出由 **Measurement temperature** 和 **Second measurement temperature** 值界定的温度范围之外的温度下运行时要小心。模块对导出的方程系数使用线性插值，在指定范围之外仿真结果可能变得非物理。模块检查内部串联电阻、自放电电阻和标称电压始终保持为正。如果存在违反，模块会发出错误消息。

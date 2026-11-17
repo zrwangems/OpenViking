@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Pressure Conversion'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -20,28 +20,28 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 压力标量 | 数组
 
-压力，指定为标量或数组，单位为初始压力单位。
+压力，指定为标量或数组，采用初始压力单位。
 
-#### 依赖项
+#### 依赖关系
 
 输入端口标签取决于 **Initial unit** 设置。
 
-**数据类型:** `double`
+**数据类型：** `double`
 ### 输出
 
 ### **Port\_1** — 压力标量 | 数组
 
-压力，返回为标量或数组，单位为最终压力单位。
+压力，以标量或数组形式返回，采用最终压力单位。
 
-#### 依赖项
+#### 依赖关系
 
 输出端口标签取决于 **Final unit** 设置。
 
-**数据类型:** `double`
+**数据类型：** `double`
 
 ## 参数
 
-### **Initial unit** — 输入单位 `psi`（默认） | `Pa` | `psf` | `atm`
+### **Initial unit** — 输入单位 `psi`（默认）| `Pa` | `psf` | `atm`
 
 输入单位，指定为：
 
@@ -50,9 +50,9 @@ chinese_source: worker-translation
 | `psi` | 磅质量每平方英寸 |
 | `Pa` | 帕斯卡 |
 | `psf` | 磅质量每平方英尺 |
-| `atm` | 大气压 |
+| `atm` | 标准大气压 |
 
-#### 依赖项
+#### 依赖关系
 
 输入端口标签取决于 **Initial unit** 设置。
 
@@ -60,12 +60,12 @@ chinese_source: worker-translation
 
 |  |
 | --- |
-| **模块参数**: `IU` |
-| **类型**: character vector |
-| **值**: `'psi'` | `'Pa'` | `'psf'` | `'atm'` |
-| **默认值**: `'psi'` |
+| **模块参数**：`IU` |
+| **类型**：字符向量 |
+| **值**：`'psi'` | `'Pa'` | `'psf'` | `'atm'` |
+| **默认值**：`'psi'` |
 
-### **Final unit** — 输出单位 `Pa`（默认） | `psi` | `psf` | `atm`
+### **Final unit** — 输出单位 `Pa`（默认）| `psi` | `psf` | `atm`
 
 输出单位，指定为：
 
@@ -74,9 +74,9 @@ chinese_source: worker-translation
 | `psi` | 磅质量每平方英寸 |
 | `Pa` | 帕斯卡 |
 | `psf` | 磅质量每平方英尺 |
-| `atm` | 大气压 |
+| `atm` | 标准大气压 |
 
-#### 依赖项
+#### 依赖关系
 
 输出端口标签取决于 **Final unit** 设置。
 
@@ -84,10 +84,10 @@ chinese_source: worker-translation
 
 |  |
 | --- |
-| **模块参数**: `OU` |
-| **类型**: character vector |
-| **值**: `'psi'` | `'Pa'` | `'psf'` | `'atm'` |
-| **默认值**: `'Pa'` |
+| **模块参数**：`OU` |
+| **类型**：字符向量 |
+| **值**：`'psi'` | `'Pa'` | `'psf'` | `'atm'` |
+| **默认值**：`'Pa'` |
 
 ## 所属库
 
@@ -103,12 +103,12 @@ R2025b 中未记录。
 
 ## 版本历史
 
-**R2006a 之前引入**
+**在 R2006a 之前引入**
 
 ## 描述
 
-从压力单位转换为所需压力单位
+将压力单位转换为所需的压力单位
 
-Pressure Conversion 模块计算从指定输入压力单位到指定输出压力单位的换算系数，并将该换算系数应用于输入信号。
+Pressure Conversion 模块计算从指定的输入压力单位到指定的输出压力单位的转换因子，并将该转换因子应用于输入信号。
 
 Pressure Conversion 模块的端口标签根据从 **Initial unit** 和 **Final unit** 列表中选择的输入和输出单位而变化。

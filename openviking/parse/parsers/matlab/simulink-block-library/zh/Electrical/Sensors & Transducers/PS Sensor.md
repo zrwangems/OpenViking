@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PS Sensor'
-family: 'sensors-transducers'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -25,47 +25,47 @@ chinese_source: worker-translation
 
 ### **+** — 正电压 electrical
 
-与 PS Sensor 正电压关联的电气守恒端口。
+与 PS sensor 正电压相关联的电气守恒端口。
 
 ### **-** — 负电压 electrical
 
-与 PS Sensor 负电压关联的电气守恒端口。
+与 PS sensor 负电压相关联的电气守恒端口。
 
 ## 参数
 
-### **输出类型** — 传感器输出类型 `Variable voltage` (default) | `Variable current` | `Variable resistor`
+### **Output type** — 传感器输出类型 `Variable voltage`（默认）| `Variable current` | `Variable resistor`
 
-指示传感器输出是值为 *Y* V 的 `Variable voltage`、值为 *Y* A 的 `Variable current`，还是值为 *Y* Ω 的 `Variable resistor`。
+指示传感器输出是 *Y* V 的 `Variable voltage`、*Y* A 的 `Variable current`，还是值为 *Y* Ω 的 `Variable resistor`。
 
-### **传感器增益, A** — 输出灵敏度 `1` (default)
+### **Sensor gain, A** — 输出灵敏度 `1`（默认）
 
 输出 *Y* 相对于输入 *U* 的灵敏度，*dY/dU*。
 
-### **传感器偏移, B** — 传感器偏移 `0` (default)
+### **Sensor offset, B** — 传感器偏移 `0`（默认）
 
 输入 *U* 为零时的输出。输出不超过限值 *Y*max 和 *Y*min。
 
-### **最大输出, Ymax** — 最大输出 `5` (default)
+### **Maximum output, Ymax** — 最大输出 `5`（默认）
 
-传感器输出的上限。下表显示此参数的单位，这些单位取决于 **输出类型** 参数的选定值。
+传感器输出的上限。下表显示了此参数的单位，这些单位取决于 **Output type** 参数的所选值。
 
-| **输出类型** | 单位 |
+| **Output type** | 单位 |
 | --- | --- |
 | `Variable voltage` | V |
 | `Variable current` | A |
 | `Variable resistor` | Ω |
 
-### **最小输出, Ymin** — 最小输出 `0.01` (default)
+### **Minimum output, Ymin** — 最小输出 `0.01`（默认）
 
-传感器输出的下限。下表显示此参数的单位，这些单位取决于 **输出类型** 参数的选定值。
+传感器输出的下限。下表显示了此参数的单位，这些单位取决于 **Output type** 参数的所选值。
 
-| **输出类型** | 单位 |
+| **Output type** | 单位 |
 | --- | --- |
 | `Variable voltage` | V |
 | `Variable current` | A |
 | `Variable resistor` | Ω |
 
-如果为 **输出类型** 参数选择 `Variable resistance`，则最小电阻 *Y*min 必须大于零。
+如果为 **Output type** 参数选择 `Variable resistance`，则最小电阻 *Y*min 必须大于零。
 
 ## 所属库
 
@@ -73,7 +73,7 @@ Simscape / Electrical / Sensors & Transducers
 
 ## 模块特性
 
-在 R2025b 中未记录。
+未在 R2025b 中记录。
 
 ## 扩展功能
 
@@ -87,8 +87,7 @@ Simscape / Electrical / Sensors & Transducers
 
 具有电气输出的通用线性传感器
 
-PS Sensor 模块表示通用线性传感器。
-该模块将物理信号输入 *U* 转换为跨 + 和 - 端口的电气输出 *Y*。**输出类型** 参数值决定该模块产生以下哪种电气输出：
+PS Sensor 模块表示一个通用线性传感器。该模块将物理信号输入 *U* 转换为 + 和 - 端口上的电气输出 *Y*。**Output type** 参数值决定该模块产生以下哪种电气输出：
 
 - 输出电压
 - 输出电流
@@ -96,5 +95,4 @@ PS Sensor 模块表示通用线性传感器。
 
 *Y* 与 *U* 的关系为 *Y* = max(min(*A* ·
 *U* +
-*B*,*Y*max),*Y*min)，其中 *Y*min 和
-*Y*max 分别是输出的最小限值和最大限值。
+*B*,*Y*max),*Y*min)，其中 *Y*min 和 *Y*max 分别是输出的最小限值和最大限值。

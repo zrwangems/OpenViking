@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PS Divide'
-family: 'physical-signals'
+family: 'simscape'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b
@@ -22,24 +22,24 @@ chinese_source: worker-translation
 
 第一个输入物理信号，表示分子。在模块图标中，此端口用 **x** 符号标记。
 
-端口名称在模块图标中不可见，但您可以通过单击模块对话框的 **描述**选项卡中的 **Source code** 链接，在底层源文件中看到此名称。
+端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
 
 ### **I2** — 分母输入，无类型物理信号
 
 第二个输入物理信号，表示分母。在模块图标中，此端口用 **÷** 符号标记。
 
-端口名称在模块图标中不可见，但您可以通过单击模块对话框的 **描述**选项卡中的 **Source code** 链接，在底层源文件中看到此名称。
+端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
 ### 输出
 
 ### **O** — 输出物理信号，无类型物理信号
 
 输出物理信号。
 
-端口名称在模块图标中不可见，但您可以通过单击模块对话框的 **描述**选项卡中的 **Source code** 链接，在底层源文件中看到此名称。
+端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
 
 ## 参数
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -47,7 +47,7 @@ Simscape / Foundation Library / Physical Signals / Functions
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -57,11 +57,11 @@ Simscape / Foundation Library / Physical Signals / Functions
 
 **在 R2007a 中引入**
 
-### R2019a: 单位传播
+### R2019a：单位传播
 
 在 R2019a 之前，此模块不传播物理单位。
 
-如果您的模型包含不支持单位传播的旧式模块，请使用 Upgrade Advisor 将您的模块升级到最新版本。有关详细信息，请参阅升级包含旧式物理信号模块的模型。
+如果您的模型包含没有单位传播的旧版模块，请使用 Upgrade Advisor 将模块升级到最新版本。有关详细信息，请参阅 Upgrading Models with Legacy Physical Signal Blocks。
 
 ## 描述
 
@@ -79,4 +79,4 @@ O=I1./I2
 | *I*2 | 第二个输入端口处的物理信号（用 **÷** 符号标记） |
 | *O* | 输出端口处的物理信号 |
 
-输出端口处的信号单位由单位传播规则确定。有关详细信息，请参阅物理信号单位传播。
+输出端口处的信号单位由单位传播规则确定。有关详细信息，请参阅 Physical Signal Unit Propagation。

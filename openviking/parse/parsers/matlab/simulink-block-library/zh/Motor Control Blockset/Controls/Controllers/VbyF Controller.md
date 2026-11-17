@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'VbyF Controller'
-family: 'controls'
+family: 'mcb'
 product_id: 'mcb'
 product_name: 'Motor Control Blockset'
 documentation_release: R2025b
@@ -20,7 +20,7 @@ chinese_source: worker-translation
 
 ### **ωmref** — 参考速度标量
 
-用于 V/F 控制的参考机械速度。
+V/F 控制的参考机械速度。
 
 **数据类型：** `single` | `double` | `fixed point`
 
@@ -66,29 +66,32 @@ chinese_source: worker-translation
 
 ### **Vabc** — 电机相电压向量
 
-驱动电机的定子 *a*、*b* 和 *c* 相电压。
+驱动电机的定子相 *a*、*b* 和 *c* 电压。
 
 **数据类型：** `single` | `double` | `fixed point`
 
 ## 参数
 
-### **输入速度单位** — 速度输入的单位 `Radians/Sec`（默认） | `RPM` | `Degrees/Sec` | `Per unit based on dialog`
+### **Input speed unit** — 速度输入的单位 `Radians/Sec`（默认）| `RPM` | `Degrees/Sec` | `Per unit based on dialog`
 
-**ωmref** 和 **ωmrated** 输入的单位。
+**ωmref**
+和 **ωmrated**
+输入的单位。
 
-选择 `Per unit based on dialog` 可对这两个速度输入使用标幺制。有关标幺制的更多信息，请参阅 Per-Unit System。
+选择 `Per unit based on dialog` 以对两个速度输入使用标幺制系统。有关标幺制系统的更多信息，请参阅 Per-Unit System。
 
-### **标幺速度 (RPM)** — 电机的基准速度 (RPM) `1200`（默认） | scalar
+### **Per unit speed (RPM)** — 电机的基准速度（RPM） `1200`（默认）| 标量
 
-模块在标幺计算中使用的电机额定速度（以 rpm 为单位）。有关标幺制的更多信息，请参阅 Per-Unit System。
+模块在标幺制计算中使用的电机额定速度（以 rpm 为单位）。有关标幺制系统的更多信息，请参阅 Per-Unit System。
 
 #### 依赖关系
 
-要启用此参数，请将 **输入速度单位** 设置为 `Per unit based on dialog`。
+要启用此参数，请将 **Input speed unit** 设置为
+`Per unit based on dialog`。
 
-### **离散步长 (s) (-1 for inherit)** — 模块再次执行之前的采样时间 `50e-6`（默认） | scalar
+### **Discrete step size (s) (-1 for inherit)** — 模块再次执行前的采样时间 `50e-6`（默认）| 标量
 
-两次连续模块执行实例之间的固定时间间隔（以秒为单位）。
+模块两次连续执行实例之间的固定时间间隔（以秒为单位）。
 
 ## 所属库
 
@@ -106,7 +109,7 @@ R2025b 中未记录。
 
 **限制**
 
-如果指定 16-bit fixed-point 输入，由于分辨率不足，模块可能无法生成准确的输出。
+如果指定 16 位定点输入，由于分辨率不足，模块可能无法产生准确的输出。
 
 ## 版本历史
 
@@ -114,17 +117,17 @@ R2025b 中未记录。
 
 ## 描述
 
-对三相电机实现 V/F（开环或标量）控制
+实现三相电机的 V/F（开环或标量）控制
 
-VbyF Controller 模块对三相永磁同步电机 (PMSM) 或交流感应电机 (ACIM) 实现 V/F（开环或标量）控制。
+VbyF Controller 模块为三相永磁同步电机（PMSM）或交流感应电机（ACIM）实现 V/F（开环或标量）控制。
 
-您可以指定参考速度、电机额定速度、电机极对数、电机额定电压、模块最小输出电压以及用于初始斜坡上升的离散时间步数作为输入，以计算驱动电机的三相电压。
+您可以指定参考转速、电机额定转速、电机极对数、电机额定电压、模块最小输出电压，以及初始斜坡上升的离散时间步数作为输入，以计算驱动电机的三相电压。
 
-启动电机时，模块使用 **NRamp** 输入来确定将电机速度逐渐斜坡上升至参考速度所需的模块采样数。
+当您启动电机时，该模块使用 **NRamp** 输入来确定将电机转速逐渐斜坡上升至参考转速所需的模块采样数。
 
 NRamp=TrampDiscrete step size (s)
 
-模块的输出电压幅值根据参考电机速度 (*ωref*) 变化，同时保持额定电压与额定频率之比恒定。
+模块的输出电压幅值根据参考电机转速（*ωref*）变化，同时保持额定电压与额定频率之比恒定。
 
 Vabc\_amplitude=  (Vratedfrated)fref=(Vratedωrated)ωref
 
@@ -134,12 +137,12 @@ Vabc\_amplitude=  (Vratedfrated)fref=(Vratedωrated)ωref
 - *Vrated* 是电机额定相电压的幅值。
 - *frated* 是电机的额定频率。
 - *fref* 是电机的参考频率。
-- *ωrated* 是电机的额定速度。
-- *ωref* 是电机的参考速度。
+- *ωrated* 是电机的额定转速。
+- *ωref* 是电机的参考转速。
 
-V/F 控制技术不需要来自电机的任何反馈。该控制技术通过使电机相电压与其频率成正比来确保定子磁通恒定。有关此技术的更多信息，请参阅 Open-Loop Motor Control。
+V/F 控制技术不需要来自电机的任何反馈。该控制技术通过保持电机相电压与其频率成正比来确保恒定的定子磁通。有关此技术的更多信息，请参阅 Open-Loop Motor Control。
 
 **注意**
 
-- 建议使用此模块启动电机并以较低速度运行，然后切换到其他控制方法（如磁场定向控制 (FOC)）来使电机以较高速度运行。
-- 如果指定 16-bit fixed-point 输入，由于分辨率不足，模块可能无法生成准确的输出。
+- 建议您使用此模块启动电机并在较低转速下运行，然后切换到其他控制方法（如磁场定向控制（FOC））以在较高转速下运行电机。
+- 如果您指定 16 位定点输入，由于分辨率不足，模块可能无法产生准确的输出。

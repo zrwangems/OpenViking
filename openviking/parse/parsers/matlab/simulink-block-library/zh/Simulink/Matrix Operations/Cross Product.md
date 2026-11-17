@@ -9,7 +9,7 @@ official_category: 'Matrix Operations'
 documentation_page: 'crossproduct'
 documentation_source_path: 'slref/crossproduct.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Cross Product
@@ -22,24 +22,24 @@ chinese_source: official
 
 第一个输入向量，指定为三元素向量。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `bus`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `bus`
 
 ### **Port\_2** — 第二个输入向量 三元素向量
 
 第二个输入向量，指定为三元素向量。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 ### 输出
 
 ### **Port\_1** — 输入向量的叉积 三元素向量
 
 输入向量的叉积，以三元素向量形式返回。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 
 ## 参数
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -50,21 +50,21 @@ Simulink / Matrix Operations
 |  |  |
 | --- | --- |
 | **数据类型** | `Boolean` | `double` | `fixed point` | `half` | `integer` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `否` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **直接馈通** | `yes` |
+| **多维信号** | `no` |
+| **可变大小信号** | `no` |
+| **过零检测** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2021b 中推出**
+**在 R2021b 中引入**
 
 ## 描述
 
 两个向量的叉积
 
-Cross Product 模块返回两个 3×1 向量的叉积或向量积。
+Cross Product 模块返回两个 3×1 向量的叉积（或称向量积）。

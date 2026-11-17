@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Inductive Rotor Position Sensor'
-family: 'sensors-transducers'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,86 +18,86 @@ chinese_source: worker-translation
 
 ### 守恒
 
-### **R** — 传感器正探头的旋转速度（机械旋转）
+### **R** — 传感器正探头机械旋转的旋转速度
 
 与传感器正探头关联的机械旋转守恒端口。
 
-### **C** — 传感器负探头的旋转速度（机械旋转）
+### **C** — 传感器负探头机械旋转的旋转速度
 
 与传感器负（参考）探头关联的机械旋转守恒端口。
 
-### **yp** — `y` 轴正端子（电气）
+### **yp** — `y` 轴正端子电气
 
 与 `y` 轴正端子关联的电气守恒端口。
 
 #### 依赖关系
 
-要启用此端口，请将 **输出接口** 设置为 `Electrical connections`。
+要启用此端口，请将 **Output interface** 设置为 `Electrical connections`。
 
-### **yn** — `y` 轴负端子（电气）
+### **yn** — `y` 轴负端子电气
 
 与 `y` 轴负端子关联的电气守恒端口。
 
 #### 依赖关系
 
-要启用此端口，请将 **输出接口** 设置为 `Electrical connections`。
+要启用此端口，请将 **Output interface** 设置为 `Electrical connections`。
 
-### **xp** — x 轴正端子（电气）
+### **xp** — x 轴正端子电气
 
 与 `x` 轴正端子关联的电气守恒端口。
 
 #### 依赖关系
 
-要启用此端口，请将 **输出接口** 设置为 `Electrical connections`。
+要启用此端口，请将 **Output interface** 设置为 `Electrical connections`。
 
-### **xn** — x 轴负端子（电气）
+### **xn** — x 轴负端子电气
 
 与 `x` 轴负端子关联的电气守恒端口。
 
 #### 依赖关系
 
-要启用此端口，请将 **输出接口** 设置为 `Electrical connections`。
+要启用此端口，请将 **Output interface** 设置为 `Electrical connections`。
 ### 输出
 
-### **Angle** — 旋转角物理信号
+### **Angle** — 旋转角度物理信号
 
-磁场在 *x*-*y* 平面中的旋转角，以物理信号形式返回。
+磁场在 *x*-*y* 平面中的旋转角度，以物理信号形式返回。
 
 #### 依赖关系
 
-要启用此端口，请将 **输出接口** 设置为 `Decoded angular position`。
+要启用此端口，请将 **Output interface** 设置为 `Decoded angular position`。
 
 ## 参数
 
-### **极对数** — 极对数 `2`（默认） | scalar
+### **Number of pole pairs** — 极对数 `2`（默认）| 标量
 
 极对数。
 
-### **X 轴电压幅值** — `x` 轴电压 `2.5` `V`（默认） | scalar
+### **X-axis voltage amplitude** — `x` 轴电压 `2.5` `V`（默认）| 标量
 
 `x` 轴电压幅值。
 
-### **Y 轴电压幅值** — `y` 轴电压 `2.5` `V`（默认） | scalar
+### **Y-axis voltage amplitude** — `y` 轴电压 `2.5` `V`（默认）| 标量
 
 `y` 轴电压幅值。
 
-### **X 轴电压偏移** — `x` 轴电压偏移 `0` `V`（默认） | scalar
+### **X-axis voltage offset** — `x` 轴电压偏移 `0` `V`（默认）| 标量
 
-在 `x` 轴上不存在外部磁场时，流经电导体的电流的电势差。
+在 `x` 轴上无外部磁场时，电流通过电导体的电势差。
 
-### **Y 轴电压偏移** — `y` 轴电压偏移 `0` `V`（默认） | scalar
+### **Y-axis voltage offset** — `y` 轴电压偏移 `0` `V`（默认）| 标量
 
-在 `y` 轴上不存在外部磁场时，流经电导体的电流的电势差。
+在 `y` 轴上无外部磁场时，电流通过电导体的电势差。
 
-### **正交误差** — 正交误差 `0` `deg`（默认） | scalar
+### **Quadrature error** — 正交误差 `0` `deg`（默认）| 标量
 
-正交误差量。正交切换可减小偏移误差。
+正交误差量。正交切换可以减少偏移误差。
 
-### **翻滚系数** — 翻滚系数 `0`（默认） | scalar
+### **Tumbling coefficient** — 翻滚系数 `0`（默认）| 标量
 
-翻滚系数，单位为度。
+翻滚系数，以度为单位。
 
-### **输出接口** — 解码信息接口 `Electrical connections`（默认） | `Decoded angular position`
+### **Output interface** — 解码信息的接口 `Electrical connections`（默认）| `Decoded angular position`
 
 用于解码信息的端口接口，指定为 `Electrical connections` 或 `Decoded angular position`。
 
@@ -107,11 +107,11 @@ Simscape / Electrical / Sensors & Transducers
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ Code Generation 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -119,9 +119,9 @@ Simscape / Electrical / Sensors & Transducers
 
 ## 描述
 
-具有四个感应线圈的感应式转子位置传感器
+带四个感应线圈的感应式转子位置传感器
 
-Inductive Rotor Position Sensor 模块使用涡流损耗理论来获得转子位置。它由四个平面线圈和一个目标迹线组成，用于检测转子位置。目标迹线呈正弦形状，并由导电材料制成。四个平面线圈之间的距离相当于一个周期的 90 度。
+Inductive Rotor Position Sensor 模块使用涡流损耗理论来获取转子位置。它由四个平面线圈和一个检测转子位置的目标迹线组成。目标迹线呈正弦形状，由导电材料制成。四个平面线圈之间的距离相当于一个周期的 90 度。
 
 ### 方程
 
@@ -142,14 +142,14 @@ vy=Vy0+Aycos(Nθ−π2+β)+Ksin(θ)
 - *β* 是正交误差。
 - *K* 是翻滚因子。
 
-该模块使用以下方程解码角度：
+该模块使用此方程解码角度：
 
-θout=arctan(vyvx).
+θout=arctan(vyvx)。
 
 下图显示了翻滚因子的影响：
 
 ### 变量
 
-要在仿真前为模块变量设置优先级和初始目标值，请使用模块对话框或属性检查器中的 **初始目标** 部分。有关详细信息，请参阅设置模块变量的优先级和初始目标。
+要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或属性检查器中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-标称值提供了一种在模型中指定变量预期量值的方法。使用基于标称值的系统缩放可提高仿真稳健性。您可以使用不同来源指定标称值，包括模块对话框或属性检查器中的 **标称值** 部分。有关详细信息，请参阅通过标称值进行系统缩放。
+标称值提供了一种在模型中指定变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。您可以使用不同的来源指定标称值，包括模块对话框或属性检查器中的 **Nominal Values** 部分。有关详细信息，请参阅 System Scaling by Nominal Values。

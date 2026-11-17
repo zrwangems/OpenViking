@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Current Source (Three-Phase)'
-family: 'sources'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -20,31 +20,31 @@ chinese_source: worker-translation
 
 ### **~** — 三相端口电气
 
-可扩展三相端口，与三相 *a*、*b* 和 *c* 相关联。
+与三相 *a*、*b* 和 *c* 相关联的可扩展三相端口。
 
-### **n** — 星形中心电气
+### **n** — 星形中性点电气
 
-与星形中心相关联的电气守恒端口。
+与星形中性点相关联的电气守恒端口。
 
 ## 参数
 
-### **建模选项** — 是否对复合三相端口或扩展三相端口进行建模 `Composite three-phase ports` (default) | `Expanded three-phase ports`
+### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
-是否对复合三相端口或扩展三相端口进行建模。
+是否对复合或扩展三相端口建模。
 
-复合三相端口用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口构建与三相电气系统单线图对应的模型。
+复合三相端口用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口构建对应于三相电气系统单线图的模型。
 
 扩展三相端口使用三个独立的电气守恒端口表示三相系统的各相。
 
-### **电流（相 RMS）** — RMS 相电流 `100 / sqrt(2)` `A` (default)
+### **Current (phase RMS)** — 相电流 RMS 值 `100 / sqrt(2)` `A`（默认）
 
-RMS 相电流。
+相电流 RMS 值。
 
-### **相移** — 相移 `0` `deg` (default)
+### **Phase shift** — 相移 `0` `deg`（默认）
 
 相移，以角度单位表示。
 
-### **频率** — 电流频率 `60` `Hz` (default)
+### **Frequency** — 电流频率 `60` `Hz`（默认）
 
 电流频率，以 Hz 或可直接转换为 Hz 的单位指定（其中 Hz 定义为 1/s）。例如，`kHz` 和 `MHz` 是有效单位，但 `rad/s` 不是。
 
@@ -54,7 +54,7 @@ Simscape / Electrical / Sources
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -68,7 +68,7 @@ Simscape / Electrical / Sources
 
 理想三相电流源
 
-Current Source (Three-Phase) 模块对理想三相电流源进行建模，该电流源在其端子处维持指定幅值的正弦电流，与源两端的电压无关。
+Current Source (Three-Phase) 模块对理想三相电流源进行建模，该电流源在其端子之间维持指定幅值的正弦电流，与电源两端的电压无关。
 
 输出电流由以下方程定义：
 
@@ -84,9 +84,9 @@ ic=I0sin(2πft+φ+120∘),
 
 - *I0* 是峰值相电流。
 - *iphase\_rms* 是 RMS 相电流。
-- *ia*、*ib*、*ic* 分别是各相电流。
+- *ia*、*ib*、*ic* 是各自的相电流。
 - *f* 是频率。
 - *φ* 是相移。
 - *t* 是时间。
 
-箭头指示电流流动的正方向。该源采用星形配置，端口 **n** 提供与星形中心的连接。
+箭头指示电流流动的正方向。该电源采用星形配置，端口 **n** 提供与星形中性点的连接。

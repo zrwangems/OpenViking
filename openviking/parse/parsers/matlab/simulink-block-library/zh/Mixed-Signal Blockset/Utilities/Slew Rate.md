@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Slew Rate'
-family: 'utilities'
+family: 'msblks'
 product_id: 'msblks'
 product_name: 'Mixed-Signal Blockset'
 documentation_release: R2025b
@@ -18,15 +18,14 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **events** — 输入信号标量
+### **events** — 输入信号 标量
 
-可变步长、事件驱动的输入信号，指定为标量。**events** 端口处的信号来自逻辑门的输出，例如 Variable Pulse Delay 模块。
+可变步长、事件驱动的输入信号，指定为标量。**events** 端口处的信号来自逻辑门（例如 Variable Pulse Delay 模块）的输出。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ### 输出
 
-### **wave** — 输出信号标量
+### **wave** — 输出信号 标量
 
 固定步长、均匀采样的输出信号，以标量形式返回。您可以为 **wave** 端口处的信号定义有限压摆率和传播延迟。
 
@@ -34,114 +33,114 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **输出步长计算** — 定义如何计算输出步长 `Default`（默认） | `Advanced`
+### **Output step size calculation** — 定义如何计算输出步长 `Default`（默认）| `Advanced`
 
 定义如何计算输出步长。
 
-- 选择 `Default` 可基于上升/下降时间计算 **输出步长计算**。**输出采样间隔** (ΔT) 由 ΔT=(Rise/fall time)26 · 0.22 给出。
-- 选择 `Advanced` 可基于感兴趣频率计算 **输出步长计算**。**输出采样间隔** (ΔT) 由 ΔT=Rise/fall time6 · Maximum frequency of interest 给出。
+- 选择 `Default` 以基于上升/下降时间计算 **Output step size calculation**。**Output sample interval**（ΔT）由 ΔT=(Rise/fall time)26 · 0.22 给出。
+- 选择 `Advanced` 以基于关注频率计算 **Output step size calculation**。**Output sample interval**（ΔT）由 ΔT=Rise/fall time6 · Maximum frequency of interest 给出。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'DefaultOrAdvanced')` 确定输出步长的计算方式。
+- 使用 `get_param(gcb,'DefaultOrAdvanced')` 确定如何计算输出步长。
 
-### **感兴趣的最大频率 (Hz)** — 输出端感兴趣的最大频率 `11e9`（默认） | scalar
+### **Maximum frequency of interest (Hz)** — 输出端的最大关注频率 `11e9`（默认）| 标量
 
-输出端感兴趣的最大频率，指定为以 Hz 为单位的标量。**感兴趣的最大频率** 用于计算 **输出采样间隔** 和 **最小 20%-80% 上升/下降时间**。
+输出端的最大关注频率，以 Hz 为单位的标量指定。**Maximum frequency of interest** 用于计算 **Output sample interval** 和 **Minimum 20%-80% rise/fall time**。
 
-#### 依赖项
+#### 依赖关系
 
-仅当为 **输出步长计算** 选择 `Advanced` 时，此参数才可用。
+此参数仅在 **Output step size calculation** 选择 `Advanced` 时可用。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'MaxFreqInterest')` 查看 **感兴趣的最大频率** 的当前值。
-- 使用 `set_param(gcb,'MaxFreqInterest',value)` 将 **感兴趣的最大频率** 设置为特定值。
+- 使用 `get_param(gcb,'MaxFreqInterest')` 查看 **Maximum frequency of interest** 的当前值。
+- 使用 `set_param(gcb,'MaxFreqInterest',value)` 将 **Maximum frequency of interest** 设置为特定值。
 
-### **输出采样间隔** — 输出采样间隔 `23ps`（默认） | scalar
+### **Output sample interval** — 输出采样间隔 `23ps`（默认）| 标量
 
-输出采样间隔，指定为以 s 为单位的标量。此参数不可调。
+输出采样间隔，以 s 为单位的标量指定。此参数不可调。
 
-**输出采样间隔** (ΔT) 由 ΔT=Rise/fall time6 · Maximum frequency of interest 给出。
+**Output sample interval**（ΔT）由 ΔT=Rise/fall time6 · Maximum frequency of interest 给出。
 
-#### 依赖项
+#### 依赖关系
 
-仅当为 **输出步长计算** 选择 `Advanced` 时，此参数才可用。
+此参数仅在 **Output step size calculation** 选择 `Advanced` 时可用。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'OutputSampleTime')` 查看 **输出采样间隔** 的当前值。
-- 使用 `set_param(gcb,'OutputSampleTime',value)` 将 **输出采样间隔** 设置为特定值。
+- 使用 `get_param(gcb,'OutputSampleTime')` 查看 **Output sample interval** 的当前值。
+- 使用 `set_param(gcb,'OutputSampleTime',value)` 将 **Output sample interval** 设置为特定值。
 
-### **最小 20%-80% 上升/下降时间** — 输出端进行有意义仿真所需的最小上升/下降时间 23ps（默认） | scalar
+### **Minimum 20%-80% rise/fall time** — 输出端进行有意义仿真所需的最小上升/下降时间 23ps（默认）| 标量
 
-输出端进行有意义仿真所需的最小上升/下降时间，指定为以 ps 为单位的标量。这是一个不可调参数。
+输出端进行有意义仿真所需的最小上升/下降时间，以 ps 为单位的标量指定。这是一个不可调参数。
 
-#### 依赖项
+#### 依赖关系
 
-仅当为 **输出步长计算** 选择 `Advanced` 时，此参数才可用。
+此参数仅在 **Output step size calculation** 选择 `Advanced` 时可用。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'ConversionRiseFall')` 查看 **最小 20%-80% 上升/下降时间** 的当前值。
-- 使用 `set_param(gcb,'ConversionRiseFall',value)` 将 **最小 20%-80% 上升/下降时间** 设置为特定值。
+- 使用 `get_param(gcb,'ConversionRiseFall')` 查看 **Minimum 20%-80% rise/fall time** 的当前值。
+- 使用 `set_param(gcb,'ConversionRiseFall',value)` 将 **Minimum 20%-80% rise/fall time** 设置为特定值。
 
-### **上升/下降时间 (s)** — 输出端 20%-80% 上升时间 `30e-12`（默认） | scalar
+### **Rise/fall time (s)** — 输出端的 20%-80% 上升时间 `30e-12`（默认）| 标量
 
-在输出端完整幅度边沿中，信号从 20% 变化到 80% 所需的时间，指定为标量。
+在输出端全幅度边沿中，信号从 20% 变化到 80% 所需的时间，以标量指定。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'RiseTime')` 查看 **上升/下降时间** 的当前值。
-- 使用 `set_param(gcb,'RiseTime',value)` 将 **上升/下降时间** 设置为特定值。
+- 使用 `get_param(gcb,'RiseTime')` 查看 **Rise/fall time** 的当前值。
+- 使用 `set_param(gcb,'RiseTime',value)` 将 **Rise/fall time** 设置为特定值。
 
-### **单位幅度信号 20%-80% 边沿的压摆率** — 输出端 20%-80% 边沿的压摆率 `56GHz`（默认） | scalar
+### **Slew rate for 20%-80% edge of unit amplitude signal** — 输出端 20%-80% 边沿的压摆率 `56GHz`（默认）| 标量
 
-输出端 20%-80% 边沿的压摆率，指定为标量。此参数不可调。
+输出端 20%-80% 边沿的压摆率，以标量指定。此参数不可调。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'RisingSlewRate')` 查看 **单位幅度信号 20%-80% 边沿的压摆率** 的当前值。
-- 使用 `set_param(gcb,'RisingSlewRate',value)` 将 **单位幅度信号 20%-80% 边沿的压摆率** 设置为特定值。
+- 使用 `get_param(gcb,'RisingSlewRate')` 查看 **Slew rate for 20%-80% edge of unit amplitude signal** 的当前值。
+- 使用 `set_param(gcb,'RisingSlewRate',value)` 将 **Slew rate for 20%-80% edge of unit amplitude signal** 设置为特定值。
 
-### **最小传播延迟** — 进行有意义仿真所需的最小传播延迟 `48ps`（默认） | scalar
+### **Minimum propagation delay** — 用于有效仿真的最小传播延迟 `48ps`（默认）| 标量
 
-进行有意义仿真所需的最小传播延迟，指定为标量。此参数不可调。
+用于有效仿真的最小传播延迟，指定为标量。此参数不可调。
 
-最小传播延迟根据 **感兴趣的最大频率** 计算，其中 Minimum propagation delay =0.269Maximum frequency of interest。
+最小传播延迟根据 **Maximum frequency of interest** 计算，其中最小传播延迟 =0.269最大关注频率。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'ConversionDelay')` 查看 **最小传播延迟** 的当前值。
-- 使用 `set_param(gcb,'ConversionDelay',value)` 将 **最小传播延迟** 设置为特定值。
+- 使用 `get_param(gcb,'ConversionDelay')` 查看 **Minimum propagation delay** 的当前值。
+- 使用 `set_param(gcb,'ConversionDelay',value)` 将 **Minimum propagation delay** 设置为特定值。
 
-### **传播延迟 (s)** — 上升沿的传播延迟 `48e-12`（默认） | scalar
+### **Propagation delay (s)** — 上升沿的传播延迟 `48e-12`（默认）| 标量
 
-上升沿的传播延迟，指定为以 s 为单位的标量。**传播延迟** 在等于幅度一半的阈值处测量。
+上升沿的传播延迟，以 s 为单位指定为标量。**Propagation delay** 在等于幅度一半的阈值处测量。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'RisepropDelay')` 查看 **传播延迟** 的当前值。
-- 使用 `set_param(gcb,'RisePropDelay',value)` 将 **传播延迟** 设置为特定值。
+- 使用 `get_param(gcb,'RisepropDelay')` 查看 **Propagation delay** 的当前值。
+- 使用 `set_param(gcb,'RisePropDelay',value)` 将 **Propagation delay** 设置为特定值。
 
-### **启用增大的缓冲区大小** — 启用增大的缓冲区大小按钮
+### **Enable increased buffer size** — 启用增大缓冲区大小按钮
 
-选择以在仿真期间启用增大的缓冲区大小。这会增大 PLL 模型中属于 Mixed-Signal Blockset™/Utilities Simulink® 库的所有模块的缓冲区大小。默认情况下，此选项处于未选中状态。
+选择此项可在仿真期间启用增大的缓冲区大小。这会增大 PLL 模型中属于 Mixed-Signal Blockset™/Utilities Simulink® 库的所有模块的缓冲区大小。默认情况下，此选项未选中。
 
-### **缓冲区大小** — 模块的缓冲区大小 `10`（默认） | positive integer scaler
+### **Buffer size** — 模块的缓冲区大小 `10`（默认）| 正整数标量
 
 PLL 模型中属于 Mixed-Signal Blockset/Utilities Simulink 库的所有模块的缓冲区大小。
 
-选择不同的仿真求解器或采样策略可能会改变生成准确输出样本所需的输入样本数。将 **缓冲区大小** 设置为足够大的值，以便输入缓冲区包含所需的所有输入样本。
+选择不同的仿真求解器或采样策略可能会改变生成准确输出样本所需的输入样本数量。将 **Buffer size** 设置为足够大的值，以便输入缓冲区包含所需的所有输入样本。
 
-#### 依赖项
+#### 依赖关系
 
-仅当选中 **启用增大的缓冲区大小** 选项时，此参数才可用。
+此参数仅在选中 **Enable increased buffer size** 选项时可用。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'NBuffer')` 查看 **缓冲区大小** 的当前值。
-- 使用 `set_param(gcb,'NBuffer',value)` 将 **缓冲区大小** 设置为特定值。
+- 使用 `get_param(gcb,'NBuffer')` 查看 **Buffer size** 的当前值。
+- 使用 `set_param(gcb,'NBuffer',value)` 将 **Buffer size** 设置为特定值。
 
 ## 所属库
 
@@ -149,11 +148,11 @@ Mixed-Signal Blockset / Utilities
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sequence Feedback'
-family: 'for-use-with-dpi-c-systemverilog'
+family: 'hdlverifier'
 product_id: 'hdlverifier'
 product_name: 'HDL Verifier'
 documentation_release: R2025b
@@ -18,16 +18,16 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 来自 scoreboard 子系统的标量反馈信号
+### **Port\_1** — 来自记分板的反馈信号 标量
 
-Sequence Feedback 模块直接从 scoreboard 子系统接收输入信号。
+Sequence Feedback 模块直接接收来自记分板子系统的输入信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 ### 输出
 
-### **Port\_1** — 发往 sequence 子系统的标量反馈信号
+### **Port\_1** — 发送至序列子系统的反馈信号 标量
 
-Sequence Feedback 模块直接将信号输出到 sequence 子系统。
+Sequence Feedback 模块直接向序列子系统输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 
@@ -53,6 +53,6 @@ R2025b 中未记录。
 
 ## 描述
 
-在 UVM 测试平台模型中连接 scoreboard 与 sequence
+连接 UVM 测试平台模型中记分板与序列之间的反馈
 
-Sequence Feedback 模块在 UVM 测试平台模型中将来自 scoreboard 的反馈信号提升到 sequence。该模块实现了一个 Unit Delay (Simulink) 模块，并将 **Initial condition** 参数设置为 `0`。
+Sequence Feedback 模块将反馈信号从 UVM 测试平台模型中的记分板传递到序列。该模块实现了一个 Unit Delay (Simulink) 模块，其 **Initial condition** 参数设置为 `0`。

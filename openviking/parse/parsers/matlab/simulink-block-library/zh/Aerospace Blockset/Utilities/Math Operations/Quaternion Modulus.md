@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Quaternion Modulus'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -18,9 +18,9 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **q** — 四元数 | 四元数向量
+### **q** — 四元数 四元数 | 四元数向量
 
-四元数，形式为 [ *q*
+以 [ *q*
 0 , *r*
 0 , ..., *q*
 1 , *r*
@@ -28,16 +28,15 @@ chinese_source: worker-translation
 2 , *r*
 2 , ... , *q*
 3 , *r*
-3 , ...]，指定为四元数或四元数向量。
+3 , ...] 形式表示的四元数，指定为四元数或四元数向量。
 
 **数据类型：** `double`
-
 ### 输出
 
-### **|q|** — 四元数模 | 四元数模向量
+### **|q|** — 四元数模 四元数模 | 四元数模向量
 
-四元数模或四元数模向量，形式为 [|
-*q* |, | *r* |, ...]。
+以 [|
+*q* |, | *r* |, ...] 形式表示的四元数模或四元数模向量。
 
 **数据类型：** `double`
 
@@ -59,10 +58,10 @@ R2025b 中未记录。
 
 ## 版本历史
 
-**R2006a 之前引入**
+**在 R2006a 之前引入**
 
 ## 描述
 
 计算四元数的模
 
-Quaternion Modulus 模块计算给定四元数的模。Aerospace Blockset™ 使用按 scalar-first 约定定义的四元数。有关四元数和四元数模所用的方程，请参阅算法。
+Quaternion Modulus 模块计算给定四元数的模。Aerospace Blockset™ 使用按标量优先约定定义的四元数。有关四元数和四元数模所使用的方程，请参见算法。

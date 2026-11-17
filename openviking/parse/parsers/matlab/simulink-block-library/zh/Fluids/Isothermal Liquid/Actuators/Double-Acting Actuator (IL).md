@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Double-Acting Actuator (IL)'
-family: 'isothermal-liquid'
+family: 'hydro'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b
@@ -22,7 +22,7 @@ chinese_source: worker-translation
 
 与活塞位置关联的物理信号输入端口，该活塞位置由您使用 Simscape Multibody 模块指定。
 
-#### 依赖关系
+#### 依赖
 
 要显示此端口，请将 **Piston displacement from chamber A cap** 设置为 `Provide input signal from Multibody joint`。
 ### 输出
@@ -31,41 +31,41 @@ chinese_source: worker-translation
 
 与活塞位置关联的物理信号端口。
 
-#### 依赖关系
+#### 依赖
 
 要显示此端口，请将 **Piston displacement from chamber A cap** 设置为 `Calculate from velocity of port R relative to port C`。
 ### 守恒
 
-### **A** — 腔室 A 入口等温液体
+### **A** — 腔室 A 的入口，等温液体
 
 与腔室 A 入口关联的等温液体守恒端口。
 
-### **B** — 腔室 B 入口等温液体
+### **B** — 腔室 B 的入口，等温液体
 
 与腔室 B 入口关联的等温液体守恒端口。
 
-### **C** — 执行器外壳机械平移
+### **C** — 执行器壳体，机械平移
 
-与外壳关联的机械平移守恒端口。
+与壳体关联的机械平移守恒端口。
 
-### **R** — 执行器活塞机械平移
+### **R** — 执行器活塞，机械平移
 
 与活塞关联的机械平移守恒端口。
 
 ## 参数
 
-### Actuator
+### 执行器
 
 ### **Same fluid on both sides** — 在两个腔室中建模相同流体的选项 `on`（默认）| `off`
 
-是否在两个执行器腔室中建模相同流体。如果您选择此参数，则执行器通过两个腔室传播流体属性。清除此参数以将每个腔室建模为不同的流体，其中每个腔室连接到隔离的流体网络。
+是否在两个执行器腔室中建模相同的流体。如果选择此参数，执行器将通过两个腔室传播流体属性。清除此参数可将每个腔室建模为不同的流体，其中每个腔室连接到隔离的流体网络。
 
 ### **Mechanical orientation** — 活塞位移方向 `Pressure at A causes positive displacement of R relative to C`（默认）| `Pressure at A causes negative displacement of R relative to C`
 
 设置活塞位移方向。当您将此参数设置为：
 
-- `Pressure at A causes positive displacement of R relative to C` 时，当端口 **A** 处的液体体积膨胀时，活塞位移为正。这对应于杆伸出。
-- `Pressure at A causes negative displacement of R relative to C` 时，当端口 **A** 处的液体体积膨胀时，活塞位移为负。这对应于杆缩回。
+- `Pressure at A causes positive displacement of R relative to C` 时，当端口 **A** 处的液体体积膨胀时，活塞位移为正。这对应于活塞杆伸出。
+- `Pressure at A causes negative displacement of R relative to C` 时，当端口 **A** 处的液体体积膨胀时，活塞位移为负。这对应于活塞杆缩回。
 
 ### **Piston cross-sectional area in chamber A** — 腔室 A 活塞面积 `0.01 m^2`（默认）| 正标量
 
@@ -79,13 +79,13 @@ chinese_source: worker-translation
 
 最大活塞行程距离。
 
-### **Dead volume in chamber A** — 活塞完全缩回时的腔室 A 流体体积 `1e-5 m^3`（默认）| 正标量
+### **Dead volume in chamber A** — 活塞完全缩回时腔室 A 的流体体积 `1e-5 m^3`（默认）| 正标量
 
-腔室 A 中活塞位移为 `0` 时的液体体积。这是活塞抵住执行器端盖时的液体体积。
+腔室 A 中活塞位移为 `0` 时的液体体积。这是活塞紧靠执行器端盖时的液体体积。
 
-### **Dead volume in chamber B** — 活塞完全缩回时的腔室 B 流体体积 `1e-5 m^3`（默认）| 正标量
+### **Dead volume in chamber B** — 活塞完全缩回时腔室 B 的流体体积 `1e-5 m^3`（默认）| 正标量
 
-腔室 B 中活塞位移为 `0` 时的液体体积。这是活塞抵住执行器端盖时的液体体积。
+腔室 B 中活塞位移为 `0` 时的液体体积。这是活塞紧靠执行器端盖时的液体体积。
 
 ### **Environment pressure specification** — 参考环境压力 `Atmospheric pressure`（默认）| `Specified pressure`
 
@@ -95,7 +95,7 @@ chinese_source: worker-translation
 
 用户定义的环境压力。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请将 **Environment pressure specification** 设置为 `Specified pressure`。
 
@@ -103,29 +103,29 @@ chinese_source: worker-translation
 
 分离力与库仑摩擦力之比。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请在 **Friction** 选项卡中，选择 **Cylinder friction effect**。
+要启用此参数，请在 **Friction** 选项卡中选择 **Cylinder friction effect**。
 
 ### **Breakaway friction velocity** — 运动阈值 `0.1 m/s`（默认）| 正标量
 
 克服摩擦力开始运动的阈值速度。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请在 **Friction** 选项卡中，选择 **Cylinder friction effect**。
+要启用此参数，请在 **Friction** 选项卡中选择 **Cylinder friction effect**。
 
-### Hard Stop
+### 硬限位
 
-### **Hard stop model** — 选择硬停止模型 `Stiffness and damping applied smoothly through transition region, damped rebound`（默认）| `Full stiffness and damping applied at bounds, undamped rebound` | `Full stiffness and damping applied at bounds, damped rebound` | `Based on coefficient of restitution`
+### **Hard stop model** — 选择硬限位模型 `Stiffness and damping applied smoothly through transition region, damped rebound`（默认）| `Full stiffness and damping applied at bounds, undamped rebound` | `Full stiffness and damping applied at bounds, damped rebound` | `Based on coefficient of restitution`
 
-活塞在完全伸出或完全缩回时的力模型选择。有关更多信息，请参阅 Translational Hard Stop 模块。
+活塞在完全伸出或完全缩回时力的模型选择。有关更多信息，请参阅 Translational Hard Stop 模块。
 
 ### **Hard-stop stiffness coefficient** — 刚度系数 `1e10` `N/m`（默认）| 正标量
 
 活塞刚度系数。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请将 **Hard stop model** 设置为
 
@@ -137,7 +137,7 @@ chinese_source: worker-translation
 
 活塞阻尼系数。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请将 **Hard stop model** 设置为
 
@@ -145,27 +145,27 @@ chinese_source: worker-translation
 - `Full stiffness and damping applied at bounds, undamped rebound`
 - `Full stiffness and damping applied at bounds, damped rebound`
 
-### **Transition region** — 硬停止力模型的应用范围 `0.1` `mm`（默认）| 正标量
+### **Transition region** — 硬限位力模型的应用范围 `0.1` `mm`（默认）| 正标量
 
-硬停止力模型的应用范围。在活塞最大伸出和活塞最大缩回的这个范围之外，不应用 **Hard stop model**，并且活塞上没有额外的力。
+硬限位力模型的应用范围。在活塞最大伸出量和活塞最大缩回量的此范围之外，不应用 **Hard stop model**，活塞上没有额外的力。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请将 **Hard stop model** 设置为 `Stiffness and damping applied smoothly through transition region, damped rebound`。
 
-### **Coefficient of restitution** — 碰撞后滑块与停止件之间的最终相对速度与初始相对速度之比 `0.7`（默认）| 0 到 1 之间的无单位值
+### **Coefficient of restitution** — 碰撞后滑块与限位之间的最终相对速度与初始相对速度之比 `0.7`（默认）| 0 到 1 之间的无单位值
 
-滑块弹跳后滑块与停止件之间的最终相对速度与初始相对速度之比。
+滑块弹跳后滑块与限位之间的最终相对速度与初始相对速度之比。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请将 **Hard stop model** 设置为 `Based on coefficient of restitution`。
 
-### **Static contact speed threshold** — 碰撞前滑块与停止件之间的阈值相对速度 `0.001 m/s`（默认）| 非负标量
+### **Static contact speed threshold** — 碰撞前滑块与限位之间的阈值相对速度 `0.001 m/s`（默认）| 非负标量
 
-碰撞前滑块与停止件之间的阈值相对速度。当滑块以小于 **Static contact speed threshold** 参数值的速度撞击外壳时，它们保持接触。否则，滑块弹跳。要避免建模滑块与外壳之间的静态接触，请将此参数设置为 `0`。
+碰撞前滑块与限位之间的阈值相对速度。当滑块以小于 **Static contact speed threshold** 参数值的速度撞击壳体时，它们保持接触。否则，滑块弹跳。要避免建模滑块与壳体之间的静态接触，请将此参数设置为 `0`。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请将 **Hard stop model** 设置为 `Based on coefficient of restitution`。
 
@@ -173,11 +173,11 @@ chinese_source: worker-translation
 
 将滑块从静态接触模式释放所需的最小力。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请将 **Hard stop model** 设置为 `Based on coefficient of restitution`。
 
-### Converter Cushion A
+### 转换器缓冲 A
 
 ### **Cylinder A end cushioning** — 是否建模活塞在最大伸出时的减速 `off`（默认）| `on`
 
@@ -185,9 +185,9 @@ chinese_source: worker-translation
 
 ### **Cushion plunger cross-sectional area** — 缸体缓冲柱塞面积 `1e-4 m^2`（默认）| 正标量
 
-执行器缓冲元件内柱塞的面积。
+执行器缓冲元件内部柱塞的面积。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder A end cushioning**。
 
@@ -195,7 +195,7 @@ chinese_source: worker-translation
 
 缓冲柱塞的长度。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder A end cushioning**。
 
@@ -203,31 +203,31 @@ chinese_source: worker-translation
 
 缓冲腔室之间节流孔的面积。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder A end cushioning**。
 
 ### **Leakage area between plunger and cushion sleeve** — 缓冲柱塞与套筒之间的间隙 `1e-7 m^2`（默认）| 正标量
 
-缓冲柱塞与套筒之间的间隙面积。此值通过保持流动的连续性来增强数值稳定性。
+缓冲柱塞与套筒之间的间隙面积。此值通过保持流动的连续性来贡献数值稳定性。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder A end cushioning**。
 
 ### **Check valve cracking pressure differential** — 缓冲阈值压力 `0.01 MPa`（默认）| 正标量
 
-触发阀门操作的压力。当端口 **A** 与 *P*env 之间的压力差达到或超过此参数的值时，缓冲阀开始打开。
+触发阀操作的阈值压力。当端口 **A** 与 *P*env 之间的压力差达到或超过此参数的值时，缓冲阀开始打开。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder A end cushioning**。
 
 ### **Check valve maximum pressure differential** — 最大缓冲压差 `0.1 MPa`（默认）| 正标量
 
-最大缓冲阀压差。此参数为压力提供上限，以使系统压力保持真实。
+最大缓冲阀压差。此参数为压力提供上限，以使系统压力保持实际。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder A end cushioning**。
 
@@ -235,19 +235,19 @@ chinese_source: worker-translation
 
 缓冲阀在完全打开位置的横截面积。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder A end cushioning**。
 
-### **Check valve leakage area** — 完全关闭位置时的缓冲阀间隙面积 `1e-10 m^2`（默认）| 正标量
+### **Check valve leakage area** — 完全关闭位置时缓冲阀间隙面积 `1e-10 m^2`（默认）| 正标量
 
-缓冲单向阀处于完全关闭位置时所有间隙的总和。任何小于此值的面积都会饱和到指定的泄漏面积。此值通过保持流动的连续性来增强数值稳定性。
+缓冲单向阀处于完全关闭位置时所有间隙的总和。任何小于此值的面积都会饱和到指定的泄漏面积。此值通过保持流动的连续性来贡献数值稳定性。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder A end cushioning**。
 
-### Converter Cushion B
+### 转换器缓冲 B
 
 ### **Cylinder B end cushioning** — 是否建模活塞在最大伸出时的减速 `off`（默认）| `on`
 
@@ -255,9 +255,9 @@ chinese_source: worker-translation
 
 ### **Cushion plunger cross-sectional area** — 缸体缓冲柱塞面积 `1e-4 m^2`（默认）| 正标量
 
-执行器缓冲元件内柱塞的面积。
+执行器缓冲元件内部柱塞的面积。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder B end cushioning**。
 
@@ -265,7 +265,7 @@ chinese_source: worker-translation
 
 缓冲柱塞的长度。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder B end cushioning**。
 
@@ -273,31 +273,31 @@ chinese_source: worker-translation
 
 缓冲腔室之间节流孔的面积。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder B end cushioning**。
 
 ### **Leakage area between plunger and cushion sleeve** — 缓冲柱塞与套筒之间的间隙 `1e-7 m^2`（默认）| 正标量
 
-缓冲柱塞与套筒之间的间隙面积。此值通过保持流动的连续性来增强数值稳定性。
+缓冲柱塞与套筒之间的间隙面积。此值通过保持流动的连续性来贡献数值稳定性。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder B end cushioning**。
 
 ### **Check valve cracking pressure differential** — 缓冲阈值压力 `0.01 MPa`（默认）| 正标量
 
-触发阀门操作的压力。当端口 **A** 与 *P*env 之间的压力差达到或超过此参数的值时，缓冲阀开始打开。
+触发阀操作的阈值压力。当端口 **A** 与 *P*env 之间的压力差达到或超过此参数的值时，缓冲阀开始打开。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder B end cushioning**。
 
 ### **Check valve maximum pressure differential** — 最大缓冲压差 `0.1 MPa`（默认）| 正标量
 
-最大缓冲阀压差。此参数为压力提供上限，以使系统压力保持真实。
+最大缓冲阀压差。此参数为压力提供上限，以使系统压力保持实际。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder B end cushioning**。
 
@@ -305,37 +305,37 @@ chinese_source: worker-translation
 
 缓冲阀在完全打开位置的横截面积。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder B end cushioning**。
 
-### **Check valve leakage area** — 完全关闭位置时的缓冲阀间隙面积 `1e-10 m^2`（默认）| 正标量
+### **Check valve leakage area** — 完全关闭位置时缓冲阀间隙面积 `1e-10 m^2`（默认）| 正标量
 
-缓冲单向阀处于完全关闭位置时所有间隙的总和。任何小于此值的面积都会饱和到指定的泄漏面积。此值通过保持流动的连续性来增强数值稳定性。
+缓冲单向阀处于完全关闭位置时所有间隙的总和。任何小于此值的面积都会饱和到指定的泄漏面积。此值通过保持流动的连续性来贡献数值稳定性。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder B end cushioning**。
 
 ### **Smoothing factor** — 数值平滑因子 `0.01`（默认）| 正标量
 
-连续平滑因子，当可变节流孔和单向阀处于接近打开或接近关闭位置时，引入一层逐渐变化的流动响应。将此值设置为小于 1 的非零值，以提高您在这些情况下的仿真稳定性。
+连续平滑因子，当可变节流孔和单向阀处于接近打开或接近关闭位置时，为流动响应引入一层渐变。将此值设置为小于 1 的非零值，以提高在这些工况下仿真的稳定性。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder B end cushioning**。
 
-### Friction
+### 摩擦
 
-### **Cylinder friction effect** — 是否建模对抗活塞运动的摩擦 `off`（默认）| `on`
+### **Cylinder friction effect** — 是否建模阻碍活塞运动的摩擦 `off`（默认）| `on`
 
-是否建模对抗活塞运动的摩擦。该模块考虑库仑摩擦、Stribeck 摩擦和粘性摩擦。有关更多信息，请参阅 Cylinder Friction 模块。
+是否建模阻碍活塞运动的摩擦。该模块考虑库仑摩擦、Stribeck 摩擦和粘性摩擦。有关更多信息，请参阅 Cylinder Friction 模块。
 
 ### **Breakaway to Coulomb friction force ratio** — 分离力与库仑摩擦力之比 `1.2`（默认）| 正标量
 
 分离力与库仑摩擦力之比。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder friction**。
 
@@ -343,7 +343,7 @@ chinese_source: worker-translation
 
 克服摩擦力开始运动的阈值速度。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder friction**。
 
@@ -351,7 +351,7 @@ chinese_source: worker-translation
 
 缸体处于中立位置时施加在缸体上的力。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder friction effect**。
 
@@ -359,7 +359,7 @@ chinese_source: worker-translation
 
 库仑摩擦力系数。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder friction effect**。
 
@@ -367,25 +367,25 @@ chinese_source: worker-translation
 
 粘性摩擦系数。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Cylinder friction effect**。
 
-### Leakage
+### 泄漏
 
 ### **Internal leakage** — 是否建模环形泄漏 `off`（默认）| `on`
 
-是否建模在参考环境条件下流体腔室与活塞储液器之间的环形泄漏。该泄漏被视为层流。有关更多信息，请参阅 Laminar Leakage (IL) 模块。
+是否建模参考环境条件下流体腔室与活塞储液器之间的环形泄漏。泄漏被视为层流。有关更多信息，请参阅 Laminar Leakage (IL) 模块。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Same fluid on both sides**。
 
 ### **Piston-cylinder clearance** — 径向间隙 `1e-4 m`（默认）| 正标量
 
-活塞杆与缸体外壳之间的径向距离。
+活塞杆与缸体壳体之间的径向距离。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Same fluid on both sides** 和 **Internal leakage**。
 
@@ -393,59 +393,75 @@ chinese_source: worker-translation
 
 活塞头的长度。
 
-#### 依赖关系
+#### 依赖
 
 要启用此参数，请选择 **Same fluid on both sides** 和 **Internal leakage**。
 
-### Initial Conditions
+### 初始条件
 
-### **从腔室 A 端盖开始的活塞位移** — 确定活塞位置的方法 `Calculate from velocity of port R relative to port C`（默认）| `Provide input signal from Multibody joint`
+### **Piston displacement from chamber A cap** — 确定活塞位置的方法 `Calculate from velocity of port R relative to port C`（默认）| `Provide input signal from Multibody joint`
 
-用于确定活塞位置的方法。当设置为 `Provide input signal from Multibody joint` 时，该模块可以从 Multibody 模块接收位置，或者在内部计算位置并在端口 **p** 报告位置。当机械方向为正时，位置介于 `0` 和 **活塞行程** 之间；当机械方向为负时，位置介于 `0` 和 –**活塞行程** 之间。
+确定活塞位置的方法。当设置为 `Provide input signal from
+Multibody joint` 时，该模块可以从 Multibody 模块接收位置，或者
+在内部计算位置并在端口 **p** 处报告位置。当机械方向为正时，位置
+介于 `0` 和 **Piston stroke** 之间；当机械方向
+为负时，位置介于 `0` 和
+–**Piston stroke** 之间。
 
-### **从腔室 A 端盖开始的初始活塞位移** — 仿真开始时从腔室 A 端盖测量的活塞位置 `0 m`（默认）| 标量
+### **Initial piston displacement from chamber A cap** — 仿真开始时从腔室 A 端盖测量的活塞位置 `0 m`（默认）| 标量
 
 仿真开始时相对于腔室 A 端盖的活塞位置。
 
 #### 依赖关系
 
-要启用此参数，请将 **从腔室 A 端盖开始的活塞位移** 设置为 `Calculate from velocity of port R relative to port C`。
+要启用此参数，请将 **Piston displacement from
+chamber A cap** 设置为 `Calculate from velocity
+of port R relative to port C`。
 
-### **启用动态可压缩性** — 是否对流体可压缩性建模 `on`（默认）| `off`
+### **Enable dynamic compressibility** — 是否对流体可压缩性建模 `on`（默认）| `off`
 
-是否对由流体可压缩性引起的任何流体密度变化进行建模。当您选中 **启用动态可压缩性** 时，除压力变化引起的密度变化外，还会计算因流入模块的质量流量引起的变化。在 Isothermal Liquid Library 中，所有模块都将密度计算为压力的函数。
+是否对流体可压缩性引起的流体密度变化进行建模。当您选中 **Enable dynamic
+compressibility** 时，除了压力变化引起的密度变化外，还会计算
+流入模块的质量流量引起的密度变化。在 Isothermal Liquid 库中，所有模块
+都将密度计算为压力的函数。
 
-### **腔室 A 中的初始液体压力** — 腔室 A 中的起始液体压力 `0.101325 MPa`（默认）| 正标量
-
-可压缩流体的起始液体压力。
-
-#### 依赖关系
-
-要启用此参数，请选中 **启用动态可压缩性**。
-
-### **腔室 B 中的初始液体压力** — 腔室 B 中的起始液体压力 `0.101325 MPa`（默认）| 正标量
+### **Initial liquid pressure in chamber A** — 腔室 A 中的起始液体压力 `0.101325 MPa`（默认）| 正标量
 
 可压缩流体的起始液体压力。
 
 #### 依赖关系
 
-要启用此参数，请选中 **启用动态可压缩性**。
+要启用此参数，请选中 **Enable dynamic
+compressibility**。
 
-### **腔室 A 中的标称液体压力** — 腔室 A 中名义工况下的压力 `0.101325 MPa`（默认）| 标量
+### **Initial liquid pressure in chamber B** — 腔室 B 中的起始液体压力 `0.101325 MPa`（默认）| 正标量
 
-腔室 A 中名义工况下的液体压力。当动态可压缩性禁用时，该模块使用此值计算用于质量守恒方程的标称密度。
-
-#### 依赖关系
-
-要启用此参数，请清除 **启用动态可压缩性** 复选框。
-
-### **腔室 B 中的标称液体压力** — 腔室 B 中名义工况下的压力 `0.101325 MPa`（默认）| 标量
-
-腔室 B 中名义工况下的液体压力。当动态可压缩性禁用时，该模块使用此值计算用于质量守恒方程的标称密度。
+可压缩流体的起始液体压力。
 
 #### 依赖关系
 
-要启用此参数，请清除 **启用动态可压缩性** 复选框。
+要启用此参数，请选中 **Enable dynamic
+compressibility**。
+
+### **Nominal liquid pressure in chamber A** — 腔室 A 中额定工况下的压力 `0.101325 MPa`（默认）| 标量
+
+腔室 A 中额定工况下的液体压力。当动态可压缩性
+被禁用时，该模块使用此值来计算质量守恒方程中使用的额定密度。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Enable dynamic
+compressibility** 复选框。
+
+### **Nominal liquid pressure in chamber B** — 腔室 B 中额定工况下的压力 `0.101325 MPa`（默认）| 标量
+
+腔室 B 中额定工况下的液体压力。当动态可压缩性
+被禁用时，该模块使用此值来计算质量守恒方程中使用的额定密度。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Enable dynamic
+compressibility** 复选框。
 
 ## 所属库
 
@@ -457,76 +473,130 @@ R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
 **在 R2020a 中引入**
 
-### R2024a: 在执行器两侧对不同的流体建模
+### R2024a：在执行器每一侧对不同的流体建模
 
-清除新的 **两侧相同流体** 参数，以阻止流体属性传播，并将每个腔室建模为连接到其自身隔离流体网络的不同流体。
+清除新的 **Same fluid on both sides** 参数，以阻止
+流体属性的传播，并将每个腔室建模为连接到其自身隔离流体网络的
+不同流体。
 
-### R2023a: 新的硬限位参数化选项
+### R2023a：新的硬限位参数化选项
 
-该模块为 **硬限位模型** 参数提供了新选项。此选项称为 `Based on coefficient of restitution`，通过使用模式图对硬限位建模。
+该模块为 **Hard stop model** 参数提供了一个新选项。
+此选项称为 `Based on coefficient of restitution`，
+使用模式图对硬限位进行建模。
 
 ## 描述
 
-等温液体系统中压差到致动的线性转换
+等温液体系统中压力差到执行器动作的线性转换
 
-Double-Acting Actuator (IL) 模块表示将两个腔室之间的压差线性转换为活塞运动。活塞致动由作用在分隔腔室的活塞板上的压差控制。当活塞接近完全伸出或完全缩回时，其运动受到四种硬限位模型之一的限制。可选择在两个活塞腔室中对流体可压缩性建模。
+Double-Acting Actuator (IL) 模块表示两个腔室之间的压力差到活塞运动的线性
+转换。活塞动作由作用在分隔腔室的活塞板上的压力差控制。当活塞接近完全伸出或完全
+缩回时，其运动受到四种硬限位模型之一的限制。两个活塞腔室中可选地
+对流体可压缩性进行建模。
 
-端口 **A** 和 **B** 是等温液体入口。端口 **C** 表示执行器壳体，而活塞速度在端口 **R** 返回。当活塞位置在内部计算时，会在端口 **p** 报告；当位置通过连接到 Simscape™ Multibody™ 关节设置时，会在端口 **p** 作为物理信号接收。
+端口 **A** 和 **B** 是等温液体入口。端口
+**C** 表示执行器壳体，而活塞速度在端口 **R** 处返回。当活塞位置在内部
+计算时，它在端口 **p** 处报告；当位置由连接到 Simscape™
+Multibody™ 关节设置时，它作为物理信号在端口
+**p** 处接收。
 
-您可以使用 **机械方向** 参数定义活塞位移方向。如果机械方向设置为 `Pressure at A causes positive displacement of R relative to C`，则当压差 *p_A* – *p_B* 为正时，活塞伸出。如果 **机械方向** 设置为 `Pressure at A causes negative displacement of R relative to C`，则对于液体腔室和气体腔室之间的正压差，活塞缩回。
+您可以使用 **Mechanical
+orientation** 参数定义活塞位移方向。如果机械方向设置为
+`Pressure at A causes positive displacement of R relative to
+C`，则当压力差
+*p*A –
+*p*B 为正时，活塞伸出。如果 **Mechanical
+orientation** 设置为 `Pressure at A causes negative
+displacement of R relative to C`，则当液体腔室和气体腔室之间的压力差为正时，
+活塞缩回。
 
 ### 位移
 
-活塞位移测量为端口 **R** 相对于端口 **C** 的位置。**机械方向** 标识活塞位移的方向。当腔室 A 体积等于腔室死区体积时，活塞位移为中性，即 `0`。当位移作为输入接收时，请确保位置的导数等于活塞速度。当输入来自连接到 Simscape Multibody 关节的 Translational Multibody Interface 模块连接时，会自动如此。
+活塞位移测量为端口 **R** 相对于端口 **C** 的位置。**Mechanical orientation**
+标识活塞位移的方向。当腔室 A 体积等于腔室死区
+体积时，活塞位移为中性，即 `0`。当位移作为输入接收时，请确保
+位置的导数等于活塞速度。当输入从 Translational Multibody Interface 模块
+连接到 Simscape Multibody 关节接收时，自动满足此条件。
 
 ### 硬限位模型
 
-为避免执行器在完全伸出或完全缩回时发生机械损坏，当活塞接近这些极限时，执行器通常表现出非线性行为。Double-Acting Actuator (IL) 模块通过四种硬限位模型的选择对此行为建模，这些模型通过弹簧-阻尼器系统对材料柔度建模。硬限位模型包括：
+为避免执行器在完全伸出或完全缩回时发生机械损坏，执行器通常在活塞接近这些
+限位时表现出非线性行为。Double-Acting Actuator (IL) 模块通过四种硬限位模型
+来对此行为建模，这些模型通过弹簧-阻尼系统对材料柔度进行建模。硬限位模型包括：
 
-- `Stiffness and damping applied smoothly through transition region, damped rebound`.
-- `Full stiffness and damping applied at bounds, undamped rebound`.
-- `Full stiffness and damping applied at bounds, damped rebound`.
+- `Stiffness and damping applied smoothly through transition
+  region, damped rebound`。
+- `Full stiffness and damping applied at bounds, undamped
+  rebound`。
+- `Full stiffness and damping applied at bounds, damped
+  rebound`。
 - `Based on coefficient of restitution`
 
-当活塞处于其上限或下限时，对硬限位力建模。边界区域位于 **活塞行程** 或活塞初始位移的 **过渡区域** 内。在该区域之外，FHardStop=0。
+当活塞处于其上限或下限时，对硬限位力进行建模。边界区域位于
+**Piston stroke** 或活塞初始位移的 **Transition region** 内。
+在此区域之外，FHardStop=0。
 
-有关这些设置的详细信息，请参阅 Translational Hard Stop 模块页面。
+有关这些设置的更多信息，请参阅 Translational Hard Stop 模块页面。
 
 ### 缓冲
 
-该模块可以对活塞行程两端附近的缓冲建模。选择 **缸端缓冲** 以在活塞接近由 **活塞行程** 参数定义的最大伸出时减慢活塞运动。有关缸缓冲功能的详细信息，请参阅 Cylinder Cushion (IL) 模块。
+该模块可以对活塞行程极限附近的缓冲进行建模。选中
+**Cylinder end cushioning** 以在活塞接近由 **Piston stroke**
+参数定义的最大伸出时减慢活塞运动。有关气缸缓冲功能的更多信息，请参阅
+Cylinder Cushion (IL) 模块。
 
 ### 摩擦
 
-该模块可以对阻碍活塞运动的摩擦建模。当您选择 **缸摩擦** 时，产生的摩擦是 Stribeck、Coulomb 和黏性效应的组合。该模块测量腔室压力和环境压力之间的压差。有关摩擦模型及其限制的详细信息，请参阅 Cylinder Friction (IL) 模块。
+该模块可以对阻碍活塞运动的摩擦进行建模。当您选中
+**Cylinder friction** 时，产生的摩擦是 Stribeck、Coulomb 和粘性效应的
+组合。该模块测量腔室压力与环境压力之间的压力
+差。有关摩擦模型及其限制的更多信息，请参阅 Cylinder Friction
+(IL) 模块。
 
 ### 泄漏
 
-您可以选择对腔室 A 和腔室 B 之间的泄漏建模。当两个腔室中的流体相同且您选择 **内部泄漏** 时，会在活塞和缸之间对 Poiseuille 流建模。该模块使用 Simscape Foundation Library Laminar Leakage (IL) 模块。流量计算如下：
+您可以选择性地对腔室 A 和腔室 B 之间的泄漏进行建模。当两个腔室中的流体
+相同且您选中 **Internal leakage** 时，将在活塞和气缸之间对
+Poiseuille 流进行建模。该模块使用
+Simscape Foundation Library Laminar Leakage (IL) 模块。流量
+计算如下：
 
-\[
-\dot m = \frac{\pi}{128 \nu L} \left[ d_0^4 - d_i^4 - \frac{(d_0^2 - d_i^2)^2}{\log(d_0/d_i)} \right] (p_A - p_B)
-\]
+m˙=π128(d04−di4−(d02−di2)2log(d0/di))υL(pA−pB),
 
 其中：
 
-- *ν* 是流体运动黏度。
-- *L* 是活塞长度，**p** – *P*0。
-- *p_A* 是端口 **A** 处的压力。
-- *p_B* 是端口 **B** 处的压力。
+- *ν* 是流体运动粘度。
+- *L* 是活塞长度，**p** –
+  *P*0。
+- *p*A 是端口
+  **A** 处的压力。
+- *p*B 是端口
+  **B** 处的压力。
 
-缸直径 *d_0* 为 \(d_0=d_i+2c\)，其中 *c* 是 **活塞-缸间隙**，活塞直径 *d_i* 为 \(d_i=\sqrt{\frac{4A_P}{\pi}}\)，其中 *A_P* 是 **腔室 A 中的活塞横截面积** 和 **腔室 B 中的活塞横截面积** 参数的平均值。
+气缸直径 *d*0
+为 d0=di+2c，其中 *c* 是 **Piston-cylinder
+clearance**，活塞直径
+*d*i 为 di=4APπ，其中 *A*P 是
+**Piston cross-sectional area in chamber A** 和
+**Piston cross-sectional area in chamber B** 参数的平均值。
 
-### 数值平滑面积和压力
+### 数值平滑的面积和压力
 
-您可以通过调整 **平滑因子** 参数来保持仿真中的数值稳健性。如果 **平滑因子** 参数非零，该模块会平滑缓冲 A 和 B 的孔口面积以及单向阀压力范围。孔口面积在缓冲 A 和缓冲 B 的 **柱塞与缓冲套筒之间的泄漏面积** 和 **缓冲柱塞横截面积** 参数之间平滑饱和，而阀压力在缓冲 A 和缓冲 B 的 **单向阀开启压力差** 和 **单向阀最大压力差** 参数之间饱和。有关详细信息，请参阅 Numerical Smoothing。
+您可以通过调整 **Smoothing factor** 参数来保持仿真中的数值
+鲁棒性。如果 **Smoothing factor** 参数非零，该模块将平滑
+缓冲 A 和 B 的孔口面积以及单向阀压力范围。孔口
+面积在缓冲 A 和缓冲 B 的 **Leakage
+area between plunger and cushion sleeve** 和 **Cushion
+plunger cross-sectional area** 参数之间平滑饱和，而阀压力在
+缓冲 A 和缓冲 B 的 **Check valve cracking
+pressure differential** 和 **Check valve maximum pressure
+differential** 参数之间饱和。有关更多信息，请参阅数值平滑。
 
 ### 模块原理图
 
@@ -544,19 +614,34 @@ Double-Acting Actuator (IL) 模块包含四个 Simscape Foundation 模块：
 
 ### 动量平衡
 
-该执行器的动量守恒方程为
+执行器的动量守恒方程为
 
-\[
-F = \varepsilon (S_A p_A - S_B p_B - S_{Rod} p_{env})
-\]
+F= ε(SApA−SBpB−SRodpenv)
 
 其中：
 
-- *F* 是液体施加在转换器接口上的力。此力表达式未考虑硬限位、缸缓冲或缸摩擦子组件引起的力贡献。要查看这些对转换器接口的力贡献，请参阅这些子组件的文档页面。
-- *ε* 取决于转换器的 **机械方向**。如果 **机械方向** 为 `Pressure at A causes positive displacement of R relative to C`，则 *ε* `= 1`。如果 **机械方向** 为 `Pressure at A causes negative displacement of R relative to C`，则 *ε* `= -1`。
-- *S_Rod* 是杆横截面积，其中 \(S_{Rod}=S_A-S_B\)。
-- *S_A* 是 **腔室 A 中的活塞横截面积** 参数的值。
-- *S_B* 是 **腔室 B 中的活塞横截面积** 参数的值。
-- *p_A* 是腔室 A 内的压力。
-- *p_B* 是腔室 B 内的压力。
-- *p_env* 是环境压力。
+- *F* 是液体施加在转换器
+  界面上的力。此力表达式不考虑硬限位、气缸缓冲或气缸
+  摩擦子组件产生的力贡献。要查看这些力对
+  转换器界面的贡献，请参阅这些子组件的文档页面。
+- *ε* 取决于转换器的 **Mechanical
+  orientation**。如果 **Mechanical
+  orientation** 为 `Pressure at A causes
+  positive displacement of R relative to C`，
+  则 *ε* `= 1`。如果
+  **Mechanical orientation** 为
+  `Pressure at A causes negative displacement of R
+  relative to C`，则 *ε* `=
+  -1`。
+- *SRod* 是活塞杆
+  横截面积，其中SRod=SA−SB。
+- *SA* 是
+  **Piston cross-sectional area in chamber A**
+  参数的值。
+- *SB* 是
+  **Piston cross-sectional area in chamber B**
+  参数的值。
+- *pA* 是腔室 A 内部的压力。
+- *pB* 是腔室 B 内部的压力。
+- *penv* 是环境
+  压力。

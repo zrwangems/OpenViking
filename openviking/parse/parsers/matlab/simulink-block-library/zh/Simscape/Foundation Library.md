@@ -9,12 +9,12 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: '../simscape/index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Simscape
 
-Simscape 基础知识学习
+了解 Simscape 基础知识
 
 对多域物理系统进行建模和仿真
 
@@ -26,21 +26,21 @@ Simscape 基础知识学习
 - **PDF 文档**
 - **PDF 文档**
 
-使用 Simscape™，您可以在 Simulink® 环境中快速创建物理系统模型。借助 Simscape，您可以基于物理连接建立物理组件模型，这些模型可与模块图和其他建模范例直接集成。您可以用基本组件组装成原理图，以此方式对电机、桥式整流器、液压作动器和制冷系统等系统进行建模。Simscape 的附加产品还提供了更多的复杂组件和有用的分析功能。
+Simscape™ 使您能够在 Simulink® 环境中快速创建物理系统模型。使用 Simscape，您可以基于物理连接构建物理组件模型，这些模型可直接与框图及其他建模范式集成。您可以通过将基本组件组装成原理图来对电动机、桥式整流器、液压执行器和制冷系统等系统进行建模。Simscape 附加产品提供更复杂的组件和分析能力。
 
-Simscape 可帮助您开发控制系统并测试系统级性能。您可以使用基于 MATLAB® 的 Simscape 语言创建自定义组件模型，该语言支持基于文本创建物理建模组件、域和库。您可以使用 MATLAB 变量和表达式对模型进行参数化，并在 Simulink 中为您的物理系统设计控制系统。Simscape 还支持生成 C 代码，以便您可以将模型部署到其他仿真环境，包括硬件在环 (HIL) 系统）。
+Simscape 帮助您开发控制系统并测试系统级性能。您可以使用基于 MATLAB® 的 Simscape 语言创建自定义组件模型，该语言支持基于文本编写物理建模组件、域和库。您可以使用 MATLAB 变量和表达式对模型进行参数化，并在 Simulink 中为您的物理系统设计控制系统。要将模型部署到其他仿真环境（包括硬件在环 (HIL) 系统），Simscape 支持 C 代码生成。
 
-## Simscape 快速入门
+## 入门
 
-Simscape 基础知识学习
+了解 Simscape 基础知识
 
-## Foundation 模块库
+## 基础模块库
 
-Foundation 和 Utilities 库、工具函数、域特定建模方法中的物理建模模块
+基础和实用程序库中的物理建模模块、实用函数、特定领域的建模技术
 
-## 物理建模方法
+## 物理建模技术
 
-模型构造方法和最佳做法、物理单位、故障建模、模型参数化
+模型构建技术和最佳实践、物理单位、故障建模、模型参数化
 
 ## 桌面仿真
 
@@ -48,31 +48,31 @@ Foundation 和 Utilities 库、工具函数、域特定建模方法中的物理�
 
 ## 实时仿真
 
-定步长、固定成本仿真；硬件在环仿真
+固定步长、固定成本仿真；硬件在环仿真
 
 ## 部署
 
-代码生成，与附加产品模块共享模型
+代码生成、与附加产品模块共享模型
 
 ## 自定义
 
-使用 Simscape 语言的自定义组件和域建模
+使用 Simscape 语言进行自定义组件和域建模
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个与以下 MATLAB 命令对应的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择网站以获取翻译内容（如有），并查看本地活动和优惠。根据您的位置，我们建议您选择：
 
 - (English)
 - (Deutsch)
@@ -81,11 +81,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -116,7 +116,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

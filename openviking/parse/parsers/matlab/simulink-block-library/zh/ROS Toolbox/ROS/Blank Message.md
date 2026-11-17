@@ -20,25 +20,25 @@ chinese_source: worker-translation
 
 ### **Msg** — 空白 ROS 消息非虚拟总线
 
-空白 ROS 消息，返回为非虚拟总线。要指定 ROS 消息的类型，请使用 **Type** 参数。总线的所有元素都初始化为 0。可变长度数组的长度也初始化为 0。
+空白 ROS 消息，以非虚拟总线形式返回。要指定 ROS 消息的类型，请使用 **Type** 参数。总线中的所有元素均初始化为 0。可变长度数组的长度也初始化为 0。
 
 **数据类型：** `bus`
 
 ## 参数
 
-### **Class** — ROS 消息的类 `Message`（默认） | `Service Request` | `Service Response`
+### **Class** — ROS 消息的类 `Message`（默认）| `Service Request` | `Service Response`
 
-ROS 消息的类，指定为 `Message`、`Service Request` 或 `Service Response`。对于基本发布和订阅，请使用 `Message` 类。
+ROS 消息的类，指定为 `Message`、`Service Request` 或 `Service Response`。对于基本的发布和订阅，请使用 `Message` 类。
 
-### **Type** — ROS 消息类型 `'geometry_msgs/Point'`（默认） | 字符向量 | 对话框选择
+### **Type** — ROS 消息类型 `'geometry_msgs/Point'`（默认）| 字符向量 | 对话框选择
 
-ROS 消息类型，指定为字符向量或对话框选择。使用 **Select** 从支持的 ROS 消息列表中选择。给出的消息列表取决于所选消息的 **Class**。
+ROS 消息类型，指定为字符向量或对话框选择。使用 **Select** 从支持的 ROS 消息列表中进行选择。给出的消息列表取决于您选择的 **Class**。
 
-### **Sample time** — 输出之间的间隔 `Inf`（默认） | 数值标量
+### **Sample time** — 输出之间的间隔 `Inf`（默认）| 数值标量
 
-输出之间的间隔，指定为数值标量。默认值表示模块输出从不变化。使用此值可通过消除重新计算模块输出的需要来加速仿真。否则，模块在 **Sample time** 的每个间隔输出一条新的空白消息。
+输出之间的间隔，指定为数值标量。默认值表示模块输出永不改变。使用此值可通过消除重新计算模块输出的需要来加速仿真。否则，模块在 **Sample time** 的每个间隔输出一条新的空白消息。
 
-有关详细信息，请参阅指定采样时间 (Simulink)。
+有关详细信息，请参阅 Specify Sample Time (Simulink)。
 
 ## 所属库
 
@@ -60,4 +60,4 @@ R2025b 中未记录。
 
 使用指定的消息类型创建空白消息
 
-Blank Message 模块创建一个与所选 ROS 消息类型对应的 Simulink® 非虚拟总线。该模块创建可与 Publish、Subscribe 或 Call Service 模块配合使用的 ROS 消息总线。在每个采样命中时，该模块会为指定的消息类型输出一个空白或“零”信号。总线的所有元素都初始化为 0。可变长度数组的长度也初始化为 0。
+Blank Message 模块创建与所选 ROS 消息类型对应的 Simulink® 非虚拟总线。该模块创建可与 Publish、Subscribe 或 Call Service 模块配合使用的 ROS 消息总线。在每个采样命中时，模块为指定的消息类型输出空白或“零”信号。总线中的所有元素均初始化为 0。可变长度数组的长度也初始化为 0。

@@ -16,7 +16,7 @@ chinese_source: worker-translation
 
 ## 端口
 
-该模块有一个液压守恒端口。
+该模块具有一个液压守恒端口。
 
 ## 参数
 
@@ -38,14 +38,15 @@ R2025b 中未记录。
 
 **在 R2007a 中引入**
 
-### R2023a: 将被移除
+### R2023a：将被移除
 
-Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。Isothermal Liquid 库中的模块可提供更高的精度、可用性和数值性能。
+Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。
+Isothermal Liquid 库中的模块提供更高的精度、可用性和数值性能。
 
-有关更新模型的更多信息，请参阅 Upgrading Hydraulic Models to Use Isothermal Liquid Blocks。
+有关更新模型的详细信息，请参阅 Upgrading Hydraulic Models to Use Isothermal Liquid Blocks。
 
 ## 描述
 
-（将被移除）与大气压力的连接
+（将被移除）大气压力连接
 
-Hydraulic Reference 模块表示与大气压力的连接。所有以大气为参考的模块的液压守恒端口（例如，液压泵的吸油口，或阀、缸、管路的回油口，如果它们被视为直接连接至大气压力）必须连接到 Hydraulic Reference 模块。
+Hydraulic Reference 模块表示与大气压力的连接。所有以大气为参考的模块的液压守恒端口（例如，液压泵的吸油端口，或阀、缸、管路的回油端口，如果它们被视为直接连接到大气）必须连接到一个 Hydraulic Reference 模块。

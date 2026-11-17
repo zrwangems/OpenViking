@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Phase Voltage Sensor (Three-Phase)'
-family: 'sensors-transducers'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,28 +18,29 @@ chinese_source: worker-translation
 
 ### 输出
 
-### **V** — 三元素向量物理信号
+### **V** — 三元素矢量物理信号
 
-与相电压关联的三元素物理信号向量输出端口
+与相电压相关联的三元素物理信号矢量输出端口
+
 ### 守恒
 
-### **~1** — 三相电气端口
+### **~1** — 三相端口电气
 
 可扩展三相端口。
 
-### **~2** — 三相电气端口
+### **~2** — 三相端口电气
 
 可扩展三相端口。
 
 ## 参数
 
-### **建模选项** — 是否对复合三相端口或展开三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
+### **Modeling option** — 是对复合三相端口还是扩展三相端口进行建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
-是否对复合三相端口或展开三相端口建模。
+是对复合三相端口还是扩展三相端口进行建模。
 
-Composite three-phase ports 使用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口构建对应于三相电气系统单线图的模型。
+复合三相端口用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口来构建与三相电气系统单线图相对应的模型。
 
-Expanded three-phase ports 使用三个独立的电气守恒端口表示三相系统的各个相。
+扩展三相端口使用三个独立的电气守恒端口来表示三相系统的各个相。
 
 ## 所属库
 
@@ -51,7 +52,7 @@ R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
 ## 版本历史
 
@@ -61,8 +62,8 @@ R2025b 中未记录。
 
 理想三相相电压测量
 
-Phase Voltage Sensor (Three-Phase) 模块表示理想三相电压传感器。它测量三相端口 **~1** 和 **~2** 之间的电压，并输出单个三元素物理信号向量。物理信号输出向量的每个元素等于相应相的电压。
+Phase Voltage Sensor (Three-Phase) 模块表示一个理想三相电压传感器。它测量三相端口 **~1** 和 **~2** 两端的电压，并输出一个三元素物理信号矢量。物理信号输出矢量的每个元素等于相应相的电压。
 
 **注意**
 
-必须将 Phase Voltage Sensor (Three-Phase) 模块以分流或并联方式与三相元件连接。有关如何使用此模块的详细信息，请参阅构建并仿真复合和展开三相模型。
+您必须将 Phase Voltage Sensor (Three-Phase) 模块并联或并行连接到三相元件。有关如何使用此模块的详细信息，请参阅 Build and Simulate Composite and Expanded Three-Phase Models。

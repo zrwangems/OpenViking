@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Three-Winding Transformer (Three-Phase)'
-family: 'passive'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,193 +16,202 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **~1** — 一次绕组电压电气
+### **~1** — 一次绕组电压电气端口
 
-可扩展三相电气守恒端口，关联绕组 1 的三相 [*a1* *b1* *c1*] 电压。
+可扩展三相电气守恒端口，与绕组 1 的三相电压 [*a1*
+*b1*
+*c1*] 相关联。
 
-### **n1** — 一次绕组中性点电气
+### **n1** — 一次绕组中性点电气端口
 
-与一次绕组中性点关联的电气守恒端口。
-
-#### 依赖关系
-
-仅当 **主要** 参数 **绕组 1 连接类型** 设置为 `Wye with neutral port` 时，此端口才可见。
-
-### **~2** — 第一次级绕组电压电气
-
-可扩展三相电气守恒端口，关联第一次级绕组的三相 [*a2* *b2* *c2*] 电压。
-
-### **n2** — 第一次级绕组中性点电气
-
-与第一次级绕组中性点关联的电气守恒端口。
+与一次绕组中性点相关联的电气守恒端口。
 
 #### 依赖关系
 
-仅当 **主要** 参数 **绕组 2 连接类型** 设置为 `Wye with neutral port` 时，此端口才可见。
+仅当 **Main** 参数 **Winding 1 connection type** 设置为
+`Wye with neutral port` 时，此端口才可见。
 
-### **~3** — 第二次级绕组电压电气
+### **~2** — 第一次级绕组电压电气端口
 
-可扩展三相电气守恒端口，关联第二次级绕组的三相 [*a3* *b3* *c3*] 电压。
+可扩展三相电气守恒端口，与第一次级绕组的三相电压 [*a2*
+*b2*
+*c2*] 相关联。
 
-### **n3** — 第二次级绕组中性点电气
+### **n2** — 第一次级绕组中性点电气端口
 
-与第二次级绕组中性点关联的电气守恒端口。
+与第一次级绕组中性点相关联的电气守恒端口。
 
 #### 依赖关系
 
-仅当 **主要** 参数 **绕组 3 连接类型** 设置为 `Wye with neutral port` 时，此端口才可见。
+仅当 **Main** 参数 **Winding 2 connection type** 设置为
+`Wye with neutral port` 时，此端口才可见。
+
+### **~3** — 第二次级绕组电压电气端口
+
+可扩展三相电气守恒端口，与第二次级绕组的三相电压 [*a3*
+*b3*
+*c3*] 相关联。
+
+### **n3** — 第二次级绕组中性点电气端口
+
+与第二次级绕组中性点相关联的电气守恒端口。
+
+#### 依赖关系
+
+仅当 **Main** 参数 **Winding 3 connection type** 设置为
+`Wye with neutral port` 时，此端口才可见。
 
 ## 参数
 
-### **建模选项** — 是建模为复合三相端口还是扩展三相端口 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
+### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
-选择使用复合三相端口还是扩展三相端口进行建模。
+是否对复合或扩展三相端口建模。
 
-复合三相端口使用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口构建对应于三相电气系统单线图的模型。
+复合三相端口用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口构建对应于三相电力系统单线图的模型。
 
 扩展三相端口使用三个独立的电气守恒端口表示三相系统的各相。
 
-### 主要
+### 主要参数
 
-### **额定视在功率** — 额定容量下的视在功率 `100e6` `V*A`（默认）| 正标量
+### **Rated apparent power** — 额定容量下的视在功率 `100e6` `V*A`（默认）| 正标量
 
 变压器在额定容量下运行时流过的视在功率。该值必须大于 `0`。
 
-### **额定电气频率** — 所连接网络的电气频率 `60` `Hz`（默认）| 正标量
+### **Rated electrical frequency** — 所连接网络的电气频率 `60` `Hz`（默认）| 正标量
 
-变压器所连接的交流网络的额定或标称频率。该值必须大于 `0`。
+变压器所连接的交流网络的额定频率或标称频率。该值必须大于 `0`。
 
-### **一次绕组连接类型** — 一次绕组配置 `Wye with floating neutral`（默认）| `Wye with neutral port` | `Wye with grounded neutral` | `Delta 1 o'clock` | `Delta 11 o'clock`
+### **Primary winding connection type** — 一次绕组配置 `Wye with floating neutral`（默认）| `Wye with neutral port` | `Wye with grounded neutral` | `Delta 1 o'clock` | `Delta 11 o'clock`
 
 一次绕组类型。
 
-### **一次额定电压** — 施加到一次绕组的 RMS 线电压 `4160` `V`（默认）| 正标量
+### **Primary rated voltage** — 施加到一次绕组的 RMS 线电压 `4160` `V`（默认）| 正标量
 
-正常操作条件下施加到一次绕组的 RMS 线电压。该值必须大于 `0`。
+在正常工作条件下施加到一次绕组的 RMS 线电压。该值必须大于 `0`。
 
-### **第一次级连接类型** — 第一次级绕组配置 `Wye with floating neutral`（默认）| `Wye with neutral port` | `Wye with grounded neutral` | `Delta 1 o'clock` | `Delta 11 o'clock`
+### **First secondary connection type** — 第一次级绕组配置 `Wye with floating neutral`（默认）| `Wye with neutral port` | `Wye with grounded neutral` | `Delta 1 o'clock` | `Delta 11 o'clock`
 
 第一次级绕组类型。
 
-### **第一次级额定电压** — 施加到第一次级绕组的 RMS 线电压 `24e3` `V`（默认）| 正标量
+### **First secondary rated voltage** — 施加到第一次级绕组的 RMS 线电压 `24e3` `V`（默认）| 正标量
 
-正常操作条件下施加到第一次级绕组的 RMS 线电压。该值必须大于 `0`。
+在正常工作条件下施加到第一次级绕组的 RMS 线电压。该值必须大于 `0`。
 
-### **第二次级连接类型** — 第二次级绕组配置 `Wye with floating neutral`（默认）| `Wye with neutral port` | `Wye with grounded neutral` | `Delta 1 o'clock` | `Delta 11 o'clock`
+### **Second secondary connection type** — 第二次级绕组配置 `Wye with floating neutral`（默认）| `Wye with neutral port` | `Wye with grounded neutral` | `Delta 1 o'clock` | `Delta 11 o'clock`
 
 第二次级绕组类型。
 
-### **第二次级额定电压** — 施加到第二次级绕组的 RMS 线电压 `24e3`（默认）| 正标量
+### **Second secondary rated voltage** — 施加到第二次级绕组的 RMS 线电压 `24e3`（默认）| 正标量
 
-正常操作条件下施加到第二次级绕组的 RMS 线电压。该值必须大于 `0`。
+在正常工作条件下施加到第二次级绕组的 RMS 线电压。该值必须大于 `0`。
 
-### **铁芯类型** — 铁芯柱数量 `Three-phase three-limb`（默认）| `Three-phase five-limb`
+### **Core type** — 铁芯柱数量 `Three-phase three-limb`（默认）| `Three-phase five-limb`
 
 构成磁路的铁芯柱数量。
 
 #### 依赖关系
 
-**零序电抗 (pu)**（一个**阻抗**参数）仅当此参数设置为 `Three-phase three-limb` 时才可见。
+**Zero sequence reactance (pu)**（一个 **Impedances** 参数）仅当此参数设置为 `Three-phase three-limb` 时才可见。
 
-### 阻抗
+### Impedances
 
-### **一次绕组电阻 (pu)** — 一次绕组功率损耗 `0.01`（默认）| 正标量
+### **Primary winding resistance (pu)** — 一次绕组功率损耗 `0.01`（默认）| 正标量
 
-一次绕组中的标幺功率损耗。该值必须大于 `0`。
+一次绕组的标幺功率损耗。该值必须大于 `0`。
 
-### **第一次级绕组电阻 (pu)** — 第一次级绕组功率损耗 `0.01`（默认）| 正标量
+### **First secondary winding resistance (pu)** — 第一次级绕组功率损耗 `0.01`（默认）| 正标量
 
-第一次级绕组中的标幺功率损耗。该值必须大于 `0`。
+第一次级绕组的标幺功率损耗。该值必须大于 `0`。
 
-### **第二次级绕组电阻 (pu)** — 第二次级绕组功率损耗 `0.01`（默认）| 正标量
+### **Second secondary winding resistance (pu)** — 第二次级绕组功率损耗 `0.01`（默认）| 正标量
 
-第二次级绕组中的标幺功率损耗。该值必须大于 `0`。
+第二次级绕组的标幺功率损耗。该值必须大于 `0`。
 
-### **漏电抗** — 漏电抗建模 `Exclude`（默认）| `Include`
+### **Leakage reactance** — 漏电抗建模 `Exclude`（默认）| `Include`
 
 是否对磁通损耗建模。
 
-### **一次漏电抗 (pu)** — 一次绕组磁通损耗 `0.001`（默认）| 正标量
+### **Primary leakage reactance (pu)** — 一次绕组磁通损耗 `0.001`（默认）| 正标量
 
-一次绕组中的标幺磁通损耗。该值必须大于 `0`。
-
-#### 依赖关系
-
-要启用此参数，请将 **漏电抗** 设置为 `Include`。
-
-### **第一次级漏电抗 (pu)** — 第一次级绕组磁通损耗 `0.001`（默认）| 正标量
-
-第一次级绕组中的标幺磁通损耗。该值必须大于 `0`。
+一次绕组的标幺磁通损耗。该值必须大于 `0`。
 
 #### 依赖关系
 
-要启用此参数，请将 **漏电抗** 设置为 `Include`。
+要启用此参数，请将 **Leakage reactance** 设置为 `Include`。
 
-### **第二次级漏电抗 (pu)** — 第二次级绕组磁通损耗 `0.001`（默认）| 正标量
+### **First secondary leakage reactance (pu)** — 第一次级绕组磁通损耗 `0.001`（默认）| 正标量
 
-第二次级绕组中的标幺磁通损耗。该值必须大于 `0`。
+第一次级绕组的标幺磁通损耗。该值必须大于 `0`。
 
 #### 依赖关系
 
-要启用此参数，请将 **漏电抗** 设置为 `Include`。
+要启用此参数，请将 **Leakage reactance** 设置为 `Include`。
 
-### **励磁电阻** — 励磁电阻建模 `Exclude`（默认）| `Include`
+### **Second secondary leakage reactance (pu)** — 第二次级绕组磁通损耗 `0.001`（默认）| 正标量
+
+第二次级绕组的标幺磁通损耗。该值必须大于 `0`。
+
+#### 依赖关系
+
+要启用此参数，请将 **Leakage reactance** 设置为 `Include`。
+
+### **Magnetizing resistance** — 励磁电阻建模 `Exclude`（默认）| `Include`
 
 是否对变压器铁芯损耗建模。
 
-### **并联励磁电阻 (pu)** — 变压器铁芯损耗 `500`（默认）| 正标量
+### **Shunt magnetizing resistance (pu)** — 变压器铁芯损耗 `500`（默认）| 正标量
 
-变压器铁芯中的标幺损耗。该值必须大于 `0`。
+变压器铁芯的标幺损耗。该值必须大于 `0`。
 
 #### 依赖关系
 
-要启用此参数，请将 **励磁电阻** 设置为 `Include`。
+要启用此参数，请将 **Magnetizing resistance** 设置为 `Include`。
 
-### **励磁电抗** — 励磁电抗建模 `Exclude`（默认）| `Include`
+### **Magnetizing reactance** — 励磁电抗建模 `Exclude`（默认）| `Include`
 
 是否对变压器铁芯的磁效应建模。
 
-### **磁饱和表示** — 磁饱和的表示 `None`（默认）| `Lookup table (phi versus i)`
+### **Magnetic saturation representation** — 磁饱和的表示方式 `None`（默认）| `Lookup table (phi versus i)`
 
 选择是否以及如何表示磁饱和。
 
 #### 依赖关系
 
-要启用此参数，请将 **励磁电抗** 设置为 `Include`。
+要启用此参数，请将 **Magnetizing reactance** 设置为 `Include`。
 
-### **电流向量 (pu), i** — 电流的标幺向量 `[0, .002, 1, 2]`（默认）
+### **Current vector (pu), i** — 电流的标幺向量 `[0, .002, 1, 2]`（默认）
 
 电流的标幺向量。第一个值必须为 `0`。此参数必须严格递增。
 
 #### 依赖关系
 
-要启用此参数，请将 **励磁电抗** 设置为 `Include`，并将 **磁饱和表示** 设置为 `Lookup table (phi versus i)`。
+要启用此参数，请将 **Magnetizing reactance** 设置为 `Include`，并将 **Magnetic saturation representation** 设置为 `Lookup table (phi versus i)`。
 
-### **磁通向量 (pu), phi** — 磁通的标幺向量 `[0, 1.2, 1.5, 1.51]`（默认）
+### **Magnetic flux vector (pu), phi** — 磁通的标幺向量 `[0, 1.2, 1.5, 1.51]`（默认）
 
 磁通的标幺向量。第一个值必须为 `0`。此参数必须严格递增。
 
 #### 依赖关系
 
-要启用此参数，请将 **励磁电抗** 设置为 `Include`，并将 **磁饱和表示** 设置为 `Lookup table (phi versus i)`。
+要启用此参数，请将 **Magnetizing reactance** 设置为 `Include`，并将 **Magnetic saturation representation** 设置为 `Lookup table (phi versus i)`。
 
-### **并联励磁电抗 (pu)** — 变压器铁芯磁效应 `500`（默认）| 正标量
+### **Shunt magnetizing reactance (pu)** — 变压器铁芯磁效应 `500`（默认）| 正标量
 
-变压器铁芯在其线性区域运行时的标幺磁效应。该值必须大于 `0`。
+变压器铁芯在线性区域运行时的标幺磁效应。该值必须大于 `0`。
 
 #### 依赖关系
 
-要启用此参数，请将 **励磁电抗** 设置为 `Include`，并将 **磁饱和表示** 设置为 `None`。
+要启用此参数，请将 **Magnetizing reactance** 设置为 `Include`，并将 **Magnetic saturation representation** 设置为 `None`。
 
-### **零序电抗 (pu)** — 零序电抗 `0.5`（默认）| 正标量
+### **Zero sequence reactance (pu)** — 零序电抗 `0.5`（默认）| 正标量
 
 标幺零序电抗。该值必须大于或等于一次绕组磁通损耗。
 
 #### 依赖关系
 
-要启用此参数，请将 **铁芯类型**（一个**主要**参数）设置为 `Three-phase three-limb`。
+要启用此参数，请将 **Core type**（一个 **Main** 参数）设置为 `Three-phase three-limb`。
 
 ## 所属库
 
@@ -210,7 +219,7 @@ Simscape / Electrical / Passive / Transformers
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -222,17 +231,17 @@ Simscape / Electrical / Passive / Transformers
 
 ## 描述
 
-具有饱和能力的三相线性非理想、可配置为星形和三角形接法的三绕组变压器
+具有饱和能力的三相线性非理想星形和三角形可配置三绕组变压器
 
-Three-Winding Transformer (Three-Phase) 模块表示一个线性非理想三相三绕组变压器，它通过电磁感应在一个或多个电路之间传输电能。该模块包括线性绕组漏磁和线性铁芯磁化效应。您可以使用标幺值参数化该模块的阻抗。一次、第一次级和第二次级绕组类型、三角形-星形相位角以及铁芯类型均可配置。
+Three-Winding Transformer (Three-Phase) 模块表示一个线性非理想三相三绕组变压器，它通过电磁感应在两个或多个电路之间传输电能。该模块包含线性绕组漏抗和线性铁芯磁化效应。您可以使用标幺值对模块阻抗进行参数化。一次、第一次级和第二次级绕组类型、三角形-星形相角以及铁芯类型均可配置。
 
-一次和二次绕组类型的配置选项包括：
+一次和次级绕组类型的配置选项包括：
 
-- Wye with floating neutral — 采用 Floating Neutral (Three-Phase) 的星形或 T 形配置
-- Wye with neutral port — 采用 Neutral Port (Three-Phase) 的星形或 T 形配置
-- Wye with grounded neutral — 采用 Grounded Neutral (Three-Phase) 的星形或 T 形配置
-- Delta 1 o'clock — 网状配置，相对于所连接星形配置的电压滞后 30 度相移
-- Delta 11 o'clock — 网状配置，相对于所连接星形配置的电压超前 30 度相移
+- Wye with floating neutral — 带 Floating Neutral (Three-Phase) 的星形或 T 形配置
+- Wye with neutral port — 带 Neutral Port (Three-Phase) 的星形或 T 形配置
+- Wye with grounded neutral — 带 Grounded Neutral (Three-Phase) 的星形或 T 形配置
+- Delta 1 o'clock — 相对于所连接星形配置的电压具有滞后 30 度相移的网形配置
+- Delta 11 o'clock — 相对于所连接星形配置的电压具有超前 30 度相移的网形配置
 
 铁芯类型的选项包括：
 
@@ -241,16 +250,16 @@ Three-Winding Transformer (Three-Phase) 模块表示一个线性非理想三相�
 
 尽管三柱铁芯通常成本较低，但五柱铁芯具有以下优势：
 
-- 在不平衡负载情况下，对电流零序分量（即线路与中性线之间）具有更低的阻抗
-- 更大的散热能力
+- 在负载不平衡的情况下，对于电流的零序分量（即线与中性点之间），阻抗更低
+- 散热更好
 
 ### 方程
 
 **三柱铁芯**
 
-该模块在磁域中使用基本磁阻、绕组和涡流模块实现。
+此模块在磁域中使用基本磁阻、绕组和涡流模块实现。
 
-确定模块掩膜中的电气域参数与模型中所用磁域参数之间的关系非常重要：
+确定模块掩膜中的电域参数与模型中使用的磁域参数之间的关系非常重要：
 
 - *n1* 是一次绕组的匝数。
 - *n2* 是第一次级绕组的匝数。
@@ -276,7 +285,7 @@ Three-Winding Transformer (Three-Phase) 模块表示一个线性非理想三相�
 - *Rl3* 是第二次级绕组漏磁阻。
 
   Rl3=n32Ls2
-- *Leddy* 是涡流回路电导
+- *Leddy* 是涡流回路的电导
 
   Leddy=n12Rm
 
@@ -284,9 +293,9 @@ Three-Winding Transformer (Three-Phase) 模块表示一个线性非理想三相�
 
 **五柱铁芯**
 
-对于五柱变压器，额外铁芯柱提供的额外磁通路径可以用零序磁阻表示，这些磁阻最初是为三柱变压器中通过空气的磁通路径设计的。
+对于五柱变压器，额外铁芯柱提供的额外磁通路径可以用零序磁阻表示，这些磁阻最初是为三柱变压器中通过空气的磁路设计的。
 
-在五柱模型中，从各相到额外铁芯柱的磁阻应等于相间磁阻。
+在五柱模型中，从各相到额外铁芯柱的磁阻假定等于相间磁阻。
 
 R=R0
 
@@ -296,10 +305,10 @@ R=R0=n12Lm
 
 ### 显示选项
 
-您可以使用模块上下文菜单在 MATLAB® 命令窗口中显示变压器的标幺基准值。要显示这些值，请右键单击该模块，然后选择 **电气** > **显示基准值**。
+您可以使用模块上下文菜单在 MATLAB® 命令窗口中显示变压器标幺基准值。要显示这些值，请右键单击模块并选择 **Electrical** > **Display Base Values**。
 
 ### 变量
 
-要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或属性检查器中的 **初始目标** 部分。有关详细信息，请参阅“设置模块变量的优先级和初始目标”。
+要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或属性检查器中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-标称值提供了一种指定模型中变量预期量值的方法。使用基于标称值的系统缩放可提高仿真稳健性。您可以使用不同来源指定标称值，包括模块对话框或属性检查器中的 **标称值** 部分。有关详细信息，请参阅“按标称值进行系统缩放”。
+标称值提供了一种指定模型中变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。您可以使用不同的来源指定标称值，包括模块对话框或属性检查器中的 **Nominal Values** 部分。有关详细信息，请参阅 System Scaling by Nominal Values。

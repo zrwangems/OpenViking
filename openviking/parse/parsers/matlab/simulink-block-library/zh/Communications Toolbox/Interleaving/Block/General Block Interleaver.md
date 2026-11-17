@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'General Block Interleaver'
-family: 'interleaving'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -16,25 +16,27 @@ chinese_source: worker-translation
 
 ## 端口
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 参数
 
-**置换向量源**
-:   用于指定置换向量来源的选项。来源可以是 `Dialog` 或
-    `Input port`。默认值为 `Dialog`。
+**Permutation vector source**
+:   一个选择项，用于指定置换向量的来源。来源可以是 `Dialog` 或 `Input
+    port`。默认值为
+    `Dialog`。
 
-**置换向量**
-:   长度为 N 的向量，列出输出元素所对应的输入元素索引。仅当
-    **置换向量源**设置为 `Dialog` 时，此参数才可用。
+**Permutation vector**
+:   一个长度为 N 的向量，列出了输出元素来自输入向量的索引。此参数仅在
+    **Permutation vector source** 设置为
+    `Dialog` 时可用。
 
 ## 所属库
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -42,21 +44,21 @@ chinese_source: worker-translation
 
 ## 版本历史
 
-**R2006a 之前推出**
+**在 R2006a 之前引入**
 
 ## 描述
 
-重新排列输入向量中的符号
+对输入向量中的符号重新排序
 
-General Block Interleaver 模块重新排列其输入向量的元素，不会重复或遗漏任何元素。如果输入包含 *N* 个元素，则**置换向量**参数是长度为 *N* 的列向量。该列向量按顺序指示用于构成长度为 *N* 的输出向量的输入元素索引；即：
+General Block Interleaver 模块重新排列其输入向量的元素，不重复也不省略任何元素。如果输入包含 *N* 个元素，则 **Permutation vector** 参数是一个长度为 *N* 的列向量。该列向量按顺序指示构成长度为 *N* 的输出向量的输入元素的索引；即，
 
-Output(*k*) = Input(**Permutation
+输出(*k*) = 输入(**Permutation
 vector**(k))
 
-其中，*k* 是 1 到 *N* 之间的每个整数。**置换向量**的内容必须是 1 到 N 之间的整数，且不得重复。
+对于 1 到 *N* 之间的每个整数 *k*。**Permutation vector** 的内容必须是 1 到 N 之间的整数，且不得有重复。
 
-输入和**置换向量**参数都必须是列向量信号。
+输入和 **Permutation vector** 参数都必须是列向量信号。
 
-此模块可以输出长度在仿真过程中发生变化的序列。有关长度可变的序列或可变大小信号的详细信息，请参阅可变大小信号基础 (Simulink)。
+此模块可以输出在仿真期间长度变化的序列。有关长度变化的序列或可变大小信号的更多信息，请参阅 Variable-Size Signal Basics (Simulink)。
 
-此模块接受以下数据类型：`int8`、`uint8`、`int16`、`uint16`、`int32`、`uint32`、`boolean`、`single`、`double` 和 fixed-point。输出信号的数据类型继承自输入信号。
+此模块接受以下数据类型：`int8`、`uint8`、`int16`、`uint16`、`int32`、`uint32`、`boolean`、`single`、`double` 和定点。输出信号从输入信号继承其数据类型。

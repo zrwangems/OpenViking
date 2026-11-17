@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Cepstral Coefficients'
-family: 'features'
+family: 'audio'
 product_id: 'audio'
 product_name: 'Audio Toolbox'
 documentation_release: R2025b
@@ -23,19 +23,19 @@ chinese_source: worker-translation
 频谱图或听觉频谱图，指定为 *L*×*M* 矩阵或 *L*×*M*×*N* 数组，其中：
 
 - *L* 是频带数量。
-- *M* 是帧数量。
-- *N* 是通道数量。
+- *M* 是帧数。
+- *N* 是通道数。
 
 **数据类型：** `single` | `double`
 ### 输出
 
-### **Port\_1** — Cepstral Coefficients 矩阵 | 三维数组
+### **Port\_1** — 倒谱系数矩阵 | 三维数组
 
 倒谱系数，返回为 *M*×*B* 矩阵或 *M*×*B*×*N* 数组，其中：
 
-- *M* 是输入频谱图中的帧数量。
+- *M* 是输入频谱图中的帧数。
 - *B* 是每帧返回的系数数量，由 **Number of cepstral coefficients** 参数指定。
-- *N* 是输入频谱图中的通道数量。
+- *N* 是输入频谱图中的通道数。
 
 **数据类型：** `single` | `double`
 
@@ -51,8 +51,8 @@ chinese_source: worker-translation
 
 ### **Simulate using** — 指定要运行的仿真类型 `Interpreted execution`（默认）| `Code generation`
 
-- `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
-- `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码会在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
+- `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
+- `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 ## 所属库
 
@@ -70,9 +70,7 @@ Audio Toolbox / Features
 
 ## 扩展功能
 
-### C/C++ 代码生成
-
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 

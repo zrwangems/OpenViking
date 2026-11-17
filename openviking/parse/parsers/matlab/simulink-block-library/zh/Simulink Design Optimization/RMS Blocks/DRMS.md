@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DRMS'
-family: 'rms-blocks'
+family: 'sldo'
 product_id: 'sldo'
 product_name: 'Simulink Design Optimization'
 documentation_release: R2025b
@@ -18,28 +18,28 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 输入信号标量
+### **Port\_1** — 输入信号 标量
 
 输入值，指定为标量信号。
 ### 输出
 
-### **Port\_1** — DRMS 值标量
+### **Port\_1** — DRMS 值 标量
 
-计算得到的离散时间均方根值，作为标量信号输出。
+计算得到的离散时间均方根值，输出为标量信号。
 
 ## 参数
 
-### **采样间隔** — 采样时间 `1`（默认）| 正标量
+### **Sampling interval** — 采样时间 `1`（默认）| 正标量
 
 用于计算 DRMS 值的采样时间。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **参数：** `Ts` |
-| **值：** 带引号的正标量 |
-| **默认值：** `'1'` |
+| **Parameter:** `Ts` |
+| **Value:** 带引号的正标量 |
+| **默认值**：`'1'` |
 
 ## 所属库
 
@@ -59,15 +59,12 @@ R2025b 中未记录。
 
 ## 描述
 
-计算信号的离散时间累积均方根 (DRMS)
+计算信号的离散时间累积均方根（DRMS）
 
-将 DRMS 模块连接到信号，以计算其离散时间累积均方根
-(DRMS) 值，该值提供信号中平均能量的度量。
+将 DRMS 模块连接到信号以计算其离散时间累积均方根（DRMS）值，该值提供了信号中平均能量的度量。
 
-信号
-*u*(*t*) 的离散时间累积均方根值定义为
+信号 *u*(*t*) 的离散时间累积均方根值定义为
 
 DRMS=1N∑i=1N‖u(ti)‖2
 
-为了优化信号能量，请将此模块与 Check Custom Bounds
-模块结合使用。
+要优化信号能量，请将此模块与 Check Custom Bounds 模块配合使用。

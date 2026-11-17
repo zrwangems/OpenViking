@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: '2-D Correlation'
-family: 'statistics'
+family: 'vision'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b
@@ -18,28 +18,27 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **I1** — 第一输入矩阵矩阵
+### **I1** — 第一个输入矩阵 matrix
 
-第一输入矩阵，指定为 *M*×*N* 矩阵。两个输入矩阵必须具有相同类别的数据类型，例如 `double`、`single`、无符号整数（`uint8`、`uint16`、`uint32`、`uint64`）或整数（`int8`、`int16`、`int32`、`int64`）。
-
-**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-**复数支持：** Yes
-
-### **I2** — 第二输入矩阵矩阵
-
-第二输入矩阵，指定为 *P*×*Q* 矩阵。两个输入矩阵必须具有相同类别的数据类型，例如 `double`、`single`、无符号整数（`uint8`、`uint16`、`uint32`、`uint64`）或整数（`int8`、`int16`、`int32`、`int64`）。
+第一个输入矩阵，指定为 *M*×*N* 矩阵。两个输入矩阵的数据类型必须属于同一类别，例如 `double`、`single`、无符号整数（`uint8`、`uint16`、`uint32`、`uint64`）或整数（`int8`、`int16`、`int32`、`int64`）。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-**复数支持：** Yes
+**复数支持：** 是
 
+### **I2** — 第二个输入矩阵 matrix
+
+第二个输入矩阵，指定为 *P*×*Q* 矩阵。两个输入矩阵的数据类型必须属于同一类别，例如 `double`、`single`、无符号整数（`uint8`、`uint16`、`uint32`、`uint64`）或整数（`int8`、`int16`、`int32`、`int64`）。
+
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**复数支持：** 是
 ### 输出
 
-### **Port\_1** — 计算得到的互相关标量 | 向量 | 矩阵
+### **Port\_1** — 计算得到的互相关 标量 | 向量 | 矩阵
 
-计算得到的互相关，以标量、向量或矩阵形式返回。互相关输出的尺寸取决于 **Output size** 参数。
+计算得到的互相关，以标量、向量或矩阵形式返回。互相关输出的大小取决于 **Output size** 参数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-**复数支持：** Yes
+**复数支持：** 是
 
 ## 参数
 
@@ -49,21 +48,24 @@ chinese_source: worker-translation
 
 互相关输出的大小。
 
-- 如果选择 `Full`，输出维度为 (*M*+*P*-1)×(*N*+*Q*-1)。
-- 如果选择 `Same as input port I1`，输出维度与端口 **I1** 处的输入相同。该模块返回互相关矩阵的中心部分，其大小与端口 **I1** 处的输入相同。
-- 如果选择 `Valid`，输出维度为 (*M*-*P*+1)×(*N*-*Q*+1)。该模块仅返回未使用零填充边缘计算的互相关矩阵部分。
+- 如果选择 `Full`，输出的维度为
+  (*M*+*P*-1)×(*N*+*Q*-1)。
+- 如果选择 `Same as input port I1`，输出具有与端口 **I1** 处输入相同的维度。该模块返回互相关矩阵的中心部分，其大小与端口 **I1** 处的输入相同。
+- 如果选择 `Valid`，输出的维度为
+  (*M*-*P*+1)×(*N*-*Q*+1)。
+  该模块仅返回互相关矩阵中在不使用零填充边缘的情况下计算得到的部分。
 
 ### **Normalized output** — 归一化互相关输出 `off`（默认） | `on`
 
-如果输入的数据类型为浮点，请选择此参数。互相关输出的值归一化到 [0, 1]。
+如果输入的数据类型为浮点型，请选择此参数。互相关输出的值归一化到 [0, 1]。
 
 ### 数据类型
 
 有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
 
-### **Lock data type settings against change by the fixed-point tools** — 阻止定点工具覆盖数据类型 `off`（默认） | `on`
+### **Lock data type settings against change by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认） | `on`
 
-选择此参数可阻止定点工具覆盖您在此模块上指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
+选择此参数可防止定点工具覆盖您在此模块上指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
 
 ## 所属库
 
@@ -89,6 +91,6 @@ Computer Vision Toolbox / Statistics
 
 ## 描述
 
-计算两个输入矩阵的二维相关性
+计算两个输入矩阵的二维互相关
 
 2-D Correlation 模块计算两个输入矩阵之间的二维互相关。

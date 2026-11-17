@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Motorcycle Chain'
-family: 'powertrain'
+family: 'vdynblks'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b
@@ -34,105 +34,106 @@ chinese_source: worker-translation
 
 后摇臂俯仰角 *ϴra*，单位为 rad。
 
-### **MBrkR** — 后轮处的制动力矩 `scalar`
+### **MBrkR** — 后轮制动力矩 `scalar`
 
-后轮 *GWhlRr* 处绕 *jWhlRr* 的制动力矩，单位为 N·m。
+后轮 *GWhlRr* 上绕 *jWhlRr* 的制动力矩，单位为 N·m。
 
 ### **AngAWhlR** — 后轮角加速度 `scalar`
 
 后轮角加速度，单位为 rad/s2。
+
 ### 输出
 
 ### **Info** — 总线信号 bus
 
-包含这些模块计算的总线信号。
+包含以下模块计算结果的总线信号。
 
 | 信号 | 描述 | 单位 |
 | --- | --- | --- |
 | `FChn` | 施加到后摇臂的链条力 | N |
 | `AngVSprtR` | 后链轮角速度 | rad/s |
-| `MDrvSprtR` | 施加到后链轮的车轮减振器力矩 | N·m |
+| `MDrvSprtR` | 施加到后链轮的轮减振器力矩 | N·m |
 | `WhlDmpAng` | 后链轮与后轮之间的角度 | rad |
 
-### **MDrvSprtR** — 后链轮处的车轮减振器力矩 `scalar`
+### **MDrvSprtR** — 后链轮处的轮减振器力矩 `scalar`
 
-施加到后链轮的车轮减振器力矩，单位为 N·m。
+施加到后链轮的轮减振器力矩，单位为 N·m。
 
-### **MDrvArmR** — 后摇臂处的驱动链条力矩 `scalar`
+### **MDrvArmR** — 后摇臂处的驱动链力矩 `scalar`
 
-后摇臂 *OArmRr* 处绕 *jArmRr* 的驱动链条力矩，单位为 N·m。
+后摇臂 *OArmRr* 上绕 *jArmRr* 的驱动链力矩，单位为 N·m。
 
-### **MDrvFrm** — 车架处的驱动链条力矩 `scalar`
+### **MDrvFrm** — 车架处的驱动链力矩 `scalar`
 
-车架 *OFrm* 处绕 *jFrm* 的驱动链条力矩，单位为 N·m。
+车架 *OFrm* 上绕 *jFrm* 的驱动链力矩，单位为 N·m。
 
 ## 参数
 
-此图显示链条与摩托车车架、后摇臂和后轮之间的几何关系。
+下图展示了链条与摩托车车架、后摇臂和后轮之间的几何关系。
 
 摩托车链条示意图
 
 #### 前链轮
 
-### **坐标, SprktFrPxz** — 前链轮位置 `[0.05 -0.05]` (默认) | `vector`
+### **Coordinates, SprktFrPxz** — 前链轮位置 `[0.05 -0.05]`（默认）| `vector`
 
-前链轮位置 *SprktFrPxz*，分别沿 *xm* 和 *zm*，单位为 m。
+前链轮位置 *SprktFrPxz*，分别沿 *xm*、*zm* 方向，单位为 m。
 
-### **质量转动惯量, SprktFrIyy** — 前链轮转动惯量 `0.005` (默认) | `scalar`
+### **Mass moment of inertia, SprktFrIyy** — 前链轮转动惯量 `0.005`（默认）| `scalar`
 
 前链轮质量转动惯量 *SprktFrIyy*，单位为 kg·m2。
 
-### **半径, SprktFrR** — 前链轮半径 `0.04` (默认) | `scalar`
+### **Radius, SprktFrR** — 前链轮半径 `0.04`（默认）| `scalar`
 
 前链轮半径 *SprktFrR*，单位为 m。
 
 #### 后链轮
 
-### **质量转动惯量, SprktRrIyy** — 后链轮转动惯量 `0.01` (默认) | `scalar`
+### **Mass moment of inertia, SprktRrIyy** — 后链轮转动惯量 `0.01`（默认）| `scalar`
 
 后链轮质量转动惯量 *SprktRrIyy*，单位为 kg·m2。
 
-### **半径, SprktRrR** — 后链轮半径 `0.12` (默认) | `scalar`
+### **Radius, SprktRrR** — 后链轮半径 `0.12`（默认）| `scalar`
 
 后链轮半径 *SprktRrR*，单位为 m。
 
 #### 后轮
 
-### **质量转动惯量, WhlRrIyy** — 后轮转动惯量 `0.66` (默认) | `scalar`
+### **Mass moment of inertia, WhlRrIyy** — 后轮转动惯量 `0.66`（默认）| `scalar`
 
 后轮质量转动惯量 *WhlRrIyy*，单位为 kg·m2。
 
-### **半径, WhlRrR** — 后轮半径 `0.33` (默认) | `scalar`
+### **Radius, WhlRrR** — 后轮半径 `0.33`（默认）| `scalar`
 
 后轮半径 *WhlRrR*，单位为 m。
 
-#### 后摇臂
+#### 摇臂
 
-### **摇臂长度, ArmRrLen** — 后摇臂长度 `0.535` (默认) | `scalar`
+### **Arm length, ArmRrLen** — 摇臂长度 `0.535`（默认）| `scalar`
 
 摇臂长度 *ArmRrLen*，单位为 m。
 
-#### 车轮减振器
+#### 轮减振器
 
-### **刚度, WhlDmpK** — 车轮减振器刚度 `1e4` (默认) | `scalar`
+### **Stiffness, WhlDmpK** — 轮减振器刚度 `1e4`（默认）| `scalar`
 
-车轮减振器刚度 *WhlDmpK*，单位为 N/rad。
+轮减振器刚度 *WhlDmpK*，单位为 N/rad。
 
-### **阻尼, WhlDmpC** — 车轮阻尼 `1e2` (默认) | `scalar`
+### **Damping, WhlDmpC** — 轮减振器阻尼 `1e2`（默认）| `scalar`
 
-车轮减振器阻尼 *WhlDmpC*，单位为 N·s/rad。
+轮减振器阻尼 *WhlDmpC*，单位为 N·s/rad。
 
-### **平衡角** — 车轮减振器平衡角 `-15e-3` (默认) | `scalar`
+### **Equilibrium angle** — 轮减振器平衡角 `-15e-3`（默认）| `scalar`
 
 平衡角 *WhlDmpAng0*，单位为 rad。
 
 #### 初始条件
 
-### **后链轮角速度, SprktRrAngV0** — 角速度 `0` (默认) | `scalar`
+### **Rear sprocket angular velocity, SprktRrAngV0** — 角速度 `0`（默认）| `scalar`
 
 后链轮角速度 *SprktRrAngV0*，单位为 rad/s。
 
-### **后轮角速度, WhlRrAngV0** — 角速度 `0` (默认) | `scalar`
+### **Rear wheel angular velocity, WhlRrAngV0** — 角速度 `0`（默认）| `scalar`
 
 后轮角速度 *WhlRrAngV0*，单位为 rad/s。
 
@@ -142,7 +143,7 @@ Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertr
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -156,12 +157,12 @@ Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertr
 
 实现摩托车链条
 
-Motorcycle Chain 模块实现摩托车链条对 Motorcycle Body Longitudinal In-Plane 模块的动态影响，包括动态张力和力矩驱动耦合。
+Motorcycle Chain 模块实现摩托车链条对 Motorcycle Body Longitudinal In-Plane 模块的动态效应，包括动态张力和力矩驱动耦合。
 
-此图显示链条与摩托车车架、后摇臂和后轮之间的几何关系。
+下图展示了链条与摩托车车架、后摇臂和后轮之间的几何关系。
 
 摩托车链条示意图
 
-| 坐标系 | 图中变量 | 描述 |
+| 车架 | 图中变量 | 描述 |
 | --- | --- | --- |
-| 摩托车主车架  - *xm* – 沿指向前叉的向量向前 - *zm* – 向下 - *ym* – 与摩托车平面正交 | *Om* | 主车架原点 |
+| 摩托车主车架  - *xm* – 沿指向前叉的向量向前 - *zm* – 向下 - *ym* – 垂直于摩托车平面 | *Om* | 主车架原点 |

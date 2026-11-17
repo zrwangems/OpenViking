@@ -9,95 +9,78 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # SoC Blockset
 
-Learn the basics of SoC Blockset
+了解 SoC Blockset 的基础知识
 
-Design, analyze, and deploy hardware/software applications for
-AMD and Intel SoC devices
+为 AMD 和 Intel SoC 设备设计、分析和部署硬件/软件应用
 
-- Release Notes
-- PDF Documentation
-- PDF Documentation
+- 发行说明
+- PDF 文档
+- PDF 文档
 
-- **Release Notes**
-- **PDF Documentation**
-- **PDF Documentation**
+- **发行说明**
+- **PDF 文档**
+- **PDF 文档**
 
-SoC Blockset™ enables you to simulate and analyze the performance of algorithms on
-programmable SoCs and ASICs. You can deploy these algorithms as hardware and software
-applications for prototyping and production.
+SoC Blockset™ 使您能够仿真和分析可编程 SoC 和 ASIC 上算法的性能。您可以将这些算法部署为硬件和软件应用，用于原型设计和生产。
 
-The blockset lets you build Simulink® models of hardware architectures by defining interfaces between ARM® processor cores, hardware logic, memory, and peripherals. You can use models
-to partition algorithms between hardware logic and processors to analyze implementation
-tradeoffs.
+该模块集允许您通过定义 ARM® 处理器核、硬件逻辑、存储器和外设之间的接口来构建硬件架构的 Simulink® 模型。您可以使用模型在硬件逻辑和处理器之间划分算法，以分析实现权衡。
 
-The SoC Builder app automates deployment by building IP cores and software, then
-programming development boards (with HDL Coder™ and Embedded Coder®).
+SoC Builder 应用通过构建 IP 核和软件，然后对开发板进行编程（使用 HDL Coder™ 和 Embedded Coder®）来自动化部署。
 
-SoC Blockset analyzes applications in hardware with performance diagnostics and software
-profiling. Supported devices include AMD®
-Versal® adaptive SoCs, Zynq®
-UltraScale+™ MPSoCs/RFSoCs, and Zynq-7000 SoCs, as well as Intel® SoC FPGAs.
+SoC Blockset 通过性能诊断和软件分析来分析硬件中的应用。支持的设备包括 AMD® Versal® 自适应 SoC、Zynq® UltraScale+™ MPSoC/RFSoC 和 Zynq-7000 SoC，以及 Intel® SoC FPGA。
 
-## Get Started
+## 入门
 
-Learn the basics of SoC Blockset
+了解 SoC Blockset 的基础知识
 
-## System on Chip (SoC)
+## 片上系统（SoC）
 
-Combine processor software, programmable logic, memory, and
-peripherals into complete SoC designs
+将处理器软件、可编程逻辑、存储器和外设组合成完整的 SoC 设计
 
-## Processor Software
+## 处理器软件
 
-Design and develop the software for
-the embedded processor component of an SoC application
+为 SoC 应用的嵌入式处理器组件设计和开发软件
 
-## Programmable Logic
+## 可编程逻辑
 
-Design and develop the custom hardware for the programmable
-logic (PL) or FPGA component of an SoC application
+为 SoC 应用的可编程逻辑（PL）或 FPGA 组件设计和开发自定义硬件
 
-## Memory
+## 存储器
 
-Design and develop the shared memory and data register
-components of an SoC application
+为 SoC 应用的共享存储器和数据寄存器组件设计和开发
 
-## Peripherals
+## 外设
 
-Design and develop the external peripheral components, from
-GPIO to integrated video stream components, of an SoC application
+为 SoC 应用设计和开发外部外设组件，从 GPIO 到集成视频流组件
 
-## Applications
+## 应用
 
-Implement wireless communication, radar, vision, and motor control applications on
-AMD
-Xilinx® SoC devices
+在 AMD Xilinx® SoC 设备上实现无线通信、雷达、视觉和电机控制应用
 
-## SoC Blockset Supported Hardware
+## SoC Blockset 支持的硬件
 
-Support for third-party hardware, such as AMD, Intel SoCs, or ARM
-Cortex® devices
+对第三方硬件的支持，例如 AMD、Intel SoC 或 ARM Cortex® 设备
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个与以下 MATLAB 命令对应的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入命令来运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：。
 
 - (English)
 - (Deutsch)
@@ -106,11 +89,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择一个网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -141,7 +124,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

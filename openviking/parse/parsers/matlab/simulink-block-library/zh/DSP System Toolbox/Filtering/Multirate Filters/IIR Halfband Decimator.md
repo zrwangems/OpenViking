@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IIR Halfband Decimator'
-family: 'filtering'
+family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
@@ -20,23 +20,22 @@ chinese_source: worker-translation
 
 ### **x** — 输入信号 列向量 | 矩阵
 
-将输入信号指定为列向量或大小为
-*P*×*Q* 的矩阵。
+将输入信号指定为列向量或大小为 *P*×*Q* 的矩阵。
 
-该模块将输入信号的每一列视为一个单独通道。如果输入是二维信号，则第一个维度表示通道长度（或帧大小），第二个维度表示通道数。如果输入是一维信号，则该模块将其解释为单通道信号。
+模块将输入信号的每一列视为一个独立通道。如果输入是二维信号，第一维表示通道长度（或帧大小），第二维表示通道数。如果输入是一维信号，则模块将其解释为单通道信号。
 
 该模块支持可变大小输入信号（帧长度在仿真期间变化）。
 
-当您输入可变大小信号时，信号的帧长度可以是任意的，也就是说，输入帧长度不必是抽取因子 2 的倍数。当您输入固定大小信号（帧长度在仿真期间不变化）时，仅当您选择 **Allow arbitrary frame length for fixed-size input signals** 参数时，帧长度才可以任意。*（自 R2023b 起）*
+当输入可变大小信号时，信号帧长度可以是任意的，即输入帧长度不必是抽取因子 2 的整数倍。当输入固定大小信号（帧长度在仿真期间不变）时，仅当选中 **Allow arbitrary frame length for fixed-size input signals** 参数时，帧长度才可以任意。*（自 R2023b 起）*
 
-在您选择 **Specify coefficients from input port** 参数之前，此端口未命名。
+在选中 **Specify coefficients from input port** 参数之前，该端口未命名。
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
 
-### **coeffs1** — 分支 1 全通多项式系数 *N*×`1` 向量 | *N*×*2* 矩阵
+### **coeffs1** — 分支 1 全通多项式系数 *N*×`1` 向量 | *N*×`2` 矩阵
 
-将第一个分支的全通多项式滤波器系数指定为 *N*×`1` 向量或 *N*×*2* 矩阵，其中包含 *N* 个一阶或二阶全通节。
+将第一分支的全通多项式滤波器系数指定为 *N* 个一阶或二阶全通节的 *N*×`1` 向量或 *N*×`2` 矩阵。
 
 #### 依赖关系
 
@@ -45,13 +44,13 @@ chinese_source: worker-translation
 - **Filter specification** 为 `Coefficients`
 - **Internal allpass structure** 为 `Minimum multiplier`
 - 清除 **Make the first branch a pure delay** 参数
-- 选择 **Specify coefficients from input port** 参数
+- 选中 **Specify coefficients from input port** 参数
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
-### **coeffs2** — 分支 2 全通多项式系数 *N*×`1` 向量 | *N*×*2* 矩阵
+### **coeffs2** — 分支 2 全通多项式系数 *N*×`1` 向量 | *N*×`2` 矩阵
 
-将第二个分支的全通多项式滤波器系数指定为 *N*×`1` 向量或 *N*×*2* 矩阵，其中包含 *N* 个一阶或二阶全通节。
+将第二分支的全通多项式滤波器系数指定为 *N* 个一阶或二阶全通节的 *N*×`1` 向量或 *N*×`2` 矩阵。
 
 #### 依赖关系
 
@@ -59,86 +58,86 @@ chinese_source: worker-translation
 
 - **Filter specification** 为 `Coefficients`
 - **Internal allpass structure** 为 `Minimum multiplier`
-- 选择 **Specify coefficients from input port** 参数
+- 选中 **Specify coefficients from input port** 参数
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
 ### **LP** — 抽取器输出的低通子带 列向量 | 矩阵
 
-抽取器输出的低通子带，返回为列向量或矩阵。由于滤波器是半带滤波器，下采样因子始终为 2。
+抽取器输出的低通子带，以列向量或矩阵形式返回。由于该滤波器是半带滤波器，下采样因子始终为 2。
 
-输出信号的维度取决于输入信号的维度以及您是否选择 **Allow arbitrary frame length for fixed-size input signals** 参数。*（自 R2023b 起）*
+输出信号的维度取决于输入信号的维度以及是否选中 **Allow arbitrary frame length for fixed-size input signals** 参数。*（自 R2023b 起）*
 
-下表提供了当您输入固定大小输入信号时低通子带输出信号维度的更多详细信息。
+下表提供了当输入固定大小输入信号时低通子带输出信号维度的更多详细信息。
 
 **固定大小输入信号**
 
 | 输入信号 | 输出信号 |
 | --- | --- |
-| *P*×*Q*，其中 *P* 是抽取因子 2 的倍数 | 大小为 (*P*/2)×*Q* 的固定大小信号 |
-| *P*×*Q*，其中 *P* 不是抽取因子 2 的倍数 *（自 R2023b 起）* | 当您选择 **Allow arbitrary frame length for fixed-size input signals** 时，为上限大小为 `ceil`(*P*/2)×*Q* 的可变大小信号 *（自 R2023b 起）*  如果您未选择 **Allow arbitrary frame length for fixed-size input signals**，模块将报错。*（自 R2023b 起）* |
+| *P*×*Q*，其中 *P* 是抽取因子 2 的整数倍 | 大小为 (*P*/2)×*Q* 的固定大小信号 |
+| *P*×*Q*，其中 *P* 不是抽取因子 2 的整数倍 *（自 R2023b 起）* | 当选中 **Allow arbitrary frame length for fixed-size input signals** 时，上界为 `ceil`(*P*/2)×*Q* 的可变大小信号 *（自 R2023b 起）*  如果未选中 **Allow arbitrary frame length for fixed-size input signals**，模块将报错。*（自 R2023b 起）* |
 
-下表给出了当您输入可变大小输入信号时低通子带输出信号维度的更多详细信息。当您输入可变大小信号（帧长度在仿真期间变化）时，**Allow arbitrary frame length for fixed-size input signals** 参数在模块对话框中可见，但对输入帧长度没有任何影响。即使您未选择 **Allow arbitrary frame length for fixed-size input signals** 参数，也可以输入任意帧长度的可变大小信号。*（自 R2023b 起）*
+下表给出了当输入可变大小输入信号时低通子带输出信号维度的更多详细信息。当输入可变大小信号（帧长度在仿真期间变化）时，**Allow arbitrary frame length for fixed-size input signals** 参数在模块对话框中可见，但对输入帧长度没有任何影响。即使未选中 **Allow arbitrary frame length for fixed-size input signals** 参数，也可以输入任意帧长度的可变大小信号。*（自 R2023b 起）*
 
 **可变大小输入信号**
 
 | 输入信号 | 输出信号 |
 | --- | --- |
-| *P*×*Q* | 上限大小为 `ceil`(*P*/2)×*Q* 的可变大小信号 *（自 R2023b 起）* |
+| *P*×*Q* | 上界为 `ceil`(*P*/2)×*Q* 的可变大小信号 *（自 R2023b 起）* |
 
-在您选择 **Output highpass subband** 参数之前，此端口未命名。
+在选中 **Output highpass subband** 参数之前，该端口未命名。
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
 
 ### **HP** — 抽取器输出的高通子带 列向量 | 矩阵
 
-抽取器输出的高通子带，返回为列向量或矩阵。由于滤波器是半带滤波器，下采样因子始终为 2。
+抽取器输出的高通子带，以列向量或矩阵形式返回。由于该滤波器是半带滤波器，下采样因子始终为 2。
 
-输出信号的维度取决于输入信号的维度以及您是否选择 **Allow arbitrary frame length for fixed-size input signals** 参数。*（自 R2023b 起）*
+输出信号的维度取决于输入信号的维度以及是否选中 **Allow arbitrary frame length for fixed-size input signals** 参数。*（自 R2023b 起）*
 
-下表提供了当您输入固定大小输入信号时高通子带输出信号维度的更多详细信息。
+下表提供了当输入固定大小输入信号时高通子带输出信号维度的更多详细信息。
 
 **固定大小输入信号**
 
 | 输入信号 | 输出信号 |
 | --- | --- |
-| *P*×*Q*，其中 *P* 是抽取因子 2 的倍数 | 大小为 (*P*/2)×*Q* 的固定大小信号 |
-| *P*×*Q*，其中 *P* 不是抽取因子 2 的倍数 *（自 R2023b 起）* | 当您选择 **Allow arbitrary frame length for fixed-size input signals** 时，为上限大小为 `ceil`(*P*/2)×*Q* 的可变大小信号 *（自 R2023b 起）*  如果您未选择 **Allow arbitrary frame length for fixed-size input signals**，模块将报错。*（自 R2023b 起）* |
+| *P*×*Q*，其中 *P* 是抽取因子 2 的整数倍 | 大小为 (*P*/2)×*Q* 的固定大小信号 |
+| *P*×*Q*，其中 *P* 不是抽取因子 2 的整数倍 *（自 R2023b 起）* | 当选中 **Allow arbitrary frame length for fixed-size input signals** 时，上界为 `ceil`(*P*/2)×*Q* 的可变大小信号 *（自 R2023b 起）*  如果未选中 **Allow arbitrary frame length for fixed-size input signals**，模块将报错。*（自 R2023b 起）* |
 
-下表给出了当您输入可变大小输入信号时高通子带输出信号维度的更多详细信息。当您输入可变大小信号（帧长度在仿真期间变化）时，**Allow arbitrary frame length for fixed-size input signals** 参数在模块对话框中可见，但对输入帧长度没有任何影响。即使您未选择 **Allow arbitrary frame length for fixed-size input signals** 参数，也可以输入任意帧长度的可变大小信号。*（自 R2023b 起）*
+下表给出了当输入可变大小输入信号时高通子带输出信号维度的更多详细信息。当输入可变大小信号（帧长度在仿真期间变化）时，**Allow arbitrary frame length for fixed-size input signals** 参数在模块对话框中可见，但对输入帧长度没有任何影响。即使未选中 **Allow arbitrary frame length for fixed-size input signals** 参数，也可以输入任意帧长度的可变大小信号。*（自 R2023b 起）*
 
 **可变大小输入信号**
 
 | 输入信号 | 输出信号 |
 | --- | --- |
-| *P*×*Q* | 上限大小为 `ceil`(*P*/2)×*Q* 的可变大小信号 *（自 R2023b 起）* |
+| *P*×*Q* | 上界为 `ceil`(*P*/2)×*Q* 的可变大小信号 *（自 R2023b 起）* |
 
-在您选择 **Output highpass subband** 参数之前，此端口未命名。
+在选中 **Output highpass subband** 参数之前，该端口未命名。
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
 
 ## 参数
 
-### **Filter specification** — 滤波器设计参数 `Transition width and stopband attenuation`（默认） | `Filter order and transition width` | `Filter order and stopband attenuation` | `Coefficients`
+### **Filter specification** — 滤波器设计参数 `Transition width and stopband attenuation`（默认）| `Filter order and transition width` | `Filter order and stopband attenuation` | `Coefficients`
 
-选择模块用于设计 IIR 半带滤波器的参数。由于滤波器设计仅有两个自由度，您只能指定三个参数中的两个：
+选择模块用于设计 IIR 半带滤波器的参数。由于滤波器设计只有两个自由度，只能指定三个参数中的两个：
 
-- `Transition width and stopband attenuation`（默认）— 使用 **Transition width (Hz)** 和 **Stopband attenuation (dB)** 设计滤波器。此设计为最小阶数设计。
-- `Filter order and transition width` — 使用 **Filter order** 和 **Transition width (Hz)** 设计滤波器。
-- `Filter order and stopband attenuation` — 使用 **Filter order** 和 **Stopband attenuation (dB)** 设计滤波器。
-- `Coefficients`— 使用已启用的参数直接指定滤波器系数。
+- `Transition width and stopband attenuation`（默认）—— 使用 **Transition width (Hz)** 和 **Stopband attenuation (dB)** 设计滤波器。此设计为最小阶数设计。
+- `Filter order and transition width` —— 使用 **Filter order** 和 **Transition width (Hz)** 设计滤波器。
+- `Filter order and stopband attenuation` —— 使用 **Filter order** 和 **Stopband attenuation (dB)** 设计滤波器。
+- `Coefficients` —— 使用启用的参数直接指定滤波器系数。
 
-### **Transition width (Hz)** — 以 Hz 为单位的过渡带宽 `4.1e3`（默认） | 正实数标量
+### **Transition width (Hz)** — 过渡带宽，单位为 Hz `4.1e3`（默认）| 正实数标量
 
-将 IIR 半带滤波器的过渡带宽指定为以 Hz 为单位的实正标量，或以归一化频率单位表示的实正标量 *（自 R2023b 起）*。
+将 IIR 半带滤波器的过渡带宽指定为以 Hz 或归一化频率单位表示的正实数标量 *（自 R2023b 起）*。
 
-如果您将 **Sample rate mode** 参数设置为：
+如果将 **Sample rate mode** 参数设置为：
 
-- `Specify on dialog` 或 `Inherit from input port` –– 过渡带宽的值以 Hz 为单位，并且必须小于输入采样率值的一半。
-- `Use normalized frequency (0 to 1)` –– 过渡带宽的值以归一化频率单位表示。该值必须是小于 `1.0` 的正标量。
+- `Specify on dialog` 或 `Inherit from input port` —— 过渡带宽的值以 Hz 为单位，且必须小于输入采样率值的一半。
+- `Use normalized frequency (0 to 1)` —— 过渡带宽的值以归一化频率单位表示。该值必须是小于 `1.0` 的正标量。
 
 *（自 R2023b 起）*
 
@@ -146,44 +145,44 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **Filter specification** 设置为 `Filter order and transition width` 或 `Transition width and stopband attenuation`。
 
-### **Filter order** — IIR 半带滤波器的阶数 9（默认） | 正整数
+### **Filter order** — IIR 半带滤波器的阶数 9（默认）| 正整数
 
-将滤波器阶数指定为有限正整数。如果您将 **Design method** 设置为 `Elliptic`，则 **Filter order** 必须是大于 1 的奇数。如果您将 **Design method** 设置为 `Quasi-linear phase`，则 **Filter order** 必须是 4 的倍数。
+将滤波器阶数指定为有限正整数。如果将 **Design method** 设置为 `Elliptic`，则 **Filter order** 必须是大于 1 的奇数。如果将 **Design method** 设置为 `Quasi-linear phase`，则 **Filter order** 必须是 4 的整数倍。
 
 #### 依赖关系
 
 要启用此参数，请将 **Filter specification** 设置为 `Filter order and transition width` 或 `Filter order and stopband attenuation`。
 
-### **Stopband attenuation (dB)** — 阻带中所需的最小衰减 80（默认） | 正实数标量
+### **Stopband attenuation (dB)** — 阻带中所需的最小衰减 80（默认）| 正实数标量
 
-将 IIR 半带滤波器阻带中所需的最小衰减指定为以 dB 为单位的实正标量。
+将 IIR 半带滤波器阻带中所需的最小衰减指定为以 dB 表示的正实数标量。
 
 #### 依赖关系
 
 要启用此参数，请将 **Filter specification** 设置为 `Filter order and stopband attenuation` 或 `Transition width and stopband attenuation`。
 
-### **Design method** — 设计方法 `Elliptic`（默认） | `Quasi-linear phase`
+### **Design method** — 设计方法 `Elliptic`（默认）| `Quasi-linear phase`
 
 指定 IIR 半带滤波器的设计方法。
 
-- `Elliptic` — 滤波器具有非线性相位，并且使用的系数较少。
-- `Quasi-linear phase` — 多相滤波器结构的第一个分支是纯延迟，从而产生近似线性的相位响应。
+- `Elliptic` —— 滤波器具有非线性相位，使用的系数较少。
+- `Quasi-linear phase` —— 多相滤波器结构的第一分支是纯延迟，从而产生近似线性的相位响应。
 
 #### 依赖关系
 
-要启用此参数，请将 **Filter specification** 设置为除 `Coefficients` 以外的任何选项。
+要启用此参数，请将 **Filter specification** 设置为除 `Coefficients` 之外的任何选项。
 
-### **Internal allpass structure** — 内部全通滤波器实现结构 `Minimum multiplier`（默认） | `Wave Digital Filter`
+### **Internal allpass structure** — 内部全通滤波器实现结构 `Minimum multiplier`（默认）| `Wave Digital Filter`
 
-将内部全通滤波器实现结构指定为 `Minimum multiplier` 或 `Wave Digital Filter`。每种结构使用不同的系数集，并独立存储在相应的系数属性中。
+将内部全通滤波器实现结构指定为 `Minimum multiplier` 或 `Wave Digital Filter`。每种结构使用不同的系数集，分别存储在相应的系数属性中。
 
 #### 依赖关系
 
 要启用此参数，请将 **Filter specification** 设置为 `Coefficients`。
 
-### **Make the first branch a pure delay** — 使第一个分支为纯延迟 off（默认） | on
+### **Make the first branch a pure delay** — 使第一分支为纯延迟 关（默认）| 开
 
-当您选中此复选框时，多相滤波器结构的第一个分支变为纯延迟，并且 **Branch 1 allpass polynomial coefficients** 和 **Branch 1 Wave Digital coefficients** 参数不适用。
+选中此复选框时，多相滤波器结构的第一分支变为纯延迟，**Branch 1 allpass polynomial coefficients** 和 **Branch 1 Wave Digital coefficients** 参数不适用。
 
 默认情况下，此复选框未选中。
 
@@ -191,20 +190,20 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **Filter specification** 设置为 `Coefficients`。
 
-### **Delay length in samples for branch 1** — 延迟长度 `1`（默认） | 正标量
+### **Delay length in samples for branch 1** — 延迟长度 `1`（默认）| 正标量
 
-将第一个分支延迟的长度指定为正标量。
+将第一分支延迟的长度指定为正标量。
 
 #### 依赖关系
 
 要启用此参数，请设置：
 
 - **Filter specification** 为 `Coefficients`
-- 选择 **Make the first branch a pure delay** 参数
+- 选中 **Make the first branch a pure delay** 参数
 
-### **Specify coefficients from input port** — 从输入端口指定系数 off（默认） | on
+### **Specify coefficients from input port** — 从输入端口指定系数 关（默认）| 开
 
-当您选中此复选框时，可以通过输入端口 **coeffs1** 和 **coeffs2** 输入分支 1 全通多项式系数和分支 2 全通多项式系数。当您清除此复选框时，您可以通过 **Branch 1 allpass polynomial coefficients** 和 **Branch 2 allpass polynomial coefficients** 参数在模块对话框中指定系数。
+选中此复选框时，可以通过输入端口 **coeffs1** 和 **coeffs2** 输入分支 1 全通多项式系数和分支 2 全通多项式系数。清除此复选框时，通过 **Branch 1 allpass polynomial coefficients** 和 **Branch 2 allpass polynomial coefficients** 参数在模块对话框中指定系数。
 
 #### 依赖关系
 
@@ -213,11 +212,11 @@ chinese_source: worker-translation
 - **Filter specification** 为 `Coefficients`
 - **Internal allpass structure** 为 `Minimum multiplier`
 
-### **Branch 1 allpass polynomial coefficients** — 第一个分支的全通多项式滤波器系数 `[0.1284563; 0.7906755]`（默认） | *N*×`1` | *N*×*2*
+### **Branch 1 allpass polynomial coefficients** — 第一分支的全通多项式滤波器系数 `[0.1284563; 0.7906755]`（默认）| *N*×`1` | *N*×`2`
 
-将第一个分支的全通多项式滤波器系数指定为 *N*×`1` 向量或 *N*×*2* 矩阵，其中包含 *N* 个一阶或二阶全通节。
+将第一分支的全通多项式滤波器系数指定为 *N* 个一阶或二阶全通节的 *N*×`1` 向量或 *N*×`2` 矩阵。
 
-此参数可调，也就是说，您可以在仿真期间更改其值。
+此参数可调，即可以在仿真期间更改其值。
 
 **可调：** 是
 
@@ -230,11 +229,11 @@ chinese_source: worker-translation
 - 清除 **Make the first branch a pure delay** 参数
 - 清除 **Specify coefficients from input port** 参数
 
-### **Branch 2 allpass polynomial coefficients** — 第二个分支的全通多项式滤波器系数 `[0.4295667]`（默认） | *N*×`1` | *N*×*2*
+### **Branch 2 allpass polynomial coefficients** — 第二分支的全通多项式滤波器系数 `[0.4295667]`（默认）| *N*×`1` | *N*×`2`
 
-将第二个分支的全通多项式滤波器系数指定为 *N*×`1` 向量或 *N*×*2* 矩阵，其中包含 *N* 个一阶或二阶全通节。
+将第二分支的全通多项式滤波器系数指定为 *N* 个一阶或二阶全通节的 *N*×`1` 向量或 *N*×`2` 矩阵。
 
-此参数可调，也就是说，您可以在仿真期间更改其值。
+此参数可调，即可以在仿真期间更改其值。
 
 **可调：** 是
 
@@ -246,9 +245,9 @@ chinese_source: worker-translation
 - **Internal allpass structure** 为 `Minimum multiplier`
 - 清除 **Specify coefficients from input port** 参数
 
-### **Branch 1 Wave Digital coefficients** — 第一个分支以 wave digital filter 形式表示的全通滤波器系数 `[0.1284563; 0.7906755]`（默认） | *N*×`1` | *N*×*2*
+### **Branch 1 Wave Digital coefficients** — 第一分支的波数字滤波器形式全通滤波器系数 `[0.1284563; 0.7906755]`（默认）| *N*×`1` | *N*×`2`
 
-将第一个分支以 wave digital filter (WDF) 形式表示的全通滤波器系数指定为 *N*×`1` 向量或 *N*×*2* 矩阵，其中包含 *N* 个一阶或二阶全通节。
+将第一分支的波数字滤波器（WDF）形式全通滤波器系数指定为 *N* 个一阶或二阶全通节的 *N*×`1` 向量或 *N*×`2` 矩阵。
 
 每个 WDF 系数的幅值不得大于 1。
 
@@ -260,9 +259,9 @@ chinese_source: worker-translation
 - **Internal allpass structure** 为 `Wave Digital Filter`
 - 清除 **Make the first branch a pure delay** 参数
 
-### **Branch 2 Wave Digital coefficients** — 第二个分支以 wave digital filter 形式表示的全通滤波器系数 `[0.4295667]`（默认） | *N*×`1` | *N*×*2*
+### **Branch 2 Wave Digital coefficients** — 第二分支的波数字滤波器形式全通滤波器系数 `[0.4295667]`（默认）| *N*×`1` | *N*×`2`
 
-将第二个分支以 wave digital filter 形式表示的全通滤波器系数指定为 *N*×`1` 向量或 *N*×*2* 矩阵，其中包含 *N* 个一阶或二阶全通节。
+将第二分支的波数字滤波器形式全通滤波器系数指定为 *N* 个一阶或二阶全通节的 *N*×`1` 向量或 *N*×`2` 矩阵。
 
 每个 WDF 系数的幅值不得大于 1。
 
@@ -273,35 +272,35 @@ chinese_source: worker-translation
 - **Filter specification** 为 `Coefficients`
 - **Internal allpass structure** 为 `Wave Digital Filter`
 
-### **Last section of branch 2 is first order** — 第二个分支的最后一段为一阶 off（默认） | on
+### **Last section of branch 2 is first order** — 分支 2 的最后一个节为一阶 关（默认）| 开
 
-当您选中此复选框时，模块将第二个分支的最后一段视为一阶节。当第二个分支的系数位于 *N*×*2* 矩阵中时，模块会忽略该矩阵最后一行的第二个元素。然后，第二个分支的最后一段变为一阶节。
+选中此复选框时，模块将第二分支的最后一个节视为一阶节。当第二分支的系数为 *N*×`2` 矩阵时，模块忽略矩阵最后一行的第二个元素。第二分支的最后一个节随后变为一阶节。
 
-当您清除此复选框时，模块将第二个分支的最后一段视为二阶节。当第二个分支的系数位于 *N*×`1` 矩阵中时，模块会忽略此参数。
+清除此复选框时，模块将第二分支的最后一个节视为二阶节。当第二分支的系数为 *N*×`1` 矩阵时，模块忽略此参数。
 
 #### 依赖关系
 
 要启用此参数，请将 **Filter specification** 设置为 `Coefficients`。
 
-### **Output highpass subband** — 输出高通子带 off（默认） | on
+### **Output highpass subband** — 输出高通子带 关（默认）| 开
 
-当您选中此复选框时，模块充当分析滤波器组，产生两个功率互补输出。当您清除此复选框时，模块充当 IIR 半带抽取器，并接受单个向量或矩阵作为输入。
+选中此复选框时，模块充当分析滤波器组，产生两个功率互补输出。清除此复选框时，模块充当 IIR 半带抽取器，接受单个向量或矩阵作为输入。
 
-### **Sample rate mode** — 指定输入采样率的模式 `Use normalized frequency (0 to 1)`（默认） | `Specify on dialog` | `Inherit from input port`
+### **Sample rate mode** — 指定输入采样率的模式 `Use normalized frequency (0 to 1)`（默认）| `Specify on dialog` | `Inherit from input port`
 
 *自 R2023b 起*
 
 使用以下选项之一指定输入采样率：
 
-- `Use normalized frequency (0 to 1)` –– 以归一化频率单位 (0 to 1) 指定通带边缘频率和阻带边缘频率。
-- `Specify on dialog` –– 使用 **Input sample rate (Hz)** 参数在模块对话框中指定输入采样率。
-- `Inherit from input port` –– 模块从输入信号继承采样率。
+- `Use normalized frequency (0 to 1)` —— 以归一化频率单位（0 到 1）指定通带边缘和阻带边缘频率。
+- `Specify on dialog` —— 在模块对话框中使用 **Input sample rate (Hz)** 参数指定输入采样率。
+- `Inherit from input port` —— 模块从输入信号继承采样率。
 
 #### 依赖关系
 
-要启用此参数，请将 **Filter specification** 设置为除 `Coefficients` 以外的任何值。
+要启用此参数，请将 **Filter specification** 设置为除 `Coefficients` 之外的任何值。
 
-### **Input sample rate (Hz)** — 输入信号的采样率 44100（默认） | 正实数标量
+### **Input sample rate (Hz)** — 输入信号的采样率 44100（默认）| 正实数标量
 
 将输入信号的采样率指定为以 Hz 为单位的标量。
 
@@ -309,36 +308,36 @@ chinese_source: worker-translation
 
 要启用此参数，请设置：
 
-- **Filter specification** 为除 `Coefficients` 以外的任何值。
+- **Filter specification** 为除 `Coefficients` 以外的任意值。
 - **Sample rate mode** 为 `Specify on dialog`。
 
-*（自 R2023b 起）*
+*(since R2023b)*
 
-### **Allow arbitrary frame length for fixed-size input signals** — 允许固定大小输入信号使用任意帧长度 `off`（默认） | `on`
+### **Allow arbitrary frame length for fixed-size input signals** — 允许固定大小输入信号使用任意帧长度 `off`（默认）| `on`
 
-*自 R2023b 起*
+*Since R2023b*
 
-指定固定大小输入信号（其大小在仿真期间不变化）是否可以具有任意帧长度，其中帧长度不必是抽取因子 2 的倍数。模块仅对固定大小输入信号使用此参数，如果输入数据在仿真期间大小变化，则忽略此参数。
+指定固定大小输入信号（其大小在仿真期间不改变）是否可以具有任意帧长度，其中帧长度不必是抽取因子 2 的倍数。该模块仅对固定大小输入信号使用此参数，如果输入数据在仿真期间大小可变，则忽略此参数。
 
-当输入信号是可变大小信号时，该信号可以具有任意帧长度，也就是说，帧长度不必是抽取因子 2 的倍数。
+当输入信号是可变大小信号时，该信号可以具有任意帧长度，即帧长度不必是抽取因子 2 的倍数。
 
 对于固定大小输入信号，如果您：
 
-- 选择 **Allow arbitrary frame length for fixed-size input signals** 参数，则信号的帧长度不必是抽取因子 2 的倍数。如果输入不是抽取因子的倍数，则输出通常是可变大小信号。因此，为了支持任意输入大小，模块还必须支持可变大小运算，您可以通过选择 **Allow arbitrary frame length for fixed-size input signals** 参数来启用该支持。
+- 选中 **Allow arbitrary frame length for fixed-size input signals** 参数，则信号的帧长度不必是抽取因子 2 的倍数。如果输入不是抽取因子的倍数，则输出通常是可变大小信号。因此，为了支持任意输入大小，该模块还必须支持可变大小操作，您可以通过选中 **Allow arbitrary frame length for fixed-size input signals** 参数来启用该操作。
 - 清除 **Allow arbitrary frame length for fixed-size input signals** 参数，则输入帧长度必须是抽取因子 2 的倍数。
 
-### **View Filter Response** — View Filter Response 按钮
+### **View Filter Response** — 查看滤波器响应 按钮
 
-点击此按钮可打开 Filter Visualization Tool (FVTool)，并显示 IIR Halfband Decimator 的幅值和相位响应。响应基于您在模块参数对话框中指定的值。对这些参数所做的更改会更新 FVTool。
+点击此按钮可打开滤波器可视化工具 (FVTool) 并显示 IIR Halfband Decimator 的幅值和相位响应。该响应基于您在模块参数对话框中指定的值。对这些参数所做的更改会更新 FVTool。
 
-要在 FVTool 运行时更新幅值响应，请修改对话框参数，然后点击 **Apply**。
+要在 FVTool 运行时更新幅值响应，请修改对话框参数并点击 **Apply**。
 
-### **Simulate using** — 要运行的仿真类型 `Interpreted execution`（默认） | `Code generation`
+### **Simulate using** — 要运行的仿真类型 `Interpreted execution`（默认）| `Code generation`
 
 指定要运行的仿真类型。您可以将此参数设置为：
 
 - `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
-- `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
+- `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不更改，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
 
 ## 所属库
 
@@ -348,11 +347,11 @@ DSP System Toolbox / Filtering / Multirate Filters
 
 |  |  |
 | --- | --- |
-| **数据类型** | `double` | `single` |
-| **直接馈通** | `no` |
-| **多维信号** | `no` |
-| **可变大小信号** | `yes` |
-| **过零检测** | `no` |
+| **Data Types** | `double` | `single` |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `yes` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
@@ -362,20 +361,20 @@ DSP System Toolbox / Filtering / Multirate Filters
 
 **在 R2015b 中引入**
 
-### R2024a: **Simulate using** 参数默认值的更改
+### R2024a：**Simulate using** 参数的默认值变更
 
-**Simulate using** 参数的默认值现在为 `Interpreted execution`。进行此更改后，模块默认使用 MATLAB 解释器进行仿真。
+**Simulate using** 参数的默认值现在为 `Interpreted execution`。通过此更改，该模块默认使用 MATLAB 解释器进行仿真。
 
-### R2023b: 支持归一化频率
+### R2023b: Support for normalized frequencies
 
-当您将 **Sample rate mode** 参数设置为 `Use normalized frequency (0 to 1)` 时，可以以归一化频率单位 (0 to 1) 指定过渡带宽。
+当您将 **Sample rate mode** 参数设置为 `Use normalized frequency (0 to 1)` 时，您可以以归一化频率单位 (0 到 1) 指定过渡宽度。
 
-### R2023b: 支持任意输入帧长度
+### R2023b：支持任意输入帧长度
 
-当以下情况时，此模块支持具有任意帧长度的输入信号：
+当满足以下条件时，此模块支持具有任意帧长度的输入信号：
 
-- 输入信号是固定大小信号（帧长度在仿真期间不变化），并且您选择 **Allow arbitrary frame length for fixed-size input signals** 参数。
-- 输入信号是可变大小信号（帧长度在仿真期间变化）。
+- 输入信号是固定大小信号（帧长度在仿真期间不改变），并且您选中 **Allow arbitrary frame length for fixed-size input signals** 参数。
+- 输入信号是可变大小信号（帧长度在仿真期间改变）。
 
 当此模块支持具有任意帧长度的输入信号时，输入帧长度不必是抽取因子 2 的倍数，并且输出信号是可变大小信号。
 
@@ -383,10 +382,10 @@ DSP System Toolbox / Filtering / Multirate Filters
 
 使用多相 IIR 半带滤波器对信号进行抽取
 
-IIR Halfband Decimator 模块对输入信号执行因子为 2 的多相抽取。要设计半带滤波器，您可以指定模块使用 elliptic 设计或 quasi-linear phase 设计。模块使用这些设计方法计算滤波器系数。为了对输入进行滤波，模块使用多相结构。多相结构中的全通滤波器采用 minimum multiplier 形式。
+IIR Halfband Decimator 模块对输入信号执行因子为 2 的多相抽取。要设计半带滤波器，您可以指定该模块使用椭圆设计或准线性相位设计。该模块使用这些设计方法计算滤波器系数。为了对输入进行滤波，该模块使用多相结构。多相结构中的全通滤波器采用最小乘法器形式。
 
-Elliptic 设计会引入非线性相位，并且与 quasi-linear 设计相比使用更少的系数来创建滤波器。Quasi-linear phase 设计以增加系数为代价克服了相位非线性。
+椭圆设计会引入非线性相位，并且与准线性设计相比，使用更少的系数来创建滤波器。准线性相位设计以增加系数为代价克服了相位非线性。
 
-或者，您可以直接指定滤波器系数，而不是使用设计方法设计半带滤波器。当您选择此选项时，多相实现的两个分支中的全通滤波器可以采用 minimum multiplier 形式或 wave digital 形式。
+或者，您也可以不使用方法设计半带滤波器，而是直接指定滤波器系数。当您选择此选项时，多相实现的两个分支中的全通滤波器可以采用最小乘法器形式或波数字形式。
 
 您还可以使用该模块实现双频带滤波器组的分析部分，以将信号滤波为低通和高通子带。有关更多详细信息，请参阅 Algorithms。

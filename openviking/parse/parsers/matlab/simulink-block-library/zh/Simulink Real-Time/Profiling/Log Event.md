@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Log Event'
-family: 'profiling'
+family: 'slrealtime'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b
@@ -18,9 +18,11 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **T** — 日志事件的触发器 `1..0`
+### **T** — 日志事件触发 `1..0`
 
-当 T（触发输入）从 0 变为 1（Rising）或从 1 变为 0（Falling）时，模块会将一个用户定义的简单事件插入到执行性能分析事件流中；该事件由参数 **Channel**、**Code** 和 **Value** 定义。
+当 T（触发输入）从 0 变为 1（上升沿）或从 1 变为 0（下降沿）时，
+该模块将参数 **Channel**、**Code** 和
+**Value** 所定义的用户自定义简单事件插入到执行性能分析事件流中。
 
 **示例：**  1
 
@@ -28,35 +30,47 @@ chinese_source: worker-translation
 
 ### **Channel** — 事件通道 ID `0`（默认）| int
 
-选择事件变化 ID，例如 `500`。
+选择事件通道 ID，例如 `500`。
 
-#### 编程用法
+#### 程序化使用
 
-`channel`
+```
+channel
+```
 
 ### **Code** — 事件代码编号 `0`（默认）| uint32
 
 选择事件代码编号，例如 `200`。
 
-#### 编程用法
+#### 程序化使用
 
-`code`
+```
+code
+```
 
 ### **Value** — 事件值编号 `0`（默认）| uint32
 
 选择事件值编号，例如 `200`。
 
-#### 编程用法
+#### 程序化使用
 
-`value`
+```
+value
+```
 
 ### **Trigger type** — 选择触发信号边沿 `Rising`（默认）| `Falling` | `Either`
 
-选择触发模块的信号变化类型。当 T（触发输入）从 0 变为 1（Rising）或从 1 变为 9（Falling）时，模块会将一个用户定义的简单事件插入到执行性能分析事件流中；该事件由参数 **Channel**、**Code** 和 **Value** 定义。
+选择触发该模块的信号变化类型。当 T（触发输入）
+从 0 变为 1（Rising）或从 1 变为 9（Falling）时，该模块将参数 **Channel**、
+**Code** 和 **Value** 所定义的用户自定义
+简单事件插入到执行性能分析
+事件流中。
 
-#### 编程用法
+#### 程序化使用
 
-`trigger`
+```
+trigger
+```
 
 ## 所属库
 
@@ -78,4 +92,6 @@ R2025b 中未记录。
 
 记录执行性能分析事件
 
-Log Event 模块在被触发时，将用户定义的事件插入到执行性能分析事件流中。用户定义的事件包含一个通道 ID、一个代码编号和一个值编号。通道 ID 值的范围为 0 到 1023。
+Log Event 模块在被触发时，将用户自定义事件插入到执行
+性能分析事件流中。用户自定义事件包括通道 ID、代码
+编号和值编号。通道 ID 值的范围为 0 到 1023。

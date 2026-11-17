@@ -65,7 +65,7 @@ DSP System Toolbox / Signal Management / Signal Attributes DSP System Toolbox HD
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供了影响 HDL 实现和综合逻辑的附加配置选项。
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 架构**
 
@@ -75,13 +75,13 @@ HDL Coder™ 提供了影响 HDL 实现和综合逻辑的附加配置选项。
 
 |  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟，在输出处放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线级数。分布式流水线和受约束的输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线级数。分布式流水线和受约束的输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出端的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 
 **复数数据支持**
 
-此模块支持对复信号进行代码生成。
+此模块支持复数信号的代码生成。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
@@ -89,22 +89,24 @@ HDL Coder™ 提供了影响 HDL 实现和综合逻辑的附加配置选项。
 
 **在 R2006a 之前引入**
 
-### R2023b：Convert 1-D to 2-D 模块将被移除
+### R2023b: Convert 1-D to 2-D 模块将被移除
 
 Convert 1-D to 2-D 模块将在未来版本中移除。请改用 Reshape (Simulink) 模块。当该模块被移除时，此模块的现有实例将自动替换为 Reshape 模块。
 
 ## 描述
 
-（将被移除）将 1-D 或 2-D 输入重塑为具有指定维度的 2-D 矩阵
+（将移除）将 1-D 或 2-D 输入重塑为具有指定维度的 2-D 矩阵
 
-Convert 1-D to 2-D 模块将长度为 *Mi* 的 1-D 向量或 *Mi*-by-*Ni* 矩阵重塑为 *Mo*-by-*No* 矩阵，其中 *Mo* 由 **Number of output rows** 参数指定，*No* 由 **Number of output columns** 参数指定。
+Convert 1-D to 2-D 模块将长度为 *Mi* 的 1-D 向量或 *Mi*×*Ni* 矩阵重塑为 *Mo*×*No* 矩阵，其中 *Mo* 由 **Number of output rows** 参数指定，*No* 由 **Number of output columns** 参数指定。
 
-    y = reshape(u,Mo,No)					% Equivalent MATLAB code
+```
+y = reshape(u,Mo,No)					% Equivalent MATLAB code
+```
 
-输入按 *按列* 重塑，如下面两种情况所示。长度为 6 的向量和 2-by-3 矩阵都被重塑为相同的 3-by-2 输出矩阵。
+输入按*列方式*重塑，如下面两种情况所示。长度为 6 的向量和 2×3 矩阵都被重塑为相同的 3×2 输出矩阵。
 
-Convert 1-D to 2-D 模块将长度为 6 的 1-D 向量和 2-by-3 矩阵重塑为 3-by-2 输出矩阵。
+Convert 1-D to 2-D 模块将长度为 6 的 1-D 向量和 2×3 矩阵重塑为 3×2 输出矩阵。
 
 当 (*Mo*\**No*)≠(*Mi*\**Ni*) 时会生成错误。换句话说，输入元素的总数必须在输出中保持不变。
 
-当您选中 **Frame-based output** 复选框时，输出基于帧；否则，输出基于样本。
+当您选中 **Frame-based output** 复选框时，输出为基于帧的；否则，输出为基于采样的。

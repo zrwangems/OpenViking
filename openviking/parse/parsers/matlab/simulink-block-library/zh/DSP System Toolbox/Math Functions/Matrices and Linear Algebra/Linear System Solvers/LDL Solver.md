@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'LDL Solver'
-family: 'math-functions'
+family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
@@ -20,45 +20,45 @@ chinese_source: worker-translation
 
 ### **S** — 系统矩阵 方阵
 
-将系统矩阵 S 指定为大小为 *M*-by-*M* 的 Hermitian 正定方阵。仅使用矩阵的对角线和下三角部分，并且忽略对角线元素的任何虚部。当输入不是正定时，模块将按照 **非正定输入** 参数指定的行为进行响应。有关详细信息，请参阅 **非正定输入** 参数的描述。
+将系统矩阵 S 指定为大小为 *M*×*M* 的 Hermitian 正定方阵。仅使用矩阵的对角线和下三角部分，对角线元素的任何虚部都将被忽略。当输入不是正定矩阵时，该模块将按照 **Non-positive definite input** 参数指定的行为进行响应。有关更多详细信息，请参阅 **Non-positive definite input** 参数的描述。
 
 **数据类型：** `single` | `double`
-**复数支持：** Yes
+**复数支持：** 是
 
 ### **B** — 系统方程右侧矩阵 向量 | 矩阵
 
-将系统方程 S*X* = B 的右侧矩阵 B 指定为 *M*-by-*N* 矩阵。
+将系统方程 S*X* = B 的右侧矩阵 B 指定为 *M*×*N* 矩阵。
 
-右侧 B 的长度为 *M* 的无方向向量输入将被视为 *M*-by-1 矩阵。
+右侧 B 的长度为 *M* 的无方向向量输入将被视为 *M*×1 矩阵。
 
 **数据类型：** `single` | `double`
-**复数支持：** Yes
+**复数支持：** 是
 ### 输出
 
 ### **X** — 方程组的解 向量 | 矩阵
 
-方程组 S*X* = B 的唯一解，以 *M*-by-*N* 矩阵 *X* 形式返回。
+方程组 S*X* = B 的唯一解，以 *M*×*N* 矩阵 *X* 的形式返回。
 
-有关模块如何确定此解的详细信息，请参阅算法。
+有关该模块如何确定此解的更多信息，请参阅算法。
 
 **数据类型：** `single` | `double`
-**复数支持：** Yes
+**复数支持：** 是
 
 ## 参数
 
-### **非正定输入** — 非正定输入 `Ignore`（默认） | `Warning` | `Error`
+### **Non-positive definite input** — 非正定输入 `Ignore`（默认）| `Warning` | `Error`
 
-将针对非正定矩阵输入的响应指定为 `Ignore`、`Warning` 或 `Error`。
+将非正定矩阵输入的响应指定为 `Ignore`、`Warning` 或 `Error`。
 
-该算法要求输入为 Hermitian 正定。当输入不是正定时，模块将按照 **非正定输入** 参数指定的行为进行响应。将此参数设置为：
+该算法要求输入为 Hermitian 正定矩阵。当输入不是正定矩阵时，该模块将按照 **Non-positive definite input** 参数指定的行为进行响应。当您将此参数设置为：
 
-- `Ignore` — 模块继续计算，并且不发出警报。输出不是有效解。
-- `Warning` — 模块继续计算，并在 MATLAB® 命令窗口中显示警告消息。输出不是有效解。
-- `Error` — 模块显示错误对话框并终止仿真。
+- `Ignore` — 该模块继续计算且不发出任何警报。输出不是有效解。
+- `Warning` — 该模块继续计算并在 MATLAB® 命令窗口中显示警告消息。输出不是有效解。
+- `Error` — 该模块显示错误对话框并终止仿真。
 
 **注意**
 
-**非正定输入** 参数是诊断参数。与配置参数对话框上的所有诊断参数一样，在 Simulink® Coder™ 代码生成软件为此模块生成的代码中，它被设置为 `Ignore`。
+**Non-positive definite input** 参数是一个诊断参数。与 Configuration Parameters 对话框中的所有诊断参数一样，在 Simulink® Coder™ 代码生成软件为此模块生成的代码中，该参数被设置为 `Ignore`。
 
 ## 所属库
 
@@ -86,6 +86,6 @@ DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear Syste
 
 ## 描述
 
-当 S 是方阵 Hermitian 正定矩阵时，求解 S X = B
+当 S 为 Hermitian 正定方阵时求解 S X = B
 
-LDL Solver 模块通过对 **S** 端口处的 Hermitian 正定方阵应用 LDL 分解来求解线性方程组 S*X* = B。有关详细信息，请参阅算法。
+LDL Solver 模块通过对 **S** 端口处的 Hermitian 正定方阵应用 LDL 分解来求解线性方程组 S*X* = B。有关更多详细信息，请参阅算法。

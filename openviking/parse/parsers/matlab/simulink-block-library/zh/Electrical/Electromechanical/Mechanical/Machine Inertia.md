@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Machine Inertia'
-family: 'electromechanical'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,95 +16,113 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
 ### **R** — 电机转子机械
 
-与电机转子关联的机械旋转守恒端口。
+与电机转子相关联的机械旋转守恒端口。
 
 ## 参数
 
-### 主要
+### 主参数
 
-### **额定视在功率** — 额定视在功率 `555e6` `V*A`（默认）
+### **Rated apparent power** — 额定视在功率 `555e6` `V*A`（默认值）
 
 电机额定视在功率。
 
-### **额定电气频率** — 标称电气频率 `60` `Hz`（默认）
+### **Rated electrical frequency** — 标称电气频率 `60` `Hz`（默认值）
 
-对应于电机额定视在功率的标称电气频率。
+与电机额定视在功率对应的标称电气频率。
 
-### **极对数** — 极对数 `1`（默认）
+### **Number of pole pairs** — 极对数 `1`（默认值）
 
 所连接电机的极对数。
 
 ### 惯量
 
-### **指定惯量参数化方式** — 惯量参数化 `Inertia constant, H`（默认） | `Actual Inertia, J`
+### **Specify inertia parameterization by** — 惯量参数化方式 `Inertia constant, H`（默认值） | `Actual Inertia, J`
 
-惯量指定。
+惯量指定方式。
 
-### **惯量常数，H** — 惯量常数 `3.525` `s*W/VA`（默认）
+### **Inertia constant, H** — 惯量常数 `3.525` `s*W/VA`（默认值）
 
 惯量常数。
 
 #### 依赖关系
 
-要启用此参数，请将 **指定惯量参数化方式** 设置为 `Inertia constant, H`。
+要启用此参数，请将 **Specify inertia
+parameterization by** 设置为 `Inertia constant,
+H`。
 
-### **实际惯量，J** — 实际惯量 `27548` `kg*m^2`（默认）
+### **Actual inertia, J** — 实际惯量 `27548` `kg*m^2`（默认值）
 
-电机转子的总旋转机械惯量。仅当将 **指定惯量参数化方式** 设置为 `Actual Inertia, J` 时，此参数才可见。
-
-#### 依赖关系
-
-要启用此参数，请将 **指定惯量参数化方式** 设置为 `Actual Inertia, J`。
-
-### **指定阻尼参数化方式** — 阻尼参数化 `Per-unit damping coefficient, pu_D`（默认） | `SI damping coefficient, D`
-
-阻尼指定。
-
-### **标幺值阻尼系数** — 标幺值阻尼系数 `0.01`（默认）
-
-以标幺值表示的阻尼系数。
+电机转子的总旋转机械惯量。仅当将 **Specify inertia parameterization
+by** 设置为 `Actual Inertia,
+J` 时，此参数才可见。
 
 #### 依赖关系
 
-要启用此参数，请将 **指定阻尼参数化方式** 设置为 `Per-unit damping coefficient, pu_D`。
+要启用此参数，请将 **Specify inertia
+parameterization by** 设置为 `Actual Inertia,
+J`。
 
-### **SI 阻尼系数** — 阻尼系数 `39.0509` `Nm/(rad/s)`（默认）
+### **Specify damper parameterization by** — 阻尼参数化方式 `Per-unit damping coefficient, pu_D`（默认值） | `SI damping coefficient, D`
 
-SI 单位下的阻尼系数。
+阻尼指定方式。
+
+### **Per-unit damping coefficient** — 标幺值阻尼系数 `0.01`（默认值）
+
+标幺值阻尼系数。
 
 #### 依赖关系
 
-要启用此参数，请将 **指定阻尼参数化方式** 设置为 `SI damping coefficient, D`。
+要启用此参数，请将 **Specify damper
+parameterization by** 设置为 `Per-unit damping
+coefficient, pu_D`。
+
+### **SI damping coefficient** — 阻尼系数 `39.0509` `Nm/(rad/s)`（默认值）
+
+国际单位制阻尼系数。
+
+#### 依赖关系
+
+要启用此参数，请将 **Specify damper
+parameterization by** 设置为 `SI damping
+coefficient, D`。
 
 ### 初始条件
 
-### **指定初始化方式** — 频率初始化 `Initial electrical frequency`（默认） | `Initial mechanical frequency`
+### **Specify initialization by** — 频率初始化方式 `Initial electrical frequency`（默认值） | `Initial mechanical frequency`
 
-频率初始化。
+频率初始化方式。
 
-### **初始电气频率** — 初始电气频率 `60` `Hz`（默认）
+### **Initial electrical frequency** — 初始电气频率 `60` `Hz`（默认值）
 
-初始电气频率，以 SI 频率单位指定，例如 `Hz`、`kHz`、`MHz` 或 `GHz`。
+初始电气频率，以国际单位制频率单位指定，例如
+`Hz`、`kHz`、
+`MHz` 或 `GHz`。
 
-有关此参数单位的详细信息，请参阅角速度和频率的单位。
-
-#### 依赖关系
-
-要启用此参数，请将 **指定初始化方式** 设置为 `Initial electrical frequency`。
-
-### **初始机械频率** — 初始机械频率 `60` `Hz`（默认）
-
-初始机械频率，以 SI 频率单位指定，例如 `Hz`、`kHz`、`MHz` 或 `GHz`。
-
-有关此参数单位的详细信息，请参阅角速度和频率的单位。
+有关此参数单位的详细信息，请参阅 Units for Angular Velocity and Frequency。
 
 #### 依赖关系
 
-要启用此参数，请将 **指定初始化方式** 设置为 `Initial mechanical frequency`。
+要启用此参数，请将 **Specify initialization
+by** 设置为 `Initial electrical
+frequency`。
+
+### **Initial mechanical frequency** — 初始机械频率 `60` `Hz`（默认值）
+
+初始机械频率，以国际单位制频率单位指定，例如
+`Hz`、`kHz`、
+`MHz` 或 `GHz`。
+
+有关此参数单位的详细信息，请参阅 Units for Angular Velocity and Frequency。
+
+#### 依赖关系
+
+要启用此参数，请将 **Specify initialization
+by** 设置为 `Initial mechanical
+frequency`。
 
 ## 所属库
 
@@ -112,7 +130,7 @@ Simscape / Electrical / Electromechanical / Mechanical
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -124,54 +142,59 @@ Simscape / Electrical / Electromechanical / Mechanical
 
 ## 描述
 
-电机惯量使用电机惯量常数或锚定惯量进行参数化
+使用电机惯量常数或锚点惯量参数化的电机惯量
 
-Machine Inertia 模块对连接到三相电机的机械旋转 R 端口的惯量和阻尼进行建模。该模块具有到机械旋转参考的内部连接。该图展示了使用 Simscape™ 机械旋转组件构成的与 Machine Inertia 模块等效的配置。
+Machine Inertia 模块对惯量和阻尼进行建模，将其连接到三相电机的机械旋转 R 端口。该模块具有到机械旋转参考的内部连接。图中展示了使用 Simscape™ 机械旋转组件实现的与 Machine Inertia 模块等效的配置。
 
-根据为 **指定惯量参数化方式** 参数选择的值，可直接指定惯量 *J*，或使用电机惯量常数 *H* 指定惯量。
+根据为 **Specify inertia parameterization
+by** 参数选择的值，可以直接指定惯量 *J*，或使用电机惯量常数 *H* 指定。
 
-如果指定惯量常数，则该模块通过以下公式计算惯量
+如果指定惯量常数，则该模块通过下式计算惯量
 
-J=2HSrated(2πFrated/N)2,
+J=2HSrated(2πFrated/N)2，
 
 其中：
 
-- *J* 是惯量，单位为
+- *J* 为惯量，单位为
   kg⋅m2。
-- *H* 是惯量常数，单位为 sW/VA。
-- *Srated* 是电机额定
+- *H* 为惯量常数，单位为 sW/VA。
+- *Srated* 为电机额定
   视在功率，单位为 VA。
-- *Frated* 是电机额定
+- *Frated* 为电机额定
   电气频率，单位为 Hz。
-- *N* 是电机极对数。
+- *N* 为电机极对数。
 
-您指定表示电机转子与机械旋转参考之间黏性摩擦的阻尼。根据为 **指定阻尼参数化方式** 参数选择的值，可以 SI 单位或标幺值指定阻尼系数。如果以标幺值指定阻尼系数，则该模块通过以下公式计算 SI 单位下的阻尼系数
+指定表示电机转子与机械旋转参考之间粘性摩擦的阻尼。根据为
+**Specify damper parameterization by** 参数选择的值，
+可以以国际单位制或标幺值指定阻尼系数。如果以标幺值指定阻尼系数，
+则该模块通过下式计算国际单位制阻尼系数
 
-ωbase=2πFratedN,
+ωbase=2πFratedN，
 
-Tbase=Sratedωbase,
+Tbase=Sratedωbase，
 
-Dbase=Tbaseωbase,
+Dbase=Tbaseωbase，
 
 以及
 
-D=DpuDbase,
+D=DpuDbase，
 
 其中：
 
-- *ωbase* 是基准机械
+- *ωbase* 为基准机械
   角速度，单位为 rad/s。
-- *Tbase* 是基准阻尼转矩，
+- *Tbase* 为基准阻尼转矩，
   单位为 Nm。
-- *Dbase* 是基准阻尼
+- *Dbase* 为基准阻尼
   系数，单位为 Nm/(rad/s)。
-- *Dpu* 是阻尼系数，
-  以标幺值表示。
-- *D* 是 SI 单位下的阻尼系数，单位为
+- *Dpu* 为标幺值阻尼系数。
+- *D* 为国际单位制阻尼系数，单位为
   Nm/(rad/s)。
 
 ### 显示选项
 
-您可以使用模块上下文菜单中的 **电气** 菜单显示电机参数。
+可以使用模块上下文菜单上的 **Electrical**
+菜单显示电机参数。
 
-右键单击该模块，然后从 **电气** 菜单中选择 **显示参数**，以在 MATLAB® 命令窗口中显示电机标幺基准值和惯量参数。
+右键单击该模块，然后从 **Electrical** 菜单中选择 **Display Parameters**，以在 MATLAB® 命令窗口中显示
+电机标幺值基准值和惯量参数。

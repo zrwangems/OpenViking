@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'General Amplifier'
-family: 'equivalent-baseband'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -20,29 +20,29 @@ R2025b 中未记录。
 
 ## 参数
 
-### 主项
+### 主
 
-### **Data source** — 描述放大器行为的数据源 `Data file`（默认）| `RFDATA` object
+### **数据源** — 描述放大器行为的数据源 `Data file`（默认）| `RFDATA` 对象
 
-描述放大器行为的数据源，指定为 `Data file` 或 `RFDATA` object。
+描述放大器行为的数据源，指定为 `Data file` 或 `RFDATA` 对象。
 
-### **Data file** — 包含放大器数据的文件名 `default.s2d`（默认）| string | character vector
+### **数据文件** — 包含放大器数据的文件名 `default.s2d`（默认）| 字符串 | 字符向量
 
-包含放大器数据的文件名，指定为 string 或 character vector。文件名必须包含扩展名。如果文件不在您的 MATLAB® 路径中，请指定文件的完整路径，或点击 **Browse** 按钮查找该文件。
+包含放大器数据的文件名，指定为字符串或字符向量。文件名必须包含扩展名。如果文件不在您的 MATLAB® 路径中，请指定文件的完整路径，或点击 **浏览** 按钮查找文件。
 
 #### 依赖关系
 
-要启用此参数，请在 **Data source** 中选择 `Data file`。
+要启用此参数，请在 **数据源** 中选择 `Data file`。
 
-### **RFDATA object** — 包含放大器数据的 RF 数据对象 `read(rfdata.data, 'default.amp')`（默认）| `rfdata.data` object
+### **RFDATA 对象** — 包含放大器数据的 RF 数据对象 `read(rfdata.data, 'default.amp')`（默认）| `rfdata.data` 对象
 
-包含放大器数据的 RF 数据对象，指定为 RF Toolbox 的 `rfdata.data` 对象、创建 `rfdata.data` 对象的 RF toolbox 命令，或生成此类对象的 MATLAB 表达式。
+包含放大器数据的 RF 数据对象，指定为 RF Toolbox `rfdata.data` 对象、创建 `rfdata.data` 对象的 RF 工具箱命令，或生成此类对象的 MATLAB 表达式。
 
-### **Interpolation method** — 插值网络参数的方法 `Linear`（默认）| `Spline` | `Cubic`
+### **插值方法** — 插值网络参数的方法 `Linear`（默认）| `Spline` | `Cubic`
 
 插值网络参数的方法，指定为以下之一：
 
-| 方法 | 说明 |
+| 方法 | 描述 |
 | --- | --- |
 | `Linear` | 线性插值 |
 | `Spline` | 三次样条插值 |
@@ -50,7 +50,7 @@ R2025b 中未记录。
 
 ### 噪声数据
 
-### **Noise type** — 噪声数据的类型 `Noise figure`（默认）| `Spot noise data` | `Noise factor` | `Noise temperature`
+### **噪声类型** — 噪声数据的类型 `Noise figure`（默认）| `Spot noise data` | `Noise factor` | `Noise temperature`
 
 噪声数据的类型，指定为以下之一：
 
@@ -61,57 +61,57 @@ R2025b 中未记录。
 
 如果数据源包含噪声数据，则此参数被禁用。
 
-### **Noise figure (dB)** — 输入端可用信噪比与输出端可用信噪比之比 `0`（默认）| scalar ratio | vector of ratios
+### **噪声系数 (dB)** — 输入端的可用信噪比与输出端的可用信噪比之比 `0`（默认）| 标量比值 | 比值向量
 
-输入端可用信噪比与输出端可用信噪比之比，指定为 scalar ratio 或 vector of ratios。
-
-#### 依赖关系
-
-要启用此参数，请在 **Noise type** 中选择 `Noise figure`。
-
-### **Minimum noise figure** — 输入端可用信噪比与输出端可用信噪比的最小比值 `0`（默认）| scalar ratio | vector of ratios
-
-输入端可用信噪比与输出端可用信噪比的最小比值，指定为 scalar ratio 或 vector of ratios。
+输入端的可用信噪比与输出端的可用信噪比之比，指定为标量比值或比值向量。
 
 #### 依赖关系
 
-要启用此参数，请在 **Noise type** 中选择 `Spot noise data`。
+要启用此参数，请在 **噪声类型** 中选择 `Noise figure`。
 
-### **Optimal reflection coefficient** — 最佳源阻抗 `1+0i`（默认）| complex scalar | complex vector
+### **最小噪声系数** — 输入端的可用信噪比与输出端的可用信噪比之比的最小值 `0`（默认）| 标量比值 | 比值向量
 
-最佳源阻抗，指定为 complex scalar 或 complex vector。
-
-#### 依赖关系
-
-要启用此参数，请在 **Noise type** 中选择 `Spot noise data`。
-
-### **Equivalent normalized noise resistance** — 用于进行噪声测量的归一化电阻值 `1`（默认）| positive scalar | positive vector
-
-用于进行噪声测量的归一化电阻值，指定为 positive scalar 或 positive vector。
+输入端的可用信噪比与输出端的可用信噪比之比的最小值，指定为标量比值或比值向量。
 
 #### 依赖关系
 
-要启用此参数，请在 **Noise type** 中选择 `Spot noise data`。
+要启用此参数，请在 **噪声类型** 中选择 `Spot noise data`。
 
-### **Noise factor** — 输入端可用信噪功率与输出端可用信噪功率之比 `1`（默认）| scalar ratio | vector of ratios
+### **最佳反射系数** — 最佳源阻抗 `1+0i`（默认）| 复标量 | 复向量
 
-输入端可用信噪功率与输出端可用信噪功率之比，指定为 scalar ratio 或 vector of ratios。
+最佳源阻抗，指定为复标量或复向量。
 
 #### 依赖关系
 
-要启用此参数，请在 **Noise type** 中选择 `Noise factor`。
+要启用此参数，请在 **噪声类型** 中选择 `Spot noise data`。
 
-### **Noise temperature (K)** — 与放大器产生相同噪声量的等效温度 `0`（默认）| nonnegative scalar | nonnegative vector
+### **等效归一化噪声电阻** — 用于进行噪声测量的归一化电阻值 `1`（默认）| 正标量 | 正向量
 
-与放大器产生相同噪声量的等效温度，指定为以 kelvins 为单位的 nonnegative scalar，或每个元素单位均为 kelvins 的 nonnegative vector。
+用于进行噪声测量的归一化电阻值，指定为正标量或正向量。
+
+#### 依赖关系
+
+要启用此参数，请在 **噪声类型** 中选择 `Spot noise data`。
+
+### **噪声因子** — 输入端的可用信噪功率与输出端的可用信噪功率之比 `1`（默认）| 标量比值 | 比值向量
+
+输入端的可用信噪功率与输出端的可用信噪功率之比，指定为标量比值或比值向量。
+
+#### 依赖关系
+
+要启用此参数，请在 **噪声类型** 中选择 `Noise factor`。
+
+### **Noise temperature (K)** — 产生与放大器相同噪声量的等效温度 `0`（默认）| 非负标量 | 非负向量
+
+产生与放大器相同噪声量的等效温度，指定为以开尔文为单位的非负标量，或每个元素以开尔文为单位的非负向量。
 
 #### 依赖关系
 
 要启用此参数，请在 **Noise type** 中选择 `Noise temperature`。
 
-### **Frequency (Hz)** — 用于表示噪声数据的频率范围 `2.0e9`（默认）| nonnegative scalar | nonnegative vector
+### **Frequency (Hz)** — 用于表示噪声数据的频率范围 `2.0e9`（默认）| 非负标量 | 非负向量
 
-用于表示噪声数据的频率范围，指定为以 hertz 为单位的 nonnegative scalar，或每个元素单位均为 hertz 的 nonnegative vector。如果为噪声数据提供 scalar 值，则该模块会忽略 **Frequency (Hz)** 参数，并对所有频率使用相同的噪声数据。如果为噪声数据提供值的 vector，则其大小必须与频率 vector 相同。该模块使用 **Main** 选项卡中指定的 **Interpolation method** 插值噪声数据。
+用于表示噪声数据的频率范围，指定为以赫兹为单位的非负标量，或每个元素以赫兹为单位的非负向量。如果为噪声数据提供标量值，模块将忽略 **Frequency (Hz)** 参数，并对所有频率使用相同的噪声数据。如果为噪声数据提供向量值，其大小必须与频率向量相同。模块使用 **Main** 选项卡中指定的 **Interpolation method** 对噪声数据进行插值。
 
 ### 非线性数据
 
@@ -119,30 +119,30 @@ R2025b 中未记录。
 
 三阶截点的类型，指定为 `OIP3`（输出截点）或 `IIP3`（输入截点）。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
 
-### **IP3 (dBm)** — IP3 值 `inf`（默认）| scalar | vector
+### **IP3 (dBm)** — IP3 值 `inf`（默认）| 标量 | 向量
 
-IP3 值，对于与频率无关的非线性数据指定为以 dBm 为单位的 scalar，对于与频率相关的非线性数据指定为每个元素单位均为 dBm 的 vector。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
+IP3 值，对于频率无关的非线性数据指定为以 dBm 为单位的标量，对于频率相关的非线性数据指定为每个元素以 dBm 为单位的向量。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
 
-### **1dB gain compression power (dBm)** — 增益下降 1 dB 时的输出功率值 `inf`（默认）| scalar | vector
+### **1dB gain compression power (dBm)** — 增益下降 1 dB 时的输出功率值 `inf`（默认）| 标量 | 向量
 
-增益下降 1 dB 时的输出功率值（P1dB,out），对于与频率无关的非线性数据指定为以 dBm 为单位的 scalar，对于与频率相关的非线性数据指定为每个元素单位均为 dBm 的 vector。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
+增益下降 1 dB 时的输出功率值（P1dB,out），对于频率无关的非线性数据指定为以 dBm 为单位的标量，对于频率相关的非线性数据指定为每个元素以 dBm 为单位的向量。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
 
-### **Output saturation power (dBm)** — 放大器完全饱和时产生的输出功率值 `inf`（默认）| scalar | vector
+### **Output saturation power (dBm)** — 放大器完全饱和时产生的输出功率值 `inf`（默认）| 标量 | 向量
 
-放大器完全饱和时产生的输出功率值（Psat,out），对于与频率无关的非线性数据指定为以 dBm 为单位的 scalar，对于与频率相关的非线性数据指定为每个元素单位均为 dBm 的 vector。如果数据源包含输出饱和功率数据，则此参数被禁用。
+放大器完全饱和时产生的输出功率值（Psat,out），对于频率无关的非线性数据指定为以 dBm 为单位的标量，对于频率相关的非线性数据指定为每个元素以 dBm 为单位的向量。如果数据源包含输出饱和功率数据，则此参数被禁用。
 
-### **Gain compression at saturation (dB)** — 增益值的下降量 `3`（默认）| scalar | vector
+### **Gain compression at saturation (dB)** — 增益值的下降量 `3`（默认）| 标量 | 向量
 
-功率完全饱和时增益值的下降量（GCsat），对于与频率无关的非线性数据指定为以 dB 为单位的 scalar，对于与频率相关的非线性数据指定为每个元素单位均为 dB 的 vector。
+功率完全饱和时增益值的下降量（GCsat），对于频率无关的非线性数据指定为以 dB 为单位的标量，对于频率相关的非线性数据指定为每个元素以 dB 为单位的向量。
 
-### **Frequency (Hz)** — 对应于三阶截点或功率数据的频率点 `2.0e9`（默认）| positive scalar | positive vector
+### **Frequency (Hz)** — 对应于三阶截点或功率数据的频率点 `2.0e9`（默认）| 正标量 | 正向量
 
-对应于三阶截点或功率数据的频率点，指定为以 hertz 为单位的 positive scalar 或 positive vector。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
+对应于三阶截点或功率数据的频率点，指定为以赫兹为单位的正标量或正向量。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
 
 #### 依赖关系
 
-- 如果将频率指定为 scalar，则 **IP3 (dBm)**、**1 dB gain compression power (dBm)** 和 **Output saturation power (dBm)** 参数都必须为 scalars。
-- 如果将频率指定为 vector，则 **IP3 (dBm)**、**1 dB gain compression power (dBm)** 和 **Output saturation power (dBm)** 参数中有一个或多个也必须为 vector。
+- 如果将频率指定为标量，则 **IP3 (dBm)**、**1 dB gain compression power (dBm)** 和 **Output saturation power (dBm)** 参数必须全部为标量。
+- 如果将频率指定为向量，则 **IP3 (dBm)**、**1 dB gain compression power (dBm)** 和 **Output saturation power (dBm)** 参数中的一个或多个也必须为向量。
 
 ### 可视化
 
@@ -150,43 +150,49 @@ IP3 值，对于与频率无关的非线性数据指定为以 dBm 为单位的 s
 
 频率数据源，指定为 `Extracted from data source` 或 `User-specified`。
 
-### **Frequency data (Hz)** — 频率数据范围 `[1e9:1e8:2.9e9]`（默认）| vector
+### **Frequency data (Hz)** — 频率数据范围 `[1e9:1e8:2.9e9]`（默认）| 向量
 
-频率数据范围，指定为每个元素单位均为 hertz 的 vector。
+频率数据范围，指定为向量，每个元素的单位为赫兹。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Source of frequency data** 设置为 `User specified`。
+要启用此参数，请将 **Source of frequency data** 设置为
+`User specified`。
 
 ### **Source of input power** — 输入功率源 `User-specified`（默认）| `Extracted from data source`
 
-输入功率源，指定为 `Extracted from data source` 或 `User-specified`。如果数据源包含功率数据，则此参数被禁用。
+输入功率源，指定为 `Extracted from data
+source` 或 `User-specified`。
+如果数据源包含功率数据，则此参数被禁用。
 
-### **Input power data (dBm)** — 输入功率数据范围 `[0:19]`（默认）| vector
+### **Input power data (dBm)** — 输入功率数据范围 `[0:19]`（默认）| 向量
 
-输入功率数据范围，指定为每个元素单位均为 dBm 的 vector。如果数据源包含功率数据，则此参数被禁用。
+输入功率数据范围，指定为向量，每个元素的单位为 dBm。如果数据源包含功率数据，则此参数被禁用。
 
-### **Reference impedance (ohms)** — 参考阻抗 `50`（默认）| nonnegative scalar
+### **Reference impedance (ohms)** — 参考阻抗 `50`（默认）| 非负标量
 
-参考阻抗，指定为以 ohms 为单位的 nonnegative scalar。
+参考阻抗，指定为非负标量，单位为欧姆。
 
-### **Plot type** — 数据图的类型 `X-Y plane`（默认）| `Composite data` | `Polar plane` | `Z Smith chart` | `Y Smith chart` | `ZY Smith chart`
+### **Plot type** — 数据绘图类型 `X-Y plane`（默认）| `Composite data` | `Polar plane` | `Z Smith chart` | `Y Smith chart` | `ZY Smith chart`
 
-使用给定数据可视化的数据图类型，指定为以下之一：
+要使用给定数据进行可视化的数据绘图类型，指定为以下之一：
 
-- `X-Y plane` — 生成数据随频率变化的笛卡尔图。要创建 linear、semilog 或 log-log 图，请相应设置 **Y-axis scale** 和 **X-axis scale**。
-- `Composite data` — 绘制复合数据。有关详细信息，请参阅 Create Plots Using Equivalent Baseband Library Blocks。
+- `X-Y plane` — 生成数据随频率变化的笛卡尔图。要创建线性、半对数或双对数图，请相应地设置 **Y-axis scale** 和 **X-axis scale**。
+- `Composite data` — 绘制复合数据。
+  有关详细信息，请参阅 Create Plots Using Equivalent Baseband Library Blocks。
 - `Polar plane` — 生成数据的极坐标图。该模块仅绘制与指定频率对应的数据范围。
-- `Z smith chart`、`Y smith chart` 和 `ZY smith chart` — 生成 Smith® 图。该模块仅绘制与指定频率对应的数据范围。
+- `Z smith chart`、`Y smith
+  chart` 和 `ZY smith chart` —
+  生成史密斯®圆图。该模块仅绘制与指定频率对应的数据范围。
 
 ### **Y parameter1** — 要绘制的参数类型 `S11`（默认）| `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `IIP3` | `NF` | ...
 
-要绘制的参数类型（基于您设置的 **Plot type**），指定为以下之一。
+基于所设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
 
-| Plot type | Y parameter1 |
+| 绘图类型 | Y parameter1 |
 | --- | --- |
-| `X-Y plane` | 对于 `X-Y plane` 数据图，**Y parameter1** 会根据您选择的 **Data source** 而变化。有关详细信息，请参阅 Parameters to plot in X-Y pane。 |
-| `Composite data` | 不需要设置 **Y parameter1**。 |
+| `X-Y plane` | 对于 `X-Y plane` 数据绘图，**Y parameter1** 根据所选的 **Data source** 而变化。有关详细信息，请参阅 Parameters to plot in X-Y pane。 |
+| `Composite data` | 无需设置 **Y parameter1**。 |
 | `Polar plane` | `S11`、`S12`、`S21` 和 `S22` |
 | `Z Smith chart` | `S11` 和 `S22`。 |
 | `Y Smith chart` | `S11` 和 `S22`。 |
@@ -194,12 +200,12 @@ IP3 值，对于与频率无关的非线性数据指定为以 dBm 为单位的 s
 
 ### **Y parameter2** — 要绘制的参数类型 `S11`（默认）| `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `IIP3` | `NF` | ...
 
-要绘制的参数类型（基于您设置的 **Plot type**），指定为以下之一。
+基于所设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
 
-| Plot type | Y parameter2 |
+| 绘图类型 | Y parameter2 |
 | --- | --- |
-| `X-Y plane` | 对于 `X-Y plane` 数据图，**Y parameter2** 会根据您选择的 **Data source** 而变化。有关详细信息，请参阅 Parameters to plot in X-Y pane。 |
-| `Composite data` | 不需要设置 **Y parameter1**。 |
+| `X-Y plane` | 对于 `X-Y plane` 数据绘图，**Y parameter2** 根据所选的 **Data source** 而变化。有关详细信息，请参阅 Parameters to plot in X-Y pane。 |
+| `Composite data` | 无需设置 **Y parameter1**。 |
 | `Polar plane` | `S11`、`S12`、`S21` 和 `S22` |
 | `Z Smith chart` | `S11` 和 `S22`。 |
 | `Y Smith chart` | `S11` 和 `S22`。 |
@@ -223,7 +229,8 @@ IP3 值，对于与频率无关的非线性数据指定为以 dBm 为单位的 s
 
 #### 依赖关系
 
-要启用 **Y format1**，请将 **Plot type** 设置为 `X-Y plane`。
+要启用 **Y format1**，请将 **Plot
+type** 设置为 `X-Y plane`。
 
 ### **Y format2** — 绘图格式 `Magnitude (decibels)`（默认）| `Mag` | `Magnitude (linear)` | `Angle` | `Real` | `Imaginary` | ...
 
@@ -243,19 +250,24 @@ IP3 值，对于与频率无关的非线性数据指定为以 dBm 为单位的 s
 
 #### 依赖关系
 
-要启用 **Y format2**，请将 **Plot type** 设置为 `X-Y plane`。
+要启用 **Y format2**，请将 **Plot
+type** 设置为 `X-Y plane`。
 
-### **X parameter** — 频率图 `Freq`（默认）| `AM`
+### **X parameter** — 频率绘图 `Freq`（默认）| `AM`
 
-频率图，指定为 `Freq` 或 `AM`。
+频率绘图，指定为 `Freq` 或
+`AM`。
 
 #### 依赖关系
 
-要将 **X parameter** 设置为 `AM`，必须将 **Y parameter1** 设置为 `AM/AM` 或 `AM/PM`。
+要将 **X parameter** 设置为
+`AM`，必须将 **Y
+parameter1** 设置为 `AM/AM` 或
+`AM/PM`。
 
-### **X format** — 频率图格式 `Hz`（默认）| `Auto` | `kHz` | `MHz` | `GHz` | `THz` | ...
+### **X format** — 频率绘图格式 `Hz`（默认）| `Auto` | `kHz` | `MHz` | `GHz` | `THz` | ...
 
-频率图格式，指定为以下之一。
+频率绘图格式，指定为以下之一。
 
 | X parameter | X format |
 | --- | --- |
@@ -268,7 +280,8 @@ Y 轴刻度，指定为 `Linear` 或 `Log`。
 
 #### 依赖关系
 
-要启用此参数，请将 **Plot type** 设置为 `X-Y plane`。
+要启用此参数，请将 **Plot type** 设置为 `X-Y
+plane`。
 
 ### **X scale** — X 轴刻度 `Linear`（默认）| `Log`
 
@@ -276,19 +289,21 @@ X 轴刻度，指定为 `Linear` 或 `Log`。
 
 #### 依赖关系
 
-要启用此参数，请将 **Plot type** 设置为 `X-Y plane`。
+要启用此参数，请将 **Plot type** 设置为 `X-Y
+plane`。
 
-### **Plot** — 绘制指定数据的按钮
+### **Plot** — 绘制指定数据按钮
 
-使用 plot 按钮绘制指定数据。
+使用绘图按钮绘制指定数据。
 
 ### 工作条件
 
-Agilent® P2D 和 S2D 文件为多个工作条件定义模块参数。工作条件是创建文件数据时使用的独立参数设置。默认情况下，RF Blockset™ Equivalent Baseband 软件使用与文件中出现的第一个工作条件对应的参数值来定义模块行为。要使用其他属性值，必须在 General Amplifier 模块对话框中选择不同的工作条件。
+Agilent® P2D 和 S2D 文件为若干工作条件定义模块参数。工作条件是创建文件数据时使用的独立参数设置。默认情况下，RF Blockset™ Equivalent Baseband 软件使用与文件中首次出现的工作条件相对应的参数值来定义模块行为。要使用其他属性值，必须在 General Amplifier 模块对话框中选取不同的工作条件。
 
-### **Bias** — 放大器偏置 `1.9`（默认）| scalar
+### **Bias** — 放大器偏置 `1.9`（默认）| 标量
 
-放大器偏置，指定为以 volts 为单位的 scalar。当 **Data file** 为 `default.s2p` 时，此参数设置为 `1.9` volts。
+放大器偏置，指定为以伏特为单位的标量。当 **Data file**
+为 `default.s2p` 时，此参数设置为 `1.9` 伏特。
 
 ## 所属库
 
@@ -308,6 +323,7 @@ R2025b 中未记录。
 
 ## 描述
 
-对由对象或文件数据描述的非线性放大器进行建模
+使用对象或文件数据对非线性放大器进行建模
 
-General Amplifier 模块对由数据源描述的非线性放大器进行建模。数据源由 RF Toolbox™ 数据（`rfdata.data`）对象或来自文件的数据组成。
+General Amplifier 模块对由数据源描述的非线性放大器进行建模。
+数据源由 RF Toolbox™ 数据（`rfdata.data`）对象或来自文件的数据组成。

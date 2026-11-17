@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DPD Coefficient Estimator'
-family: 'rf-impairments-correction'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -23,18 +23,18 @@ chinese_source: worker-translation
 功率放大器基带等效输入，指定为列向量。
 
 **数据类型：** `double`
-**复数支持：** Yes
+**支持复数：** 是
 
 ### **PA Out** — 功率放大器基带等效输出列向量
 
 功率放大器基带等效输出，指定为与 **PA In** 长度相同的列向量。
 
 **数据类型：** `double`
-**复数支持：** Yes
+**支持复数：** 是
 
-### **Forgetting Factor** — 遗忘因子标量，范围为 (0, 1]
+### **Forgetting Factor** — 范围在 (0, 1] 内的遗忘因子标量
 
-递归最小二乘算法使用的遗忘因子，指定为范围 (0, 1] 内的标量。减小遗忘因子可缩短收敛时间，但会导致输出估计的稳定性降低。
+递归最小二乘算法使用的遗忘因子，指定为范围在 (0, 1] 内的标量。减小遗忘因子可缩短收敛时间，但会导致输出估计不太稳定。
 
 #### 依赖关系
 
@@ -45,30 +45,30 @@ chinese_source: worker-translation
 
 ### **Out** — 记忆多项式系数矩阵
 
-记忆多项式系数，以矩阵形式返回。有关详细信息，请参阅数字预失真。
+记忆多项式系数，以矩阵形式返回。有关详细信息，请参阅 Digital Predistortion。
 
 此端口在模块上未命名。
 
 ## 参数
 
-要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条上的 **Simulation** 选项卡中，在 **Prepare** 库中，选择 **Property Inspector**。
+要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
-### **Desired amplitude gain (dB)** — 期望幅度增益，单位为 dB `10`（默认）| 标量
+### **Desired amplitude gain (dB)** — 期望幅度增益，以 dB 为单位 `10`（默认）| 标量
 
-期望幅度增益，单位为 dB，指定为标量。此参数值表示补偿后放大器输出处的期望信号增益。
+期望幅度增益，以 dB 为单位，指定为标量。此参数值表示补偿放大器输出端的期望信号增益。
 
-除线性化之外，DPD 还应使 DPD 输入与功率放大器输出之间的组合增益尽可能接近期望增益。因此，请根据您在 PA 表征期间获得的功率放大器期望增益来设置此参数。
+除线性化之外，DPD 应使 DPD 输入与功率放大器输出之间的组合增益尽可能接近期望增益。因此，请根据您在 PA 表征期间获得的功率放大器期望增益来设置此参数。
 
-**可调：** Yes
+**可调：** 是
 
 ### **Polynomial type** — 多项式类型 `Memory polynomial`（默认）| `Cross-term memory polynomial`
 
 用于预失真的多项式类型，指定为以下值之一：
 
-- `Memory polynomial` — 使用不带交叉项的记忆多项式计算预失真系数
+- `Memory polynomial` — 使用无交叉项的记忆多项式计算预失真系数
 - `Cross-term memory polynomial` — 使用带交叉项的记忆多项式计算预失真系数
 
-有关详细信息，请参阅数字预失真。
+有关详细信息，请参阅 Digital Predistortion。
 
 ### **Degree** — 记忆多项式阶数 `5`（默认）| 正整数
 
@@ -76,7 +76,7 @@ chinese_source: worker-translation
 
 ### **Memory depth** — 记忆多项式深度 `3`（默认）| 正整数
 
-以采样点表示的记忆多项式深度，指定为正整数。
+记忆多项式深度（以采样为单位），指定为正整数。
 
 ### **Algorithm** — 估计算法 `Least squares`（默认）| `Recursive least squares`
 
@@ -85,22 +85,22 @@ chinese_source: worker-translation
 - `Least squares` — 使用最小二乘算法估计记忆多项式系数
 - `Recursive least squares` — 使用递归最小二乘算法估计记忆多项式系数
 
-有关算法参考资料，请参阅 [1] 和 [2] 中列出的文献。
+有关算法参考资料，请参阅 [1] 和 [2] 中列出的著作。
 
-### **Forgetting factor source** — 遗忘因子的来源 `Property`（默认）| `Input port`
+### **Forgetting factor source** — 遗忘因子来源 `Property`（默认）| `Input port`
 
 遗忘因子的来源，指定为以下值之一：
 
-- `Property` — 指定此值以使用 **Forgetting factor** 参数指定遗忘因子。
-- `Input port` — 指定此值以使用 **Forgetting factor** 输入端口指定遗忘因子。
+- `Property` — 指定此值以使用 **Forgetting factor** 参数来指定遗忘因子。
+- `Input port` — 指定此值以使用 **Forgetting factor** 输入端口来指定遗忘因子。
 
 #### 依赖关系
 
 要启用此参数，请将 **Algorithm** 设置为 `Recursive least squares`。
 
-### **Forgetting factor** — 遗忘因子 `0.99`（默认）| 范围 (0, 1] 内的标量
+### **Forgetting factor** — 遗忘因子 `0.99`（默认）| 范围在 (0, 1] 内的标量
 
-递归最小二乘算法使用的遗忘因子，指定为范围 (0, 1] 内的标量。减小遗忘因子可缩短收敛时间，但会导致输出估计的稳定性降低。
+递归最小二乘算法使用的遗忘因子，指定为范围在 (0, 1] 内的标量。减小遗忘因子可缩短收敛时间，但会导致输出估计不太稳定。
 
 #### 依赖关系
 
@@ -108,15 +108,15 @@ chinese_source: worker-translation
 
 ### **Initial coefficient estimate** — 初始系数估计 `[]`（默认）| 矩阵
 
-用于递归最小二乘算法的初始系数估计，指定为实数或复数值组成的矩阵。
+递归最小二乘算法的初始系数估计，指定为实数或复数值矩阵。
 
-- 如果将此值指定为空矩阵，则会自动选择递归最小二乘算法的初始系数估计，以对应于恒等函数的记忆多项式，从而使输出等于输入。
+- 如果将此值指定为空矩阵，则递归最小二乘算法的初始系数估计会自动选择为对应于恒等函数的记忆多项式，从而使输出等于输入。
 - 如果将此值指定为非空矩阵，则行数必须等于 **Memory depth** 参数值。
 
   - 如果 **Polynomial type** 参数设置为 `Memory polynomial`，则列数为记忆多项式的阶数。
-  - 如果 **Polynomial type** 参数设置为 `Cross-term memory polynomial`，则列数必须等于 *m*(*n*-1)+1。*m* 是多项式的记忆深度，*n* 是记忆多项式的阶数。
+  - 如果 **Polynomial type** 参数设置为 `Cross-term memory polynomial`，则列数必须等于 *m*(*n*-1)+1。*m* 为多项式的记忆深度，*n* 为多项式的阶数。
 
-有关详细信息，请参阅数字预失真。
+有关详细信息，请参阅 Digital Predistortion。
 
 #### 依赖关系
 
@@ -126,10 +126,10 @@ chinese_source: worker-translation
 
 要运行的仿真类型，指定为 `Code generation` 或 `Interpreted execution`。
 
-- `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution` 选项。
+- `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution` 选项。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
-有关详细信息，请参阅解释执行与代码生成 (Simulink)。
+有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
 
 ## 所属库
 
@@ -155,6 +155,6 @@ Communications Toolbox / RF Impairments Correction
 
 估计用于数字预失真的记忆多项式系数
 
-给定功率放大器的基带等效输入和基带等效输出，估计用于非线性功率放大器数字预失真（DPD）的记忆多项式系数。有关详细信息，请参阅数字预失真和优化估计器多项式阶数与记忆深度。
+给定功率放大器的基带等效输入和基带等效输出，估计用于非线性功率放大器数字预失真 (DPD) 的记忆多项式系数。有关详细信息，请参阅 Digital Predistortion 和 Optimizing Estimator Polynomial Degree and Memory Depth。
 
-此图标显示启用了所有端口的模块。
+此图标显示了启用所有端口时的模块。

@@ -9,7 +9,7 @@ official_category: 'CAN FD Communication'
 documentation_page: 'canfdpack'
 documentation_source_path: 'ug/canfdpack.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # CAN FD Pack
@@ -18,30 +18,31 @@ chinese_source: official
 
 ### 输入
 
-### **Data** — CAN FD 报文信号输入 单精度值 | 双精度值 | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | 布尔值
+### **Data** — CAN FD 消息信号输入 single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean
 
-CAN FD Pack 模块默认有一个输入端口。模块输入的数量是动态的，取决于您为模块指定的信号数量。例如，如果您的报文有四个信号，则该模块可以有四个输入端口。
+默认情况下，CAN FD Pack 模块有一个输入端口。模块输入的数量是动态的，取决于您为模块指定的信号数量。例如，如果您的消息有四个信号，则该模块可以有四个输入端口。
 
 该模块支持以下输入信号数据类型：single、double、int8、int16、int32、int64、uint8、uint16、uint32、uint64 和 boolean。该模块不支持定点数据类型。
 
 **提示**
 
-即使您有不包含信号的零长度报文，您仍必须向输入端口提供虚拟数据以便定义采样时间。在这种情况下，数据值本身会被忽略。
+即使您有一个没有信号的零长度消息，您仍然必须向输入端口提供虚拟数据，以便定义采样时间。在这种情况下，数据值本身会被忽略。
 
-### **CAN Msg ID** — CAN 报文标识符 单精度值 | 双精度值 | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+### **CAN Msg ID** — CAN 消息标识符 single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
 
-CAN Msg ID 输入端口允许您动态指定 CAN 报文标识符。仅当选择**从输入端口指定 CAN 标识符**参数时，此端口才存在。有关详细信息，请参阅通过 CAN Pack 模块输入端口动态更改 CAN ID。
+CAN Msg ID 输入端口允许您动态指定 CAN 消息标识符。仅当选中 **Specify CAN identifier from input port** 参数时，此端口才存在。有关详细信息，请参阅 Dynamically Change CAN IDs by CAN Pack Block Input Ports。
+
 ### 输出
 
-### **Msg** — CAN FD 报文输出 `CAN_FD_MESSAGE_BUS`
+### **Msg** — CAN FD 消息输出 `CAN_FD_MESSAGE_BUS`
 
-此模块有一个输出端口 Msg。CAN FD Pack 模块接受指定的输入信号并将其打包为一个 CAN FD 报文，以 Simulink `CAN_FD_MESSAGE_BUS` 信号形式输出。有关 Simulink 总线对象的详细信息，请参阅合成接口 (Simulink)。
+该模块有一个输出端口 Msg。CAN FD Pack 模块获取指定的输入信号并将其打包为 CAN FD 消息，作为 Simulink `CAN_FD_MESSAGE_BUS` 信号输出。有关 Simulink 总线对象的详细信息，请参阅 Composite Interfaces (Simulink)。
 
 ## 参数
 
-### **数据输入为** — 选择您的数据信号： `raw data` (默认) | `manually specified signals` | `CANdb specified signals` | `ARXML specified signals`
+### **Data input as** — 选择您的数据信号 `raw data`（默认）| `manually specified signals` | `CANdb specified signals` | `ARXML specified signals`
 
-- `raw data`:以 uint8 向量数组形式输入数据。如果选择此选项，则只需指定报文字段。所有其他信号参数字段都不可用。此选项仅在模块上打开一个输入端口。
+- `raw data`：将数据作为 uint8 向量数组输入。如果选择此选项，您只需指定消息字段。所有其他信号参数字段均不可用。此选项仅在您的模块上打开一个输入端口。
 
   转换公式为：
 
@@ -49,241 +50,255 @@ CAN Msg ID 输入端口允许您动态指定 CAN 报文标识符。仅当选择*
   raw_value = (physical_value - Offset) / Factor
   ```
 
-  其中 `physical_value` 是信号的原始值，`raw_value` 是打包的信号值。
-- `manually specified signals`:允许您指定数据信号定义。如果选择此选项，请使用**信号**表创建信号。模块输入的数量取决于您指定的信号数量。
-- `CANdb specified signals`:允许您指定包含报文和信号定义的 CAN 数据库文件。如果选择此选项，请选择 CANdb 文件。模块输入的数量取决于 CANdb 文件中为所选报文指定的信号数量。
-- `ARXML specified signals`:允许您为信号定义指定 ARXML 文件。这将禁用一些远程选项。从 ARXML 文件中读取数据后，您可以切换到 `manually specified signals` 来进一步修改该表。
+  其中 `physical_value` 是信号的原始值，`raw_value` 是打包后的信号值。
+- `manually specified signals`：允许您指定数据信号定义。如果选择此选项，请使用 **Signals** 表创建信号。模块输入的数量取决于您指定的信号数量。
+- `CANdb specified signals`：允许您指定包含消息和信号定义的 CAN 数据库文件。如果选择此选项，请选择一个 CANdb 文件。模块输入的数量取决于 CANdb 文件中为所选消息指定的信号数量。
+- `ARXML specified signals`：允许您指定用于信号定义的 ARXML 文件。这会禁用某些远程选项。从 ARXML 文件读取数据后，您可以切换到 `manually specified signals` 以进一步修改表格。
 
-  有关详细信息，请参阅Simulink 中对 CAN 的 ARXML 文件支持。
+  有关详细信息，请参阅 ARXML File Support for CAN in Simulink。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：**`DataFormat` |
-| **类型：**`string` | `character vector` |
-| **值：**`'raw data'` | `'manually specified signals'` | `'CANdb specified signals'` `'ARXML specified signals'` |
-| **默认值：**`'raw data'` |
-
-### **数据库文件** — ARXML 或 CAN 数据库文件 字符向量
-
-如果您将**数据输入为**参数指定为 `CANdb specified signals` 或 `ARXML specified signals`，则此选项可用。点击**浏览**以在您的系统上找到数据库文件。数据库文件中指定的报文列表将填充对话框的**报文**部分。数据库文件还会填充所选报文的**信号**表。包含非字母数字字符（如等号、& 符号等）的文件名不是有效的数据库文件名。您可以在数据库名称中使用句点。在使用数据库文件之前，请重命名那些带有非字母数字字符的名称。
-
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`CANdbFile` |
-| **类型：**`string` | `character vector` |
+| **模块参数**：`DataFormat` |
+| **类型**：`string` | `character vector` |
+| **值**：`'raw data'` | `'manually specified signals'` | `'CANdb specified signals'` `'ARXML specified signals'` |
+| **默认值**：`'raw data'` |
 
-### **报文列表** — CAN 报文列表 字符向量数组
+### **Database file** — ARXML 或 CAN 数据库文件 character vector
 
-如果您在**数据输入为**字段中指定数据库，并在**数据库文件**字段中指定数据库文件，则此选项可用。选择要在**信号**表中显示信号详细信息的报文。
+如果您将 **Data is input as** 参数指定为 `CANdb specified signals` 或 `ARXML specified signals`，则此选项可用。点击 **Browse** 以在您的系统上查找数据库文件。数据库文件中指定的消息列表将填充对话框的 **Message** 部分。数据库文件还会为所选消息填充 **Signals** 表。包含非字母数字字符（如等号、& 符号等）的文件名不是有效的数据库文件名。您可以在数据库名称中使用句点。在使用数据库文件之前，请使用非字母数字字符重命名它们。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：**`MsgList` |
-| **类型：**`string` | `character vector` |
-
-### **名称** — CAN FD 报文名称 `CAN Msg` (默认) | 字符向量
-
-指定 CAN FD 报文的名称。默认值为 `CAN Msg`。如果您选择输入原始数据或手动指定信号，则此选项可用。如果您选择使用来自数据库文件的信号，则此选项不可用。
-
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`MsgName` |
-| **类型：**`string` | `character vector` |
+| **模块参数：** `CANdbFile` |
+| **类型：** `string` | `character vector` |
 
-### **协议模式** — CAN FD 报文协议 `CAN FD` (默认) | `CAN`
+### **Message list** — CAN 消息列表字符向量数组
 
-指定报文协议模式。
+如果在 **Data is input as** 字段中指定数据库，并且在 **Database file** 字段中指定数据库文件，则此选项可用。选择消息以在 **Signals** 表中显示信号详细信息。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：**`ProtocolMode` |
-| **类型：**`string` | `character vector` |
-| **值：**`'CAN FD'` | `'CAN'` |
-| **默认值：**`'CAN FD'` |
-
-### **标识符类型** — CAN 标识符类型 `Standard (11-bit identifier)` (默认) | `Extended (29-bit identifier)`
-
-指定 CAN 报文标识符是 `Standard` 还是 `Extended` 类型。默认值为 `Standard`。标准标识符是 11 位标识符，扩展标识符是 29 位标识符。如果您选择输入原始数据或手动指定信号，则此选项可用。对于数据库指定的信号，**标识符类型**从数据库继承类型。
-
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`MsgIDType` |
-| **类型：**`string` | `character vector` |
-| **值：**`'Standard (11-bit identifier)'` | `'Extended (29-bit identifier)'` |
-| **默认值：**`'Standard (11-bit identifier)'` |
+| **模块参数：** `MsgList` |
+| **类型：** `string` | `character vector` |
 
-### **标识符** — 消息标识符 `0` (默认) | `0 .. 536870911`
+### **Name** — CAN FD 消息名称 `CAN Msg`（默认）| 字符向量
 
-指定您的报文 ID。对于标准标识符，此数字必须是 0 到 2047 之间的正整数，对于扩展标识符，此数字必须是 0 到 536870911 之间的正整数。您还可以使用 `hex2dec` 函数指定十六进制值。如果您选择输入原始数据或手动指定信号，则此选项可用。
+指定 CAN FD 消息的名称。默认值为 `CAN Msg`。如果选择输入原始数据或手动指定信号，则此选项可用。如果选择使用数据库文件中的信号，则此选项不可用。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`MsgIdentifier` |
-| **类型：**`string` | `character vector` |
-| **值：**`'0'` 到 `'536870911'` |
+| **模块参数：** `MsgName` |
+| **类型：** `string` | `character vector` |
 
-### **从输入端口指定 CAN 标识符** — CAN 报文 ID 值 `off` (默认) | `on`
+### **Protocol mode** — CAN FD 消息协议 `CAN FD`（默认）| `CAN`
 
-当选中时，可以通过模块上的输入端口指定值来动态控制 CAN 标识符 (CAN ID)。选择此选项会添加名为 CAN Msg ID 的输入端口。
+指定消息协议模式。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：**`CANIDInput` |
-| **类型：**`string` | `character vector` |
-| **值：**`'off'` | `'on'` |
-| **默认值：**`'off'` |
-
-### **长度(字节)** — CAN FD 报文长度 `8` (默认) | `0` 到 `64`
-
-指定报文的长度。对于 CAN 报文，该值可以是 0 到 8 个字节；对于 CAN FD，该值可以是 0 到 8、12、16、20、24、32、48 或 64 个字节。如果您使用数据库指定的信号作为数据输入，数据库文件定义您的报文长度。如果您选择输入原始数据或手动指定信号，则此选项可用。
-
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`MsgLength` |
-| **类型：**`string` | `character vector` |
-| **值：**`'0'` 到 `'8'`、`'12'`、`'16'`、`'20'`、`'24'`、`'32'`、`'48'`、`'64'` |
-| **默认值：**`'8'` |
+| **模块参数：** `ProtocolMode` |
+| **类型：** `string` | `character vector` |
+| **值：** `'CAN FD'` | `'CAN'` |
+| **默认：** `'CAN FD'` |
 
-### **远程帧** — CAN 报文作为远程帧 `off` (默认) | `on`
+### **Identifier type** — CAN 标识符类型 `Standard (11-bit identifier)`（默认）| `Extended (29-bit identifier)`
 
-（对于 CAN FD 协议模式禁用。）将 CAN 报文指定为远程帧。
+指定 CAN 消息标识符是 `Standard` 还是 `Extended` 类型。默认值为 `Standard`。标准标识符是 11 位标识符，扩展标识符是 29 位标识符。如果选择输入原始数据或手动指定信号，则此选项可用。对于数据库指定的信号，**Identifier type** 从数据库继承类型。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：**`Remote` |
-| **类型：**`string` | `character vector` |
-| **值：**`'off'` | `'on'` |
-| **默认值：**`'off'` |
-
-### **比特率开关(BRS)** — 启用比特率开关。 `off` (默认) | `on`
-
-（对于 CAN 协议模式禁用。）启用比特率开关。
-
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`BRSSwitch` |
-| **类型：**`string` | `character vector` |
-| **值：**`'off'` | `'on'` |
-| **默认值：**`'off'` |
+| **模块参数：** `MsgIDType` |
+| **类型：** `string` | `character vector` |
+| **值：** `'Standard (11-bit identifier)'` | `'Extended (29-bit identifier)'` |
+| **默认：** `'Standard (11-bit identifier)'` |
 
-### **添加信号** — 添加 CAN FD 信号
+### **Identifier** — 消息标识符 `0`（默认）| `0 .. 536870911`
 
-向信号表中添加信号。
+指定消息 ID。对于标准标识符，此数字必须是 0 到 2047 的正整数；对于扩展标识符，此数字必须是 0 到 536870911 的正整数。也可以使用 `hex2dec` 函数指定十六进制值。如果选择输入原始数据或手动指定信号，则此选项可用。
 
-#### 编程用法
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数：** `MsgIdentifier` |
+| **类型：** `string` | `character vector` |
+| **值：** `'0'` 到 `'536870911'` |
+
+### **Specify CAN identifier from input port** — CAN 消息 ID 值 `off`（默认）| `on`
+
+选中后，可以通过模块上的输入端口指定值来动态控制 CAN 标识符（CAN ID）。选择此选项会添加一个名为 CAN Msg ID 的输入端口。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数：** `CANIDInput` |
+| **类型：** `string` | `character vector` |
+| **值：** `'off'` | `'on'` |
+| **默认：** `'off'` |
+
+### **Length (bytes)** — CAN FD 消息长度 `8`（默认）| `0` 到 `64`
+
+指定消息的长度。对于 CAN 消息，该值可以为 0 到 8 字节；对于 CAN FD，该值可以为 0 到 8、12、16、20、24、32、48 或 64 字节。如果使用数据库指定的信号作为数据输入，则数据库文件定义消息的长度。如果选择输入原始数据或手动指定信号，则此选项可用。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数：** `MsgLength` |
+| **类型：** `string` | `character vector` |
+| **值：** `'0'` 到 `'8'`、`'12'`、`'16'`、`'20'`、`'24'`、`'32'`、`'48'`、`'64'` |
+| **默认：** `'8'` |
+
+### **Remote frame** — CAN 消息作为远程帧 `off`（默认）| `on`
+
+（在 CAN FD 协议模式下禁用。）将 CAN 消息指定为远程帧。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数：** `Remote` |
+| **类型：** `string` | `character vector` |
+| **值：** `'off'` | `'on'` |
+| **默认值：** `'off'` |
+
+### **Bit Rate Switch (BRS)** — 启用位速率切换 `off`（默认）| `on`
+
+（在 CAN 协议模式下禁用。）启用位速率切换。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数：** `BRSSwitch` |
+| **类型：** `string` | `character vector` |
+| **值：** `'off'` | `'on'` |
+| **默认值：** `'off'` |
+
+### **Add signal** — 添加 CAN FD 信号
+
+向信号表中添加一个信号。
+
+#### 程序化使用
 
 无
 
-### **删除信号** — 删除 CAN FD 信号
+### **Delete signal** — 删除 CAN FD 信号
 
-从信号表中删除所选信号。
+从信号表中移除所选信号。
 
-#### 编程用法
+#### 程序化使用
 
 无
 
-### **信号** — 信号表 表
+### **Signals** — 信号表
 
-如果您选择手动指定信号或使用数据库文件定义信号，则会出现此表。
+当您选择手动指定信号或使用数据库文件定义信号时，将显示此表。
 
-如果您使用的是数据库文件，则文件中的数据会填充此表，您不能编辑字段。要编辑信号信息，请切换到手动指定的信号。
+如果您使用数据库文件，文件中的数据将填充此表，您无法编辑这些字段。要编辑信号信息，请切换到手动指定信号。
 
 如果您已选择手动指定信号，请在此表中创建信号。您创建的每个信号都具有以下值：
 
 **名称**
-:   为信号指定说明性名称。模型中的 Simulink 模块将显示此名称。默认值为 `Signal [row number]`。
+:   为您的信号指定一个描述性名称。模型中的 Simulink 模块将显示此名称。默认值为
+    `Signal [row number]`。
 
-**开始位**
-:   指定数据的开始位。开始位是从报文数据的开头计数的最低有效位。对于 CAN，开始位必须是 0 到 63 之间的整数，对于 CAN FD，开始位必须是 0 到 511 之间的整数（同时还需在报文的位数内）。（请注意，报文长度以字节为单位指定。）
+**起始位**
+:   指定数据的起始位。起始位是从消息数据起始处开始计算的最低有效位。对于 CAN，起始位必须是 0 到 63 的整数，对于 CAN FD 为 0 到 511，且必须在消息的位数范围内。（请注意，消息长度以字节为单位指定。）
 
-**长度(位)**
-:   指定信号在报文中占用的位数。长度必须是 1 到 64 之间的整数。报文中所有信号长度的总和不能超过报文长度中的位数；也就是说，所有信号的累积长度必须在报文的长度内。（注意，报文长度以字节为单位，信号长度以位为单位。）
+**长度（位）**
+:   指定信号在消息中占用的位数。长度必须是 1 到 64 的整数。一条消息中所有信号长度的总和受消息长度的位数限制；也就是说，所有信号必须累计适配在消息长度内。（请注意，消息长度以字节为单位指定，信号长度以位为单位指定。）
 
-**字节顺序**
+**字节序**
 :   选择以下任一选项：
 
-    - `LE`:其中字节顺序为 little-endian 格式 (Intel®)。在这种格式中，从最低有效位到最高有效位进行计数。例如，如果以 little-endian 格式打包数据的一个字节，并且开始位为 20，则数据位表类似于下图所示。
+    - `LE`：字节序为小端格式
+      (Intel®)。在此格式中，您从最低有效位开始计数，
+      到最高有效位。例如，如果您以小端格式打包一个字节的数据，
+      起始位为 20，则数据位表类似于下图。
 
-      **从最低有效位到最高地址计数的 Little-Endian 字节顺序**
-    - `BE`:其中字节顺序为 big-endian 格式 (Motorola®)。在这种格式中，从最低有效位到最高有效位进行计数。例如，如果以 big-endian 格式打包数据的一个字节，并且开始位为 20，则数据位表类似于下图所示。
+      **从小端字节序的最低有效位到最高地址计数**
+    - `BE`：字节序为大端格式
+      (Motorola®)。在此格式中，您从最低有效位
+      开始计数到最高有效位。例如，如果您以大端格式打包一个字节的数据，
+      起始位为 20，则数据位表类似于下图。
 
-      **从最低有效位到最低地址计数的 Big-Endian 字节顺序**
+      **从大端字节序的最低有效位到最低地址计数**
 
-    有关详细信息，请参阅 CAN 帧结构、字节顺序和位计数。
+    有关详细信息，请参阅 CAN 帧结构、字节序和位计数。
 
 **数据类型**
-:   指定信号如何解释分配的位中的数据。从下列各项中选择：
+:   指定信号如何解释所分配位中的数据。选择：
 
-    - `signed`（默认值）
+    - `signed`（默认）
     - `unsigned`
     - `single`
     - `double`
 
-      注意：如果某 `double` 信号与报文字节边界不完全对齐，要使用 Embedded Coder® 生成代码，则必须选中“配置参数”对话框的**硬件实现**窗格中的**设备详细信息**下的**支持 long long**。
+      注意：如果您有一个 `double` 信号未与消息字节边界精确对齐，
+      要使用 Embedded Coder® 生成代码，您必须在配置参数对话框的
+      **硬件实现** 窗格的 **设备详细信息** 下勾选 **支持 long long**。
 
 **多路复用类型**
-:   指定模块在每个时间步将信号打包到报文中的方式：
+:   指定模块在每个时间步如何将信号打包到消息中：
 
-    - `Standard`:在每个时间步打包信号。
-    - **多路复用器**：打包**多路复用器**信号，即模式信号。对每条报文，只能指定一个**多路复用器**信号。
-    - **多路复用**：如果在运行时**多路复用器**信号（模式信号）的值与为此信号配置的**多路复用值**匹配，则打包信号。
+    - `Standard`：信号在每个时间步
+      打包。
+    - `Multiplexor`：打包
+      `Multiplexor` 信号，即模式信号。
+      每条消息只能指定一个 `Multiplexor` 信号。
+    - `Multiplexed`：如果运行时
+      `Multiplexor` 信号（模式信号）的值与此信号配置的
+      **多路复用值** 匹配，则打包该信号。
 
-    例如，一条报文包含四个具有以下类型和值的信号。
+    例如，一条消息有四个信号，其类型和值如下。
 
     | 信号名称 | 多路复用类型 | 多路复用值 |
     | --- | --- | --- |
-    | Signal-A | 标准 | 不适用 |
-    | Signal-B | 多路复用 | 1 |
-    | Signal-C | 多路复用 | 0 |
-    | Signal-D | 多路复用器 | 不适用 |
+    | Signal-A | Standard | 不适用 |
+    | Signal-B | Multiplexed | 1 |
+    | Signal-C | Multiplexed | 0 |
+    | Signal-D | Multiplexor | 不适用 |
 
     在此示例中：
 
-    - 模块在每个时间步中打包 Signal-A（标准信号）和 Signal-D（多路复用器信号）。
-    - 如果 Signal-D 的值在特定时间步为 1，则模块在该时间步中将 Signal-B 与 Signal-A 和 Signal-D 一起打包。
-    - 如果 Signal-D 的值在特定时间步为 0，则模块在该时间步中将 Signal-C 与 Signal-A 和 Signal-D 一起打包。
-    - 如果 Signal-D 的值不是 1 或 0，则模块不会在该时间步中打包任一复用信号。
+- 该模块在每个时间步打包 Signal-A（标准信号）和 Signal-D（多路复用信号）。
+- 如果在某个特定时间步 Signal-D 的值为 1，则该模块在该时间步将 Signal-B 与 Signal-A 和 Signal-D 一起打包。
+- 如果在某个特定时间步 Signal-D 的值为 0，则该模块在该时间步将 Signal-C 与 Signal-A 和 Signal-D 一起打包。
+- 如果 Signal-D 的值不是 1 或 0，则该模块在该时间步不打包任何多路复用信号。
 
-**多路复用值**
-:   仅当您选择的**多路复用类型** 为 `Multiplexed` 时，此选项才可用。您在此处提供的值必须与运行时的**多路复用器**信号值匹配，模块才会打包**多路复用**信号。**多路复用值**必须是正整数或零。
+**Multiplex value**
+:   仅当您将 **Multiplex type** 选择为 `Multiplexed` 时，此选项才可用。您在此处提供的值必须在运行时与 `Multiplexor` 信号值匹配，模块才会打包 `Multiplexed` 信号。**Multiplex value** 必须为正整数或零。
 
-**因子**
-:   指定将物理值（信号值）转换为报文中打包的原始值时要应用的**因子**值。请查看**数据输入为**参数转换公式，了解物理值如何转换为打包到报文中的原始值。
+**Factor**
+:   指定要应用的 **Factor** 值，以将物理值（信号值）转换为打包在报文中的原始值。请参阅 **Data input as** 参数转换公式，以了解物理值如何转换为打包到报文中的原始值。
 
-**偏移量**
-:   指定将物理值（信号值）转换为报文中打包的原始值时要应用的**偏移量**值。请查看**数据输入为**参数转换公式，了解物理值如何转换为打包到报文中的原始值。
+**Offset**
+:   指定要应用的 **Offset** 值，以将物理值（信号值）转换为打包在报文中的原始值。请参阅 **Data input as** 参数转换公式，以了解物理值如何转换为打包到报文中的原始值。
 
-**最小值**、**最大值**
-:   定义一个信号值范围。默认设置分别为 `-Inf`（负无穷）和 `Inf`。对于数据库指定的信号，从数据库文件中读取这些设置。对于**手动指定的信号**，您可以指定信号的最小和最大物理值。默认情况下，这些设置不会对超过它们的信号值进行裁剪。
+**Min**、**Max**
+:   定义信号值的范围。默认设置分别为 `-Inf`（负无穷大）和 `Inf`。对于数据库指定的信号，这些设置从数据库文件中读取。对于 **manually specified signals**，您可以指定信号的最小和最大物理值。默认情况下，这些设置不会裁剪超过它们的信号值。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`SignalInfo` |
-| **类型：**`string` | `character vector` |
+| **模块参数**：`SignalInfo` |
+| **类型**：`string` | `character vector` |
 
 ## 所属库
 
@@ -291,40 +306,47 @@ Vehicle Network Toolbox / CAN FD Communication C2000 Microcontroller Blockset / 
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+Not documented in R2025b.
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2018a 中推出**
+**在 R2018a 中引入**
 
-### R2025a: 已更新参数：ARXML 支持
+### R2025a: Updated parameters: ARXML support
 
-为了支持 ARXML 文件定义，以下参数已更新：
+为支持 ARXML 文件定义，以下参数已更新：
 
-- **数据输入为** - 有新选项 `ARXML specified signals`。
+- **数据输入方式** — 在模块掩码中新增选项 `ARXML specified
+  signals`.
 
-- **CANdb 文件** - 在模块封装中已重命名为**数据库文件**。其编程名称仍为 `CANdbFile`。
+- **CANdb file** — Has been renamed to **Database
+  file**。其程序化名称保持不变
+  `CANdbFile`.
 
-### R2024b: 新参数：从输入端口指定 CAN 标识符
+### R2024b：新参数：从输入端口指定 CAN 标识符
 
-参数**从输入端口指定 CAN 标识符**会添加一个输入端口 **CAN Msg ID** 以支持 CAN 标识符的动态指定。
+参数 **从输入端口指定 CAN 标识符** 新增了一个
+输入端口 **CAN Msg ID**，以支持动态指定 CAN 标识符。
 
 ## 描述
 
-将多个信号打包为 CAN FD 总线报文
+将各个信号打包为 CAN FD 总线报文
 
-CAN FD Pack 模块在仿真期间以指定的间隔将信号数据加载到报文中。
+CAN FD Pack 模块按指定间隔将信号数据加载到报文中，
+simulation.
 
 要使用此模块，您还需要 Simulink® 软件的许可证。
 
 CAN FD Pack 模块支持：
 
-- 使用 Simulink 加速模式。使用此功能，可以加快 Simulink 模型的执行速度。有关详细信息，请参阅加速 (Simulink)。
+- 使用 Simulink 加速模式。使用此功能，您可以加快
+  Simulink 模型的执行速度。有关详细信息，请参阅加速 (Simulink)。
 
-**提示**
+**Tip**
 
-- 要使用 J1939 报文，请使用 J1939 Communication 模块库中的模块，而不是此模块。请参阅 J1939 通信。
+- 要处理 J1939 报文，请使用 J1939 Communication 模块库中的模块
+  而不是此模块。请参阅 J1939 Communication。

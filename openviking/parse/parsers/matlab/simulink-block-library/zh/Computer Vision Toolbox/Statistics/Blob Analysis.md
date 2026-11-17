@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Blob Analysis'
-family: 'statistics'
+family: 'vision'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b
@@ -22,204 +22,216 @@ chinese_source: worker-translation
 
 二值图像，指定为向量或矩阵
 
-**数据类型:** `Boolean`
+**数据类型：** `Boolean`
 ### 输出
 
-### **Area** — 已标记区域中的 pixels 数量 向量
+### **Area** — 标记区域中的像素数 向量
 
-已标记区域中的 pixels 数量，以向量形式返回。
+标记区域中的像素数，以向量形式返回。
 
 #### 依赖关系
 
-要启用此端口，请选择 **Area** 参数。
+要启用此端口，请选中 **Area** 参数。
 
-**数据类型:** `int32`
+**数据类型：** `int32`
 
-### **Centroid** — 质心坐标 *M*-by-2 矩阵
+### **Centroid** — 质心坐标 *M*×2 矩阵
 
-*M*-by-2 矩阵，包含 *M* 个 blob。
+由 *M* 个斑点的质心坐标构成的 *M*×2 矩阵。
 
-各行表示每个区域质心的坐标，*M* 表示 blob 数量。
+各行表示每个区域的质心坐标，
+*M* 表示斑点的数量。
 
-例如，有两个 blob，其质心的行和列坐标分别为 *x*1、*y*1 和 *x*2、*y*2。该模块输出：
+例如，有两个斑点，其质心的行坐标和列坐标分别为 *x*1、
+*y*1 和
+*x*2、
+*y*2。该模块输出：
 
 [x1y1x2y2]
 
-在 **Centroid** 端口。
+输出端口为 **Centroid**。
 
 #### 依赖关系
 
-要启用此端口，请选择 **Centroid** 参数。
+要启用此端口，请选中 **Centroid** 参数。
 
-**数据类型:** `double` | `single` | `fixed point`
+**数据类型：** `double` | `single` | `fixed point`
 
-### **BBox** — 边界框坐标 *M*-by-4 矩阵
+### **BBox** — 边界框坐标 *M*×4 矩阵
 
-边界框坐标，以 *M*-by-4 矩阵形式返回，其中包含 *M* 个 blob 的边界框。矩阵的每一行将一个边界框定义为四元素向量 [*x*,*y*,*width*,*height*]，采用 pixel 坐标。各行表示每个边界框的坐标，其中 *M* 表示 blob 数量。
+边界框坐标，以 *M*×4 矩阵形式返回，该矩阵包含
+*M* 个斑点的边界框。矩阵的每一行都将一个
+边界框定义为四元素向量
+[*x*,*y*,*width*,*height*]，
+并采用像素坐标。各行表示每个边界框的坐标，其中
+*M* 表示斑点的数量。
 
-例如，有两个 blob，其中 *x* 和 *y* 定义边界框左上角的位置，*w* 和 *h* 定义边界框的宽度和高度。该模块输出
+例如，有两个斑点，其中 *x* 和
+*y* 定义边界框左上角的位置，
+*w* 和 *h* 定义边界框的宽度和高度。该模块输出：
 
 [x1y1w1h1x2y2w2h2]
 
-在 **BBox** 端口。
+输出端口为 **BBox**。
 
 #### 依赖关系
 
-要启用此端口，请选择 **Bounding Box** 参数。
+要启用此端口，请选中 **Bounding Box**
+参数。
 
 ## 参数
 
-**Main 选项卡**
+**主选项卡**
 
-### **Area** — 已标记区域中的 pixels 数量 向量
+### **Area** — 标记区域中的像素数 向量
 
-已标记区域中的 pixels 数量，以向量形式返回。
+标记区域中的像素数，以向量形式返回。
 
 #### 依赖关系
 
-要启用此端口，请选择 **Area** 参数。
+要启用此端口，请选中 **Area** 参数。
 
-### **Centroid** — 质心坐标 *M*-by-2 矩阵
+### **Centroid** — 质心坐标 *M*×2 矩阵
 
-*M*-by-2 矩阵，包含 *M* 个 blob。
+对应 *M* 个斑点的 *M*×2 矩阵。
 
-各行表示每个区域质心的坐标，*M* 表示 blob 数量。
+各行表示每个区域的质心坐标，*M* 表示斑点数量。
 
-例如，有两个 blob，其质心的行和列坐标分别为 *x*1、*y*1 和 *x*2、*y*2。该模块输出：
+例如，有两个斑点，其质心的行坐标和列坐标分别为 *x*1、*y*1 和 *x*2、*y*2。该模块输出：
 
 [x1y1x2y2]
 
-在 **Centroid** 端口。
+在 **Centroid** 端口输出。
 
-#### 依赖关系
+#### 依赖项
 
-要启用此端口，请选择 **Centroid** 参数。
+要启用此端口，请选中 **Centroid** 参数。
 
-### **BBox** — 边界框坐标 *M*-by-4 矩阵
+### **BBox** — 边界框坐标 *M*×4 矩阵
 
-边界框坐标，以 *M*-by-4 矩阵形式返回，其中包含 *M* 个 blob 的边界框。矩阵的每一行将一个边界框定义为四元素向量 [*x*,*y*,*width*,*height*]，采用 pixel 坐标。各行表示每个边界框的坐标，其中 *M* 表示 blob 数量。
+边界框坐标，以 *M*×4 矩阵形式返回，其中包含 *M* 个斑点的边界框。矩阵的每一行都将一个边界框定义为采用像素坐标的四元素向量 [*x*,*y*,*width*,*height*]。各行表示每个边界框的坐标，其中 *M* 表示斑点数量。
 
-例如，有两个 blob，其中 *x* 和 *y* 定义边界框左上角的位置，*w* 和 *h* 定义边界框的宽度和高度。该模块输出
+例如，有两个斑点，*x* 和 *y* 定义边界框左上角的位置，*w* 和 *h* 定义边界框的宽度和高度。该模块输出
 
 [x1y1w1h1x2y2w2h2]
 
-在 **BBox** 端口。
+在 **BBox** 端口输出。
 
-#### 依赖关系
+#### 依赖项
 
-要启用此端口，请选择 **Bounding Box** 参数。
+要启用此端口，请选中 **Bounding Box** 参数。
 
-### **Major axis length** — 椭圆的长轴长度 off（默认）| on
+### **Major axis length** — 椭圆长轴的长度 off（默认） | on
 
-启用 **Major axis length** 端口。选中此复选框以输出一个向量，该向量
+启用 **Major axis length** 端口。选中此复选框可输出一个满足以下条件的向量：
 
-- 表示椭圆的长轴长度
-- 具有与已标记区域相同的归一化二阶中心矩
+- 表示椭圆长轴的长度
+- 与标记区域具有相同的归一化二阶中心矩
 
-### **Minor axis length** — 椭圆的短轴长度 off（默认）| on
+### **Minor axis length** — 椭圆短轴的长度 off（默认） | on
 
-启用 **Minor axis length** 端口。选中此复选框以输出一个向量，该向量
+启用 **Minor axis length** 端口。选中此复选框可输出一个满足以下条件的向量：
 
-- 表示椭圆的短轴长度
-- 具有与已标记区域相同的归一化二阶中心矩
+- 表示椭圆短轴的长度
+- 与标记区域具有相同的归一化二阶中心矩
 
-### **Orientation** — Orientation off（默认）| on
+### **Orientation** — 方向 off（默认）| on
 
 启用 **Orientation** 端口。
 
-选中此复选框以输出一个向量，该向量表示椭圆的长轴与 *x* 轴之间的角度。角度值以 radians 为单位，范围为：−π2 到 π2（含端点）。
+选中此复选框可输出一个向量，该向量表示各椭圆长轴与 *x* 轴之间的夹角。角度值以 radians 为单位，取值范围为：−π/2 至 π/2（含端点）。
 
-### **Eccentricity** — Eccentricity off（默认）| on
+### **Eccentricity** — 离心率 off（默认）| on
 
-启用 **Eccentricity** 端口。选中此复选框以输出一个向量，该向量表示与区域具有相同二阶矩的椭圆的偏心率。
+启用 **Eccentricity** 端口。选中此复选框可输出一个向量，该向量表示与区域具有相同二阶矩的椭圆的离心率。
 
-### **Equivalent diameter squared** — Equivalent diameter squared off（默认）| on
+### **Equivalent diameter squared** — 等效直径平方 off（默认）| on
 
-启用 **Equivalent diameter squared** 端口。选中此复选框以输出一个向量，该向量表示等效直径的平方。
+启用 **Equivalent diameter squared** 端口。选中此复选框可输出一个向量，该向量表示等效直径的平方。
 
-### **Extent** — Extent off（默认）| on
+### **Extent** — 延展度 off（默认）| on
 
-启用 **Extent** 端口。选中此复选框以输出一个向量，该向量表示将 blob 的面积除以其边界框面积的结果。
+启用 **Extent** 端口。选中此复选框可输出一个向量，该向量表示将各团块的面积除以其边界框面积所得到的结果。
 
-### **Perimeter** — 周长长度 off（默认）| on
+### **Perimeter** — 周长 off（默认）| on
 
-启用 **Perimeter** 端口。选中此复选框以输出一个 *N*-by-1 向量，其中包含每个 blob 的周长长度，以 pixels 为单位，其中 *N* 是 blob 数量。
+启用 **Perimeter** 端口。选中此复选框可输出一个 *N*×1 向量，其中包含每个团块的周长（以 pixels 为单位），*N* 为团块的数量。
 
-### **Statistics output data type** — 输出数据类型 double（默认）| single | specify via Data Types tab
+### **Statistics output data type** — 输出数据类型 double（默认）| single | 通过 Data Types 选项卡指定
 
 将输出的数据类型指定为 `double`、`single` 或 `Specify via Data Types tab`。
 
-### **Connectivity** — 已标记区域数量 `8`（默认）| `4`
+### **连通性** — 标记区域数 `8`（默认） | `4`
 
-指定每个图像中已标记区域的数量。
+指定每个图像中标记区域的数量。
 
-定义哪些 pixels 彼此连接。如果要连接位于顶部、底部、左侧和右侧的 pixels，请选择 `4`。如果要将 pixels 连接到顶部、底部、左侧、右侧以及对角线上的其他 pixels，请选择 `8`。有关此参数的更多信息，请参阅 Label 模块。
+定义像素之间的连接方式。如果要连接位于上、下、左、右方向的像素，请选择 `4`。如果要将像素与位于其上、下、左、右及对角线方向的其他像素连接，请选择 `8`。有关此参数的更多信息，请参阅 Label 模块。
 
-**Connectivity** 参数还会影响模块计算 blob 周长的方式。例如，此图说明了当您将 **Connectivity** 参数设置为 `4` 时，模块如何计算周长。
+**连通性**参数还会影响模块计算团块周长的方式。例如，此图说明了将**连通性**参数设置为 `4` 时，模块如何计算周长。
 
-该模块计算每个 pixel 中心之间的距离（由黑点标记），并估计周长为 22。
+该模块计算各像素中心（由黑点标记）之间的距离，并估计周长为 22。
 
-下一幅图说明了当您将 **Connectivity** 参数设置为 `8` 时，模块如何计算 blob 的周长。
+下一图说明了将**连通性**参数设置为 `8` 时，模块如何计算团块的周长。
 
-该模块围绕 blob 采用不同路径，并估计周长为 18+22。
+该模块沿团块周围采用不同的路径，并估计周长为 18+22。
 
-### **Output label matrix** — 输出标签矩阵 off（默认）| on
+### **输出标签矩阵** — 输出标签矩阵 off（默认） | on
 
-启用 **Label** 端口。选中此复选框以输出标签矩阵。等于 `0` 的 pixels 表示背景。等于 `1` 的 pixels 表示第一个对象。等于 `2` 的 pixels 表示第二个对象，依此类推。
+启用 **Label** 端口。选中此复选框可输出标签矩阵。值为 `0` 的像素表示背景。值为 `1` 的像素表示第一个对象。值为 `2` 的像素表示第二个对象，依此类推。
 
-**Blob Properties 选项卡**
+**团块属性选项卡**
 
-### **Maximum number of blobs** — 最大 blob 数量 标量
+### **最大团块数** — 最大团块数 scalar
 
-指定每个输入图像中已标记区域的最大数量。该模块使用此值预分配向量和矩阵，以确保它们足够长以容纳统计值。模块输出的最大 blob 数量取决于此参数的值和输入图像的大小。模块输出的 blob 数量可能会受到输入图像大小的限制。
+指定每个输入图像中标记区域的最大数量。模块使用该值预分配向量和矩阵，以确保其长度足以保存统计值。模块输出的团块最大数量同时取决于此参数的值和输入图像的大小。模块输出的团块数量可能受输入图像大小的限制。
 
-### **Warn if maximum number of blobs is exceeded** — 如果超过最大 blob 数量则发出警告 on（默认）| off
+### **超过最大团块数时发出警告** — 超过最大团块数时发出警告 on（默认） | off
 
-选择此参数可在超过最大 blob 数量时发出警告。
+选择此参数可在超过最大团块数时发出警告。
 
-### **Output actual number of blobs** — blob 数量 off（默认）| on
+### **输出实际斑点数** — 斑点数 off (默认值) | on
 
-启用 **Count** 端口。选择此参数以输出一个标量值，该值表示每个图像中连通区域的实际数量。
+启用 **Count** 端口。选中此参数可输出一个标量值，该值表示每幅图像中连接区域的实际数量。
 
-### **Specify minimum blob area in pixels** — 最小 blob 面积，以 pixels 为单位 `0`（默认）| 标量
+### **以像素为单位指定最小斑点面积** — 以像素为单位的最小斑点面积 `0` (默认值) | 标量
 
-选择此参数以指定最小 blob 面积，以 pixels 为单位。如果 pixels 数量满足指定的最小大小，则标记该 blob。
+选中此参数可指定以像素为单位的最小斑点面积。如果斑点的像素数符合指定的最小尺寸要求，则对该斑点进行标记。
 
-**可调:** Yes
+**可调：** 是
 
-### **Specify maximum blob area in pixels** — 最大 blob 面积，以 pixels 为单位 intmax('uint32')（默认）| 标量
+### **以像素为单位指定最大斑点面积** — 以像素为单位的最大斑点面积 intmax('uint32') (默认值) | 标量
 
-选择此参数以指定最大 blob 面积，以 pixels 为单位。如果 pixels 数量满足指定的最大大小，则标记该 blob。允许的最大值是 `uint32` 数据类型的最大值。
+选中此参数可指定以像素为单位的最大斑点面积。如果斑点的像素数符合指定的最大尺寸要求，则对该斑点进行标记。最大允许值为 `uint32` 数据类型的最大值。
 
-**可调:** Yes
+**可调：** 是
 
-### **Exclude blobs touching image border** — 排除接触图像边界的 blob off（默认）| on
+### **排除接触图像边界的斑点** — 排除接触图像边界的斑点 off (默认值) | on
 
-指定此参数以排除包含至少一个边界 pixel 的已标记 blob。
+选中此参数可排除包含至少一个边界像素的已标记斑点。
 
-### **Output blob statistics as a variable size signal** — 将 blob 统计信息输出为可变大小信号 off（默认）| on
+### **将斑点统计信息作为可变大小信号输出** — 将斑点统计信息作为可变大小信号输出 off (默认值) | on
 
-指定此参数以将 blob 统计信息输出为可变大小信号。
+选中此参数可将斑点统计信息作为可变大小信号输出。
 
-### **Fill empty spaces in output** — 填充输出中的空白位置 off（默认）| on
+### **填充输出中的空白** — 填充输出中的空白 off (默认值) | on
 
-指定此参数以使用您在 **Fill values** 参数中指定的值填充统计向量中的空白位置。
-
-#### 依赖关系
-
-要启用此参数，请清除 **Output blob statistics as a variable size signal** 参数。
-
-### **Fill values** — 用于填充输出中空白位置的标量 `-1`（默认）| 标量 | 向量
-
-指定一个标量值以填充统计向量中的所有空白位置。如果输入向量，则该向量的长度必须与所选统计信息的数量相同。模块使用每个向量元素填充不同的统计向量。如果空白位置不影响您的计算，可以清除 **Fill empty spaces in outputs** 参数。
+选中此参数可使用您在 **填充值** 参数中指定的值填充统计向量中的空位。
 
 #### 依赖关系
 
-要启用此参数，请清除 **Output blob statistics as a variable size signal** 参数。
+要启用此参数，请取消选中 **将斑点统计信息作为可变大小信号输出** 参数。
 
-**Data Types 选项卡**
+### **填充值** — 用于填充输出中空白位置的标量 `-1`（默认） | scalar | vector
 
-要启用 **Data Types** 选项卡上的选项，请在 **Main** 选项卡中，将 **Statistics output data type** 参数设置为 `Specify via Data Types tab`。有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
+指定一个标量值，以填充统计向量中的所有空白位置。如果输入向量，则其长度必须与所选统计量的数量相同。模块使用向量的每个元素填充不同的统计向量。如果空白位置不影响计算，则可以取消选中 **填充输出中的空白** 参数。
+
+#### 依赖关系
+
+要启用此参数，请取消选中 **将 blob 统计量作为可变大小信号输出** 参数。
+
+**数据类型选项卡**
+
+要启用 **数据类型** 选项卡上的选项，请在 **主** 选项卡中，将 **统计量输出数据类型** 参数设置为 `Specify via Data Types tab`。有关定点模块参数的详细信息，请参阅为模块指定定点属性 (DSP System Toolbox)。
 
 ## 所属库
 
@@ -234,7 +246,7 @@ Computer Vision Toolbox / Statistics
 | **可变大小信号** | `yes` |
 |  |  |
 | --- | --- |
-| a 当您将 FFT implementation 参数设置为 FFTW，或当变换长度不是 2 的幂时，生成的代码将仅限于 MATLAB 主机计算机。  b 此数据类型在输出端口支持。  c 定点数据类型在 Major Axis、Minor Axis、Orientation 和 Eccentricity 输出端口不受支持。 | |
+| a 当将 FFT 实现参数设置为 FFTW，或变换长度不是 2 的幂时，生成的代码将只能在 MATLAB 主机计算机上运行。  b 输出端口支持此数据类型。  c Major Axis、Minor Axis、Orientation 和 Eccentricity 输出端口不支持定点数据类型。 | |
 
 ## 扩展功能
 
@@ -248,8 +260,8 @@ Computer Vision Toolbox / Statistics
 
 ## 描述
 
-已标记区域的统计信息
+标记区域的统计信息
 
-Blob Analysis 模块计算二值图像中已标记区域的统计信息。该模块返回诸如质心、边界框、标签矩阵和 blob 计数等量。Blob Analysis 模块支持输入和输出可变大小信号。您还可以使用来自 Simulink® 的 Selector (Simulink) 模块，根据 blob 的统计信息选择特定 blob。
+Blob Analysis 模块计算二值图像中标记区域的统计信息。该模块返回质心、边界框、标签矩阵和斑点数量等统计量。Blob Analysis 模块支持可变大小的输入和输出信号。您还可以使用 Simulink® 中的 Selector (Simulink) 模块，根据斑点的统计信息选择特定斑点。
 
-有关 pixel 和空间坐标系定义的信息，请参阅 Image Coordinate Systems 和 Coordinate Systems。
+有关像素坐标系和空间坐标系定义的信息，请参阅图像坐标系和坐标系。

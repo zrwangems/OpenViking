@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Hough Transform'
-family: 'transforms'
+family: 'vision'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b
@@ -25,59 +25,59 @@ chinese_source: worker-translation
 **数据类型：** `Boolean`
 ### 输出
 
-### **Hough** — 参数空间矩阵矩阵
+### **Hough** — 参数空间矩阵
 
-参数空间矩阵，返回为数值矩阵。参数空间矩阵中的值位于 (*rho, theta*) 空间。
+参数空间矩阵，以数值矩阵形式返回。参数空间矩阵中的值位于 (*rho, theta*) 空间中。
 
 **数据类型：** `single` | `double` | `fixed point`
 
 ### **Theta** — Theta 值向量
 
-Theta 值，返回为数值向量。每个元素表示对应直线的旋转角度，以 radians 为单位。
+Theta 值，以数值向量形式返回。每个元素表示对应直线的旋转角度，以弧度为单位。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，您必须选择 **输出 theta 和 rho 值** 参数。
+要启用此端口，必须选择 **Output theta and rho values** 参数。
 
 **数据类型：** `single` | `double` | `fixed point`
 
 ### **Rho** — Rho 值向量
 
-Rho 值，返回为数值向量。每个元素表示对应直线距图像左上点的距离。
+Rho 值，以数值向量形式返回。每个元素表示对应直线距图像左上角点的距离。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，您必须选择 **输出 theta 和 rho 值** 参数。
+要启用此端口，必须选择 **Output theta and rho values** 参数。
 
 **数据类型：** `single` | `double` | `fixed point`
 
 ## 参数
 
-### 主要
+### 主
 
-### **Theta 分辨率 (radians)** — Theta 分辨率 `pi/180`（默认） | 正标量
+### **Theta resolution (radians)** — Theta 分辨率 `pi/180`（默认）| 正标量
 
 指定 Hough 变换 bin 沿 *theta* 轴的间距。此值必须小于 `pi/2`。
 
-### **Rho 分辨率 (pixels)** — Rho 分辨率 `1`（默认） | 正标量
+### **Rho resolution (pixels)** — Rho 分辨率 `1`（默认）| 正标量
 
 指定 Hough 变换 bin 沿 *rho* 轴的间距。
 
-### **输出 theta 和 rho 值** — 启用 Theta 和 Rho 输出端口 `off`（默认） | `on`
+### **Output theta and rho values** — 启用 Theta 和 Rho 输出端口 `off`（默认）| `on`
 
-选择此参数可启用 **Theta** 和 **Rho** 输出端口。模块在这些端口分别输出 *theta* 轴和 *rho* 轴向量。
+选择此参数以启用 **Theta** 和 **Rho** 输出端口。模块分别在这些端口输出 *theta* 轴和 *rho* 轴向量。
 
-### **输出数据类型** — 输出数据类型 `double`（默认） | `single` | `Specify via Fixed-point tab`
+### **Output data type** — 输出数据类型 `double`（默认）| `single` | `Specify via Fixed-point tab`
 
-指定输出信号的数据类型。如果选择 `double` 或 `single`，所有输出均为指定的数据类型。如果选择 `Specify via Fixed-point tab`，您可以在 **数据类型** 选项卡中指定每个输出的字长。
+指定输出信号的数据类型。如果选择 `double` 或 `single`，所有输出均为指定的数据类型。如果选择 `Specify via Fixed-point tab`，可以在 **Data Types** 选项卡中指定每个输出的字长。
 
 ### 数据类型
 
-有关定点模块参数的详细信息，请参阅为模块指定定点属性 (DSP System Toolbox)。
+有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
 
-### **锁定数据类型设置以防止定点工具更改** — 防止定点工具覆盖数据类型 `off`（默认） | `on`
+### **Lock data type settings against change by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
-选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅锁定输出数据类型设置 (Fixed-Point Designer)。
+选择此参数以防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
 
 ## 所属库
 
@@ -92,7 +92,7 @@ Computer Vision Toolbox / Transforms
 | **可变大小信号** | `yes` |
 |  |  |
 | --- | --- |
-| a 此数据类型在输出端口受支持。 | |
+| a 输出端口支持此数据类型。 | |
 
 ## 扩展功能
 
@@ -100,10 +100,10 @@ Computer Vision Toolbox / Transforms
 
 ## 版本历史
 
-**在 R2006a 之前引入**
+**在 R2006a 之前推出**
 
 ## 描述
 
 在图像中查找直线
 
-使用 Hough Transform 模块在图像中查找直线。该模块输出 Hough 空间矩阵，并可选地输出 *rho* 轴和 *theta* 轴向量。矩阵中的峰值表示输入图像中的潜在直线。您可以使用 Hough Transform 模块的输出，通过 Hough Lines 模块在图像中查找直线。或者，您也可以使用自定义算法，通过定位 Hough 空间矩阵中的峰值来识别潜在直线。
+使用 Hough Transform 模块在图像中查找直线。该模块输出 Hough 空间矩阵，并可选输出 *rho* 轴和 *theta* 轴向量。矩阵中的峰值表示输入图像中潜在的直线。您可以使用 Hough Transform 模块的输出，通过 Hough Lines 模块在图像中查找直线。或者，您可以使用自定义算法，通过定位 Hough 空间矩阵中的峰值来识别潜在的直线。

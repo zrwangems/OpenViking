@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Mach Number'
-family: 'flight-parameters'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -18,22 +18,22 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **V** — 速度 3 元素向量
+### **V** — 速度 三元向量
 
-速度向量，指定为 3 元素向量。
+速度向量，指定为三元向量。
 
 **数据类型：** `double`
 
-### **a** — 声速 1-by-1 数组
+### **a** — 声速 1×1 数组
 
-声速，指定为 1-by-1 数组。
+声速，指定为 1×1 数组。
 
 **数据类型：** `double`
 ### 输出
 
-### **Mach** — 马赫数标量
+### **Mach** — 马赫数 标量
 
-马赫数，以标量形式返回。
+马赫数，返回为标量。
 
 **数据类型：** `double`
 
@@ -63,6 +63,6 @@ R2025b 中未记录。
 
 Mach Number 模块计算马赫数。马赫数定义为
 
-Mach=V⋅Va,
+Mach=V⋅Va，
 
 其中 *a* 是声速，*V* 是速度向量。

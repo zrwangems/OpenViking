@@ -9,16 +9,14 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: '../rptgen/index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Report Generator
 
-MATLAB Report Generator 基础知识学习
+了解 MATLAB Report Generator 的基础知识
 
-本页采用了机器翻译。点击此处可查看英文原文。
-
-设计并从 MATLAB 应用程序自动生成报告
+从 MATLAB 应用程序设计并自动生成报告
 
 - 发行说明
 - PDF 文档
@@ -28,43 +26,52 @@ MATLAB Report Generator 基础知识学习
 - **PDF 文档**
 - **PDF 文档**
 
-MATLAB® Report Generator™ 提供将报告功能集成到 MATLAB 应用程序中的函数和 API。您可以开发生成 PDF、Microsoft® Word、Microsoft PowerPoint® 和 HTML 报告的程序。MATLAB Report Generator 使您能够从 MATLAB 代码中动态捕获结果和数据，并将这些结果记录在可与组织中的其他人共享的单个报告中。您可以使用预先构建的、可自定义的 Word 和 HTML 模板，或根据您组织的模板和标准设计报告。
+MATLAB®
+Report Generator™ 提供函数和 API，可将报告功能集成到
+MATLAB 应用程序中。您可以开发生成 PDF、
+Microsoft® Word、Microsoft
+PowerPoint® 和 HTML 格式报告的程序。MATLAB
+Report Generator 使您能够从 MATLAB 代码中动态捕获结果和图形，并将这些结果记录在单个报告中，以便与
+组织中的其他人共享。您可以使用预构建的可自定义 Word 和 HTML 模板，
+或根据组织的模板和标准设计报告。
 
-## 开始使用 MATLAB Report Generator
+## 入门
 
-MATLAB Report Generator 基础知识学习
+了解 MATLAB Report Generator 的基础知识
 
-## 报告生成器开发
+## Report Generator 开发
 
 创建生成报告的 MATLAB 程序
 
-## 演示文稿生成器开发
+## Presentation Generator 开发
 
-创建和更新 Microsoft PowerPoint 演示文稿
+创建和更新 Microsoft
+PowerPoint 演示文稿
 
 ## MATLAB Report Generator 任务示例
 
-报告生成器示例任务和相关代码
+Report Generator 示例任务及相关代码
 
-## 交互式报告程序生成器
+## 交互式报告程序构建器
 
-报告资源管理器交互式程序生成器用于创建报告生成器。
+使用 Report Explorer 交互式程序
+构建器创建报告生成器
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击的链接对应于此 MATLAB 命令：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：。
 
 - (English)
 - (Deutsch)
@@ -73,11 +80,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -108,7 +115,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

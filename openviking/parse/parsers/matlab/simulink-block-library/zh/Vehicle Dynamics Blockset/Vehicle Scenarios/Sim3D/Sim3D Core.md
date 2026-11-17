@@ -9,15 +9,14 @@ official_category: 'Utilities'
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Vehicle Dynamics Blockset
 
-Learn the basics of Vehicle Dynamics Blockset
+了解 Vehicle Dynamics Blockset 的基础知识
 
-Model and simulate vehicle dynamics in a virtual 3D
-environment
+在虚拟 3D 环境中建模和仿真车辆动力学
 
 - Release Notes
 - PDF Documentation
@@ -27,70 +26,61 @@ environment
 - **PDF Documentation**
 - **PDF Documentation**
 
-Vehicle Dynamics Blockset™ provides preassembled automotive vehicle dynamics reference applications for
-passenger cars, trucks, and two-wheelers. The blockset includes a component library for
-propulsion, steering, suspension, vehicle body, brakes, tires, and driver models, as well as
-component and supervisory controllers. You can use the built-in interface with Unreal Engine® to visualize simulations and communicate scene information back to your
-model.
+Vehicle Dynamics Blockset™ 为乘用车、卡车和两轮车提供预组装的汽车车辆动力学参考应用。该模块集包含用于推进、转向、悬架、车身、制动、轮胎和驾驶员模型的组件库，以及组件控制器和监督控制器。您可以使用与 Unreal Engine® 的内置接口来可视化仿真，并将场景信息传回您的模型。
 
-Vehicle Dynamics Blockset offers the Virtual Vehicle Composer app for configuring and parameterizing
-models, as well as prebuilt workflows for Kinematics and Compliance (K&C) testing and
-calibrating models from test data. You can use these models for ride and handling analyses,
-chassis controls development, software integration testing, and hardware-in-the-loop (HIL)
-testing. The models are open, so you can incorporate your own subsystems and customize them
-as needed.
+Vehicle Dynamics Blockset 提供 Virtual Vehicle Composer 应用，用于配置和参数化模型，以及用于运动学与柔顺性（K&C）测试和根据测试数据校准模型的预构建工作流。您可以使用这些模型进行平顺性和操纵性分析、底盘控制开发、软件集成测试和硬件在环（HIL）测试。这些模型是开放的，因此您可以纳入自己的子系统并根据需要进行自定义。
 
-## Get Started
+## 快速入门
 
-Learn the basics of Vehicle Dynamics Blockset
+了解 Vehicle Dynamics Blockset 的基础知识
 
 ## Vehicle Reference Applications
 
-Ride and handling analysis, chassis controls development, ADAS and AD testing
+平顺性和操纵性分析、底盘控制开发、ADAS 和 AD 测试
 
 ## Virtual Vehicles
 
-Configure, build, and test virtual vehicles
+配置、构建和测试虚拟车辆
 
 ## Powertrain
 
-Propulsion, drivetrain, and transmission
+推进、传动系统和变速器
 
 ## Steering
 
-Ackerman, rack and pinion, and parallel steering
+Ackerman、齿轮齿条和平行转向
 
 ## Suspension
 
-Independent and solid axle suspensions
+独立悬架和整体桥悬架
 
 ## Wheels and Tires
 
-Wheels and tires with drum, disc, and mapped brakes
+带鼓式、盘式和映射制动的车轮和轮胎
 
 ## Vehicle Motion
 
-Vehicles, motorcycles, and trailers with 1DOF, 3DOF, and 6DOF motion
+具有 1DOF、3DOF 和 6DOF 运动的车辆、摩托车和挂车
 
 ## Vehicle Scenarios
 
-Drive cycles, driver models, test maneuvers, and 3D simulation in Unreal Engine visualization environment
+驾驶循环、驾驶员模型、测试机动，以及在 Unreal Engine 可视化环境中的 3D 仿真
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个对应于以下 MATLAB 命令的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB Command Window 中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
 Close
 
 MathWorks
 MathWorks
 
-选择网站
+Select a Web Site
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：.
 
 - (English)
 - (Deutsch)
@@ -99,19 +89,19 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择一个网站
 
-**如何获得最佳网站性能**
+**How to Get Best Site Performance**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
-美洲
+Americas
 
 - América Latina (Español)
 - Canada (English)
 - United States (English)
 
-欧洲
+Europe
 
 - Belgium (English)
 - Denmark (English)
@@ -134,7 +124,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+Asia Pacific
 
 - Australia (English)
 - India (English)
@@ -145,4 +135,4 @@ MathWorks
 - 日本 (日本語)
 - 한국 (한국어)
 
-联系您当地的办事处
+Contact your local office

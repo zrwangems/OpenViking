@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'RegressionGP Predict'
-family: 'regression'
+family: 'stats'
 product_id: 'stats'
 product_name: 'Statistics and Machine Learning Toolbox'
 documentation_release: R2025b
@@ -20,9 +20,9 @@ chinese_source: worker-translation
 
 ### **x** — 预测变量数据 行向量 | 列向量
 
-预测变量数据，指定为一个观测值的行向量或列向量。
+预测变量数据，指定为一个观测的行向量或列向量。
 
-**x** 中的变量必须与由 **选择训练好的机器学习模型** 指定的模型训练时所用的预测变量具有相同顺序。
+**x** 中的变量必须与训练 **Select trained machine learning model** 所指定模型的预测变量具有相同的顺序。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 ### 输出
@@ -41,7 +41,8 @@ chinese_source: worker-translation
 
 ### **yint** — 响应的预测区间 1×2 向量
 
-预测响应的预测区间，以 1×2 向量形式返回。**yint** 包含预测响应 **yfit** 针对预测变量数据 **x** 的 `100(1 – Alpha)%` 预测区间。`Alpha` 值是预测区间不包含 **x** 的真实响应值的概率。**yint** 的第一列包含预测区间的下限，第二列包含上限。
+预测响应的预测区间，以 1×2 向量形式返回。
+**yint** 包含预测响应 **yfit** 针对预测变量数据 **x** 的 `100(1 – Alpha)%` 预测区间。`Alpha` 值是预测区间不包含 **x** 的真实响应值的概率。**yint** 的第一列包含预测区间的下限，第二列包含上限。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 
@@ -49,15 +50,19 @@ chinese_source: worker-translation
 
 ### 主要
 
-### **选择训练好的机器学习模型** — 高斯过程回归模型 `gpMdl`（默认） | `RegressionGP` | `CompactRegressionGP`
+### **Select trained machine learning model** — 高斯过程回归模型 `gpMdl`（默认）| `RegressionGP` | `CompactRegressionGP`
 
-指定包含 `RegressionGP` 对象或 `CompactRegressionGP` 对象的工作区变量的名称。
+指定包含 `RegressionGP` 对象或 `CompactRegressionGP` 对象的工作区变量名称。
 
 当您使用 `fitrgp` 训练模型时，以下限制适用：
 
-- 预测变量数据不能包含分类预测变量（`logical`、`categorical`、`char`、`string` 或 `cell`）。如果在表中提供训练数据，预测变量必须为数值（`double` 或 `single`）。此外，不能使用 `CategoricalPredictors` 名称-值参数。要在模型中包含分类预测变量，请在拟合模型之前使用 `dummyvar` 对其进行预处理。
+- 预测变量数据不能包含分类预测变量
+  （`logical`、`categorical`、`char`、
+  `string` 或 `cell`）。如果您在表中提供训练数据，
+  预测变量必须是数值型（`double` 或 `single`）。
+  此外，您不能使用 `CategoricalPredictors` 名称-值参数。要将分类预测变量包含在模型中，请在拟合模型之前使用 `dummyvar` 对其进行预处理。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
@@ -66,11 +71,11 @@ chinese_source: worker-translation
 | **值：** `RegressionGP` 对象 | `CompactRegressionGP` 对象 |
 | **默认：** `'gpMdl'` |
 
-### **添加估计标准差的输出端口** — 标准差的可选输出端口 `off`（默认） | `on`
+### **Add output port for estimated standard deviation** — 标准差的可选输出端口 `off`（默认）| `on`
 
-选中此复选框，以在 RegressionGP Predict 模块中包含可选输出端口 **ysd**。
+选中该复选框以在 RegressionGP Predict 模块中包含可选输出端口 **ysd**。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
@@ -79,11 +84,11 @@ chinese_source: worker-translation
 | **值：** `'off' | 'on'` |
 | **默认：** `'off'` |
 
-### **添加预测区间的输出端口** — 预测区间的可选输出端口 `off`（默认） | `on`
+### **Add output port for prediction intervals** — 预测区间的可选输出端口 `off`（默认）| `on`
 
-选中此复选框，以在 RegressionGP Predict 模块中包含可选输出端口 **yint**。
+选中该复选框以在 RegressionGP Predict 模块中包含可选输出端口 **yint**。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
@@ -92,11 +97,11 @@ chinese_source: worker-translation
 | **值：** `'off' | 'on'` |
 | **默认：** `'off'` |
 
-### **Alpha** — 显著性水平 0.05（默认） | `[0 1]` 中的标量
+### **Alpha** — 显著性水平 0.05（默认）| `[0 1]` 中的标量
 
-指定预测区间 **yint** 的置信水平对应的显著性水平。**yint** 的置信水平等于 `100(1 – Alpha)%`。例如，将 **Alpha** 指定为 0.01，以返回 99% 预测区间。
+指定预测区间 **yint** 的置信水平的显著性水平。**yint** 的置信水平等于 `100(1 – Alpha)%`。例如，将 **Alpha** 指定为 0.01 以返回 99% 预测区间。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
@@ -109,13 +114,13 @@ chinese_source: worker-translation
 
 #### 定点运算参数
 
-### **整数舍入模式** — 定点运算的舍入模式 `Floor`（默认） | `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
+### **Integer rounding mode** — 定点运算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
-指定定点运算的舍入模式。有关详细信息，请参阅舍入模式 (Fixed-Point Designer)。
+指定定点运算的舍入模式。有关详细信息，请参阅舍入模式（Fixed-Point Designer）。
 
-模块参数始终舍入到最接近的可表示值。要控制模块参数的舍入，请使用 MATLAB® 舍入函数在掩码字段中输入表达式。
+模块参数始终舍入到最接近的可表示值。要控制模块参数的舍入方式，请使用 MATLAB® 舍入函数在掩码字段中输入表达式。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
@@ -124,16 +129,16 @@ chinese_source: worker-translation
 | **值：** `"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"` |
 | **默认：** `"Floor"` |
 
-### **整数溢出时饱和** — 溢出操作的方法 `off`（默认） | `on`
+### **Saturate on integer overflow** — 溢出操作的方法 `off`（默认）| `on`
 
-指定溢出是饱和还是回绕。
+指定溢出时是饱和还是回绕。
 
 | 操作 | 理由 | 对溢出的影响 | 示例 |
 | --- | --- | --- | --- |
-| 选中此复选框（`on`）。 | 您的模型可能发生溢出，并且您希望在生成的代码中提供显式饱和保护。 | 溢出饱和到数据类型可以表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。选中该复选框后，模块输出在 127 处饱和。类似地，模块输出在最小输出值 –128 处饱和。 |
-| 清除此复选框（`off`）。 | 您希望优化所生成代码的效率。您希望避免过度指定模块如何处理超出范围的信号。有关详细信息，请参阅排查信号范围错误 (Simulink)。 | 溢出回绕到数据类型可以表示的相应值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。清除该复选框后，软件将导致溢出的值解释为 `int8`，这可能会产生意外结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时为 –126。 |
+| 选中此复选框（`on`）。 | 您的模型可能存在溢出，并且您希望在生成的代码中提供显式的饱和保护。 | 溢出饱和到数据类型可以表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。选中该复选框后，模块输出饱和于 127。类似地，模块输出饱和于最小输出值 –128。 |
+| 清除此复选框（`off`）。 | 您希望优化生成代码的效率。您希望避免过度指定模块如何处理超出范围的信号。有关详细信息，请参阅排查信号范围错误（Simulink）。 | 溢出回绕到数据类型可以表示的相应值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。清除该复选框后，软件将导致溢出的值解释为 `int8`，这可能会产生意外结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时为 –126。 |
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
@@ -142,11 +147,11 @@ chinese_source: worker-translation
 | **值：** `"off" | "on"` |
 | **默认：** `"off"` |
 
-### **锁定输出数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 `off`（默认） | `on`
+### **Lock output data type setting against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
-选择此参数可防止定点工具覆盖您为模块指定的数据类型。有关详细信息，请参阅使用锁定输出数据类型设置 (Fixed-Point Designer)。
+选择此参数可防止定点工具覆盖您为模块指定的数据类型。有关详细信息，请参阅使用锁定输出数据类型设置（Fixed-Point Designer）。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
@@ -157,202 +162,202 @@ chinese_source: worker-translation
 
 #### 数据类型
 
-### **输出数据类型** — yfit 输出的数据类型 `Inherit: auto`（默认） | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **Output data type** — yfit 输出的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
 指定 **yfit** 输出的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
 当您选择 `Inherit: auto` 时，模块使用继承数据类型的规则。
 
-有关数据类型的详细信息，请参阅控制信号的数据类型 (Simulink)。
+有关数据类型的详细信息，请参阅控制信号的数据类型（Simulink）。
 
-单击 **显示数据类型助手** 按钮  以显示 **数据类型助手**，它可帮助您设置数据类型属性。有关详细信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
+单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅使用 Data Type Assistant 指定数据类型（Simulink）。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**： `OutDataTypeStr` |
-| **类型**： 字符向量 |
-| **值**： `"Inherit: auto"` | `"double"` | `"single"` | `"half"` | `"int8"` | `"uint8"` | `"int16"` | `"uint16"` | `"int32"` | `"uint32"` | `"int64"` | `"uint64"` | `"boolean"` | `"fixdt(1,16,0)"` | `"fixdt(1,16,2^0,0)"` | `"<data type expression>"` |
-| **默认**： `"Inherit: auto"` |
+| **模块参数**：`OutDataTypeStr` |
+| **类型**：字符向量 |
+| **值**：`"Inherit: auto"` | `"double"` | `"single"` | `"half"` | `"int8"` | `"uint8"` | `"int16"` | `"uint16"` | `"int32"` | `"uint32"` | `"int64"` | `"uint64"` | `"boolean"` | `"fixdt(1,16,0)"` | `"fixdt(1,16,2^0,0)"` | `"<data type expression>"` |
+| **默认值**：`"Inherit: auto"` |
 
-### **输出数据类型最小值** — 用于范围检查的 yfit 输出最小值 `[]`（默认） | 标量
+### **输出数据类型最小值** — 用于范围检查的 yfit 输出最小值 `[]`（默认）| 标量
 
 指定 Simulink® 检查的 **yfit** 输出范围的下限值。
 
-Simulink 使用最小值执行：
+Simulink 使用最小值执行以下操作：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink) 和启用仿真范围检查 (Simulink)）。
-- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环 (SIL) 模式或外部模式。有关详细信息，请参阅使用指定的最小值和最大值进行优化 (Embedded Coder)。
+- 对某些模块进行参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出数据类型最小值**参数不会饱和或裁剪实际的 **yfit** 信号。为此，请改用 Saturation (Simulink) 模块。
+**输出数据类型最小值**参数不会饱和或裁剪实际的 **yfit** 信号。如需执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**： `OutMin` |
-| **类型**： 字符向量 |
-| **值**： `'[]'` | 标量 |
-| **默认**： `'[]'` |
+| **模块参数**：`OutMin` |
+| **类型**：字符向量 |
+| **值**：`'[]'` | 标量 |
+| **默认值**：`'[]'` |
 
-### **输出数据类型最大值** — 用于范围检查的 yfit 输出最大值 `[]`（默认） | 标量
+### **输出数据类型最大值** — 用于范围检查的 yfit 输出最大值 `[]`（默认）| 标量
 
 指定 Simulink 检查的 **yfit** 输出范围的上限值。
 
-Simulink 使用最大值执行：
+Simulink 使用最大值执行以下操作：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink) 和启用仿真范围检查 (Simulink)）。
-- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅使用指定的最小值和最大值进行优化 (Embedded Coder)。
+- 对某些模块进行参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出数据类型最大值**参数不会饱和或裁剪实际的 **yfit** 信号。为此，请改用 Saturation (Simulink) 模块。
+**输出数据类型最大值**参数不会饱和或裁剪实际的 **yfit** 信号。如需执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**： `OutMax` |
-| **类型**： 字符向量 |
-| **值**： `'[]'` | 标量 |
-| **默认**： `'[]'` |
+| **模块参数**：`OutMax` |
+| **类型**：字符向量 |
+| **值**：`'[]'` | 标量 |
+| **默认值**：`'[]'` |
 
-### **输出标准差数据类型** — `ysd` 输出的数据类型 `Inherit: auto`（默认） | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **输出标准差数据类型** — `ysd` 输出的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
 指定 **ysd** 输出的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
 当您选择 `Inherit: auto` 时，模块使用继承数据类型的规则。
 
-有关数据类型的详细信息，请参阅控制信号的数据类型 (Simulink)。
+有关数据类型的详细信息，请参阅 Control Data Types of Signals (Simulink)。
 
-单击 **显示数据类型助手** 按钮  以显示 **数据类型助手**，它可帮助您设置数据类型属性。有关详细信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
+单击**显示数据类型助手**按钮以显示**数据类型助手**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**： `SDDataTypeStr` |
-| **类型**： 字符向量 |
-| **值**： `'Inherit: auto'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-| **默认**： `'Inherit: auto'` |
+| **模块参数**：`SDDataTypeStr` |
+| **类型**：字符向量 |
+| **值**：`'Inherit: auto'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
+| **默认值**：`'Inherit: auto'` |
 
-### **输出标准差数据类型最小值** — 用于范围检查的 `ysd` 输出最小值 `[]`（默认） | 标量
+### **Output standard deviation data type Minimum** — 用于范围检查的 `ysd` 输出最小值 `[]`（默认）| 标量
 
 指定 Simulink 检查的 **ysd** 输出范围的下限值。
 
 Simulink 使用最小值执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink) 和启用仿真范围检查 (Simulink)）。
-- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环 (SIL) 模式或外部模式。有关详细信息，请参阅使用指定的最小值和最大值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 从模型生成的代码优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出标准差数据类型最小值**参数不会饱和或裁剪实际的 **ysd** 信号。为此，请改用 Saturation (Simulink) 模块。
+**Output standard deviation data type Minimum** 参数不会饱和或裁剪实际的 **ysd** 信号。如需执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**： `SDOutMin` |
-| **类型**： 字符向量 |
-| **值**： `'[]'` | 标量 |
-| **默认**： `'[]'` |
+| **模块参数**：`SDOutMin` |
+| **类型**：character vector |
+| **值**：`'[]'` | scalar |
+| **默认值**：`'[]'` |
 
-### **输出标准差数据类型最大值** — 用于范围检查的 `ysd` 输出最大值 `[]`（默认） | 标量
+### **Output standard deviation data type Maximum** — 用于范围检查的 `ysd` 输出最大值 `[]`（默认）| 标量
 
 指定 Simulink 检查的 **ysd** 输出范围的上限值。
 
 Simulink 使用最大值执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink) 和启用仿真范围检查 (Simulink)）。
-- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅使用指定的最小值和最大值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 从模型生成的代码优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出标准差数据类型最大值**参数不会饱和或裁剪实际的 **ysd** 信号。为此，请改用 Saturation (Simulink) 模块。
+**Output standard deviation data type Maximum** 参数不会饱和或裁剪实际的 **ysd** 信号。如需执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**： `SDOutMax` |
-| **类型**： 字符向量 |
-| **值**： `'[]'` | 标量 |
-| **默认**： `'[]'` |
+| **模块参数**：`SDOutMax` |
+| **类型**：character vector |
+| **值**：`'[]'` | scalar |
+| **默认值**：`'[]'` |
 
-### **输出预测区间数据类型** — `yint` 输出的数据类型 `Inherit: auto`（默认） | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **Output prediction intervals data type** — `yint` 输出的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
 指定 **yint** 输出的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
 当您选择 `Inherit: auto` 时，模块使用继承数据类型的规则。
 
-有关数据类型的详细信息，请参阅控制信号的数据类型 (Simulink)。
+有关数据类型的详细信息，请参阅 Control Data Types of Signals (Simulink)。
 
-单击 **显示数据类型助手** 按钮  以显示 **数据类型助手**，它可帮助您设置数据类型属性。有关详细信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
+单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**： `IntervalsDataTypeStr` |
-| **类型**： 字符向量 |
-| **值**： `'Inherit: auto'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-| **默认**： `'Inherit: auto'` |
+| **模块参数**：`IntervalsDataTypeStr` |
+| **类型**：character vector |
+| **值**：`'Inherit: auto'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
+| **默认值**：`'Inherit: auto'` |
 
-### **输出预测区间数据类型最小值** — 用于范围检查的 `yint` 输出的最小值 `[]`（默认）| 标量
+### **Output prediction intervals data type Minimum** — `yint` 输出用于范围检查的最小值 `[]`（默认）| 标量
 
 指定 Simulink 检查的 **yint** 输出范围的下限值。
 
 Simulink 使用最小值执行：
 
-- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 对某些模块进行参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
 - 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能移除算法代码，并影响某些仿真模式的结果，例如软件在环 (SIL) 模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出预测区间数据类型最小值**参数不会饱和或裁剪实际的 **yint** 信号。要执行此操作，请改用 Saturation (Simulink) 模块。
+**Output prediction intervals data type Minimum** 参数不会饱和或裁剪实际的 **yint** 信号。要执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`IntervalsOutMin` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
-| **默认**：`'[]'` |
+| **默认值**：`'[]'` |
 
-### **输出预测区间数据类型最大值** — 用于范围检查的 `yint` 输出的最大值 `[]`（默认）| 标量
+### **Output prediction intervals data type Maximum** — `yint` 输出用于范围检查的最大值 `[]`（默认）| 标量
 
 指定 Simulink 检查的 **yint** 输出范围的上限值。
 
 Simulink 使用最大值执行：
 
-- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 对某些模块进行参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
 - 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出预测区间数据类型最大值**参数不会饱和或裁剪实际的 **yint** 信号。要执行此操作，请改用 Saturation (Simulink) 模块。
+**Output prediction intervals data type Maximum** 参数不会饱和或裁剪实际的 **yint** 信号。要执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`IntervalsOutMax` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
-| **默认**：`'[]'` |
+| **默认值**：`'[]'` |
 
-### **核数据类型** — 核函数的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **Kernel data type** — 核函数的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
 指定核函数的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
@@ -360,11 +365,11 @@ Simulink 使用最大值执行：
 
 有关数据类型的详细信息，请参阅 Control Data Types of Signals (Simulink)。
 
-单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
+单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
 #### 提示
 
-**核数据类型**参数指定 `RegressionGP` 模型中核函数的数据类型。当您使用 `fitrgp` 函数训练模型时，可以将 `KernelFunction` 名称-值参数设置为下表中的某个值。
+**Kernel data type** 参数指定 `RegressionGP` 模型中核函数的数据类型。当您使用 `fitrgp` 函数训练模型时，可以将 `KernelFunction` 名称-值参数设置为下表中的一个值。
 
 | `KernelFunction` 值 | 核函数描述 |
 | --- | --- |
@@ -384,126 +389,126 @@ Simulink 使用最大值执行：
 |  |
 | --- |
 | **模块参数**：`KernelDataTypeStr` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'Inherit: auto'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-| **默认**：`'Inherit: auto'` |
+| **默认值**：`'Inherit: auto'` |
 
-### **核数据类型最小值** — 核函数的最小值 `[]`（默认）| 标量
+### **Kernel data type Minimum** — 核函数的最小值 `[]`（默认）| 标量
 
 指定 Simulink 检查的核函数内部变量范围的下限值。
 
-Simulink 使用最小值执行：
+Simulink 使用最小值来执行：
 
 - 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
 - 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能移除算法代码，并影响某些仿真模式的结果，例如软件在环 (SIL) 模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 从模型生成的代码的优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**核数据类型最小值**参数不会饱和或裁剪实际的核函数信号。
+**Kernel data type Minimum** 参数不会饱和或裁剪实际的核函数信号。
 
 #### 编程用法
 
 |  |
 | --- |
 | **模块参数**：`KernelOutMin` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
-| **默认**：`'[]'` |
+| **默认值**：`'[]'` |
 
-### **核数据类型最大值** — 核函数的最大值 `[]`（默认）| 标量
+### **Kernel data type Maximum** — 核函数的最大值 `[]`（默认）| 标量
 
-指定 Simulink 检查的核函数输出内部变量范围的上限值。
+指定 Simulink 检查的核输出内部变量范围的上限值。
 
-Simulink 使用最大值执行：
+Simulink 使用最大值来执行：
 
 - 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
 - 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 从模型生成的代码的优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**核数据类型最大值**参数不会饱和或裁剪实际的核函数信号。
+**Kernel data type Maximum** 参数不会饱和或裁剪实际的核函数信号。
 
 #### 编程用法
 
 |  |
 | --- |
 | **模块参数**：`KernelOutMax` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
-| **默认**：`'[]'` |
+| **默认值**：`'[]'` |
 
-### **距离数据类型** — 用于计算核距离的方法的数据类型 `Inherit: Inherit via internal rule`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **Distance data type** — 用于计算核距离的方法的数据类型 `Inherit: Inherit via internal rule`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
 指定用于计算核距离的方法的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
-当您选择 `Inherit: Inherit via internal rule` 时，模块使用内部规则确定输出数据类型。该内部规则选择一种数据类型，在考虑嵌入式目标硬件属性的同时，优化数值精度、性能和生成代码大小。软件无法始终同时优化效率和数值精度。
+当您选择 `Inherit: Inherit via internal rule` 时，模块使用内部规则来确定输出数据类型。内部规则选择一种数据类型，在考虑嵌入式目标硬件属性的同时，优化数值精度、性能和生成代码大小。软件无法始终同时优化效率和数值精度。
 
 有关数据类型的详细信息，请参阅 Control Data Types of Signals (Simulink)。
 
-单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
+点击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
 #### 提示
 
-**距离数据类型**参数指定用于计算点间距离以计算内置核函数的方法的数据类型。有关详细信息，请参阅 `fitrgp` 函数的 `DistanceMethod` 名称-值参数。对于 `DistanceMethod`，模块始终使用值 `"accurate"`，与值 `"fast"` 相比，这不会降低计算速度。
+**Distance data type** 参数指定用于计算点间距离以评估内置核函数的方法的数据类型。有关详细信息，请参阅 `fitrgp` 函数的 `DistanceMethod` 名称-值参量。该模块始终对 `DistanceMethod` 使用值 `"accurate"`，与值 `"fast"` 相比，这不会影响计算速度。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`DistanceDataTypeStr` |
 | **类型**：character vector |
 | **值**：`'Inherit: Inherit via internal rule'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-| **默认**：`'Inherit: Inherit via internal rule'` |
+| **默认值**：`'Inherit: Inherit via internal rule'` |
 
-### **距离数据类型最小值** — 核距离的最小值 `[]`（默认）| 标量
+### **Distance data type Minimum** — 核距离的最小值 `[]`（默认）| 标量
 
-指定 Simulink 检查的核距离内部变量范围的下限值。
+指定由 Simulink 检查的核距离内部变量范围的下限值。
 
-Simulink 使用最小值执行：
+Simulink 使用该最小值来执行：
 
 - 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
 - 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能移除算法代码，并影响某些仿真模式的结果，例如软件在环 (SIL) 模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 优化您从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**距离数据类型最小值**参数不会饱和或裁剪实际的核距离信号。
+**Distance data type Minimum** 参数不会饱和或裁剪实际的核距离信号。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`DistanceOutMin` |
 | **类型**：character vector |
-| **值**：`'[]'` | 标量 |
-| **默认**：`'[]'` |
+| **值**：`'[]'` | scalar |
+| **默认值**：`'[]'` |
 
-### **距离数据类型最大值** — 核距离的最大值 `[]`（默认）| 标量
+### **Distance data type Maximum** — 核距离的最大值 `[]`（默认）| 标量
 
-指定 Simulink 检查的核距离内部变量范围的上限值。
+指定由 Simulink 检查的核距离内部变量范围的上限值。
 
-Simulink 使用最大值执行：
+Simulink 使用该最大值来执行：
 
 - 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
 - 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 优化您从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**距离数据类型最大值**参数不会饱和或裁剪实际的核距离信号。
+**Distance data type Maximum** 参数不会饱和或裁剪实际的核距离信号。
 
 #### 编程用法
 
 |  |
 | --- |
 | **模块参数**：`DistanceOutMax` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
-| **默认**：`'[]'` |
+| **默认值**：`'[]'` |
 
-### **基数据类型** — 基函数的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **基函数数据类型** — 基函数的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
 指定基函数的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
@@ -515,62 +520,62 @@ Simulink 使用最大值执行：
 
 #### 提示
 
-**基数据类型**参数指定 `RegressionGP` 模型中显式基的数据类型。当您使用 `fitrgp` 函数训练模型时，可以设置 `BasisFunction` 名称-值参数。
+**基函数数据类型** 参数指定 `RegressionGP` 模型中显式基函数的数据类型。您可以在使用 `fitrgp` 函数训练模型时设置 `BasisFunction` 名称-值参数。
 
 #### 编程用法
 
 |  |
 | --- |
 | **模块参数**：`BasisDataTypeStr` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'Inherit: auto'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-| **默认**：`'Inherit: auto'` |
+| **默认值**：`'Inherit: auto'` |
 
-### **基数据类型最小值** — 基函数的最小值 `[]`（默认）| 标量
+### **基函数数据类型最小值** — 基函数的最小值 `[]`（默认）| 标量
 
 指定 Simulink 检查的基函数内部变量范围的下限值。
 
-Simulink 使用最小值执行：
+Simulink 使用最小值来执行：
 
 - 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
 - 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能移除算法代码，并影响某些仿真模式的结果，例如软件在环 (SIL) 模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 从模型生成的代码的优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**基数据类型最小值**参数不会饱和或裁剪实际的基函数信号。
+**基函数数据类型最小值** 参数不会饱和或裁剪实际的基函数信号。
 
 #### 编程用法
 
 |  |
 | --- |
 | **模块参数**：`BasisOutMin` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
-| **默认**：`'[]'` |
+| **默认值**：`'[]'` |
 
-### **基数据类型最大值** — 基函数的最大值 `[]`（默认）| 标量
+### **基函数数据类型最大值** — 基函数的最大值 `[]`（默认）| 标量
 
 指定 Simulink 检查的基函数内部变量范围的上限值。
 
-Simulink 使用最大值执行：
+Simulink 使用最大值来执行：
 
 - 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
 - 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 从模型生成的代码的优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**基数据类型最大值**参数不会饱和或裁剪实际的基函数信号。
+**基函数数据类型最大值** 参数不会饱和或裁剪实际的基函数信号。
 
 #### 编程用法
 
 |  |
 | --- |
 | **模块参数**：`BasisOutMax` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
-| **默认**：`'[]'` |
+| **默认值**：`'[]'` |
 
 ## 所属库
 
@@ -598,8 +603,8 @@ Statistics and Machine Learning Toolbox / Regression
 
 ## 描述
 
-使用高斯过程 (GP) 回归模型预测响应
+使用高斯过程（GP）回归模型预测响应
 
-RegressionGP Predict 模块使用高斯过程 (GP) 回归对象（`RegressionGP` 或 `CompactRegressionGP`）预测响应。
+RegressionGP Predict 模块使用高斯过程（GP）回归对象（`RegressionGP` 或 `CompactRegressionGP`）预测响应。
 
-通过指定包含该对象的工作区变量名称，将训练过的回归对象导入到模块中。输入端口 **x** 接收观测值（预测变量数据），输出端口 **yfit** 返回该观测值的预测响应。可选输出 **ysd** 和 **yint** 分别返回响应的标准差和预测区间。
+通过指定包含已训练回归对象的工作区变量名称，将该对象导入模块。输入端口 **x** 接收一个观测值（预测变量数据），输出端口 **yfit** 返回该观测值的预测响应。可选输出 **ysd** 和 **yint** 分别返回响应的标准差和预测区间。

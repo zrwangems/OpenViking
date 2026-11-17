@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Rectifier (Three-Phase)'
-family: 'semiconductors-converters'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,7 +16,7 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
 ### **~** — 三相端口电气
 
@@ -28,7 +28,7 @@ chinese_source: worker-translation
 
 ### **a** — *a* 相电气
 
-与 *a* 相相关的电气守恒端口。
+与 *a* 相相关联的电气守恒端口。
 
 #### 依赖关系
 
@@ -36,7 +36,7 @@ chinese_source: worker-translation
 
 ### **b** — *b* 相电气
 
-与 *b* 相相关的电气守恒端口。
+与 *b* 相相关联的电气守恒端口。
 
 #### 依赖关系
 
@@ -44,7 +44,7 @@ chinese_source: worker-translation
 
 ### **c** — *c* 相电气
 
-与 *c* 相相关的电气守恒端口。
+与 *c* 相相关联的电气守恒端口。
 
 #### 依赖关系
 
@@ -52,27 +52,27 @@ chinese_source: worker-translation
 
 ### **+** — 正极端子电气
 
-与正极端子相关的电气守恒端口。
+与正极端子相关联的电气守恒端口。
 
 ### **-** — 负极端子电气
 
-与负极端子相关的电气守恒端口。
+与负极端子相关联的电气守恒端口。
 
 ## 参数
 
-### 主要
+### 主
 
 ### **Electrical connection** — 电气连接 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
-是否使用复合三相端口或扩展三相端口。
+选择使用复合三相端口还是扩展三相端口。
 
 ### **Forward voltage** — 正向电压 `0.8` `V`（默认）
 
-每个二极管的 `+` 和 `-` 端口两端所需的最小电压，使得二极管 i-v 特性的斜率为 1/*Ron*，其中 *Ron* 是 **On resistance** 的值。
+每个二极管 `+` 和 `-` 端口两端所需的最小电压，使得二极管 i-v 特性的梯度为 1/*Ron*，其中 *Ron* 是 **On resistance** 的值。
 
 ### **On resistance** — 导通电阻 `0.001` `Ohm`（默认）
 
-每个二极管在正向电压以上时电压相对于电流的变化率。
+每个二极管在正向电压以上的电压随电流的变化率。
 
 ### **Off conductance** — 关断电导 `1e-5` `1/Ohm`（默认）
 
@@ -84,7 +84,7 @@ chinese_source: worker-translation
 
 二极管电荷动态。默认值为 `No dynamics`。
 
-可供选择的电荷动态选项包括：
+可选择的电荷动态选项包括：
 
 - `No dynamics`
 - `Model charge dynamics`
@@ -97,25 +97,25 @@ chinese_source: worker-translation
 
 仅当 **Model dynamics** 参数设置为 `Model charge dynamics` 时，此参数才可见。
 
-### **Peak reverse current, iRM** — 峰值反向电流 `-235` `A`（默认）| negative scalar
+### **Peak reverse current, iRM** — 峰值反向电流 `-235` `A`（默认）| 负标量
 
-由外部测试电路测得的峰值反向电流。该值必须小于零。
-
-#### 依赖关系
-
-仅当 **Model dynamics** 参数设置为 `Model charge dynamics` 时，此参数才可见。
-
-### **Initial forward current when measuring iRM** — 测量 iRM 时的初始正向电流 `300` `A`（默认）| positive scalar
-
-测量峰值反向电流时的初始正向电流。该值必须大于零。
+由外部测试电路测得的峰值反向电流。此值必须小于零。
 
 #### 依赖关系
 
 仅当 **Model dynamics** 参数设置为 `Model charge dynamics` 时，此参数才可见。
 
-### **Rate of change of current when measuring iRM** — 测量 iRM 时的电流变化率 `-50``A/μs`（默认）| negative scalar
+### **Initial forward current when measuring iRM** — 测量 iRM 时的初始正向电流 `300` `A`（默认）| 正标量
 
-测量峰值反向电流时的电流变化率。该值必须小于零。
+测量峰值反向电流时的初始正向电流。此值必须大于零。
+
+#### 依赖关系
+
+仅当 **Model dynamics** 参数设置为 `Model charge dynamics` 时，此参数才可见。
+
+### **Rate of change of current when measuring iRM** — 测量 iRM 时的电流变化率 `-50``A/μs`（默认）| 负标量
+
+测量峰值反向电流时的电流变化率。此值必须小于零。
 
 #### 依赖关系
 
@@ -125,7 +125,7 @@ chinese_source: worker-translation
 
 确定在模块中如何指定反向恢复时间。默认值为 `Specify reverse recovery time directly`。
 
-如果选择 `Specify stretch factor` 或 `Specify reverse recovery charge`，则指定一个值，模块将使用该值推导反向恢复时间。有关这些选项的详细信息，请参阅模块如何计算 TM 和 Tau。
+如果选择 `Specify stretch factor` 或 `Specify reverse recovery charge`，则需要指定一个值，模块将使用该值推导反向恢复时间。有关这些选项的详细信息，请参阅 How the Block Calculates TM and Tau。
 
 #### 依赖关系
 
@@ -133,7 +133,7 @@ chinese_source: worker-translation
 
 ### **Reverse recovery time, trr** — 反向恢复时间 `15` `μs`（默认）
 
-电流最初变为零（当二极管关断时）的时间与电流降至峰值反向电流的 10% 以下的时间之间的间隔。**Reverse recovery time, trr** 参数的值必须大于 **Peak reverse current, iRM** 参数的值除以 **Rate of change of current when measuring iRM** 参数的值。
+电流最初降为零（二极管关断时）到电流降至峰值反向电流的 10% 以下之间的时间间隔。**Reverse recovery time, trr** 参数的值必须大于 **Peak reverse current, iRM** 参数的值除以 **Rate of change of current when measuring iRM** 参数的值。
 
 #### 依赖关系
 
@@ -141,7 +141,7 @@ chinese_source: worker-translation
 
 ### **Reverse recovery time stretch factor** — 反向恢复时间拉伸因子 `3`（默认）
 
-模块用于计算 **Reverse recovery time, trr** 的值。该值必须大于 `1`。与指定反向恢复电荷相比，指定拉伸因子是参数化反向恢复时间的一种更简单方法。拉伸因子的值越大，反向恢复电流耗散所需的时间越长。
+模块用于计算 **Reverse recovery time, trr** 的值。此值必须大于 `1`。指定拉伸因子比指定反向恢复电荷更容易参数化反向恢复时间。拉伸因子的值越大，反向恢复电流消散所需的时间越长。
 
 #### 依赖关系
 
@@ -149,9 +149,9 @@ chinese_source: worker-translation
 
 ### **Reverse recovery charge, Qrr** — 反向恢复电荷 `1500` `μAs`（默认）
 
-模块用于计算 **Reverse recovery time, trr** 的值。如果二极管器件的数据手册指定的是反向恢复电荷值而不是反向恢复时间值，请使用此参数。
+模块用于计算 **Reverse recovery time, trr** 的值。如果您的二极管器件数据手册指定的是反向恢复电荷值而非反向恢复时间值，请使用此参数。
 
-反向恢复电荷是二极管关断时继续耗散的总电荷。该值必须小于 −i2RM2a，
+反向恢复电荷是二极管关断时继续消散的总电荷。该值必须小于 −i2RM2a，
 
 其中：
 
@@ -170,7 +170,7 @@ Simscape / Electrical / Semiconductors & Converters / Converters
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -182,7 +182,7 @@ Simscape / Electrical / Semiconductors & Converters / Converters
 
 ### R2021b：电气连接端口更新
 
-从 R2021b 开始，要在复合端口和扩展端口之间切换，请将 **Electrical connection** 参数设置为 `Composite three-phase ports` 或 `Expanded three-phase ports`。
+从 R2021b 起，要在复合端口和扩展端口之间切换，请将 **Electrical connection** 参数设置为 `Composite three-phase ports` 或 `Expanded three-phase ports`。
 
 由于这些更改，在早期版本中保存的模型内，请检查此模块的 **Electrical connection** 参数。
 
@@ -190,11 +190,11 @@ Simscape / Electrical / Semiconductors & Converters / Converters
 
 非受控三相交流到直流电压
 
-Rectifier (Three-Phase) 模块对将三相交流电压转换为直流电压的三臂二极管桥式电路进行建模。该图显示了该三臂二极管桥式电路的等效电路。
+Rectifier (Three-Phase) 模块对将三相交流电压转换为直流电压的三臂二极管桥式电路进行建模。图中显示了三臂二极管桥的等效电路。
 
-使用模块对话框的电荷动态选项卡，可以选择三臂桥式电路所使用的二极管类型。该表显示了如何根据目标设置 **Model dynamics** 参数。
+使用模块对话框的 Charge Dynamics 选项卡，您可以选择三臂桥式电路使用的二极管类型。下表显示了如何根据您的目标设置 **Model dynamics** 参数。
 
 | 目标 | 要选择的值 | 模块行为 |
 | --- | --- | --- |
-| 优先考虑仿真速度。 | `No dynamics` | 桥式电路的每个臂使用 Diode 模块的一个副本。模块对话框不显示其他参数。 |
-| 精确指定反向模式电荷动态。 | `Model charge dynamics` | 桥式电路的每个臂使用 Diode 模块的换流模型的一个副本。模块对话框显示与该模块换流模型相关的参数。 |
+| 优先考虑仿真速度。 | `No dynamics` | 桥式电路的每个臂使用 Diode 模块的副本。模块对话框不显示其他参数。 |
+| 精确指定反向模式电荷动态。 | `Model charge dynamics` | 桥式电路的每个臂使用 Diode 模块换流模型的副本。模块对话框显示与模块换流模型相关的参数。 |

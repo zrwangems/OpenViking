@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Deinterlacer'
-family: 'sequence-operations'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -20,10 +20,10 @@ chinese_source: worker-translation
 
 ### **In** — 输入信号列向量
 
-输入信号，指定为偶数长度列向量。
+输入信号，指定为偶数长度的列向量。
 
 **数据类型：** `double` | `single`
-**复数支持：** Yes
+**复数支持：** 是
 ### 输出
 
 ### **O** — 奇数编号元素向量
@@ -36,7 +36,7 @@ chinese_source: worker-translation
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -52,7 +52,7 @@ Communications Toolbox / Sequence Operations
 
 ## 扩展功能
 
-### C/C++ 代码生成：使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -62,4 +62,4 @@ Communications Toolbox / Sequence Operations
 
 将输入向量的元素交替分配到两个输出向量中
 
-Deinterlacer 模块接受偶数长度列向量输入信号。该模块将元素交替放入两个输出向量中。因此，每个输出向量大小为输入向量大小的一半。输出从输入模块的 **Sample time** 参数继承采样时间。
+Deinterlacer 模块接受偶数长度的列向量输入信号。该模块将元素交替放入两个输出向量中。因此，每个输出向量的大小是输入向量大小的一半。输出从输入模块的 **Sample time** 参数继承采样时间。

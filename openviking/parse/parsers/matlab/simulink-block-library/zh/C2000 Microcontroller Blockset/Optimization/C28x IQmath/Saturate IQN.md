@@ -21,16 +21,16 @@ R2025b 中未记录。
 ## 参数
 
 **Upper Limit**
-:   要饱和到的最大实际值
+:   要饱和到的最大实世界值
 
 **Lower Limit**
-:   要饱和到的最小实际值
+:   要饱和到的最小实世界值
 
 **Upper Limit**
-:   要饱和到的最大实际值
+:   要饱和到的最大实世界值
 
 **Lower Limit**
-:   要饱和到的最小实际值
+:   要饱和到的最小实世界值
 
 ## 所属库
 
@@ -50,17 +50,19 @@ R2025b 中未记录。
 
 ## 描述
 
-对 IQ 数进行饱和
+对 IQ 数进行饱和处理
 
 # C2000 Saturate IQN
 
-对 IQ 数进行饱和
+对 IQ 数进行饱和处理
 
 此模块将输入 IQ 数饱和到指定的上限和下限。
-返回值是一个 IQ 数，其 Q 值与输入相同。
+返回值是与输入具有相同 Q 值的 IQ 数。
 
 **注意**
 
-此模块的实现不会在代码生成期间调用相应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关详细信息，请参阅 Using the IQmath Library。
+此模块的实现不会在代码生成期间调用相应的 Texas Instruments® 库函数。TI 函数使用全局 Q
+设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关
+更多信息，请参阅 Using the IQmath Library。
 
 - C2000 Saturate IQN 模块

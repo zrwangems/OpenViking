@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Load Flow Source'
-family: 'sources'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,89 +16,89 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **~** — 三相电压电气
+### **~** — 三相电压电气端口
 
 与电压相 *a*、*b* 和 *c* 关联的三相端口。
 
-### **n** — 星形中心电气
+### **n** — 星形中性点电气端口
 
-与星形中心关联的电气守恒端口。
+与星形中性点关联的电气守恒端口。
 
 ## 参数
 
-### 主要
+### 主设置
 
-### **电源类型** — 电压源模型 `Swing bus`（默认）| `Voltage source with series impedance` | `PV bus` | `PQ bus`
+### **Source type** — 电压源模型 `Swing bus`（默认）| `Voltage source with series impedance` | `PV bus` | `PQ bus`
 
-该模块建模的电压源类型。
-
-#### 依赖关系
-
-**电源电压 (pu)**、**端子电压 (pu)**、**生成有功功率**、**消耗有功功率**、**消耗无功功率**、**电源相位**、**最小电压 (pu)** 和 **内部电源相位搜索范围** 的可见性取决于您为此参数选择的值。
-
-### **电源电压 (pu)** — 电源电压 `1`（默认）| scalar
-
-电源生成的标幺电压。
+模块所建模的电压源类型。
 
 #### 依赖关系
 
-仅当您将 **电源类型** 参数设置为 `Voltage source with series impedance` 时，此参数才可见。
+**Source voltage (pu)**、**Terminal voltage (pu)**、**Active power generated**、**Active power consumed**、**Reactive power consumed**、**Source phase**、**Minimum voltage (pu)** 和 **Internal source phase search range** 的可见性取决于您为此参数选择的值。
 
-### **端子电压 (pu)** — 端子电压 `1`（默认）| scalar
+### **Source voltage (pu)** — 源电压 `1`（默认）| 标量
 
-电源生成的标幺端子电压。
-
-#### 依赖关系
-
-仅当您将 **电源类型** 参数设置为 `Swing bus` 或 `PV bus` 时，此参数才可见。
-
-### **生成有功功率** — 生成有功功率 `0` `W`（默认）| scalar
-
-电源生成的有功功率。
+源产生的标幺电压。
 
 #### 依赖关系
 
-仅当您将 **电源类型** 参数设置为 `PV bus` 时，此参数才可见。
+仅当您将 **Source type** 参数设置为 `Voltage source with series impedance` 时，此参数才可见。
 
-### **消耗有功功率** — 消耗有功功率 `0` `W`（默认）
+### **Terminal voltage (pu)** — 端子电压 `1`（默认）| 标量
 
-电源消耗的有功功率。
-
-#### 依赖关系
-
-仅当您将 **电源类型** 参数设置为 `PQ bus` 时，此参数才可见。
-
-### **消耗无功功率** — 消耗无功功率 `0` `V*A`（默认）
-
-电源消耗的无功功率。
+源产生的标幺端子电压。
 
 #### 依赖关系
 
-仅当您将 **电源类型** 参数设置为 `PQ bus` 时，此参数才可见。
+仅当您将 **Source type** 参数设置为 `Swing bus` 或 `PV bus` 时，此参数才可见。
 
-### **额定电压（相间 RMS）** — 额定相间 RMS 电压 `sqrt(3) * 100 / sqrt(2)` `V`（默认）| scalar
+### **Active power generated** — 产生的有功功率 `0` `W`（默认）| 标量
 
-额定相间均方根 (RMS) 电压。
+源产生的有功功率。
 
-### **额定频率** — 额定频率 `60` `Hz`（默认）| scalar
+#### 依赖关系
+
+仅当您将 **Source type** 参数设置为 `PV bus` 时，此参数才可见。
+
+### **Active power consumed** — 消耗的有功功率 `0` `W`（默认）
+
+源消耗的有功功率。
+
+#### 依赖关系
+
+仅当您将 **Source type** 参数设置为 `PQ bus` 时，此参数才可见。
+
+### **Reactive power consumed** — 消耗的无功功率 `0` `V*A`（默认）
+
+源消耗的无功功率。
+
+#### 依赖关系
+
+仅当您将 **Source type** 参数设置为 `PQ bus` 时，此参数才可见。
+
+### **Rated voltage (phase-to-phase RMS)** — 额定相间 RMS 电压 `sqrt(3) * 100 / sqrt(2)` `V`（默认）| 标量
+
+额定相间均方根（RMS）电压。
+
+### **Rated frequency** — 额定频率 `60` `Hz`（默认）| 标量
 
 额定频率，单位为 Hz。
 
-### **电源相位** — 电源相位 `0` `deg`（默认）| scalar
+### **Source phase** — 源相位 `0` `deg`（默认）| 标量
 
-电源的相位偏移。
+源的相移。
 
 #### 依赖关系
 
-仅当您将 **电源类型** 参数设置为 `Voltage source with series impedance` 时，此参数才可见。
+仅当您将 **Source type** 参数设置为 `Voltage source with series impedance` 时，此参数才可见。
 
 ### 阻抗
 
-### **电源阻抗** — 电源阻抗方法 `None`（默认）| `X/R Ratio` | `Series R` | `Series L` | `Series RL`
+### **Source impedance** — 源阻抗方法 `None`（默认）| `X/R Ratio` | `Series R` | `Series L` | `Series RL`
 
-电源阻抗的类型。选择任何其他选项会启用其他参数。选项包括：
+源阻抗的类型。选择任何其他选项将启用其他参数。选项包括：
 
 - `None`
 - `X/R Ratio`
@@ -108,65 +108,65 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-**短路功率水平**、**电源 X/R 比**、**电源阻抗寄生并联电导**、**电源电阻** 和 **电源电感** 的可见性取决于您为此参数选择的值。
+**Short-circuit power level**、**Source X/R ratio**、**Source impedance parasitic parallel conductance**、**Source resistance** 和 **Source inductance** 的可见性取决于您为此参数选择的值。
 
-### **短路功率水平** — 短路功率水平 `1e6` `V*A`（默认）| scalar
+### **Short-circuit power level** — 短路功率水平 `1e6` `V*A`（默认）| 标量
 
 短路功率水平。
 
 #### 依赖关系
 
-仅当您将 **电源阻抗** 参数设置为 `X/R ratio` 时，此参数才可见。
+仅当您将 **Source impedance** 参数设置为 `X/R ratio` 时，此参数才可见。
 
-### **电源 X/R 比** — 电抗与电阻之比 `15`（默认）| scalar
+### **Source X/R ratio** — 电抗与电阻之比 `15`（默认）| 标量
 
 电抗与电阻之比。
 
 #### 依赖关系
 
-仅当您将 **电源阻抗** 参数设置为 `X/R ratio` 时，此参数才可见。
+仅当您将 **Source impedance** 参数设置为 `X/R ratio` 时，此参数才可见。
 
-### **电源阻抗寄生并联电导** — 电源阻抗寄生并联电导 `0` `1/Ohm`（默认）| scalar
+### **Source impedance parasitic parallel conductance** — 源阻抗寄生并联电导 `0` `1/Ohm`（默认）| 标量
 
-电源阻抗寄生并联电导。
-
-#### 依赖关系
-
-仅当您将 **电源阻抗** 参数设置为 `X/R ratio` 或 `Series L` 或 `Series RL` 时，此参数才可见。
-
-### **电源电阻** — 电源电阻 `0.01` `Ohm`（默认）| scalar
-
-电源电阻。
+源阻抗寄生并联电导。
 
 #### 依赖关系
 
-仅当您将 **电源阻抗** 参数设置为 `Series R` 或 `Series RL` 时，此参数才可见。
+仅当您将 **Source impedance** 参数设置为 `X/R ratio` 或 `Series L` 或 `Series RL` 时，此参数才可见。
 
-### **电源电感** — 电源电感 `3.97e-4` `H`（默认）| scalar
+### **Source resistance** — 源电阻 `0.01` `Ohm`（默认）| 标量
 
-电源电感。
+源电阻。
 
 #### 依赖关系
 
-仅当您将 **电源阻抗** 参数设置为 `Series L` 或 `Series RL` 时，此参数才可见。
+仅当您将 **Source impedance** 参数设置为 `Series R` 或 `Series RL` 时，此参数才可见。
+
+### **Source inductance** — 源电感 `3.97e-4` `H`（默认）| 标量
+
+源电感。
+
+#### 依赖关系
+
+仅当您将 **Source impedance** 参数设置为 `Series L` 或 `Series RL` 时，此参数才可见。
 
 ### 预期范围
 
-### **最小电压 (pu)** — 最小电压 `0.95`（默认）| scalar
+### **Minimum voltage (pu)** — 最小电压 `0.95`（默认）| 标量
 
-标幺最小电压。对于具有非物理、极低电压的模型，此参数有助于初始求解。
-
-#### 依赖关系
-
-仅当您在 **主要** 设置中将 **电源类型** 参数设置为 `Swing bus`、`PV bus` 或 `PQ bus` 时，此参数才可见。
-
-### **内部电源相位搜索范围** — 相位搜索范围 `[-inf, inf]` `deg`（默认）| vector
-
-内部电源相位搜索的下边界和上边界组成的向量。使用此范围可帮助初始求解收敛到所需的潮流解。
+标幺最小电压。此参数有助于在具有非物理极低电压的模型中进行初始求解。
 
 #### 依赖关系
 
-仅当在 **主要** 设置中将 **电源类型** 参数设置为 `PV bus` 或 `PQ bus` 时，此参数才可见。
+仅当您在 **Main** 设置中将 **Source type** 参数设置为 `Swing bus`、`PV bus` 或 `PQ bus` 时，此参数才可见。
+
+### **Internal source phase search range** — 相位搜索范围 `[-inf, inf]` `deg`（默认）| 向量
+
+内部源相位搜索的下边界和上边界向量。使用此范围可帮助初始求解收敛到所需的潮流解。
+
+#### 依赖关系
+
+仅当您在 **Main** 设置中将 **Source type** 参数设置为 `PV bus` 或 `PQ bus` 时，此参数才可见。
 
 ## 所属库
 
@@ -174,7 +174,7 @@ Simscape / Electrical / Sources
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -188,16 +188,16 @@ Simscape / Electrical / Sources
 
 用于执行潮流分析的三相电压源
 
-Load Flow Source 模块是一种三相电压源，用于执行潮流分析。此模块仅用于与频率-时间仿真模式兼容的三相 Simscape™ 网络。
+Load Flow Source 模块是一个三相电压源，用于潮流分析。此模块仅适用于与频率-时间仿真模式兼容的三相 Simscape™ 网络。
 
-该模块可与 Busbar 模块一起使用，以实现 swing bus、PV bus 或 PQ bus。总线类型从 **电源类型** 下拉菜单参数中选择。有关 Simscape Electrical™ 中潮流的更多信息，请参阅《使用 Simscape Electrical 执行潮流分析》。
+此模块可与 Busbar 模块配合使用，以实现平衡节点、PV 节点或 PQ 节点。节点类型从 **Source type** 下拉菜单参数中选择。有关 Simscape Electrical™ 中潮流的更多信息，请参阅 Perform a Load-Flow Analysis Using Simscape Electrical。
 
-当您为 **电源阻抗** 参数选择 `None` 时，Load Flow Source 模块会建模一个理想三相电压源，该电压源在其端子上维持指定幅值的正弦电压，与流过该电源的电流无关。
+当您为 **Source impedance** 参数选择 `None` 时，Load Flow Source 模块建模一个理想三相电压源，无论流过源的电流如何，它都能在其端子上维持指定幅值的正弦电压。
 
-该电源采用星形配置，端口 **n** 提供与星形中心的连接。端口 **~** 是表示相 *a*、*b* 和 *c* 的三相端口。如果电流从正端子流向星形中心，则电流为正，并且每相电压等于正端子处电压与星形中心处电压之差，*V*(+) – *V*n。
+该源采用星形配置，端口 **n** 提供与星形中性点的连接。端口 **~** 是表示相 *a*、*b* 和 *c* 的三相端口。如果电流从正极流向星形中性点，则电流为正，每相电压等于正极端子电压与星形中性点电压之差，*V*(+) – *V*n。
 
 ### 变量
 
-要在仿真前为模块变量设置优先级和初始目标值，请使用模块对话框或属性检查器中的 **初始目标** 部分。有关详细信息，请参阅《为模块变量设置优先级和初始目标》。
+要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-标称值提供了一种在模型中指定变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真稳健性。您可以使用不同来源指定标称值，包括模块对话框或属性检查器中的 **标称值** 部分。有关详细信息，请参阅《通过标称值进行系统缩放》。
+标称值提供了一种在模型中指定变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。您可以使用不同的来源指定标称值，包括模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 System Scaling by Nominal Values。

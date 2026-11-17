@@ -3,8 +3,10 @@
 
 This deliberately checks content, not just manifest totals. With the HTML cache
 available, official-language pages must also equal a fresh render of their
-cached MathWorks source. Worker translations must preserve every heading and
-Markdown table row. Third-party and machine-local libraries are outside scope.
+cached MathWorks source. Worker translations must preserve every paragraph,
+heading and Markdown table row, localize generic labels, and contain no English
+prose outside technical identifiers. Third-party and machine-local libraries
+are outside scope.
 """
 
 from __future__ import annotations
@@ -23,7 +25,7 @@ from scrape_r2025b_all_blocks import (
     render_page,
     unique_entries,
 )
-from translate_r2025b_all_blocks import table_shapes
+from translate_r2025b_all_blocks import GENERIC_HEADINGS, validate_translation
 
 
 def local_name(tag: str) -> str:
@@ -96,18 +98,102 @@ def content_lines(markdown: str) -> collections.Counter:
     return collections.Counter(lines)
 
 
+ENGLISH_HEADINGS = re.compile(
+    r"^#{2,6} (?:Description|Ports|Parameters|Libraries|Block Characteristics|"
+    r"Extended Capabilities|Version History|Input|Inputs|Output|Outputs|Conserving|"
+    r"Dependencies|Dependency|Programmatic Use|Tips?|See Also|MATLAB Command|"
+    r"Get Started|Main|Variables|Equations|Data Types|Assumptions and Limitations|"
+    r"Faults|Signal Attributes|Initial Conditions|Parameter Dependencies|Limitations|"
+    r"Code Generation|General|Advanced|Configuration|Simulation)(?: Tab)?$"
+)
+ENGLISH_TABLE_LABELS = re.compile(
+    r"\*\*(?:Block Parameter|Type|Values|Default|Programmatic Use)(?:\*\*[:：]|[:：]\*\*)"
+)
+ENGLISH_WORDS = re.compile(
+    r"\b(the|and|for|with|from|this|that|using|specified|generate|select|input|"
+    r"output|parameter|data|model|simulation|introduced|default|command|window|"
+    r"browser|click|close|run|enter|information|before|after|when|into|each|you|"
+    r"your|are|not|can|use|value|values|type|table|during|shows|display|displays|"
+    r"block|blocks|port|ports|signal|signals)\b",
+    re.IGNORECASE,
+)
+ENGLISH_SENTENCE_START = re.compile(
+    r"^(?:The|This|These|To|You|When|If|For|Use|Select|Run|Click|Close|An|In|"
+    r"On|By|After|Before|During|Generate|Specify|Set|Enable|Disable)\b"
+)
+
+
+def untranslated_prose(markdown: str) -> list[str]:
+    """Find English prose, not identifiers, equations, code or library paths."""
+    result = []
+    section = ""
+    fenced = False
+    for line in markdown.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            fenced = not fenced
+            continue
+        if fenced or not stripped or stripped.startswith("# ") or line.startswith("    "):
+            continue
+        if stripped.startswith("## "):
+            section = stripped
+        if section in {"## 所属库", "## Libraries"} or re.search(r"[\u4e00-\u9fff]", stripped):
+            continue
+        scrubbed = re.sub(r"`[^`]*`", "", stripped)
+        if "=" in scrubbed and not ENGLISH_SENTENCE_START.search(scrubbed):
+            continue  # Equations commonly contain the English words "for" and "and".
+        words = {word.lower() for word in ENGLISH_WORDS.findall(scrubbed)}
+        if len(words) >= 2 or (
+            ENGLISH_SENTENCE_START.search(scrubbed)
+            and len(re.findall(r"[A-Za-z]+", scrubbed)) >= 5
+        ):
+            result.append(stripped)
+    return result
+
+
+def validate_chinese_language(translated: str) -> None:
+    """Check language completeness independently of section ordering."""
+    lines = translated.splitlines()
+    for index, line in enumerate(lines):
+        if line.startswith("## "):
+            next_section = index + 1
+            while next_section < len(lines) and not lines[next_section].startswith("## "):
+                next_section += 1
+            if not any(item.strip() for item in lines[index + 1 : next_section]):
+                raise ValueError(f"empty Chinese section: {line}")
+    for line in lines:
+        if ENGLISH_HEADINGS.match(line):
+            raise ValueError(f"untranslated heading: {line}")
+        if ENGLISH_TABLE_LABELS.search(line):
+            raise ValueError(f"untranslated table label: {line}")
+    if re.search(r"\*\*Introduced (?:in|before)", translated):
+        raise ValueError("untranslated version-history introduction")
+    english_prose = untranslated_prose(translated)
+    if english_prose:
+        raise ValueError(f"untranslated English prose: {english_prose[:3]}")
+
+
 def validate_translation_for_audit(source: str, translated: str) -> None:
-    """Allow legacy section reordering, but not dropped headings or table rows."""
-    if len(translated) < len(source) * 0.25:
-        raise ValueError(f"translation too short: {len(translated)} vs {len(source)}")
-    source_headings = len(re.findall(r"^#{1,6} ", source, re.MULTILINE))
-    translated_headings = len(re.findall(r"^#{1,6} ", translated, re.MULTILINE))
-    if translated_headings < source_headings:
-        raise ValueError(f"heading count changed: {translated_headings} vs {source_headings}")
-    if sorted(table_shapes(source)) != sorted(table_shapes(translated)):
-        raise ValueError("table shapes changed")
-    if not re.search(r"[\u4e00-\u9fff]", translated):
-        raise ValueError("translation contains no Chinese text")
+    """Require every source paragraph, heading, table row and generic label in Chinese."""
+    validate_translation(source, translated)
+    validate_chinese_language(translated)
+    source_sections = re.findall(r"^## (.+)$", source, re.MULTILINE)
+    translated_sections = re.findall(r"^## (.+)$", translated, re.MULTILINE)
+    core_sections = {
+        "Ports",
+        "Parameters",
+        "Libraries",
+        "Block Characteristics",
+        "Extended Capabilities",
+        "Version History",
+        "Description",
+    }
+    for source_title, translated_title in zip(source_sections, translated_sections, strict=True):
+        if source_title in core_sections and translated_title != GENERIC_HEADINGS[source_title]:
+            raise ValueError(
+                f"section mismatch: {source_title} -> {translated_title}; "
+                f"expected {GENERIC_HEADINGS[source_title]}"
+            )
 
 
 def main() -> None:
@@ -233,24 +319,21 @@ def main() -> None:
         ):
             failures["pending_placeholder"].append(relative)
 
-    if not args.skip_source_render:
-        for product in manifest["products"]:
-            if product["status"] != "enumerated":
-                continue
-            for entry in unique_entries(product):
-                english = root / entry["documents"]["en"]["path"]
-                chinese = root / entry["documents"]["zh"]["path"]
-                source_product, source_document = document_source(product, entry)
-                source_release = entry.get("source_release", "R2025b")
-                source_path = cached_source_path(
-                    args.html_cache, source_product, source_document, "en", source_release
-                )
-                if not source_path.is_file():
-                    # A previously captured full page remains valid when the
-                    # external HTML cache is incomplete; do not call it a
-                    # source-render mismatch.
-                    retained_source_documents += 1
-                    continue
+    for product in manifest["products"]:
+        if product["status"] != "enumerated":
+            continue
+        for entry in unique_entries(product):
+            english = root / entry["documents"]["en"]["path"]
+            chinese = root / entry["documents"]["zh"]["path"]
+            source_product, source_document = document_source(product, entry)
+            source_release = entry.get("source_release", "R2025b")
+            source_path = cached_source_path(
+                args.html_cache, source_product, source_document, "en", source_release
+            )
+            if not source_path.is_file():
+                # A missing external HTML cache must not skip the local bilingual audit.
+                retained_source_documents += 1
+            elif not args.skip_source_render:
                 try:
                     expected, _ = render_page(source_path.read_bytes(), entry, product, "en")
                     if content_lines(english.read_text(encoding="utf-8")) != content_lines(
@@ -263,34 +346,37 @@ def main() -> None:
                     failures["english_source_render_error"].append(
                         [product["id"], entry["documentation_path"], str(exc)]
                     )
-                if "chinese_source: official" in chinese.read_text(encoding="utf-8"):
-                    source_path = cached_source_path(
-                        args.html_cache, source_product, source_document, "zh", source_release
+            if "chinese_source: official" in chinese.read_text(encoding="utf-8"):
+                if args.skip_source_render:
+                    continue
+                source_path = cached_source_path(
+                    args.html_cache, source_product, source_document, "zh", source_release
+                )
+                try:
+                    expected, _ = render_page(source_path.read_bytes(), entry, product, "zh")
+                    if content_lines(chinese.read_text(encoding="utf-8")) != content_lines(
+                        expected
+                    ):
+                        failures["chinese_source_render_mismatch"].append(
+                            [product["id"], entry["documentation_path"]]
+                        )
+                    validate_chinese_language(markdown_body(chinese.read_text(encoding="utf-8")))
+                    official_compared += 1
+                except Exception as exc:
+                    failures["chinese_source_render_error"].append(
+                        [product["id"], entry["documentation_path"], str(exc)]
                     )
-                    try:
-                        expected, _ = render_page(source_path.read_bytes(), entry, product, "zh")
-                        if content_lines(chinese.read_text(encoding="utf-8")) != content_lines(
-                            expected
-                        ):
-                            failures["chinese_source_render_mismatch"].append(
-                                [product["id"], entry["documentation_path"]]
-                            )
-                        official_compared += 1
-                    except Exception as exc:
-                        failures["chinese_source_render_error"].append(
-                            [product["id"], entry["documentation_path"], str(exc)]
-                        )
-                else:
-                    try:
-                        validate_translation_for_audit(
-                            markdown_body(english.read_text(encoding="utf-8")),
-                            markdown_body(chinese.read_text(encoding="utf-8")),
-                        )
-                        worker_compared += 1
-                    except Exception as exc:
-                        failures["worker_translation_structure_mismatch"].append(
-                            [product["id"], entry["documentation_path"], str(exc)]
-                        )
+            else:
+                try:
+                    validate_translation_for_audit(
+                        markdown_body(english.read_text(encoding="utf-8")),
+                        markdown_body(chinese.read_text(encoding="utf-8")),
+                    )
+                    worker_compared += 1
+                except Exception as exc:
+                    failures["worker_translation_mismatch"].append(
+                        [product["id"], entry["documentation_path"], str(exc)]
+                    )
 
     # A browser page is a full copy, never a metadata-only substitute.
     for product in manifest["products"]:
@@ -317,7 +403,7 @@ def main() -> None:
         "retained_documents_without_cached_html": retained_source_documents,
         "unique_bilingual_documents_checked": len(documents) // 2,
         "official_chinese_source_renders_checked": official_compared,
-        "worker_translation_structures_checked": worker_compared,
+        "worker_translations_checked": worker_compared,
         "failures": failures,
         "failure_count": sum(map(len, failures.values())),
         "external_scope_requires_local_matlab": [

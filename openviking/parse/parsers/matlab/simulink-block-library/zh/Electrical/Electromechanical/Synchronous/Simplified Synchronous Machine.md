@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simplified Synchronous Machine'
-family: 'electromechanical'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,32 +18,31 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **E\_si** — 内部生成电压（相-中性点）幅值的物理信号向量
+### **E\_si** — 内部生成电压（相电压）幅值，物理信号向量
 
-与内部生成电压（相-中性点）幅值关联的物理信号端口，指定为物理信号向量。
+与内部生成电压（相电压）幅值关联的物理信号端口，指定为物理信号向量。
 
 #### 依赖关系
 
 要启用此端口，请将 **Parameterization unit** 设置为 `SI`。
 
-### **E\_pu** — 内部生成电压的标幺值幅值，物理信号向量
+### **E\_pu** — 内部生成电压幅值，标幺值，物理信号向量
 
 与内部生成电压的标幺值幅值关联的物理信号端口，指定为物理信号向量。
 
 #### 依赖关系
 
 要启用此端口，请将 **Parameterization unit** 设置为 `Per unit`。
-
 ### 输出
 
-### **o** — 电机标幺值测量值的物理信号向量
+### **o** — 电机标幺值测量值，物理信号向量
 
-与电机标幺值测量值关联的物理信号端口，返回为物理信号向量。向量元素为：
+与电机标幺值测量值关联的物理信号端口，以物理信号向量形式返回。向量元素为：
 
 - 与 a 相相关的电动势，*pu\_EMF(1)*
 - 与 b 相相关的电动势，*pu\_EMF(2)*
 - 与 c 相相关的电动势，*pu\_EMF(3)*
-- 电气转矩，*pu\_torque*
+- 电磁转矩，*pu\_torque*
 - 转子速度，*pu\_velocity*
 - 定子 `d` 轴电压，*pu\_vd*
 - 定子 `q` 轴电压，*pu\_vq*
@@ -54,7 +53,6 @@ chinese_source: worker-translation
 - 转子电角度，*electrical\_angle\_out*
 
 要连接到此端口，请使用 Synchronous Machine Measurement 模块。
-
 ### 守恒
 
 ### **R** — 电机转子机械旋转
@@ -73,7 +71,7 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Electrical connection** 设置为 `Composite three-phase ports`。
 
-### **n** — 中性点相电气
+### **n** — 中性相电气
 
 与星形绕组配置的中性点关联的电气守恒端口。
 
@@ -101,7 +99,7 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`。
 
-### **HA** — *a* 相端子热端口热
+### **HA** — *a* 相端子热端口，热
 
 与定子绕组 *a* 关联的热守恒端口。
 
@@ -109,7 +107,7 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
 
-### **HB** — *b* 相端子热端口热
+### **HB** — *b* 相端子热端口，热
 
 与定子绕组 *b* 关联的热守恒端口。
 
@@ -117,7 +115,7 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
 
-### **HC** — *c* 相端子热端口热
+### **HC** — *c* 相端子热端口，热
 
 与定子绕组 *c* 关联的热守恒端口。
 
@@ -125,7 +123,7 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
 
-### **HR** — 转子热端口热
+### **HR** — 转子热端口，热
 
 与转子关联的热守恒端口。
 
@@ -135,40 +133,40 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **Modeling option** — 启用热端口的选项 `No thermal port`（默认） | `Show thermal port`
+### **Modeling option** — 启用热端口的选项 `No thermal port`（默认）| `Show thermal port`
 
-启用模块的热端口并对生成的热量和电机温度效应进行建模的选项。
+启用模块热端口并对生成热量和电机温度效应进行建模的选项。
 
 ### 主要
 
-### **Electrical connection** — 电气连接 `Composite three-phase ports`（默认） | `Expanded three-phase ports`
+### **Electrical connection** — 电气连接 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
-使用复合还是展开的三相端口。
+选择使用复合三相端口还是扩展三相端口。
 
-### **Rated apparent power** — 额定视在功率 `555e6` `V*A`（默认） | scalar
+### **Rated apparent power** — 额定视在功率 `555e6` `V*A`（默认）| 标量
 
 额定视在功率。
 
-### **Rated voltage** — RMS 额定线电压 `24e3` `V`（默认） | scalar
+### **Rated voltage** — 额定线电压均方根值 `24e3` `V`（默认）| 标量
 
-RMS 额定线电压。
+额定线电压均方根值。
 
-### **Rated electrical frequency** — 标称电气频率 `60` `Hz`（默认） | scalar
+### **Rated electrical frequency** — 标称电气频率 `60` `Hz`（默认）| 标量
 
-额定视在功率所对应的标称电气频率。
+额定视在功率对应的标称电气频率。
 
-### **Number of pole pairs** — 极对数 `2`（默认） | scalar
+### **Number of pole pairs** — 极对数 `2`（默认）| 标量
 
 电机极对数。
 
-### **Parameterization unit** — 模块参数化 `SI`（默认） | `Per unit`
+### **Parameterization unit** — 模块参数化 `SI`（默认）| `Per unit`
 
-模块参数化方法。选项包括：
+模块参数化方法。选项为：
 
 - `SI`
 - `Per unit`
 
-### **Internal resistance (pu)** — 内部标幺值电阻 `0.05`（默认） | scalar
+### **Internal resistance (pu)** — 内部标幺值电阻 `0.05`（默认）| 标量
 
 内部标幺值电阻。
 
@@ -176,15 +174,15 @@ RMS 额定线电压。
 
 要启用此参数，请将 **Parameterization unit** 设置为 `Per unit`。
 
-### **Internal inductance (pu)** — 内部标幺值电感 `0.3`（默认） | scalar
+### **Internal inductance (pu)** — 内部标幺值电感 `0.3`（默认）| 标量
 
-以标幺值表示的内部标幺值电感。
+内部标幺值电感。
 
 #### 依赖关系
 
 要启用此参数，请将 **Parameterization unit** 设置为 `Per unit`。
 
-### **Internal resistance** — 内部电阻 `0.0519` `Ohm`（默认） | scalar
+### **Internal resistance** — 内部电阻 `0.0519` `Ohm`（默认）| 标量
 
 内部电阻。
 
@@ -192,7 +190,7 @@ RMS 额定线电压。
 
 要启用此参数，请将 **Parameterization unit** 设置为 `SI`。
 
-### **Internal inductance** — 内部电感 `8.2589e-04` `H`（默认） | scalar
+### **Internal inductance** — 内部电感 `8.2589e-04` `H`（默认）| 标量
 
 内部电感。
 
@@ -202,23 +200,23 @@ RMS 额定线电压。
 
 ### 初始条件
 
-### **Initialization option** — 初始化选项 `Set real power, reactive power, terminal voltage, and terminal phase`（默认） | `Set targets for rotor angle and Park's transform variables` | `Set targets for load flow variables`
+### **Initialization option** — 初始化选项 `Set real power, reactive power, terminal voltage, and terminal phase`（默认）| `Set targets for rotor angle and Park's transform variables` | `Set targets for load flow variables`
 
-用于在仿真开始时为某些参数和变量指定值的模型。若要：
+用于指定仿真开始时某些参数和变量值的模型。要：
 
-- 设置与所连接网络无关的工作点，请选择 `Set real power, reactive power, terminal voltage and terminal phase`。
-- 在仿真前使用 **Variables** 设置指定模块变量的优先级和初始目标值，请选择 `Set targets for rotor angle and Park's transform variables`。有关详细信息，请参阅设置模块变量的优先级和初始目标。
-- 在 **Initial Conditions** 设置中选择母线类型并指定用于潮流分析的相关参数，请选择 `Set targets for load flow variables`。
+- 无论连接的网络如何都设置工作点，请选择 `Set real power, reactive power, terminal voltage and terminal phase`。
+- 在仿真前使用 **Variables** 设置指定模块变量的优先级和初始目标值，请选择 `Set targets for rotor angle and Park's transform variables`。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
+- 选择母线类型并在 **Initial Conditions** 设置中指定潮流分析的相关参数，请选择 `Set targets for load flow variables`。
 
 #### 依赖关系
 
 如果将此参数设置为：
 
-- `Set targets for rotor angle and Park's transform variables` — **Variables** 设置变为可见。
-- `Set real power, reactive power, terminal voltage, and terminal phase` — 相关参数变为可见。
-- `Set targets for load flow variables` — 相关参数变为可见。
+- `Set targets for rotor angle and Park's transform variables` — **Variables** 设置将变为可见。
+- `Set real power, reactive power, terminal voltage, and terminal phase` — 相关参数将变为可见。
+- `Set targets for load flow variables` — 相关参数将变为可见。
 
-### **Source type** — 电压源模型 `Swing bus`（默认） | `PV bus` | `PQ bus`
+### **Source type** — 电压源模型 `Swing bus`（默认）| `PV bus` | `PQ bus`
 
 模块建模的电压源类型。
 
@@ -232,15 +230,15 @@ RMS 额定线电压。
 
 #### 依赖关系
 
-要启用此参数，请将 **Initialization option** 设置为 `Set real power, reactive power, terminal voltage, and terminal phase`，或将 **Initialization option** 设置为 `Set targets for load flow variables`，并将 **Source type** 设置为 `Swing bus` 或 `PV bus`。
+要启用此参数，请将 **Initialization option** 设置为 `Set real power, reactive power, terminal voltage, and terminal phase`，或将 **Initialization option** 设置为 `Set targets for load flow variables` 并将 **Source type** 设置为 `Swing bus` 或 `PV bus`。
 
-### **Terminal voltage angle** — 端子电压角 `0` `deg`（默认）
+### **Terminal voltage angle** — 端子电压角度 `0` `deg`（默认）
 
-端子电压角。
+端子电压角度。
 
 #### 依赖关系
 
-要启用此参数，请将 **Initialization option** 设置为 `Set real power, reactive power, terminal voltage, and terminal phase`，或将 **Initialization option** 设置为 `Set targets for load flow variables`，并将 **Source type** 设置为 `Swing bus`。
+要启用此参数，请将 **Initialization option** 设置为 `Set real power, reactive power, terminal voltage, and terminal phase`，或将 **Initialization option** 设置为 `Set targets for load flow variables` 并将 **Source type** 设置为 `Swing bus`。
 
 ### **Active power generated** — 生成的有功功率 `500e6` `V*A`（默认）
 
@@ -248,7 +246,7 @@ RMS 额定线电压。
 
 #### 依赖关系
 
-要启用此参数，请将 **Initialization option** 设置为 `Set real power, reactive power, terminal voltage, and terminal phase`，或将 **Initialization option** 设置为 `Set targets for load flow variables`，并将 **Source type** 设置为 `PV bus` 或 `PQ bus`。
+要启用此参数，请将 **Initialization option** 设置为 `Set real power, reactive power, terminal voltage, and terminal phase`，或将 **Initialization option** 设置为 `Set targets for load flow variables` 并将 **Source type** 设置为 `PV bus` 或 `PQ bus`。
 
 ### **Reactive power generated** — 生成的无功功率 `0` `V*A`（默认）
 
@@ -258,7 +256,7 @@ RMS 额定线电压。
 
 #### 依赖关系
 
-要启用此参数，请将 **Initialization option** 设置为 `Set real power, reactive power, terminal voltage, and terminal phase`，或将 **Initialization option** 设置为 `Set targets for load flow variables`，并将 **Source type** 设置为 `PQ bus`。
+要启用此参数，请将 **Initialization option** 设置为 `Set real power, reactive power, terminal voltage, and terminal phase`，或将 **Initialization option** 设置为 `Set targets for load flow variables` 并将 **Source type** 设置为 `PQ bus`。
 
 ### **Minimum terminal voltage magnitude (pu)** — 最小端子电压幅值 `0.95`（默认）
 
@@ -270,7 +268,7 @@ RMS 额定线电压。
 
 ### **Phase search range at terminals** — 端子处的相位搜索范围 `[-inf, inf]` `deg`（默认）
 
-定义相角搜索范围的向量。
+定义相位角搜索范围的向量。
 
 #### 依赖关系
 
@@ -288,19 +286,19 @@ RMS 额定线电压。
 
 要启用这些参数，请将 **Modeling option** 设置为 `Show thermal port`。
 
-### **Measurement temperature** — 额定温度 `298.15` `k`（默认） | real scalar
+### **Measurement temperature** — 额定温度 `298.15` `k`（默认）| 实数标量
 
-电机参数所对应的温度。
+电机参数的标称温度。
 
-### **Resistance temperature coefficient** — 温度系数 `3.93e-3` `1/K`（默认） | positive scalar
+### **Resistance temperature coefficient** — 温度系数 `3.93e-3` `1/K`（默认）| 正标量
 
-用于所有三个绕组的电阻与温度关系方程中的系数 α，如执行器模块的热模型中所述。默认值 `3.93e-3` 1/K 适用于铜。
+所有三个绕组的电阻与温度关系方程中的系数 α，如 Thermal Model for Actuator Blocks 中所述。默认值 `3.93e-3` 1/K 适用于铜。
 
-### **Thermal mass for each stator winding** — 绕组热质量 `100` `J/K`（默认） | positive scalar
+### **Thermal mass for each stator winding** — 绕组热质量 `100` `J/K`（默认）| 正标量
 
 每个定子绕组的热质量值。热质量是将温度升高一度所需的能量。
 
-### **Rotor thermal mass** — 转子热质量 `200` `J/K`（默认） | positive scalar
+### **Rotor thermal mass** — 转子热质量 `200` `J/K`（默认）| 正标量
 
 转子的热质量。热质量是将转子温度升高一度所需的能量。
 
@@ -310,7 +308,7 @@ Simscape / Electrical / Electromechanical / Synchronous
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -320,25 +318,25 @@ Simscape / Electrical / Electromechanical / Synchronous
 
 **在 R2020b 中引入**
 
-### R2021b: 电气连接端口更新
+### R2021b：电气连接端口更新
 
-从 R2021b 起，要在复合端口和展开端口之间切换，请将 **Electrical connection** 参数设置为 `Composite three-phase ports` 或 `Expanded three-phase ports`。此外，对于 `Composite three-phase ports` 和 `Expanded three-phase ports`，simlog 格式相同。
+从 R2021b 起，要在复合端口和扩展端口之间切换，请将 **Electrical connection** 参数设置为 `Composite three-phase ports` 或 `Expanded three-phase ports`。此外，`Composite three-phase ports` 和 `Expanded three-phase ports` 的 simlog 格式相同。
 
-由于这些更改，在较早版本中保存的模型内，请检查此模块的 **Electrical connection** 参数。
+由于这些更改，在早期版本保存的模型中，请检查此模块的 **Electrical connection** 参数。
 
 ## 描述
 
 带电动势的简化同步电机
 
-Simplified Synchronous Machine 模块对带电压源（表示电动势 (EMF)）的简化同步电机进行建模。您可以使用标幺值或 SI 参数指定内部电阻和电感。
+Simplified Synchronous Machine 模块对带有表示电动势 (EMF) 的电压源的简化同步电机进行建模。您可以使用标幺值或 SI 参数指定内部电阻和电感。
 
-简化同步电机的直轴、交轴和零序等效电路为：
+简化同步电机在直轴、交轴和零序下的等效电路为：
 
 ### 方程
 
-简化同步电机方程是相对于旋转参考系表示的，该参考系定义为：
+简化同步电机方程是相对于旋转参考坐标系表示的，该坐标系定义为：
 
-θe(t)=Nθr(t),
+θe(t)=Nθr(t)，
 
 其中：
 
@@ -346,9 +344,9 @@ Simplified Synchronous Machine 模块对带电压源（表示电动势 (EMF)）�
 - *N* 是极对数。
 - *θr* 是转子角度。
 
-Park 变换将同步电机方程映射到相对于电角度的旋转参考系。Park 变换定义为：
+Park 变换将同步电机方程映射到相对于电角度的旋转参考坐标系。Park 变换定义为：
 
-Ps=23[−cosθe−cos(θe−2π3)−cos(θe+2π3)sinθesin(θe−2π3)sin(θe+2π3)121212].
+Ps=23[−cosθe−cos(θe−2π3)−cos(θe+2π3)sinθesin(θe−2π3)sin(θe+2π3)121212]。
 
 Park 变换用于定义标幺值简化同步电机方程。电压方程定义为：
 
@@ -362,27 +360,25 @@ e0=1ωbasedΨ0dt+Ri0+v0
 
 - *ed*、*eq* 和 *e0* 是 *d* 轴、*q* 轴和零序电压，定义为：
 
-  [edeqe0]=Ps[eaebec].
+  [edeqe0]=Ps[eaebec]。
 
   *ea*、*eb* 和 *ec* 是标幺值内部电压源，定义为：
 
   ea=Epusinθeeb=Epusin(θe−120°)ec=Epusin(θe+120°)
 
   *epu* 是内部生成电压的标幺值幅值。
-
 - *vd*、*vq* 和 *v0* 定义为：
 
-  [vdvqv0]=Ps[vavbvc].
+  [vdvqv0]=Ps[vavbvc]。
 
-  *va*、*vb* 和 *vc* 是从端口 **~** 到中性点端口 **n** 测量的定子电压。
-
+  *va*、*vb* 和 *vc* 是从端口 **~** 到中性端口 **n** 测量的定子电压。
 - *ωbase* 是标幺值基准电气速度。
 - *ψd*、*ψq* 和 *ψ0* 是 *d* 轴、*q* 轴和零序磁链。
-- *ωr* 是标幺值转子转速。
+- *ωr* 是标幺值转子旋转速度。
 - *R* 是定子电阻。
 - *id*、*iq* 和 *i0* 是 *d* 轴、*q* 轴和零序定子电流，定义为：
 
-  [idiqi0]=Ps[iaibic].
+  [idiqi0]=Ps[iaibic]。
 
   *ia*、*ib* 和 *ic* 是从端口 **~** 流出的定子电流。
 
@@ -394,30 +390,30 @@ e0=1ωbasedΨ0dt+Ri0+v0
 
 简化同步电机的标幺值功率方程定义为：
 
-P=edid+eqiq.
+P=edid+eqiq。
 
 ### 绘图和显示选项
 
 您可以使用模块上下文菜单上的 **Electrical** 菜单执行绘图和显示操作。
 
-右键单击该模块，然后从 **Electrical** 菜单中选择以下选项之一：
+右键单击模块，然后从 **Electrical** 菜单中选择以下选项之一：
 
 - **Display Base Values** — 在 MATLAB® 命令窗口中显示电机标幺值基准值。
 - **Display Associated Initial Conditions** — 在 MATLAB 命令窗口中显示关联的初始条件。
 
-### 对热效应建模
+### 热效应建模
 
-您可以公开热端口，以对生成的热量和电机温度效应进行建模。要公开热端口，请将 **Modeling option** 参数设置为以下任一值：
+您可以暴露热端口，以对生成热量和电机温度的效应进行建模。要暴露热端口，请将 **Modeling option** 参数设置为以下之一：
 
 - `No thermal port` — 模块不包含热端口。
 - `Show thermal port` — 模块包含多个热守恒端口。
 
-有关在执行器模块中使用热端口的详细信息，请参阅仿真旋转和平移执行器中的热效应。
+有关在执行器模块中使用热端口的详细信息，请参阅 Simulating Thermal Effects in Rotational and Translational Actuators。
 
 ### 变量
 
-要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或属性检查器中的 **Initial Targets** 部分。有关详细信息，请参阅设置模块变量的优先级和初始目标。
+要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
 对于此模块，仅当在 **Initial Conditions** 部分中将 **Initialization option** 参数设置为 `Set targets for rotor angle and Park's transform variables` 时，**Initial Targets** 设置才可见。
 
-标称值提供了一种在模型中指定变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真稳健性。标称值可以来自不同来源，其中之一是模块对话框或属性检查器中的 **Nominal Values** 部分。有关详细信息，请参阅按标称值进行系统缩放。
+标称值提供了一种在模型中指定变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。标称值可以来自不同来源，其中之一是模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 System Scaling by Nominal Values。

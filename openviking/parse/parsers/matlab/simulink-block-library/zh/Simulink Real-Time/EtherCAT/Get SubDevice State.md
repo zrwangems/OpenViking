@@ -20,12 +20,12 @@ chinese_source: worker-translation
 
 ### **State** — 从所选设备接收的状态 `1` | `2` | `4` | `8`
 
-| State | 值 | 描述 |
+| 状态 | 值 | 描述 |
 | --- | --- | --- |
 | `INIT` | 1 | 初始化 — 系统查找终端设备并初始化通信控制器。 |
 | `PREOP` | 2 | 预运行 — 系统使用通信控制器交换系统特定的初始化数据。在此状态下，网络无法发送或接收信号数据。 |
-| `SAFEOP` | 4 | 安全运行 — 网络正在运行并准备好进行完整操作。监控器将输入数据发送到终端设备。终端设备输出保持安全状态。 |
-| `OP` | 8 | 运行 — 网络处于完整运行状态。监控器将输入数据发送到终端设备。终端设备用输出数据进行响应。 |
+| `SAFEOP` | 4 | 安全运行 — 网络正在运行并准备好进行完整操作。主站向终端设备发送输入数据。终端设备输出保持在安全状态。 |
+| `OP` | 8 | 运行 — 网络处于完整运行状态。主站向终端设备发送输入数据。终端设备以输出数据响应。 |
 
 ## 参数
 
@@ -33,27 +33,27 @@ chinese_source: worker-translation
 
 要将模块与 EtherCAT 网络关联，请将表示该网络的 EtherCAT Init 模块中的 **Network Device Index** 值输入到该模块的 **Network Device Index** 中。
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `device_id` |
 
-### **SubDevice Name** — EtherCAT 从站设备名称 character vector
+### **SubDevice Name** — EtherCAT 从站设备名称 字符向量
 
-从 ENI 配置文件提供的可用从站设备列表中选择一个 EtherCAT 从站设备。该配置文件由 EtherCAT Init 模块选择。
+从 ENI 配置文件提供的可用从站设备列表中选择一个 EtherCAT 从站设备。配置文件由 EtherCAT Init 模块选择。
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `device_name` |
 
-### **Sample time** — 模块的采样时间 `-1`（默认）| numeric
+### **Sample time** — 模块采样时间 `-1`（默认）| 数值
 
 输入基本采样时间或基本采样时间的倍数。`-1` 表示采样时间继承。
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
@@ -65,7 +65,7 @@ Simulink Real-Time / EtherCAT
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -77,6 +77,6 @@ Simulink Real-Time / EtherCAT
 
 ## 描述
 
-获取 EtherCAT 网络状态
+获取 EtherCAT 网络的状态
 
 EtherCAT Get Device State 模块返回 EtherCAT® 网络上设备的状态。

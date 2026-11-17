@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IncrementalRegressionKernel Predict'
-family: 'incremental-learning'
+family: 'stats'
 product_id: 'stats'
 product_name: 'Statistics and Machine Learning Toolbox'
 documentation_release: R2025b
@@ -20,7 +20,7 @@ chinese_source: worker-translation
 
 ### **mdl** — 增量学习模型总线信号
 
-增量学习模型（`incrementalRegressionKernel`），已拟合流式数据，指定为总线信号（参见复合信号 (Simulink)）。
+拟合到流式数据的增量学习模型（`incrementalRegressionKernel`），指定为总线信号（参见 Composite Signals (Simulink)）。
 
 ### **x** — 预测变量数据块 数值矩阵
 
@@ -28,332 +28,355 @@ chinese_source: worker-translation
 
 **注意**
 
-该模块仅支持数值输入预测变量数据。如果您的输入数据包含分类数据，必须准备分类数据的编码版本。使用 `dummyvar` 将每个分类变量转换为虚拟变量的数值矩阵。然后，串联所有虚拟变量矩阵以及任何其他数值预测变量。有关详细信息，请参见虚拟变量。
+该模块仅支持数值输入预测变量数据。如果您的输入数据包含分类数据，您必须准备分类数据的编码版本。使用 `dummyvar` 将每个分类变量转换为哑变量的数值矩阵。然后，将所有哑变量矩阵和任何其他数值预测变量连接起来。有关更多详细信息，请参见 Dummy Variables。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ### 输出
 
-### **yfit** — 预测响应数据块 浮点向量
+### **yfit** — 预测响应块 浮点向量
 
-预测响应数据块，以浮点向量形式返回。
+预测响应块，以浮点向量形式返回
 
 **注意**
 
-如果在创建 **mdl** 时指定估计期，则在估计期内预测响应为零。
+如果在创建 **mdl** 时指定了估计期，则在估计期内预测响应为零。
 
 **数据类型：** `single` | `double`
 
-### **CanPredict** — 模型状态 `0` (`false`) | `1` (`true`)
+### **CanPredict** — 模型状态 `0`（`false`）| `1`（`true`）
 
-用于预测的模型状态，以逻辑值 `0` (`false`) 或 `1` (`true`) 返回。
+用于预测的模型状态，以逻辑值 `0`（`false`）或 `1`（`true`）返回。
 
 **注意**
 
-如果在创建 **mdl** 时指定估计期，则在估计期内模型状态为 `0` (`false`)。
+如果在创建 **mdl** 时指定了估计期，则在估计期内模型状态为 `0`（`false`）。
 
 #### 依赖关系
 
-要启用此端口，请在“模块参数”对话框的 **主要** 选项卡上选中 **为训练好的机器学习模型的状态添加输出端口** 复选框。
+要启用此端口，请在“模块参数”对话框的**主要**选项卡中选中**为已训练机器学习模型的状态添加输出端口**复选框。
 
 ## 参数
 
-要交互式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **仿真** 选项卡上，在 **准备** 库中选择 **属性检查器**。
+要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
 ### 主要
 
-### **选择初始机器学习模型** — 初始增量核回归模型 `kernelMdl`（默认） | `incrementalRegressionKernel` 模型对象
+### **选择初始机器学习模型** — 初始增量核回归模型 `kernelMdl`（默认）| `incrementalRegressionKernel` 模型对象
 
-指定包含已配置 `incrementalRegressionKernel` 模型对象的工作区变量名称。
+指定包含已配置的 `incrementalRegressionKernel` 模型对象的工作区变量名称。
 
 创建初始模型对象时，以下限制适用：
 
-- 预测变量数据不能包含分类预测变量（`logical`、`categorical`、`char`、`string` 或 `cell`）。如果以表形式提供训练数据，预测变量必须是数值类型（`double` 或 `single`）。要在模型中包含分类预测变量，请在拟合模型之前使用 `dummyvar` 对它们进行预处理。
-- 初始模型的 `NumPredictors` 属性必须为正整数标量，并且必须等于 **x** 中的预测变量数目。
+- 预测变量数据不能包含分类预测变量（`logical`、`categorical`、`char`、`string` 或 `cell`）。如果您以表格形式提供训练数据，预测变量必须为数值类型（`double` 或 `single`）。要在模型中包含分类预测变量，请在拟合模型之前使用 `dummyvar` 对其进行预处理。
+- 初始模型的 `NumPredictors` 属性必须为正整数标量，并且必须等于 **x** 中的预测变量数量。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数：** `InitialLearner` |
 | **类型：** 字符向量或字符串 |
 | **值：** `incrementalRegressionKernel` 对象名称 |
-| **默认值：** `"kernelMdl"` |
+| **默认：** `"kernelMdl"` |
 
-### **为训练好的机器学习模型的状态添加输出端口** — 添加第二个输出端口用于模型状态 `off`（默认） | `on`
+### **为已训练机器学习模型的状态添加输出端口** — 为模型状态添加第二个输出端口 `off`（默认）| `on`
 
-选中该复选框以在 IncrementalRegressionKernel Predict 模块中包含输出端口 **CanPredict**。如果在创建 IncrementalRegressionKernel Predict 模块时，工作区中已包含名为 `kernelMdl` 且能够进行预测的增量核回归模型，则此复选框不会出现。或者，您可以通过在 Simulink 工作区中选择 IncrementalRegressionKernel Predict 模块，并在 MATLAB® 命令行中输入 `set_param(gcb,ShowOutputCanPredict="on")` 来指定包含输出端口 **CanPredict**。
+选中该复选框以在 IncrementalRegressionKernel Predict 模块中包含输出端口 **CanPredict**。如果在创建 IncrementalRegressionKernel Predict 模块时，工作区中已包含名为 `kernelMdl` 且能够进行预测的增量核回归模型，则该复选框不会出现。或者，您可以通过在 Simulink 工作区中选择 IncrementalRegressionKernel Predict 模块，并在 MATLAB® 命令行中输入 `set_param(gcb,ShowOutputCanPredict="on")` 来指定包含输出端口 **CanPredict**。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数：** `ShowOutputCanPredict` |
 | **类型：** 字符向量 |
 | **值：** `"off" | "on"` |
-| **默认值：** `"off"` |
+| **默认：** `"off"` |
 
-### **采样时间（继承时为 –1）** — 用于指定采样时间的选项 `–1`（默认） | 标量
+### **Sample time (–1 for inherited)** — 用于指定采样时间的选项 `–1`（默认）| 标量
 
-指定采样时间命中之间的离散间隔，或指定其他类型的采样时间，例如连续（`0`）或继承（`–1`）。有关更多选项，请参见采样时间类型 (Simulink)。
+指定采样时间命中的离散间隔，或指定其他类型的采样时间，例如连续（`0`）或继承（`–1`）。有关更多选项，请参阅 Types of Sample Time (Simulink)。
 
-默认情况下，IncrementalRegressionKernel Predict 模块根据模型中模块的上下文继承采样时间。
+默认情况下，IncrementalRegressionKernel Predict 模块根据模块在模型中的上下文继承采样时间。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `SystemSampleTime` |
-| **类型：** 字符串标量或字符向量 |
-| **值：** 标量 |
-| **默认值：** `"–1"` |
+| **模块参数**：`SystemSampleTime` |
+| **类型**：string scalar or character vector |
+| **值**：scalar |
+| **默认值**：`"–1"` |
 
 ### 数据类型
 
-#### 定点运算参数
+#### Fixed-Point Operational Parameters
 
-### **整数舍入模式** — 定点运算的舍入模式 `Floor`（默认） | `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
+### **Integer rounding mode** — 定点运算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
-指定定点运算的舍入模式。有关详细信息，请参见舍入模式 (Fixed-Point Designer)。
+指定定点运算的舍入模式。有关更多信息，请参阅 Rounding Modes (Fixed-Point Designer)。
 
 模块参数始终舍入到最接近的可表示值。要控制模块参数的舍入，请使用 MATLAB 舍入函数在掩码字段中输入表达式。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `RndMeth` |
-| **类型：** 字符向量 |
-| **值：** `"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"` |
-| **默认值：** `"Floor"` |
+| **模块参数**：`RndMeth` |
+| **类型**：character vector |
+| **值**：`"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"` |
+| **默认值**：`"Floor"` |
 
-### **整数溢出时饱和** — 溢出操作的方法 `off`（默认） | `on`
+### **Saturate on integer overflow** — 溢出操作的方法 `off`（默认）| `on`
 
-指定溢出是饱和还是回绕。
+指定溢出时是饱和还是回绕。
 
-| 操作 | 理由 | 对溢出的影响 | 示例 |
+| Action | Rationale | Impact on Overflows | Example |
 | --- | --- | --- | --- |
-| 选中此复选框（`on`）。 | 您的模型可能发生溢出，并且您希望在生成的代码中提供显式饱和保护。 | 溢出会饱和到该数据类型能够表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型能够表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。选中该复选框后，模块输出在 127 处饱和。类似地，模块输出在最小值 –128 处饱和。 |
-| 清除此复选框（`off`）。 | 您希望优化生成代码的效率。您希望避免过度指定模块如何处理超出范围的信号。有关详细信息，请参见排查信号范围错误 (Simulink)。 | 溢出会回绕到该数据类型能够表示的相应值。 | `int8`（有符号 8 位整数）数据类型能够表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。清除该复选框后，软件会将导致溢出的值解释为 `int8`，这可能会产生非预期结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时为 –126。 |
+| 选中此复选框（`on`）。 | 您的模型可能发生溢出，并且您希望在生成的代码中提供显式饱和保护。 | 溢出饱和到数据类型可以表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。选中该复选框后，模块输出饱和于 127。类似地，模块输出饱和于最小值 –128。 |
+| 清除此复选框（`off`）。 | 您希望优化生成代码的效率。您希望避免过度指定模块如何处理超出范围的信号。有关更多信息，请参阅 Troubleshoot Signal Range Errors (Simulink)。 | 溢出回绕到数据类型可以表示的相应值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。清除该复选框后，软件将导致溢出的值解释为 `int8`，这可能会产生意外结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时为 –126。 |
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：** `SaturateOnIntegerOverflow` |
-| **类型：** 字符向量 |
-| **值：** `"off" | "on"` |
-| **默认值：** `"off"` |
-
-### **锁定输出数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 `off`（默认） | `on`
-
-选择此参数以防止定点工具覆盖您为模块指定的数据类型。有关详细信息，请参见使用锁定输出数据类型设置 (Fixed-Point Designer)。
-
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `LockScale` |
-| **类型：** 字符向量 |
-| **值：** `"off" | "on"` |
-| **默认值：** `"off"` |
+| **模块参数**：`SaturateOnIntegerOverflow` |
+| **类型**：character vector |
+| **值**：`"off" | "on"` |
+| **默认值**：`"off"` |
+
+### **Lock output data type setting against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
+
+选择此参数可防止定点工具覆盖您为模块指定的数据类型。有关更多信息，请参阅 Use Lock Output Data Type Setting (Fixed-Point Designer)。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`LockScale` |
+| **类型**：character vector |
+| **值**：`"off" | "on"` |
+| **默认值**：`"off"` |
 
 #### 数据类型
 
-### **输出数据类型** — yfit 输出的数据类型 `Inherit: auto`（默认） | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **输出数据类型** — yfit 输出的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<数据类型表达式>`
 
-指定 **yfit** 输出的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
+指定 **yfit** 输出的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如
+`Simulink.NumericType`。
 
 当您选择 `Inherit: auto` 时，模块使用继承数据类型的规则。
 
-有关数据类型的详细信息，请参见控制信号的数据类型 (Simulink)。
+有关数据类型的详细信息，请参阅 Control Data Types of Signals (Simulink)。
 
-单击 **显示数据类型助手** 按钮 以显示 **数据类型助手**，它可帮助您设置数据类型属性。有关详细信息，请参见使用数据类型助手指定数据类型 (Simulink)。
+单击 **Show data type assistant**
+按钮以显示 **Data Type Assistant**，
+它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**： `OutDataTypeStr` |
-| **类型**： 字符向量 |
-| **值**： `"Inherit: auto"` | `"double"` | `"single"` | `"half"` | `"int8"` | `"uint8"` | `"int16"` | `"uint16"` | `"int32"` | `"uint32"` | `"int64"` | `"uint64"` | `"boolean"` | `"fixdt(1,16,0)"` | `"fixdt(1,16,2^0,0)"` | `"<data type expression>"` |
-| **默认值**： `"Inherit: auto"` |
+| **模块参数**：`OutDataTypeStr` |
+| **类型**：字符向量 |
+| **值**：`"Inherit: auto"` | `"double"` | `"single"` | `"half"` | `"int8"` | `"uint8"` | `"int16"` | `"uint16"` | `"int32"` | `"uint32"` | `"int64"` | `"uint64"` | `"boolean"` | `"fixdt(1,16,0)"` | `"fixdt(1,16,2^0,0)"` | `"<数据类型表达式>"` |
+| **默认值**：`"Inherit: auto"` |
 
-### **输出数据类型最小值** — 用于范围检查的 yfit 输出最小值 `[]`（默认） | 标量
+### **输出数据类型最小值** — 用于范围检查的 yfit 输出最小值 `[]`（默认）| 标量
 
 指定 Simulink 检查的 **yfit** 输出范围的下限值。
 
 Simulink 使用最小值执行：
 
-- 某些模块的参数范围检查（参见指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（参见指定信号范围 (Simulink) 和启用仿真范围检查 (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环 (SIL) 模式或外部模式。有关详细信息，请参见使用指定的最小值和最大值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化从模型生成的代码。此优化
+  可以移除算法代码并影响某些仿真模式的结果，
+  例如软件在环（SIL）模式或外部模式。有关详细信息，
+  请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出数据类型最小值**参数不会使实际 **yfit** 输出饱和或对其进行裁剪。为此，请改用 Saturation (Simulink) 模块。
+**输出数据类型最小值**参数不会饱和
+或裁剪实际的 **yfit** 输出。为此，请改用 Saturation (Simulink) 模块。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**： `OutMin` |
-| **类型**： 字符向量 |
-| **值**： `"[]"` | 标量 |
-| **默认值**： `"[]"` |
+| **模块参数**：`OutMin` |
+| **类型**：字符向量 |
+| **值**：`"[]"` | 标量 |
+| **默认值**：`"[]"` |
 
-### **输出数据类型最大值** — 用于范围检查的 yfit 输出最大值 `[]`（默认） | 标量
+### **输出数据类型最大值** — 用于范围检查的 yfit 输出最大值 `[]`（默认）| 标量
 
 指定 Simulink 检查的 **yfit** 输出范围的上限值。
 
 Simulink 使用最大值执行：
 
-- 某些模块的参数范围检查（参见指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（参见指定信号范围 (Simulink) 和启用仿真范围检查 (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参见使用指定的最小值和最大值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化从模型生成的代码。此优化
+  可以移除算法代码并影响某些仿真模式的结果，
+  例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出数据类型最大值**参数不会使实际 **yfit** 输出饱和或对其进行裁剪。为此，请改用 Saturation (Simulink) 模块。
+**输出数据类型最大值**参数不会饱和
+或裁剪实际的 **yfit** 输出。为此，请改用 Saturation (Simulink) 模块。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**： `OutMax` |
-| **类型**： 字符向量 |
-| **值**： `"[]"` | 标量 |
-| **默认值**： `"[]"` |
+| **模块参数**：`OutMax` |
+| **类型**：字符向量 |
+| **值**：`"[]"` | 标量 |
+| **默认值**：`"[]"` |
 
-### **核数据类型** — 核计算数据类型 `Inherit: Inherit via internal rule`（默认） | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `int64` | `uint64` | `uint32` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **Kernel data type** — 高斯核近似计算的核计算数据类型 `Inherit: Inherit via internal rule`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `int64` | `uint64` | `uint32` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-指定用于高斯核近似计算的参数数据类型。该类型可以直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
+指定高斯核近似计算的参数数据类型。
+可以直接指定类型，也可以表示为数据类型对象，例如
+`Simulink.NumericType`。
 
-当您选择 `Inherit: Inherit via internal rule` 时，模块使用内部规则确定核数据类型。该内部规则会选择一种在数值精度、性能和生成代码大小方面进行优化的数据类型，同时考虑嵌入式目标硬件的属性。软件无法始终同时优化效率和数值精度。
+当您选择 `Inherit: Inherit via internal rule` 时，
+模块使用内部规则来确定核数据类型。该内部规则会选择
+一种能够优化数值精度、性能和生成代码大小的数据类型，
+同时考虑嵌入式目标硬件的属性。该软件
+无法始终同时优化效率和数值精度。
 
-有关数据类型的详细信息，请参见控制信号的数据类型 (Simulink)。
+有关数据类型的详细信息，请参阅 Control Data Types of Signals (Simulink)。
 
-单击 **显示数据类型助手** 按钮 以显示 **数据类型助手**，它可帮助您设置数据类型属性。有关详细信息，请参见使用数据类型助手指定数据类型 (Simulink)。
+单击 **Show data type assistant**
+按钮以显示 **Data Type Assistant**，
+它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**： `KernelDataTypeStr` |
-| **类型**： 字符向量 |
-| **值**： `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'uint64'` | `'int64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-| **默认值**： `'Inherit: Inherit via internal rule'` |
+| **模块参数**：`KernelDataTypeStr` |
+| **类型**：character vector |
+| **值**：`'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'uint64'` | `'int64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
+| **默认值**：`'Inherit: Inherit via internal rule'` |
 
-### **核数据类型最小值** — 用于范围检查的核计算最小值 `[]`（默认） | 标量
+### **Kernel data type Minimum** — 用于范围检查的核计算最小值 `[]`（默认）| 标量
 
 指定 Simulink 检查的核计算内部变量范围的下限值。
 
-Simulink 使用最小值执行：
+Simulink 使用最小值来执行：
 
-- 某些模块的参数范围检查（参见指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（参见指定信号范围 (Simulink) 和启用仿真范围检查 (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环 (SIL) 模式或外部模式。有关详细信息，请参见使用指定的最小值和最大值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化您从模型生成的代码。此优化可能会
+  移除算法代码并影响某些仿真模式的结果，例如
+  software-in-the-loop (SIL) 模式或 external mode。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
-**注意**
+**Note**
 
-**核数据类型最小值**参数不会使实际核计算值饱和或对其进行裁剪。
+**Kernel data type Minimum** 参数不会饱和
+或裁剪实际的核计算值。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**： `KernelOutMin` |
-| **类型**： 字符向量 |
-| **值**： `'[]'` | 标量 |
-| **默认值**： `'[]'` |
+| **模块参数**：`KernelOutMin` |
+| **类型**：character vector |
+| **值**：`'[]'` | scalar |
+| **默认值**：`'[]'` |
 
-### **核数据类型最大值** — 用于范围检查的核计算最大值 `[]`（默认） | 标量
+### **Kernel data type Maximum** — 用于范围检查的核计算最大值 `[]`（默认）| 标量
 
 指定 Simulink 检查的核计算内部变量范围的上限值。
 
-Simulink 使用最大值执行：
+Simulink 使用最大值来执行：
 
-- 某些模块的参数范围检查（参见指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（参见指定信号范围 (Simulink) 和启用仿真范围检查 (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参见使用指定的最小值和最大值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化您从模型生成的代码。此优化可能会
+  移除算法代码并影响某些仿真模式的结果，例如 SIL
+  或 external mode。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
-**注意**
+**Note**
 
-**核数据类型最大值**参数不会使实际核计算值饱和或对其进行裁剪。
+**Kernel data type Maximum** 参数不会饱和
+或裁剪实际的核计算值。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**： `KernelOutMax` |
-| **类型**： 字符向量 |
-| **值**： `'[]'` | 标量 |
-| **默认值**： `'[]'` |
+| **模块参数**：`KernelOutMax` |
+| **类型**：character vector |
+| **值**：`'[]'` | scalar |
+| **默认值**：`'[]'` |
 
-### **内积数据类型** — 内积数据类型 `double`（默认） | `Inherit: Inherit via internal rule` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **内积数据类型** — 内积数据类型 `double`（默认）| `Inherit: Inherit via internal rule` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
 指定预测响应的内积项的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
-当您选择 `Inherit: Inherit via internal rule` 时，模块使用内部规则确定内积数据类型。该内部规则会选择一种在数值精度、性能和生成代码大小方面进行优化的数据类型，同时考虑嵌入式目标硬件的属性。软件无法始终同时优化效率和数值精度。
+当您选择 `Inherit: Inherit via internal rule` 时，模块使用内部规则来确定内积数据类型。内部规则选择一种数据类型，在考虑嵌入式目标硬件属性的同时，优化数值精度、性能和生成代码的大小。软件无法始终同时优化效率和数值精度。
 
-有关数据类型的详细信息，请参见控制信号的数据类型 (Simulink)。
+有关数据类型的详细信息，请参阅 Control Data Types of Signals (Simulink)。
 
-单击 **显示数据类型助手** 按钮 以显示 **数据类型助手**，它可帮助您设置数据类型属性。有关详细信息，请参见使用数据类型助手指定数据类型 (Simulink)。
+单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `InnerProductDataTypeStr` |
-| **类型**: character vector |
-| **值**: `"Inherit: Inherit via internal rule"` | `"double"` | `"single"` | `"half"` | `"int8"` | `"uint8"` | `"int16"` | `"uint16"` | `"int32"` | `"uint32"` | `"int64"` | `"uint64"` | `"boolean"` | `"fixdt(1,16,0)"` | `"fixdt(1,16,2^0,0)"` | `"<data type expression>"` |
-| **默认值**: `"Inherit: Inherit via internal rule"` |
+| **模块参数**：`InnerProductDataTypeStr` |
+| **类型**：character vector |
+| **值**：`"Inherit: Inherit via internal rule"` | `"double"` | `"single"` | `"half"` | `"int8"` | `"uint8"` | `"int16"` | `"uint16"` | `"int32"` | `"uint32"` | `"int64"` | `"uint64"` | `"boolean"` | `"fixdt(1,16,0)"` | `"fixdt(1,16,2^0,0)"` | `"<data type expression>"` |
+| **默认值**：`"Inherit: Inherit via internal rule"` |
 
 ### **内积数据类型最小值** — 用于范围检查的内积项最小值 `[]`（默认）| 标量
 
 指定 Simulink 检查的内积项范围的下限值。
 
-Simulink 使用最小值来执行：
+Simulink 使用最小值执行：
 
-- 对某些模块进行参数范围检查（参见 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
-- 仿真范围检查（参见 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环 (SIL) 模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
 **内积数据类型最小值**参数不会饱和或裁剪实际的内积项值。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `InnerProductOutMin` |
-| **类型**: character vector |
-| **值**: `"[]"` | 标量 |
-| **默认值**: `"[]"` |
+| **模块参数**：`InnerProductOutMin` |
+| **类型**：character vector |
+| **值**：`"[]"` | scalar |
+| **默认值**：`"[]"` |
 
 ### **内积数据类型最大值** — 用于范围检查的内积项最大值 `[]`（默认）| 标量
 
 指定 Simulink 检查的内积项范围的上限值。
 
-Simulink 使用最大值来执行：
+Simulink 使用最大值执行：
 
-- 对某些模块进行参数范围检查（参见 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
-- 仿真范围检查（参见 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
-- 对从模型生成的代码进行优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
 **内积数据类型最大值**参数不会饱和或裁剪实际的内积项值。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `InnerProductOutMax` |
-| **类型**: character vector |
-| **值**: `"[]"` | 标量 |
-| **默认值**: `"[]"` |
+| **模块参数**：`InnerProductOutMax` |
+| **类型**：character vector |
+| **值**：`"[]"` | scalar |
+| **默认值**：`"[]"` |
 
 ## 所属库
 
@@ -383,6 +406,6 @@ Statistics and Machine Learning Toolbox / Incremental Learning / Regression / Ke
 
 使用增量核回归模型预测响应
 
-IncrementalRegressionKernel Predict 模块使用训练好的核回归模型预测流式数据的响应，该模型作为 IncrementalRegressionKernel Fit 模块的输出返回。
+IncrementalRegressionKernel Predict 模块使用 IncrementalRegressionKernel Fit 模块输出的已训练核回归模型，为流式数据预测响应。
 
-通过指定包含该对象的工作区变量的名称，将初始核回归模型对象导入 IncrementalRegressionKernel Predict 模块。输入端口 **mdl** 接收一个总线信号，该信号表示拟合到流式数据的增量学习模型。输入端口 **x** 接收一块预测变量数据（观测值），输出端口 **yfit** 返回该数据块的预测响应。可选输出端口 **CanPredict** 返回训练后模型的预测状态。
+通过指定包含核回归模型对象的工作区变量名称，将初始核回归模型对象导入 IncrementalRegressionKernel Predict 模块。输入端口 **mdl** 接收一个总线信号，该信号表示拟合到流式数据的增量学习模型。输入端口 **x** 接收一块预测变量数据（观测值），输出端口 **yfit** 返回该数据块的预测响应。可选输出端口 **CanPredict** 返回已训练模型的预测状态。

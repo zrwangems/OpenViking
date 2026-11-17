@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IsTriangular'
-family: 'matrix-operations'
+family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -18,33 +18,34 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 输入矩阵 matrix
+### **Port\_1** — 输入矩阵 矩阵
 
 输入矩阵，指定为矩阵。
 
-**Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 ### 输出
 
-### **Port\_2** — 上三角矩阵或下三角矩阵 real scalar boolean
+### **Port\_2** — 上三角矩阵或下三角矩阵 实数标量布尔值
 
-上三角矩阵或下三角矩阵，指定为标量，返回为实数标量布尔值。
+上三角矩阵或下三角矩阵，指定为标量，以实数标量布尔值形式返回。
 
-**Data Types:** `Boolean`
+**数据类型：** `Boolean`
 
 ## 参数
 
 ### **Mode** — 矩阵是上三角矩阵还是下三角矩阵 `Upper`（默认）| `Lower`
 
-将矩阵标识为 `Upper` 或 `Lower`。
+将矩阵标识为 `Upper` 或
+`Lower`。
 
-#### 编程使用
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `Mode` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'Upper'` | `'Lower'` |
-| **默认值：** `'Upper'` |
+| **默认：** `'Upper'` |
 
 ## 所属库
 
@@ -70,6 +71,6 @@ Simulink / Matrix Operations
 
 ## 描述
 
-检查矩阵是上三角还是下三角
+检查矩阵是上三角矩阵还是下三角矩阵
 
 IsTriangular 模块确定输入是上三角矩阵还是下三角矩阵。

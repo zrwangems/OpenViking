@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Estimate Inertia Tensor'
-family: 'mass-properties'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -39,15 +39,15 @@ chinese_source: worker-translation
 
 ### **dI/dt** — 变化率 3×3 矩阵
 
-惯性张量的变化率，以 3×3 矩阵形式返回。
+惯性张量变化率，以 3×3 矩阵形式返回。
 
 **数据类型：** `double`
 
 ## 参数
 
-### **满载质量** — 质量 `2`（默认）| 标量
+### **Full mass** — 满载质量 `2`（默认）| 标量
 
-车辆的总质量，指定为 double 标量。
+飞行器的总质量，指定为双精度标量。
 
 #### 编程使用
 
@@ -58,9 +58,9 @@ chinese_source: worker-translation
 | **值**：double scalar |
 | **默认值**：`'2'` |
 
-### **空载质量** — 空载质量 `1`（默认）| 标量
+### **Empty mass** — 空载质量 `1`（默认）| 标量
 
-车辆的空载质量，指定为 double 标量。
+飞行器的空载质量，指定为双精度标量。
 
 #### 编程使用
 
@@ -71,9 +71,9 @@ chinese_source: worker-translation
 | **值**：double scalar |
 | **默认值**：`'1'` |
 
-### **满载惯性矩阵** — 满载惯性矩阵 `eye(3)`（默认）| 3 元素矩阵
+### **Full inertia matrix** — 满载惯性矩阵 `eye(3)`（默认）| 3 元素矩阵
 
-车辆总质量下的惯性张量，指定为三元素矩阵。
+飞行器满载质量下的惯性张量，指定为三元素矩阵。
 
 #### 编程使用
 
@@ -84,9 +84,9 @@ chinese_source: worker-translation
 | **值**：double scalar |
 | **默认值**：`'eye(3)'` |
 
-### **空载惯性矩阵** — 空载惯性矩阵 `eye(3)/2`（默认）| 标量
+### **Empty inertia matrix** — 空载惯性矩阵 `eye(3)/2`（默认）| 标量
 
-车辆空载质量下的惯性张量，指定为标量。
+飞行器空载质量下的惯性张量，指定为标量。
 
 #### 编程使用
 
@@ -103,7 +103,7 @@ Aerospace Blockset / Mass Properties
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -117,6 +117,6 @@ Aerospace Blockset / Mass Properties
 
 计算惯性张量
 
-Estimate Inertia Tensor 模块计算惯性张量以及惯性张量的变化率。
+Estimate Inertia Tensor 模块计算惯性张量及惯性张量的变化率。
 
-使用线性插值将惯性张量估计为质量的函数。惯性张量的变化率是质量变化率的线性函数。
+使用线性插值来估计惯性张量作为质量的函数。惯性张量的变化率是质量变化率的线性函数。

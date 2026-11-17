@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Check Dynamic Upper Bound'
-family: 'model-verification'
+family: 'hdlcoder'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -20,96 +20,96 @@ chinese_source: worker-translation
 
 ### **max** — 范围检查的上界 标量 | 向量 | 矩阵
 
-指定该模块检查输入信号 **u** 幅值所在范围的下界的信号。信号数据类型和维度必须与 **u** 相同。
+指定模块检查输入信号 **u** 幅值范围上界的信号。信号数据类型和维度必须与 **u** 相同。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
 
-### **u** — 对照边界检查的输入信号 标量 | 向量 | 矩阵
+### **u** — 与边界进行比较的输入信号 标量 | 向量 | 矩阵
 
-对照由 **min** 指定的下界检查的输入信号。
+与 **min** 指定的下界进行比较的输入信号。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
 ### 输出
 
 ### **Port\_1** — 断言输出信号 标量
 
-如果断言成功，则输出信号为 `true (1)`；如果断言失败，则为 `false (0)`。如果在配置参数窗口的 **数学和数据类型** 部分中，在 **高级参数** 下选择 **将逻辑信号实现为 Boolean 数据**，则输出数据类型为 `Boolean`。否则，信号的数据类型为 `double`。
+如果断言成功则为 `true (1)`、如果断言失败则为 `false (0)` 的输出信号。如果在配置参数窗口的 **Math and Data Types** 部分中，在 **Advanced parameters** 下，选择 **Implement logic signals as Boolean data**，则输出数据类型为 `Boolean`。否则，信号的数据类型为 `double`。
 
 #### 依赖关系
 
-要启用此输出端口，请选中 **输出断言信号** 参数复选框。
+要启用此输出端口，请选中 **Output assertion signal** 参数复选框。
 
 **数据类型：** `double` | `Boolean`
 
 ## 参数
 
-### **启用断言** — 启用或禁用检查 `on` (默认) | `off`
+### **Enable assertion** — 启用或禁用检查 `on`（默认） | `off`
 
-清除此参数会禁用该模块，并使模型的行为如同该模块不存在一样。要启用或禁用所有验证模块，而不考虑此选项的设置，请转到配置参数窗口，单击 **诊断** > **数据有效性**，展开 **高级参数** 部分，并将 **Model Verification block enabling** 设置为 `Enable all` 或 `Disable all`。
+清除此参数将禁用该模块，并使模型的行为如同该模块不存在一样。要启用或禁用所有验证模块（无论此选项的设置如何），请转到配置参数窗口，单击 **Diagnostics** > **Data Validity**，展开 **Advanced parameters** 部分，并将 **Model Verification block enabling** 设置为 `Enable all` 或 `Disable all`。
 
-#### 编程使用
+#### 编程用法
 
 |  |
 | --- |
 | **参数：** `enabled` |
 | **类型：** 字符串标量或字符向量 |
 | **值：** `"on"` | `"off"` |
-| **默认：** `"on"` |
+| **默认值：** `"on"` |
 
-### **断言失败时的仿真回调（可选）** — 断言失败时要计算的表达式 `""` (默认) | MATLAB 表达式
+### **Simulation callback when assertion fails (optional)** — 断言失败时要求值的表达式 `""`（默认） | MATLAB 表达式
 
-指定在断言失败时要计算的 MATLAB® 表达式。由于该表达式在 MATLAB 工作区中计算，请在该工作区中定义表达式中使用的所有变量。
+指定断言失败时要进行求值的 MATLAB® 表达式。由于该表达式在 MATLAB 工作区中进行求值，因此请在该工作区中定义表达式中使用的所有变量。
 
 #### 依赖关系
 
-要启用此参数，请选中 **启用断言**。
+要启用此参数，请选中 **Enable assertion**。
 
-#### 编程使用
+#### 编程用法
 
 |  |
 | --- |
 | **参数：** `callback` |
 | **类型：** 字符串标量或字符向量 |
-| **默认：** `""` |
+| **默认值：** `""` |
 
-### **断言失败时停止仿真** — 检查失败时是否停止仿真 `on` (默认) | `off`
+### **Stop simulation when assertion fails** — 检查失败时是否停止仿真 `on`（默认） | `off`
 
 选中此参数可在检查失败时停止仿真。清除此参数可显示警告并继续仿真。
 
-#### 编程使用
+#### 编程用法
 
 |  |
 | --- |
 | **参数：** `stopWhenAssertionFail` |
 | **类型：** 字符串标量或字符向量 |
 | **值：** `"on"` | `"off"` |
-| **默认：** `"on"` |
+| **默认值：** `"on"` |
 
-### **输出断言信号** — 创建输出信号 `off` (默认) | `on`
+### **Output assertion signal** — 创建输出信号 `off`（默认） | `on`
 
-选中此参数以启用输出端口。
+选中此参数可启用输出端口。
 
-#### 编程使用
+#### 编程用法
 
 |  |
 | --- |
 | **参数：** `export` |
 | **类型：** 字符串标量或字符向量 |
 | **值：** `"on"` | `"off"` |
-| **默认：** `"off"` |
+| **默认值：** `"off"` |
 
-### **选择图标类型** — 选择图标类型 `graphic` (默认) | `text`
+### **Select icon type** — 选择图标类型 `graphic`（默认） | `text`
 
 指定模块图标的样式。`graphic` 选项在图标上显示断言条件的图形表示。`text` 选项显示表示断言条件的数学表达式。
 
-#### 编程使用
+#### 编程用法
 
 |  |
 | --- |
 | **参数：** `icon` |
 | **类型：** 字符串标量或字符向量 |
 | **值：** `"graphic"` | `"text"` |
-| **默认：** `"graphic"` |
+| **默认值：** `"graphic"` |
 
 ## 所属库
 
@@ -129,7 +129,7 @@ Simulink / Model Verification HDL Coder / Model Verification
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-有关 Simulink® Coder™ 生成的代码如何处理 Model Verification 模块的信息，请参阅 Configure Model for Debugging (Simulink Coder)。
+有关 Simulink® Coder™ 生成的代码如何处理模型验证模块的信息，请参阅 Configure Model for Debugging (Simulink Coder)。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
@@ -145,9 +145,9 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
 |  |  |
 | --- | --- |
-| **PreserveUpstreamLogic** | 控制未连接逻辑的移除。默认值为 `off`，这意味着未连接逻辑不会保留在 HDL 代码中。有关更多详细信息，请参阅 PreserveUpstreamLogic (HDL Coder)。 |
+| **PreserveUpstreamLogic** | 控制未连接逻辑的移除。默认值为 `off`，这意味着未连接逻辑不会保留在 HDL 代码中。有关详细信息，请参阅 PreserveUpstreamLogic (HDL Coder)。 |
 
-### PLC 代码生成 使用 Simulink® PLC Coder™ 生成 Structured Text 代码。
+### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
@@ -159,10 +159,10 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
 检查一个信号是否始终大于另一个信号
 
-Check Dynamic Upper Bound 模块在每个时间步检查参考信号 **max** 是否大于输入信号 **u** 的幅值，并在比较后执行断言。如果 **max** 大于 **u**，则断言为 `true (1)`，并且该模块不执行任何操作。否则，默认情况下该模块会停止仿真并返回错误消息。
+Check Dynamic Upper Bound 模块在每个时间步检查参考信号 **max** 是否大于输入信号 **u** 的幅值，并在比较后执行断言。如果 **max** 大于 **u**，则断言为 `true (1)`，模块不执行任何操作。否则，模块默认停止仿真并返回错误消息。
 
-输入信号可以是标量、向量或矩阵。两个输入信号必须具有相同的数据类型。该模块会根据信号以不同方式将 **u** 的值与 **max** 进行比较。
+输入信号可以是标量、向量或矩阵。两个输入信号必须具有相同的数据类型。模块根据信号的不同以不同方式比较 **u** 与 **max** 的值。
 
-- 当将标量与向量或矩阵进行比较时，该模块会将标量信号与非标量信号的每个元素进行比较。
-- 当将一个向量或矩阵信号与另一个向量或矩阵信号进行比较时，该模块会逐元素检查这些信号。
+- 将标量与向量或矩阵进行比较时，模块将标量信号与非标量信号的每个元素进行比较。
+- 将一个向量或矩阵信号与另一个向量或矩阵信号进行比较时，模块逐元素检查信号。
 - 对于输入信号和边界均为向量或矩阵的模型，输入信号和边界必须具有相同的维度。

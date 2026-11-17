@@ -5,7 +5,7 @@ family: 'simevents'
 product_id: 'simevents'
 product_name: 'SimEvents'
 documentation_release: R2025b
-official_category: 'SimEvents'
+official_category: ''
 documentation_page: 'send'
 documentation_source_path: 'ref/send.html'
 language: zh-CN
@@ -18,40 +18,34 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_Enable** — 外部使能信号标量
+### **Port\_Enable** — 外部使能信号 标量
 
-Input port to enable the block to send a message. For any input value
-that is greater than `0` send is enabled. For any value
-less than or equal to `0`, the send is disabled.
+用于使能模块发送消息的输入端口。对于任何大于 `0` 的输入值，发送被使能。对于任何小于或等于 `0` 的值，发送被禁用。
 
-#### 依赖关系
+#### 依赖
 
-To enable this port, select the box labeled **显示使能端口**.
+要使能此端口，请选中标记为 **Show enable port** 的框。
 
 **数据类型：** `double`
 
-### **Port\_1** — 输入信号标量 | 向量 | 矩阵
+### **Port\_1** — 输入信号 标量 | 向量 | 矩阵
 
-This block accepts inputs of any type that Simulink® supports, including enumerated types and converts the
-input signal to a message. For more information, see Simulink 支持的数据类型.
+此模块接受 Simulink® 支持的任何类型的输入，包括枚举类型，并将输入信号转换为消息。有关详细信息，请参阅 Data Types Supported by Simulink。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
 ### 输出
 
-### **Port\_1** — 输出消息标量 | 向量 | 矩阵
+### **Port\_1** — 输出消息 标量 | 向量 | 矩阵
 
-The block outputs a message with constant priority
-`20`.
+该模块输出具有常量优先级 `20` 的消息。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
 
 ## 参数
 
-### **显示使能端口** — 显示使能端口 `off` (默认) | `on`
+### **Show enable port** — 显示使能端口 `off`（默认）| `on`
 
-Select this check box to display enable port. For any input value that is
-greater than `0` send is enabled. For any value less than
-or equal to `0`, the send is disabled.
+选中此复选框以显示使能端口。对于任何大于 `0` 的输入值，发送被使能。对于任何小于或等于 `0` 的值，发送被禁用。
 
 #### 编程使用
 
@@ -68,13 +62,13 @@ Simulink / Messages & Events SimEvents
 
 ## 模块特性
 
-|  |
-| --- |
-| **数据类型** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `integer` | `single` | `string` |
-| **直接馈通** | `no` |
-| **多维信号** | `yes` |
-| **可变大小信号** | `no` |
-| **过零检测** | `no` |
+|  |  |
+| --- | --- |
+| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `integer` | `single` | `string` |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `yes` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
@@ -92,4 +86,4 @@ Send 模块不支持行优先代码生成。
 
 创建并发送消息
 
-Send 模块读取输入信号的值，并发送携带该值的消息。在基于消息的通信中，消息是所关注的离散项，承载 Simulink 支持的任何类型的数据。Send 和 Message Send 模块是完全相同的模块。
+Send 模块读取输入信号的值，并发送携带该值的消息。在基于消息的通信中，消息是携带 Simulink 支持的任何类型数据的离散关注项。Send 和 Message Send 模块是相同的模块。

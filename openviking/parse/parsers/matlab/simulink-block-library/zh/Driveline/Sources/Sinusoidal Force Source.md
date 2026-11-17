@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sinusoidal Force Source'
-family: 'sources'
+family: 'sdl'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b
@@ -32,9 +32,9 @@ chinese_source: worker-translation
 
 输出正弦力围绕其振荡的平均值。
 
-### **Sinusoid peak amplitude** — 输出峰值幅值 `1` `N`（默认）
+### **Sinusoid peak amplitude** — 输出峰值幅度 `1` `N`（默认）
 
-输出正弦力的峰值幅值。
+输出正弦力的峰值幅度。
 
 ### **Phase shift** — 输出相移 `0` `deg`（默认）
 
@@ -62,19 +62,19 @@ R2025b 中未记录。
 
 ## 描述
 
-生成正弦力
+产生正弦力
 
-Sinusoidal Force Source 模块生成具有恒定偏置的正弦力。正的力值会产生从端口 B 作用到端口 F 的力。
+Sinusoidal Force Source 模块产生带有恒定偏移的正弦力。正的力值产生从端口 B 到端口 F 的作用力。
 
-该模块生成的正弦力的定义方程为
+该模块产生的正弦力的定义方程为
 
 F=Fo+A\*sin(2πft+φ),
 
 其中：
 
 - *F* 是输出力。
-- *Fo* 是输出的偏置力。
-- A 是正弦波的峰值幅值。
+- *Fo* 是输出的偏移力。
+- A 是正弦波的峰值幅度。
 - *f* 是正弦波的频率，单位为 Hz。
 - *t* 是时间。
 - φ 是正弦波的相移。

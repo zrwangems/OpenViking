@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Gaussian MF'
-family: 'membership-functions'
+family: 'fuzzy'
 product_id: 'fuzzy'
 product_name: 'Fuzzy Logic Toolbox'
 documentation_release: R2025b
@@ -21,15 +21,16 @@ chinese_source: worker-translation
 ### **x** — 输入值 标量 | 向量
 
 用于计算隶属度值的输入值，指定为标量或向量。
+
 ### 输出
 
 ### **MF** — 隶属度值 标量 | 向量
 
-隶属度值，以标量或向量形式返回。**MF** 的维度与 **x** 的维度匹配。**MF** 的每个元素是为 **x** 的对应元素计算出的隶属度值。
+隶属度值，以标量或向量形式返回。**MF** 的维度与 **x** 的维度一致。**MF** 的每个元素是为 **x** 中对应元素计算得到的隶属度值。
 
 ## 参数
 
-### **标准差 sigma** — 标准差 `1`（默认） | 标量
+### **Standard deviation sigma** — 标准差 `1`（默认）| 标量
 
 高斯函数的标准差 *σ*。
 
@@ -38,10 +39,10 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `sigma` |
-| **类型：** string, character vector |
+| **类型：** string、字符向量 |
 | **默认：** `"1"` |
 
-### **均值 c** — 均值 `0`（默认） | 标量
+### **Mean c** — 均值 `0`（默认）| 标量
 
 高斯函数的均值 *c*。
 
@@ -50,7 +51,7 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `mu` |
-| **类型：** string, character vector |
+| **类型：** string、字符向量 |
 | **默认：** `"0"` |
 
 ## 所属库
@@ -69,7 +70,7 @@ R2025b 中未记录。
 
 ## 版本历史
 
-**早于 R2006a 引入**
+**在 R2006a 之前引入**
 
 ## 描述
 
@@ -79,6 +80,6 @@ Gaussian MF 模块实现基于对称高斯函数的隶属函数。
 
 f(x;σ,c)=e−(x−c)22σ2
 
-这里，*c* 是高斯函数的均值，*σ* 是高斯函数的标准差。
+其中，*c* 是高斯函数的均值，*σ* 是高斯函数的标准差。
 
-高斯隶属函数与高斯概率分布不同。例如，高斯隶属函数的最大值始终为 `1`。有关高斯概率分布的详细信息，请参阅 Normal Distribution (Statistics and Machine Learning Toolbox)。
+高斯隶属函数与高斯概率分布不同。例如，高斯隶属函数的最大值始终为 `1`。有关高斯概率分布的更多信息，请参阅 Normal Distribution (Statistics and Machine Learning Toolbox)。

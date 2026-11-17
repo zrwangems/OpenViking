@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Ideal Rectangular Pulse Filter'
-family: 'comm-filters'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -22,24 +22,24 @@ chinese_source: worker-translation
 
 输入信号，指定为标量、列向量或
 *K*i×*N*
-矩阵。*K*i 是每个信号通道的输入采样点数，*N* 是信号通道数。
+矩阵。*K*i 是每个信号通道的输入样本数，*N* 是信号通道数。
 
 **数据类型：** `double` | `single` | `fixed point`
 ### 输出
 
 ### **Out** — 输出信号 列向量 | 矩阵
 
-输出信号，返回为标量、列向量或矩阵。该模块按时间对每个通道进行滤波，并生成
+输出信号，返回为标量、列向量或矩阵。该模块对每个通道随时间进行滤波，并生成
 *K*o×*N*
-输出矩阵。输出信号与输入信号具有相同的数据类型。
+输出矩阵。输出信号的数据类型与输入信号相同。
 
 - *K*o =
   *K*i ×
   *L*。
 - *N* 是信号通道数。
-- *K*i 是每个信号通道的输入采样点数。
+- *K*i 是每个信号通道的输入样本数。
 - *L* 是您在
-  **脉冲长度（采样点数）**
+  **Pulse length (number of samples)**
   参数中指定的值。
 
 **数据类型：** `double` | `single` | `fixed point`
@@ -47,120 +47,139 @@ chinese_source: worker-translation
 ## 参数
 
 要以交互方式编辑模块参数，请使用
-属性检查器。在 Simulink® 工具条中，位于 **仿真** 选项卡上，在
-**准备** 库中，选择 **属性
-检查器**。
+属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在
+**Prepare** 库中，选择 **Property
+Inspector**。
 
 #### 主要
 
-### **脉冲长度（采样点数）** — 脉冲长度 `8`（默认）| 正整数
+### **Pulse length (number of samples)** — 脉冲长度 `8`（默认）| 正整数
 
-以采样点为单位的脉冲长度，指定为正整数。该模块将每个输入采样点复制 *L* 次，其中 *L* 是您以采样点为单位指定的脉冲长度。
+以样本为单位的脉冲长度，指定为正整数。该模块将每个输入
+样本复制 *L* 次，其中 *L* 是您以样本为单位指定的脉冲
+长度。
 
-### **脉冲延迟（采样点数）** — 脉冲延迟 `0`（默认）| 非负整数
+### **Pulse delay (number of samples)** — 脉冲延迟 `0`（默认）| 非负整数
 
-以采样点为单位的脉冲延迟，指定为非负整数。如果此参数非零，则该模块在仿真开始时先输出该数量的零，然后再开始复制任何输入值。
+以样本为单位的脉冲延迟，指定为非负整数。如果此参数非零，
+则该模块在仿真开始时输出该数量的零，然后才开始复制任何输入值。
 
-### **输入处理** — 输入处理控制 `Columns as channels (frame based)`（默认）| `Elements as channels (sample based)`
+### **Input processing** — 输入处理控制 `Columns as channels (frame based)`（默认）| `Elements as channels (sample based)`
 
 输入处理控制，指定为以下选项之一：
 
-- `Columns as channels (frame based)` — 该模块将输入的每一列视为单独通道。
-- `Elements as channels (sample based)` — 该模块将输入的每个元素视为单独通道。
+- `Columns as channels (frame based)` — 该模块
+  将输入的每一列视为单独的通道。
+- `Elements as channels (sample based)` — 该模块
+  将输入的每个元素视为单独的通道。
 
-### **速率选项** — 模块处理速率 `Enforce single-rate processing`（默认）| `Allow multirate processing`
+### **Rate options** — 模块处理速率 `Enforce single-rate processing`（默认）| `Allow multirate processing`
 
-用于输入信号上采样和滤波的模块处理速率，指定为以下选项之一：
+用于输入信号上采样和滤波的模块处理速率，指定为以下
+选项之一：
 
-- `Enforce single-rate processing` — 选择此选项时，该模块保持输入采样率，并通过将输出帧大小扩大为原来的 *N* 倍来处理信号。
-- `Allow multirate processing` — 选择此选项时，该模块对信号进行处理，使输出采样率比输入采样率快 *N* 倍。
+- `Enforce single-rate processing` — 当您
+  选择此选项时，该模块保持输入样本率，并通过将输出帧大小增加
+  *N* 倍来处理信号。
+- `Allow multirate processing` — 当您选择
+  此选项时，该模块处理信号，使输出样本率
+  比输入样本率快 *N* 倍。
 
 #### 依赖关系
 
-要使用 `Enforce single-rate processing`，必须将
-**输入处理** 设置为 `Columns as channels
+要使用 `Enforce single-rate processing`，您必须将
+**Input processing** 设置为 `Columns as channels
 (frame based)`。
 
-### **归一化输出信号** — 归一化输出信号的选项 `off`（默认）| `on`
+### **Normalize output signal** — 归一化输出信号的选项 `off`（默认）| `on`
 
-选择此参数可在应用线性幅度增益之前缩放这组复制的值。
+选择此参数可在应用线性幅度增益之前
+对复制值集合进行缩放。
 
-### **归一化方法** — 归一化方法 `Sum of samples`（默认）| `Energy per pulse`
+### **Normalization method** — 归一化方法 `Sum of samples`（默认）| `Energy per pulse`
 
 归一化方法，指定为 `Sum of samples` 或
-`Energy per pulse`。此参数指定该模块在缩放这组复制的值时所考虑的量的类型。
-有关详细信息，请参阅归一化方法。
+`Energy per pulse`。此参数指定该模块在缩放复制值集合时
+所考虑的量。有关详细信息，请参阅归一化方法。
 
 #### 依赖关系
 
-此参数在您选择 **归一化输出信号** 时出现。
+此参数在您选择 **Normalize output signal** 时显示。
 
-### **线性幅度增益** — 线性增益 `1`（默认）| 正标量
+### **Linear amplitude gain** — 线性增益 `1`（默认）| 正标量
 
-线性增益，指定为正标量。该模块按您指定的线性增益值对输出信号进行缩放。有关详细信息，请参阅归一化方法。
+线性增益，指定为正标量。该模块按您指定的
+线性增益值缩放输出信号。有关详细信息，请参阅归一化方法。
 
 #### 数据类型
 
-### **舍入模式** — 定点运算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
+### **Rounding mode** — 定点运算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
-选择定点运算的舍入模式。当定点计算的结果无法精确映射到数据类型可表示的数字时，该模块使用舍入模式。滤波器系数不受此参数约束；它们始终舍入到
+选择定点运算的舍入模式。当定点计算的结果无法
+精确映射到该数据类型可表示的数字时，该模块使用
+舍入模式。滤波器系数不遵循此参数；它们始终舍入为
 `Nearest`。有关详细信息，请参阅舍入模式
-或舍入模式：Simplest（Fixed-Point Designer）。
+或舍入模式：Simplest (Fixed-Point Designer)。
 
-### **整数溢出时饱和** — 定点运算的溢出模式 `off`（默认）| `on`
+### **Saturate on integer overflow** — 定点运算的溢出模式 `off`（默认）| `on`
 
-选择定点运算的溢出模式。滤波器系数不受此参数约束；它们始终饱和。
+选择定点运算的溢出模式。滤波器
+系数不遵循此参数；它们始终饱和。
 
-### **系数** — 系数数据类型 `Inherit: Same word length as input`（默认）| `fixdt(1,16)` | `fixdt(1,16,0)`
+### **Coefficients** — 系数数据类型 `Inherit: Same word length as input`（默认）| `fixdt(1,16)` | `fixdt(1,16,0)`
 
-指定滤波器系数（分子和分母）的字长和小数长度。
+指定滤波器系数（分子和
+分母）的字长和小数长度。
 
-当您选择 `Inherit: Same word length as input` 时，滤波器系数的字长与模块输入的字长匹配。在此模式下，系数的小数长度自动设置为仅二进制小数点定标，从而在给定系数值和字长的情况下为您提供尽可能高的精度。
+当您选择 `Inherit: Same word length as input` 时，滤波器系数的字
+长与模块输入的字长匹配。在此模式下，系数的小数长度自动设置为
+仅二进制小数点缩放，在给定系数值和字长的情况下为您提供
+尽可能最佳的精度。
 
-有关此模块中系数数据类型用法的更多信息和图示，请参阅
+有关此模块中系数数据类型使用的更多信息和图示，请参阅
 Discrete FIR Filter (Simulink)
 模块的滤波器结构图。
 
-滤波器系数不遵循 **舍入
-模式** 和 **整数溢出时饱和**
-参数；它们始终饱和
-并舍入到 `Nearest`。
+滤波器系数不遵循 **Rounding
+mode** 和 **Saturate
+on integer overflow** 参数；它们始终饱和
+并舍入为 `Nearest`。
 
 有关指定数据类型的信息，请参阅数据类型助手。
 
-### **乘积输出** — 乘积输出数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Same as input` | `fixdt(1,16,0)`
+### **Product output** — 乘积输出数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Same as input` | `fixdt(1,16,0)`
 
 指定乘积输出的字长和小数长度。
 
 - 当您选择 `Inherit: Inherit via internal
-  rule` 时，该模块基于内部规则继承数据类型。有关此规则的详细信息，请参阅
+  rule` 时，该模块基于内部规则继承数据类型。有关此规则的更多信息，请参阅
   通过内部规则继承。
 - 当您选择 `Inherit: Same as
   input` 时，这些特性与模块输入的特性匹配。
 
-有关此模块中乘积输出数据类型用法的更多信息和图示，请参阅
-Discrete FIR Filter (Simulink) 的滤波器结构图和乘法数据类型。
+有关此模块中乘积输出数据类型使用的更多信息和图示，请参阅
+Discrete FIR Filter (Simulink) 和 Multiplication Data Types 的滤波器结构图。
 
 有关指定数据类型的信息，请参阅数据类型助手。
 
-### **累加器** — 累加器数据类型 `Inherit via internal rule`（默认）| `Inherit: Same as input` | `Inherit: Same as product output` | `fixdt(1,16,0)`
+### **Accumulator** — 累加器数据类型 `Inherit via internal rule`（默认）| `Inherit: Same as input` | `Inherit: Same as product output` | `fixdt(1,16,0)`
 
 指定累加器的字长和小数长度。
 
 - 当您选择 `Inherit via internal
-  rule` 时，该模块基于内部规则继承数据类型。有关此规则的详细信息，请参阅
+  rule` 时，该模块基于内部规则继承数据类型。有关此规则的更多信息，请参阅
   通过内部规则继承。
 - 当您选择 `Inherit: Same as
   input` 时，这些特性与模块输入的特性匹配。
 - 当您选择 `Inherit: Same as product
   output` 时，这些特性与乘积输出的特性匹配。
 
-有关此模块中累加器输出数据类型用法的更多信息和图示，请参阅
-Discrete FIR Filter (Simulink) 的滤波器结构图和乘法数据类型。
+有关此模块中累加器输出数据类型使用的更多信息和图示，请参阅
+Discrete FIR Filter (Simulink) 和 Multiplication Data Types 的滤波器结构图。
 
 有关指定数据类型的信息，请参阅数据类型助手。
 
-### **输出** — 输出数据类型 `Inherit: Same as accumulator`（默认）| `Inherit: Same as input` | `Inherit: Same as product output` | `fixdt(1,16,0)`
+### **Output** — 输出数据类型 `Inherit: Same as accumulator`（默认）| `Inherit: Same as input` | `Inherit: Same as product output` | `fixdt(1,16,0)`
 
 指定输出的字长和小数长度。
 
@@ -173,9 +192,11 @@ Discrete FIR Filter (Simulink) 的滤波器结构图和乘法数据类型。
 
 有关指定数据类型的信息，请参阅数据类型助手。
 
-### **锁定数据类型设置以防止定点工具更改** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
+### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
-选择此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。有关详细信息，请参阅定点工具（Fixed-Point Designer）。
+选择此参数可防止定点工具覆盖您在模块对话框中指定的
+数据类型。有关详细信息，
+请参阅 Fixed-Point Tool (Fixed-Point Designer)。
 
 ## 所属库
 
@@ -204,4 +225,6 @@ Communications Toolbox / Comm Filters
 
 使用理想矩形脉冲对输入信号进行整形
 
-Ideal Rectangular Pulse Filter 模块使用矩形脉冲对输入信号进行上采样和整形。复制输入采样点后，该模块还可以对输出信号进行归一化并应用线性幅度增益。
+Ideal Rectangular Pulse Filter 模块使用矩形
+脉冲对输入信号进行上采样和整形。在复制输入样本后，该模块还可以对输出信号进行归一化
+并应用线性幅度增益。

@@ -9,90 +9,76 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Aerospace Blockset
 
-Learn the basics of Aerospace Blockset
+学习 Aerospace Blockset 的基础知识
 
-Model, simulate, and analyze aerospace vehicle dynamics
+对航空航天飞行器动力学进行建模、仿真和分析
 
-- Release Notes
-- PDF Documentation
-- PDF Documentation
+- 发行说明
+- PDF 文档
+- PDF 文档
 
-- **Release Notes**
-- **PDF Documentation**
-- **PDF Documentation**
+- **发行说明**
+- **PDF 文档**
+- **PDF 文档**
 
-Aerospace Blockset™ provides Simulink® reference examples and blocks for modeling, simulating, and analyzing
-high-fidelity aircraft, rotorcraft, and spacecraft platforms. The blockset includes vehicle
-dynamics, validated models of the flight environment, and blocks for pilot behavior,
-actuator dynamics, and propulsion. Built-in aerospace math operations and coordinate system
-and spatial transformations let you represent atmospheric vehicle and spacecraft motion and
-orientation. To examine simulation results, you can connect visualization blocks, including
-photorealistic views, to your model.
+Aerospace Blockset™ 提供 Simulink® 参考示例和模块，用于对高保真度的飞机、旋翼飞行器和航天器平台进行建模、仿真和分析。该模块集包括飞行器动力学、经过验证的飞行环境模型，以及用于飞行员行为、作动器动力学和推进系统的模块。内置的航空航天数学运算以及坐标系和空间变换可让您表示大气飞行器和航天器的运动与姿态。要检查仿真结果，您可以将可视化模块（包括逼真的视图）连接到您的模型。
 
-Aerospace Blockset provides standard model architectures for building reusable vehicle platform
-models. These models can support flight and mission analysis; conceptual studies; detailed
-mission design; guidance, navigation, and control (GNC) algorithm development; software
-integration testing; and hardware-in-the-loop (HIL) testing for applications in autonomous
-flight, radar, and communications.
+Aerospace Blockset 提供标准模型架构，用于构建可复用的飞行器平台模型。这些模型可支持飞行和任务分析、概念研究、详细任务设计、制导、导航与控制（GNC）算法开发、软件集成测试，以及面向自主飞行、雷达和通信应用的硬件在环（HIL）测试。
 
-Overview of Aerospace Blockset capabilities.
+Aerospace Blockset 功能概述。
 
-## Get Started
+## 入门
 
-Learn the basics of Aerospace Blockset
+学习 Aerospace Blockset 的基础知识
 
-## Reference Applications
+## 参考应用
 
-Model, simulate, analyze and visualize the motion and dynamics of aerospace
-vehicles
+对航空航天飞行器的运动和动力学进行建模、仿真、分析和可视化
 
-## Standard Workflow Procedures
+## 标准工作流过程
 
-Manage coordinate systems and perform unit conversions
+管理坐标系并执行单位换算
 
-## Environment
+## 环境
 
-Simulate aspects of environment, such as atmospheric
-conditions, gravity, magnetic fields, wind
+仿真环境的不同方面，例如大气条件、重力、磁场、风
 
-## Atmospheric Flight
+## 大气飞行
 
-Model aerodynamics, propulsion, and motion of aircraft and spacecraft
+对飞机和航天器的空气动力学、推进和运动进行建模
 
-## Spacecraft Simulation
+## 航天器仿真
 
-Model, simulate, and visualize the motion and dynamics of spacecraft
+对航天器的运动和动力学进行建模、仿真和可视化
 
-## Guidance, Navigation, and Control (GNC)
+## 制导、导航与控制（GNC）
 
-Model guidance, navigation, and control (GNC) systems,
-including controllers
+对制导、导航与控制（GNC）系统（包括控制器）进行建模
 
-## Visualization
+## 可视化
 
-View flight paths with MATLAB®, Unreal Engine®, or flight simulator animation; input data to models; display measurements
-through standard cockpit instruments
+使用 MATLAB®、Unreal Engine® 或飞行模拟器动画查看飞行路径；向模型输入数据；通过标准驾驶舱仪表显示测量值
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个与以下 MATLAB 命令对应的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：。
 
 - (English)
 - (Deutsch)
@@ -101,7 +87,7 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择一个网站
 
 **如何获得最佳网站性能**
 
@@ -136,7 +122,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

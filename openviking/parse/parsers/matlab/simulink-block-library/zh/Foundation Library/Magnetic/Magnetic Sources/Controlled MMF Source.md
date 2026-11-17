@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Controlled MMF Source'
-family: 'magnetic'
+family: 'simscape'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b
@@ -16,24 +16,23 @@ chinese_source: worker-translation
 
 ## 端口
 
-该模块具有一个物理信号输入端口，以及两个与其磁端子相关联的磁守恒端口。
+该模块具有一个物理信号输入端口和两个与其磁端子关联的磁守恒端口。
 
 ## 参数
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 所属库
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -43,6 +42,6 @@ chinese_source: worker-translation
 
 由输入信号驱动的理想磁动势源
 
-Controlled MMF Source 模块表示一种理想磁动势 (mmf) 源，其能力足以在输出端维持指定的磁动势，无论通过它的磁通如何。
+Controlled MMF Source 模块表示一个理想磁动势（mmf）源，其足够强大，无论通过它的磁通量如何，都能在其输出端维持指定的 mmf。
 
-输出磁动势为 *MMF = MMFI*，其中 *MMFI* 是物理信号端口处提供的数值。
+输出 mmf 为 *MMF = MMFI*，其中 *MMFI* 是在物理信号端口处给出的数值。

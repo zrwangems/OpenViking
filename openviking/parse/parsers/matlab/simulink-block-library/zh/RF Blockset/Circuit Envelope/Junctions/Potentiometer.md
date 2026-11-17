@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Potentiometer'
-family: 'circuit-envelope'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -20,19 +20,19 @@ R2025b 中未记录。
 
 ## 参数
 
-### **最小电阻** — 电位器的最小输入电阻 `10 Ohm`（默认）| 正标量
+### **Minimum resistance** — 电位器的最小输入电阻 `10 Ohm`（默认值）| 正标量
 
-电位器的最小输入电阻，指定为以 ohms 为单位的正标量。
-
-**数据类型：** `double`
-
-### **最大电阻** — 电位器的最大输入电阻 `1e6 Ohm`（默认）| 正标量
-
-电位器的最大输入电阻，指定为以 ohms 为单位的正标量。此值必须大于最小电阻。
+电位器的最小输入电阻，指定为以欧姆为单位的正标量。
 
 **数据类型：** `double`
 
-### **电位器类型** — 电位器的曲线类型 `Linear`（默认）| `Logarithmic` | `Antilog`
+### **Maximum resistance** — 电位器的最大输入电阻 `1e6 Ohm`（默认值）| 正标量
+
+电位器的最大输入电阻，指定为以欧姆为单位的正标量。此值必须大于最小电阻。
+
+**数据类型：** `double`
+
+### **Potentiometer type** — 电位器的曲线类型 `Linear`（默认值）| `Logarithmic` | `Antilog`
 
 电位器的曲线类型，指定为
 `Linear`、
@@ -41,18 +41,19 @@ R2025b 中未记录。
 
 **数据类型：** `char`
 
-### **滑动端位于一半时的电阻百分比** — 电位器的最大输入电阻 正标量
+### **Percentage of resistance at half wiper** — 电位器的最大输入电阻 正标量
 
-对于对数和反对数电位器类型，滑动端位于一半时的电阻百分比，指定为正标量。有效值取决于电位器类型：
+对数型和反对数型电位器在半滑动端处的电阻百分比，指定为正标量。有效值取决于电位器类型：
 
 - `Logarithmic` - 大于 0 且
   小于 50。默认值为 20。
-- `Antilog` - 大于 50 且小于
-  100。默认值为 80。
+- `Antilog` - 大于 50 且
+  小于 100。默认值为 80。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请在**电位器类型**中选择
+要启用此参数，请在 **Potentiometer
+type** 中选择
 `Logarithmic` 或
 `Antilog`。
 
@@ -78,10 +79,9 @@ R2025b 中未记录。
 
 Simulink 控制的电位器
 
-Potentiometer 模块对可变电阻器进行建模。Potentiometer
-模块使用 Simulink® 信号作为输入控制信号，以改变正极端子与负极端子之间的电阻。
+Potentiometer 模块对可变电阻器进行建模。Potentiometer 模块使用 Simulink® 信号作为输入控制信号，以改变正负端子之间的电阻。
 
-当控制信号在 0 和 1 之间变化时，电位器的电压-电流关系方程为：
+当控制信号在 0 到 1 之间变化时，电位器电压–电流关系的方程为：
 
 Linear:            Vpot=Ipot.(Roff.Ctl+Ron.(1−Ctl))Logarithmic:   Vpot=Ipot.(C1.exp (C2.Ctl)+C3)Antilog:           Vpot=Ipot.(C1.log  (1+C2.Ctl)+C3.Ctl+Ron)
 

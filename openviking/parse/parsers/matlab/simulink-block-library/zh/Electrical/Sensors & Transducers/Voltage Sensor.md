@@ -9,7 +9,7 @@ official_category: 'Electrical / Electrical Sensors'
 documentation_page: 'voltagesensor'
 documentation_source_path: '../simscape/ref/voltagesensor.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Voltage Sensor
@@ -18,22 +18,22 @@ chinese_source: official
 
 ### 输出
 
-### **V** — 电压（单位：V） 物理信号
+### **V** — 电压，V 物理信号
 
-电压测量值的物理信号输出端口。
+用于电压测量的物理信号输出端口。
 ### 守恒
 
 ### **+** — 正极端子 电气
 
-与传感器正极端子相关联的电气守恒端口。
+与传感器正极端子关联的电气守恒端口。
 
 ### **-** — 负极端子 电气
 
-与传感器负极端子相关联的电气守恒端口。
+与传感器负极端子关联的电气守恒端口。
 
 ## 参数
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -41,20 +41,20 @@ Simscape / Foundation Library / Electrical / Electrical Sensors Simscape / Elect
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2007a 中推出**
+**在 R2007a 中引入**
 
 ## 描述
 
 电气系统中的电压传感器
 
-Voltage Sensor 模块表示理想的电压传感器，即一种将在电路的两点之间测量的电压转换为与该电压成比例的物理信号的器件。
+Voltage Sensor 模块表示理想电压传感器，即一种将电气电路两点之间测得的电压转换为与该电压成比例的物理信号的设备。
 
-使用 **+** 和 **-** 端口将传感器与您想要测量电压的模块（或多个模块）并联起来。端口 **V** 将测量结果输出为一个物理信号。使用 PS-Simulink Converter 模块将此端口连接到 Simulink® 模块，例如 Scope 或 Display。
+使用 **+** 和 **-** 端口将传感器与要测量电压的模块（或若干模块）并联连接。端口 **V** 将测量结果作为物理信号输出。使用 PS-Simulink Converter 模块将此端口连接到 Simulink® 模块，例如 Scope 或 Display。

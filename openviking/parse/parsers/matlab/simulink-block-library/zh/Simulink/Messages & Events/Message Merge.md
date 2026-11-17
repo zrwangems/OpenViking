@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Message Merge'
-family: 'messages-events'
+family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -20,36 +20,35 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 要合并的输入消息线 标量 | 向量 | 矩阵
 
-用于进入模块的消息的输入消息端口。
+进入模块的消息的输入消息端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
 
 ### **Port\_2** — 要合并的输入消息线 标量 | 向量 | 矩阵
 
-用于进入模块的消息的输入消息端口。
+进入模块的消息的输入消息端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ### 输出
 
 ### **Port** — 输出消息线 标量 | 向量 | 矩阵
 
-用于离开模块的消息的输出消息端口。
+离开模块的消息的输出消息端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
 
 ## 参数
 
-### **输入端口数** — 指定要合并的消息线数量 `2`（默认） | 标量
+### **Number of input ports** — 指定要合并的消息线数量 `2`（默认）| 标量
 
-确定要合并的消息输入端口数。
+确定要合并的消息输入端口数量。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`NumberInputPorts` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'2'` | 标量 |
 | **默认值**：`'2'` |
 
@@ -79,10 +78,10 @@ Simulink / Messages & Events
 
 合并消息路径
 
-Message Merge 模块以图形方式将多个消息线合并为一条消息线。合并消息线不会更改消息本身。您可以指定要合并的消息线数量。
+Message Merge 模块以图形方式将多条消息线合并为一条消息线。合并消息线不会更改消息本身。您可以指定要合并的消息线数量。
 
-当您想要合并多个传入消息并输出到单个目标（例如队列或消息存储模块）时，请使用此模块。
+当您想要合并多条传入消息并输出到单个目标（例如队列或消息存储模块）时，请使用此模块。
 
 **注意**
 
-Message Merge 模块在 AUTOSAR 模式下不支持代码生成。
+Message Merge 模块不支持 AUTOSAR 模式下的代码生成。

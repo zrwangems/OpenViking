@@ -9,7 +9,7 @@ official_category: 'C2802x'
 documentation_page: 'watchdog'
 documentation_source_path: 'ref/watchdog.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # C28x Watchdog
@@ -18,32 +18,32 @@ chinese_source: official
 
 ### 输入
 
-### **Input** — 重置 Watchdog 计数器 标量
+### **Input** — 复位看门狗计数器 标量
 
-当输入信号为 `1` 时，计数器复位。
+当输入信号为 `1` 时，计数器被复位。
 
-#### 依赖关系
+#### 依赖
 
-只有当 **Watchdog counter reset source** 设置为**输入端口**时，此参数才会出现。
+此参数仅在 **Watchdog counter reset source** 设置为 `Input port` 时出现。
 
-**数据类型:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
+**数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
 
 ## 参数
 
-### **Watchdog 计数器复位源** — Watchdog 计数器复位源 **通过对话框指定** (默认) | **输入端口**
+### **Watchdog counter reset source** — 看门狗计数器复位源 `Specify via dialog`（默认）| `Input port`
 
-Watchdog 计数器重置源。
+看门狗计数器复位源。
 
-- **输入** - 在 Watchdog 模块上创建一个输入端口。当输入信号为 `1` 时，计数器复位。
-- **通过对话框指定** - 根据**采样时间**的值重置 Watchdog 定时器。
+- `Input` — 在看门狗模块上创建一个输入端口。当输入信号为 `1` 时，计数器被复位。
+- `Specify via dialog` — 看门狗定时器根据 **Sample time** 值进行复位。
 
-### **采样时间** — 处理器重置 Watchdog 定时器的频率 `–1` (默认) | 标量
+### **Sample time** — 处理器复位看门狗定时器的频率 `–1`（默认）| 标量
 
-以秒为单位记录该模块的采样时间。要异步执行此模块，请将此参数设置为 `-1`。
+模块的采样时间，以秒为单位。要异步执行此模块，请将此参数设置为 `-1`。
 
-#### 依赖关系
+#### 依赖
 
-只有当 **Watchdog counter reset source** 设置为**通过对话框指定**时，此参数才会出现。
+此参数仅在 **Watchdog counter reset source** 设置为 `Specify via dialog` 时出现。
 
 ## 所属库
 
@@ -51,18 +51,18 @@ C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x 
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 描述
 
-配置处理器 Watchdog 模块的计数器复位源
+配置处理器看门狗模块的计数器复位源
 
-该模块配置处理器上 Watchdog 模块的计数器复位源。监控模块配置完成后，如果未定期维护，则会重置系统。
+此模块配置处理器上看门狗模块的计数器复位源。配置后，看门狗模块如果未被定期维护，将复位系统。

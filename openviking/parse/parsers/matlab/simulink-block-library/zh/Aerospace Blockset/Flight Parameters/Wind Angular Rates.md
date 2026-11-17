@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Wind Angular Rates'
-family: 'flight-parameters'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -18,28 +18,28 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **ɑ β** — 攻角和侧滑角 2×1 向量
+### **ɑ β** — 迎角和侧滑角 2×1 向量
 
-攻角和侧滑角，指定为 2×1 向量，单位为 radians。
+迎角和侧滑角，指定为 2×1 向量，单位为弧度。
 
 **数据类型：** `double`
 
 ### **dɑ/dt dβ/dt** — 变化率 2×1 向量
 
-攻角变化率和侧滑角变化率，指定为 2×1 向量，单位为 radians per second。
+迎角变化率和侧滑角变化率，指定为 2×1 向量，单位为弧度每秒。
 
 **数据类型：** `double`
 
-### **ω** — 机体角速率三元素向量
+### **ω** — 机体角速率 三元素向量
 
-机体角速率，指定为三元素向量，单位为 radians per second。
+机体角速率，指定为三元素向量，单位为弧度每秒。
 
 **数据类型：** `double`
 ### 输出
 
-### **ωw** — 风角速率三元素向量
+### **ωw** — 风角速率 三元素向量
 
-风角速率，返回为三元素向量，单位为 radians per second。
+风角速率，返回为三元素向量，单位为弧度每秒。
 
 **数据类型：** `double`
 
@@ -65,6 +65,6 @@ R2025b 中未记录。
 
 ## 描述
 
-根据机体角速率、攻角、侧滑角、攻角变化率和侧滑角变化率计算风角速率
+根据机体角速率、迎角、侧滑角、迎角变化率和侧滑角变化率计算风角速率
 
-Wind Angular Rates 模块通过计算风轴系角速率 (*pw, qw, rw*) 来支持风轴系模型中的运动方程。有关计算所用方程的详细信息，请参阅算法。
+Wind Angular Rates 模块通过计算风固连角速率（*pw、qw、rw*）来支持风固连坐标系模型中的运动方程。有关计算所用方程的详细信息，请参阅算法。

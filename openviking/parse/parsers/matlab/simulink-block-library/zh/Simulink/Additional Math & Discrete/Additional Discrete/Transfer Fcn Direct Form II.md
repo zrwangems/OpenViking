@@ -9,7 +9,7 @@ official_category: 'Additional Math & Discrete / Additional Discrete'
 documentation_page: 'transferfcndirectformii'
 documentation_source_path: 'slref/transferfcndirectformii.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Transfer Fcn Direct Form II
@@ -22,83 +22,85 @@ chinese_source: official
 
 输入信号，指定为标量或向量。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
 ### **Port\_1** — 输出信号 标量 | 向量
 
 输出信号，指定为标量或向量。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ## 参数
 
-### **分子系数** — 分子系数 `[0.2 0.3 0.2]` (默认) | 向量
+### **Numerator coefficients** — 分子系数 `[0.2 0.3 0.2]`（默认）| 向量
 
 将分子系数指定为向量。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**：`NumCoefVec` |
-| **类型：**字符向量 |
-| **值：**向量 |
-| **默认值：**`'[0.2 0.3 0.2]'` |
+| **模块参数：** `NumCoefVec` |
+| **类型：** 字符向量 |
+| **值：** 向量 |
+| **默认：** `'[0.2 0.3 0.2]'` |
 
-### **不含首项的分母系数** — 分母系数 `[-0.9 0.6]` (默认) | 向量
+### **Denominator coefficients excluding lead** — 分母系数 `[-0.9 0.6]`（默认）| 向量
 
-指定分母系数，不包括首项系数（必须为 `1.0`）。
+指定分母系数，不包括首项系数，首项系数必须为 `1.0`。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**：`DenCoefVec` |
-| **类型：**字符向量 |
-| **值：**向量 |
-| **默认值：**`'[-0.9 0.6]'` |
+| **模块参数：** `DenCoefVec` |
+| **类型：** 字符向量 |
+| **值：** 向量 |
+| **默认：** `'[-0.9 0.6]'` |
 
-### **初始条件** — 初始条件 `0.0` (默认) | 标量
+### **Initial condition** — 初始条件 `0.0`（默认）| 标量
 
 将初始条件指定为标量。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**：`vinit` |
-| **类型：**字符向量 |
-| **值：**标量 |
-| **默认值：**`'0.0'` |
+| **模块参数：** `vinit` |
+| **类型：** 字符向量 |
+| **值：** 标量 |
+| **默认：** `'0.0'` |
 
-### **整数舍入模式** — 定点运算的舍入模式 **向下** (默认) | **向上** | **收敛** | **最邻近值** | **舍入** | **最简** | **零**
+### **Integer rounding mode** — 定点运算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
-指定定点运算的舍入模式。有关详细信息，请参阅舍入模式 (Fixed-Point Designer)。
+指定定点运算的舍入模式。
+有关详细信息，请参阅舍入模式（Fixed-Point Designer）。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**：`RndMeth` |
-| **类型：**字符向量 |
-| **值：**`'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | 'Zero'` |
-| **默认值：**`'Floor'` |
-
-### **发生溢出时饱和处理为最大值或最小值** — 溢出操作的方法 `off` (默认) | `on`
-
-当您选中此复选框时，溢出将饱和处理为数据类型可表示的最大值或最小值。否则，溢出将绕回。
-
-如果选中此复选框，饱和将应用于模块中的每个内部操作，而不仅仅应用于输出或结果。一般情况下，代码生成进程可以检测到何时不可能发生溢出。在这种情况下，代码生成器不会生成饱和代码。
-
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**：`DoSatur` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **模块参数：** `RndMeth` |
+| **类型：** 字符向量 |
+| **值：** `'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | 'Zero'` |
+| **默认：** `'Floor'` |
+
+### **Saturate to max or min when overflows occur** — 溢出操作方法 `off`（默认）| `on`
+
+选中此复选框时，溢出饱和到数据类型所能表示的最大值或最小值。
+否则，溢出将回绕。
+
+选中此复选框时，饱和适用于模块上的每个内部运算，而不仅仅是输出或结果。通常，代码生成过程可以检测到不可能发生溢出的情况。在这种情况下，代码生成器不会生成饱和代码。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数：** `DoSatur` |
+| **类型：** 字符向量 |
+| **值：** `'off' | 'on'` |
+| **默认：** `'off'` |
 
 ## 所属库
 
@@ -109,16 +111,16 @@ Simulink / Additional Math & Discrete / Additional Discrete
 |  |  |
 | --- | --- |
 | **数据类型** | `double` | `fixed point` | `integer` | `single` |
-| **直接馈通** | `否` |
-| **多维信号** | `否` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **直接馈通** | `no` |
+| **多维信号** | `no` |
+| **可变大小信号** | `no` |
+| **过零检测** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-代码生成器不会在生成的代码中将构成非原子封装子系统模块的原始模块显式组合在一起。这种灵活性可以提高代码生成效率。在某些情况下，通过选择**视为原子单元**选项，可以通过将封装子系统模块配置为以原子单元执行来进行组合。
+代码生成器不会在生成的代码中显式地将构成非原子掩码子系统的原始模块分组。这种灵活性允许更高效的代码生成。在某些情况下，您可以通过选择 **Treat as atomic unit** 选项将掩码子系统模块配置为作为原子单元执行，从而实现分组。
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
@@ -130,8 +132,8 @@ Simulink / Additional Math & Discrete / Additional Discrete
 
 ## 描述
 
-实现传递函数的直接 II 型实现
+实现传递函数的 Direct Form II 实现
 
-Transfer Fcn Direct Form II 模块实现由**分子系数**和**不含首项的分母系数**参数指定的传递函数的直接 II 型实现。该模块仅支持单输入单输出 (SISO) 传递函数。
+Transfer Fcn Direct Form II 模块实现由 **Numerator coefficients** 和 **Denominator coefficients excluding lead** 参数指定的传递函数的 Direct Form II 实现。该模块仅支持单输入单输出（SISO）传递函数。
 
-该模块自动选择输出的数据类型和定标、系数和任何临时变量。
+该模块自动选择输出、系数以及任何临时变量的数据类型和定标。

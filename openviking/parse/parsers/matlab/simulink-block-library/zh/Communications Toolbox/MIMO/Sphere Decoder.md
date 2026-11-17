@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sphere Decoder'
-family: 'mimo'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -20,28 +20,43 @@ R2025b 中未记录。
 
 ## 参数
 
-**信号星座图**
-:   指定比特所映射到的信号星座图中的点数。此值必须为复数列向量。向量的长度必须为 2 的幂。
-    模块对每个发射天线使用相同的星座图。默认设置为平均功率为 1 的 QPSK 星座图。
+**Signal constellation**
+:   指定比特所映射到的信号星座中的点数。
+    该值必须为复数列向量。向量的长度必须为 2 的幂。
+    该模块对每个发射天线使用相同的星座。默认设置为平均功率为 1 的 QPSK
+    星座。
 
-**每个星座点的比特映射**
-:   指定模块对每个星座点使用的比特映射。此值必须为数值矩阵。矩阵大小必须为 [ConstellationLength bitsPerSymbol]，其中
-    ConstellationLength 表示 **信号星座图** 参数值的长度，bitsPerSymbol 表示每个符号编码的比特数。
-    默认矩阵为 [0 0; 0 1; 1 0; 1 1]，与 **信号星座图** 属性的默认值相匹配。
+**Bit mapping per constellation point**
+:   指定该模块对每个星座点使用的比特映射。该值必须
+    为数值矩阵。矩阵大小必须为 [ConstellationLength bitsPerSymbol]，其中
+    ConstellationLength 表示 **Signal constellation**
+    参数值的长度，bitsPerSymbol 表示每个符号编码的比特数。
+    默认矩阵大小为 [0 0; 0 1; 1 0; 1 1]，与
+    **Signal constellation** 属性的默认值匹配。
 
-**初始搜索半径**
-:   将解码算法的初始搜索半径指定为 `Infinity` 或 `ZF solution`。
+**Initial search radius**
+:   将解码算法的初始搜索半径指定为
+    `Infinity` 或 `ZF solution`。
 
-    选择 `Infinity` 时，模块将初始搜索半径设置为 Inf。选择 `ZF solution` 时，模块将初始搜索半径设置为迫零解。
-    解码时，通过输入信道的伪逆计算迫零解。对于大型星座图和/或大量天线，初始减小搜索半径可能带来益处。
-    但在大多数情况下，`ZF Solution` 的额外计算并不会带来益处。
+    当您选择 `Infinity` 时，该模块将初始搜索
+    半径设置为 Inf。当您选择 `ZF solution` 时，该模块将
+    初始搜索半径设置为迫零解。迫零解在解码时通过
+    输入信道的伪逆计算得出。较大的星座和/或天线
+    数量可以从搜索半径的初始缩减中受益。但在大多数情况下，
+    `ZF Solution` 的额外计算不会带来好处。
 
-**判决方法**
-:   将解码判决方法指定为 `Soft` 或 `Hard`。选择 `Soft` 时，模块输出对数似然比 (LLRs)，即软比特。
-    选择 `Hard` 时，模块将软 LLR 转换为比特。硬判决输出的逻辑数组遵循以下映射：负 LLR 映射为 `0`，所有其他值映射为 `1`。
+**Decision method**
+:   将解码判决方法指定为 `Soft` 或
+    `Hard`。当您选择 `Soft` 时，该模块
+    输出对数似然比（LLR），即软比特。当您设置为
+    `Hard` 时，该模块将软 LLR 转换为比特。硬判决
+    输出逻辑数组遵循以下映射：负 LLR 为 `0`，
+    所有其他值为 `1`。
 
-**仿真方式**
-:   指定模块使用 `Code generation` 还是 `Interpreted execution` 进行仿真。默认值为 `Interpreted execution`。
+**使用仿真**
+:   指定该模块是使用 `Code generation` 还是
+    `Interpreted execution` 进行仿真。默认值为 `Interpreted
+    execution`。
 
 ## 所属库
 
@@ -61,14 +76,16 @@ R2025b 中未记录。
 
 ## 描述
 
-使用球形解码器对输入进行解码
+使用球译码器解码输入
 
-此模块使用球形解码算法对通过 `Nt` 根天线发送的符号进行解码。
+该模块使用球译码算法解码通过 `Nt` 个天线发送的符号。
 
 ### 数据类型
 
-有关每个模块端口支持的数据类型的信息，请参阅本页上的“支持的数据类型”表。输出信号继承输入的数据类型。
+有关每个模块端口支持的数据类型的信息，请参阅本页上的 Supported Data Type 表。输出信号从
+输入继承数据类型。
 
 ### 算法
 
-此模块实现 `comm.SphereDecoder` System object™ 模块参考页面上所述的算法、输入和输出。对象属性与模块参数相对应。
+该模块实现 `comm.SphereDecoder`
+System object™ 模块参考页面上描述的算法、输入和输出。对象属性对应于模块参数。

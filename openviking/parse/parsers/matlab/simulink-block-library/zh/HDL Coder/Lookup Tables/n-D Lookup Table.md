@@ -9,7 +9,7 @@ official_category: 'ARC'
 documentation_page: 'ndlookuptable'
 documentation_source_path: '../simulink/slref/ndlookuptable.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # n-D Lookup Table
@@ -18,169 +18,169 @@ chinese_source: official
 
 ### 输入
 
-### **u1** — 第一个维度（行）输入 标量 | 向量 | 矩阵
+### **u1** — 第一维（行）输入 标量 | 向量 | 矩阵
 
-**u1** 端口的实数值输入，通过查找您定义的值表或对其进行插值来映射到输出值。
+**u1** 端口的实值输入，通过查找或插值您定义的值表映射到输出值。
 
-**示例:** `0:10`
+**示例：** `0:10`
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
 
 ### **uN** — 第 n 维输入值 标量 | 向量 | 矩阵
 
-**uN** 端口的实数值输入，通过查找或对您定义的值表进行插值来映射到输出值。
+**uN** 端口的实值输入，通过查找或插值您定义的值表映射到输出值。
 
-**示例:** `0:10`
+**示例：** `0:10`
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
 
-### **T** — 定义输出值的表 值组成的矩阵，其维度与**表维数**匹配，每个维度与表中每个维度的断点长度匹配
+### **T** — 定义输出值表 维度与 **Number of table dimensions** 及表中每个维度的断点长度匹配的值矩阵
 
-用运行时可调的信号指定输出值表。
+使用可在运行时调节的信号指定输出值表。
 
-在仿真期间，矩阵大小必须与**表维数**参数定义的维度匹配。但是，在编辑模块图的过程中，您可以输入空矩阵（指定为 `[]`）或者未定义的工作区变量。利用此方法，您可以推迟为表数据指定正确设置维度的矩阵，并继续编辑模块图。
+在仿真期间，矩阵大小必须与 **Number of table dimensions** 参数定义的维度匹配。但是，在模块图编辑期间，您可以输入空矩阵（指定为 `[]`）或未定义的工作区变量。此技术允许您推迟为表数据指定正确维度的矩阵，并继续编辑模块图。
 
 #### 依赖关系
 
-要启用此端口，请进行如下设置：
+要启用此端口，请设置：
 
-- 将**数据设定**设置为**表和断点**。
-- 将**表数据**设置为**输入端口**。
+- **Data specification** 为 `Table and breakpoints`。
+- **表格数据** 为 `Input port`。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
-### **bp1** — 显式断点值 单调递增值的 1×n 或 n×1 向量
+### **bp1** — 显式断点值 1×n 或 n×1 的单调递增向量
 
-根据**断点设定**参数的值，使用运行时可调的信号显式指定断点数据。
+根据 **Breakpoints specification** 参数的值，使用可在运行时调节的信号显式指定断点数据。
 
-- 如果您将**断点设定**设置为**显式值**，请在每个**断点**行中输入与表数据的每个维度对应的断点向量。对于每个维度，将断点指定为值严格单调递增的 1×n 或 n×1 向量。
+- 如果将 **Breakpoints specification** 设置为 `Explicit values`，请在每个 **Breakpoints** 行中输入与表数据每个维度对应的断点向量。对于每个维度，将断点指定为值严格单调递增的 1×n 或 n×1 向量。
 
-您最多可以创建三个断点数据输入端口。对于断点 4 到 30，您只能通过对应的**断点**参数指定断点数据。
+您最多可以创建三个断点数据输入端口。对于断点 4 到 30，只能通过相应的 **Breakpoints** 参数指定断点数据。
 
 **注意**
 
-要以等间距设定格式指定断点，请将**断点设定**设置为**等间距**，并使用**断点的第一个**点和**间距**参数。
+要以等间距规格格式指定断点，请将 **Breakpoints specification** 设置为 `Even spacing`，并使用 **Breakpoints First** 点和 **Spacing** 参数。
 
 #### 依赖关系
 
-要启用此端口，请进行如下设置：
+要启用此端口，请设置：
 
-- 将**数据设定**设置为**表和断点**。
-- 将**断点设定**设置为**显式值**。
-- 将**断点 1** 设置为**输入端口**。
+- **Data specification** 为 `Table and breakpoints`。
+- **Breakpoints specification** 为 `Explicit values`。
+- **Breakpoints 1** 为 `Input port`。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
 
-### **bp2** — 显式断点值 单调递增值的 1×n 或 n×1 向量
+### **bp2** — 显式断点值 1×n 或 n×1 的单调递增向量
 
-根据**断点设定**参数的值，使用运行时可调的信号显式指定断点数据。
+根据 **Breakpoints specification** 参数的值，使用可在运行时调节的信号显式指定断点数据。
 
-- 如果您将**断点设定**设置为**显式值**，请在每个**断点**行中输入与表数据的每个维度对应的断点向量。对于每个维度，将断点指定为值严格单调递增的 1×n 或 n×1 向量。
+- 如果将 **Breakpoints specification** 设置为 `Explicit values`，请在每个 **Breakpoints** 行中输入与表数据每个维度对应的断点向量。对于每个维度，将断点指定为值严格单调递增的 1×n 或 n×1 向量。
 
-您最多可以创建三个断点数据输入端口。对于断点 4 到 30，您只能通过对应的**断点**参数指定断点数据。
+您最多可以创建三个断点数据输入端口。对于断点 4 到 30，只能通过相应的 **Breakpoints** 参数指定断点数据。
 
 **注意**
 
-要指定等间距断点数据，请使用**断点**参数。您无法通过输入端口指定等间距断点数据。
+要指定等间距断点数据，请使用 **Breakpoints** 参数。您无法通过输入端口指定等间距断点数据。
 
 #### 依赖关系
 
-要启用此端口，请进行如下设置：
+要启用此端口，请设置：
 
-- 将**数据设定**设置为**表和断点**。
-- 将**断点设定**设置为**显式值**。
-- 将**断点 2** 设置为**输入端口**。
+- **Data specification** 为 `Table and breakpoints`。
+- **Breakpoints specification** 为 `Explicit values`。
+- **Breakpoints 2** 为 `Input port`。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
 
-### **bp3** — 显式断点值 单调递增值的 1×n 或 n×1 向量
+### **bp3** — 显式断点值 1×n 或 n×1 的单调递增向量
 
-根据**断点设定**参数的值，使用运行时可调的信号显式指定断点数据。
+根据 **Breakpoints specification** 参数的值，使用可在运行时调节的信号显式指定断点数据。
 
-- 如果您将**断点设定**设置为**显式值**，请在每个**断点**行中输入与表数据的每个维度对应的断点向量。对于每个维度，将断点指定为值严格单调递增的 1×n 或 n×1 向量。
+- 如果将 **Breakpoints specification** 设置为 `Explicit values`，请在每个 **Breakpoints** 行中输入与表数据每个维度对应的断点向量。对于每个维度，将断点指定为值严格单调递增的 1×n 或 n×1 向量。
 
-您最多可以创建三个断点数据输入端口。对于断点 4 到 30，您只能通过对应的**断点**参数指定断点数据。
+您最多可以创建三个断点数据输入端口。对于断点 4 到 30，只能通过相应的 **Breakpoints** 参数指定断点数据。
 
 **注意**
 
-要指定等间距断点数据，请使用**断点**参数。您无法通过输入端口指定等间距断点数据。
+要指定等间距断点数据，请使用 **Breakpoints** 参数。您无法通过输入端口指定等间距断点数据。
 
 #### 依赖关系
 
-要启用此端口，请进行如下设置：
+要启用此端口，请设置：
 
-- 将**数据设定**设置为**表和断点**。
-- 将**断点设定**设置为**显式值**。
-- 将**断点 3** 设置为**输入端口**。
+- **Data specification** 为 `Table and breakpoints`。
+- **Breakpoints specification** 为 `Explicit values`。
+- **Breakpoints 3** 为 `Input port`。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `enumerated` | `fixed point`
 ### 输出
 
-### **Port\_1** — 通过查找或估算表值计算的输出 标量 | 向量 | 矩阵
+### **Port\_1** — 通过查找或估计表值计算的输出 标量 | 向量 | 矩阵
 
-通过查找或基于输入值估算表值生成的输出：
+基于输入值通过查找或估计表值生成的输出：
 
-| 如果模块输入... | n-D Lookup Table 模块... |
+| 当模块输入... | n-D Lookup Table 模块... |
 | --- | --- |
-| 与断点向量中的索引值匹配 | 输出位于行、列和更高维度断点的交点处的表值 |
-| 与断点向量中的索引值不匹配，但在范围内 | 使用您选择的**内插方法**内插适当的表值 |
-| 与断点向量中的索引值不匹配，且不在范围内 | 使用您选择的**外插方法**外插输出值 |
+| 与断点向量中的索引值匹配 | 输出行、列和更高维断点交点处的表值 |
+| 与断点向量中的索引值不匹配，但在范围内 | 使用您选择的 **Interpolation method** 插值适当的表值 |
+| 与断点向量中的索引值不匹配，且超出范围 | 使用您选择的 **Extrapolation method** 外推输出值 |
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ## 参数
 
 ### 表和断点
 
-### **表维数** — 查找表维度的数量 `3` (默认) | `1` | `2` | `4` | `...` | `30`
+### **Number of table dimensions** — 查找表维度数 `3`（默认） | `1` | `2` | `4` | `...` | `30`
 
-输入查找表的维数。此参数确定：
+输入查找表的维度数。此参数决定：
 
-- 表的自变量数量以及模块输入的数量
-- 要指定的断点向量数目
+- 表的自变量数量和模块输入端口数量
+- 要指定的断点向量数量
 
 | 值 | 设置 |
 | --- | --- |
 | 1、2、3 或 4 | 从下拉列表中选择值。 |
-| 更高的表维数 | 直接在字段中输入正整数。  此模块支持的最大表维数为 30。 |
+| 更高的表维度数 | 直接在字段中输入正整数。此模块支持的最大表维度数为 30。 |
 
-例如，大小为 *M*×*N*×... 的表表示维度 1 的大小是 *M*，维度 2 的大小是 *N*，依此类推。*M* 必须匹配第一个断点长度，*N* 必须匹配第二个断点长度，依此类推。
+例如，大小为 *M* x *N* x ... 的表意味着维度 1 的大小为 *M*，维度 2 的大小为 *N*，依此类推。*M* 必须与第一个断点长度匹配，*N* 必须与第二个断点长度匹配，依此类推。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`NumberOfTableDimensions` |
-| **类型：**字符向量 |
-| **值：**`'1' | '2' | '3' | '4' | ... | 30` |
-| **默认值：**`'3'` |
+| **类型**：character vector |
+| **值**：`'1' | '2' | '3' | '4' | ... | 30` |
+| **默认值**：`'3'` |
 
-### **数据设定** — 表和断点的设定方法 **表和断点** (默认) | **查找表对象**
+### **Data specification** — 表和断点指定方法 `Table and breakpoints`（默认） | `Lookup table object`
 
-从列表中，选择：
+从列表中选择：
 
-- **表和断点** - 指定表数据和断点。选择此选项将启用以下参数：
+- `Table and breakpoints` — 指定表数据和断点。选择此选项将启用以下参数：
 
-  - **表数据**
-  - **断点设定**
-  - **断点 1**
-  - **断点 2**
-  - **断点 3**
-  - **编辑表和断点**
+  - **表格数据**
+  - **Breakpoints specification**
+  - **Breakpoints 1**
+  - **Breakpoints 2**
+  - **Breakpoints 3**
+  - **编辑表格和断点**
 
-  要使用输入端口指定表和断点，请查看**源**参数。
-- **查找表对象** - 使用现有查找表 (`Simulink.LookupTable`) 对象。选中此选项将启用**名称**字段和**编辑表和断点**按钮。
+  要使用输入端口指定表和断点，请参阅 **Source** 参数。
+- `Lookup table object` — 使用现有的查找表（`Simulink.LookupTable`）对象。选择此选项将启用 **Name** 字段和 **Edit table and breakpoints** 按钮。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`DataSpecification` |
-| **类型：**字符向量 |
-| **值：**`'Table and breakpoints' | 'Lookup table object'` |
-| **默认值：**`'Table and breakpoints'` |
+| **类型**：character vector |
+| **值**：`'Table and breakpoints' | 'Lookup table object'` |
+| **默认值**：`'Table and breakpoints'` |
 
-要将此参数从 `'Table and breakpoints'` 设置为 `'Lookup table object'`，请使用相同的 `set_param` 调用来设置 `LookupTableObject` 参数。例如：
+要将此参数从 `'Table and breakpoints'` 设置为 `'Lookup table object'`，请使用同一个 `set_param` 调用设置 `LookupTableObject` 参数。例如：
 
 ```
 set_param('myModel/myLookupBlock',...
@@ -188,459 +188,459 @@ set_param('myModel/myLookupBlock',...
    'LookupTableObject','myLUTObject')
 ```
 
-### **名称** — 查找表对象的名称 `[]` (默认) | `Simulink.LookupTable` 对象
+### **Name** — 查找表对象的名称 `[]`（默认） | `Simulink.LookupTable` 对象
 
-输入查找表 (`Simulink.LookupTable`) 对象的名称。如果 `Simulink.LookupTable` 对象不存在，请点击操作按钮  并选择**创建**。新查找表对象的对应参数会自动用模块信息填充。
+输入查找表（`Simulink.LookupTable`）对象的名称。如果 `Simulink.LookupTable` 对象不存在，请单击操作按钮 并选择 **Create**。新查找表对象的相应参数将自动填充模块信息。
 
 #### 依赖关系
 
-要启用此参数，请将**数据设定**设置为**查找表对象**。
+要启用此参数，请将 **Data specification** 设置为 `Lookup table object`。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`LookupTableObject` |
-| **类型：**字符向量 |
-| **值：**`Simulink.LookupTable` 对象的名称 |
-| **默认值：**`''` |
+| **类型**：character vector |
+| **值**：name of a `Simulink.LookupTable` object |
+| **默认值**：`''` |
 
-### **断点设定** — 断点设定的方法 **显式值** (默认) | **等间距**
+### **Breakpoints specification** — 断点指定方法 `Explicit values`（默认） | `Even spacing`
 
-指定是以显式断点形式还是参数形式输入数据，以生成等间距断点。
+指定是将数据输入为显式断点，还是输入为生成等间距断点的参数。
 
-- 要显式指定断点数据，请将此参数设置为**显式值**，并在**断点**参数旁边的文本框中输入断点数据。
-- 要指定参数以生成等间距断点，请将此参数设置为**等间距**，并为断点数据的每个维度的**第一个点**和**间距**参数输入值。模块将根据表数据计算要生成的点数。
+- 要显式指定断点数据，请将此参数设置为 `Explicit values`，并在 **Breakpoints** 参数旁边的文本框中输入断点数据。
+- 要指定生成等间距断点的参数，请将此参数设置为 `Even spacing`，并为断点数据的每个维度输入 **First point** 和 **Spacing** 参数的值。模块根据表数据计算要生成的点数。
 
 #### 依赖关系
 
-- 要启用此参数，请将**数据设定**设置为**表和断点**。
-- 当此参数设置为**等间距**时，您只能通过对话框指定断点数据。
+- 要启用此参数，请将 **Data specification** 设置为 `Table and breakpoints`。
+- 当此参数设置为 `Even spacing` 时，只能通过对话框指定断点数据。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`BreakpointsSpecification` |
-| **类型：**字符向量 |
-| **值：**`'Explicit values' | 'Even spacing'` |
-| **默认值：**`'Explicit values'` |
+| **类型**：character vector |
+| **值**：`'Explicit values' | 'Even spacing'` |
+| **默认值**：`'Explicit values'` |
 
-### **支持可调大小** — 用于启用可调表大小的选项 `off` (默认) | `on`
+### **Support tunable size** — 启用可调表大小的选项 `off`（默认） | `on`
 
-选中此复选框可在仿真运行或生成的代码执行时启用可调表大小。此选项使软件即使在生成的代码执行期间更改查找表和断点数据的大小和值时，也能正常工作。表大小必须为 2 或更大但小于最大可调大小。
+选中此复选框可在仿真运行或生成的代码执行期间启用活动区域的可调表大小。此选项使软件即使在生成的代码执行期间更改活动区域的大小以及查找表和断点数据的值时也能正常工作。表大小必须大于或等于 2 且小于最大可调大小。
 
 #### 依赖关系
 
-如果您将**插值方法**设置为**三次样条**或 **Akima 样条**，**支持可调大小**将不可用。
+如果将 **Interpolation method** 设置为 `Cubic spline` 或 `Akima spline`，则 **Support tunable size** 不可用。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`SupportTunableSize` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **类型**：character vector |
+| **值**：`'off' | 'on'` |
+| **默认值**：`'off'` |
 
-### **源** — 表和断点数据的源 **对话框** (默认) | **输入端口**
+### **Source** — 表和断点数据的来源 `Dialog`（默认） | `Input port`
 
-将表和断点数据的源指定为：
+将表和断点数据的来源指定为：
 
-- **对话框** - 在**值**参数中指定表或断点数据。
-- **输入端口** - 通过关联的输入端口指定表或断点数据。
+- `Dialog` — 在 **Value** 参数中指定表或断点数据。
+- `Input port` — 通过关联的输入端口指定表或断点数据。
 
-  您最多可以创建三个断点数据输入端口。对于断点 4 到 30，您只能通过对应的**断点**参数指定断点数据。
+  您最多可以创建三个断点数据输入端口。对于断点 4 到 30，只能通过相应的 **Breakpoints** 参数指定断点数据。
 
 **注意**
 
-使用输入端口指定表或断点数据可能会因为运行时检查对仿真的模块性能产生负面影响。要对需要在仿真期间更改断点的动态特性进行建模，请选择**对话框**并使用 Parameter Writer 模块更改断点数据。
+使用输入端口指定表或断点数据可能会因运行时检查而对仿真中的模块性能产生负面影响。要对需要在仿真期间更改断点的动态进行建模，请选择 `Dialog` 并使用 Parameter Writer 模块更改断点数据。
 
 #### 依赖关系
 
-- 要启用此参数，请将**数据设定**设置为**表和断点**。
-- 要启用关联的**值**，请将此参数设置为**对话框**。
-- 要启用相关联的输入端口，请将此参数设置为**输入端口**。
-- 将此参数设置为**输入端口**将禁用**值**字段，并隐藏**数据类型**选项卡上的对应参数。
-- 对于任一参数，将此参数设置为**输入端口**都会禁用**编辑表和断点**按钮。
+- 要启用此参数，请将 **Data specification** 设置为 `Table and breakpoints`。
+- 要启用关联的 **Value**，请将此参数设置为 `Dialog`。
+- 要启用关联的输入端口，请将此参数设置为 `Input port`。
+- 将此参数设置为 `Input port` 会禁用 **Value** 字段，并在 **Data Types** 选项卡上隐藏相应参数。
+- 将任一参数的此参数设置为 `Input port` 会禁用 **Edit Table and Breakpoints** 按钮。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`TableSource` | `BreakpointsForDimension1Source` | `BreakpointsForDimension2Source` | `BreakpointsForDimension3Source` |
-| **类型：**字符向量 |
+| **模块参数**：`TableSource` | `BreakpointsForDimension1Source` | `BreakpointsForDimension2Source` | `BreakpointsForDimension3Source` |
+| **类型**：character vector |
 | **值**：`Dialog` | `Input port` |
-| **默认值：**`'Dialog'` |
+| **默认值**：`'Dialog'` |
 
-### **可调大小** — 每个数组的最大元素数 `-1` (默认) | 实整数标量
+### **Tunable size** — 每个数组的最大元素数 `-1`（默认） | 实整数标量
 
 将每个数组的最大大小指定为以下值之一：
 
-- `-1` - 数组中的所有元素
-- 实整数标量 - 每个数组的最大元素数
+- `-1` — 数组中的所有元素
+- 实整数标量 — 每个数组的最大元素数
 
-**可调大小**必须小于或等于数组的大小。
+**Tunable size** 必须小于或等于数组的大小。
 
 #### 依赖关系
 
-要启用此参数，请进行如下设置：
+要启用此参数：
 
-- 将**数据设定**设置为**表和断点**。
-- 选择**支持可调大小**参数。
+- 将 **Data specification** 设置为 `Table and breakpoints`。
+- 选择 **Support tunable size** 参数。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`N1` 到 `N31` |
-| **类型：**字符向量 |
-| **值：**`-1` | 实整数标量 |
-| **默认值：**`-1` |
+| **模块参数**：`N1` to `N31` |
+| **类型**：character vector |
+| **值**：`-1` | real integer scalar |
+| **默认值**：`-1` |
 
-### **表数据** — 定义输出值的表 `reshape(repmat([4 5 6;16 19 20;10 18 23],1,2),[3,3,2])` (默认) | 值组成的矩阵，其维度与**表维数**匹配
+### **Table data** — 定义输出值表 `reshape(repmat([4 5 6;16 19 20;10 18 23],1,2),[3,3,2])`（默认） | 维度与 **Number of table dimensions** 匹配的值矩阵
 
-在相关联的**值**字段中输入输出值的表。
+在关联的 **Value** 字段中输入输出值表。
 
-在仿真期间，矩阵大小必须与**表维数**参数定义的维度匹配。但是，在编辑模块图的过程中，您可以输入空矩阵（指定为 `[]`）或者未定义的工作区变量。利用此方法，您可以推迟为表数据指定正确设置维度的矩阵，并继续编辑模块图。
+在仿真期间，矩阵大小必须与 **Number of table dimensions** 参数定义的维度匹配。但是，在模块图编辑期间，您可以输入空矩阵（指定为 `[]`）或未定义的工作区变量。此技术允许您推迟为表数据指定正确维度的矩阵，并继续编辑模块图。
 
 #### 依赖关系
 
-要启用此参数，请进行如下设置：
+要启用此参数，请设置：
 
-- 将**数据设定**设置为**表和断点**。
-- 将**表数据:源**设置为**对话框**。
+- **Data specification** 为 `Table and breakpoints`。
+- **Table data: Source** 为 `Dialog`。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`Table` |
-| **类型：**字符向量 |
-| **值：**表值构成的矩阵 |
-| **默认值：**`'reshape(repmat([4 5 6;16 19 20;10 18 23],1,2),[3,3,2])'` |
+| **类型**：character vector |
+| **值**：matrix of table values |
+| **默认值**：`'reshape(repmat([4 5 6;16 19 20;10 18 23],1,2),[3,3,2])'` |
 
-### **断点** — 显式断点值，或断点的第一个点和间距 `[10,22,31]` (默认) | 单调递增值的 1×n 或 n×1 向量
+### **Breakpoints** — 显式断点值或断点的第一点和间距 `[10,22,31]`（默认） | 1×n 或 n×1 的单调递增向量
 
-显式指定断点数据或者指定为等间距断点，具体取决于**断点设定**参数。
+根据 **Breakpoints specification** 参数的值，显式指定断点数据或将其指定为等间距断点。
 
-- 如果您将**断点设定**设置为**显式值**，请在相关联的**值**字段中的每个**断点**行中输入与表数据的每个维度对应的断点向量。对于每个维度，将断点指定为值严格单调递增的 1×n 或 n×1 向量。
-- 如果您将**断点设定**设置为**等间距**，请在每个**断点**行中输入参数**第一个点**和**间距**，以便在各自的维度生成等间距断点。您的表数据决定等间距点数。
+- 如果将 **Breakpoints specification** 设置为 `Explicit values`，请在关联的 **Value** 字段中为每个 **Breakpoints** 行输入与表数据每个维度对应的断点向量。对于每个维度，将断点指定为值严格单调递增的 1×n 或 n×1 向量。
+- 如果将 **Breakpoints specification** 设置为 `Even spacing`，请在每个 **Breakpoints** 行中输入 **First point** 和 **Spacing** 参数，以在相应维度中生成等间距断点。您的表数据决定等间距点的数量。
 
 #### 依赖关系
 
-- 要启用此参数，请进行如下设置：
+- 要启用此参数，请设置：
 
-  - 将**数据设定**设置为**表和断点**。
-  - 将**表数据:源**设置为**对话框**。
-- 当**断点设定**参数设置为**等间距**时，您只能通过对话框指定断点数据。
+  - **Data specification** 为 `Table and breakpoints`。
+  - **Table data: Source** 为 `Dialog`。
+- 当 **Breakpoints specification** 参数设置为 `Even spacing` 时，只能通过对话框指定断点数据。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数：**`BreakpointsForDimension1` | `BreakpointsForDimension2` | ... | `BreakpointsForDimension30` |
-| **类型：**字符向量 |
-| **值：**单调递增值的 1×n 或 n×1 向量 |
-| **默认值：**`'[10, 22, 31]'` | `'[10, 22, 31]'` | … | `'[1:3]'` |
+| **模块参数：** `BreakpointsForDimension1` | `BreakpointsForDimension2` | ... | `BreakpointsForDimension30` |
+| **类型：** 字符向量 |
+| **值：** 1×n 或 n×1 的单调递增数值向量 |
+| **默认值：** `'[10, 22, 31]'` | `'[10, 22, 31]'` | … | `'[1:3]'` |
 
-### **第一个点** — 等间距断点数据中的第一个点 `1` (默认) | 标量
+### **First point** — 均匀间隔断点数据中的第一个点 `1`（默认）| 标量
 
-将等间距断点数据中的第一个点指定为实数值有限标量。当**断点设定**设置为**等间距**时，此参数可用。
+将均匀间隔断点数据中的第一个点指定为实值有限标量。当 **Breakpoints specification** 设置为 `Even spacing` 时，此参数可用。
 
 #### 依赖关系
 
-要启用此参数，请将**数据设定**设置为**表和断点**，并将**断点设定**设置为**等间距**。
+要启用此参数，请将 **Data specification** 设置为 `Table and breakpoints`，并将 **Breakpoints specification** 设置为 `Even spacing`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`BreakpointsForDimension1FirstPoint | BreakpointsForDimension2FirstPoint | ... | BreakpointsForDimension30FirstPoint` |
-| **类型：**字符向量 |
-| **值：**实数值有限标量 |
-| **默认值：**`'1'` |
+| **模块参数：** `BreakpointsForDimension1FirstPoint | BreakpointsForDimension2FirstPoint | ... | BreakpointsForDimension30FirstPoint` |
+| **类型：** 字符向量 |
+| **值：** 实值、有限、标量 |
+| **默认值：** `'1'` |
 
-### **间距** — 等间距断点之间的间距 `1` (默认) | 标量
+### **Spacing** — 均匀间隔断点之间的间距 `1`（默认）| 标量
 
-指定等间距断点数据中各点之间的距离。
+指定均匀间隔断点数据中点与点之间的间距。
 
 #### 依赖关系
 
-要启用此参数，请将**数据设定**设置为**表和断点**，并将**断点设定**设置为**等间距**。
+要启用此参数，请将 **Data specification** 设置为 `Table and breakpoints`，并将 **Breakpoints specification** 设置为 `Even spacing`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`BreakpointsForDimension1Spacing | BreakpointsForDimension2Spacing | ... | BreakpointsForDimension30Spacing` |
-| **类型：**字符向量 |
-| **值：**正实数值有限标量 |
-| **默认值：**`'1'` |
+| **模块参数：** `BreakpointsForDimension1Spacing | BreakpointsForDimension2Spacing | ... | BreakpointsForDimension30Spacing` |
+| **类型：** 字符向量 |
+| **值：** 正的、实值、有限、标量 |
+| **默认值：** `'1'` |
 
-### **编辑表和断点** — 打开“查找表编辑器”对话框 按钮
+### **Edit table and breakpoints** — 打开查找表编辑器对话框按钮
 
 点击此按钮以打开查找表编辑器。有关详细信息，请参阅查找表编辑器。
 
-对于查找表对象，点击此按钮可以编辑该对象并为该对象保存新值。
+为查找表对象点击此按钮可让您编辑该对象并保存该对象的新值。
 
 ### 算法
 
 #### 查找方法
 
-### **插值方法** — 断点值之间插值的方法 **线性点-斜率** (默认) | **均一** | **最邻近值** | **线性拉格朗日** | **三次样条** | **Akima 样条**
+### **Interpolation method** — 断点值之间的插值方法 `Linear point-slope`（默认）| `Flat` | `Nearest` | `Linear Lagrange` | `Cubic spline` | `Akima spline`
 
-当输入位于两个断点值之间时，模块将根据相邻断点内插输出值。有关插值方法的详细信息，请参阅内插方法。
+当输入落在断点值之间时，模块使用相邻断点对输出值进行插值。有关插值方法的详细信息，请参阅插值方法。
 
 #### 依赖关系
 
-- 如果您选择**三次样条**，则模块仅支持标量信号。其他插值方法支持非标量信号。
-- 如果选择 **Akima 样条**，外插方法只能是 **Akima 样条**。
+- 如果选择 `Cubic spline`，模块仅支持标量信号。其他插值方法支持非标量信号。
+- 如果选择 `Akima spline`，外插方法只能为 `Akima spline`。
 
-  当设置为修正 Akima 插值方法时，此模块不支持：
+  当设置为修改后的 Akima 插值方法时，此模块不支持：
 
-  - 行优先数组布局和针对行优先数组布局优化的算法
-  - 定标的双精度和定点数据类型
+  - 行主序数组布局以及针对行主序数组布局优化的算法
+  - 缩放双精度和定点数据类型
   - `Simulink.LookupTable` 对象
-  - 选中配置参数**代码生成** > **接口** > **支持非有限数**复选框时的代码生成
+  - 当配置参数 **Code Generation** > **Interface** > **Support non-finite numbers** 复选框被选中时的代码生成
 
-  当设置为修正 Akima 插值方法时，如果以下条件成立，此模块的运行速度会更慢：
+  当设置为修改后的 Akima 插值方法时，在以下条件为真时，已知此模块运行较慢：
 
-  - 基于代码生成的仿真目标，如加速模式、快速加速模式、受保护模型等的仿真目标。
-  - 为大型断点和数据表生成的代码。例如，表大小为 629×1601。
+  - 基于代码生成的仿真目标，例如用于加速模式、快速加速模式、受保护模型等的目标。
+  - 为大型断点和数据表大小生成的代码。例如表大小为 629×1601 时。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`InterpMethod` |
-| **类型：**字符向量 |
-| **值：**`'Linear point-slope' | 'Flat' | 'Nearest' | 'Linear Lagrange' | 'Cubic spline' | 'Akima spline'` |
-| **默认值：**`'Linear point-slope'` |
+| **模块参数：** `InterpMethod` |
+| **类型：** 字符向量 |
+| **值：** `'Linear point-slope' | 'Flat' | 'Nearest' | 'Linear Lagrange' | 'Cubic spline' | 'Akima spline'` |
+| **默认值：** `'Linear point-slope'` |
 
-### **外插方法** — 处理超出断点向量范围的输入值的方法 **线性** (默认) | **裁剪** | **三次样条** | **Akima 样条**
+### **Extrapolation method** — 处理超出断点向量范围的输入值的方法 `Linear`（默认）| `Clip` | `Cubic spline` | `Akima spline`
 
-选择**裁剪**、**线性**或**三次样条**。有关详细信息，请参阅外插方法。
+选择 `Clip`、`Linear` 或 `Cubic spline`。有关详细信息，请参阅外插方法。
 
-如果外插方法是**线性**，则基于所选择的线性插值方法计算外插值。例如，如果插值方法是线性拉格朗日，则外插方法继承线性拉格朗日方程以计算外插值。
+如果外插方法为 `Linear`，则外插值基于所选的线性插值方法计算。例如，如果插值方法为 linear Lagrange，则外插方法继承 linear Lagrange 方程来计算外插值。
 
 #### 依赖关系
 
-- 要为**外插方法**选择**三次样条**，还必须为**内插方法**选择**三次样条**。
-- 要为**外插方法**选择 **Akima 样条**，您还必须为**内插方法**选择 **Akima 样条**。
+- 要为 **Extrapolation method** 选择 `Cubic spline`，还必须为 **Interpolation method** 选择 `Cubic spline`。
+- 要为 **Extrapolation method** 选择 `Akima spline`，还必须为 **Interpolation method** 选择 `Akima spline`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`ExtrapMethod` |
-| **类型：**字符向量 |
-| **值：**`'Linear' | 'Clip' | 'Cubic spline' | 'Akima spline'` |
-| **默认值：**`'Linear'` |
+| **模块参数：** `ExtrapMethod` |
+| **类型：** 字符向量 |
+| **值：** `'Linear' | 'Clip' | 'Cubic spline' | 'Akima spline'` |
+| **默认值：** `'Linear'` |
 
-### **索引搜索方法** — 计算表索引的方法 **二分搜索** (默认) | **线性搜索** | **等间距点**
+### **Index search method** — 计算表索引的方法 `Binary search`（默认）| `Linear search` | `Evenly spaced points`
 
-选择**等间距点**、**线性搜索**或**二分搜索**。每一种搜索方法在不同的情况下均有各自的速度优势：
+选择 `Evenly spaced points`、`Linear search` 或 `Binary search`。每种搜索方法在不同情况下具有速度优势：
 
-- 对于等间距断点向量（例如，10、20、30 等），您可以选择**等间距点**来计算表索引，以获得最佳速度。
+- 对于均匀间隔的断点向量（例如 10、20、30 等），通过选择 `Evenly spaced points` 来计算表索引可获得最佳速度。
 
-  此算法仅使用断点集的前两个断点来确定其余点的偏移量和间距。
+  此算法仅使用一组断点的前两个断点来确定剩余点的偏移和间距。
 
   **注意**
 
-  当使用 `Simulink.LookupTable` 对象指定表数据且引用的 `Simulink.LookupTable` 对象的**断点设定**参数设置为**等间距**时，请将**索引搜索方法**设置为**等间距点**。
-- 对于非等间距的断点向量，请遵循以下规范：
+  当使用 `Simulink.LookupTable` 对象指定表数据，且所引用的 `Simulink.LookupTable` 对象的 **Breakpoints Specification** 参数设置为 `Even spacing` 时，请将 **Index search method** 设置为 `Evenly spaced points`。
+- 对于非均匀间隔的断点向量，请遵循以下准则：
 
-  - 如果输入信号在时间步之间的变化不大，选择**线性搜索**与**使用上一个索引结果开始索引搜索**可以获得最佳性能。
-  - 如果输入信号在每个时间步中跳过的表间隔超过一个或两个，选择**二分搜索**可以获得最佳性能。
+  - 如果输入信号在时间步之间变化不大，选择 `Linear search` 并启用 **Begin index search using previous index result** 可获得最佳性能。
+  - 如果输入信号每个时间步跳跃超过一个或两个表区间，选择 `Binary search` 可获得最佳性能。
 
-对于严重依赖查找表的模型，选择次优索引搜索方法可能会导致性能下降。
+索引搜索方法选择不佳可能导致严重依赖查找表的模型性能变慢。
 
 **注意**
 
-在以下情况下，生成的代码只存储第一个断点、间距和断点数量：
+当以下条件成立时，生成的代码仅存储第一个断点、间距和断点数量：
 
 - 断点数据不可调。
-- 索引搜索方法是**等间距点**。
+- 索引搜索方法为 `Evenly spaced points`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`IndexSearchMethod` |
-| **类型：**字符向量 |
-| **值：**`'Binary search' | 'Evenly spaced points' | 'Linear search'` |
-| **默认值：**`'Binary search'` |
+| **模块参数：** `IndexSearchMethod` |
+| **类型：** 字符向量 |
+| **值：** `'Binary search' | 'Evenly spaced points' | 'Linear search'` |
+| **默认值：** `'Binary search'` |
 
-### **尽可能应用更准确高效的舍入** — 使用高效舍入到最接近值进行更精确的定点表查找 `off` (默认) | `on`
+### **Apply more accurate and efficient rounding when possible** — 使用高效就近舍入实现更精确的定点表查找 `off`（默认）| `on`
 
-选中此复选框可尽可能启用高效舍入到最接近的实现。启用此选项会将舍入模式设置为 `Nearest`，并调整小数长度和中间数据类型以在准确度和效率之间取得平衡。如果不能得到高效实现，则舍入模式、小数长度和中间数据类型保持不变。
+选中此复选框可在可能时启用高效的就近舍入实现。启用此选项会将舍入模式设置为 `Nearest`，并调整小数长度和中间数据类型，以在精度和效率之间取得平衡。如果无法实现高效实现，则舍入模式、小数长度和中间数据类型保持不变。
 
 #### 依赖关系
 
-要启用此参数，请进行如下设置：
+要启用此参数：
 
-- 将**表维数**设置为 **2**。
-- 将**内插方法**设置为**线性点-斜率**。
-- 将**外插方法**设置为**裁剪**。
+- 将 **Number of table dimensions** 设置为 `2`。
+- 将 **Interpolation method** 设置为 `Linear point-slope`。
+- 将 **Extrapolation method** 设置为 `Clip`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`ApplyAccurateEfficientRounding` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **模块参数：** `ApplyAccurateEfficientRounding` |
+| **类型：** 字符向量 |
+| **值：** `'off' | 'on'` |
+| **默认值：** `'off'` |
 
-### **使用上一个索引结果开始索引搜索** — 开始使用来自上一时间步的索引 `off` (默认) | `on`
+### **Begin index search using previous index result** — 从上一个时间步的索引开始搜索 `off`（默认）| `on`
 
-如果您希望模块使用在上一个时间步中找到的索引开始搜索，请选中此复选框。对于相对于间隔大小而言变化缓慢的输入，启用此选项可以提高性能。否则，线性搜索和二分搜索方法可能需要更长的时间，尤其是对于大型断点向量来说。
+当您希望模块使用上一个时间步找到的索引开始搜索时，选中此复选框。对于相对于区间大小变化缓慢的输入，启用此选项可以提高性能。否则，线性搜索和二分搜索方法可能耗时更长，尤其是对于大型断点向量。
 
 #### 依赖关系
 
-要启用此参数，请将**索引搜索方法**设置为**线性搜索**或**二分搜索**。
+要启用此参数，请将 **Index search method** 设置为 `Linear search` 或 `Binary search`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`BeginIndexSearchUsingPreviousIndexResult` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **模块参数：** `BeginIndexSearchUsingPreviousIndexResult` |
+| **类型：** 字符向量 |
+| **值：** `'off' | 'on'` |
+| **默认值：** `'off'` |
 
-### **假设输入在范围内** — 检查输入值是否超出范围的选项 `off` (默认) | `on`
+### **Assume input is within range** — 检查超出范围输入值的选项 `off`（默认）| `on`
 
 *自 R2025a 起*
 
-指定是否包含代码以检查超出范围的输入值。选择此参数意味着您保证该模块没有超出范围的输入，从而使模块能够进一步优化代码和仿真。有效输入范围取决于断点数据和**外插方法**设置。
+指定是否包含检查超出范围输入值的代码。选择此参数意味着您保证模块没有超出范围的输入，使模块能够进一步优化代码和仿真。有效输入范围取决于断点数据和 **Extrapolation method** 设置。
 
-当您选择**假设输入在范围内**时：
+当您选择 **Assume input is within range** 时：
 
-- 在仿真期间，模块假定没有超出范围的输入，并通过对超出范围的输入返回错误来强制实现此假设。
-- 对于代码生成，模块不会生成超出范围的输入处理代码，因为它假定不存在超出范围的输入。这意味着，如果模块尝试为因输入超出范围而返回错误的模型生成代码，则当给生成的代码提供相同的输入时，其行为是未定义的，这可能导致严重后果。
+- 在仿真期间，模块假定没有超出范围的输入，并通过为超出范围的输入返回错误来强制执行此假设。
+- 对于代码生成，模块不生成超出范围输入处理代码，因为它假定没有超出范围的输入。这意味着如果模块尝试为因超出范围输入而返回错误的模型生成代码，当生成的代码被赋予相同输入时，行为是未定义的，这可能导致严重后果。
 
   **警告**
 
-  如果模型尝试生成代码，但由于模块检测到输入超出范围而生成错误，则当将相同的超出范围的输入传递给已部署的代码时，行为是未定义的。这种未定义的行为可能导致严重问题。对于安全性至关重要的应用，请不要选择**假设输入在范围内**。
+  如果模型尝试生成代码，而是因为模块检测到超出范围输入而生成错误，那么将相同的超出范围输入传递给已部署代码时，行为是未定义的。此未定义行为可能导致严重问题。对于安全关键应用，请勿选择 **Assume input is within range**。
 
-如果您要为了提升效率而选择**假设输入在范围内**参数，请确保模型输入在范围内。例如：
+如果您为了效率想要选择 **Assume input is within range** 参数，请确保您的模型输入在范围内。例如：
 
 | 参数 | 结果 | 何时使用 |
 | --- | --- | --- |
-| `on` | 仿真和生成的代码中未包含用来检查超出范围的断点输入的条件语句。  当输入超出范围时，仿真和生成的代码可能会发生未定义的行为。 | 为了提升仿真和代码效率 |
-| `off` | 仿真和生成的代码包含用来检查超出范围的输入的条件语句。 | 适用于安全性至关重要的应用领域 |
+| `on` | 仿真和生成的代码不包含检查超出范围断点输入的条件语句。当输入超出范围时，可能导致仿真和生成代码的未定义行为。 | 用于仿真和代码效率 |
+| `off` | 仿真和生成的代码包含检查超出范围输入的条件语句。 | 用于安全关键应用 |
 
-如果您确信输入在范围内，则可以为了提升效率选择**假设输入在范围内**参数。默认情况下，此参数处于清除状态。对于安全性至关重要的应用，不要选择此参数。如果您要选择**假设输入在范围内**参数，请先检查模型输入是否在范围内。例如：
+如果您确信输入在范围内，可以选择 **Assume input is within range** 参数以提高效率。默认情况下，此参数被清除。对于安全关键应用，请勿选择此参数。如果您想选择 **Assume input is within range** 参数，请先检查您的模型输入是否在范围内。例如：
 
-1. 清除**假设输入在范围内**参数。
-2. 将**输入超出范围的诊断**参数设置为 `Error`。
-3. 在普通模式下进行模型仿真。
-4. 如果存在超出范围错误，模块将返回运行时错误。请将它们更正到范围之内，然后再次运行仿真。
-5. 当仿真不再生成超出范围的输入错误时，选择**假设输入在范围内**参数。
+1. 清除 **Assume input is within range** 参数。
+2. 将 **Diagnostic for out-of-range input** 参数设置为 `Error`。
+3. 在正常模式下仿真模型。
+4. 如果存在超出范围错误，模块将返回运行时错误。修复它们使其在范围内，然后再次运行仿真。
+5. 当仿真不再生成超出范围输入错误时，选择 **Assume input is within range** 参数。
 
    **注意**
 
-   当您选择**假设输入在范围内**参数且输入超出范围时，模块会在仿真时返回运行时错误。生成的代码的行为是未定义的。
+   当您选择 **Assume input is within range** 参数且输入超出范围时，模块在仿真时返回运行时错误。对于生成的代码，行为是未定义的。
 
-根据您的具体应用，您可以运行以下模型顾问检查，以验证此参数的使用：
+根据您的应用，您可以运行以下模型顾问检查来验证此参数的使用：
 
-- **按产品** > **Embedded Coder** > **标识哪些查找表模块会生成检查超范围值的高成本代码**
-- **按产品** > **Simulink Check** > **建模标准** > **DO-178C/DO-331 检查** > **检查 Lookup Table 模块的使用**
+- **按产品** > **Embedded Coder** > **识别生成昂贵越界检查代码的查找表模块**
+- **按产品** > **Simulink Check** > **建模标准** > **DO-178C/DO-331 检查** > **检查查找表模块的使用**
 
 有关模型顾问的详细信息，请参阅运行模型顾问检查。
 
-此外，要确定选择此参数是否安全，如果您拥有 Simulink Design Verifier™ 许可证，请考虑使用 检测模块输入范围违规 (Simulink Design Verifier) 检查。
+此外，要确定选择此参数是否安全，如果您有 Simulink Design Verifier™ 许可证，请考虑使用 Detect Block Input Range Violations (Simulink Design Verifier) 检查。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`RemoveProtectionInput` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **模块参数：** `RemoveProtectionInput` |
+| **类型：** 字符向量 |
+| **值：** `'off' | 'on'` |
+| **默认值：** `'off'` |
 
-### **输入超出范围的诊断** — 当输入超出范围时的模块操作 **无** (默认) | **警告** | **错误**
+### **Diagnostic for out-of-range input** — 输入超出范围时的模块操作 `None`（默认）| `Warning` | `Error`
 
-指定当输入超出范围时，是否生成警告或错误消息。选项包括：
+指定当输入超出范围时是否产生警告或错误。选项包括：
 
-- **无** - 不产生任何响应。
-- **警告** - 显示警告并继续进行仿真。
-- **错误** - 终止仿真并显示错误。
+- `None` — 不产生响应。
+- `Warning` — 显示警告并继续仿真。
+- `Error` — 终止仿真并显示错误。
 
 #### 依赖关系
 
-要启用此参数，请清除**假设输入在范围内**或**假设索引在范围内**参数。
+要启用此参数，请清除 **Assume input is within range** 或 **Assume index is within range** 参数。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`DiagnosticForOutOfRangeInput` |
-| **类型：**字符向量 |
-| **值：**`'None' | 'Warning' | 'Error'` |
-| **默认值：**`'None'` |
+| **模块参数：** `DiagnosticForOutOfRangeInput` |
+| **类型：** 字符向量 |
+| **值：** `'None' | 'Warning' | 'Error'` |
+| **默认值：** `'None'` |
 
-### **尽可能应用全精度定点算法** — 更精确的定点表查找 `off` (默认) | `on`
+### **Apply full precision fixed-point algorithm when possible** — 更精确的定点表查找 `off`（默认）| `on`
 
-尽可能使用此复选框为线性插值查找启用全精度定点算法查找。对于硬件效率高的定点舍入模式，此算法通常可以实现更高的精度。
+使用此复选框可在可能时为线性插值查找启用全精度定点算法查找。此算法通常对硬件高效的定点舍入模式实现更好的精度。
 
 #### 依赖关系
 
-要启用此参数，请进行如下设置：
+要启用此参数，请设置：
 
-- 将**表维数**设置为 **1**。
-- 将**内插方法**设置为**线性点-斜率**。
-- 将**外插方法**设置为**裁剪**。
-- 选择**输入等于或高于最后一个断点时使用最后一个表值**参数。
+- **Number of table dimensions** 为 `1`。
+- **Interpolation method** 为 `Linear point-slope`。
+- **Extrapolation method** 为 `Clip`。
+- 选中 **Use last table value for inputs at or above last breakpoint** 参数。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`ApplyFullPrecisionForLinearInterpolation` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **模块参数：** `ApplyFullPrecisionForLinearInterpolation` |
+| **类型：** 字符向量 |
+| **值：** `'off' | 'on'` |
+| **默认值：** `'off'` |
 
-### **输入等于或高于最后一个断点时使用最后一个表值** — 用于计算最后一个断点上或高于该断点的输入的输出的方法 `off` (默认) | `on`
+### **Use last table value for inputs at or above last breakpoint** — 计算位于或高于最后一个断点的输入的输出的方法 `off`（默认）| `on`
 
-使用此复选框，指定模块用来定位断点向量的最后一个元素及其对应表值的索引约定。当输入等于或大于断点数据的最后一个元素时，此复选框才有意义。由于舍入原因，选中和清除此复选框可能会导致仿真与代码生成之间最后一个断点的结果不同。
+使用此复选框，指定模块用于寻址断点向量最后一个元素及其对应表值的索引约定。如果输入等于或大于断点数据的最后一个元素，则此复选框相关。由于舍入，选中和清除此复选框可能导致仿真和代码生成之间最后一个断点的结果不同。
 
-| 复选框 | 模块使用的索引 | 区间比 |
+| 复选框 | 模块使用的索引 | 区间分数 |
 | --- | --- | --- |
-| 选中 | **表和断点**选项卡上的断点数据的最后一个元素 | 0 |
-| 清除 | **表和断点**选项卡上的断点数据的倒数第二个元素 | 1 |
+| 选中 | **Table and Breakpoints** 选项卡上断点数据的最后一个元素 | 0 |
+| 清除 | **Table and Breakpoints** 选项卡上断点数据的倒数第二个元素 | 1 |
 
-假设输入 *u* 在断点向量 *bp* 的范围内，区间比 *f*（在 0≦*f*<1 范围内）按如下所示进行计算。
+给定断点向量 *bp* 范围内的输入 *u*，区间分数 *f* 在 0≦*f*<1 范围内，计算如下所示。
 
-假设断点向量为 `[1 4 5]`，输入 *u* 为 `5.5`。如果您选中此复选框，索引则是最后一个元素 (`5`) 的索引，区间比为 0。如果您清除此复选框，索引则是倒数第二个元素 (`4`) 的索引，区间比为 1。
+假设断点向量为 `[1 4 5]`，输入 *u* 为 `5.5`。如果选中此复选框，索引为最后一个元素（`5`）的索引，区间分数为 0。如果清除此复选框，索引为倒数第二个元素（`4`）的索引，区间分数为 1。
 
 #### 依赖关系
 
-要启用此参数，请进行如下设置：
+要启用此参数，请设置：
 
-- 将**内插方法**设置为**线性**。
-- 将**外插方法**设置为**裁剪**。
+- **Interpolation method** 为 `Linear`。
+- **Extrapolation method** 为 `Clip`。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`UseLastTableValue` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **模块参数：** `UseLastTableValue` |
+| **类型：** 字符向量 |
+| **值：** `'off' | 'on'` |
+| **默认值：** `'off'` |
 
-### **采样时间(-1 表示继承)** — 采样之间的时间间隔 `-1` (默认) | 标量 | 向量
+### **Sample time (-1 for inherited)** — 采样之间的间隔 `-1`（默认）| 标量 | 向量
 
-指定采样时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅指定采样时间。
+指定采样之间的时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅指定采样时间。
 
 #### 依赖关系
 
-仅当您将此参数设置为 `-1` 以外的值时才可见。要了解详细信息，请参阅不建议设置采样时间的模块。
+仅当您将其设置为 `-1` 以外的值时，此参数才可见。要了解更多信息，请参阅不建议使用采样时间的模块。
 
 #### 编程用法
 
@@ -648,339 +648,364 @@ set_param('myModel/myLookupBlock',...
 
 |  |  |
 | --- | --- |
-| **参数:** | `SampleTime` |
-| **值:** | `"-1"` (默认) | scalar or vector in quotes |
+| **参数：** | `SampleTime` |
+| **值：** | `"-1"`（默认）| 带引号的标量或向量 |
 
 #### 输入设置
 
-### **所有输入数据使用一个输入端口** — 只使用一个输入端口 `off` (默认) | `on`
+### **Use one input port for all input data** — 对所有输入数据使用一个输入端口 `off`（默认）| `on`
 
-选中此复选框，从而对 N 维表只使用一个输入端口，此端口需要宽度为 `n` 个元素的信号。此选项可以有效减少包含许多查找表的模块图中的杂乱线条。
+选中此复选框可仅使用一个输入端口，该端口期望对于 n 维表具有 `n` 个元素宽度的信号。此选项可用于消除包含许多查找表的框图中的线条杂乱。
 
 **注意**
 
-如果您选中此复选框，模块上将出现一个带有 `u` 标签的输入端口。
+当您选中此复选框时，模块上会出现一个标签为 `u` 的输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`UseOneInputPortForAllInputData` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **类型**：character vector |
+| **值**：`'off' | 'on'` |
+| **默认值**：`'off'` |
 
 ### 数据类型
 
-### **表数据** — 表数据的数据类型 **继承: 与输出相同** (默认) | **double** | **single** | **half** | **int8** | **uint8** | **int16** | **uint16** | **int32** | **uint32** | **int64** | **uint64** | **fixdt(1,16)** | **fixdt(1,16,0)** | **fixdt(1,16,2^0,0)** | **<数据类型表达式>**
+### **Table data** — 表数据的数据类型 `Inherit: Same as output`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16)` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-指定表数据类型。可以将其设置为：
+指定表数据类型。您可以将其设置为：
 
-- 继承数据类型的规则，例如**继承: 与输出相同**
-- 内置数据类型的名称，例如 `single`
-- 数据类型对象的名称，例如 `Simulink.NumericType` 对象
-- 计算结果为数据类型的表达式，例如 `fixdt(1,16,0)`
+- 继承数据类型的规则，例如 `Inherit:
+  Same as output`
+- 内置数据类型的名称，例如
+  `single`
+- 数据类型对象的名称，例如
+  `Simulink.NumericType` 对象
+- 求值为数据类型的表达式，例如
+  `fixdt(1,16,0)`
 
-**数据类型助手**可帮助您设置数据属性。要使用**数据类型助手**，请点击 the Show data type assistant button。有关详细信息，请参阅使用数据类型助手指定数据类型。
+**Data Type Assistant** 可帮助您设置数据属性。要使用 **Data Type Assistant**，请点击 Show data type assistant 按钮。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
 **提示**
 
-对于以下情况，指定与输出数据类型不同的表数据类型：
+在以下情况下，指定与输出数据类型不同的表数据类型：
 
-- 存储表数据（使用的类型小于输出信号）的内存要求较低
+- 使用比输出信号更小的类型存储表数据时降低内存需求
 - 在具有不同输出数据类型的两个 n-D Lookup Table 模块之间共享预缩放的表数据
-- 在为具有不同输出数据类型的模块生成的代码中共享自定义存储表数据
+- 在具有不同输出数据类型的模块的生成代码中共享自定义存储表数据
 
 #### 依赖关系
 
-要启用此参数，请将**表和断点**选项卡中的**表数据**设置为**对话框**。
+要启用此参数，请将 **Table and Breakpoints** 选项卡中的 **Table data** 设置为 `Dialog`。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`TableDataTypeStr` |
-| **类型：**字符向量 |
-| **值：**`'Inherit: Inherit from 'Table data'' | 'Inherit: Same as output' | 'double' | 'single' | 'half' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'int64' | 'uint64' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'|'<data type expression>'` |
-| **默认值：**`'Inherit: Same as output'` |
+| **类型**：character vector |
+| **值**：`'Inherit: Inherit from 'Table data'' | 'Inherit: Same as output' | 'double' | 'single' | 'half' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'int64' | 'uint64' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'|'<data type expression>'` |
+| **默认值**：`'Inherit: Same as output'` |
 
-### **表数据最小值** — 表数据的最小值 `[]` | `scalar`
+### **Table data Minimum** — 表数据的最小值 `[]` | `scalar`
 
 指定表数据的最小值。默认值为 `[]`（未指定）。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`TableMin` |
-| **类型：**字符向量 |
-| **值：**标量 |
-| **默认值：**`'[]'` |
+| **类型**：character vector |
+| **值**：scalar |
+| **默认值**：`'[]'` |
 
-### **表数据最大值** — 表数据的最大值 `[]` | `scalar`
+### **Table data Maximum** — 表数据的最大值 `[]` | `scalar`
 
 指定表数据的最大值。默认值为 `[]`（未指定）。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`TableMax` |
-| **类型：**字符向量 |
-| **值：**标量 |
-| **默认值：**`'[]'` |
+| **类型**：character vector |
+| **值**：scalar |
+| **默认值**：`'[]'` |
 
-### **断点** — 断点数据类型 **继承: 与对应的输入相同** (默认) | **double** | **single** | **half** | **int8** | **uint8** | **int16** | **uint16** | **int32** | **uint32** | **int64** | **uint64** | **fixdt(1,16)** | **fixdt(1,16,0)** | **fixdt(1,16,2^0,0)** | **Enum: <class name>** | **<数据类型表达式>**
+### **Breakpoints** — 断点数据类型 `Inherit: Same as corresponding input`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16)` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `Enum: <class name>` | `<data type expression>`
 
-指定一组断点数据的数据类型。可以将其设置为：
+指定一组断点数据的数据类型。您可以将其设置为：
 
-- 继承数据类型的规则，例如**继承: 与对应的输入相同**
-- 内置数据类型的名称，例如 `single`
+- 继承数据类型的规则，例如 `Inherit:
+  Same as corresponding input`
+- 内置数据类型的名称，例如
+  `single`
 - 数据类型类的名称，例如枚举数据类型类
-- 数据类型对象的名称，例如 `Simulink.NumericType` 对象
-- 计算结果为数据类型的表达式，例如 `fixdt(1,16,0)`
+- 数据类型对象的名称，例如
+  `Simulink.NumericType` 对象
+- 求值为数据类型的表达式，例如
+  `fixdt(1,16,0)`
 
 **提示**
 
-- 断点支持无序枚举数据。因此，线性搜索也是无序的，这就提供了灵活性，但可能影响性能。搜索从断点中的第一个元素开始。
-- 如果选中**使用上一个索引结果开始索引搜索**复选框，则必须使用有序单调递增数据。这种排序可提高性能。
-- 对于枚举数据，**外插方法**必须是 `Clip`。
-- 该模块不支持枚举数据的超出范围的输入。指定枚举数据时，请将整个枚举集包含在断点向量中。例如，使用 `enumeration` 函数。
+- 断点支持无序枚举数据。因此，线性搜索也是无序的，这提供了灵活性但可能影响性能。搜索从断点中的第一个元素开始。
+- 如果选中了 **Begin index search using previous index
+  result** 复选框，则必须使用有序单调递增数据。这种排序可提高性能。
+- 对于枚举数据，**Extrapolation method** 必须为 `Clip`。
+- 模块不支持枚举数据的越界输入。指定枚举数据时，请在断点向量中包含整个枚举集。例如，使用 `enumeration` 函数。
 
-以下是对此模块使用枚举数据的限制：
+这是在此模块中使用枚举数据的限制：
 
-- 该模块不支持枚举数据的超出范围的输入。指定枚举数据时，请将整个枚举集包含在断点向量中。例如，使用 `enumeration` 函数。
+- 模块不支持枚举数据的越界输入。指定枚举数据时，请在断点向量中包含整个枚举集。例如，使用 `enumeration` 函数。
 
-**数据类型助手**可帮助您设置数据属性。要使用**数据类型助手**，请点击 the Show data type assistant button。有关详细信息，请参阅使用数据类型助手指定数据类型。
+**Data Type Assistant** 可帮助您设置数据属性。要使用 **Data Type Assistant**，请点击 Show data type assistant 按钮。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
 **提示**
 
-对于以下情况，指定的断点数据类型可以不同于对应的输入数据类型：
+在以下情况下，指定与对应输入数据类型不同的断点数据类型：
 
-- 存储断点数据（使用的类型小于输出信号）的内存要求较低
+- 使用比输入信号更小的类型存储断点数据时降低内存需求
 - 在具有不同输入数据类型的两个 n-D Lookup Table 模块之间共享预缩放的断点数据
-- 在为具有不同输入数据类型的模块生成的代码中共享自定义存储断点数据
+- 在具有不同输入数据类型的模块的生成代码中共享自定义存储断点数据
 
-如果断点数据类型或其对应的输入数据类型具有定点数据类型，请为二者指定相同的斜率和偏置。
+如果断点数据类型或其对应输入数据类型中的任一个具有定点数据类型，请为它们指定相同的斜率和偏置。
 
 #### 依赖关系
 
-要启用此参数，请将**表和断点**选项卡中对应的**断点**参数设置为**对话框**。
+要启用此参数，请将 **Table and Breakpoints** 选项卡中对应的 **Breakpoints** 参数设置为 `Dialog`。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`BreakpointsForDimension1DataTypeStr | BreakpointsForDimension2DataTypeStr| ... | BreakpointsForDimension30DataTypeStr` |
-| **类型：**字符向量 |
-| **值：**`'Inherit: Same as corresponding input' | 'Inherit: Inherit from 'Breakpoint data'' | 'double' | 'single' | 'half' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'int64' | 'uint64' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'|'<data type expression>'` |
-| **默认值：**`'Inherit: Same as corresponding input'` |
+| **类型**：character vector |
+| **值**：`'Inherit: Same as corresponding input' | 'Inherit: Inherit from 'Breakpoint data'' | 'double' | 'single' | 'half' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'int64' | 'uint64' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'|'<data type expression>'` |
+| **默认值**：`'Inherit: Same as corresponding input'` |
 
-### **断点最小值** — 最小值断点数据可以有 `[]` | `scalar`
+### **Breakpoints Minimum** — 断点数据可以具有的最小值 `[]` | `scalar`
 
 指定一组断点数据可以具有的最小值。默认值为 `[]`（未指定）。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`BreakpointsForDimension1Min | BreakpointsForDimension2Min | ... | BreakpointsForDimension30Min` |
-| **类型：**字符向量 |
-| **值：**标量 |
-| **默认值：**`'[]'` |
+| **类型**：character vector |
+| **值**：scalar |
+| **默认值**：`'[]'` |
 
-### **断点最大值** — 最大值断点数据可以有 `[]` | `scalar`
+### **Breakpoints Maximum** — 断点数据可以具有的最大值 `[]` | `scalar`
 
 指定一组断点数据可以具有的最大值。默认值为 `[]`（未指定）。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`BreakpointsForDimension1Max | BreakpointsForDimension2Max | ... | BreakpointsForDimension30Max` |
-| **类型：**字符向量 |
-| **值：**标量 |
-| **默认值：**`'[]'` |
+| **类型**：character vector |
+| **值**：scalar |
+| **默认值**：`'[]'` |
 
-### **区间比** — 区间比数据类型 **继承: 从内部规则继承** (默认) | **double** | **single** | **fixdt(1,16,0)** | **<数据类型表达式>**
+### **Fraction** — 小数数据类型 `Inherit: Inherit via internal rule`（默认）| `double` | `single` | `fixdt(1,16,0)` | `<data type expression>`
 
-指定区间比数据类型。可以将其设置为：
+指定小数数据类型。您可以将其设置为：
 
-- 继承数据类型的规则，例如**继承: 从内部规则继承**
-- 内置数据类型的名称，例如 `single`
-- 数据类型对象的名称，例如 `Simulink.NumericType` 对象
-- 计算结果为数据类型的表达式，例如 `fixdt(1,16,0)`
+- 继承数据类型的规则，例如 `Inherit:
+  Inherit via internal rule`
+- 内置数据类型的名称，例如
+  `single`
+- 数据类型对象的名称，例如
+  `Simulink.NumericType` 对象
+- 求值为数据类型的表达式，例如
+  `fixdt(1,16,0)`
 
-**数据类型助手**可帮助您设置数据属性。要使用**数据类型助手**，请点击 the Show data type assistant button。有关详细信息，请参阅使用数据类型助手指定数据类型。
+**Data Type Assistant** 可帮助您设置数据属性。要使用 **Data Type Assistant**，请点击 Show data type assistant 按钮。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`FractionDataTypeStr` |
-| **类型：**字符向量 |
-| **值：**`'Inherit: Inherit via internal rule' | 'double' | 'single' | 'fixdt(1,16,0)'|'<data type expression>'` |
-| **默认值：**`'Inherit: Inherit via internal rule'` |
+| **类型**：character vector |
+| **值**：`'Inherit: Inherit via internal rule' | 'double' | 'single' | 'fixdt(1,16,0)'|'<data type expression>'` |
+| **默认值**：`'Inherit: Inherit via internal rule'` |
 
-### **中间结果** — 中间结果数据类型 **继承: 与输出相同** (默认) | **继承: 从内部规则继承** | **double** | `single` | **int8** | **uint8** | **int16** | **uint16** | **int32** | **uint32** | **int64** | **uint64** | **fixdt(1,16,0)** | **fixdt(1,16,2^0,0)** | **<数据类型表达式>**
+### **Intermediate results** — 中间结果数据类型 `Inherit: Same as output`（默认）| `Inherit: Inherit via internal rule` | `double` | `single` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-指定中间结果数据类型。可以将其设置为：
+指定中间结果数据类型。您可以将其设置为：
 
-- 继承数据类型的规则，例如**继承: 与输出相同**
-- 内置数据类型的名称，例如 `single`
-- 数据类型对象的名称，例如 `Simulink.NumericType` 对象
-- 计算结果为数据类型的表达式，例如 `fixdt(1,16,0)`
+- 继承数据类型的规则，例如 `Inherit:
+  Same as output`
+- 内置数据类型的名称，例如
+  `single`
+- 数据类型对象的名称，例如
+  `Simulink.NumericType` 对象
+- 求值为数据类型的表达式，例如
+  `fixdt(1,16,0)`
 
-**数据类型助手**可帮助您设置数据属性。要使用**数据类型助手**，请点击 the Show data type assistant button。有关详细信息，请参阅使用数据类型助手指定数据类型。
+**Data Type Assistant** 可帮助您设置数据属性。要使用 **Data Type Assistant**，请点击 Show data type assistant 按钮。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
 **提示**
 
-使用此参数为内部计算指定高于（或低于）表数据或输出数据的精度。
+使用此参数可为内部计算指定比表数据或输出数据更高（或更低）的精度。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`IntermediateResultsDataTypeStr` |
-| **类型：**字符向量 |
-| **值：**`'Inherit: Inherit via internal rule' | 'Inherit: Same as output' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'int64' | 'uint64' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'|'<data type expression>'` |
-| **默认值：**`'Inherit: Same as output'` |
+| **类型**：character vector |
+| **值**：`'Inherit: Inherit via internal rule' | 'Inherit: Same as output' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'int64' | 'uint64' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'|'<data type expression>'` |
+| **默认值**：`'Inherit: Same as output'` |
 
-### **输出** — 输出数据类型 **继承: 与输入相同** (默认) | **double** | **single** | **half** | `int8` | `uint8` | **int16** | **uint16** | **int32** | **uint32** | **int64** | **uint64** | `fixdt(1,16)` | **fixdt(1,16,0)** | **fixdt(1,16,2^0,0)** | `<data type expression>`
+### **Output** — 输出数据类型 `Inherit: Same as input`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16)` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-指定输出数据类型。可以将其设置为：
+指定输出数据类型。您可以将其设置为：
 
-- 继承数据类型的规则，例如**继承: 通过反向传播继承**
-- 内置数据类型的名称，例如 `single`
-- 数据类型对象的名称，例如 `Simulink.NumericType` 对象
-- 计算结果为数据类型的表达式，例如 `fixdt(1,16,0)`
+- 继承数据类型的规则，例如 `Inherit:
+  Inherit via back propagation`
+- 内置数据类型的名称，例如
+  `single`
+- 数据类型对象的名称，例如
+  `Simulink.NumericType` 对象
+- 求值为数据类型的表达式，例如
+  `fixdt(1,16,0)`
 
-**数据类型助手**可帮助您设置数据属性。要使用**数据类型助手**，请点击 the Show data type assistant button。有关详细信息，请参阅使用数据类型助手指定数据类型。
+**Data Type Assistant** 可帮助您设置数据属性。要使用 **Data Type Assistant**，请点击 Show data type assistant 按钮。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`OutDataTypeStr` |
-| **类型：**字符向量 |
-| **值：**`'Inherit: Inherit via back propagation' | 'Inherit: Inherit from table data' | 'Inherit: Same as first input' | 'double' | 'single' | 'half' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'int64' | 'uint64' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'|'<data type expression'` |
-| **默认值：**`'Inherit: Same as first input'` |
+| **类型**：character vector |
+| **值**：`'Inherit: Inherit via back propagation' | 'Inherit: Inherit from table data' | 'Inherit: Same as first input' | 'double' | 'single' | 'half' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'int64' | 'uint64' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'|'<data type expression'` |
+| **默认值**：`'Inherit: Same as first input'` |
 
-### **输出最小值** — 范围检查的最小值 `[]` | `scalar`
+### **Output Minimum** — 用于范围检查的最小值 `[]` | `scalar`
 
-指定范围检查的最小值。默认值为 `[]`（未指定）。Simulink 软件使用此值执行：
+指定用于范围检查的最小值。默认值为
+`[]`（未指定）。Simulink 软件使用此值来执行：
 
-- 参数范围检查（请参阅指定模块参数的最小值和最大值）。
-- 仿真范围检查（请参阅指定信号范围）。
-- 定点数据类型的自动定标。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。
+- 参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters）。
+- 仿真范围检查（请参阅 Specify Signal Ranges）。
+- 定点数据类型的自动缩放。
+- 优化从模型生成的代码。此优化可以移除算法代码并影响某些仿真模式（如 SIL 或外部模式）的结果。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`OutMin` |
-| **类型：**字符向量 |
-| **值：**标量 |
-| **默认值：**`'[]'` |
+| **类型**：character vector |
+| **值**：scalar |
+| **默认值**：`'[]'` |
 
-### **输出最大值** — 范围检查的最大值 `[]` | `scalar`
+### **Output Maximum** — 用于范围检查的最大值 `[]` | `scalar`
 
-指定范围检查的最大值。默认值为 `[]`（未指定）。Simulink 软件使用此值执行：
+指定用于范围检查的最大值。默认值为
+`[]`（未指定）。Simulink 软件使用此值来执行：
 
-- 参数范围检查（请参阅指定模块参数的最小值和最大值）。
-- 仿真范围检查（请参阅指定信号范围）。
-- 定点数据类型的自动定标。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。
+- 参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters）。
+- 仿真范围检查（请参阅 Specify Signal Ranges）。
+- 定点数据类型的自动缩放。
+- 优化从模型生成的代码。此优化可以移除算法代码并影响某些仿真模式（如 SIL 或外部模式）的结果。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`OutMax` |
-| **类型：**字符向量 |
-| **值：**标量 |
-| **默认值：**`'[]'` |
+| **类型**：character vector |
+| **值**：scalar |
+| **默认值**：`'[]'` |
 
-### **内部规则优先级** — 进行中间计算的内部规则 **速度** (默认) | **精度**
+### **Internal rule priority** — 用于中间计算的内部规则 `Speed`（默认）| `Precision`
 
-指定进行中间计算的内部规则。选择**速度**可以提高计算速度。但这样可能会损失精度，通常最多 2 位。
+指定用于中间计算的内部规则。选择 `Speed` 可加快计算速度。如果这样做，可能会发生精度损失，通常最多 2 位。
 
 #### 依赖关系
 
-仅当**中间结果**或**小数**参数设置为以下值时，此参数才生效：**继承:从内部规则继承**。
+此参数仅在 **Intermediate
+results** 或 **Fraction** 参数设置为
+`Inherit: Inherit via internal rule` 时生效。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`InternalRulePriority` |
-| **类型：**字符向量 |
-| **值：**`'Speed' | 'Precision'` |
-| **默认值：**`'Speed'` |
+| **类型**：character vector |
+| **值**：`'Speed' | 'Precision'` |
+| **默认值**：`'Speed'` |
 
-### **要求所有输入具有相同的数据类型** — 要求所有输入具有相同的数据类型 `on` (默认) | `off`
+### **Require all inputs to have the same data type** — 要求所有输入具有相同的数据类型 `on`（默认）| `off`
 
-选中此项会要求所有输入具有相同的数据类型。
+选中此项可要求所有输入具有相同的数据类型。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`InputSameDT` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'on'` |
+| **类型**：character vector |
+| **值**：`'off' | 'on'` |
+| **默认值**：`'on'` |
 
-### **锁定数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 `off` (默认) | `on`
+### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
-选择此参数可防止定点工具覆盖您对此模块指定的数据类型。有关详细信息，请参阅Lock the Output Data Type Setting (Fixed-Point Designer)。
+选中此参数可防止定点工具覆盖您在此模块上指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`LockScale` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **类型**：character vector |
+| **值**：`'off' | 'on'` |
+| **默认值**：`'off'` |
 
-### **整数舍入模式** — 定点运算的舍入模式 **最简** (默认) | **向上** | **收敛** | **向下** | **最邻近值** | **舍入** | **零**
+### **Integer rounding mode** — 定点运算的舍入模式 `Simplest`（默认）| `Ceiling` | `Convergent` | `Floor` | `Nearest` | `Round` | `Zero`
 
-指定在仿真过程中或在执行从模型中生成的代码时发生的定点查找表计算的舍入模式。有关详细信息，请参阅舍入模式 (Fixed-Point Designer)。
+指定在仿真或执行从模型生成的代码期间发生的定点查找表计算的舍入模式。有关详细信息，请参阅 Rounding Modes (Fixed-Point Designer)。
 
-此选项不影响模块参数值的舍入。Simulink 将此类值舍入到最邻近的可表示整数值。要控制模块参数的舍入方法，请使用 MATLAB® 舍入函数在模块对话框上的编辑字段中输入表达式。
+此选项不影响模块参数值的舍入。Simulink 会将这些值舍入到最接近的可表示整数值。要控制模块参数的舍入，请在模块对话框的编辑字段中输入使用 MATLAB® 舍入函数的表达式。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`RndMeth` |
-| **类型：**字符向量 |
-| **值：**`'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | 'Zero'` |
-| **默认值：**`'Simplest'` |
+| **类型**：character vector |
+| **值**：`'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | 'Zero'` |
+| **默认值**：`'Simplest'` |
 
-### **对整数溢出进行饱和处理** — 溢出操作的方法 `off` (默认) | `on`
+### **Saturate on integer overflow** — 溢出操作的方法 `off`（默认）| `on`
 
-| 操作 | 执行此操作的原因 | 溢出时会发生的情况 | 示例 |
+| 操作 | 采取此操作的原因 | 溢出时发生的情况 | 示例 |
 | --- | --- | --- | --- |
-| 选中此复选框 (`on`)。 | 您的模型可能有溢出，并且您希望在生成的代码中具有显式饱和保护。 | 将溢出饱和处理为数据类型能够表示的最小值或最大值。 | 一个有符号的 8 位整数的溢出可以饱和处理为 -128 或 127。 |
-| 不选中此复选框 (`off`)。 | 您需要优化所生成代码的效率。  您希望避免过度地指定信号超出范围时的处理方式。有关详细信息，请参阅信号范围错误故障排除。 | 溢出会绕回到由数据类型表示的适当值。 | 数字 130 不适合一个有符号 8 位整数，因此绕回 -126。 |
+| 选中此复选框（`on`）。 | 您的模型可能存在溢出，并且您希望在生成的代码中提供显式的饱和保护。 | 溢出饱和到数据类型能够表示的最小值或最大值。 | 与有符号 8 位整数相关的溢出可以饱和到 -128 或 127。 |
+| 不选中此复选框（`off`）。 | 您希望优化生成代码的效率。您希望避免过度指定模块如何处理超出范围的信号。有关详细信息，请参阅 Troubleshoot Signal Range Errors。 | 溢出回绕到数据类型可表示的相应值。 | 数字 130 无法放入有符号 8 位整数，并回绕到 -126。 |
 
 **提示**
 
-如果您将模型保存为 R2009a 或更早版本，此复选框设置将不起作用，且不会显示饱和代码。此行为保留了向后兼容性。
+如果将模型保存为 R2009a 或更早版本，此复选框设置无效，并且不会出现饱和代码。此行为保留了向后兼容性。
 
-如果选中此复选框，饱和将应用于模块中的每个内部操作，而不仅仅应用于输出或结果。一般情况下，代码生成进程可以检测到何时不可能发生溢出。在这种情况下，代码生成器不会生成饱和代码。
+选中此复选框时，饱和应用于模块上的每个内部操作，而不仅仅是输出或结果。通常，代码生成过程可以检测何时不可能发生溢出。在这种情况下，代码生成器不会生成饱和代码。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`SaturateOnIntegerOverflow` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+| **类型**：character vector |
+| **值**：`'off' | 'on'` |
+| **默认值**：`'off'` |
 
 ## 所属库
 
@@ -990,19 +1015,19 @@ Simulink / Lookup Tables HDL Coder / Lookup Tables
 
 |  |  |
 | --- | --- |
-| **数据类型** | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `是` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **Data Types** | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `yes` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
 **HDL 架构**
 
@@ -1010,183 +1035,183 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 模块属性**
 
-| 通用 | |
+| General | |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过移动设计中现有延迟的方式来放置在输出端的寄存器的数量。分布式流水线不会重新分发这些寄存器。默认值为 `0`。有关详细信息，请参阅ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅InputPipeline (HDL Coder)。 |
-| **MapToRAM** | 将查找表 (LUT) 映射到 RAM。默认值为 **on**。另请参阅MapToRAM (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出端的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **MapToRAM** | 将查找表（LUT）映射到 RAM。默认值为 `on`。另请参阅 MapToRAM (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 
-| 原生浮点 | |
+| Native Floating Point | |
 | --- | --- |
-| **HandleDenormals** | 指定是否希望 HDL Coder 在设计中插入额外的逻辑来处理非正规数字。非正规数是大小非常小、必须使用包含前导零的尾数才能表示的浮点数。默认值为 **inherit**。另请参阅HandleDenormals (HDL Coder)。 |
-| **LatencyStrategy** | 指定对于浮点运算符是否将设计中的模块映射到 `inherit`、`Max`、`Min` 或 `Zero`。默认值为 **inherit**。另请参阅LatencyStrategy (HDL Coder)。 |
-| **MantissaMultiplyStrategy** | 指定在代码生成期间如何实现尾数乘法运算。通过使用不同设置，您可以控制目标 FPGA 设备上 DSP 的使用。默认值为 **inherit**。另请参阅MantissaMultiplyStrategy (HDL Coder)。 |
-| **PrecomputeCoefficients** | 要启用此属性，请将**内插方法**设置为**线性点-斜率**。  启用此属性时，斜率和偏置系数是根据表数据和断点静态预先计算的。此设置可减少运行时为计算系数而执行的除法运算的次数。它还会减少执行的浮点加法和乘法运算的总次数。  启用此属性可减少延迟并节省所需的查找表资源的区域数量。但是，此属性会对浮点运算进行重新排序，这可能导致细微的数值差异。您可以在生成的验证模型中观察到这些数值差异。 |
-| **AreaOptimization** | 对于四维和五维 LUT，HDL 代码生成支持完全并行和串行实现。要启用此属性，请对四维和五维 LUT 使用线性插值方法。当您将此属性设置为**并行**或**串行**时，HDL Coder 会为您的设计调配资源。要减少设计的占用面积，请使用串行实现来最小化资源。要观察完全并行和串行实现的结果，请为您的设计比较原生浮点运算符的资源利用率报告。您还可以比较完全并行和串行实现的设计的合成结果。 |
+| **HandleDenormals** | 指定是否希望 HDL Coder 插入附加逻辑来处理设计中的非规格化数。非规格化数是幅值小于最小浮点数的数，该最小浮点数可以在尾数中没有前导零的情况下表示。默认值为 `inherit`。另请参阅 HandleDenormals (HDL Coder)。 |
+| **LatencyStrategy** | 指定是否将设计中的模块映射到浮点运算符的 `inherit`、`Max`、`Min` 或 `Zero`。默认值为 `inherit`。另请参阅 LatencyStrategy (HDL Coder)。 |
+| **MantissaMultiplyStrategy** | 指定在代码生成期间如何实现尾数乘法运算。通过使用不同的设置，您可以控制目标 FPGA 设备上的 DSP 使用情况。默认值为 `inherit`。另请参阅 MantissaMultiplyStrategy (HDL Coder)。 |
+| **PrecomputeCoefficients** | 要启用此属性，请将 **Interpolation method** 设置为 `Linear point-slope`。启用此属性后，斜率和偏置系数将根据表数据和断点静态预计算。此设置减少了在运行时为计算系数而执行的除法运算数量。它还减少了执行的浮点加法和乘法运算的总数。启用此属性可减少延迟并节省所需的查找表资源面积。但是，此属性会重新排列浮点运算，这可能会导致较小的数值差异。您可以在生成的验证模型中观察到这些数值差异。 |
+| **AreaOptimization** | 对于 4-D 和 5-D LUT，HDL 代码生成支持完全并行和串行实现。要启用此属性，请对 4-D 和 5-D LUT 使用线性插值方法。将此属性设置为 `Parallel` 或 `Serial` 时，HDL Coder 会操纵设计的资源。要减少设计面积，请使用串行实现以最小化资源。要观察完全并行和串行实现的结果，请比较设计的本机浮点运算符的资源利用率报告。您还可以比较完全并行和串行实现的设计综合结果。 |
 
-**查找表的延迟考虑事项**
+**查找表的延迟考虑**
 
-在原生浮点 (NFP) 模式下对 LUT 使用浮点数据类型时，代码生成器会根据加法、除法和乘法运算符的延迟值来计算 LUT 的延迟。LUT 的延迟还取决于 HDL 模块属性，例如 **PrecomputeCoefficients** 和 **MapToRAM**。其计算方法如下：
+当在本机浮点（NFP）模式下为 LUT 使用浮点数据类型时，代码生成器会根据 Add、Divide 和 Multiplication 运算符的延迟值来计算 LUT 的延迟。LUT 的延迟还取决于 HDL 模块属性，例如 **PrecomputeCoefficients** 和 **MapToRAM**。其计算方式如下：
 
-- 当 **PrecomputeCoefficients** 为 **Off** 时，LUT 的延迟计算如下：
+- 当 **PrecomputeCoefficients** 为 `Off` 时，LUT 的延迟计算为，
 
   `LUT Latency = D + N(2A + M)`
 
-  其中
+  其中，
 
-  `D` 是除法运算符的 NFP 延迟
+  `D` 是 Divide 运算符的 NFP 延迟
 
-  `A` 是加法运算符的 NFP 延迟
+  `A` 是 Add 运算符的 NFP 延迟
 
-  `M` 是乘法运算符的 NFP 延迟
+  `M` 是 Multiplication 运算符的 NFP 延迟
 
-  `N` 是表维数
-- 当 **PrecomputeCoefficients** 为 **On** 时，LUT 的延迟计算如下：
+  `N` 是表维度数
+- 当 **PrecomputeCoefficients** 为 `On` 时，LUT 的延迟计算为，
 
   `LUT Latency = (2^N - 1)A + N(M)`
-- 当您将 LUT 的 **MapToRAM** 属性设置为 **On** 并为您的模型指定合成工具和目标设备时，会增加一个额外的延迟。
+- 当您为 LUT 打开 **MapToRAM** 属性，并为模型指定综合工具和目标设备时，会增加一个额外的延迟。
 
-下表中列出了加法、除法和乘法等浮点运算符的延迟值。有关详细信息，请参阅Latency Values of Floating-Point Operators (HDL Coder)。
+浮点运算符（例如 Add、Divide 和 Multiply）的延迟值列于表中。有关更多信息，请参阅 Latency Values of Floating-Point Operators (HDL Coder)。
 
 | 浮点运算符 | 数据类型 | 最小延迟 | 最大延迟 |
 | --- | --- | --- | --- |
-| 加法 | 双精度 | 6 | 11 |
-| 单精度 | 6 | 11 |
-| 半精度 | 4 | 8 |
-| 除法 | 双精度 | 31 | 61 |
-| 单精度 | 17 | 32 |
-| 半精度 | 10 | 19 |
-| 乘法 | 双精度 | 6 | 9 |
-| 单精度 | 6 | 8 |
-| 半精度 | 4 | 6 |
+| Add | Double | 6 | 11 |
+| Single | 6 | 11 |
+| Half | 4 | 8 |
+| Divide | Double | 31 | 61 |
+| Single | 17 | 32 |
+| Half | 10 | 19 |
+| Multiply | Double | 6 | 9 |
+| Single | 6 | 8 |
+| Half | 4 | 6 |
 
-例如，假设一个一维查找表采用单精度数据类型且 **PrecomputeCoefficients** 为 `off`。一维 LUT 的延迟为
+例如，考虑一个具有单精度数据类型且 **PrecomputeCoefficients** 为 `off` 的 1-D 查找表。1-D LUT 的延迟为
 
-`LUT Latency = 32 + 1(2x11 + 8) = 62`.
+`LUT Latency = 32 + 1(2x11 + 8) = 62`。
 
-如果您启用 **MapToRAM** 选项，则 LUT 延迟为 63。
+如果打开 **MapToRAM** 选项，则 LUT 延迟为 63。
 
 **复数数据支持**
 
-此模块支持复信号的代码生成。
+此模块支持复数信号的代码生成。
 
 **必需的模块设置**
 
-| 模块设置 | HDL Coder 支持 |
+| Block Setting | HDL Coder Support |
 | --- | --- |
-| **表维数** | 选择 1 到 30 之间的表维度。 |
-| **断点设定** | 选择**显式值**或**等间距**。 |
-| **外插方法** | 选择**裁剪**或**线性**。代码生成器不支持超出偶边界的外插。 |
-| **内插方法** | 选择**均一**或**线性点-斜率**。 |
-| **输入超出范围的诊断** | 选择**错误**。如果您指定其他选项，HDL Coder 会生成警告。 |
-| **输入等于或高于最后一个断点时使用最后一个表值** | 选中此复选框。 |
-| **要求所有输入具有相同的数据类型** | 选中此复选框。 |
-| **区间比** | 选择 **Inherit: 从内部规则继承**。 |
-| **整数舍入模式** | 选择**零**、**向下**或**最简**。 |
-| **所有输入数据使用一个输入端口** | 清除此复选框。 |
+| **Number of table dimensions** | 选择 1 到 30 之间的表维度。 |
+| **Breakpoints specification** | 选择 `Explicit values` 或 `Even spacing`。 |
+| **Extrapolation method** | 选择 `Clip` 或 `Linear`。代码生成器不支持超出偶数边界的外插。 |
+| **Interpolation method** | 选择 `Flat` 或 `Linear point-slope`。 |
+| **Diagnostic for out-of-range input** | 选择 `Error`。如果指定其他选项，HDL Coder 会生成警告。 |
+| **Use last table value for inputs at or above last breakpoint** | 选中此复选框。 |
+| **Require all inputs to have the same data type** | 选中此复选框。 |
+| **Fraction** | 选择 `Inherit: Inherit via internal rule`。 |
+| **Integer rounding mode** | 选择 `Zero`、`Floor` 或 `Simplest`。 |
+| **Use one input port for all input data** | 清除此复选框。 |
 
 **定点数据类型支持**
 
-您可以为具有定点数据类型的模块生成代码。您可以对 n-D Lookup Table 模块中的所有维度使用定点数据类型。要为该模块生成具有定点数据类型的代码，请使用以下模块参数设置：
+您可以为具有定点数据类型的模块生成代码。您可以在 n-D Lookup Table 模块的所有维度中使用定点数据类型。要为该模块生成具有定点数据类型的代码，请使用以下模块参数设置：
 
-| 模块设置 | HDL Coder 支持 |
+| Block Setting | HDL Coder Support |
 | --- | --- |
-| **表维数** | 选择 1 到 30 之间的表维度。 |
-| **断点设定** | 选择**显式值**或**等间距**。 |
-| **外插方法** | 选择**裁剪** |
-| **内插方法** | 选择**均一**或**线性点-斜率**。 |
-| **索引搜索方法** | 选择**等距点**、**二分搜索**或**线性搜索**。 |
+| **Number of table dimensions** | 选择 1 到 30 之间的表维度。 |
+| **Breakpoints specification** | 选择 `Explicit values` 或 `Even spacing`。 |
+| **Extrapolation method** | 选择 `Clip` |
+| **Interpolation method** | 选择 `Flat` 或 `Linear point-slope`。 |
+| **Index search methods** | 选择 `Evenly spaced points`、`Binary search` 或 `Linear search`。 |
 
 **MAX 10 设备设置**
 
-如果您使用 Intel® MAX 10 设备，要将查找表映射到 RAM，请当在 Quartus 工具中创建工程时添加以下 Tcl 命令：
+如果您使用 Intel® MAX 10 设备，要将查找表映射到 RAM，请在 Quartus 工具中创建项目时添加以下 Tcl 命令：
 
 `set_global_assignment -name INTERNAL_FLASH_UPDATE_MODE "SINGLE IMAGE WITH ERAM"`
 
-**表数据定型和调整大小**
+**表数据键入和大小调整**
 
-- 构建表时，最好使断点之间的间距为 2 的幂。如果断点间距不符合此条件，HDL Coder 会发出警告。当断点间距是 2 的幂时，可以用右移位运算替换 prelookup 步骤中的除法运算。
+- 最好将表结构化为断点之间的间距为 2 的幂。如果断点间距不满足此条件，HDL Coder 会发出警告。当断点间距为 2 的幂时，您可以将预查找步骤中的除法运算替换为右移运算。
 
 **限制**
 
-- 当**内插方法**设置为**均一**时，该模块支持对数据输入、断点和输出使用 `half` 数据类型。半精度数据类型不支持线性插值。
-- HDL 代码生成不支持超过 131072 个表元素的 LUT。
+- 当您将 **Interpolation method** 设置为 `Flat` 时，该模块支持数据输入、断点和输出的 `half` 数据类型。半数据类型不支持线性插值。
+- HDL 代码生成不支持表元素超过 131072 个的 LUT。
 
-### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
+### PLC 代码生成 使用 Simulink® PLC Coder™ 生成 Structured Text 代码。
 
-Simulink PLC Coder™ 对查询表模块的支持有限。代码生成器不支持：
+Simulink PLC Coder™ 对查找表模块的支持有限。该代码生成器不支持：
 
-- 大于 2 的维数
+- 维度数大于 2
 - 三次样条插值方法
-- 使用先前的索引模式开始索引搜索
+- 使用先前索引模式开始索引搜索
 - 三次样条外插方法
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2011a 中推出**
+**在 R2011a 中引入**
 
-### R2025a: n-D Lookup Table 模块的**删除生成代码中防止超范围输入的代码**参数被取代
+### R2025a：n-D Lookup Table 模块 **Remove protection against out-of-range input in generated code** 参数已替换
 
-**删除生成代码中防止超范围输入的代码**参数已被**假设输入在范围内**取代。编程名称 `RemoveProtectionInput` 保持不变。
+**Remove protection against out-of-range input in generated code** 参数已替换为 **Assume input is within range**。程序化名称 `RemoveProtectionInput` 保持不变。
 
-如果模型仿真因将超出范围的输入馈送到选中**假设输入在范围内**的模块而生成错误，则当生成的代码在执行期间出现相同的超出范围的输入时，该模型生成的代码具有未定义的行为。这种未定义的行为可能导致严重问题。对于安全性至关重要的应用，请不要选择**删除生成代码中防止超范围输入的代码**。
+如果模型仿真因为将超出范围的输入馈送到选中了 **Assume input is within range** 的模块而生成错误，则当在生成的代码执行期间出现相同的超出范围输入时，模型生成的代码具有未定义行为。此未定义行为可能导致严重问题。对于安全关键型应用，请勿选择 **Remove protection against out-of-range input in generated code**。
 
-在 R2025a 之前的版本中，**删除生成代码中防止超范围输入的代码**仅会删除生成代码中对超出范围值的代码检查。模块无法检测到这些问题。作为解决方法，如果您有 R2025a 之前版本的模型且无法迁移到更高版本，请将**输入超出范围的诊断**参数设置为**错误**。下次运行模型时，当输入超出范围时将生成错误。
+在 R2025a 之前的版本中，**Remove protection against out-of-range input in generated code** 仅移除生成代码中针对超出范围值的代码检查。该模块无法检测这些问题。作为一种变通方法，如果您有来自 R2025a 之前版本的模型并且无法迁移到更高版本，请将 **Diagnostic for out-of-range input** 参数设置为 `Error`。下次运行模型时，当输入超出范围时会生成错误。
 
-### R2024b: **在代码生成中支持可调表大小**参数替换为**支持可调大小**
+### R2024b：**Support tunable table size in code generation** 参数已替换为 **Support tunable size**
 
-在 Lookup Table 模块中，**在代码生成中支持可调表大小**参数已替换为**支持可调表大小**。此变更造成的影响是：
+在查找表模块中，**Support tunable table size in code generation** 参数已替换为 **Support tunable table size**。由于此更改：
 
-- 如果您使用 `SupportTunableTableSize` 以编程方式设置**表和断点** > **支持可调大小**参数，则下次打开 Lookup Table 模块时，该模块将显示一条警告。现有模型继续正常工作。
-- **表和断点**选项卡上的**支持可调大小**参数取代了**算法**选项卡上的**在代码生成中支持可调表大小**和**每个维度的最大索引**参数。在 R2024b 之前，选择**在代码生成中支持可调表大小**参数将启用**每个维度的最大索引**参数，该参数设置每个表维度的最大索引值。从 R2024b 开始，选择**支持可调大小**参数将为**断点**参数启用**可调大小**字段。这些**可调大小**字段取代了**每个维度的最大索引**参数的功能。模块在模块对话框中显示警告。现有模型继续正常工作。有关详细信息，请参阅可调大小。
+- 如果您使用 `SupportTunableTableSize` 以程序化方式设置 **Table and Breakpoints** > **Support tunable size** 参数，则下次打开查找表模块时，该模块会显示警告。现有模型继续工作。
+- **Table and Breakpoints** 选项卡上的 **Support tunable size** 参数替换了 **Algorithm** 选项卡上的 **Support tunable table size in code generation** 和 **Maximum indices for each dimension** 参数。在 R2024b 之前，选择 **Support tunable table size in code generation** 参数会启用 **Maximum indices for each dimension** 参数，该参数为每个表维度设置最大索引值。从 R2024b 开始，选择 **Support tunable size** 参数会为 **Breakpoints** 参数启用 **Tunable Size** 字段。这些 **Tunable Size** 字段替换了 **Maximum indices for each dimension** 参数的功能。该模块会在模块对话框中显示警告。现有模型继续工作。有关更多信息，请参阅 Tunable size。
 
 ## 描述
 
-逼近 N 维函数
+近似 n 维函数
 
-### 支持的模块运算
+### 支持的模块操作
 
-1-D、2-D 和 n-D Lookup Table 模块计算一个函数的 N 变量采样表示
+1-D、2-D 和 n-D Lookup Table 模块计算 N 个变量的函数的采样表示
 
 y=F(x1,x2,x3,...,xN)
 
-其中函数 *F* 可以是经验函数。此模块通过查找或插入您使用模块参数定义的值表，将输入映射到输出值。该模块支持均一（常量）、线性（线性点-斜率）、拉格朗日（线性拉格朗日）、最近、三次样条和 Akima 样条插值方法。您可以将这些方法应用于从 1 维到 30 维的表。
+其中函数 *F* 可以是经验函数。该模块通过查找或插值您使用模块参数定义的值表，将输入映射到输出值。该模块支持平坦（常量）、线性（线性点斜率）、Lagrange（线性 Lagrange）、最近邻、三次样条和 Akima 样条插值方法。您可以将这些方法应用于从 1 到 30 的任意维度的表。
 
-在下面的模块中，第一个输入标识第一个维度（行）断点，第二个输入标识第二个维度（列）断点，依此类推。
+在以下模块中，第一个输入标识第一维（行）断点，第二个输入标识第二维（列）断点，依此类推。
 
-有关各种模块方向的端口顺序的描述，请参阅标识旋转或翻转模块上的端口位置。
+有关各种模块方向的端口顺序说明，请参阅 Identify Port Location on Rotated or Flipped Block。
 
-设置**数学和数据类型** > **使用针对行优先数组布局优化的算法**配置参数后，2-D 和 n-D Lookup Table 模块行为会从列优先更改为行优先。对于这些模块，列优先算法和行优先算法可能在输出计算的顺序上有所不同，从而可能导致数值略有不同。此功能需要 Simulink® Coder™ 或 Embedded Coder® 许可证。有关行优先支持的详细信息，请参阅Code Generation of Matrices and Arrays (Simulink Coder)。
+当 **Math and Data Types** > **Use algorithms optimized for row-major array layout** 配置参数设置后，2-D 和 n-D Lookup Table 模块行为从列主序变为行主序。对于这些模块，列主序和行主序算法可能在输出计算顺序上有所不同，可能导致数值略有不同。此功能需要 Simulink® Coder™ 或 Embedded Coder® 许可证。有关行主序支持的更多信息，请参阅 Code Generation of Matrices and Arrays (Simulink Coder)。
 
-### 指定断点和表数据
+### 断点和表数据的指定
 
-以下模块参数定义断点和表数据。
+这些模块参数定义断点和表数据。
 
 | 模块参数 | 用途 |
 | --- | --- |
-| **表维数** | 指定查找表的维数。 |
-| **断点** | 指定与查找表的每个维度对应的断点向量。 |
-| **表数据** | 定义关联的一组输出值。 |
+| **Number of table dimensions** | 指定查找表的维度数。 |
+| **Breakpoints** | 指定与查找表每个维度对应的断点向量。 |
+| **Table data** | 定义关联的输出值集合。 |
 
 **提示**
 
-等间距断点可以使生成的代码无分割。有关详细信息，请参阅 `fixpt_evenspace_cleanup` 和Identify questionable fixed-point operations (Embedded Coder)。
+均匀间隔的断点可以使生成的代码无除法。有关更多信息，请参阅 `fixpt_evenspace_cleanup` 和 Identify questionable fixed-point operations (Embedded Coder)。
 
 ### 模块如何生成输出
 
 n-D、1-D 和 2-D Lookup Table 模块通过基于输入值查找或估计表值来生成输出。
 
-| 模块输入 | n-D Lookup Table 模块行为 |
+| 模块输入 | n 维查找表模块行为 |
 | --- | --- |
-| 与断点向量中的索引值匹配 | 输出位于行、列和更高维度断点的交点处的表值 |
-| 与断点向量中的索引值不匹配，但在范围内 | 使用您选择的**内插方法**内插适当的表值 |
-| 与断点向量中的索引值不匹配，且不在范围内 | 使用您选择的**外插方法**外插输出值 |
+| 与断点向量中的索引值匹配 | 输出行、列和更高维断点交点处的表值 |
+| 与断点向量中的索引值不匹配，但在范围内 | 使用您选择的 **Interpolation method** 插值适当的表值 |
+| 与断点向量中的索引值不匹配，并且超出范围 | 使用您选择的 **Extrapolation method** 外插输出值 |
 
 ### 执行等效操作的其他模块
 
-您可以将 Interpolation Using Prelookup 模块与 Prelookup 模块一起使用，以执行等效于一个 n-D Lookup Table 模块的操作。这种模块组合可以提供更大的灵活性，从而为线性插值实现更高效的仿真性能。
+您可以将 Interpolation Using Prelookup 模块与 Prelookup 模块配合使用，以执行与一个 n-D Lookup Table 模块等效的操作。这种模块组合提供了更大的灵活性，从而可以在线性插值时实现更高效的仿真性能。
 
-当查找操作是不需要插值的数组访问时，请使用 Direct Lookup Table (n-D) 模块。例如，如果您有一个整数值 `k`，而您需要表的第 `k` 个元素 `y = table(k)`，则不需要插值。
+当查找操作是不需要插值的数组访问时，请使用 Direct Lookup Table (n-D) 模块。例如，如果您有一个整数值 `k`，并且想要获取表中的第 `k` 个元素 `y = table(k)`，则不需要插值。

@@ -9,86 +9,72 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Phased Array System Toolbox
 
-Learn the basics of Phased Array System Toolbox
+了解 Phased Array System Toolbox 的基础知识
 
-Design and simulate phased array and beamforming systems
+设计和仿真相控阵与波束成形系统
 
-- Release Notes
-- PDF Documentation
-- PDF Documentation
+- 发行说明
+- PDF 文档
+- PDF 文档
 
-- **Release Notes**
-- **PDF Documentation**
-- **PDF Documentation**
+- **发行说明**
+- **PDF 文档**
+- **PDF 文档**
 
-Phased Array System Toolbox™ provides tools for designing and simulating phased array and beamforming
-systems for wireless communication, radar, sonar, and acoustic applications. You can design
-multibeam and electronically steerable antennas by configuring array geometries, including
-subarrays, and adjusting element parameters. You can synthesize beamforming patterns through
-optimization and AI techniques.
+Phased Array System Toolbox™ 提供用于设计和仿真无线通信、雷达、声呐和水声应用的相控阵与波束成形系统的工具。您可以通过配置阵列几何结构（包括子阵）并调整阵元参数，设计多波束和电子可控天线。您可以通过优化和 AI 技术合成波束成形方向图。
 
-For communication systems like 5G, 5G-advanced, SATCOM, and WLAN, the toolbox provides
-algorithms for simulating hybrid and digital beamforming architectures for massive MIMO and
-millimeter-wave systems. You can simulate multipath fading environments, model
-reconfigurable intelligent surfaces (RIS) and generate signal waveforms.
+对于 5G、5G-advanced、SATCOM 和 WLAN 等通信系统，该工具箱提供用于仿真大规模 MIMO 和毫米波系统的混合与数字波束成形架构的算法。您可以仿真多径衰落环境、对可重构智能表面（RIS）建模并生成信号波形。
 
-For radar, sonar, and acoustic systems, the toolbox includes pulsed waveforms and
-algorithms for monostatic and multistatic topologies, space-time adaptive processing (STAP),
-direction of arrival (DOA) for localization, matched filtering, and image formation.
+对于雷达、声呐和水声系统，该工具箱包含脉冲波形以及用于单基地和多基地拓扑、空时自适应处理（STAP）、用于定位的到达方向（DOA）、匹配滤波和图像形成的算法。
 
-## Get Started
+## 入门
 
-Learn the basics of Phased Array System Toolbox
+了解 Phased Array System Toolbox 的基础知识
 
-## Applications
+## 应用
 
-Wireless communications, radar and EW, sonar and acoustic systems
+无线通信、雷达与电子战、声呐与水声系统
 
-## Phased Array Design and Analysis
+## 相控阵设计与分析
 
-Antennas, microphones, and sonar transducers, array geometries,
-polarization, transmitters, receivers, and acoustic transducers
+天线、麦克风和声呐换能器、阵列几何结构、极化、发射机、接收机和水声换能器
 
-## Beamforming and Direction of Arrival Estimation
+## 波束成形与到达方向估计
 
-Delay-and-sum, MVDR, LCMV, beamscan, monopulse, ESPRIT, MUSIC, DPCA, SMI,
-generalized cross-correlation
+延迟求和、MVDR、LCMV、波束扫描、单脉冲、ESPRIT、MUSIC、DPCA、SMI、广义互相关
 
-## Detection, Range and Doppler Estimation
+## 检测、距离与多普勒估计
 
-Target detection, CFAR, SNR threshold, ROC curves, range and Doppler
-estimation
+目标检测、CFAR、SNR 阈值、ROC 曲线、距离与多普勒估计
 
-## Waveform Design and Signal Synthesis
+## 波形设计与信号合成
 
-Pulsed and continuous waveforms, matched filtering, ambiguity function,
-channel propagation, target returns
+脉冲与连续波形、匹配滤波、模糊函数、信道传播、目标回波
 
-## Algorithm Acceleration and Code Generation
+## 算法加速与代码生成
 
-Speed up simulations and applications with generated C/C++ and MEX code or
-generated HDL code
+使用生成的 C/C++ 和 MEX 代码或生成的 HDL 代码加速仿真和应用
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个与以下 MATLAB 命令对应的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容，并查看本地活动和优惠。根据您的位置，我们建议您选择：.
 
 - (English)
 - (Deutsch)
@@ -97,11 +83,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -132,7 +118,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

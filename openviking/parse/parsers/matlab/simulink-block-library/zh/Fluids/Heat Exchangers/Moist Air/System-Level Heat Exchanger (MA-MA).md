@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'System-Level Heat Exchanger (MA-MA)'
-family: 'heat-exchangers'
+family: 'hydro'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b
@@ -18,617 +18,604 @@ chinese_source: worker-translation
 
 ### 输出
 
-### **Q1** — 传递至湿空气 1 的热传递速率，W 物理信号
+### **Q1** — 传递给湿空气 1 的热传递速率，W 物理信号
 
-传递至湿空气 1 的热传递速率，以物理信号返回，单位为 W。端口 **Q1** 和 **Q2** 处的物理信号通常数值相等、符号相反。但是，如果您选择 **启用壁面热质量**，则这两个信号可能具有不同的值，因为壁面可能会吸收和释放部分被传递的热量。
+传递给湿空气 1 的热传递速率，以物理信号形式返回，单位为 W。端口 **Q1** 和 **Q2** 处的物理信号通常数值相等、符号相反。但是，如果选中 **Enable wall thermal mass**，则这两个信号可能具有不同的值，因为壁面可能会吸收和释放部分被传递的热量。
 
-### **Q2** — 传递至湿空气 2 的热传递速率，W 物理信号
+### **Q2** — 传递给湿空气 2 的热传递速率，W 物理信号
 
-传递至湿空气 2 的热传递速率，以物理信号返回，单位为 W。端口 **Q1** 和 **Q2** 处的物理信号通常数值相等、符号相反。但是，如果您选择 **启用壁面热质量**，则这两个信号可能具有不同的值，因为壁面可能会吸收和释放部分被传递的热量。
+传递给湿空气 2 的热传递速率，以物理信号形式返回，单位为 W。端口 **Q1** 和 **Q2** 处的物理信号通常数值相等、符号相反。但是，如果选中 **Enable wall thermal mass**，则这两个信号可能具有不同的值，因为壁面可能会吸收和释放部分被传递的热量。
 
 ### **W1** — 湿空气 1 冷凝速率，kg/s 物理信号
 
-离开湿空气 1 流的水冷凝速率，以物理信号返回。此端口的值不包括作为水滴夹带的那部分冷凝物。冷凝物不会积聚在换热表面上。
+离开湿空气 1 气流的冷凝水速率，以物理信号形式返回。该端口的值不包括以水滴形式夹带的那部分冷凝水。冷凝水不会积聚在传热表面上。
 
 ### **W2** — 湿空气 2 冷凝速率，kg/s 物理信号
 
-离开湿空气 2 流的水冷凝速率，以物理信号返回。此端口的值不包括作为水滴夹带的那部分冷凝物。冷凝物不会积聚在换热表面上。
-
+离开湿空气 2 气流的冷凝水速率，以物理信号形式返回。该端口的值不包括以水滴形式夹带的那部分冷凝水。冷凝水不会积聚在传热表面上。
 ### 守恒
 
-### **A1** — 侧 1 湿空气上的湿空气端口
+### **A1** — 侧 1 上的湿空气端口 湿空气
 
-与侧 1 湿空气相关联的入口或出口端口。
+与侧 1 上的湿空气相关的入口或出口端口。
 
-### **B1** — 侧 1 湿空气上的湿空气端口
+### **B1** — 侧 1 上的湿空气端口 湿空气
 
-与侧 1 湿空气相关联的入口或出口端口。
+与侧 1 上的湿空气相关的入口或出口端口。
 
-### **A2** — 侧 2 湿空气上的湿空气端口
+### **A2** — 侧 2 上的湿空气端口 湿空气
 
-与侧 2 湿空气相关联的入口或出口端口。
+与侧 2 上的湿空气相关的入口或出口端口。
 
-### **B2** — 侧 2 湿空气上的湿空气端口
+### **B2** — 侧 2 上的湿空气端口 湿空气
 
-与侧 2 湿空气相关联的入口或出口端口。
+与侧 2 上的湿空气相关的入口或出口端口。
 
 ## 参数
 
 ### 配置
 
-### **额定工况下的流动布置** — 流路对齐 `Parallel flow - Both fluids flow from A to B`（默认）| `Counter flow - Moist Air 1 flows from A to B, Moist Air 2 flows from B to A` | `Cross flow - Both fluids flow from A to B`
+### **Flow arrangement at nominal operating conditions** — 流路排列 `Parallel flow - Both fluids flow from A to B`（默认）| `Counter flow - Moist Air 1 flows from A to B, Moist Air 2 flows from B to A` | `Cross flow - Both fluids flow from A to B`
 
-在额定工况下，换热器两侧之间的流路对齐。可用的流动布置如下：
+在标称工况下换热器两侧之间的流路排列。可用的流动排列方式有：
 
-- `Parallel flow - Both fluids flow from A to B` — 流动彼此平行，方向相反。
-- `Parallel flow - Both fluids flow from A to B` — 流动方向相同。
-- `Cross flow - Both fluids flow from A to B` — 流动彼此垂直。
+- `Parallel flow - Both fluids flow from A to
+  B` — 两股流体彼此平行流动，方向相反。
+- `Parallel flow - Both fluids flow from A to
+  B` — 两股流体沿相同方向流动。
+- `Cross flow - Both fluids flow from A to
+  B` — 两股流体彼此垂直流动。
 
-平行流与逆流之间的选择会影响模块确定换热器尺寸的方式。逆流设置最有效，并且需要最小的尺寸以满足指定性能。反之，平行流最不有效，并且需要最大的尺寸以满足指定性能。
+平行流和逆流之间的选择会影响模块确定换热器尺寸的方式。逆流设置最为有效，满足指定性能所需的尺寸最小。相反，平行流效率最低，满足指定性能所需的尺寸最大。
 
-额定工况下的流动方向（从 A 到 B，或从 B 到 A）仅在您选择 **将湿空气 1 初始化为额定工况** 或 **将湿空气 2 初始化为额定工况** 时影响模型初始化。如果您设置不同的初始工况，则流动方向可以不同。
+标称工况下的流动方向（从 A 到 B，或从 B 到 A）仅在选中 **Initialize moist air 1 to nominal operating conditions** 或 **Initialize moist air 2 to nominal operating conditions** 时影响模型初始化。如果设置不同的初始工况，流动方向可以不同。
 
-在模块确定换热器尺寸之后，此设置不会影响模块在仿真期间计算热传递的方式。相反，热传递取决于仿真期间的流动方向。例如，如果您将参数设置为平行流，但将模型设置为逆流运行，则即使其余边界条件相同，仿真期间的热传递速率也将与指定性能不匹配。
+在模块确定换热器尺寸之后，此设置不再影响模块在仿真期间计算热传递的方式。相反，热传递取决于仿真期间的流动方向。例如，如果将该参数设置为平行流，但将模型设置为以逆流运行，则即使其余边界条件相同，仿真期间的热传递速率也不会与指定性能匹配。
 
-如果您将参数设置为交叉流，则模块会将换热器内部的流路建模为彼此垂直，因此仿真期间的流动方向无关紧要。
+如果将该参数设置为交叉流，则模块将换热器内部的流路建模为相互垂直，因此仿真期间的流动方向无关紧要。
 
-### **启用壁面热质量** — 是否启用热质量对换热表面的影响 `off`（默认）| `on`
+### **Enable wall thermal mass** — 是否启用热质量对传热表面的影响 `off`（默认）| `on`
 
-是否启用热质量对换热表面的影响。当您选择此参数时，模块会向仿真引入额外动态，并且需要更长时间达到稳态，但此参数不影响稳态仿真结果。
+是否启用热质量对传热表面的影响。选中此参数时，模块会为仿真引入额外的动态特性，达到稳态需要更长时间，但此参数不影响稳态仿真结果。
 
-### **壁面质量** — 换热表面的质量 `1 kg`（默认）| 正标量
+### **Wall mass** — 传热表面的质量 `1 kg`（默认）| 正标量
 
-换热表面的质量。
-
-#### 依赖关系
-
-要启用此参数，请选择 **启用壁面热质量**。
-
-### **壁面比热** — 换热表面的比热 `490 J/(K*kg)`（默认）| 正标量
-
-换热表面的比热。
+传热表面的质量。
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用壁面热质量**。
+要启用此参数，请选中 **Enable wall thermal mass**。
 
-### **将壁面温度初始化为额定工况** — 初始化壁面温度的选项 `on`（默认）| `off`
+### **Wall specific heat** — 传热表面的比热 `490 J/(K*kg)`（默认）| 正标量
 
-用于将壁面温度初始化为额定工况或指定值的选项。如果您选择此参数，模块会根据为两侧流体指定的额定工况计算初始壁面温度。如果您清除此参数，您可以直接使用 **初始壁面温度** 参数指定初始壁面温度。
-
-#### 依赖关系
-
-要启用此参数，请选择 **启用壁面热质量**。
-
-### **初始壁面温度** — 壁面的初始温度 `293.15 K`（默认）| 正标量或二元素向量
-
-壁面的初始温度。如果您指定标量，则模块假定初始壁面温度均匀。如果您指定二元素向量，则模块假定初始壁面温度在端口 **A1** 和 **A2** 以及端口 **B1** 和 **B2** 之间线性变化。第一个元素对应于端口 **A1** 和 **A2** 处的温度，第二个元素对应于端口 **B1** 和 **B2** 处的温度。
+传热表面的比热。
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用壁面热质量** 并清除 **将壁面温度初始化为额定工况** 复选框。
+要启用此参数，请选中 **Enable wall thermal mass**。
 
-### **端口 A1 处的横截面积** — 端口 A1 处的流通面积 `0.01 m^2`（默认）| 正标量
+### **Initialize wall temperature to nominal operating conditions** — 初始化壁面温度的选项 `on`（默认）| `off`
+
+将壁面温度初始化为标称工况或指定值的选项。如果选中此参数，模块将根据为两侧流体指定的标称工况计算初始壁面温度。如果清除此参数，可以直接使用 **Initial wall temperature** 参数指定初始壁面温度。
+
+#### 依赖关系
+
+要启用此参数，请选中 **Enable wall thermal mass**。
+
+### **Initial wall temperature** — 壁面的初始温度 `293.15 K`（默认）| 正标量或二元素向量
+
+壁面的初始温度。如果指定标量，模块假定初始壁面温度均匀。如果指定二元素向量，则模块假定初始壁面温度在端口 **A1** 和 **A2** 之间以及端口 **B1** 和 **B2** 之间线性变化。第一个元素对应端口 **A1** 和 **A2** 处的温度，第二个元素对应端口 **B1** 和 **B2** 处的温度。
+
+#### 依赖关系
+
+要启用此参数，请选中 **Enable wall thermal mass** 并清除 **Initialize wall temperature to nominal operating conditions** 复选框。
+
+### **Cross-sectional area at port A1** — 端口 A1 处的流通面积 `0.01 m^2`（默认）| 正标量
 
 湿空气端口 **A1** 处的流通面积。
 
-### **端口 B1 处的横截面积** — 端口 B1 处的流通面积 `0.01 m^2`（默认）| 正标量
+### **Cross-sectional area at port B1** — 端口 B1 处的流通面积 `0.01 m^2`（默认）| 正标量
 
 湿空气端口 **B1** 处的流通面积。
 
-### **端口 A2 处的横截面积** — 端口 A2 处的流通面积 `0.01 m^2`（默认）| 正标量
+### **Cross-sectional area at port A2** — 端口 A2 处的流通面积 `0.01 m^2`（默认）| 正标量
 
 湿空气端口 **A2** 处的流通面积。
 
-### **端口 B2 处的横截面积** — 端口 B2 处垂直于流动的面积 `0.01 m^2`（默认）| 正标量
+### **Cross-sectional area at port B2** — 端口 B2 处垂直于流动方向的面积 `0.01 m^2`（默认）| 正标量
 
 湿空气端口 **B2** 处的流通面积。
 
-### 湿空气 1
+### Moist Air 1
 
-### **额定工况** — 额定工况 `Heat transfer from Moist Air 1 to Moist Air 2`（默认）| `Heat transfer from Moist Air 2 to Moist Air 1`
+### **Nominal operating condition** — 标称工况 `Heat transfer from Moist Air 1 to Moist Air 2`（默认）| `Heat transfer from Moist Air 2 to Moist Air 1`
 
-额定工况：
+标称工况：
 
-- `Heat transfer from Moist Air 1 to Moist Air 2` — 湿空气 1 被冷却，湿空气 2 被加热。
-- `Heat transfer from Moist Air 2 to Moist Air 1` — 湿空气 2 被冷却，湿空气 1 被加热。
+- `Heat transfer from Moist Air 1 to Moist Air
+  2` — 湿空气 1 被冷却，湿空气 2 被加热。
+- `Heat transfer from Moist Air 2 to Moist Air
+  1` — 湿空气 2 被冷却，湿空气 1 被加热。
 
-此设置仅与额定工况参数相关。这并不意味着在仿真期间热传递只能按指定方向发生。
+此设置仅与标称工况参数相关。它并不意味着仿真期间热传递只能沿指定方向发生。
 
-### **额定质量流量** — 额定工况期间湿空气 1 端口之间的质量流量 `0.1 kg/s`（默认）| 正标量
+### **Nominal mass flow rate** — 标称工况下湿空气 1 端口之间的质量流量 `0.1 kg/s`（默认）| 正标量
 
-在额定工况期间，从端口 **A1** 到端口 **B1** 的质量流量。
+标称工况下从端口 **A1** 到端口 **B1** 的质量流量。
 
-### **额定压降** — 额定工况期间湿空气 1 端口之间的压降 `0.01 MPa`（默认）| 正标量
+### **Nominal pressure drop** — 标称工况下湿空气 1 端口之间的压降 `0.01 MPa`（默认）| 正标量
 
-在额定工况期间，从端口 **A1** 到端口 **B1** 的压降。
+标称工况下从端口 **A1** 到端口 **B1** 的压降。
 
-### **额定入口压力** — 湿空气 1 入口处的压力 `0.101325 MPa`（默认）| 正标量
+### **Nominal inlet pressure** — 湿空气 1 入口处的压力 `0.101325 MPa`（默认）| 正标量
 
-在额定工况期间，换热器湿空气 1 入口处的压力。
+标称工况下换热器湿空气 1 入口处的压力。
 
-### **额定入口温度** — 湿空气 1 入口处的温度 `333.15 K`（默认）| 正标量
+### **Nominal inlet temperature** — 湿空气 1 入口处的温度 `333.15 K`（默认）| 正标量
 
-在额定工况期间，换热器湿空气 1 入口处的温度。
+标称工况下换热器湿空气 1 入口处的温度。
 
-### **入口湿度设定** — 用于描述湿空气 1 侧入口处湿度水平的量 `Relative humidity`（默认）| `Specific humidity` | `Mole fraction` | `Humidity ratio` | `Wet-bulb temperature`
+### **Inlet humidity specification** — 用于描述湿空气 1 侧入口处湿度水平的量 `Relative humidity`（默认）| `Specific humidity` | `Mole fraction` | `Humidity ratio` | `Wet-bulb temperature`
 
-选择用于描述额定工况期间入口处湿度水平的量。
+选择用于描述标称工况下入口处湿度水平的量。
 
-### **额定入口相对湿度** — 入口处的相对湿度 `0.5`（默认）| 范围 [0,1] 内的标量
+### **Nominal inlet relative humidity** — 入口处的相对湿度 `0.5`（默认）| [0,1] 范围内的标量
 
-在额定工况期间，换热器湿空气 1 入口处的相对湿度。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口湿度设定** 设置为 `Relative humidity`。
-
-### **额定入口比湿度** — 入口处的比湿度 `0.01`（默认）| 范围 [0,1] 内的标量
-
-比湿度，定义为湿空气 1 混合物中水蒸气的质量分数，在额定工况期间换热器湿空气入口处。
+标称工况下换热器湿空气 1 入口处的相对湿度。
 
 #### 依赖关系
 
-要启用此参数，请将 **入口湿度设定** 设置为 `Specific humidity`。
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Relative humidity`。
 
-### **额定入口水蒸气摩尔分数** — 入口处水蒸气的摩尔分数 `0.01`（默认）| 范围 [0,1] 内的标量
+### **Nominal inlet specific humidity** — 入口处的比湿度 `0.01`（默认）| [0,1] 范围内的标量
 
-在额定工况期间，换热器湿空气入口处湿空气 1 混合物中水蒸气的摩尔分数。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口湿度设定** 设置为 `Mole fraction`。
-
-### **额定入口湿度比** — 入口处的湿度比 `0.01`（默认）| 范围 [0,1] 内的正标量
-
-湿度比，定义为水蒸气与干空气及痕量气体的质量比，在额定工况期间换热器湿空气 1 入口处。
+标称工况下换热器湿空气入口处的比湿度，定义为湿空气 1 混合物中水蒸气的质量分数。
 
 #### 依赖关系
 
-要启用此参数，请将 **入口湿度设定** 设置为 `Humidity ratio`。
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Specific humidity`。
 
-### **额定入口湿球温度** — 仿真开始时的湿球温度 `287 K`（默认）| 范围 [0,1] 内的正标量
+### **Nominal inlet water vapor mole fraction** — 入口处的水蒸气摩尔分数 `0.01`（默认）| [0,1] 范围内的标量
 
-在额定工况期间，换热器湿空气 1 入口处的湿球温度。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口湿度设定** 设置为 `Wet-bulb temperature`。
-
-### **入口痕量气体设定** — 用于描述入口处痕量气体水平的量 `Mass fraction`（默认）| `Mole fraction`
-
-选择用于描述额定工况期间入口处痕量气体水平的量：质量分数或摩尔分数。
-
-### **额定入口痕量气体质量分数** — 入口处痕量气体的质量分数 `0.001`（默认）| 范围 [0,1] 内的标量
-
-在额定工况期间，换热器湿空气入口处湿空气 1 混合物中痕量气体的质量分数。
-
-如果在 Moist Air Properties (MA) 模块中的 **痕量气体模型** 参数设置为 `None`，则忽略此参数。
+标称工况下换热器湿空气入口处湿空气 1 混合物中水蒸气的摩尔分数。
 
 #### 依赖关系
 
-要启用此参数，请将 **入口痕量气体设定** 设置为 `Mass fraction`。
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Mole fraction`。
 
-### **额定入口痕量气体摩尔分数** — 入口处痕量气体的摩尔分数 `0.001`（默认）| 范围 [0,1] 内的标量
+### **Nominal inlet humidity ratio** — 入口处的湿度比 `0.01`（默认）| [0,1] 范围内的正标量
 
-在额定工况期间，换热器湿空气入口处湿空气 1 混合物中痕量气体的摩尔分数。
-
-如果在 Moist Air Properties (MA) 模块中的 **痕量气体模型** 参数设置为 `None`，则忽略此参数。
+标称工况下换热器湿空气 1 入口处的湿度比，定义为水蒸气与干空气及微量气体的质量比。
 
 #### 依赖关系
 
-要启用此参数，请将 **入口痕量气体设定** 设置为 `Mole fraction`。
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Humidity ratio`。
 
-### **热传递容量设定** — 如何指定湿空气 1 的热传递容量 `Rate of heat transfer`（默认）| `Outlet condition`
+### **Nominal inlet wet-bulb temperature** — 仿真开始时的湿球温度 `287 K`（默认）| [0,1] 范围内的正标量
 
-是否在额定工况下直接通过热传递速率指定湿空气 1 的换热器性能，还是间接通过出口条件指定。
-
-#### 依赖关系
-
-要启用此参数，请将 **额定工况** 设置为 `Heat transfer from Moist Air 2 to Moist Air 1`。
-
-### **额定热传递速率** — 热传递速率 `1 kW`（默认）| 正标量
-
-热传递速率。**额定工况** 参数确定热量从哪个网络传递以及传递到哪个网络：
-
-- 如果 **额定工况** 为 `Heat transfer from Moist Air 1 to Moist Air 2`，则此参数是在额定工况期间从湿空气 1 到湿空气 2 的热传递速率。
-- 如果 **额定工况** 为 `Heat transfer from Moist Air 2 to Moist Air 1`，则此参数是在额定工况期间从湿空气 1 到湿空气 2 的热传递速率。
+标称工况下换热器湿空气 1 入口处的湿球温度。
 
 #### 依赖关系
 
-要启用此参数，请设置以下任一项：
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Wet-bulb temperature`。
 
-- **额定工况** 为 `Heat transfer from Moist Air 1 to Moist Air 2`。
-- **额定工况** 为 `Heat transfer from Moist Air 2 to Moist Air 1` 且 **热传递容量设定** 为 `Rate of heat transfer`。
+### **Inlet trace gas specification** — 用于描述入口处微量气体水平的量 `Mass fraction`（默认）| `Mole fraction`
 
-### **额定出口温度** — 出口温度 `323.15 K`（默认）| 正标量
+选择用于描述标称工况下入口处微量气体水平的量：质量分数或摩尔分数。
 
-在额定工况期间，换热器湿空气 1 侧出口处的温度。
+### **Nominal inlet trace gas mass fraction** — 入口处微量气体的质量分数 `0.001`（默认）| [0,1] 范围内的标量
+
+标称工况下换热器湿空气入口处湿空气 1 混合物中微量气体的质量分数。
+
+如果 Moist Air Properties (MA) 模块中的 **Trace gas model** 参数设置为 `None`，则忽略此参数。
 
 #### 依赖关系
 
-要启用此参数，请将 **额定工况** 设置为 `Heat transfer from Moist Air 2 to Moist Air 1` 且将 **热传递容量设定** 设置为 `Outlet condition`。
+要启用此参数，请将 **Inlet trace gas specification** 设置为 `Mass fraction`。
 
-### **湿空气 1 体积** — 换热器侧 1 上湿空气的总体积 `0.1 m^3`（默认）| 正标量
+### **Nominal inlet trace gas mole fraction** — 入口处微量气体的摩尔分数 `0.001`（默认）| [0,1] 范围内的标量
+
+标称工况下换热器湿空气入口处湿空气 1 混合物中微量气体的摩尔分数。
+
+如果 Moist Air Properties (MA) 模块中的 **Trace gas model** 参数设置为 `None`，则忽略此参数。
+
+#### 依赖关系
+
+要启用此参数，请将 **Inlet trace gas specification** 设置为 `Mole fraction`。
+
+### **Heat transfer capacity specification** — 如何指定湿空气 1 的热传递能力 `Rate of heat transfer`（默认）| `Outlet condition`
+
+是直接通过热传递速率，还是间接通过出口条件来指定换热器在标称工况下对湿空气 1 的性能。
+
+#### 依赖关系
+
+要启用此参数，请将 **Nominal operating condition** 设置为 `Heat transfer from Moist Air 2 to Moist Air 1`。
+
+### **Nominal rate of heat transfer** — 热传递速率 `1 kW`（默认）| 正标量
+
+热传递速率。**Nominal Operating condition** 参数决定热量从哪个网络传递到哪个网络：
+
+- 如果 **Nominal operating condition** 为 `Heat transfer from Moist Air 1 to Moist Air 2`，则此参数为标称工况下从湿空气 1 到湿空气 2 的热传递速率。
+- 如果 **Nominal operating condition** 为 `Heat transfer from Moist Air 2 to Moist Air 1`，则此参数为标称工况下从湿空气 1 到湿空气 2 的热传递速率。
+
+#### 依赖关系
+
+要启用此参数，请设置以下任一条件：
+
+- **Nominal operating condition** 为 `Heat transfer from Moist Air 1 to Moist Air 2`。
+- **Nominal operating condition** 为 `Heat transfer from Moist Air 2 to Moist Air 1` 且 **Heat transfer capacity specification** 为 `Rate of heat transfer`。
+
+### **Nominal outlet temperature** — 出口温度 `323.15 K`（默认）| 正标量
+
+标称工况下换热器湿空气 1 侧出口处的温度。
+
+#### 依赖关系
+
+要启用此参数，请将 **Nominal operating condition** 设置为 `Heat transfer from Moist Air 2 to Moist Air 1` 并将 **Heat transfer capacity specification** 设置为 `Outlet condition`。
+
+### **Moist air 1 volume** — 换热器侧 1 上湿空气的总体积 `0.1 m^3`（默认）| 正标量
 
 换热器侧 1 上湿空气的总体积。
 
-### **将湿空气 1 初始化为额定工况** — 初始化湿空气 1 的选项 `on`（默认）| `off`
+### **Initialize moist air 1 to nominal operating conditions** — 初始化湿空气 1 的选项 `on`（默认）| `off`
 
-用于将湿空气 1 初始化为额定工况或指定值的选项。如果您选择此参数，则模块将湿空气 1 初始化为额定工况。如果您清除此复选框，则可以使用附加参数直接指定初始条件。
+将湿空气 1 初始化为标称工况或指定值的选项。如果选中此参数，模块将湿空气 1 初始化为标称工况。如果清除此复选框，可以直接使用附加参数指定初始条件。
 
-### **初始湿空气 1 压力** — 仿真开始时的湿空气 1 压力 `0.101325 MPa`（默认）| 正标量
+### **Initial moist air 1 pressure** — 仿真开始时湿空气 1 的压力 `0.101325 MPa`（默认）| 正标量
 
-仿真开始时的湿空气 1 压力。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框。
-
-### **初始湿空气 1 温度** — 仿真开始时的湿空气温度 `293.15 K`（默认）| 正标量 | 二元素向量
-
-仿真开始时的湿空气 1 温度。如果该值为标量，则假定初始温度均匀。如果该值为二元素向量，则假定初始温度在端口 **A2** 和 **B2** 之间线性变化，第一个元素对应于端口 **A2**，第二个元素对应于端口 **B2**。
+仿真开始时湿空气 1 的压力。
 
 #### 依赖关系
 
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框。
 
-### **初始湿度设定** — 用于描述初始湿度水平的量 `Relative humidity`（默认）| `Specific humidity` | `Mole fraction` | `Humidity ratio` | `Wet-bulb temperature`
+### **Initial moist air 1 temperature** — 仿真开始时湿空气的温度 `293.15 K`（默认）| 正标量 | 二元素向量
+
+仿真开始时湿空气 1 的温度。如果该值为标量，则假定初始温度均匀。如果该值为二元素向量，则假定初始温度在端口 **A2** 和 **B2** 之间线性变化，第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框。
+
+### **Initial humidity specification** — 用于描述初始湿度水平的量 `Relative humidity`（默认）| `Specific humidity` | `Mole fraction` | `Humidity ratio` | `Wet-bulb temperature`
 
 选择用于描述初始湿度水平的量：相对湿度、比湿度、水蒸气摩尔分数或湿度比。
 
 #### 依赖关系
 
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框。
 
-### **湿空气 1 初始相对湿度** — 仿真开始时的相对湿度 `0.5`（默认）| [0,1] 范围内的标量 | 二元素向量
+### **Initial moist air 1 relative humidity** — 仿真开始时的相对湿度 `0.5`（默认）| [0,1] 范围内的标量 | 二元素向量
 
-仿真开始时的湿空气 1 相对湿度。如果该值为标量，则假定初始相对湿度均匀。如果该值为二元素向量，则假定初始相对湿度在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应于端口 **A1**，第二个元素对应于端口 **B1**。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框，并将 **初始湿度指定量** 设置为 `Relative humidity`。
-
-### **湿空气 1 初始比湿度** — 仿真开始时的比湿度 `0.01`（默认）| [0,1] 范围内的标量 | 二元素向量
-
-仿真开始时的湿空气 1 比湿度，定义为湿空气混合物中水蒸气的质量分数。如果该值为标量，则假定初始比湿度均匀。如果该值为二元素向量，则假定初始比湿度在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应于端口 **A1**，第二个元素对应于端口 **B1**。
+仿真开始时的湿空气 1 相对湿度。如果该值为标量，则假定初始相对湿度均匀。如果该值为二元素向量，则假定初始相对湿度在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应端口 **A1**，第二个元素对应端口 **B1**。
 
 #### 依赖关系
 
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框，并将 **初始湿度指定量** 设置为 `Specific humidity`。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Relative humidity`。
 
-### **湿空气 1 初始水蒸气摩尔分数** — 仿真开始时的水蒸气摩尔分数 `0.01`（默认）| [0,1] 范围内的标量 | 二元素向量
+### **Initial moist air 1 specific humidity** — 仿真开始时的比湿 `0.01`（默认）| [0,1] 范围内的标量 | 二元素向量
 
-仿真开始时湿空气 1 混合物中的水蒸气摩尔分数。如果该值为标量，则假定初始摩尔分数均匀。如果该值为二元素向量，则假定初始摩尔分数在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应于端口 **A1**，第二个元素对应于端口 **B1**。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框，并将 **初始湿度指定量** 设置为 `Mole fraction`。
-
-### **湿空气 1 初始湿度比** — 仿真开始时的湿度比 `0.01`（默认）| [0,1] 范围内的正标量 | 二元素向量
-
-仿真开始时的湿空气 1 湿度比，定义为水蒸气与干空气和痕量气体的质量比。如果该值为标量，则假定初始湿度比均匀。如果该值为二元素向量，则假定初始湿度比在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应于端口 **A1**，第二个元素对应于端口 **B1**。
+仿真开始时的湿空气 1 比湿，定义为湿空气混合物中水蒸气的质量分数。如果该值为标量，则假定初始比湿均匀。如果该值为二元素向量，则假定初始比湿在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应端口 **A1**，第二个元素对应端口 **B1**。
 
 #### 依赖关系
 
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框，并将 **初始湿度指定量** 设置为 `Humidity ratio`。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Specific humidity`。
 
-### **湿空气 1 初始湿球温度** — 仿真开始时的湿球温度 `287 K`（默认）| [0,1] 范围内的正标量
+### **Initial moist air 1 water vapor mole fraction** — 仿真开始时的水蒸气摩尔分数 `0.01`（默认）| [0,1] 范围内的标量 | 二元素向量
 
-仿真开始时的湿球温度。该模块使用此值计算湿度。
-
-此参数可以是标量或二元素向量。标量值表示通道中的平均初始湿球温度。向量值以 [`inlet`, `outlet`] 形式表示入口和出口处的初始湿球温度。该模块计算两个端口之间的线性梯度。入口和出口端口根据初始流动方向确定。
+仿真开始时湿空气 1 混合物中水蒸气的摩尔分数。如果该值为标量，则假定初始摩尔分数均匀。如果该值为二元素向量，则假定初始摩尔分数在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应端口 **A1**，第二个元素对应端口 **B1**。
 
 #### 依赖关系
 
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框，并将 **初始湿度指定量** 设置为 `Wet-bulb temperature`。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Mole fraction`。
 
-### **初始痕量气体指定量** — 用于描述初始痕量气体水平的量 `Mass fraction`（默认）| `Mole fraction`
+### **Initial moist air 1 humidity ratio** — 仿真开始时的湿度比 `0.01`（默认）| [0,1] 范围内的正标量 | 二元素向量
 
-选择用于描述仿真开始时痕量气体水平的量：质量分数或摩尔分数。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框。
-
-### **湿空气 1 初始痕量气体质量分数** — 仿真开始时的痕量气体质量分数 `0.001`（默认）| [0,1] 范围内的标量 | 二元素向量
-
-仿真开始时湿空气 1 混合物中的痕量气体质量分数。如果该值为标量，则假定初始质量分数均匀。如果该值为二元素向量，则假定初始质量分数在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应于端口 **A1**，第二个元素对应于端口 **B1**。
-
-如果 Moist Air Properties (MA) 模块中的 **痕量气体模型** 参数设置为 `None`，则忽略此参数。
+仿真开始时的湿空气 1 湿度比，定义为水蒸气与干空气和微量气体的质量比。如果该值为标量，则假定初始湿度比均匀。如果该值为二元素向量，则假定初始湿度比在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应端口 **A1**，第二个元素对应端口 **B1**。
 
 #### 依赖关系
 
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框，并将 **初始痕量气体指定量** 设置为 `Mass fraction`。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Humidity ratio`。
 
-### **湿空气 1 初始痕量气体摩尔分数** — 仿真开始时的痕量气体摩尔分数 `0.001`（默认）| [0,1] 范围内的标量 | 二元素向量
-
-仿真开始时湿空气 1 混合物中的痕量气体摩尔分数。如果该值为标量，则假定初始摩尔分数均匀。如果该值为二元素向量，则假定初始摩尔分数在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应于端口 **A1**，第二个元素对应于端口 **B1**。
-
-如果 Moist Air Properties (MA) 模块中的 **痕量气体模型** 参数设置为 `None`，则忽略此参数。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框，并将 **初始痕量气体指定量** 设置为 `Mole fraction`。
-
-### **水滴与湿空气的初始质量比** — 水滴与湿空气之比 `0`（默认）| 正标量
-
-水滴与湿空气的初始质量比。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 1 初始化为额定工况** 复选框。
-
-### **饱和时的相对湿度** — 冷凝的相对湿度点 `1`（默认）| 非负标量
-
-冷凝的相对湿度点。高于此值时发生冷凝。在大多数情况下，此值为 1，即 100%。大于 1 的值表示过饱和蒸气。
-
-### **水蒸气冷凝时间常数** — 冷凝的时间尺度 `1e-3 s`（默认）| 正标量
-
-过饱和湿空气体积通过冷凝析出多余湿气而回到饱和状态的特征时间尺度。
-
-### **水滴蒸发时间常数** — 蒸发的时间尺度 `1e-3 s`（默认）| 正标量
-
-水滴蒸发为蒸气的特征时间尺度。
-
-### **夹带为水滴的冷凝物比例** — 水滴中冷凝物的比例 `1`（默认）| [0,1] 范围内的标量
-
-湿空气中夹带为水滴的冷凝物比例。
-
-### 湿空气 2
-
-### **额定质量流量** — 额定工况期间湿空气 2 端口之间的质量流量 `0.1 kg/s`（默认）| 正标量
-
-额定工况期间从端口 **A2** 到端口 **B2** 的质量流量。
-
-### **额定压降** — 额定工况期间湿空气 2 端口之间的压降 `0.001 MPa`（默认）| 正标量
-
-额定工况期间从端口 **A2** 到端口 **B2** 的压降。
-
-### **额定入口压力** — 湿空气 2 侧入口处的压力 `0.101325 MPa`（默认）| 正标量
-
-额定工况期间换热器湿空气 2 入口处的压力。
-
-### **额定入口温度** — 湿空气 2 侧入口处的温度 `293.15 K`（默认）| 正标量
-
-额定工况期间换热器湿空气 2 入口处的温度。
-
-### **入口湿度指定量** — 用于描述湿空气侧入口处湿度水平的量 `Relative humidity`（默认）| `Specific humidity` | `Mole fraction` | `Humidity ratio` | `Wet-bulb temperature`
-
-选择用于描述额定工况期间入口处湿度水平的量。
-
-### **额定入口相对湿度** — 入口处的相对湿度 `0.5`（默认）| [0,1] 范围内的标量
-
-额定工况期间换热器湿空气 2 入口处的相对湿度。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口湿度指定量** 设置为 `Relative humidity`。
-
-### **额定入口比湿度** — 入口处的比湿度 `0.01`（默认）| [0,1] 范围内的标量
-
-额定工况期间换热器湿空气 2 入口处的比湿度，定义为湿空气混合物中水蒸气的质量分数。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口湿度指定量** 设置为 `Specific humidity`。
-
-### **额定入口水蒸气摩尔分数** — 入口处的水蒸气摩尔分数 `0.01`（默认）| [0,1] 范围内的标量
-
-额定工况期间换热器湿空气 2 入口处湿空气混合物中的水蒸气摩尔分数。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口湿度指定量** 设置为 `Mole fraction`。
-
-### **额定入口湿度比** — 入口处的湿度比 `0.01`（默认）| [0,1] 范围内的正标量
-
-额定工况期间换热器湿空气 2 入口处的湿度比，定义为水蒸气与干空气和痕量气体的质量比。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口湿度指定量** 设置为 `Humidity ratio`。
-
-### **额定入口湿球温度** — 仿真开始时的湿球温度 `287 K`（默认）| [0,1] 范围内的正标量
-
-额定工况期间换热器湿空气 2 入口处的湿球温度。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口湿度指定量** 设置为 `Wet-bulb temperature`。
-
-### **入口痕量气体指定量** — 用于描述入口处痕量气体水平的量 `Mass fraction`（默认）| `Mole fraction`
-
-选择用于描述额定工况期间入口处痕量气体水平的量：质量分数或摩尔分数。
-
-### **额定入口痕量气体质量分数** — 入口处的痕量气体质量分数 `0.001`（默认）| [0,1] 范围内的标量
-
-额定工况期间换热器湿空气 2 入口处湿空气混合物中的痕量气体质量分数。
-
-如果 Moist Air Properties (MA) 模块中的 **痕量气体模型** 参数设置为 `None`，则忽略此参数。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口痕量气体指定量** 设置为 `Mass fraction`。
-
-### **额定入口痕量气体摩尔分数** — 入口处的痕量气体摩尔分数 `0.001`（默认）| [0,1] 范围内的标量
-
-额定工况期间换热器湿空气 2 入口处湿空气混合物中的痕量气体摩尔分数。
-
-如果 Moist Air Properties (MA) 模块中的 **痕量气体模型** 参数设置为 `None`，则忽略此参数。
-
-#### 依赖关系
-
-要启用此参数，请将 **入口痕量气体指定量** 设置为 `Mole fraction`。
-
-### **湿空气 2 体积** — 换热器侧 2 上湿空气的总体积 `0.1 m^3`（默认）| 正标量
-
-换热器侧 2 上湿空气的总体积。
-
-### **将湿空气 2 初始化为额定工况** — 用于初始化湿空气的选项 `on`（默认）| `off`
-
-用于将湿空气 2 初始化为额定工况或指定值的选项。如果选中此参数，则该模块将湿空气初始化为额定工况。如果清除此复选框，则可以使用其他参数直接指定初始条件。
-
-### **湿空气 2 初始压力** — 仿真开始时的湿空气压力 `0.101325 MPa`（默认）| 正标量
-
-仿真开始时的湿空气 2 压力。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 2 初始化为额定工况** 复选框。
-
-### **湿空气 2 初始温度** — 仿真开始时的湿空气温度 `293.15 K`（默认）| 正标量 | 二元素向量
-
-仿真开始时的湿空气 2 温度。如果该值为标量，则假定初始温度均匀。如果该值为二元素向量，则假定初始温度在端口 **A2** 和 **B2** 之间线性变化，其中第一个元素对应于端口 **A2**，第二个元素对应于端口 **B2**。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 2 初始化为额定工况** 复选框。
-
-### **初始湿度指定量** — 用于描述初始湿度水平的量 `Relative humidity`（默认）| `Specific humidity` | `Mole fraction` | `Humidity ratio` | `Wet-bulb temperature`
-
-选择用于描述初始湿度水平的量：相对湿度、比湿度、水蒸气摩尔分数或湿度比。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 2 初始化为额定工况** 复选框。
-
-### **湿空气 2 初始相对湿度** — 仿真开始时的相对湿度 `0.5`（默认）| [0,1] 范围内的标量 | 二元素向量
-
-仿真开始时的湿空气 2 相对湿度。如果该值为标量，则假定初始相对湿度均匀。如果该值为二元素向量，则假定初始相对湿度在端口 **A2** 和 **B2** 之间线性变化，其中第一个元素对应于端口 **A2**，第二个元素对应于端口 **B2**。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 2 初始化为额定工况** 复选框，并将 **初始湿度指定量** 设置为 `Relative humidity`。
-
-### **湿空气 2 初始比湿度** — 仿真开始时的比湿度 `0.01`（默认）| [0,1] 范围内的标量 | 二元素向量
-
-仿真开始时的湿空气 2 比湿度，定义为湿空气混合物中水蒸气的质量分数。如果该值为标量，则假定初始比湿度均匀。如果该值为二元素向量，则假定初始比湿度在端口 **A2** 和 **B2** 之间线性变化，其中第一个元素对应于端口 **A2**，第二个元素对应于端口 **B2**。
-
-#### 依赖关系
-
-要启用此参数，请清除 **将湿空气 2 初始化为额定工况** 复选框，并将 **初始湿度指定量** 设置为 `Specific humidity`。
-
-### **湿空气 2 初始水蒸气摩尔分数** — 仿真开始时的水蒸气摩尔分数 `0.01`（默认）| [0,1] 范围内的标量 | 二元素向量
-
-仿真开始时湿空气 2 混合物中的水蒸气摩尔分数。如果该值为标量，则假定初始摩尔分数均匀。如果该值为二元素向量，则假定初始摩尔分数在端口 **A2** 和 **B2** 之间线性变化，其中第一个元素对应于端口 **A2**，第二个元素对应于端口 **B2**。
-
-#### 依赖项
-
-要启用此参数，请清除 **Initialize moist air
-2 to nominal operating conditions** 复选框，并将
-**Initial humidity specification** 设置为
-`Mole fraction`。
-
-### **Initial moist air 2 humidity ratio** — 仿真开始时的湿度比 `0.01`（默认） | 范围 [0,1] 内的正标量 | 二元素向量
-
-湿空气 2 的湿度比，定义为仿真开始时水蒸气与干空气和痕量气体的质量比。如果该值为标量，则假定初始湿度比均匀。如果该值为二元素向量，则假定初始湿度比在端口 **A2** 和 **B2** 之间线性变化，第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
-
-#### 依赖项
-
-要启用此参数，请清除 **Initialize moist air
-2 to nominal operating conditions** 复选框，并将
-**Initial humidity specification** 设置为
-`Humidity ratio`。
-
-### **Initial moist air 2 wet-bulb temperature** — 仿真开始时的湿球温度 `287 K`（默认） | 范围 [0,1] 内的正标量
+### **Initial moist air 1 wet-bulb temperature** — 仿真开始时的湿球温度 `287 K`（默认）| [0,1] 范围内的正标量
 
 仿真开始时的湿球温度。该模块使用此值计算湿度。
 
 此参数可以是标量或二元素向量。标量值表示通道中的平均初始湿球温度。向量值表示入口和出口处的初始湿球温度，形式为 [`inlet`, `outlet`]。该模块计算两个端口之间的线性梯度。入口和出口端口根据初始流动方向确定。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请清除 **Initialize moist air
-2 to nominal operating conditions** 复选框，并将
-**Initial humidity specification** 设置为
-`Wet-bulb temperature`。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Wet-bulb temperature`。
 
-### **Initial trace gas specification** — 用于描述初始痕量气体水平的量 `Mass fraction`（默认） | `Mole fraction`
+### **Initial trace gas specification** — 用于描述初始微量气体水平的量 `Mass fraction`（默认）| `Mole fraction`
 
-选择用于描述仿真开始时痕量气体水平的量：质量分数或摩尔分数。
+选择用于描述仿真开始时微量气体水平的量：质量分数或摩尔分数。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请清除 **Initialize moist air
-2 to nominal operating conditions** 复选框。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框。
 
-### **Initial moist air 2 trace gas mass fraction** — 仿真开始时痕量气体的质量分数 `0.001`（默认） | 范围 [0,1] 内的标量 | 二元素向量
+### **Initial moist air 1 trace gas mass fraction** — 仿真开始时微量气体的质量分数 `0.001`（默认）| [0,1] 范围内的标量 | 二元素向量
 
-湿空气 2 混合物中痕量气体在仿真开始时的质量分数。如果该值为标量，则假定初始质量分数均匀。如果该值为二元素向量，则假定初始质量分数在端口 **A2** 和 **B2** 之间线性变化，第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+仿真开始时湿空气 1 混合物中微量气体的质量分数。如果该值为标量，则假定初始质量分数均匀。如果该值为二元素向量，则假定初始质量分数在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应端口 **A1**，第二个元素对应端口 **B1**。
 
 如果 Moist Air Properties (MA) 模块中的 **Trace gas model** 参数设置为 `None`，则忽略此参数。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请清除 **Initialize moist air
-2 to nominal operating conditions** 复选框，并将
-**Initial trace gas specification** 设置为
-`Mass fraction`。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框，并将 **Initial trace gas specification** 设置为 `Mass fraction`。
 
-### **Initial moist air 2 trace gas mole fraction** — 仿真开始时痕量气体的摩尔分数 `0.001`（默认） | 范围 [0,1] 内的标量 | 二元素向量
+### **Initial moist air 1 trace gas mole fraction** — 仿真开始时微量气体的摩尔分数 `0.001`（默认）| [0,1] 范围内的标量 | 二元素向量
 
-湿空气 2 混合物中痕量气体在仿真开始时的摩尔分数。如果该值为标量，则假定初始摩尔分数均匀。如果该值为二元素向量，则假定初始摩尔分数在端口 **A2** 和 **B2** 之间线性变化，第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+仿真开始时湿空气 1 混合物中微量气体的摩尔分数。如果该值为标量，则假定初始摩尔分数均匀。如果该值为二元素向量，则假定初始摩尔分数在端口 **A1** 和 **B1** 之间线性变化，其中第一个元素对应端口 **A1**，第二个元素对应端口 **B1**。
 
 如果 Moist Air Properties (MA) 模块中的 **Trace gas model** 参数设置为 `None`，则忽略此参数。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请清除 **Initialize moist air
-2 to nominal operating conditions** 复选框，并将
-**Initial trace gas specification** 设置为
-`Mole fraction`。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框，并将 **Initial trace gas specification** 设置为 `Mole fraction`。
 
-### **Initial mass ratio of water droplets to moist air** — 水滴与湿空气之比 `0`（默认） | 正标量
+### **Initial mass ratio of water droplets to moist air** — 水滴与湿空气的质量比 `0`（默认）| 正标量
 
 水滴与湿空气的初始质量比。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请清除 **Initialize moist air
-2 to nominal operating conditions** 复选框。
+要启用此参数，请清除 **Initialize moist air 1 to nominal operating conditions** 复选框。
 
-### **Relative humidity at saturation** — 冷凝的相对湿度点 `1`（默认） | 非负标量
+### **Relative humidity at saturation** — 冷凝的相对湿度点 `1`（默认）| 非负标量
 
-冷凝的相对湿度点。高于该值时发生冷凝。在大多数情况下，该值为 1，即 100%。大于 1 的值表示过饱和蒸汽。
+冷凝的相对湿度点。高于此值时发生冷凝。在大多数情况下，该值为 1，即 100%。大于 1 的值表示过饱和蒸汽。
 
-### **Water vapor condensation time constant** — 冷凝时间尺度 `1e-3 s`（默认） | 正标量
+### **Water vapor condensation time constant** — 冷凝时间尺度 `1e-3 s`（默认）| 正标量
 
-过饱和湿空气体积通过冷凝出多余湿气而恢复到饱和的特征时间尺度。
+过饱和湿空气体积通过冷凝多余湿度恢复到饱和状态的特征时间尺度。
 
-### **Water droplets evaporation time constant** — 蒸发时间尺度 `1e-3 s`（默认） | 正标量
+### **Water droplets evaporation time constant** — 蒸发时间尺度 `1e-3 s`（默认）| 正标量
 
 水滴蒸发为蒸气的特征时间尺度。
 
-### **Fraction of condensate entrained as water droplets** — 水滴中冷凝物的分数 `1`（默认） | 范围 [0,1] 内的标量
+### **Fraction of condensate entrained as water droplets** — 水滴中冷凝物的比例 `1`（默认）| [0,1] 范围内的标量
 
-湿空气中作为水滴夹带的冷凝物分数。
+湿空气中作为水滴夹带的冷凝物比例。
 
-### 相关系数
+### Moist Air 2
 
-### **a in Nu = a\*Re^b\*Pr^c for moist air 1** — 湿空气 1 的相关系数 `0.023`（默认） | 正标量
+### **Nominal mass flow rate** — 标称工况期间湿空气 2 端口之间的质量流量 `0.1 kg/s`（默认）| 正标量
 
-湿空气 1 的 Nusselt 数作为 Reynolds 数和 Prandtl 数的函数的相关式中的比例常数。默认值基于 Colburn 方程。
+标称工况期间从端口 **A2** 到端口 **B2** 的质量流量。
 
-### **b in Nu = a\*Re^b\*Pr^c for moist air 1** — 湿空气 1 相关式中 Reynolds 数的指数 `0.8`（默认） | 正标量
+### **Nominal pressure drop** — 标称工况期间湿空气 2 端口之间的压降 `0.001 MPa`（默认）| 正标量
 
-湿空气 1 的 Nusselt 数作为 Reynolds 数和 Prandtl 数的函数的相关式中 Reynolds 数的指数。默认值基于 Colburn 方程。
+标称工况期间从端口 **A2** 到端口 **B2** 的压降。
 
-### **c in Nu = a\*Re^b\*Pr^c for moist air 1** — 湿空气 1 相关式中 Prandtl 数的指数 `0.33`（默认） | 正标量
+### **Nominal inlet pressure** — 湿空气 2 侧入口处的压力 `0.101325 MPa`（默认）| 正标量
 
-湿空气 1 的 Nusselt 数作为 Reynolds 数和 Prandtl 数的函数的相关式中 Prandtl 数的指数。默认值基于 Colburn 方程。
+标称工况期间热交换器湿空气 2 入口处的压力。
 
-### **a in Nu = a\*Re^b\*Pr^c for moist air 2** — 湿空气 2 的相关系数 `0.023`（默认） | 正标量
+### **Nominal inlet temperature** — 湿空气 2 侧入口处的温度 `293.15 K`（默认）| 正标量
 
-湿空气 2 的 Nusselt 数作为 Reynolds 数和 Prandtl 数的函数的相关式中的比例常数。默认值基于 Colburn 方程。
+标称工况期间热交换器湿空气 2 入口处的温度。
 
-### **b in Nu = a\*Re^b\*Pr^c for moist air 2** — 湿空气 2 相关式中 Reynolds 数的指数 `0.8`（默认） | 正标量
+### **Inlet humidity specification** — 用于描述湿空气侧入口处湿度水平的量 `Relative humidity`（默认）| `Specific humidity` | `Mole fraction` | `Humidity ratio` | `Wet-bulb temperature`
 
-湿空气 2 的 Nusselt 数作为 Reynolds 数和 Prandtl 数的函数的相关式中 Reynolds 数的指数。默认值基于 Colburn 方程。
+选择用于描述标称工况期间入口处湿度水平的量。
 
-### **c in Nu = a\*Re^b\*Pr^c for moist air 2** — 湿空气 2 相关式中 Prandtl 数的指数 `0.33`（默认） | 正标量
+### **Nominal inlet relative humidity** — 入口处的相对湿度 `0.5`（默认）| [0,1] 范围内的标量
 
-湿空气 2 的 Nusselt 数作为 Reynolds 数和 Prandtl 数的函数的相关式中 Prandtl 数的指数。默认值基于 Colburn 方程。
+标称工况期间热交换器湿空气 2 入口处的相对湿度。
+
+#### 依赖关系
+
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Relative humidity`。
+
+### **Nominal inlet specific humidity** — 入口处的比湿 `0.01`（默认）| [0,1] 范围内的标量
+
+标称工况期间热交换器湿空气 2 入口处的比湿，定义为湿空气混合物中水蒸气的质量分数。
+
+#### 依赖关系
+
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Specific humidity`。
+
+### **Nominal inlet water vapor mole fraction** — 入口处水蒸气的摩尔分数 `0.01`（默认）| [0,1] 范围内的标量
+
+标称工况期间热交换器湿空气 2 入口处湿空气混合物中水蒸气的摩尔分数。
+
+#### 依赖关系
+
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Mole fraction`。
+
+### **Nominal inlet humidity ratio** — 入口处的湿度比 `0.01`（默认）| [0,1] 范围内的正标量
+
+标称工况期间热交换器湿空气 2 入口处的湿度比，定义为水蒸气与干空气和微量气体的质量比。
+
+#### 依赖关系
+
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Humidity ratio`。
+
+### **Nominal inlet wet-bulb temperature** — 仿真开始时的湿球温度 `287 K`（默认）| [0,1] 范围内的正标量
+
+标称工况期间热交换器湿空气 2 入口处的湿球温度。
+
+#### 依赖关系
+
+要启用此参数，请将 **Inlet humidity specification** 设置为 `Wet-bulb temperature`。
+
+### **Inlet trace gas specification** — 用于描述入口处微量气体水平的量 `Mass fraction`（默认）| `Mole fraction`
+
+选择用于描述标称工况期间入口处微量气体水平的量：质量分数或摩尔分数。
+
+### **Nominal inlet trace gas mass fraction** — 入口处微量气体的质量分数 `0.001`（默认）| [0,1] 范围内的标量
+
+标称工况期间热交换器湿空气 2 入口处湿空气混合物中微量气体的质量分数。
+
+如果 Moist Air Properties (MA) 模块中的 **Trace gas model** 参数设置为 `None`，则忽略此参数。
+
+#### 依赖关系
+
+要启用此参数，请将 **Inlet trace gas specification** 设置为 `Mass fraction`。
+
+### **Nominal inlet trace gas mole fraction** — 入口处微量气体的摩尔分数 `0.001`（默认）| [0,1] 范围内的标量
+
+标称工况期间热交换器湿空气 2 入口处湿空气混合物中微量气体的摩尔分数。
+
+如果 Moist Air Properties (MA) 模块中的 **Trace gas model** 参数设置为 `None`，则忽略此参数。
+
+#### 依赖关系
+
+要启用此参数，请将 **Inlet trace gas specification** 设置为 `Mole fraction`。
+
+### **Moist air 2 volume** — 热交换器侧 2 湿空气的总体积 `0.1 m^3`（默认）| 正标量
+
+热交换器侧 2 湿空气的总体积。
+
+### **Initialize moist air 2 to nominal operating conditions** — 初始化湿空气的选项 `on`（默认）| `off`
+
+将湿空气 2 初始化为标称工况或指定值的选项。如果选择此参数，该模块将湿空气初始化为标称工况。如果清除此复选框，则可以使用附加参数直接指定初始条件。
+
+### **Initial moist air 2 pressure** — 仿真开始时的湿空气压力 `0.101325 MPa`（默认）| 正标量
+
+仿真开始时的湿空气 2 压力。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框。
+
+### **Initial moist air 2 temperature** — 仿真开始时的湿空气温度 `293.15 K`（默认）| 正标量 | 二元素向量
+
+仿真开始时的湿空气 2 温度。如果该值为标量，则假定初始温度均匀。如果该值为二元素向量，则假定初始温度在端口 **A2** 和 **B2** 之间线性变化，其中第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框。
+
+### **Initial humidity specification** — 用于描述初始湿度水平的量 `Relative humidity`（默认）| `Specific humidity` | `Mole fraction` | `Humidity ratio` | `Wet-bulb temperature`
+
+选择用于描述初始湿度水平的量：相对湿度、比湿、水蒸气摩尔分数或湿度比。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框。
+
+### **Initial moist air 2 relative humidity** — 仿真开始时的相对湿度 `0.5`（默认）| [0,1] 范围内的标量 | 二元素向量
+
+仿真开始时的湿空气 2 相对湿度。如果该值为标量，则假定初始相对湿度均匀。如果该值为二元素向量，则假定初始相对湿度在端口 **A2** 和 **B2** 之间线性变化，其中第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Relative humidity`。
+
+### **Initial moist air 2 specific humidity** — 仿真开始时的比湿 `0.01`（默认）| [0,1] 范围内的标量 | 二元素向量
+
+仿真开始时的湿空气 2 比湿，定义为湿空气混合物中水蒸气的质量分数。如果该值为标量，则假定初始比湿均匀。如果该值为二元素向量，则假定初始比湿在端口 **A2** 和 **B2** 之间线性变化，其中第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Specific humidity`。
+
+### **Initial moist air 2 water vapor mole fraction** — 仿真开始时的水蒸气摩尔分数 `0.01`（默认）| [0,1] 范围内的标量 | 二元素向量
+
+仿真开始时湿空气 2 混合物中水蒸气的摩尔分数。如果该值为标量，则假定初始摩尔分数均匀。如果该值为二元素向量，则假定初始摩尔分数在端口 **A2** 和 **B2** 之间线性变化，其中第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Mole fraction`。
+
+### **Initial moist air 2 humidity ratio** — 仿真开始时的湿度比 `0.01`（默认）| [0,1] 范围内的正标量 | 双元素向量
+
+仿真开始时湿空气 2 的湿度比，定义为水蒸气与干空气和微量气体的质量比。如果该值为标量，则假定初始湿度比均匀分布。如果该值为双元素向量，则假定初始湿度比在端口 **A2** 和 **B2** 之间线性变化，第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Humidity ratio`。
+
+### **Initial moist air 2 wet-bulb temperature** — 仿真开始时的湿球温度 `287 K`（默认）| [0,1] 范围内的正标量
+
+仿真开始时的湿球温度。模块使用此值计算湿度。
+
+此参数可以是标量或双元素向量。标量值表示通道中的平均初始湿球温度。向量值表示入口和出口处的初始湿球温度，形式为 [`inlet`、`outlet`]。模块计算两个端口之间的线性梯度。入口和出口端口根据初始流动方向确定。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框，并将 **Initial humidity specification** 设置为 `Wet-bulb temperature`。
+
+### **Initial trace gas specification** — 用于描述初始微量气体水平的量 `Mass fraction`（默认）| `Mole fraction`
+
+选择用于描述仿真开始时微量气体水平的量：质量分数或摩尔分数。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框。
+
+### **Initial moist air 2 trace gas mass fraction** — 仿真开始时微量气体的质量分数 `0.001`（默认）| [0,1] 范围内的标量 | 双元素向量
+
+仿真开始时湿空气混合物中微量气体的质量分数。如果该值为标量，则假定初始质量分数均匀分布。如果该值为双元素向量，则假定初始质量分数在端口 **A2** 和 **B2** 之间线性变化，第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+
+如果 Moist Air Properties (MA) 模块中的 **Trace gas model** 参数设置为 `None`，则忽略此参数。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框，并将 **Initial trace gas specification** 设置为 `Mass fraction`。
+
+### **Initial moist air 2 trace gas mole fraction** — 仿真开始时微量气体的摩尔分数 `0.001`（默认）| [0,1] 范围内的标量 | 双元素向量
+
+仿真开始时湿空气 2 混合物中微量气体的摩尔分数。如果该值为标量，则假定初始摩尔分数均匀分布。如果该值为双元素向量，则假定初始摩尔分数在端口 **A2** 和 **B2** 之间线性变化，第一个元素对应端口 **A2**，第二个元素对应端口 **B2**。
+
+如果 Moist Air Properties (MA) 模块中的 **Trace gas model** 参数设置为 `None`，则忽略此参数。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框，并将 **Initial trace gas specification** 设置为 `Mole fraction`。
+
+### **Initial mass ratio of water droplets to moist air** — 水滴与湿空气的比率 `0`（默认）| 正标量
+
+水滴与湿空气的初始质量比。
+
+#### 依赖关系
+
+要启用此参数，请清除 **Initialize moist air 2 to nominal operating conditions** 复选框。
+
+### **Relative humidity at saturation** — 冷凝的相对湿度点 `1`（默认）| 非负标量
+
+冷凝的相对湿度点。高于此值时发生冷凝。在大多数情况下，此值为 1，即 100%。大于 1 的值表示过饱和蒸汽。
+
+### **Water vapor condensation time constant** — 冷凝时间尺度 `1e-3 s`（默认）| 正标量
+
+过饱和湿空气体积通过冷凝多余水分回到饱和状态的特征时间尺度。
+
+### **Water droplets evaporation time constant** — 蒸发时间尺度 `1e-3 s`（默认）| 正标量
+
+水滴蒸发为蒸汽的特征时间尺度。
+
+### **Fraction of condensate entrained as water droplets** — 水滴中冷凝物的分数 `1`（默认）| [0,1] 范围内的标量
+
+湿空气中被夹带为水滴的冷凝物分数。
+
+### 关联系数
+
+### **a in Nu = a\*Re^b\*Pr^c for moist air 1** — 湿空气 1 的关联系数 `0.023`（默认）| 正标量
+
+湿空气 1 的 Nusselt 数作为 Reynolds 数和 Prandtl 数函数的关联式中的比例常数。默认值基于 Colburn 方程。
+
+### **b in Nu = a\*Re^b\*Pr^c for moist air 1** — 湿空气 1 关联式中的 Reynolds 数指数 `0.8`（默认）| 正标量
+
+湿空气 1 的 Nusselt 数作为 Reynolds 数和 Prandtl 数函数的关联式中的 Reynolds 数指数。默认值基于 Colburn 方程。
+
+### **c in Nu = a\*Re^b\*Pr^c for moist air 1** — 湿空气 1 关联式中的 Prandtl 数指数 `0.33`（默认）| 正标量
+
+湿空气 1 的 Nusselt 数作为 Reynolds 数和 Prandtl 数函数的关联式中的 Prandtl 数指数。默认值基于 Colburn 方程。
+
+### **a in Nu = a\*Re^b\*Pr^c for moist air 2** — 湿空气 2 的关联系数 `0.023`（默认）| 正标量
+
+湿空气 2 的 Nusselt 数作为 Reynolds 数和 Prandtl 数函数的关联式中的比例常数。默认值基于 Colburn 方程。
+
+### **b in Nu = a\*Re^b\*Pr^c for moist air 2** — 湿空气 2 关联式中的 Reynolds 数指数 `0.8`（默认）| 正标量
+
+湿空气 2 的 Nusselt 数作为 Reynolds 数和 Prandtl 数函数的关联式中的 Reynolds 数指数。默认值基于 Colburn 方程。
+
+### **c in Nu = a\*Re^b\*Pr^c for moist air 2** — 湿空气 2 关联式中的 Prandtl 数指数 `0.33`（默认）| 正标量
+
+湿空气 2 的 Nusselt 数作为 Reynolds 数和 Prandtl 数函数的关联式中的 Prandtl 数指数。默认值基于 Colburn 方程。
 
 ## 所属库
 
@@ -636,7 +623,7 @@ Simscape / Fluids / Heat Exchangers / Moist Air
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -648,126 +635,126 @@ Simscape / Fluids / Heat Exchangers / Moist Air
 
 ## 描述
 
-基于两个湿空气网络之间性能数据的换热器
+基于两个湿空气网络之间性能数据的热交换器
 
-System-Level Heat Exchanger (MA-MA) 模块基于两个不同湿空气网络之间的性能数据对换热器进行建模。每个网络都有自己的一组流体属性。
+System-Level Heat Exchanger (MA-MA) 模块基于两个不同湿空气网络之间的性能数据对热交换器进行建模。每个网络都有自己的一组流体属性。
 
-该模块使用换热器数据表中的性能数据，而不是换热器的详细几何结构。您可以在设计迭代期间调整换热器的尺寸和性能，或者对具有不常见几何结构的换热器进行建模。您还可以在详细几何数据尚不可用的早期设计阶段，使用此模块对具有一定性能水平的换热器进行建模。您通过额定工况来参数化该模块。换热器经过尺寸设计，以在稳态下匹配额定工况下的指定性能。
+该模块使用热交换器数据表中的性能数据，而非热交换器的详细几何结构。您可以在设计迭代期间调整热交换器的尺寸和性能，或对具有不常见几何结构的热交换器进行建模。您还可以在早期设计阶段使用此模块对具有一定性能水平的热交换器进行建模，此时详细的几何数据尚不可用。您通过标称工况对模块进行参数化。热交换器的尺寸设定为在稳态标称工况下匹配指定的性能。
 
-两个湿空气侧均基于与换热表面的对流水蒸气质量传递来对水蒸气冷凝进行建模。该模块从湿空气流中去除冷凝水。
+两个湿空气侧均基于与传热表面的对流水蒸气质量传递来建模水蒸气冷凝。模块从湿空气流中去除冷凝水。
 
 ### 传热
 
-该模块将每个湿空气流分成三个大小相等的段，并在每段中计算流体之间的传热。为简单起见，本节中的方程针对一个段。
+模块将每个湿空气流分成三个等大小的段，并计算每个段中流体之间的传热。为简单起见，本节中的方程针对一个段。
 
-如果清除 **Enable wall thermal mass** 复选框，则换热器中的热平衡为
+如果清除 **Enable wall thermal mass** 复选框，则热交换器中的热平衡为
 
-Qseg,MA1+Qseg,MA2=0,
+Qseg,MA1+Qseg,MA2=0，
 
 其中：
 
-- *Qseg,MA1* 是从作为换热表面的壁面到该段中湿空气侧 1 的热流率。
-- *Qseg,MA2* 是从壁面到该段中湿空气侧 2 的热流率。
+- *Qseg,MA1* 是从壁面（即传热表面）到段中湿空气侧 1 的热流率。
+- *Qseg,MA2* 是从壁面到段中湿空气侧 2 的热流率。
 
-如果选择 **Enable wall thermal mass**，则换热器中的热平衡为
+如果选中 **Enable wall thermal mass**，则热交换器中的热平衡为
 
-Qseg,MA1+Qseg,MA2=−MwallcpwallNdTseg,walldt,
+Qseg,MA1+Qseg,MA2=−MwallcpwallNdTseg,walldt，
 
 其中：
 
 - *M*wall 是壁面的质量。
 - *c*pwall 是壁面的比热。
 - *N* = 3 是段数。
-- *T*seg,wall 是该段中的平均壁面温度。
+- *T*seg,wall 是段中的平均壁面温度。
 - *t* 是时间。
 
 从壁面到每个段的热流率为
 
-Qseg,MA=UAseg,MAc¯pseg,MA(h¯seg,wall−h¯seg,MA)+m˙w,seg,condhl,wall,
+Qseg,MA=UAseg,MAc¯pseg,MA(h¯seg,wall−h¯seg,MA)+m˙w,seg,condhl,wall，
 
 其中：
 
-- *UA*seg,MA 是该段中湿空气的传热导纳。
-- c¯pseg,MA 是该段中每单位质量干空气和痕量气体的湿空气混合物比热。
-- h¯seg,wall 是在平均壁面段温度下每单位质量干空气和痕量气体的湿空气混合物焓。
-- h¯seg,MA 是该段中每单位质量干空气和痕量气体的湿空气混合物焓。
+- *UA*seg,MA 是段中湿空气的传热导率。
+- c¯pseg,MA 是段中每单位质量干空气和微量气体的湿空气混合物比热。
+- h¯seg,wall 是在平均壁面段温度下每单位质量干空气和微量气体的湿空气混合物焓。
+- h¯seg,MA 是段中每单位质量干空气和微量气体的湿空气混合物焓。
 - m˙w,seg,cond 是壁面上的水蒸气冷凝速率。
 - *h*l,wall 是在平均壁面段温度下液态水的比焓。
 
-在该方程中使用混合物焓可同时考虑温度差异和由冷凝引起的湿度差异 [3]。
+在此方程中使用混合物焓同时考虑了温度差异和由于冷凝引起的湿度差异 [3]。
 
-该模块在传热计算中使用的流体属性是入口处的值与流体体积中的值之间的平均值。
+模块在传热计算中使用的流体属性是入口值与流体体积中值的平均值。
 
 **注意**
 
-在方程中，变量上方的横线表示这些量是湿空气混合物的量除以仅干空气和痕量气体的质量，而不是除以整个混合物的质量。整个混合物包括干空气、水蒸气和痕量气体。
+在方程中，变量上方的横线表示它们是湿空气混合物的量除以干空气和微量气体的质量，而非除以整个混合物的质量。整个混合物包括干空气、水蒸气和微量气体。
 
 ### 湿空气传热关联式
 
-换热器每一侧的传热导纳为
+热交换器每一侧的传热导率为
 
-UAseg,MA=aMA(Reseg,MA)bMA(Prseg,MA)cMAkseg,MAGMAN,
+UAseg,MA=aMA(Reseg,MA)bMA(Prseg,MA)cMAkseg,MAGMAN，
 
 其中：
 
-- *a*MA、*b*MA 和 *c*MA 是 Nusselt 数关联式的系数。这些系数是 **相关系数** 部分中的模块参数。
-- *Reseg,MA* 是该段的平均 Reynolds 数。
-- *Prseg,MA* 是该段的平均 Prandtl 数。
-- *kseg,MA* 是该段的平均导热率。
-- *GMA* 是换热器湿空气侧的几何比例因子。该模块计算几何比例因子，以使所有段上的总传热在额定工况下匹配指定性能。
+- *a*MA、*b*MA 和 *c*MA 是 Nusselt 数关联式的系数。这些系数是 **Correlation Coefficients** 部分中的模块参数。
+- *Reseg,MA* 是段中的平均 Reynolds 数。
+- *Prseg,MA* 是段中的平均 Prandtl 数。
+- *kseg,MA* 是段中的平均热导率。
+- *GMA* 是热交换器湿空气侧的几何比例因子。模块计算几何比例因子，使得所有段的总传热在标称工况下匹配指定的性能。
 
 平均 Reynolds 数为
 
-Reseg,MA=m˙seg,MADref,MAμseg,MASref,MA,
+Reseg,MA=m˙seg,MADref,MAμseg,MASref,MA，
 
 其中：
 
-- m˙seg,MA 是穿过该段的质量流率。
-- *μseg,MA* 是该段的平均动力粘度。
+- m˙seg,MA 是通过该段的质量流率。
+- *μseg,MA* 是段中的平均动力粘度。
 - *Dref,MA* 是任意参考直径。
-- *Sref,MA* 是任意参考流动面积。
+- *Sref,MA* 是任意参考流通面积。
 
 **注意**
 
-*Dref,MA* 和 *Sref,MA* 项仅出于单位计算目的包含在此方程中，以使 *Reseg,MA* 无量纲。*Dref,MA* 和 *Sref,MA* 的值是任意的，因为 *GMA* 计算会覆盖这些值。
+此方程中包含 *Dref,MA* 和 *Sref,MA* 项仅用于单位计算目的，以使 *Reseg,MA* 无量纲。*Dref,MA* 和 *Sref,MA* 的值是任意的，因为 *GMA* 的计算会覆盖这些值。
 
 ### 冷凝
 
-描述从壁面到该段中湿空气的热流率的方程使用平均湿空气混合物焓 h¯seg,MA 和壁面段湿空气混合物焓 h¯seg,wall。
+描述从壁面到段中湿空气的热流率的方程使用平均湿空气混合物焓 h¯seg,MA 和壁面段湿空气混合物焓 h¯seg,wall。
 
-平均湿空气混合物焓基于穿过该段的湿空气流的温度和湿度
+平均湿空气混合物焓基于通过该段的湿空气流的温度和湿度
 
-h¯seg,MA=hseg,ag,MA+Wseg,MAhseg,w,MA,
-
-其中：
-
-- *h*seg,ag,MA 是该段中干空气和痕量气体的平均比焓。
-- *h*seg,w,MA 是该段中水蒸气的平均比焓。
-- *W*seg,MA 是该段的湿度比。
-
-壁面段湿空气混合物焓基于壁面段处的温度和湿度
-
-h¯seg,wall=hseg,ag,wall+Wseg,wallhseg,w,wall,
+h¯seg,MA=hseg,ag,MA+Wseg,MAhseg,w,MA，
 
 其中：
 
-- *h*seg,ag,wall 是在壁面段温度下干空气和痕量气体的比焓。
+- *h*seg,ag,MA 是段中干空气和微量气体的平均比焓。
+- *h*seg,w,MA 是段中水蒸气的平均比焓。
+- *W*seg,MA 是段的湿度比。
+
+壁面段湿空气混合物焓基于壁面段的温度和湿度
+
+h¯seg,wall=hseg,ag,wall+Wseg,wallhseg,w,wall，
+
+其中：
+
+- *h*seg,ag,wall 是在壁面段温度下干空气和微量气体的比焓。
 - *h*seg,w,wall 是在壁面段温度下水蒸气的比焓。
-- *W*seg,wall 是壁面段处的湿度比：
+- *W*seg,wall 是壁面段的湿度比：
 
-  Wseg,wall=min(Wseg,MA,Wseg,s,wall),
+  Wseg,wall=min(Wseg,MA,Wseg,s,wall)，
 
-  其中 *W*seg,s,wall 是在壁面段温度下的饱和湿度比。换句话说，壁面处的湿度比与湿空气流的湿度比相同，但不超过在壁面段温度下可支持的最大值。
+  其中 *W*seg,s,wall 是在壁面段温度下的饱和湿度比。换言之，壁面处的湿度比与湿空气流的湿度比相同，但不超过在壁面段温度下所能支持的最大值。
 
-当 *W*seg,s,wall < *W*seg,MA 时，水蒸气冷凝发生在壁面上。水蒸气冷凝速率为
+当 *W*seg,s,wall < *W*seg,MA 时，壁面上发生水蒸气冷凝。水蒸气冷凝速率为
 
-m˙w,seg,cond=UAseg,MAc¯pseg,MA(Wseg,MA−Wseg,wall).
+m˙w,seg,cond=UAseg,MAc¯pseg,MA(Wseg,MA−Wseg,wall)。
 
-该模块假定冷凝水从壁面排出，因此从下游湿空气流中去除。
+模块假定冷凝水从壁面排出，因此从下游湿空气流中去除。
 
 ### 压力损失
 
-换热器每一侧的压力损失为
+热交换器每一侧的压力损失为
 
 pA,MA−pMA=KMA2m˙A,MAm˙2A,MA+m˙2thres,MA2ρavg,2PpB,MA−pMA=KMA2m˙B,MAm˙2B,MA+m˙2thres,MA2ρavg,MA
 
@@ -776,75 +763,74 @@ pA,MA−pMA=KMA2m˙A,MAm˙2A,MA+m˙2thres,MA2ρavg,2PpB,MA−pMA=KMA2m˙B,MAm˙2
 - *pA,MA* 和 *pB,MA* 是端口 **A1** 和 **B1** 或 **A2** 和 **B2** 处的压力。
 - *pMA* 是计算传热时的内部湿空气压力。
 - m˙A,MA 和 m˙B,MA 是流入端口 **A1** 和 **B1** 或 **A2** 和 **B2** 的质量流率。
-- *ρ*avg,MA 是所有段上的平均湿空气密度。
-- m˙thres,MA 是压力损失的层流阈值，近似为额定质量流率的 1e-4。该模块计算压力损失系数 *K*MA，以使 *p*A,MA – *p*B,MA 在额定质量流率下与额定压力损失匹配。
+- *ρ*avg,MA 是所有段的平均湿空气密度。
+- m˙thres,MA 是压力损失的层流阈值，近似为标称质量流率的 1e-4。模块计算压力损失系数 *K*MA，使得 *p*A,MA – *p*B,MA 在标称质量流率下匹配标称压力损失。
 
-### 湿空气质量与能量守恒
+### Moist Air Mass and Energy Conservation
 
-在换热器每一侧，对于整体湿空气混合物流的质量守恒为
+换热器每一侧的湿空气混合物总流量的质量守恒方程为
 
 (dpMAdt∑segments(∂ρseg,MA∂p)+∑segments(dTseg,MAdt∂ρseg,MA∂T+dxw,seg,MAdt∂ρseg,MA∂xw+dxg,seg,MAdt∂ρseg,MA∂xg))VMAN=m˙A,MA+m˙B,MA−∑segments(m˙w,seg,cond+m˙w,seg,conv)+∑segmentsm˙d,seg,evap,
 
 其中：
 
-- ∂ρseg,MA∂p 是该段密度对压力的偏导数。
-- ∂ρseg,MA∂T 是该段密度对温度的偏导数。
-- ∂ρseg,MA∂xw 是该段密度对比湿的偏导数。
-- ∂ρseg,MA∂xg 是该段密度对痕量气体质量分数的偏导数。
-- *xw,seg,MA* 是该段的*比湿*，也称为水蒸气质量分数。
-- *xg,seg,MA* 是该段的痕量气体质量分数。
-- *VMA* 是总湿空气体积。
-- m˙w,seg,conv 是该段壁面上的冷凝速率。
-- m˙d,seg,evap 是该段的水滴蒸发速率。
+- ∂ρseg,MA∂p 是区段密度对压力的偏导数。
+- ∂ρseg,MA∂T 是区段密度对温度的偏导数。
+- ∂ρseg,MA∂xw 是区段密度对比湿度的偏导数。
+- ∂ρseg,MA∂xg 是区段密度对痕量气体质量分数的偏导数。
+- *xw,seg,MA* 是区段的*比湿度*，也称为水蒸气质量分数。
+- *xg,seg,MA* 是区段的痕量气体质量分数。
+- *VMA* 是湿空气总体积。
+- m˙w,seg,conv 是区段壁面上的冷凝速率。
+- m˙d,seg,evap 是区段水滴蒸发速率。
 
-求和遍及所有段。
+求和是对所有区段进行的。
 
 **注意**
 
-尽管该模块为了传热计算将每支湿空气流划分为 *N*=3 个段，但它假设一侧的所有段处于相同的内压 *p*MA。
-因此，*p*MA 位于求和之外。
+尽管该模块在传热计算中将每侧湿空气流分为 *N*=3 个区段，但它假设一侧的所有区段处于相同的内部压力 *p*MA 下。因此，*p*MA 位于求和符号之外。
 
-每个段的能量守恒方程为
+每个区段的能量守恒方程为
 
 dTseg,MAdt(c¯seg,MA−Rseg)MMAN+ua,seg,MA(m˙seg,in,MA−m˙seg,out,MA)+(uw,seg,MA−ua,seg,MA)(m˙w,seg,in,MA−m˙w,seg,out,MA)+(ug,seg,MA−ua,seg,MA)(m˙g,seg,in,MA−m˙g,seg,out,MA)+hd(m˙d,seg,in,MA−m˙d,seg,out,MA)=Φseg,in,MA−Φseg,out,MA+Qseg,MA−(1−λd)(m˙w,seg,condhd+m˙w,seg,convhl,wall),
 
 其中：
 
-- *ua,seg,MA* 是该段的干空气比内能。
-- *ug,seg,MA* 是该段的痕量气体比内能。
-- *uw,seg,MA* 是该段的水蒸气比内能。
-- *MMA* 是总湿空气质量。
-- m˙seg,in,MA 和 m˙seg,out,MA 是流入和流出该段的湿空气质量流量。
-- m˙w,seg,in,MA 和 m˙w,seg,out,MA 是流入和流出该段的水蒸气质量流量。
-- m˙g,seg,in,MA 和 m˙g,seg,out,MA 是流入和流出该段的痕量气体质量流量。
-- m˙d,seg,in,MA 和 m˙d,seg,out,MA 是流入和流出该段的水滴质量流量。
-- *Rseg* 是该段的体积比气体常数。
-- *Φ*seg,in,MA 和 *Φ*seg,out,MA 是流入和流出该段的能量流率。
-- *hd* 是该段中水滴的比焓。
-- *λd* 是 **夹带为水滴的冷凝液比例** 参数的值。
+- *ua,seg,MA* 是区段的干空气比内能。
+- *ug,seg,MA* 是区段的痕量气体比内能。
+- *uw,seg,MA* 是区段的水蒸气比内能。
+- *MMA* 是湿空气总质量。
+- m˙seg,in,MA 和 m˙seg,out,MA 是流入和流出区段的湿空气质量流量。
+- m˙w,seg,in,MA 和 m˙w,seg,out,MA 是流入和流出区段的水蒸气质量流量。
+- m˙g,seg,in,MA 和 m˙g,seg,out,MA 是流入和流出区段的痕量气体质量流量。
+- m˙d,seg,in,MA 和 m˙d,seg,out,MA 是流入和流出区段的水滴质量流量。
+- *Rseg* 是区段体积比气体常数。
+- *Φ*seg,in,MA 和 *Φ*seg,out,MA 是流入和流出区段的能量流率。
+- *hd* 是区段中水滴的比焓。
+- *λd* 是 **Fraction of condensate entrained as water droplets** 参数的值。
 
-该模块假设各段之间的质量流量在 m˙A,MA 和 m˙B,MA 的值之间线性分布。
+该模块假设区段之间的质量流量在 m˙A,MA 和 m˙B,MA 的值之间线性分布。
 
-每个段的水蒸气质量守恒方程为
+每个区段的水蒸气质量守恒方程为
 
 dxw,seg,MAdtMMAN+xw,seg,MA(m˙seg,in,MA−m˙seg,out,MA)=m˙w,seg,in,MA−m˙w,seg,out,MA−m˙w,seg,cond−m˙w,seg,conv+m˙d,seg,evap.
 
-每个段的痕量气体质量守恒方程为
+每个区段的痕量气体质量守恒方程为
 
 dxg,seg,MAdtMMAN+xg,seg,MA(m˙seg,in,MA−m˙seg,out,MA)=m˙g,seg,in,MA−m˙g,seg,out,MA.
 
-每个段的水滴质量平衡守恒方程为
+每个区段的水滴质量平衡守恒方程为
 
 drd,segdtMMAN+rd,seg(m˙seg,in,MA−m˙seg,out,MA)=m˙d,seg,in−m˙d,seg,out+λd(m˙w,seg,cond+m˙w,seg,conv)−m˙d,seg,evap,
 
-其中 *rd,seg* 是该段流体体积中水滴与湿空气的质量比。
+其中 *rd,seg* 是区段流体体积中水滴与湿空气的质量比。
 
 **注意**
 
-如果 Moist Air Properties (MA) 模块中的 **痕量气体模型** 参数为 `None`，则湿空气网络不会对痕量气体建模。在这种情况下，在换热器对应侧的 System-Level Heat Exchanger (MA-MA) 模块中，痕量气体的守恒方程设置为 0。
+如果 Moist Air Properties (MA) 模块中的 **Trace gas model** 参数为 `None`，则湿空气网络不建模痕量气体。在这种情况下，在换热器对应侧的 System-Level Heat Exchanger (MA-MA) 模块中，痕量气体的守恒方程设置为 0。
 
-如果清除 Moist Air Properties (MA) 模块中的 **启用夹带水滴**，则湿空气网络不会对夹带水滴建模。在这种情况下，在换热器对应侧的 System-Level Heat Exchanger (MA-MA) 模块中，水滴的守恒方程设置为 0。
+如果在 Moist Air Properties (MA) 模块中清除 **Enable entrained water droplets**，则湿空气网络不建模夹带水滴。在这种情况下，在换热器对应侧的 System-Level Heat Exchanger (MA-MA) 模块中，水滴的守恒方程设置为 0。
 
-### 假设与限制
+### 假设和限制
 
-- 在确定换热器尺寸时，该模块忽略 **夹带为水滴的冷凝液比例** 参数的值，并假设冷凝液不被夹带为水滴。
+- 在确定换热器尺寸时，该模块忽略 **Fraction of condensate entrained as water droplets** 参数的值，并假设冷凝物不以液滴形式夹带。

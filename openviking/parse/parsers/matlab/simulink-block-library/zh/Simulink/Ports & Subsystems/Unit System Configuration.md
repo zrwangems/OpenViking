@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Unit System Configuration'
-family: 'ports-subsystems'
+family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -16,29 +16,29 @@ chinese_source: worker-translation
 
 ## 端口
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 参数
 
-### **不允许的单位制** — 不允许的单位制 `SI` | `English` | `SI (extended)` | `CGS`
+### **Disallowed unit systems** — 不允许的单位制 `SI` | `English` | `SI (extended)` | `CGS`
 
-显示不允许的单位制列表。默认情况下，**允许所有单位制** 复选框处于选中状态，并且允许所有单位制。
+显示不允许的单位制列表。默认情况下，**Allow all unit systems** 复选框处于选中状态，所有单位制均被允许。
 
-要将某个单位制指定为不允许，请在 **允许的单位制** 列中选择它，然后单击 **<< 不允许**。
-
-#### 依赖关系
-
-若要启用对此参数的更改，必须先清除 **允许所有单位制** 复选框。
-
-### **允许的单位制** — 允许的单位制 `SI` | `English` | `SI (extended)` | `CGS`
-
-显示允许的单位制列表。默认情况下，**允许所有单位制** 复选框处于选中状态，并且允许所有单位制。
-
-要将某个单位制指定为允许，请使用 **允许 >>** 和 **<< 不允许** 按钮，在 **不允许的单位制** 和 **允许的单位制** 列之间移动单位制。
+要将某个单位制指定为不允许，请在 **Allowed unit systems** 列中选中它，然后单击 **<< Disallow**。
 
 #### 依赖关系
 
-若要启用对此参数的更改，必须先清除 **允许所有单位制** 复选框。
+要启用对此参数的更改，必须先清除 **Allow all unit systems** 复选框。
+
+### **Allowed unit systems** — 允许的单位制 `SI` | `English` | `SI (extended)` | `CGS`
+
+显示允许的单位制列表。默认情况下，**Allow all unit systems** 复选框处于选中状态，所有单位制均被允许。
+
+要将某个单位制指定为允许，请使用 **Allow >>** 和 **<< Disallow** 按钮在 **Disallowed unit systems** 和 **Allowed unit systems** 列之间移动单位制。
+
+#### 依赖关系
+
+要启用对此参数的更改，必须先清除 **Allow all unit systems** 复选框。
 
 #### 编程用法
 
@@ -49,13 +49,13 @@ chinese_source: worker-translation
 | **值：** 以下字符向量的元胞数组：`'SI'` | `'English'` | `'SI (extended)'` | `'CGS'` |
 | **默认值：** `{'SI', 'English', 'SI (extended)', 'CGS'}` |
 
-### **允许所有单位制** — 允许所有单位制 `on`（默认） | `off`
+### **Allow all unit systems** — 允许所有单位制 `on`（默认）| `off`
 
-选中此复选框时，允许所有单位制。要将允许的单位制限制为仅在 **允许的单位制** 列中指定的那些单位制，请清除此复选框。
+选中此复选框时，允许所有单位制。要将允许的单位制限制为仅在 **Allowed unit systems** 列中指定的单位制，请清除此复选框。
 
 #### 依赖关系
 
-选中 **允许所有单位制** 复选框会禁用 **不允许的单位制** 和 **允许的单位制** 参数。
+选中 **Allow all unit systems** 复选框会禁用 **Disallowed unit systems** 和 **Allowed unit systems** 参数。
 
 #### 编程用法
 
@@ -94,6 +94,6 @@ Simulink / Ports & Subsystems
 
 将单位限制为指定的允许单位制
 
-Unit System Configuration 模块指定组件的允许和不允许单位制。它限制子系统或顶层模型及其所有子级的单位制，除非在子级中使用另一个 Unit System Configuration 模块覆盖它。
+Unit System Configuration 模块指定组件的允许和不允许单位制。它限制子系统或顶层模型及其所有子级的单位制，除非在子级中用另一个 Unit System Configuration 模块覆盖。
 
 此模块支持普通、加速和快速加速模式以及快速重启。

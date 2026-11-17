@@ -9,60 +9,60 @@ official_category: 'Dashboard'
 documentation_page: 'dashboardscope'
 documentation_source_path: 'slref/dashboardscope.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Dashboard Scope
 
 ## 端口
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 参数
 
-### 连接表
+### Connection Table
 
-使用**连接**表选择一个或多个要显示的信号，并配置线型和颜色。
+使用 **Connection** 表选择一个或多个要显示的信号，并配置线型和颜色。
 
-### **连接** — 要连接和显示的信号 信号连接选项
+### **Connection** — 要连接的信号及显示信号连接选项
 
-通过选择模型中的信号来填充**连接**表。要连接信号，请选中您要连接的信号旁边的复选框，然后点击**应用**。有关连接 Dashboard 模块的详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
+通过在模型中选择信号来填充 **Connection** 表。要连接信号，请选中要连接的信号旁边的复选框，然后单击 **Apply**。有关连接仪表板模块的详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
 
 #### 提示
 
-在仿真期间，您可以将信号连接到 Dashboard Scope 模块。
+您可以在仿真期间将信号连接到 Dashboard Scope 模块。
 
-#### 编程用法
+#### 编程使用
 
-要以编程方式指定一个或多个信号连接到 Dashboard Scope 模块，请使用 `Simulink.HMI.SignalSpecification` 对象的元胞数组。
+要以编程方式指定一个或多个要连接到 Dashboard Scope 模块的信号，请使用 `Simulink.HMI.SignalSpecification` 对象的元胞数组。
 
 |  |
 | --- |
 | **模块参数**：`Binding` |
-| **类型：**`Simulink.HMI.SignalSpecification` 对象的元胞数组 |
-| **默认值：**`[]` |
+| **类型**：cell array of `Simulink.HMI.SignalSpecification` objects |
+| **默认值**：`[]` |
 
-### **线型** — 连接的信号的线型和颜色 线型和颜色选项
+### **Line Style** — 已连接信号的线型和颜色 线型和颜色选项
 
-您可以使用**连接**表为连接到 Dashboard Scope 模块的信号配置线型和颜色。要更改信号的线型或颜色，请在与信号行对应的**样式**列中，点击信号外观的预览。当**覆盖线型和颜色**处于清除状态时，**样式**列显示文字 `auto`，而不是线型的预览。有关详细信息，请参阅 配置信号线的线型和颜色。
+您可以使用 **Connection** 表为连接到 Dashboard Scope 模块的信号配置线型和颜色。要更改信号的线型或颜色，请在信号行对应的 **Style** 列中，单击信号外观的预览。当 **Override style and color** 清除时，**Style** 列显示 `auto` 一词，而不是线型的预览。有关详细信息，请参阅 Configure Signal Line Style and Color。
 
-#### 编程用法
+#### 编程使用
 
-要以编程方式为连接的信号配置线型和颜色，请使用 `Colors` 参数。将 `Colors` 参数的值指定为结构体数组，其中每个结构体指定一个信号的样式覆盖设置、线型和线条颜色。使用 `Colors` 参数指定的设置将应用于 `Binding` 参数值中相同索引处的信号。
+要以编程方式为已连接信号配置线型和颜色，请使用 `Colors` 参数。将 `Colors` 参数的值指定为一个结构体数组，其中每个结构体为一个信号指定样式覆盖设置、线型和线条颜色。使用 `Colors` 参数指定的设置应用于 `Binding` 参数值中相同索引处的信号。
 
-将每个信号的线型和颜色指定为具有下列字段的结构体：
+将每个信号的线型和颜色指定为具有以下字段的结构体：
 
-- `Auto` - 样式覆盖设置由以下各项指定：
+- `Auto` — 样式覆盖设置，由以下值指定：
 
-  - `"on"` - 线型和颜色由软件自动设置
-  - `"off"` - 由 `Color` 和 `LineStyle` 指定的线型和颜色
-- `Color` - `1`×`3` `[r g b]` 向量，其值在 `0` 到 `1` 之间。
-- `LineStyle` - 字符向量，用于指定下列线型选项之一：
+  - `"on"` — 线型和颜色由软件自动设置
+  - `"off"` — 线型和颜色由 `Color` 和 `LineStyle` 指定
+- `Color` — `1`×`3` 的 `[r g b]` 向量，值介于 `0` 和 `1` 之间。
+- `LineStyle` — 字符向量，指定以下线型选项之一：
 
-  - 实线：`'-'`
-  - 虚线：`'––'`
-  - 点线：`':'`
-  - 点划线：`'-.'`
+  - Solid: `'-'`
+  - Dashed: `'––'`
+  - Dotted: `':'`
+  - Dash-dotted: `'-.'`
 
 ```
 sigColors1.Color = '';
@@ -79,273 +79,273 @@ set_param(blockPath,'Colors',sigColors);
 |  |
 | --- |
 | **模块参数**：`Colors` |
-| **类型：**结构体数组 |
+| **类型**：array of structures |
 
-### 常设
+### 主要参数
 
-### **时间跨度** — 时间轴跨度 `auto` (默认) | 标量
+### **Time Span** — 时间轴跨度 `auto` (default) | scalar
 
-有限双精度实数标量值，用于设置绘图的时间范围。
+一个有限、实数、双精度、标量值，用于设置绘图的时间跨度。
 
-当**时间跨度**设置为 `auto` 时，模块将其时间范围设置为仿真停止时间。
+当 **Time Span** 设置为 `auto` 时，模块将其时间跨度设置为仿真停止时间。
 
 #### 提示
 
-当您将**时间跨度**设置为小于仿真持续时间的值时，请使用**更新模式**参数来控制当仿真时间超过指定的时间跨度时，显示画面是换行还是滚动。
+当您将 **Time Span** 设置为小于仿真持续时间的值时，请使用 **Update Mode** 参数来控制当仿真时间超过指定时间跨度时显示是环绕还是滚动。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`TimeSpan` |
-| **类型：**字符串 | 字符数组 |
-| **值：**`'auto'` 或数值 |
-| **默认值：**`'auto'` |
+| **类型**：string | character array |
+| **值**：`'auto'` or numeric value |
+| **默认值**：`'auto'` |
 
-### **更新模式** — 显示更新行为 `Wrap` (默认) | `Scroll`
+### **Update Mode** — 显示更新行为 `Wrap` (default) | `Scroll`
 
-显示画面在仿真期间的更新方式，指定为**绕回**或**滚动**。
+仿真期间显示的更新方式，指定为 `Wrap` 或 `Scroll`。
 
-- `Wrap` - 在仿真时间到达时间跨度结束值后，显示画面通过换行来显示传入的数据。
-- `Scroll` - 在仿真时间到达时间跨度结束值后，显示画面通过滚动来显示传入的数据。
+- `Wrap` — 当仿真时间达到时间跨度末尾后，显示环绕以显示传入数据。
+- `Scroll` — 当仿真时间达到时间跨度末尾后，显示滚动以显示传入数据。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`UpdateMode` |
-| **类型：**字符串 | 字符数组 |
+| **类型**：string | character array |
 | **值**：`'Wrap'` | `'Scroll'` |
-| **默认值：**`'Wrap'` |
+| **默认值**：`'Wrap'` |
 
-### **最小值** — 垂直轴最小值 `-3` (默认) | 标量
+### **Min** — 垂直轴最小值 `-3` (default) | scalar
 
-有限双精度实数标量值，用于设置垂直轴的最小值。
-
-#### 提示
-
-要在仿真停止后保持由 **Min** 和 **Max** 设置的最小和最大垂直轴范围，请清除**停止时缩放坐标区范围**。
-
-#### 编程用法
-
-要以编程方式为 Dashboard Scope 模块指定 `Min` 参数，请创建一个 `1`×`2` 向量，该向量依次包含最小 *y* 轴值和最大 *y* 轴值。
-
-|  |
-| --- |
-| **模块参数：**`YLimits` |
-| **类型：**`1x2` 向量 |
-| **默认值**：`[-3 3]` |
-
-### **最大值** — 垂直轴最大值 `3` (默认) | 标量
-
-有限双精度实数标量值，用于设置垂直轴的最大值。
+一个有限、实数、双精度、标量值，用于设置垂直轴的最小值。
 
 #### 提示
 
-要在仿真停止后保持由 **Min** 和 **Max** 设置的最小和最大垂直轴范围，请清除**停止时缩放坐标区范围**。
+要在仿真停止后保持由 **Min** 和 **Max** 设置的垂直轴最小值和最大值限制，请清除 **Scale axes limits at stop**。
 
-#### 编程用法
+#### 编程使用
 
-要以编程方式为 Dashboard Scope 模块指定 `Max` 参数，请创建一个 `1`×`2` 向量，该向量依次包含最小 *y* 轴值和最大 *y* 轴值。
+要以编程方式为 Dashboard Scope 模块指定 `Min` 参数，请创建一个 `1`×`2` 向量，按顺序包含 *y* 轴最小值和 *y* 轴最大值。
 
 |  |
 | --- |
-| **模块参数：**`YLimits` |
-| **类型：**`1x2` 向量 |
+| **模块参数**：`YLimits` |
+| **类型**：`1x2` vector |
 | **默认值**：`[-3 3]` |
 
-### **归一化 y 轴范围** — 归一化 *y* 轴的选项 `off` (默认) | `on`
+### **Max** — 垂直轴最大值 `3` (default) | scalar
 
-当启用时，连接的信号数据将归一化，以在 [`0,1`] 的*y* 轴范围内显示。
+一个有限、实数、双精度、标量值，用于设置垂直轴的最大值。
 
-#### 编程用法
+#### 提示
+
+要在仿真停止后保持由 **Min** 和 **Max** 设置的垂直轴最小值和最大值限制，请清除 **Scale axes limits at stop**。
+
+#### 编程使用
+
+要以编程方式为 Dashboard Scope 模块指定 `Max` 参数，请创建一个 `1`×`2` 向量，按顺序包含 *y* 轴最小值和 *y* 轴最大值。
+
+|  |
+| --- |
+| **模块参数**：`YLimits` |
+| **类型**：`1x2` vector |
+| **默认值**：`[-3 3]` |
+
+### **Normalize y-axis limits** — 归一化 *y* 轴的选项 `off` (default) | `on`
+
+启用后，已连接的信号数据将被归一化，以在 [`0,1`] 的 *y* 轴范围内显示。
+
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`NormalizeYAxis` |
-| **类型：**字符串 | 字符向量 |
-| **值：**`'on'` | `'off'` |
-| **默认值：**`'off'` |
+| **类型**：string | character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **停止时缩放坐标区范围** — 仿真停止时执行适应视图的选项 `on` (默认) | `off`
+### **Scale axes limits at stop** — 仿真停止时执行适配视图的选项 `on` (default) | `off`
 
-当启用时，在仿真停止时会对绘图中显示的数据执行适应视图大小操作。
+启用后，当仿真停止时，对绘图中显示的数据执行适配视图操作。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`ScaleAtStop` |
-| **类型：**字符串 | 字符向量 |
-| **值：**`'on'` | `'off'` |
-| **默认值：**`'on'` |
+| **类型**：string | character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'on'` |
 
-### **显示 "双击以连接" 消息** — 连接说明可见性 `on` (默认) | `off`
+### **Show "Double-click to connect" message** — 连接说明的可见性 `on` (default) | `off`
 
-当启用时，如果模块未连接，则显示说明文本。当模块未连接时，您可以将此参数指定为 `off` 以隐藏文本。
+启用后，如果模块未连接，则显示说明文本。当模块未连接时，您可以将此参数指定为 `off` 以隐藏文本。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`ShowInitialText` |
-| **类型：**字符串 | 字符向量 |
-| **值：**`'on'` | `'off'` |
-| **默认值：**`'on'` |
+| **类型**：string | character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'on'` |
 
-### 显示
+### Display
 
-### **刻度** — 坐标轴刻度位置 **外部** (默认) | **内部** | **无**
+### **Ticks** — 轴刻度位置 `Outside` (default) | `Inside` | `None`
 
-坐标轴刻度位置，指定为**外部**、**内部**或**无**。
+轴刻度位置，指定为 `Outside`、`Inside` 或 `None`。
 
-- **外部** - 刻度绘制在 *x* 和 *y* 坐标轴的外侧。
-- **内部** - 刻度绘制在 *x* 和 *y* 坐标轴的内侧。
-- **无** - 在 *x* 或 *y* 坐标轴上不显示刻度。
+- `Outside` — 刻度绘制在 *x* 轴和 *y* 轴的外侧。
+- `Inside` — 刻度绘制在 *x* 轴和 *y* 轴的内侧。
+- `None` — *x* 轴或 *y* 轴上不显示刻度。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`TicksPosition` |
-| **类型：**字符串 | 字符向量 |
+| **类型**：string | character vector |
 | **值**：`'Outside'` | `'Inside'` | `'None'` |
-| **默认值：**`'Outside'` |
+| **默认值**：`'Outside'` |
 
-### **刻度标签** — 刻度标签可见性 **全部** (默认) | **T 轴** | **Y 轴** | **无**
+### **Tick Labels** — 刻度标签可见性 `All` (default) | `T-Axis` | `Y-Axis` | `None`
 
-*x* 和 *y* 轴上刻度标签的可见性。
+*x* 轴和 *y* 轴上刻度标签的可见性。
 
-- **全部** - *x* 和 *y* 轴上均显示刻度标签。
-- **T 轴** - 仅 *x* 轴上显示刻度标签。
-- **Y 轴** - 仅 *y* 轴上显示刻度标签。
-- **无** - *x* 和 *y* 轴上均不显示刻度标签。
+- `All` — 刻度标签显示在 *x* 轴和 *y* 轴上。
+- `T-Axis` — 刻度标签仅显示在 *x* 轴上。
+- `Y-Axis` — 刻度标签仅显示在 *y* 轴上。
+- `None` — *x* 轴或 *y* 轴上不显示刻度标签。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`TickLabels` |
-| **类型：**字符串 | 字符向量 |
+| **类型**：string | character vector |
 | **值**：`'All'` | `'T-Axis'` | `'Y-Axis'` | `'None'` |
 | **默认值**：`'All'` |
 
-### **图例** — 图例位置 **顶端** (默认) | **右侧** | **内部顶端** | **内部右侧** | **隐藏**
+### **Legend** — 图例位置 `Top` (default) | `Right` | `Inside top` | `Inside right` | `Hide`
 
-您可以将图例放置在图的顶部（绘图区域的内侧或外侧均可）或图的右侧（绘图区域的内侧或外侧均可）。也可以隐藏图例。图例显示为信号名称旁边的每个连接信号选择的颜色。
+您可以将图例放置在绘图区域的顶部（在绘图区域内部或外部），或放置在绘图的右侧（在绘图区域内部或外部）。您也可以隐藏图例。图例在信号名称旁边显示为每个已连接信号选择的颜色。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`LegendPosition` |
-| **类型：**字符串 | 字符向量 |
-| **值：** `'Top'` | `'Right'` | `'InsideTop'` | `'InsideRight` | `'Hide'` |
+| **类型**：string | character vector |
+| **值**：`'Top'` | `'Right'` | `'InsideTop'` | `'InsideRight` | `'Hide'` |
 | **默认值**：`'Top'` |
 
-### **水平** — 水平网格线可见性 **on** (默认) | **off**
+### **Horizontal** — 水平网格线可见性 `on` (default) | `off`
 
 水平网格线的可见性。
 
-- **on** - Dashboard Scope 上显示水平网格线。
-- **off** - Dashboard Scope 上不显示水平网格线。
+- `on` — 水平网格线在 Dashboard Scope 上可见。
+- `off` — 水平网格线不在 Dashboard Scope 上显示。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Grid` |
-| **类型：**字符串 | 字符向量 |
+| **类型**：string | character vector |
 | **值**：`'All'` | `'Horizontal'` | `'Vertical'` | `'None'` |
 | **默认值**：`'All'` |
 
-### **垂直** — 垂直网格线可见性 **on** (默认) | **off**
+### **Vertical** — 垂直网格线可见性 `on` (default) | `off`
 
 垂直网格线的可见性。
 
-- **on** - Dashboard Scope 上显示垂直网格线。
-- **off** - Dashboard Scope 上不显示垂直网格线。
+- `on` — 垂直网格线在 Dashboard Scope 上可见。
+- `off` — 垂直网格线不在 Dashboard Scope 上显示。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Grid` |
-| **类型：**字符串 | 字符向量 |
+| **类型**：string | character vector |
 | **值**：`'All'` | `'Horizontal'` | `'Vertical'` | `'None'` |
 | **默认值**：`'All'` |
 
-### **边框** — 绘图边框可见性 **on** (默认) | **off**
+### **Border** — 绘图边框可见性 `on` (default) | `off`
 
 绘图边框可见性。
 
-- **on** - Dashboard Scope 上显示绘图边框。
-- **off** - Dashboard Scope 上不显示绘图边框。
+- `on` — 绘图边框在 Dashboard Scope 上显示。
+- `off` — 绘图边框不在 Dashboard Scope 上显示。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Border` |
-| **类型：**字符串 | 字符向量 |
-| **值：**`'on'` | `'off'` |
-| **默认值：**`'on'` |
+| **类型**：string | character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'on'` |
 
-### **标记** — 显示信号数据标记的选项 **off** (默认) | **on**
+### **Markers** — 显示信号数据标记的选项 `off` (default) | `on`
 
-当启用时，对在 Dashboard Scope 上绘制的信号显示数据标记。
+启用后，将为绘制在 Dashboard Scope 模块上的信号显示数据标记。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Markers` |
-| **类型：**字符串 | 字符向量 |
-| **值：**`'on'` | `'off'` |
-| **默认值：**`'off'` |
+| **类型**：string | character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### 样式
+### Style
 
-### **前景颜色** — 网格线颜色 `[r g b]` 向量
+### **Foreground Color** — 网格线颜色 `[r g b]` vector
 
-从标准颜色调色板中选择网格线的颜色，或使用 `0` 和 `255` 之间的 `RGB` 值指定自定义颜色。
+从标准颜色调色板中选择网格线的颜色，或使用介于 `0` 和 `255` 之间的 `RGB` 值指定自定义颜色。
 
-#### 编程用法
+#### 编程使用
 
-将模块的 `ForegroundColor` 参数指定为字符串或字符向量，该向量定义 `1`×`3` `[r g b]` 向量，其值介于 `0` 和 `1` 之间。
+将模块的 `ForegroundColor` 参数指定为字符串或字符向量，该字符串或字符向量定义一个 `1`×`3` 的 `[r g b]` 向量，值介于 `0` 和 `1` 之间。
 
 |  |
 | --- |
 | **模块参数**：`ForegroundColor` |
-| **类型：**字符串 | 字符向量 |
-| **值：**`[r g b]` 向量 |
+| **类型**：string | character vector |
+| **值**：`[r g b]` vector |
 
-### **背景颜色** — 绘图区域颜色 `[r g b]` 向量
+### **Background Color** — 绘图区域颜色 `[r g b]` vector
 
-从标准颜色调色板中选择绘图区域的颜色，或使用 `0` 和 `255` 之间的 `RGB` 值指定自定义颜色。
+从标准颜色调色板中选择绘图区域的颜色，或使用介于 `0` 和 `255` 之间的 `RGB` 值指定自定义颜色。
 
-#### 编程用法
+#### 编程使用
 
-将模块的 `BackgroundColor` 参数指定为字符串或字符向量，该向量定义 `1`×`3` `[r g b]` 向量，其值介于 `0` 和 `1` 之间。
+将模块的 `BackgroundColor` 参数指定为字符串或字符向量，该字符串或字符向量定义一个 `1`×`3` 的 `[r g b]` 向量，值介于 `0` 和 `1` 之间。
 
 |  |
 | --- |
 | **模块参数**：`BackgroundColor` |
-| **类型：**字符串 | 字符向量 |
-| **值：**`[r g b]` 向量 |
+| **类型**：string | character vector |
+| **值**：`[r g b]` vector |
 
-### **字体颜色** — 刻度和刻度标签颜色 `[r g b]` 向量
+### **Font Color** — 刻度和刻度标签颜色 `[r g b]` vector
 
-从标准颜色调色板中选择刻度和刻度标签的颜色，或使用 `0` 和 `255` 之间的 `RGB` 值指定自定义颜色。
+从标准颜色调色板中选择刻度和刻度标签的颜色，或使用介于 `0` 和 `255` 之间的 `RGB` 值指定自定义颜色。
 
-#### 编程用法
+#### 编程使用
 
-将模块的 `FontColor` 参数指定为 `1`×`3` `[r g b]` 向量，其值介于 `0` 到 `1` 之间。
+将模块的 `FontColor` 参数指定为一个 `1`×`3` 的 `[r g b]` 向量，值介于 `0` 和 `1` 之间。
 
 |  |
 | --- |
 | **模块参数**：`FontColor` |
-| **类型：**`[r g b]` 向量 |
+| **类型**：`[r g b]` vector |
 
 ## 所属库
 
@@ -355,83 +355,83 @@ Simulink / Dashboard
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` | `string` |
-| **直接馈通** | `否` |
-| **多维信号** | `是` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` | `string` |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `yes` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-Dashboard 模块在代码生成中会被忽略。
+仪表板模块在代码生成时被忽略。
 
 ## 版本历史
 
-**在 R2015a 中推出**
+**在 R2015a 中引入**
 
 ## 描述
 
-仿真期间跟踪示波器显示画面上的信号
+在仿真期间在示波器显示上追踪信号
 
-Dashboard Scope 模块在波形视图上绘制仿真过程中的连接信号。您可以将 Dashboard Scope 模块与其他 Dashboard 模块结合使用，为您的模型构建包含各种控件和指示器的交互式仪表板。连接到 Dashboard Scope 模块的信号记录到仿真数据检查器，以便在仿真期间或仿真后进行分析。Dashboard Scope 模块可以显示 Simulink® 支持的任何数据类型的信号，包括枚举数据类型，以及来自数组或总线的多达 8 个信号。
+Dashboard Scope 模块在仿真期间在示波器显示上绘制已连接的信号。您可以将 Dashboard Scope 模块与其他仪表板模块一起使用，为您的模型构建由控件和指示器组成的交互式仪表板。连接到 Dashboard Scope 模块的信号会记录到 Simulation Data Inspector，以便在仿真期间或之后进行分析。Dashboard Scope 模块可以显示 Simulink® 支持的任何数据类型的信号，包括枚举数据类型，以及来自数组或总线的最多八个信号。
 
-### 连接 Dashboard 模块
+### 连接仪表板模块
 
-Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
+仪表板模块不使用端口连接到模型元素。要连接仪表板模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在该模块上并单击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
 
-要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择您要连接的信号。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。要查看 Dashboard 模块显示连接模块的值，请运行仿真。
+要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。在出现的列表中，选择要连接的信号。然后，将鼠标悬停在仪表板模块上并单击 Done Connecting 按钮 。要查看仪表板模块显示所连接模块的值，请运行仿真。
 
-有关连接 Dashboard 模块的详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
+有关连接仪表板模块的详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
 
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
+您还可以将仪表板模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
 
-此动画说明如何将 Dashboard Scope 模块连接到您的模型。
+此动画展示了如何将 Dashboard Scope 模块连接到您的模型。
 
-An unconnected Dashboard Scope block connects three signals.
+一个未连接的 Dashboard Scope 模块连接三个信号。
 
 ### 分析信号数据
 
-您可以使用 Dashboard Scope 模块的子图菜单或上下文菜单来执行以下操作：
+您可以使用 Dashboard Scope 模块的子图菜单或上下文菜单来：
 
 - 显示或隐藏数据游标。
 - 按固定量缩小。
-- 配置鼠标交互，以进行平移和选择，或在时间轴方向、在 *y* 轴方向或同时在时间轴和 *y* 轴方向进行缩放。
-- 在时间轴方向、在 *y* 轴方向或同时在时间轴和 *y* 轴方向执行适应视图操作。
+- 将鼠标交互配置为平移和选择，或在时间上、在 *y* 上、或在时间和 *y* 两者上放大。
+- 在时间上、在 *y* 上、或在时间和 *y* 两者上执行适配视图。
 
 **注意**
 
-要使用键盘快捷方式来分析数据，请在 Dashboard Scope 模块中选择一个信号或轴。
+要使用键盘快捷键分析数据，请在 Dashboard Scope 模块中选择一个信号或轴。
 
-要访问子图菜单，请选择 Dashboard Scope 模块，然后点击在绘图区域上暂停时出现的三个点。
+要访问子图菜单，请选择 Dashboard Scope 模块，然后单击将鼠标悬停在绘图区域上时出现的三个点。
 
-A selected Dashboard Scope block with two cursors displayed and the subplot menu visible.
+一个选中的 Dashboard Scope 模块，显示两个游标且子图菜单可见。
 
-### 配置信号线的线型和颜色
+### 配置信号线型和颜色
 
-您可以使用“模块参数”对话框中的**连接**表或属性检查器来修改连接到 Dashboard Scope 模块的信号的颜色和线型。要修改连接信号的外观，请执行以下操作：
+您可以使用“模块参数”对话框或属性检查器中的 **Connection** 表修改连接到 Dashboard Scope 模块的信号的线条颜色和线型。要修改已连接信号的外观：
 
-1. 在**连接**表的**线型**列中点击信号外观的预览。
+1. 在 **Connection** 表的 **Style** 列中点击信号外观预览。
 
-   Line color and style selection menu for a signal connected to a Dashboard Scope block.
-2. 从标准调色板中选择一种颜色，或选择**自定义**选项卡，使用 `0` 和 `255` 之间的 `RGB` 值指定自定义颜色。
-3. 从**线型**列中的实线、点虚线、虚线和点线选项中选择线型。
-4. 点击**设置**。
+   连接到 Dashboard Scope 模块的信号的线条颜色和线型选择菜单。
+2. 从标准颜色调色板中选择一种颜色，或选择 **Custom** 选项卡，使用 `0` 到 `255` 之间的 `RGB` 值指定自定义颜色。
+3. 在 **Style** 列中从实线、点线、虚线和点划线选项中选择线型。
+4. 点击 **Set**。
 
-当您将连接到 Dashboard Scope 模块的信号标记为信号记录时，您也可以使用插桩属性对话框配置信号颜色和线型。在 Dashboard Scope 模块的信号颜色和线型菜单中，默认情况下**覆盖线型和颜色**选项处于选中状态，并指定您使用**连接**表为 Dashboard Scope 模块选择的信号外观选项是否覆盖在所连接信号的插桩属性中配置的信号外观选项。
+当您将连接到 Dashboard Scope 模块的信号标记为信号记录时，还可以使用 Instrumentation Properties 对话框配置信号颜色和线型。在 Dashboard Scope 模块的信号颜色和线型菜单中，**Override style and color** 选项默认处于选中状态，用于指定您使用 Dashboard Scope 模块的 **Connection** 表选择的信号外观选项是否覆盖已连接信号的 instrumentation properties 中配置的信号外观选项。
 
-当您使用“模块参数”对话框将信号连接到 Dashboard Scope 模块时，连接表会显示您连接的每个信号的默认信号颜色和线型。当您选择要连接的信号时，**连接**表会更新未选择的信号的线型和颜色，以指示您连接的下一个信号的线型和颜色。
+当您使用“模块参数”对话框将信号连接到 Dashboard Scope 模块时，连接表会显示您连接的每个信号的默认信号颜色和线型。当您选择要连接的信号时，**Connection** 表会更新未选中信号的样式和颜色，以指示您接下来连接的信号的样式和颜色。
 
-Connection table for a Dashboard Scope block with several options of signals to connect and two signals selected.
+Dashboard Scope 模块的连接表，其中包含多个可连接信号选项以及两个已选中的信号。
 
 ### 配置复信号格式
 
-将复信号连接到 Dashboard Scope 模块时，可以通过指定信号的**复信号格式**属性来配置信号的显示方式：
+当您将复信号连接到 Dashboard Scope 模块时，可以通过为信号指定 **Complex Format** 属性来配置信号的显示方式：
 
-1. 标记要进行信号记录的复信号。
-2. 右键点击复信号的记录标记，然后选择**属性**。
-3. 指定**复信号格式**。
-4. 点击**确定**。
+1. 将复信号标记为信号记录。
+2. 右键点击复信号的记录标记，然后选择 **Properties**。
+3. 指定 **Complex Format**。
+4. 点击 **OK**。
 
-当您将**复信号格式**指定为**实部-虚部**或**幅值-相位**时，Dashboard Scope 模块将显示信号的两个分量。实部（即幅值）分量使用**连接**表中指示的颜色显示。虚部（即相位）分量是使用在**连接**表中所指示颜色的另一种深度显示。
+当您将信号的 **Complex Format** 指定为 `Real-Imaginary` 或 `Magnitude-Phase` 时，Dashboard Scope 模块会显示信号的两个分量。实部或幅值分量使用 **Connection** 表中指示的颜色显示。虚部或相位分量使用 **Connection** 表中指示颜色的不同色调显示。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'String Count'
-family: 'string'
+family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -18,21 +18,20 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **str** — 要搜索的字符串标量
+### **str** — 要搜索的字符串 标量
 
 要在其中搜索模式的字符串，指定为标量。
 
 **数据类型：** `string`
 
-### **sub** — 要搜索的字符串模式标量
+### **sub** — 要搜索的字符串模式 标量
 
 要在字符串中搜索的字符串模式，指定为标量。
 
 **数据类型：** `string`
-
 ### 输出
 
-### **n** — 在字符串中找到模式的次数标量
+### **n** — 在字符串中找到模式的次数 标量
 
 在字符串 `str` 中找到字符串模式的次数，以标量形式返回。
 
@@ -40,52 +39,52 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **区分大小写** — 区分大小写 on（默认）| off
+### **Case sensitive** — 区分大小写 开启（默认） | 关闭
 
 字符串计数的区分大小写：
 
-on
-:   在统计找到的字符串时考虑字符串大小写。
+开启
+:   在计数找到的字符串时考虑字符串大小写。
 
-off
-:   在统计找到的字符串时不考虑字符串大小写。
+关闭
+:   在计数找到的字符串时不考虑字符串大小写。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**： `CaseSensitive` |
-| **类型**： character vector |
+| **模块参数**：`CaseSensitive` |
+| **类型**：字符向量 |
 | **值：** `'on'` | `'off'` |
-| **默认值**： `'on'` |
+| **默认值**：`'on'` |
 
-### **输出数据类型** — 输出数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Inherit via back propagation` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `<data type expression>`
+### **Output data type** — 输出数据类型 `Inherit: Inherit via internal rule`（默认） | `Inherit: Inherit via back propagation` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `<data type expression>`
 
 输出数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
-当您选择继承选项时，模块表现如下：
+当您选择继承选项时，模块表现出以下行为：
 
-- `Inherit: Inherit via internal rule` — Simulink® 选择一种数据类型，以平衡数值精度、性能和生成代码大小，同时考虑嵌入式目标硬件的属性。
+- `Inherit: Inherit via internal rule` — Simulink® 选择一种数据类型以平衡数值精度、性能和生成代码大小，同时考虑嵌入式目标硬件的属性。
 - `Inherit: Inherit via back propagation` — 使用驱动模块的数据类型。
 
-单击“显示数据类型助手”按钮以显示 **数据类型助手**，它可帮助您设置数据类型属性。有关详细信息，请参阅“使用数据类型助手指定数据类型”。
+单击“显示数据类型助手”按钮 以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关更多信息，请参阅 Specify Data Types Using Data Type Assistant。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数：** `OutDataTypeStr` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'Inherit: Inherit via internal rule'` | `'Inherit: Inherit via back propagation'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | *`<data type expression>`* |
 | **默认值：** `'Inherit: Inherit via internal rule'` |
 
-### **模式** — 数据类型类别 `Inherit`（默认）| `Built in` | `Expression`
+### **Mode** — 数据类型类别 `Inherit`（默认） | `Built in` | `Expression`
 
-数据类型类别，指定为 `Inherit`、`Built in` 或 `Expression`。有关使用此参数的详细信息，请参阅“使用数据类型助手指定数据类型”。
+数据类型类别，指定为 `Inherit`、`Built in` 或 `Expression`。有关使用此参数的更多信息，请参阅 Specify Data Types Using Data Type Assistant。
 
 #### 依赖关系
 
-单击 **显示数据类型助手** 按钮会启用此参数。
+单击 **Show data type assistant** 按钮可启用此参数。
 
 ## 所属库
 
@@ -113,4 +112,4 @@ Simulink / String
 
 统计字符串中模式的出现次数
 
-String Count 模块统计字符串（**str**）中模式（**sub**）的出现次数。如果 **sub** 处的输入与 **str** 处的输入部分或全部匹配，则该模块将该出现次数计为 1。
+String Count 模块统计字符串（**str**）中模式（**sub**）的出现次数。如果 **sub** 处的输入匹配 **str** 处的输入的部分或全部，则该模块将该次出现计为 1。

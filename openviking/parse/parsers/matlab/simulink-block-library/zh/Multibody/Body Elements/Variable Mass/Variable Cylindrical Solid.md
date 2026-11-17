@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Variable Cylindrical Solid'
-family: 'body-elements'
+family: 'sm'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b
@@ -20,141 +20,139 @@ chinese_source: worker-translation
 
 ### **R** — 参考坐标系 frame
 
-固体的局部参考坐标系。此坐标系相对于固体几何固定。坐标系原点位于 *xy* 平面上 *xy* 横截面的中心。*z* 轴与圆柱体的纵轴对齐。将此端口连接到 frame 实体——端口、线或节点——以解析模型中的 frame 放置。有关详细信息，请参阅 Working with Frames。
-
+实体的局部参考坐标系。该坐标系相对于实体几何固定。坐标系原点位于 *xy* 平面上 *xy* 横截面的中心。*z* 轴与圆柱体的纵向轴线对齐。将此端口连接到坐标系实体——端口、线或结点——以在模型中解析坐标系的位置。有关详细信息，请参阅 Working with Frames。
 ### 物理信号输入
 
-### **len** — 圆柱长度 physical signal
+### **len** — 圆柱体长度 physical signal
 
-圆柱长度的输入端口。
+圆柱体长度的输入端口。
 
-### **r** — 圆柱半径 physical signal
+### **r** — 圆柱体半径 physical signal
 
-圆柱半径的输入端口。
+圆柱体半径的输入端口。
 
-### **m** — 圆柱质量 physical signal
+### **m** — 圆柱体质量 physical signal
 
-圆柱质量的输入端口。
-
+圆柱体质量的输入端口。
 ### 物理信号输出
 
-### **len** — 圆柱长度 physical signal
+### **len** — 圆柱体长度 physical signal
 
-圆柱长度的输出端口。
+圆柱体长度的输出端口。
 
-### **r** — 圆柱半径 physical signal
+### **r** — 圆柱体半径 physical signal
 
-圆柱半径的输出端口。
+圆柱体宽度的输出端口。
 
-### **m** — 圆柱质量 physical signal
+### **m** — 圆柱体质量 physical signal
 
-圆柱质量的输出端口。
+圆柱体质量的输出端口。
 
-### **com** — 圆柱的质心坐标 physical signal
+### **com** — 圆柱体质心坐标 physical signal
 
-圆柱质心的输出端口，报告为三元素向量，其笛卡尔坐标在固体的参考坐标系中解析。
+圆柱体质心的输出端口，以三元素向量形式报告，其笛卡尔坐标在实体的参考坐标系中解析。
 
-### **I** — 圆柱的惯性矩阵 physical signal
+### **I** — 圆柱体惯性矩阵 physical signal
 
-圆柱惯性矩阵的输出端口，报告为九元素矩阵，在模块的参考坐标系中解析。矩阵的对角元素是惯性矩。非对角元素是惯性积。
+圆柱体惯性矩阵的输出端口，以九元素矩阵形式报告，在模块的参考坐标系中解析。对角矩阵元素为惯性矩。非对角元素为惯性积。
 
 ## 参数
 
 #### 几何与惯性
 
-### **Radius** — 半径参数化 `Calculate from Mass` (default) | `Constant` | `Provided by Input`
+### **Radius** — 半径参数化 `Calculate from Mass`（默认）| `Constant` | `Provided by Input`
 
-固体半径的参数化。选择 `Constant` 可将固定值指定为模块参数。选择 `Provided by Input` 可将可变值指定为 physical signal 输入。使用默认设置（`Calculated from Mass`）可根据指定的固体密度和剩余尺寸获取此参数。选择 `Provided by Input` 会显示一个新的 physical signal 输入端口，标记为 **r**，通过该端口指定可变值。
+实体半径的参数化方式。选择 `Constant` 以将固定值指定为模块参数。选择 `Provided by Input` 以将可变值指定为物理信号输入。使用默认设置（`Calculated from Mass`）从指定的实体密度和其余尺寸获取此参数。选择 `Provided by Input` 将显示一个新的物理信号输入端口，标记为 **r**，通过该端口指定可变值。
 
-### **Radius: Value** — 半径的值 `1 m` (default) | scalar with units of length
+### **Radius: Value** — 半径值 `1 m`（默认）| 带长度单位的标量
 
-固体的半径。固体的纵轴与局部参考坐标系的 *z* 轴对齐。当此模块参数处于活动状态时，*z* 尺寸为常量。
-
-#### 参数依赖关系
-
-当 **Radius** 参数设置为 `Constant` 时，此参数处于活动状态。
-
-### **Length** — 长度参数化 `Calculate from Mass` (default) | `Constant` | `Provided by Input`
-
-固体长度的参数化。选择 `Constant` 可将固定值指定为模块参数。选择 `Provided by Input` 可将可变值指定为 physical signal 输入。使用默认设置（`Calculated from Mass`）可根据指定的固体密度和剩余尺寸获取此参数。选择 `Provided by Input` 会显示一个新的 physical signal 输入端口，标记为 **len**，通过该端口指定可变值。
-
-### **Length: Value** — 长度的值 `1 m` (default) | scalar with units of length
-
-固体的长度。圆柱体的纵轴与局部参考坐标系的 *z* 轴对齐。当此模块参数处于活动状态时，*z* 尺寸为常量。
+实体的半径。实体的纵向轴线与局部参考坐标系的 *z* 轴对齐。当此模块参数激活时，*z* 维度为常量。
 
 #### 参数依赖关系
 
-当 **Length** 参数设置为 `Constant` 时，此参数处于活动状态。
+当 **Radius** 参数设置为 `Constant` 时，此参数激活。
 
-### **Mass** — 质量参数化 `Provided by Input` (default) | `Calculate from Geometry`
+### **Length** — 长度参数化 `Calculate from Mass`（默认）| `Constant` | `Provided by Input`
 
-固体质量的参数化。选择 `Calculate from Geometry` 可根据指定的固体密度和尺寸获取此参数。使用默认设置（`Provided by Input`）可直接将此参数指定为时变 physical signal。此选项会显示一个新的 physical signal 输入端口，标记为 **M**，通过该端口指定时变固体质量。
+实体长度的参数化方式。选择 `Constant` 以将固定值指定为模块参数。选择 `Provided by Input` 以将可变值指定为物理信号输入。使用默认设置（`Calculated from Mass`）从指定的实体密度和其余尺寸获取此参数。选择 `Provided by Input` 将显示一个新的物理信号输入端口，标记为 **len**，通过该端口指定可变值。
 
-### **Mass: Density** — 材料的每单位体积质量 `1000 kg/m^3` (default) | scalar in units of mass per unit volume
+### **Length: Value** — 长度值 `1 m`（默认）| 带长度单位的标量
 
-材料的每单位体积质量。质量密度可采用正值或负值。指定负质量密度可对固体主体中的空隙或空腔效应进行建模。默认值 `1000 kg/m^3` 是聚合物（如 ABS 塑料）的典型值。
+实体的长度。圆柱体的纵向轴线与局部参考坐标系的 *z* 轴对齐。当此模块参数激活时，*z* 维度为常量。
 
 #### 参数依赖关系
 
-当 **Mass** 参数设置为 `Calculate from Geometry` 时，此参数处于活动状态。
+当 **Length** 参数设置为 `Constant` 时，此参数激活。
 
-#### 感测
+### **Mass** — 质量参数化 `Provided by Input`（默认）| `Calculate from Geometry`
 
-### **Radius** — 半径的感测选择 cleared (default) | checked
+实体质量的参数化方式。选择 `Calculate from Geometry` 以从指定的实体密度和尺寸获取此参数。使用默认设置（`Provided by Input`）可将此参数直接指定为时变物理信号。此选项将暴露一个新的物理信号输入端口，标记为 **M**，通过该端口指定时变实体质量。
 
-固体半径的感测选择。选中可显示一个新的 physical signal 输出端口，标记为 **r**，通过该端口输出半径的时变值。
+### **Mass: Density** — 单位体积材料质量 `1000 kg/m^3`（默认）| 以质量每单位体积为单位的标量
 
-### **Length** — 长度的感测选择 cleared (default) | checked
+单位体积材料质量。质量密度可以取正值或负值。指定负质量密度以模拟实体中空洞或空腔的影响。默认值 `1000 kg/m^3` 是 ABS 塑料等聚合物的典型值。
 
-固体 *z* 尺寸的感测选择。选中可显示一个新的 physical signal 输出端口，标记为 **len**，通过该端口输出长度的时变值。
+#### 参数依赖关系
 
-### **Mass** — 总质量的感测选择 cleared (default) | checked
+当 **Mass** 参数设置为 `Calculate from Geometry` 时，此参数处于激活状态。
 
-固体总质量的感测选择。选中可显示一个新的 physical signal 输出端口，标记为 **m**，通过该端口输出固体质量的时变值。
+#### 传感
 
-### **Center of Mass** — 质心坐标的感测选择 cleared (default) | checked
+### **Radius** — 半径的传感选择 已清除（默认）| 已选中
 
-固体质心坐标的感测选择。选中可显示一个新的 physical signal 输出端口，标记为 **com**，通过该端口输出时变坐标。输出是一个三元素向量，其中笛卡尔坐标在固体的参考坐标系中解析。
+实体半径的传感选择。选中以暴露一个新的物理信号输出端口，标记为 **r**，通过该端口输出半径的时变值。
 
-### **Inertia Matrix** — 惯性矩阵的感测选项 cleared (default) | checked
+### **Length** — 长度的传感选择 已清除（默认）| 已选中
 
-固体惯性矩阵的感测选择。选中可显示一个新的 physical signal 输出端口，标记为 **I**，通过该端口输出时变惯性矩阵。输出是一个九元素矩阵，对角线位置为惯性矩，非对角线位置为惯性积。惯性矩和惯性积在惯性解析坐标系中解析——该坐标系的轴与参考坐标系的轴平行，但原点位于质心。
+实体 *z* 维度的传感选择。选中以暴露一个新的物理信号输出端口，标记为 **len**，通过该端口输出长度的时变值。
+
+### **Mass** — 总质量的传感选择 已清除（默认）| 已选中
+
+实体总质量的传感选择。选中以暴露一个新的物理信号输出端口，标记为 **m**，通过该端口输出实体质量的时变值。
+
+### **Center of Mass** — 质心坐标的传感选择 已清除（默认）| 已选中
+
+实体质心坐标的传感选择。选中以暴露一个新的物理信号输出端口，标记为 **com**，通过该端口输出时变坐标。输出是一个三元素向量，其笛卡尔坐标在实体的参考坐标系中解析。
+
+### **Inertia Matrix** — 惯性矩阵的传感选项 已清除（默认）| 已选中
+
+实体惯性矩阵的传感选择。选中以暴露一个新的物理信号输出端口，标记为 **I**，通过该端口输出时变惯性矩阵。输出是一个九元素矩阵，对角线位置为惯性矩，非对角线位置为惯性积。惯性矩和惯性积在惯性解析坐标系中解析——该坐标系的轴与参考坐标系的轴平行，但原点位于质心。
 
 ### 图形
 
-### **Type** — 用于可视化的图形 `From Geometry` (default) | `Marker` | `None`
+### **Type** — 用于可视化的图形 `From Geometry`（默认）| `Marker` | `None`
 
-固体的可视表示类型，指定为 `From Geometry`、`Marker` 或 `None`。将参数设置为 `From Geometry` 可显示固体的可视表示。将参数设置为 `Marker` 可将固体表示为标记。将参数设置为 `None` 可在模型可视化中隐藏固体。
+实体的视觉表示类型，指定为 `From Geometry`、`Marker` 或 `None`。将参数设置为 `From Geometry` 以显示实体的视觉表示。将参数设置为 `Marker` 以将实体表示为标记。将参数设置为 `None` 以在模型可视化中隐藏实体。
 
-### **Visual Properties** — 颜色和不透明度的参数化 `Simple` (default) | `Advanced`
+### **Visual Properties** — 颜色和不透明度的参数化 `Simple`（默认）| `Advanced`
 
-用于指定可视属性的参数化。选择 `Simple` 可指定 **Diffuse Color** 和 **Opacity**。选择 `Advanced` 可指定更多可视属性，例如 **Specular Color**、**Ambient Color**、**Emissive Color** 和 **Shininess**。
+用于指定视觉属性的参数化。选择 `Simple` 以指定 **Diffuse Color** 和 **Opacity**。选择 `Advanced` 以指定更多视觉属性，例如 **Specular Color**、**Ambient Color**、**Emissive Color** 和 **Shininess**。
 
 #### 依赖关系
 
 要启用此参数，请将 **Type** 设置为 `From Geometry` 或 `Marker`。
 
-### **Shape** — 用于表示固体的标记形状 `Sphere` (default) | `Cube` | `Frame`
+### **Shape** — 用于表示实体的标记形状 `Sphere`（默认）| `Cube` | `Frame`
 
-用于可视化固体的标记形状。标记的运动反映固体本身的运动。
-
-#### 依赖关系
-
-要启用此参数，请将 **Type** 设置为 `Marker`。
-
-### **Size** — 标记的宽度（以像素为单位） 10 `pixels` (default) | scalar
-
-标记的宽度（以像素为单位）。此宽度不随缩放级别缩放。请注意，标记的表观尺寸部分取决于屏幕分辨率，较高分辨率每单位长度包含更多像素，因此会产生更小的图标。
+用于可视化实体的标记形状。标记的运动反映实体自身的运动。
 
 #### 依赖关系
 
 要启用此参数，请将 **Type** 设置为 `Marker`。
 
-### **Diffuse Color** — 漫反射产生的光颜色 [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+### **Size** — 标记的宽度，以像素为单位 10 `pixels`（默认）| 标量
 
-漫反射产生的光颜色，指定为 [R,G,B] 或 [R,G,B,A] 向量，其值在 0 到 1 范围内。该向量可以是行向量或列向量。可选的第四个元素指定颜色不透明度。省略不透明度元素等效于指定值 1。
+标记的宽度，以像素为单位。此宽度不随缩放级别缩放。请注意，标记的表观大小部分取决于屏幕分辨率，分辨率越高，每单位长度包含的像素越多，因此产生的图标越小。
 
-漫反射颜色反映渲染固体的主色，并提供阴影，使渲染对象具有三维外观。
+#### 依赖关系
+
+要启用此参数，请将 **Type** 设置为 `Marker`。
+
+### **Diffuse Color** — 漫反射产生的光的颜色 [0.5 0.5 0.5]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+
+漫反射产生的光的颜色，指定为取值范围为 0 到 1 的 [R,G,B] 或 [R,G,B,A] 向量。该向量可以是行向量或列向量。可选的第四个元素指定颜色不透明度。省略不透明度元素等同于指定值 1。
+
+漫反射颜色反映所渲染实体的主色，并提供阴影效果，使渲染对象呈现三维外观。
 
 #### 依赖关系
 
@@ -163,9 +161,9 @@ chinese_source: worker-translation
 1. **Type** 为 `From Geometry` 或 `Marker`
 2. **Visual Properties** 为 `Advanced`
 
-### **Opacity** — 图形不透明度 1.0 (default) | scalar in the range of 0 to 1
+### **Opacity** — 图形不透明度 1.0（默认）| 取值范围为 0 到 1 的标量
 
-图形不透明度，指定为 0 到 1 范围内的 scalar。scalar 0 对应完全透明，scalar 1 对应完全不透明。
+图形不透明度，指定为取值范围为 0 到 1 的标量。标量为 0 对应于完全透明，标量为 1 对应于完全不透明。
 
 #### 依赖关系
 
@@ -174,22 +172,9 @@ chinese_source: worker-translation
 1. **Type** 为 `From Geometry` 或 `Marker`
 2. **Visual Properties** 为 `Simple`
 
-### **Specular Color** — 镜面反射产生的光颜色 [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+### **Specular Color** — 镜面反射产生的光的颜色 [0.5 0.5 0.5 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
 
-镜面反射产生的光颜色，指定为 [R,G,B] 或 [R,G,B,A] 向量，其值在 0 到 1 范围内。该向量可以是行向量或列向量。可选的第四个元素指定颜色不透明度。省略不透明度元素等效于指定值 1。此参数更改镜面高光的颜色，镜面高光是渲染固体上由于光源光线反射而产生的亮点。
-
-#### 依赖关系
-
-要启用此参数，请设置：
-
-1. **Type** 为 `From Geometry` 或 `Marker`
-2. **Visual Properties** 为 `Advanced`
-
-### **Ambient Color** — 环境光颜色 [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
-
-环境光颜色，指定为 [R,G,B] 或 [R,G,B,A] 向量，其值在 0 到 1 范围内。该向量可以是行向量或列向量。可选的第四个元素指定颜色不透明度。省略不透明度元素等效于指定值 1。
-
-环境光指并非直接来自光源的一般照明水平。环境光由已经反射和再反射多次、不再来自任何特定方向的光组成。您可以调整此参数以更改渲染固体的阴影颜色。
+镜面反射产生的光的颜色，指定为取值范围为 0 到 1 的 [R,G,B] 或 [R,G,B,A] 向量。该向量可以是行向量或列向量。可选的第四个元素指定颜色不透明度。省略不透明度元素等同于指定值 1。此参数改变镜面高光的颜色，镜面高光是由于光源的光反射而在所渲染实体上形成的亮点。
 
 #### 依赖关系
 
@@ -198,11 +183,11 @@ chinese_source: worker-translation
 1. **Type** 为 `From Geometry` 或 `Marker`
 2. **Visual Properties** 为 `Advanced`
 
-### **Emissive Color** — 自发光颜色 [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to 1
+### **Ambient Color** — 环境光的颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
 
-由于自发光而产生的颜色，指定为 [R,G,B] 或 [R,G,B,A] 向量，其值在 0 到 1 范围内。该向量可以是行向量或列向量。可选的第四个元素指定颜色不透明度。省略不透明度元素等效于指定值 1。
+环境光的颜色，指定为取值范围为 0 到 1 的 [R,G,B] 或 [R,G,B,A] 向量。该向量可以是行向量或列向量。可选的第四个元素指定颜色不透明度。省略不透明度元素等同于指定值 1。
 
-发射颜色是不来自任何外部源的颜色，因此似乎由固体本身发射。当固体具有发射颜色时，即使没有外部光源，也可以看到该固体。
+环境光是指并非直接来自光源的一般照明水平。环境光由经过多次反射和再反射以至于不再来自任何特定方向的光组成。您可以调整此参数来改变所渲染实体的阴影颜色。
 
 #### 依赖关系
 
@@ -211,9 +196,22 @@ chinese_source: worker-translation
 1. **Type** 为 `From Geometry` 或 `Marker`
 2. **Visual Properties** 为 `Advanced`
 
-### **Shininess** — 高光锐度 75 (default) | scalar with value constrained to 0–128
+### **Emissive Color** — 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
 
-镜面光反射的锐度，指定为 0–128 范围内的 scalar 数字。增大 shininess 值可获得更小但更锐利的高光。减小该值可获得更大但更平滑的高光。
+由自发光产生的颜色，指定为取值范围在 0 到 1 之间的 [R,G,B] 或 [R,G,B,A] 向量。该向量可以是行向量或列向量。可选的第四个元素指定颜色不透明度。省略不透明度元素等同于指定值为 1。
+
+自发光颜色是不来自任何外部光源的颜色，因此看起来是由实体本身发出的。当实体具有自发光颜色时，即使没有外部光源，实体也能被看到。
+
+#### 依赖关系
+
+要启用此参数，请设置：
+
+1. **Type** 为 `From Geometry` 或 `Marker`
+2. **Visual Properties** 为 `Advanced`
+
+### **Shininess** — 高光锐度 75（默认）| 约束在 0–128 范围内的标量值
+
+镜面光反射的锐度，指定为 0–128 范围内的标量数值。增大 shininess 值可获得更小但更锐利的高光。减小该值可获得更大但更平滑的高光。
 
 #### 依赖关系
 
@@ -228,7 +226,7 @@ Simscape / Multibody / Body Elements / Variable Mass
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -240,14 +238,14 @@ Simscape / Multibody / Body Elements / Variable Mass
 
 ## 描述
 
-可变质量和尺寸的实心圆柱体
+具有可变质量和尺寸的实心圆柱体
 
-Variable Cylindrical Solid 模块会向所连接的坐标系添加一个具有可变质量和尺寸的实心圆柱体。圆柱体的质量、半径和长度均可为常量或随时间变化。可变数量可直接指定为 physical signal，也可作为其余数量的函数计算。质量或圆柱体尺寸可在仿真期间计算，但不能同时计算两者。
+Variable Cylindrical Solid 模块向所连接的坐标系添加一个具有可变质量和侧面的实心圆柱体。圆柱体的质量、半径和长度可以各自为常量或随时间变化。可变物理量可以直接指定为物理信号，也可以计算为其余物理量的函数。质量或圆柱体尺寸可以在仿真期间计算，但不能同时计算两者。
 
-参考坐标系编码模型中固体的位置和方向。该坐标系固定到固体，坐标系原点位于下表面的中心（按照 `Z up` 视图约定观察）。此放置在整个仿真过程中保持不变。长度相对于下表面沿 *z*-轴正方向非对称增加。
+参考坐标系编码实体在模型中的位置和方向。该坐标系固定在实体上，坐标系原点位于下表面的中心（按照 `Z up` 视图约定观察）。此放置方式在整个仿真过程中保持不变。长度相对于下表面沿 *z* 轴正方向非对称增加。
 
-**长度由质量计算的可变圆柱体**
+**由质量计算长度的可变圆柱体**
 
-可视化是动态的。固体尺寸在其发生时连续更新，位于 Multibody Explorer 的可视化窗格中。固体的初始尺寸取决于您指定的参数和 physical signals。可变尺寸可能以零值开始——例如，如果它派生自初始值也为零的 physical signal。
+可视化是动态的。实体尺寸在 Multibody Explorer 的可视化窗格中随其发生而连续更新。实体的初始尺寸取决于您指定的参数和物理信号。可变尺寸有可能以零值开始——例如，如果它派生自初始值也为零的物理信号。
 
-密度本身可以是常量或变量。如果至少一个固体参数在仿真期间计算，则此数量指定为常量。如果所有固体参数都显式指定，作为（常量）模块参数或 physical signals，则它作为变量计算。与固体模块一样，您可以指定负密度，例如，用于对复合体中的空隙进行建模。
+密度本身可以是常量或变量。如果至少有一个实体参数在仿真期间计算，则该量指定为常量。如果所有实体参数都显式指定，无论是作为（常量）模块参数还是作为物理信号，则该量计算为变量。与实体模块的情况一样，您可以指定负密度，例如，用于对复合体中的空隙进行建模。

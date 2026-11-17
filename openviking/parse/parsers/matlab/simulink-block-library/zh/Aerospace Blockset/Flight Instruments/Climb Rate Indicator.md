@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Climb Rate Indicator'
-family: 'flight-instruments'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -16,32 +16,32 @@ chinese_source: worker-translation
 
 ## 端口
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 参数
 
 ### **Connection** — 连接到信号 信号名称
 
-连接到要显示的信号，从信号名称列表中选择。
+连接到信号以进行显示，从信号名称列表中选择。
 
-要查看来自某个信号的数据，请在模型中选择一个信号。该信号会出现在 **Connection** 表中。选择要显示的信号旁边的选项按钮。点击 **Apply** 连接该信号。
+要查看信号的数据，请在模型中选择一个信号。该信号将出现在 **Connection** 表中。选择要显示的信号旁边的选项按钮。点击 **Apply** 以连接该信号。
 
-该表格为连接到模块的信号包含一行。如果模型中没有选择任何信号，或者模块未连接到任何信号，则该表格为空。
+表中包含连接到该模块的信号的行。如果模型中没有选择任何信号，或者该模块未连接到任何信号，则表为空。
 
-### **Maximum** — 最大刻度值 4000（默认）| finite | double | scalar
+### **Maximum** — 最大刻度值 4000（默认）| 有限值 | double | 标量
 
-最大刻度值，指定为以 ft/min 为单位的有限 double 标量值。
+最大刻度值，指定为有限的 double 标量值，单位为 ft/min。
 
 最小刻度值始终为 `0`。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `MaximumRate` |
-| **类型**: character vector |
-| **值**: scalar |
-| **默认值**: `'4000'` |
+| **模块参数**：`MaximumRate` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认值**：`'4000'` |
 
 ### **Label** — 模块标签位置 `Top`（默认）| `Bottom` | `Hide`
 
@@ -57,14 +57,14 @@ chinese_source: worker-translation
 
   当模块未连接时，不显示标签或说明文本。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `LabelPosition` |
-| **类型**: character vector |
-| **值**: `'Top'` \| `'Bottom'` \| `'Hide'` |
-| **默认值**: `'Top'` |
+| **模块参数**：`LabelPosition` |
+| **类型**：字符向量 |
+| **值**：`'Top'` | `'Bottom'` | `'Hide'` |
+| **默认值**：`'Top'` |
 
 ## 所属库
 
@@ -72,7 +72,7 @@ Aerospace Blockset / Flight Instruments
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -90,8 +90,8 @@ Aerospace Blockset / Flight Instruments
 
 Climb Rate Indicator 模块显示飞机爬升率的测量值，单位为 ft/min。
 
-如果速度为正值，则指针覆盖上半圆；如果爬升率为负值，则指针覆盖下半圆。指示器的范围从 –**Maximum** feet per minute 到 **Maximum** feet per minute。主刻度表示 **Maximum**/4。次刻度表示 **Maximum**/8 和 **Maximum**/80。
+如果速度为正值，指针覆盖上半圆；如果爬升率为负值，指针覆盖下半圆。指示器的范围从 –**Maximum** 英尺每分钟到 **Maximum** 英尺每分钟。主刻度表示 **Maximum**/4。次刻度表示 **Maximum**/8 和 **Maximum**/80。
 
 **提示**
 
-为了便于理解和调试模型，你可以在正常模式和加速器模式仿真期间修改模型中的仪表模块连接。
+为了便于理解和调试您的模型，您可以在正常和加速模式仿真期间修改模型中的仪表模块连接。

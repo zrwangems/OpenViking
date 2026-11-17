@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Coarse Frequency Compensator'
-family: 'rf-impairments-correction'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -18,25 +18,25 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **In** — 输入信号列向量
+### **In** — 输入信号 列向量
 
 输入信号，指定为列向量。
 
 **数据类型：** `single` | `double`
-**复数支持：** Yes
+**复数支持：** 是
 ### 输出
 
-### **Out** — 补偿后的输出信号复数列向量
+### **Out** — 补偿后的输出信号 复数列向量
 
-补偿后的输出信号，返回为复数列向量，其维度和数据类型与输入 **In** 相同。
+补偿后的输出信号，返回为与输入 **In** 具有相同维度和数据类型的复数列向量。
 
 **数据类型：** `single` | `double`
 
-### **FreqEst** — 频率偏移的估计值，标量
+### **FreqEst** — 频率偏移估计值 标量
 
 频率偏移的估计值，返回为标量。
 
-如果将 **Modulation type of input signal** 参数设置为 `OQPSK` 或 `QAM`，或将 **Estimation algorithm** 参数设置为 `FFT-based`，则返回的频率偏移估计值是 **Frequency resolution (Hz)** 参数的整数倍。
+如果将 **Modulation type of input signal** 参数设置为 `OQPSK` 或 `QAM`，或者将 **Estimation algorithm** 参数设置为 `FFT-based`，则返回的频率偏移估计值为 **Frequency resolution (Hz)** 参数的整数倍。
 
 #### 依赖关系
 
@@ -46,13 +46,13 @@ chinese_source: worker-translation
 
 ## 参数
 
-要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条中，在 **仿真** 选项卡上的 **准备** 库中，选择 **属性检查器**。
+要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
-### **Modulation type of input signal** — 调制类型 `QAM`（默认） | `8PSK` | `BPSK` | `OQPSK` | `PAM` | `QPSK`
+### **Modulation type of input signal** — 调制类型 `QAM`（默认）| `8PSK` | `BPSK` | `OQPSK` | `PAM` | `QPSK`
 
 调制类型，指定为 `QAM`、`8PSK`、`BPSK`、`OQPSK`、`PAM` 或 `QPSK`。
 
-### **Estimation algorithm** — 用于估计频率偏移的算法 `FFT-based`（默认） | `Correlation-based`
+### **Estimation algorithm** — 用于估计频率偏移的算法 `FFT-based`（默认）| `Correlation-based`
 
 将频率偏移估计算法指定为 `FFT-based` 或 `Correlation-based`。有关详细信息，请参阅算法。
 
@@ -62,44 +62,44 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-此参数在将 **Modulation type of input signal** 设置为 `8PSK`、`BPSK`、`PAM` 或 `QPSK` 时显示。
+当将 **Modulation type of input signal** 设置为 `8PSK`、`BPSK`、`PAM` 或 `QPSK` 时，此参数出现。
 
-### **Frequency resolution (Hz)** — 频率分辨率 `100`（默认） | 正标量
+### **Frequency resolution (Hz)** — 频率分辨率 `100`（默认）| 正标量
 
 频率分辨率，以 Hz 为单位，指定为正实数标量。
 
 #### 依赖关系
 
-此参数在将 **Modulation type of input signal** 设置为 `OQPSK` 或 `QAM`，或将 **Estimation algorithm** 设置为 `FFT-based` 时适用。
+当将 **Modulation type of input signal** 设置为 `OQPSK` 或 `QAM`，或者将 **Estimation algorithm** 设置为 `FFT-based` 时，此参数适用。
 
-### **Samples per symbol** — 每个符号的采样数 `4`（默认） | 大于或等于 `4` 的偶数整数
+### **Samples per symbol** — 每个符号的采样数 `4`（默认）| 大于或等于 `4` 的偶数整数
 
 每个符号的采样数，指定为大于或等于 4 的偶数整数标量。
 
 #### 依赖关系
 
-此参数在将 **Modulation type of input signal** 设置为 `OQPSK` 时显示。
+当将 **Modulation type of input signal** 设置为 `OQPSK` 时，此参数出现。
 
-### **Maximum frequency offset (Hz)** — 最大可测量频率偏移 `5e3`（默认） | 正标量
+### **Maximum frequency offset (Hz)** — 最大可测量频率偏移 `5e3`（默认）| 正标量
 
 最大可测量频率偏移，以 Hz 为单位，指定为正标量。
 
 #### 依赖关系
 
-此参数在将 **Estimation algorithm** 设置为 `Correlation-based` 时显示。
+当将 **Estimation algorithm** 设置为 `Correlation-based` 时，此参数出现。
 
-### **Estimated frequency offset output port** — 添加估计的频率偏移输出端口的选项 `on`（默认） | `off`
+### **Estimated frequency offset output port** — 添加估计频率偏移输出端口的选项 `on`（默认）| `off`
 
 选中此复选框可添加 **FreqEst** 输出端口。**FreqEst** 端口输出以 Hz 为单位的估计频率偏移。
 
-### **Simulate using** — 要运行的仿真类型 `Code generation`（默认） | `Interpreted execution`
+### **Simulate using** — 要运行的仿真类型 `Code generation`（默认）| `Interpreted execution`
 
 要运行的仿真类型，指定为 `Code generation` 或 `Interpreted execution`。
 
-- `Code generation` — 通过使用生成的 C 代码来仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。除非模型发生变化，否则模型会将 C 代码重用于后续仿真。此选项需要额外的启动时间，但后续仿真的速度快于使用 `Interpreted execution` 选项。
-- `Interpreted execution` — 通过使用 MATLAB® 解释器来仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于使用 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
+- `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。除非模型发生变化，否则模型在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution` 选项。
+- `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短了启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，可以调试模块的源代码。
 
-有关详细信息，请参阅解释执行与代码生成 (Simulink)。
+有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
 
 ## 所属库
 
@@ -121,20 +121,20 @@ Communications Toolbox / RF Impairments Correction Communications Toolbox / Sync
 
 **在 R2015b 中引入**
 
-### R2025a：估计的频率偏移以频率分辨率的整数倍返回
+### R2025a: 估计频率偏移返回为频率分辨率的整数倍
 
-当配置为使用基于 FFT 的算法时，Coarse Frequency Compensator 模块现在将估计的频率偏移 **FreqEst** 作为 **Frequency resolution (Hz)** 参数值的整数倍返回。
+当配置为使用基于 FFT 的算法时，Coarse Frequency Compensator 模块现在将估计频率偏移 **FreqEst** 返回为 **Frequency resolution (Hz)** 参数值的整数倍。
 
-### R2023b：默认设置更改
+### R2023b: 默认设置更改
 
-Coarse Frequency Compensator 模块参数有新的默认值。
+Coarse Frequency Compensator 模块参数具有新的默认值。
 
-| 参数 | 新默认值 | 以前的默认值 |
+| 参数 | 新默认值 | 先前默认值 |
 | --- | --- | --- |
 | **Frequency resolution (Hz)** | `100` | `0.001` |
 | **Maximum frequency offset (Hz)** | `5e3` | `0.05` |
 
-当执行在以前的版本中创建的代码时，请确认 Coarse Frequency Compensator 设置。新的默认设置会改变您的结果。要使用以前的默认设置产生结果，您可以手动更新模块的设置。
+在执行先前版本中创建的代码时，请确认粗频率补偿器设置。新的默认设置会改变您的结果。要使用先前的默认设置产生结果，可以手动更新模块的设置。
 
 ## 描述
 

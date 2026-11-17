@@ -9,7 +9,7 @@ official_category: 'Logic and Bit Operations'
 documentation_page: 'shiftarithmetic'
 documentation_source_path: '../simulink/slref/shiftarithmetic.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Shift Arithmetic
@@ -18,32 +18,32 @@ chinese_source: official
 
 ### 输入
 
-### **u** — 要对其执行运算的数 标量 | 向量 | 数组
+### **u** — 要进行运算的数 标量 | 向量 | 数组
 
-要对其执行运算的数，指定为标量、向量或数组。
+要进行运算的数，指定为标量、向量或数组。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ### **s** — 要移位的位数 标量
 
 要移位的位数，指定为标量。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
 ### **Port\_1** — 运算结果 标量 | 向量 | 数组
 
 运算结果，以标量、向量或数组形式返回。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ## 参数
 
-### **二进制位移位数:源** — 要移位的位的源 **对话框** (默认) | **输入端口**
+### **Bits to shift: Source** — 要移位的位数的来源 `Dialog`（默认）| `Input port`
 
-指定是直接在对话框中输入要移动的位数，还是从输入端口继承值。
+指定是在对话框中输入要移位的位数，还是从输入端口继承这些值。
 
-**可调:** No
+**可调：** 否
 
 #### 编程用法
 
@@ -54,11 +54,11 @@ chinese_source: official
 | **值**：`'Dialog'` | `'Input port'` |
 | **默认值**：`'Dialog'` |
 
-### **二进制位移位数:方向** — 移位的方向 **双向** (默认) | **左侧** | **右侧**
+### **Bits to shift: Direction** — 移位方向 `Bidirectional`（默认）| `Left` | `Right`
 
-指定移位的方向：向左、向右或双向。
+指定移位方向：左移、右移或双向。
 
-**可调:** No
+**可调：** 否
 
 #### 编程用法
 
@@ -69,20 +69,21 @@ chinese_source: official
 | **值**：`'Left'` | `'Right'` | `'Bidirectional'` |
 | **默认值**：`'Bidirectional'` |
 
-### **二进制位移位数:数量** — 二进制位移位数 `8` (默认) | 标量 | 向量 | 数组
+### **Bits to shift: Number** — 要移位的位数 `8`（默认）| 标量 | 向量 | 数组
 
-指定标量、向量或移位值数组。
+指定移位值的标量、向量或数组。
 
 | 如果方向为... | 则... |
 | --- | --- |
-| **左侧**或**右侧** | 使用正整数指定移位。 |
-| **双向** | 使用正整数表示右移，使用负整数表示左移。 |
+| `Left` 或 `Right` | 使用正整数指定移位。 |
+| `Bidirectional` | 使用正整数表示右移，使用负整数表示左移。 |
 
-**可调:** No
+**可调：** 否
 
 #### 依赖关系
 
-要启用此参数，请将**二进制位移位数:源**设置为**对话框**。
+要启用此参数，请将 **Bits to shift:
+Source** 设置为 `Dialog`。
 
 #### 编程用法
 
@@ -90,14 +91,14 @@ chinese_source: official
 | --- |
 | **模块参数**：`BitShiftNumber` |
 | **类型**：字符向量、字符串 |
-| **值**：标量 | 向量 | 矩阵 |
+| **值**：标量 | 向量 | 数组 |
 | **默认值**：`'8'` |
 
-### **二进制小数点移位数:数量** — 二进制小数点移位的位数 `0` (默认) | 标量
+### **Binary points to shift: Number** — 要移动二进制点的位数 `0`（默认）| 标量
 
-指定将输入信号中的二进制小数点移动的整数位数。正值表示右移，负值表示左移。
+指定输入信号二进制点要移动的整数位数。正值表示右移，负值表示左移。
 
-**可调:** No
+**可调：** 否
 
 #### 编程用法
 
@@ -108,15 +109,15 @@ chinese_source: official
 | **值**：标量 |
 | **默认值**：`'0'` |
 
-### **超范围移位值的诊断** — 诊断操作 **无** (默认) | **警告** | **错误**
+### **Diagnostic for out of range shift value** — 诊断操作 `None`（默认）| `Warning` | `Error`
 
-指定当模块包含超出范围的移位值时，是否在仿真过程中生成警告或错误消息。选项包括：
+指定当模块包含超出范围的移位值时，是否在仿真期间生成警告或错误。选项包括：
 
-- `None` - 软件不执行任何操作。
-- `Warning` - 软件显示警告并继续进行仿真。
-- `Error` - 该软件终止仿真并显示错误。
+- `None` — 软件不采取任何操作。
+- `Warning` — 软件显示警告并继续仿真。
+- `Error` — 软件终止仿真并显示错误。
 
-有关详细信息，请参阅超范围移位值的仿真和加速模式结果。
+有关详细信息，请参阅 Simulation and Accelerator Mode Results for Out-of-Range Bit Shift Values。
 
 #### 编程用法
 
@@ -127,11 +128,11 @@ chinese_source: official
 | **值**：`'None'` | `'Warning'` | `'Error'` |
 | **默认值**：`'None'` |
 
-### **检查生成代码中是否有超出范围的 '二进制位移位数'** — 检查生成代码中是否有超出范围的二进制位移位数 `off` (默认) | `on`
+### **Check for out-of-range 'Bits to shift' in generated code** — 检查生成代码中超出范围的移位位数 `off`（默认）| `on`
 
-如果选中此复选框，将在生成的代码中包含条件语句，以防移位值超出范围。当**二进制位移位数:源**为**输入端口**时，此复选框才可用。
+选中此复选框可在生成的代码中包含条件语句，以防止超出范围的移位值。当 **Bits to shift: Source** 为 `Input port` 时，此复选框可用。
 
-有关详细信息，请参阅超范围移位值的代码生成。
+有关详细信息，请参阅 Code Generation for Out-of-Range Bit Shift Values。
 
 #### 编程用法
 
@@ -151,20 +152,20 @@ Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
 |  |  |
 | --- | --- |
 | **数据类型** | `double` | `fixed point` | `half` | `integer` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `否` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **直接馈通** | `yes` |
+| **多维信号** | `no` |
+| **可变大小信号** | `no` |
+| **过零检测** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
 HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
-当**二进制位移位数:源**为**对话框**或**输入端口**时，您可以生成 HDL 代码。
+当 **Bits to shift: Source** 为 **Dialog** 或 **Input port** 时，您可以生成 HDL 代码。
 
 **HDL 架构**
 
@@ -176,17 +177,17 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 |  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过移动设计中现有延迟的方式来放置在输出端的寄存器的数量。分布式流水线不会重新分发这些寄存器。默认值为 `0`。有关详细信息，请参阅ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 
 **复数数据支持**
 
-此模块支持复信号的代码生成。
+此模块支持复数信号的代码生成。
 
 **限制**
 
-当**二进制位移位数:源**为**输入端口**时，不支持二进制小数点移位。
+当 **Bits to shift: Source** 为 **Input port** 时，不支持二进制点移位。
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
@@ -198,22 +199,22 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ## 描述
 
-移动信号的位或二进制小数点
+对信号的位或二进制点进行移位
 
-Shift Arithmetic 模块可以移动输入信号中的数位和/或二进制小数点。
+Shift Arithmetic 模块可以对输入信号的位或二进制点进行移位，或同时对两者进行移位。
 
-例如，将 `sfix(8)` 数据类型的输入信号中的二进制小数点向右和向左移动两位，将得到以下小数值。
+例如，将数据类型为 `sfix(8)` 的输入的二进制点向右和向左移动两位，得到以下十进制值。
 
-| 移位运算 | 二进制值 | 十进制值 |
+| 移位操作 | 二进制值 | 十进制值 |
 | --- | --- | --- |
-| 无移位（原始数字） | 11001.011 | -6.625 |
-| 二进制小数点向右移动两位 | 1100101.1 | -26.5 |
-| 二进制小数点向左移动两位 | 110.01011 | -1.65625 |
+| 不移位（原始数值） | 11001.011 | –6.625 |
+| 二进制点右移两位 | 1100101.1 | –26.5 |
+| 二进制点左移两位 | 110.01011 | –1.65625 |
 
-此模块对有符号数字执行算术移位。因此，模块为每一次移位回收最高有效位。将 `sfix(8)` 数据类型的输入信号中的数位向右和向左移动两位，将得到以下小数值。
+此模块对有符号数执行算术位移。因此，模块在每次移位时循环使用最高有效位。将数据类型为 `sfix(8)` 的输入的位向右和向左移动两位，得到以下十进制值。
 
-| 移位运算 | 二进制值 | 十进制值 |
+| 移位操作 | 二进制值 | 十进制值 |
 | --- | --- | --- |
-| 无移位（原始数字） | 11001.011 | -6.625 |
-| 向右移动两位 | 11110.010 | -1.75 |
-| 向左移动两位 | 00101.100 | 5.5 |
+| 不移位（原始数值） | 11001.011 | –6.625 |
+| 位右移两位 | 11110.010 | –1.75 |
+| 位左移两位 | 00101.100 | 5.5 |

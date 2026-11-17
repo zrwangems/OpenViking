@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Y-Parameters Mixer'
-family: 'equivalent-baseband'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -16,23 +16,23 @@ chinese_source: worker-translation
 
 ## 端口
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 参数
 
-### Main
+### 主
 
-### **Y-Parameters** — Y-parameters for nonlinear mixer `[0.0200,0;-0.0400, 0.0200]` (默认) | 2-by-2-by-*M* 数组
+### **Y-Parameters** — 非线性混频器的 Y 参数 `[0.0200,0;-0.0400, 0.0200]`（默认）| 2×2×*M* 数组
 
-非线性混频器的 Y-parameters，指定为 2-by-2-by-*M* 数组，其中 *M* 是 Y-parameters 的数量。
+非线性混频器的 Y 参数，指定为 2×2×*M* 数组，其中 *M* 是 Y 参数的数量。
 
-### **Frequency (Hz)** — Frequency of Y-parameters `2.0e9` (默认) | *M* 元素向量
+### **Frequency (Hz)** — Y 参数的频率 `2.0e9`（默认）| *M* 元素向量
 
-Y-parameters 的频率，指定为 *M* 元素向量，每个元素的单位为 hertz。所有频率必须为正。
+Y 参数的频率，指定为 *M* 元素向量，每个元素的单位为赫兹。所有频率必须为正。
 
-### **Interpolation method** — Method to interpolate network parameters `Linear` (默认) | `Spline` | `Cubic`
+### **Interpolation method** — 插值网络参数的方法 `Linear`（默认）| `Spline` | `Cubic`
 
-用于插值网络参数的方法，指定为以下之一：
+插值网络参数的方法，指定为以下之一：
 
 | 方法 | 描述 |
 | --- | --- |
@@ -40,36 +40,36 @@ Y-parameters 的频率，指定为 *M* 元素向量，每个元素的单位为 h
 | `Spline` | 三次样条插值 |
 | `Cubic` | 分段三次 Hermite 插值 |
 
-### **Mixer Type** — Type of mixer `Downconverter` (默认) | `Upconverter`
+### **Mixer Type** — 混频器类型 `Downconverter`（默认）| `Upconverter`
 
 混频器类型，指定为 `Downconverter` 或 `Upconverter`。
 
-### **LO frequency (Hz)** — Local oscillator frequency `0.9e9` (默认) | *M* 元素向量
+### **LO frequency (Hz)** — 本振频率 `0.9e9`（默认）| *M* 元素向量
 
-本振频率，指定为 *M* 元素向量，每个元素的单位为 hertz。
+本振频率，指定为 *M* 元素向量，每个元素的单位为赫兹。
 
-- 如果选择 **Mixer Type** 为 `Downconverter`，则模块集根据混频器输入频率 *fin* 和本振频率 *flo* 按 *fout* = *fin* – *flo* 计算混频器输出频率 *fout*。
-- 如果将 **Mixer Type** 设为 `Upconverter`，则 *fout* = *fin* + *flo*。
+- 如果将 **Mixer Type** 选择为 `Downconverter`，则模块集根据混频器输入频率 *fin* 和本振频率 *flo* 计算混频器输出频率 *fout*，公式为 *fout* = *fin* – *flo*。
+- 如果将 **Mixer Type** 选择为 `Upconverter`，则 *fout* = *fin* + *flo*。
 
 **注意**
 
-对于下变频混频器，本振频率必须满足条件 *fin* – *flo* ≥ 1/(2*ts*)，其中 *ts* 是在 Input Port 模块中指定的采样时间。否则会出现错误。
+对于下变频混频器，本振频率必须满足条件 *fin* – *flo* ≥ 1/(2*ts*)，其中 *ts* 是在 Input Port 模块中指定的采样时间。否则，会出现错误。
 
 ### 噪声数据
 
-### **Phase noise frequency offset (Hz)** — Phase noise frequency offset `[0.1 1 10 100]*1e3` (默认) | 数值向量
+### **Phase noise frequency offset (Hz)** — 相位噪声频率偏移 `[0.1 1 10 100]*1e3`（默认）| 数值向量
 
-相位噪声频率偏移，指定为以 hertz 为单位的数值向量。
-
-**数据类型：** `double`
-
-### **Phase noise level (dBc/Hz)** — Phase noise level `[-70 -120 -140 -150]` (默认) | 数值向量
-
-相位噪声电平，指定为以 decibels relative to the carrier per hertz 为单位的数值向量。
+相位噪声频率偏移，指定为以赫兹为单位的数值向量。
 
 **数据类型：** `double`
 
-### **Noise type** — Type of noise data `Noise figure` (默认) | `Spot noise data` | `Noise factor` | `Noise temperature`
+### **Phase noise level (dBc/Hz)** — 相位噪声电平 `[-70 -120 -140 -150]`（默认）| 数值向量
+
+相位噪声电平，指定为以相对于载波每赫兹的分贝为单位的数值向量。
+
+**数据类型：** `double`
+
+### **Noise type** — 噪声数据类型 `Noise figure`（默认）| `Spot noise data` | `Noise factor` | `Noise temperature`
 
 噪声数据类型，指定为以下之一：
 
@@ -78,9 +78,9 @@ Y-parameters 的频率，指定为 *M* 元素向量，每个元素的单位为 h
 - `Noise factor`
 - `Noise temperature`
 
-如果数据源包含噪声数据，则禁用此参数。
+如果数据源包含噪声数据，则此参数被禁用。
 
-### **Noise figure (dB)** — Available signal-to-noise ratio at the input to available signal-to-noise ratio at the output `0` (默认) | 标量比值 | 比值向量
+### **Noise figure (dB)** — 输入端的可用信噪比与输出端的可用信噪比之比 `0`（默认）| 标量比值 | 比值向量
 
 输入端的可用信噪比与输出端的可用信噪比之比，指定为标量比值或比值向量。
 
@@ -88,15 +88,15 @@ Y-parameters 的频率，指定为 *M* 元素向量，每个元素的单位为 h
 
 要启用此参数，请在 **Noise type** 中选择 `Noise figure`。
 
-### **Minimum noise figure** — Minimum ratio of available signal-to-noise ratio at input to available signal-to-noise ratio at output `0` (默认) | 标量比值 | 比值向量
+### **Minimum noise figure** — 输入端的可用信噪比与输出端的可用信噪比之比的最小值 `0`（默认）| 标量比值 | 比值向量
 
-输入端可用信噪比与输出端可用信噪比的最小比值，指定为标量比值或比值向量。
+输入端的可用信噪比与输出端的可用信噪比之比的最小值，指定为标量比值或比值向量。
 
 #### 依赖关系
 
 要启用此参数，请在 **Noise type** 中选择 `Spot noise data`。
 
-### **Optimal reflection coefficient** — Optimal source impedance `1+0i` (默认) | 复标量 | 复向量
+### **Optimal reflection coefficient** — 最佳源阻抗 `1+0i`（默认）| 复标量 | 复向量
 
 最佳源阻抗，指定为复标量或复向量。
 
@@ -104,7 +104,7 @@ Y-parameters 的频率，指定为 *M* 元素向量，每个元素的单位为 h
 
 要启用此参数，请在 **Noise type** 中选择 `Spot noise data`。
 
-### **Equivalent normalized noise resistance** — Normalized resistance values used to take noise measurement `1` (默认) | 正标量 | 正向量
+### **Equivalent normalized noise resistance** — 用于进行噪声测量的归一化电阻值 `1`（默认）| 正标量 | 正向量
 
 用于进行噪声测量的归一化电阻值，指定为正标量或正向量。
 
@@ -112,111 +112,129 @@ Y-parameters 的频率，指定为 *M* 元素向量，每个元素的单位为 h
 
 要启用此参数，请在 **Noise type** 中选择 `Spot noise data`。
 
-### **Noise factor** — Ratio of available signal-to-noise power at input to available signal-to-noise power at output `1` (默认) | 标量比值 | 比值向量
+### **Noise factor** — 输入端的可用信噪功率与输出端的可用信噪功率之比 `1`（默认）| 标量比值 | 比值向量
 
-输入端可用信噪功率与输出端可用信噪功率之比，指定为标量比值或比值向量。
+输入端的可用信噪功率与输出端的可用信噪功率之比，指定为标量比值或比值向量。
 
 #### 依赖关系
 
 要启用此参数，请在 **Noise type** 中选择 `Noise factor`。
 
-### **Noise temperature (K)** — Equivalent temperature that produces same amount of noise as mixer `0` (默认) | 非负标量 | 非负向量
+### **Noise temperature (K)** — 产生与混频器相同噪声量的等效温度 `0`（默认）| 非负标量 | 非负向量
 
-产生与混频器相同噪声量的等效温度，指定为非负标量或非负向量，单位为 kelvins。
+产生与混频器相同噪声量的等效温度，指定为非负标量或非负向量，单位为开尔文。
 
 #### 依赖关系
 
 要启用此参数，请在 **Noise type** 中选择 `Noise temperature`。
 
-### **Frequency (Hz)** — Domain of frequencies to express noise data `2.0e9` (默认) | 非负标量 | 非负向量
+### **Frequency (Hz)** — 用于表示噪声数据的频率范围 `2.0e9`（默认）| 非负标量 | 非负向量
 
-用于表示噪声数据的频率范围，指定为以 hertz 为单位的非负标量，或每个元素均以 hertz 为单位的非负向量。如果为噪声数据提供标量值，则该模块忽略 **Frequency (Hz)** 参数，并对所有频率使用相同的噪声数据。如果为噪声数据提供值向量，则其大小必须与频率向量相同。该模块使用 **Main** 选项卡中指定的 **Interpolation method** 对噪声数据进行插值。
+用于表示噪声数据的频率范围，指定为非负标量（单位为赫兹）或非负向量（每个元素的单位为赫兹）。如果为噪声数据提供标量值，模块将忽略 **Frequency (Hz)** 参数，并对所有频率使用相同的噪声数据。如果为噪声数据提供向量值，其大小必须与频率向量相同。模块使用 **Main** 选项卡中指定的 **Interpolation method** 对噪声数据进行插值。
 
 ### 非线性数据
 
-### **IP3 type** — Type of third order intercept `OIP3` (默认) | `IIP3`
+### **IP3 type** — 三阶截点的类型 `OIP3`（默认）| `IIP3`
 
-三阶截点的类型，指定为 `OIP3`（输出截点）或 `IIP3`（输入截点）。如果数据源包含功率数据或 IP3 数据，则禁用此参数。
+三阶截点的类型，指定为 `OIP3`（输出截点）或 `IIP3`（输入截点）。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
 
-### **IP3 (dBm)** — IP3 value `inf` (默认) | 标量 | 向量
+### **IP3 (dBm)** — IP3 值 `inf`（默认）| 标量 | 向量
 
-IP3 值，对于频率无关的非线性数据，指定为以 dBm 为单位的标量；对于频率相关的非线性数据，指定为每个元素均以 dBm 为单位的向量。如果数据源包含功率数据或 IP3 数据，则禁用此参数。
+IP3 值，对于频率无关的非线性数据指定为以 dBm 为单位的标量，对于频率相关的非线性数据指定为每个元素以 dBm 为单位的向量。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
 
-### **1dB gain compression power (dBm)** — Output power value at which gain has decreased by 1 dB `inf` (默认) | 标量 | 向量
+### **1dB gain compression power (dBm)** — 增益下降 1 dB 时的输出功率值 `inf`（默认）| 标量 | 向量
 
-增益下降 1 dB 时的输出功率值（P1dB,out），对于频率无关的非线性数据，指定为以 dBm 为单位的标量；对于频率相关的非线性数据，指定为每个元素均以 dBm 为单位的向量。如果数据源包含功率数据或 IP3 数据，则禁用此参数。
+增益下降 1 dB 时的输出功率值（P1dB,out），对于频率无关的非线性数据指定为以 dBm 为单位的标量，对于频率相关的非线性数据指定为每个元素以 dBm 为单位的向量。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
 
-### **Output saturation power (dBm)** — Output power value that mixer produces when fully saturated `inf` (默认) | 标量 | 向量
+### **Output saturation power (dBm)** — 混频器完全饱和时产生的输出功率值 `inf`（默认）| 标量 | 向量
 
-混频器完全饱和时产生的输出功率值（Psat,out），对于频率无关的非线性数据，指定为以 dBm 为单位的标量；对于频率相关的非线性数据，指定为每个元素均以 dBm 为单位的向量。如果数据源包含输出饱和功率数据，则禁用此参数。
+混频器完全饱和时产生的输出功率值（Psat,out），对于频率无关的非线性数据指定为以 dBm 为单位的标量，对于频率相关的非线性数据指定为每个元素以 dBm 为单位的向量。如果数据源包含输出饱和功率数据，则此参数被禁用。
 
-### **Gain compression at saturation (dB)** — Decrease in gain value `3` (默认) | 标量 | 向量
+### **Gain compression at saturation (dB)** — 增益值的下降量 `3`（默认）| 标量 | 向量
 
-功率完全饱和时的增益下降值（GCsat），对于频率无关的非线性数据，指定为以 dB 为单位的标量；对于频率相关的非线性数据，指定为每个元素均以 dB 为单位的向量。
+功率完全饱和时增益值的下降量（GCsat），对于频率无关的非线性数据指定为以 dB 为单位的标量，对于频率相关的非线性数据指定为每个元素以 dB 为单位的向量。
 
-### **Frequency (Hz)** — Frequency points corresponding to third-order intercept or power data `2.0e9` (默认) | 正标量 | 正向量
+### **Frequency (Hz)** — 与三阶截点或功率数据对应的频率点 `2.0e9`（默认）| 正标量 | 正向量
 
-与三阶截点或功率数据对应的频率点，指定为以 hertz 为单位的正标量或正向量。如果数据源包含功率数据或 IP3 数据，则禁用此参数。
+与三阶截点或功率数据对应的频率点，指定为正标量或正向量，单位为赫兹。如果数据源包含功率数据或 IP3 数据，则此参数被禁用。
 
 #### 依赖关系
 
-- 如果将频率指定为标量，则 **IP3 (dBm)**、**1 dB gain compression power (dBm)** 和 **Output saturation power (dBm)** 参数必须全部为标量。
-- 如果将频率指定为向量，则 **IP3 (dBm)**、**1 dB gain compression power (dBm)** 和 **Output saturation power (dBm)** 参数中的一个或多个也必须为向量。
+- 如果将频率指定为标量，则 **IP3 (dBm)**、**1 dB 增益压缩功率 (dBm)** 和 **输出饱和功率 (dBm)** 参数必须全部为标量。
+- 如果将频率指定为向量，则 **IP3 (dBm)**、**1 dB 增益压缩功率 (dBm)** 和 **输出饱和功率 (dBm)** 参数中的一个或多个也必须为向量。
 
 ### 可视化
 
-### **Source of frequency data** — Frequency data source `Same as the Y-Parameters` (默认) | `User-specified`
+### **频率数据来源** — 频率数据来源 `与 Y 参数相同`（默认）| `用户指定`
 
-频率数据源，指定为 `Same as the Y-Parameters` 或 `User-specified`。
+频率数据来源，指定为 `与 Y 参数相同` 或 `用户指定`。
 
-### **Frequency data (Hz)** — Frequency data range `[1e9:1e8:2.9e9]` (默认) | 向量
+### **频率数据 (Hz)** — 频率数据范围 `[1e9:1e8:2.9e9]`（默认）| 向量
 
-频率数据范围，指定为向量，每个元素的单位为 hertz。
+频率数据范围，指定为向量，每个元素的单位为赫兹。
 
 #### 依赖关系
 
-要启用此参数，请将 **Source of frequency data** 设置为 `User specified`。
+要启用此参数，请将 **频率数据来源** 设置为 `用户指定`。
 
-### **Reference impedance (ohms)** — Reference impedance `50` (默认) | 非负标量
+### **参考阻抗 (ohms)** — 参考阻抗 `50`（默认）| 非负标量
 
-参考阻抗，指定为以 ohms 为单位的非负标量。
+参考阻抗，指定为非负标量，单位为欧姆。
 
-### **Plot type** — Type of data plot `X-Y plane` (默认) | `Composite data` | `Polar plane` | `Z Smith chart` | `Y Smith chart` | `ZY Smith chart`
+### **绘图类型** — 数据绘图类型 `X-Y 平面`（默认）| `复合数据` | `极坐标平面` | `Z 史密斯圆图` | `Y 史密斯圆图` | `ZY 史密斯圆图`
 
-要使用给定数据进行可视化的数据绘图类型，指定为以下之一：
+使用给定数据进行可视化的数据绘图类型，指定为以下之一：
 
-- `X-Y plane` — 生成数据随频率变化的笛卡尔图。要创建线性图、半对数图或双对数图，请相应设置 **Y-axis scale** 和 **X-axis scale**。
-- `Composite data` — 绘制复合数据。有关详细信息，请参阅 Create Plots Using Equivalent Baseband Library Blocks。
-- `Polar plane` — 生成数据的极坐标图。该模块仅绘制与指定频率对应的数据范围。
-- `Z smith chart`、`Y smith chart` 和 `ZY smith chart` — 生成 Smith® 图。该模块仅绘制与指定频率对应的数据范围。
+- `X-Y 平面` — 生成数据随频率变化的笛卡尔图。要创建线性、半对数或双对数图，请相应地设置 **Y 轴刻度** 和 **X 轴刻度**。
+- `复合数据` — 绘制复合数据。有关详细信息，请参阅 Create Plots Using Equivalent Baseband Library Blocks。
+- `极坐标平面` — 生成数据的极坐标图。该模块仅绘制与指定频率对应的数据范围。
+- `Z 史密斯圆图`、`Y 史密斯圆图` 和 `ZY 史密斯圆图` — 生成史密斯®圆图。该模块仅绘制与指定频率对应的数据范围。
 
-### **Y parameter1** — Type of parameters to plot `S11` (默认) | `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | `NFactor` | `NTemp` | `PhaseNoise` | ...
+### **Y parameter1** — 要绘制的参数类型 `S11`（默认）| `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | `NFactor` | `NTemp` | `PhaseNoise` | ...
 
-基于所设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
+基于所设置的 **绘图类型** 要绘制的参数类型，指定为以下之一。
 
-| Plot type | Y parameter1 |
+| 绘图类型 | Y parameter1 |
 | --- | --- |
-| `X-Y plane` | `S11`、`S12`、`S21`、`S22`、`GroupDelay`、`OIP3`、`NF`、`NFactor`、`NTemp` 和 `PhaseNoise`。 |
-| `Composite data` | 无需设置 **Y parameter1**。 |
-| `Polar plane` | `S11`、`S12`、`S21` 和 `S22` |
-| `Z Smith chart` | `S11` 和 `S22`。 |
-| `Y Smith chart` | `S11` 和 `S22`。 |
-| `ZY smith chart` | `S11` 和 `S22`。 |
+| `X-Y 平面` | `S11`、`S12`、`S21`、`S22`、`GroupDelay`、`OIP3`、`NF`、`NFactor`、`NTemp` 和 `PhaseNoise`。 |
+| `复合数据` | 无需设置 **Y parameter1**。 |
+| `极坐标平面` | `S11`、`S12`、`S21` 和 `S22` |
+| `Z 史密斯圆图` | `S11` 和 `S22`。 |
+| `Y 史密斯圆图` | `S11` 和 `S22`。 |
+| `ZY 史密斯圆图` | `S11` 和 `S22`。 |
 
-### **Y parameter2** — Type of parameters to plot `S11` | `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | `NFactor` | `NTemp` | ...
+### **Y parameter2** — 要绘制的参数类型 `S11` | `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | `NFactor` | `NTemp` | ...
 
-基于所设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
+基于所设置的 **绘图类型** 要绘制的参数类型，指定为以下之一。
 
-| Plot type | Y parameter1 |
+| 绘图类型 | Y parameter1 |
 | --- | --- |
-| `X-Y plane` | `S11`、`S12`、`S21`、`S22`、`GroupDelay`、`OIP3`、`NF`、`NFactor`、`NTemp` 和 `PhaseNoise`。 |
-| `Composite data` | 无需设置 **Y parameter1**。 |
-| `Polar plane` | `S11`、`S12`、`S21` 和 `S22` |
-| `Z Smith chart` | `S11` 和 `S22`。 |
-| `Y Smith chart` | `S11` 和 `S22`。 |
-| `ZY smith chart` | `S11` 和 `S22`。 |
+| `X-Y 平面` | `S11`、`S12`、`S21`、`S22`、`GroupDelay`、`OIP3`、`NF`、`NFactor`、`NTemp` 和 `PhaseNoise`。 |
+| `复合数据` | 无需设置 **Y parameter1**。 |
+| `极坐标平面` | `S11`、`S12`、`S21` 和 `S22` |
+| `Z 史密斯圆图` | `S11` 和 `S22`。 |
+| `Y 史密斯圆图` | `S11` 和 `S22`。 |
+| `ZY 史密斯圆图` | `S11` 和 `S22`。 |
 
-### **Y format1** — Plot format `Magnitude (decibels)` (默认) | `Magnitude (linear)` | `Angle(degrees)` | `Angle(radians)` | `Real` | `Imaginary`
+### **Y format1** — 绘图格式 `幅度（分贝）`（默认）| `幅度（线性）` | `角度（度）` | `角度（弧度）` | `实部` | `虚部`
+
+绘图格式，指定为以下之一。
+
+| Y parameter1 | Y format1 |
+| --- | --- |
+| `S11`、`S12`、`S21` 和 `S22`。 | `幅度（分贝）`、`幅度（线性）`、`角度（度）`、`角度（弧度）`、`实部` 和 `虚部`。 |
+| `GroupDelay` | `ns`、`us`、`ms`、`s` 和 `ps`。 |
+| `OIP3` | `dB`、`dBm`、`W` 和 `mW`。 |
+| `NF` | `幅度（分贝）` |
+| `NFactor` | `None` |
+| `NTemp` | `Kelvin` |
+| `PhaseNoise` | `dBc/Hz` |
+
+#### 依赖关系
+
+要启用 **Y format1**，请将 **绘图类型** 设置为 `X-Y 平面`。
+
+### **Y format2** — 绘图格式 `Magnitude (decibels)`（默认）| `Magnitude (linear)` | `Angle(degrees)` | `Angle(radians)` | `Real` | `Imaginary`
 
 绘图格式，指定为以下之一。
 
@@ -232,58 +250,43 @@ IP3 值，对于频率无关的非线性数据，指定为以 dBm 为单位的�
 
 #### 依赖关系
 
-要启用 **Y format1**，请将 **Plot type** 设置为 `X-Y plane`。
+要启用 **Y format1**，请将 **Plot type** 设置为
+`X-Y plane`。
 
-### **Y format2** — Plot format `Magnitude (decibels)` (默认) | `Magnitude (linear)` | `Angle(degrees)` | `Angle(radians)` | `Real` | `Imaginary`
+### **X parameter** — 频率绘图 `Freq`（默认）
 
-绘图格式，指定为以下之一。
+频率绘图，指定为 `Freq`。
 
-| Y parameter1 | Y format1 |
-| --- | --- |
-| `S11`、`S12`、`S21` 和 `S22`。 | `Magnitude (decibels)`、`Magnitude (linear)`、`Angle(degrees)`、`Angle(radians)`、`Real` 和 `Imaginary`。 |
-| `GroupDelay` | `ns`、`us`、`ms`、`s` 和 `ps`。 |
-| `OIP3` | `dB`、`dBm`、`W` 和 `mW`。 |
-| `NF` | `Magnitude (decibels)` |
-| `NFactor` | `None` |
-| `NTemp` | `Kelvin` |
-| `PhaseNoise` | `dBc/Hz` |
+### **X format** — 频率绘图格式 `Hz`（默认）| `Auto` | `kHz` | `MHz` | `GHz` | `THz`
 
-#### 依赖关系
-
-要启用 **Y format1**，请将 **Plot type** 设置为 `X-Y plane`。
-
-### **X parameter** — Frequency plot `Freq` (默认)
-
-频率图，指定为 `Freq`。
-
-### **X format** — Frequency plot format `Hz` (默认) | `Auto` | `kHz` | `MHz` | `GHz` | `THz`
-
-频率图格式，指定为以下之一。
+频率绘图格式，指定为以下之一。
 
 |  |  |  |  |
 | --- | --- | --- | --- |
 | `Auto` | `Hz` | `kHz` | `MHz` |
 | `GHz` | `THz` |  |  |
 
-### **Y scale** — Y-axis scale `Linear` (默认) | `Log`
+### **Y scale** — Y 轴刻度 `Linear`（默认）| `Log`
 
 Y 轴刻度，指定为 `Linear` 或 `Log`。
 
 #### 依赖关系
 
-要启用此参数，请将 **Plot type** 设置为 `X-Y plane`。
+要启用此参数，请将 **Plot type** 设置为 `X-Y
+plane`。
 
-### **X scale** — X-axis scale `Linear` (默认) | `Log`
+### **X scale** — X 轴刻度 `Linear`（默认）| `Log`
 
 X 轴刻度，指定为 `Linear` 或 `Log`。
 
 #### 依赖关系
 
-要启用此参数，请将 **Plot type** 设置为 `X-Y plane`。
+要启用此参数，请将 **Plot type** 设置为 `X-Y
+plane`。
 
-### **Plot** — Plot specified data button
+### **Plot** — 绘制指定数据按钮
 
-绘制指定数据的按钮。
+使用绘图按钮绘制指定数据。
 
 ## 所属库
 
@@ -291,11 +294,11 @@ RF Blockset / Equivalent Baseband / Mixers
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -303,6 +306,6 @@ RF Blockset / Equivalent Baseband / Mixers
 
 ## 描述
 
-使用 Y-parameters 对混频器和本振建模
+使用 Y 参数对混频器和本振进行建模
 
-Y-Parameters Mixer 模块根据其频率相关的 Y-parameters、Y-parameters 的频率、噪声数据（包括相位噪声数据）和非线性数据，对模块对话框中所描述的非线性混频器建模。
+Y-Parameters Mixer 模块根据其随频率变化的 Y 参数、Y 参数的频率、噪声数据（包括相位噪声数据）以及非线性数据，对模块对话框中描述的非线性混频器进行建模。

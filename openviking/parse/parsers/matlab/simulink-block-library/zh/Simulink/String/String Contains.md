@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'String Contains'
-family: 'string'
+family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -18,30 +18,31 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **str** — 要搜索的字符串，标量
+### **str** — 要搜索的字符串 标量
 
 要在其中搜索模式的字符串，指定为标量。
 
 **数据类型：** `string`
 
-### **sub** — 要搜索的字符串模式，标量
+### **sub** — 要搜索的字符串模式 标量
 
 要在字符串中搜索的字符串模式，指定为标量。
 
 **数据类型：** `string`
 ### 输出
 
-### **T/F** — 检测到字符串模式 `1` | `0`
+### **T/F** — 是否检测到字符串模式 `1` | `0`
 
-是否检测到字符串模式，返回为检测到 (`1`) 或未检测到 (`0`)。
+是否检测到字符串模式，返回为已检测到
+(`1`) 或未检测到 (`0`)。
 
 **数据类型：** `Boolean`
 
 ## 参数
 
-### **Case sensitive** — 大小写敏感性 on（默认） | off
+### **Case sensitive** — 区分大小写 on（默认）| off
 
-用于模式检测的大小写敏感性：
+模式检测的大小写敏感性：
 
 on
 :   在搜索模式时考虑字符串大小写。
@@ -49,14 +50,14 @@ on
 off
 :   在搜索模式时不考虑字符串大小写。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `CaseSensitive` |
-| **类型**: character vector |
+| **模块参数**：`CaseSensitive` |
+| **类型**：字符向量 |
 | **值：** `'on'` | `'off'` |
-| **默认值**: `'on'` |
+| **默认值**：`'on'` |
 
 ### **Function** — 模式搜索函数 `Contains` | `Starts with` | `Ends with`
 
@@ -64,22 +65,25 @@ off
 
 - `Contains`
 
-  在字符串中的任意位置搜索模式。这是 String Contains 模块的默认值。
+  在字符串中的任意位置搜索模式。这是
+  String Contains 模块的默认值。
 - `Starts with`
 
-  仅在字符串开头搜索模式。这是 String Starts With 模块的默认值。
+  仅在字符串的开头搜索模式。这是
+  String Starts With 模块的默认值。
 - `Ends with`
 
-  仅在字符串结尾搜索模式。这是 String Ends With 模块的默认值。
+  仅在字符串的末尾搜索模式。这是
+  String Ends With 模块的默认值。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**: `Function` |
-| **类型**: character vector |
+| **模块参数**：`Function` |
+| **类型**：字符向量 |
 | **值：** `'Contains'` | `'Starts with'` | `'Ends with'` |
-| **默认值**: `'Contains'` 用于 String Contains 模块，`'Starts with'` 用于 String Starts With 模块，`'Ends with'` 用于 String Ends With 模块 |
+| **默认值**：String Contains 模块为 `'Contains'`，String Starts With 模块为 `'Starts with'`，String Ends With 模块为 `'Ends with'` |
 
 ## 所属库
 
@@ -105,8 +109,16 @@ Simulink / String
 
 ## 描述
 
-确定字符串是否包含、以模式开头或以模式结尾
+确定字符串是否包含、开头为或结尾为某个模式
 
-String Contains、String Starts With 和 String Ends With 模块确定字符串 (**str**) 是否包含模式 (**sub**)、以模式 (**sub**) 开头或以模式 (**sub**) 结尾。
+String Contains、String Starts With 和 String
+Ends With 模块确定字符串（**str**）是否包含、开头为
+或结尾为某个模式（**sub**）。
 
-String Contains、String Starts With 和 String Ends With 模块完全相同。当 **Function** 设置为 `Contains` 时，模块确定字符串是否包含指定模式。当 **Function** 设置为 `Starts with` 时，模块确定字符串是否以指定模式开头。当 **Function** 设置为 `Ends with` 时，模块确定字符串是否以指定模式结尾。
+String Contains、String Starts With 和 String
+Ends With 模块是相同的。当 **Function** 设置为
+`Contains` 时，模块确定字符串是否包含指定的
+模式。当 **Function** 设置为 `Starts with` 时，
+模块确定字符串是否开头为指定的模式。当
+**Function** 设置为 `Ends with` 时，模块
+确定字符串是否结尾为指定的模式。

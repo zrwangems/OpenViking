@@ -9,55 +9,55 @@ official_category: 'Classic Platform / Basic Software / Function Inhibition Mana
 documentation_page: 'functioninhibitioncaller'
 documentation_source_path: 'ref/functioninhibitioncaller.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Function Inhibition Caller
 
 ## 端口
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 参数
 
-### **客户端端口名称** — AUTOSAR 组件用于调用 FiM 服务接口 `FunctionInhibition` 的客户端端口的名称 `FunctionInhibition` (默认) | 字符向量
+### **Client port name** — AUTOSAR 组件用于调用 FiM 服务接口 `FunctionInhibition` 的客户端端口名称 `FunctionInhibition`（默认）| 字符向量
 
-输入 AUTOSAR 软件组件用于调用 FiM 服务接口 `FunctionInhibition` 的客户端端口的名称。
+输入 AUTOSAR 软件组件用于调用 FiM 服务接口 `FunctionInhibition` 的客户端端口名称。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数：**`PortName` |
-| **类型：**字符向量 |
-| **值：**`'FunctionInhibition'` |
-| **默认值：**`'FunctionInhibition'` |
-
-### **操作** — 指定在 FiM 服务接口 `FunctionInhibition` 中定义的操作 **GetFunctionPermission** (默认)
-
-此模块支持 FiM 操作 **GetFunctionPermission** 并为此操作生成输入端口和输出端口。此操作查询 Function Inhibition Manager 以检查它是否有权限运行相关联的功能。权限基于使用 Diagnostic Service Component 模块创建的抑制配置。如果功能有权限，则操作返回 true；如果功能被禁止，则返回 false。
-
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`Operation` |
-| **类型：**字符向量 |
-| **值：**`'GetFunctionPermission'` |
-| **默认值：**`'GetFunctionPermission'` |
+| **模块参数**：`PortName` |
+| **类型**：character vector |
+| **值**：`'FunctionInhibition'` |
+| **默认值**：`'FunctionInhibition'` |
 
-### **采样时间** — 模块采样时间 -1 (默认) | 标量
+### **Operation** — 指定 FiM 服务接口 `FunctionInhibition` 中定义的操作 `GetFunctionPermission`（默认）
 
-模块采样时间。默认设置为模块从模型继承其采样时间。
+此模块支持 FiM 操作 `GetFunctionPermission`，并为该操作生成输入端口和输出端口。此操作查询 Function Inhibition Manager，以检查其是否有权限运行关联的功能。权限基于使用 Diagnostic Service Component 模块创建的抑制配置。如果该功能有权限，操作返回 true；如果该功能被抑制，操作返回 false。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`st` |
-| **类型：**字符向量 |
-| **值：**`-1 |` 标量 |
-| **默认值：**`-1` |
+| **模块参数**：`Operation` |
+| **类型**：character vector |
+| **值**：`'GetFunctionPermission'` |
+| **默认值**：`'GetFunctionPermission'` |
+
+### **Sample time** — 模块采样时间 -1（默认）| 标量
+
+模块采样时间。默认设置使模块从模型继承其采样时间。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`st` |
+| **类型**：character vector |
+| **值**：`-1 |` scalar |
+| **默认值**：`-1` |
 
 ## 所属库
 
@@ -65,30 +65,30 @@ AUTOSAR Blockset / Classic Platform / Basic Software / Function Inhibition Manag
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2020a 中推出**
+**在 R2020a 中引入**
 
-### R2023a: 基础软件调用方模块支持所有 AUTOSAR 架构版本
+### R2023a：Basic Software 调用方模块支持所有 AUTOSAR schema 版本
 
-从 23a 开始，基础软件调用方 (BSW) 模块支持 AUTOSAR Blockset 支持的所有 AUTOSAR 架构版本。BSW 模块继承模型指定的相同架构版本。从组件生成的代码和 ARXML 反映在模型上指定的架构版本。当您更改由模型指定的架构版本时，软件会自动将软件调用替换为正确的操作。
+从 23a 开始，Basic Software 调用方（BSW）模块支持 AUTOSAR Blockset 支持的所有 AUTOSAR schema 版本。BSW 模块继承模型指定的相同 schema 版本。从组件生成的代码和 ARXML 反映模型上指定的 schema 版本。当您更改模型指定的 schema 版本时，软件会自动将软件调用替换为正确的操作。
 
-在某些情况下，在架构版本之间移动时，软件可能会提示您确认更改。当您更新到新架构版本时，软件也可能会显示警告，因为某些建模模式不再符合配置的 AUTOSAR 架构版本。
+在某些情况下，当在不同 schema 版本之间切换时，软件可能会提示您确认更改。当您更新到新的 schema 版本时，软件还可能显示警告，因为某些建模模式不再符合所配置的 AUTOSAR schema 版本。
 
 ## 描述
 
 调用 AUTOSAR Function Inhibition Manager (FiM) 服务接口 FunctionInhibition
 
-对于 AUTOSAR Classic 平台，AUTOSAR 标准将重要服务定义为在 AUTOSAR 运行时环境 (RTE) 中运行的基础软件 (BSW) 的一部分。示例包括 Diagnostic Event Manager (Dem)、Function Inhibition Manager (FiM) 和 NVRAM Manager (NvM) 提供的服务。在 AUTOSAR RTE 中，AUTOSAR 软件组件通常使用客户端-服务器通信来访问 BSW 服务。
+对于 AUTOSAR Classic Platform，AUTOSAR 标准将重要服务定义为在 AUTOSAR Runtime Environment (RTE) 中运行的 Basic Software (BSW) 的一部分。示例包括 Diagnostic Event Manager (Dem)、Function Inhibition Manager (FiM) 和 NVRAM Manager (NvM) 提供的服务。在 AUTOSAR RTE 中，AUTOSAR 软件组件通常使用客户端-服务器通信访问 BSW 服务。
 
-为了支持 AUTOSAR 组件和服务的系统级建模和仿真，AUTOSAR Blockset 提供了 AUTOSAR 基础软件模块库。该库包含预配置的模块，用于对组件调用 AUTOSAR BSW 服务进行建模，以及 BSW 服务的参考实现。
+为支持 AUTOSAR 组件和服务的系统级建模与仿真，AUTOSAR Blockset 提供了 AUTOSAR Basic Software 模块库。该库包含用于建模组件对 AUTOSAR BSW 服务的调用以及 BSW 服务的参考实现的预配置模块。
 
-如 AUTOSAR 规范中所定义，Function Inhibition Manager 提供一种控制机制，用于根据具有抑制条件的函数标识符 (FID) 有选择地抑制（停用）软件组件可运行实体中的函数执行。
+如 AUTOSAR 规范所定义，Function Inhibition Manager 提供了一种控制机制，用于基于带有抑制条件的函数标识符（FID）选择性地抑制（停用）软件组件可运行实体中的函数执行。
 
 Function Inhibition Manager 与 Diagnostic Event Manager 密切相关，因为抑制条件可以基于诊断事件的状态。Function Inhibition Caller 模块调用 FiM 服务接口 `FunctionInhibition` 以启动 `GetFunctionPermission` 操作。

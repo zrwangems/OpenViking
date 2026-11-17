@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Grounded Neutral (Three-Phase)'
-family: 'connectors-references'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,9 +16,9 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **~** — 三相电气端口
+### **~** — 三相端口电气
 
 可扩展复合（**a**、**b**、
 **c**）三相
@@ -26,13 +26,13 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **建模选项** — 选择对复合三相端口还是扩展三相端口建模 `Composite three-phase ports`（默认） | `Expanded three-phase ports`
+### **Modeling option** — 是对复合三相端口还是扩展三相端口进行建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
-选择对复合三相端口还是扩展三相端口建模。
+是对复合三相端口还是扩展三相端口进行建模。
 
-复合三相端口使用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口构建对应于三相电气系统单线图的模型。
+复合三相端口用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口来构建对应于三相电气系统单线图的模型。
 
-扩展三相端口使用三个独立的电气守恒端口表示三相系统的各相。
+扩展三相端口使用三个独立的电气守恒端口来表示三相系统的各个相。
 
 ## 所属库
 
@@ -40,12 +40,11 @@ Simscape / Electrical / Connectors & References
 
 ## 模块特性
 
-未在 R2025b 中记录。
+在 R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -53,9 +52,9 @@ Simscape / Electrical / Connectors & References
 
 ## 描述
 
-将三相系统的各相连接到电气参考
+将三相系统的相连接到电气参考
 
-Grounded Neutral (Three-Phase) 模块将三相系统的各相连接到地。
+Grounded Neutral (Three-Phase) 模块将三相系统的相连接到地。
 
 **注意**
 

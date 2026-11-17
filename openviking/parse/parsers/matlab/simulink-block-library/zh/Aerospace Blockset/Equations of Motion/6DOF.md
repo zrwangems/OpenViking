@@ -9,63 +9,58 @@ official_category: 'Equations of Motion'
 documentation_page: '6dof'
 documentation_source_path: '6dof.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # 6DOF Library
 
 6DOF
 
-Implement six-degrees-of-freedom equations of motion in simulations, using
-Euler angles and quaternion representations
+在仿真中使用欧拉角和四元数表示实现六自由度运动方程
 
-Model and simulate point mass and six-degrees-of-freedom dynamics of fixed or
-variable mass atmospheric flight vehicles. Define representations of the equations
-of motion in body, wind, and Earth-centered, Earth-fixed (ECEF) coordinate
-systems. Transform between coordinate systems and perform unit conversions to
-ensure model consistency.
+对固定质量或变质量大气飞行器的点质量和六自由度动力学进行建模与仿真。定义机体坐标系、风坐标系和地心固连（ECEF）坐标系中的运动方程表示。在坐标系之间进行变换并执行单位换算，以确保模型一致性。
 
-## Blocks
+## 模块
 
 |  |  |
 | --- | --- |
-| 6DOF (Euler Angles) | Implement Euler angle representation of six-degrees-of-freedom equations of motion |
-| 6DOF (Quaternion) | Implement quaternion representation of six-degrees-of-freedom equations of motion with respect to body axes |
-| 6DOF ECEF (Quaternion) | Implement quaternion representation of six-degrees-of-freedom equations of motion in Earth-centered Earth-fixed (ECEF) coordinates |
-| 6DOF Wind (Quaternion) | Implement quaternion representation of six-degrees-of-freedom equations of motion with respect to wind axes |
-| 6DOF Wind (Wind Angles) | Implement wind angle representation of six-degrees-of-freedom equations of motion |
-| Custom Variable Mass 6DOF (Euler Angles) | Implement Euler angle representation of six-degrees-of-freedom equations of motion of custom variable mass |
-| Custom Variable Mass 6DOF (Quaternion) | Implement quaternion representation of six-degrees-of-freedom equations of motion of custom variable mass with respect to body axes |
-| Custom Variable Mass 6DOF ECEF (Quaternion) | Implement quaternion representation of six-degrees-of-freedom equations of motion of custom variable mass in Earth-centered Earth-fixed (ECEF) coordinates |
-| Custom Variable Mass 6DOF Wind (Quaternion) | Implement quaternion representation of six-degrees-of-freedom equations of motion of custom variable mass with respect to wind axes |
-| Custom Variable Mass 6DOF Wind (Wind Angles) | Implement wind angle representation of six-degrees-of-freedom equations of motion of custom variable mass |
-| Simple Variable Mass 6DOF (Euler Angles) | Implement Euler angle representation of six-degrees-of-freedom equations of motion of simple variable mass |
-| Simple Variable Mass 6DOF (Quaternion) | Implement quaternion representation of six-degrees-of-freedom equations of motion of simple variable mass with respect to body axes |
-| Simple Variable Mass 6DOF ECEF (Quaternion) | Implement quaternion representation of six-degrees-of-freedom equations of motion of simple variable mass in Earth-centered Earth-fixed (ECEF) coordinates |
-| Simple Variable Mass 6DOF Wind (Quaternion) | Implement quaternion representation of six-degrees-of-freedom equations of motion of simple variable mass with respect to wind axes |
-| Simple Variable Mass 6DOF Wind (Wind Angles) | Implement wind angle representation of six-degrees-of-freedom equations of motion of simple variable mass |
+| 6DOF (Euler Angles) | 实现六自由度运动方程的欧拉角表示 |
+| 6DOF (Quaternion) | 实现相对于机体轴的六自由度运动方程的四元数表示 |
+| 6DOF ECEF (Quaternion) | 实现地心固连（ECEF）坐标系中六自由度运动方程的四元数表示 |
+| 6DOF Wind (Quaternion) | 实现相对于风轴的六自由度运动方程的四元数表示 |
+| 6DOF Wind (Wind Angles) | 实现六自由度运动方程的风角表示 |
+| Custom Variable Mass 6DOF (Euler Angles) | 实现自定义变质量六自由度运动方程的欧拉角表示 |
+| Custom Variable Mass 6DOF (Quaternion) | 实现相对于机体轴的自定义变质量六自由度运动方程的四元数表示 |
+| Custom Variable Mass 6DOF ECEF (Quaternion) | 实现地心固连（ECEF）坐标系中自定义变质量六自由度运动方程的四元数表示 |
+| Custom Variable Mass 6DOF Wind (Quaternion) | 实现相对于风轴的自定义变质量六自由度运动方程的四元数表示 |
+| Custom Variable Mass 6DOF Wind (Wind Angles) | 实现自定义变质量六自由度运动方程的风角表示 |
+| Simple Variable Mass 6DOF (Euler Angles) | 实现简单变质量六自由度运动方程的欧拉角表示 |
+| Simple Variable Mass 6DOF (Quaternion) | 实现相对于机体轴的简单变质量六自由度运动方程的四元数表示 |
+| Simple Variable Mass 6DOF ECEF (Quaternion) | 实现地心固连（ECEF）坐标系中简单变质量六自由度运动方程的四元数表示 |
+| Simple Variable Mass 6DOF Wind (Quaternion) | 实现相对于风轴的简单变质量六自由度运动方程的四元数表示 |
+| Simple Variable Mass 6DOF Wind (Wind Angles) | 实现简单变质量六自由度运动方程的风角表示 |
 
-## Topics
+## 主题
 
 - **Fundamental Coordinate System Concepts**
 
-  Define coordinate systems when working with the Aerospace Blockset™ software.
+  在使用 Aerospace Blockset™ 软件时定义坐标系。
 
-## Featured Examples
+## 精选示例
 
 Modeling a Six Degree of Freedom Motion Platform
 
 ### Modeling a Six Degree of Freedom Motion Platform
 
-Connect inputs and outputs of a six degree of freedom equation of motion block.
+连接六自由度运动方程模块的输入和输出。
 
 - Open Model
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击的链接对应于以下 MATLAB 命令：
 
-Run the command by entering it in the MATLAB Command Window.
+请在 MATLAB 命令行窗口中输入该命令以运行它。
 Web browsers do not support MATLAB commands.
 
 Close
@@ -73,9 +68,9 @@ Close
 MathWorks
 MathWorks
 
-选择网站
+Select a Web Site
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站，以便在可提供翻译内容的地方获取翻译内容，并查看本地活动和优惠。根据您的位置，我们建议您选择：。
 
 - (English)
 - (Deutsch)
@@ -84,19 +79,19 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择一个网站
 
-**如何获得最佳网站性能**
+**How to Get Best Site Performance**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
-美洲
+Americas
 
 - América Latina (Español)
 - Canada (English)
 - United States (English)
 
-欧洲
+Europe
 
 - Belgium (English)
 - Denmark (English)
@@ -119,7 +114,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+Asia Pacific
 
 - Australia (English)
 - India (English)
@@ -130,4 +125,4 @@ MathWorks
 - 日本 (日本語)
 - 한국 (한국어)
 
-联系您当地的办事处
+Contact your local office

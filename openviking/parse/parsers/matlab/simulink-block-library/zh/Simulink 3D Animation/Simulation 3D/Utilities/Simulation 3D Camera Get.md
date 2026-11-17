@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simulation 3D Camera Get'
-family: 'simulation-3d'
+family: 'sl3d'
 product_id: 'sl3d'
 product_name: 'Simulink 3D Animation'
 documentation_release: R2025b
@@ -18,7 +18,7 @@ chinese_source: worker-translation
 
 ### 输出
 
-### **Image** — 3D 输出相机图像 *m*×*n*×3 的 RGB 三元组值数组
+### **Image** — 3D 输出相机图像，*m*×*n*×3 的 RGB 三元组值数组
 
 3D 输出相机图像，以 *m*×*n*×3 的 RGB 三元组值数组形式返回。*m* 是图像的垂直分辨率，*n* 是图像的水平分辨率。
 
@@ -30,7 +30,7 @@ chinese_source: worker-translation
 
 ### **Sensor identifier** — 用于标识唯一传感器的编号 `0`（默认）| 正整数
 
-唯一传感器标识符，指定为正整数。此编号用于标识特定传感器。传感器标识符用于区分多传感器系统中的传感器。
+唯一传感器标识符，指定为正整数。此编号用于标识特定传感器。传感器标识符用于区分多传感器系统中的不同传感器。
 
 **示例：** 2
 
@@ -53,7 +53,7 @@ chinese_source: worker-translation
 - `VRML` – X3D ISO 标准坐标系
 - `SAE` – SAE 坐标系
 
-有关不同坐标系的更多详细信息，请参阅 Coordinate Systems in Simulink 3D Animation。
+有关不同坐标系的更多详细信息，请参阅 Simulink 3D Animation 中的坐标系。
 
 **示例：** `MATLAB`
 
@@ -61,27 +61,37 @@ chinese_source: worker-translation
 
 传感器安装位置。
 
-- 当 **Parent name** 为 `Scene Origin` 时，模块将传感器安装到场景原点，并且 **Mounting location** 只能设置为 `Origin`。在仿真期间，传感器保持静止。
-- 当 **Parent name** 是车辆的名称（例如 `SimulinkVehicle1`）时，模块将传感器安装到表中描述的一个预定义安装位置。在仿真期间，传感器随车辆移动。例如，该表提供 ISO 8855 标准坐标系中的安装位置。
+- 当 **Parent name** 为 `Scene
+  Origin` 时，模块将传感器安装到场景原点，并且 **Mounting location** 只能设置为
+  `Origin`。在仿真期间，传感器保持静止。
+- 当 **Parent name** 为车辆名称（例如
+  `SimulinkVehicle1`）时，模块将传感器安装到表中描述的某个预定义安装位置。在仿真期间，
+  传感器随车辆移动。例如，
+  该表提供了 ISO 8855 标准坐标系中的安装位置。
 
-| 安装位置 | 描述 | 相对于车辆原点的姿态 [Roll, Pitch, Yaw] (deg) |
+| Mounting Location | Description | Orientation Relative to Vehicle Origin [Roll, Pitch, Yaw] (deg) |
 | --- | --- | --- |
-| `Origin` | 前向传感器安装到车辆原点，该原点位于地面上且位于车辆的几何中心（请参阅 Coordinate Systems in Simulink 3D Animation）  传感器安装在原点的车辆 | [0, 0, 0] |
-| `Front bumper`  `Front center` | 前向传感器安装到前保险杠  传感器安装在前保险杠的车辆 | [0, 0, 0] |
-| `Rear bumper`  `Rear center` | 后向传感器安装到后保险杠  传感器安装在后保险杠的车辆 | [0, 0, 180] |
-| `Right mirror` | 向下传感器安装到右侧后视镜  传感器安装在右侧后视镜的车辆 | [0, –90, 0] |
-| `Left mirror` | 向下传感器安装到左侧后视镜  传感器安装在左侧后视镜的车辆 | [0, –90, 0] |
-| `Rearview mirror` | 前向传感器安装到车辆内部的后视镜  传感器安装在后视镜的车辆 | [0, 0, 0] |
-| `Hood center` | 前向传感器安装到引擎盖中心  传感器安装在引擎盖中心的车辆 | [0, 0, 0] |
-| `Roof center` | 前向传感器安装到车顶中心  传感器安装在车顶中心的车辆 | [0, 0, 0] |
+| `Origin` | 前向传感器，安装到车辆原点，该原点位于地面上且位于车辆的几何中心（参见 Coordinate Systems in Simulink 3D Animation） 传感器安装在原点的车辆 | [0, 0, 0] |
+| `Front bumper`  `Front center` | 前向传感器，安装到前保险杠 传感器安装在前保险杠的车辆 | [0, 0, 0] |
+| `Rear bumper`  `Rear center` | 后向传感器，安装到后保险杠 传感器安装在后保险杠的车辆 | [0, 0, 180] |
+| `Right mirror` | 向下传感器，安装到右侧后视镜 传感器安装在右侧后视镜的车辆 | [0, –90, 0] |
+| `Left mirror` | 向下传感器，安装到左侧后视镜 传感器安装在左侧后视镜的车辆 | [0, –90, 0] |
+| `Rearview mirror` | 前向传感器，安装到车内后视镜 传感器安装在车内后视镜的车辆 | [0, 0, 0] |
+| `Hood center` | 前向传感器，安装到发动机舱盖中心 传感器安装在发动机舱盖中心的车辆 | [0, 0, 0] |
+| `Roof center` | 前向传感器，安装到车顶中心 传感器安装在车顶中心的车辆 | [0, 0, 0] |
 
-传感器相对于车辆的 (*X*, *Y*, *Z*) 位置取决于车辆类型。要指定车辆类型，请使用您所安装到的 Simulation 3D Vehicle with Ground Following 模块的 **Type** 参数。
+传感器相对于车辆的 (*X*, *Y*, *Z*)
+位置取决于车辆类型。要指定
+车辆类型，请使用您所安装到的 Simulation 3D Vehicle with
+Ground Following 模块的 **Type** 参数。
 
-例如，各表显示了 ISO 8855 标准坐标系中传感器的 *X*、*Y* 和 *Z* 位置。
+例如，这些表显示了 ISO
+8855 标准坐标系中传感器的 *X*、
+*Y* 和 *Z* 位置。
 
-**Box Truck — 相对于车辆原点的传感器位置**
+**Box Truck — Sensor Locations Relative to Vehicle Origin**
 
-| 安装位置 | X (m) | Y (m) | Z (m) |
+| Mounting Location | X (m) | Y (m) | Z (m) |
 | --- | --- | --- | --- |
 | `Front bumper` | 5.10 | 0 | 0.60 |
 | `Rear bumper` | –5 | 0 | 0.60 |
@@ -91,9 +101,9 @@ chinese_source: worker-translation
 | `Hood center` | 3.80 | 0 | 2.10 |
 | `Roof center` | 1.30 | 0 | 4.20 |
 
-**Hatchback — 相对于车辆原点的传感器位置**
+**Hatchback — Sensor Locations Relative to Vehicle Origin**
 
-| 安装位置 | X (m) | Y (m) | Z (m) |
+| Mounting Location | X (m) | Y (m) | Z (m) |
 | --- | --- | --- | --- |
 | `Front bumper` | 1.93 | 0 | 0.51 |
 | `Rear bumper` | –1.93 | 0 | 0.51 |
@@ -103,9 +113,9 @@ chinese_source: worker-translation
 | `Hood center` | 1.44 | 0 | 1.01 |
 | `Roof center` | 0 | 0 | 1.57 |
 
-**Muscle Car — 相对于车辆原点的传感器位置**
+**Muscle Car — Sensor Locations Relative to Vehicle Origin**
 
-| 安装位置 | X (m) | Y (m) | Z (m) |
+| Mounting Location | X (m) | Y (m) | Z (m) |
 | --- | --- | --- | --- |
 | `Front bumper` | 2.47 | 0 | 0.45 |
 | `Rear bumper` | –2.47 | 0 | 0.45 |
@@ -115,7 +125,7 @@ chinese_source: worker-translation
 | `Hood center` | 1.28 | 0 | 1.14 |
 | `Roof center` | –0.25 | 0 | 1.58 |
 
-**Sedan — 相对于车辆原点的传感器位置**
+**Sedan — Sensor Locations Relative to Vehicle Origin**
 
 | 安装位置 | X (m) | Y (m) | Z (m) |
 | --- | --- | --- | --- |
@@ -127,7 +137,7 @@ chinese_source: worker-translation
 | `Hood center` | 1.46 | 0 | 1.11 |
 | `Roof center` | –0.45 | 0 | 1.69 |
 
-**Small Pickup Truck — 相对于车辆原点的传感器位置**
+**小型皮卡车 — 传感器位置相对于车辆原点**
 
 | 安装位置 | X (m) | Y (m) | Z (m) |
 | --- | --- | --- | --- |
@@ -139,7 +149,7 @@ chinese_source: worker-translation
 | `Hood center` | 2.22 | 0 | 1.59 |
 | `Roof center` | 0 | 0 | 2.27 |
 
-**Sport Utility Vehicle — 相对于车辆原点的传感器位置**
+**运动型多用途车 — 传感器位置相对于车辆原点**
 
 | 安装位置 | X (m) | Y (m) | Z (m) |
 | --- | --- | --- | --- |
@@ -153,13 +163,13 @@ chinese_source: worker-translation
 
 **示例：** `Origin`
 
-### **Specify offset** — 指定相对于安装位置的偏移 `off`（默认）| `on`
+### **Specify offset** — 指定相对于安装位置的偏移量 `off`（默认）| `on`
 
-选择此参数以指定相对于安装位置的偏移。
+选择此参数以指定相对于安装位置的偏移量。
 
-### **Relative translation [X, Y, Z]** — 相对于安装位置的平移偏移 `[0,0,0]`（默认）| 实数值 1×3 向量
+### **Relative translation [X, Y, Z]** — 相对于安装位置的平移偏移量 `[0,0,0]`（默认）| 实值 1×3 向量
 
-指定相对于安装位置沿 *X*、*Y* 和 *Z* 轴的平移偏移。
+指定相对于安装位置绕 *X*、*Y* 和 *Z* 轴的平移偏移量。
 
 **示例：** `[0,0,0.01]`
 
@@ -167,9 +177,9 @@ chinese_source: worker-translation
 
 要启用此参数，请选择 **Specify offset**。
 
-### **Relative rotation [Roll, Pitch, Yaw]** — 相对于安装位置的旋转偏移 `[0,0,0]`（默认）| 实数值 1×3 向量
+### **Relative rotation [Roll, Pitch, Yaw]** — 相对于安装位置的旋转偏移量 `[0,0,0]`（默认）| 实值 1×3 向量
 
-指定相对于安装位置绕 *X*、*Y* 和 *Z* 轴的旋转偏移。
+指定相对于安装位置绕 *X*、*Y* 和 *Z* 轴的旋转偏移量。
 
 **示例：** `[0,0,10]`
 
@@ -179,23 +189,23 @@ chinese_source: worker-translation
 
 ### **Sample time** — 采样时间 `-1`（默认）| 正标量
 
-模块的采样时间，单位为秒。3D 仿真环境的帧率是采样时间的倒数。
+模块的采样时间，以秒为单位。3D 仿真环境的帧率是采样时间的倒数。
 
-如果将采样时间设置为 `-1`，模块将使用 Simulation 3D Scene Configuration 模块中指定的采样时间。
+如果将采样时间设置为 `-1`，则该模块使用 Simulation 3D Scene Configuration 模块中指定的采样时间。
 
 #### 参数
 
 ### **Horizontal resolution** — 像素 `uint32(1280)`（默认）| `scalar`
 
-水平图像分辨率，单位为像素。
+水平图像分辨率，以像素为单位。
 
 ### **Vertical resolution** — 像素 `uint32(720)`（默认）| `scalar`
 
-垂直图像分辨率，单位为像素。
+垂直图像分辨率，以像素为单位。
 
-### **Horizontal field of view** — 视场 `single(60)`（默认）| `scalar`
+### **Horizontal field of view** — 视场角 `single(60)`（默认）| `scalar`
 
-水平视场角 (FOV)，单位为 deg。
+水平视场角（FOV），以度为单位。
 
 ## 所属库
 
@@ -203,45 +213,45 @@ Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blo
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 
 **在 R2022b 中引入**
 
-### R2025a：Mounting 参数名称更改
+### R2025a：安装参数名称变更
 
-这些 **Mounting** 参数名称已更改。
+以下 **Mounting** 参数名称已更改。
 
-| 旧参数名 | 新参数名 |
+| 旧参数名称 | 新参数名称 |
 | --- | --- |
 | **Sensor identification** | **Sensor identifier** |
 | **Vehicle name** | **Parent name** |
 | **Vehicle mounting location** | **Mounting location** |
 
-### R2025a：设置 coordinate system 参数
+### R2025a：设置坐标系参数
 
-在 Simulation 3D Camera Get 模块中设置 **Coordinate system** 参数，以表示 3D 环境中 actor 变换的坐标系。
+在 Simulation 3D Camera Get 模块中设置 **Coordinate system** 参数，以表示 3D 环境中执行器变换的坐标系。
 
 ## 描述
 
 相机图像
 
-Simulation 3D Camera Get 模块提供与 3D 可视化环境中理想相机的接口。图像输出是红、绿、蓝 (RGB) 数组。
+Simulation 3D Camera Get 模块为 3D 可视化环境中的理想相机提供接口。图像输出为红、绿、蓝（RGB）数组。
 
-如果将采样时间设置为 `-1`，模块将使用 Simulation 3D Scene Configuration 模块中指定的采样时间。要使用此传感器，请确保模型中包含 Simulation 3D Scene Configuration 模块。
+如果将采样时间设置为 `-1`，该模块将使用 Simulation 3D Scene Configuration 模块中指定的采样时间。要使用此传感器，请确保模型中包含 Simulation 3D Scene Configuration 模块。
 
 **提示**
 
-验证 Simulation 3D Scene Configuration 模块在 Simulation 3D Camera Get 模块之前执行。这样，Unreal Engine® 3D 可视化环境会在 Simulation 3D Camera Get 模块接收数据之前准备好数据。要检查模块执行顺序，请右键单击这些模块并选择 **Properties**。在 **General** 选项卡上，确认以下 **Priority** 设置：
+确认 Simulation 3D Scene Configuration 模块在 Simulation 3D Camera Get 模块之前执行。这样，Unreal Engine® 3D 可视化环境会在 Simulation 3D Camera Get 模块接收数据之前准备好数据。要检查模块执行顺序，请右键点击这些模块并选择 **Properties**。在 **General** 选项卡上，确认以下 **Priority** 设置：
 
 - Simulation 3D Scene Configuration — `0`
 - Simulation 3D Camera Get — `1`
 
-有关执行顺序的更多信息，请参阅 Control and Display Execution Order (Simulink)。
+有关执行顺序的详细信息，请参阅 Control and Display Execution Order (Simulink)。
 
-模块的 **Coordinate system** 参数指定 actor 变换在 3D 环境中如何应用。模块的输出也遵循指定的坐标系。
+该模块的 **Coordinate system** 参数指定了 actor 变换在 3D 环境中的应用方式。该模块的输出也遵循指定的坐标系。

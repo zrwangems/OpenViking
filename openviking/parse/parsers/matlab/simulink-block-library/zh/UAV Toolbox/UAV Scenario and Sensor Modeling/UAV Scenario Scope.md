@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'UAV Scenario Scope'
-family: 'uav-scenario-and-sensor-modeling'
+family: 'uav'
 product_id: 'uav'
 product_name: 'UAV Toolbox'
 documentation_release: R2025b
@@ -18,27 +18,27 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **In\_1, In\_2, ..., In\_N** — lidar 传感器的点云数据输入 *N*-by-*M*-by-3 double matrix | *N*-by-3 double matrix
+### **In\_1, In\_2, ..., In\_N** — 激光雷达传感器的点云数据输入 *N*×*M*×3 双精度矩阵 | *N*×3 双精度矩阵
 
-输入 UAV 场景中传感器的点云数据。对于在 `Lidar Sensors` 表的 **Visualize** 列中勾选进行可视化的每个 lidar 传感器，都会创建一个输入端口。端口名称设置为传感器名称，其中包含该传感器所属平台的名称。例如，名为 `EgoVehicle` 的平台上的 lidar 传感器的输入端口将具有名称 `EgoVehicle/Lidar`。
+UAV Scenario 中传感器的输入点云数据。对于在 `Lidar Sensors` 表的 **Visualize** 列中勾选可视化的每个激光雷达传感器，都会创建一个输入端口。端口名称设置为传感器名称，其中包含传感器所属平台的名称。例如，名为 `EgoVehicle` 的平台上的激光雷达传感器的输入端口名称为 `EgoVehicle/Lidar`。
 
-如果 lidar 传感器的 `Organized point cloud locations` 参数设置为 `'on'`，则该输入端口期望 *N*-by-*M*-by-3 double matrix，其中 *N* 是垂直扫描的数量，*M* 是水平扫描的数量。如果 lidar 传感器的 `Organized point cloud locations` 设置为 `'off'`，则该输入端口期望 *N*-by-3 double matrix，其中 *N* 是点云中的点数。
+如果激光雷达传感器的 `Organized point cloud locations` 参数设置为 `'on'`，则输入端口期望一个 *N*×*M*×3 双精度矩阵，其中 *N* 是垂直扫描数，*M* 是水平扫描数。如果激光雷达传感器的 `Organized point cloud locations` 设置为 `'off'`，则输入端口期望一个 *N*×3 双精度矩阵，其中 *N* 是点云中的点数。
 
 ## 参数
 
-### **Lidar Sensors** — lidar 传感器列表及其可视化表
+### **Lidar Sensors** — 激光雷达传感器列表及其可视化表
 
-`Lidar Sensors` 表列出 UAV 场景中的所有 lidar 传感器。在第一列 **Sensor name** 中，所有传感器名称都与其关联平台一起列出，格式为 *'platform name/sensor name'*。第二列 **Visualize** 为表中的每个 lidar 传感器包含一个复选框。为 lidar 传感器将可视化设置为 `'on'` 会创建一个以该 lidar 传感器名称命名的输入端口。
+`Lidar Sensors` 表列出了 UAV 场景中的所有激光雷达传感器。在第一列 **Sensor name** 中，所有传感器名称与其关联平台一起列出，格式为 *'平台名称/传感器名称'*。第二列 **Visualize** 包含表中每个激光雷达传感器的复选框。将激光雷达传感器的可视化设置为 `'on'` 会创建一个以该激光雷达传感器名称命名的输入端口。
 
-在 **Filter table contents** 中输入字符串，以按传感器在表 **Sensor Name** 列中的名称筛选传感器列表。
+在 **Filter table contents** 中输入字符串，可按表中 **Sensor Name** 列的传感器名称筛选传感器列表。
 
-如果 UAV 场景中的 lidar 传感器列表已更改，请点击 **Refresh sensor table** 以更新 `Lidar Sensors` 表。
+如果 UAV Scenario 中的激光雷达传感器列表已更改，请点击 **Refresh sensor table** 以更新 `Lidar Sensors` 表。
 
-点击 **Show animation** 以显示或隐藏 UAV 场景的动画图窗。
+点击 **Show animation** 可显示或隐藏 UAV 场景的动画图窗。
 
-### **Sample time** — 采样时间 `0.1`（默认值）
+### **Sample time** — 采样时间 `0.1`（默认）
 
-指定可视化的采样时间。如果 `Sample time` 设置为 `-1`，则该模块使用 UAV Scenario Configuration 模块中指定的采样时间。
+指定可视化的采样时间。如果 `Sample time` 设置为 `-1`，则此模块使用 UAV Scenario Configuration 模块中指定的采样时间。
 
 ## 所属库
 
@@ -58,10 +58,10 @@ R2025b 中未记录。
 
 ## 描述
 
-可视化 UAV 场景和 lidar 点云
+可视化 UAV 场景和激光雷达点云
 
-使用该模块可在动画图窗中可视化 UAV 场景和 lidar 点云。在模块参数中点击 **Show animation** 以可视化 UAV 场景。模型运行时，图窗中的可视化会持续更新。
+使用此模块可在动画图窗中可视化 UAV 场景和激光雷达点云。在模块参数中点击 **Show animation** 以可视化 UAV 场景。图窗中的可视化在模型运行时持续更新。
 
-对于在 `Lidar Sensors` 表的 **Visualize** 列中勾选进行可视化的每个传感器，都会创建一个输入端口。
+对于在 `Lidar Sensors` 表的 **Visualize** 列中勾选可视化的每个传感器，都会创建一个输入端口。
 
-要使用该模块，请确保模型中包含 UAV Scenario Configuration 模块。
+要使用此模块，请确保模型中有 UAV Scenario Configuration 模块。

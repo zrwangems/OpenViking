@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Invert 3x3 Matrix'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -27,7 +27,7 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 矩阵逆 3×3 矩阵
 
-输入矩阵的逆矩阵，以 3×3 矩阵形式返回。
+输入矩阵的矩阵逆，以 3×3 矩阵形式返回。
 
 **数据类型：** `double`
 
@@ -45,8 +45,7 @@ R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -58,4 +57,4 @@ R2025b 中未记录。
 
 Invert 3x3 Matrix 模块计算 3×3 矩阵的逆。
 
-如果 *det*(*A*) = 0，则会发生错误并停止仿真。
+如果 *det*(*A*) = 0，则发生错误并停止仿真。

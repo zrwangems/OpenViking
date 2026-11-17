@@ -38,16 +38,17 @@ R2025b 中未记录。
 
 **在 R2014b 中引入**
 
-### R2023a: 将删除
+### R2023a：将被移除
 
-Hydraulic 库将在未来版本中删除。请改用 Isothermal Liquid 库。Isothermal Liquid 库中的模块提供更高的精度、可用性和数值性能。
+Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。
+Isothermal Liquid 库中的模块提供更高的精度、可用性和数值性能。
 
 有关更新模型的详细信息，请参阅 Upgrading Hydraulic Models to Use Isothermal Liquid Blocks。
 
 ## 描述
 
-(将删除) 用于设置两个节点之间初始压力差的 Hydraulic 元件
+（将被移除）用于设置两个节点之间初始压力差的液压元件
 
-Infinite Hydraulic Resistance 模块表示液压网络中的一个断点。流体不流经该断点。但是，由连接到回路的 Custom Hydraulic Fluid 模块指定的流体属性在断点两侧相同。使用此模块可为端口 **A** 和端口 **B** 之间的压力差设置优先级和初始目标值。
+Infinite Hydraulic Resistance 模块表示液压网络中的断点。流体不会通过该断点流动。但是，连接到回路的 Custom Hydraulic Fluid 模块所指定的流体属性在断点两侧是相同的。使用此模块可将优先级和初始目标值设置为端口 **A** 与端口 **B** 之间的压力差。
 
-**Variables** 选项卡允许你在仿真之前为 **Pressure difference** 变量设置优先级和初始目标值。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
+**Variables** 选项卡允许您在仿真前为 **Pressure difference** 变量设置优先级和初始目标值。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。

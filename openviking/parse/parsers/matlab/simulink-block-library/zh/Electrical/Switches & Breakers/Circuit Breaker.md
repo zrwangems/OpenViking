@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Circuit Breaker'
-family: 'switches-breakers'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -24,7 +24,8 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此端口，请将 **Modeling option** 设置为 `PS control port`。
+要启用此端口，请将 **Modeling option** 设置为
+`PS control port`。
 ### 守恒
 
 ### **1** — 端口 1 电气
@@ -41,7 +42,8 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此端口，请将 **Modeling option** 设置为 `Electrical control port`。
+要启用此端口，请将 **Modeling option** 设置为
+`Electrical control port`。
 
 ### **-** — 负端口电气
 
@@ -49,13 +51,14 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此端口，请将 **Modeling option** 设置为 `Electrical control port`。
+要启用此端口，请将 **Modeling option** 设置为
+`Electrical control port`。
 
 ## 参数
 
-### **Modeling option** — 指定物理控制端口还是电气控制端口 `PS control port`（默认） | `Electrical control port`
+### **Modeling option** — 指定物理控制端口还是电气控制端口 `PS control port`（默认）| `Electrical control port`
 
-为开关门极指定物理控制端口还是电气控制端口。
+指定开关门极使用物理控制端口还是电气控制端口。
 
 ### **Closed resistance** — 闭合电阻 `0.001` `Ohm`（默认）
 
@@ -67,11 +70,15 @@ chinese_source: worker-translation
 
 ### **Threshold** — 阈值电压 `0.5` `V`（默认）
 
-控制端口 **vT** 的阈值电压。该模块使用阈值电压以及仿真开始时 **vT** 的值来确定断路器初始是断开还是闭合。如果将 **Breaker Behavior** 设置为 `Open when current crosses zero after vT >= Threshold`，则当电压升至阈值以上时，断路器在其电流过零时断开。如果将 **Breaker Behavior** 设置为 `Open when vT >= Threshold`，则断路器在电压升至阈值以上时立即断开。当控制端口电压降至阈值以下时，断路器闭合。
+控制端口 **vT** 的阈值电压。该模块使用阈值电压和仿真开始时 **vT** 的值来确定断路器初始是断开还是闭合。如果将 **Breaker Behavior** 设置为
+`当电流在 vT >= 之后过零时打开`
+Threshold`，当电压升至阈值以上时，断路器在电流过零时断开。如果将 **Breaker
+Behavior** 设置为 `Open when vT >=
+Threshold`，断路器在电压升至阈值以上时立即断开。当控制端口电压降至阈值以下时，断路器闭合。
 
-### **Breaker Behavior** — *vT* 升至阈值以上时的断路器行为 `Open when current crosses zero after vT >= Threshold`（默认） | `Open when vT >= Threshold`
+### **Breaker Behavior** — *vT* 升至阈值以上时的断路器行为 `当电流在 vT >= 之后过零时打开` Threshold`（默认）| `Open when vT >= Threshold`
 
-当控制端口 **vT** 处的值大于或等于 **Threshold** 参数的值时的断路器行为。断路器既可以在电压升至阈值以上时立即断开，也可以在其电流也过零时断开。
+当控制端口 **vT** 的值大于或等于 **Threshold** 参数的值时的断路器行为。断路器可以在电压升至阈值以上时立即断开，也可以在其电流同时过零时断开。
 
 ## 所属库
 
@@ -79,7 +86,7 @@ Simscape / Electrical / Switches & Breakers
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -93,12 +100,12 @@ Simscape / Electrical / Switches & Breakers
 
 单极单掷断路器
 
-Circuit Breaker 模块对单相断路器进行建模，该断路器使用外部信号和相电流信息来断开电路。
+Circuit Breaker 模块建模一个单相断路器，该断路器使用外部信号和相电流信息来断开电路。
 
 下表显示了外部信号 **vT** 和 **Breaker Behavior** 参数如何控制模块行为。
 
 | 条件 | | 模块行为 | 使用的电阻参数 |
 | --- | --- | --- | --- |
 | **vT** < **Threshold** | | 断路器闭合。端口 **1** 连接到端口 **2**。 | **Closed Resistance** |
-| **vT** ≥**Threshold** | `Open when current crosses zero after vT >= Threshold` | 当端口 **1** 中的电流过零时，相线与端口 **2** 断开。断路器断开。 | **Open Conductance** |
+| **vT** ≥**Threshold** | `当电流在 vT >= 之后过零时打开` Threshold` | 当端口 **1** 中的电流过零时，相与端口 **2** 断开。断路器断开。 | **Open Conductance** |
 | `Open when vT >= Threshold` | 断路器断开。 |

@@ -50,10 +50,11 @@ R2025b 中未记录。
 
 a2+b2
 
-输出为与输入采用相同 Q 格式的 IQ 数。
+输出是与输入具有相同 Q 格式的 IQ 数。
 
 **注意**
 
-此模块的实现不会在代码生成期间调用对应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关更多信息，请参阅 Using the IQmath Library。
+此模块的实现不会在代码生成期间调用相应的 Texas Instruments® 库函数。TI 函数使用全局 Q
+设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关更多信息，请参阅 Using the IQmath Library。
 
 - C2000 Magnitude IQN 模块

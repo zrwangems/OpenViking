@@ -9,119 +9,102 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: '../sdl/index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Simscape
 
-Learn the basics of Simscape Driveline
+学习 Simscape Driveline 的基础知识
 
-Model and simulate rotational and translational mechanical
-systems
+对旋转和平移机械系统进行建模和仿真
 
-- Release Notes
-- PDF Documentation
-- PDF Documentation
+- 发行说明
+- PDF 文档
+- PDF 文档
 
-- **Release Notes**
-- **PDF Documentation**
-- **PDF Documentation**
+- **发行说明**
+- **PDF 文档**
+- **PDF 文档**
 
-Simscape™
-Driveline™ provides component libraries for modeling and simulating rotational and
-translational mechanical systems. It includes models of worm gears, lead screws, and vehicle
-components such as engines, tires, transmissions, and torque converters. You can use these
-components to model the transmission of mechanical power in helicopter drivetrains,
-industrial machinery, automotive powertrains, and other applications. You can integrate
-electrical, hydraulic, pneumatic, and other physical systems into your model using
-components from the Simscape family of products.
+Simscape™ Driveline™ 提供用于对旋转和平移机械系统进行建模和仿真的组件库。它包含蜗轮蜗杆、丝杠以及车辆组件（如发动机、轮胎、变速器和液力变矩器）的模型。您可以使用这些组件来对直升机传动系统、工业机械、汽车动力总成及其他应用中的机械动力传输进行建模。您可以使用 Simscape 产品系列中的组件，将电气、液压、气动及其他物理系统集成到您的模型中。
 
-Simscape
-Driveline helps you develop control systems and test system-level performance. You can
-create custom component models with the MATLAB® based Simscape language, which enables text-based authoring of physical modeling components,
-domains, and libraries. You can parameterize your models using MATLAB variables and expressions, and design control systems for your physical system
-in Simulink®. To deploy your models to other simulation environments, including
-hardware-in-the-loop (HIL) systems, Simscape
-Driveline supports C-code generation.
+Simscape Driveline 可帮助您开发控制系统并测试系统级性能。您可以使用基于 MATLAB® 的 Simscape 语言创建自定义组件模型，该语言支持基于文本的方式编写物理建模组件、域和库。您可以使用 MATLAB 变量和表达式对模型进行参数化，并在 Simulink® 中为您的物理系统设计控制系统。要将模型部署到其他仿真环境（包括硬件在环 (HIL) 系统），Simscape Driveline 支持 C 代码生成。
 
-## Get Started
+## 入门
 
-Learn the basics of Simscape Driveline
+学习 Simscape Driveline 的基础知识
 
-## Applications
+## 应用
 
-Example models illustrating specific functionality and
-applications
+展示特定功能和应用示例模型
 
-## Driveline Modeling
+## Driveline 建模
 
-Model construction techniques and best practices
+模型构建技术和最佳实践
 
-## Brakes and Detents
+## 制动器和棘爪
 
-Rotational and translational friction and detents that limit, slow, or
-stop motion
+限制、减慢或停止运动的旋转和平移摩擦和棘爪
 
-## Clutches
+## 离合器
 
-Driveline axes coupled with Coulomb friction
+通过库仑摩擦耦合的 Driveline 轴
 
-## Couplings and Drives
+## 联轴器和驱动
 
-Dynamic transfer of torques and motions
+扭矩和运动的动态传递
 
-## Engines & Motors
+## 发动机和电机
 
-Engines and motors as sources of driveline motion
+作为 Driveline 运动来源的发动机和电机
 
-## Gears
+## 齿轮
 
-Coupled simple and complex motions
+耦合的简单和复杂运动
 
-## Inertias and Loads
+## 惯量和负载
 
-Variable and unbalanced driveline loads
+可变和不平衡的 Driveline 负载
 
-## Sensors
+## 传感器
 
-Rotational and translational measurements for driveline components
+Driveline 组件的旋转和平移测量
 
-## Sources
+## 源
 
-Random noise and sinusoidal oscillations for translational and rotational
-systems
+用于平移和旋转系统的随机噪声和正弦振荡
 
-## Tires and Vehicles
+## 轮胎和车辆
 
-Simple and complex tires, vehicle bodies
+简单和复杂的轮胎、车体
 
-## Transmissions
+## 变速器
 
-Power transmission, gear ratios
+动力传输、齿轮比
 
-## Driveline Simulation
+## Driveline 仿真
 
-Simulation performance, troubleshooting simulation issues
+仿真性能、仿真问题故障排除
 
-## Real-Time Simulation
+## 实时仿真
 
-Simulation performance for real-time deployment
+用于实时部署的仿真性能
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个与以下 MATLAB 命令对应的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：。
 
 - (English)
 - (Deutsch)
@@ -130,11 +113,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -165,7 +148,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

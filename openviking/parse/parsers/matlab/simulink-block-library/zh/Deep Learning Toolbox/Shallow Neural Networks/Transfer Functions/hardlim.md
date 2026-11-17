@@ -9,35 +9,35 @@ official_category: 'Shallow Neural Networks / Transfer Functions'
 documentation_page: 'hardlim'
 documentation_source_path: 'ref/hardlim.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # hardlim
 
 ## 端口
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 参数
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 所属库
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2006a 之前引入**
 
 ## 描述
 
-硬限制传递函数
+硬限幅传递函数

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Weighted Sample Time Math'
-family: 'math-operations'
+family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -29,16 +29,16 @@ chinese_source: worker-translation
 
 根据 **Operation** 和 **Weight value** 参数的设置以及包含该模块的函数的执行上下文，该模块输出加权采样时间、加权采样率或经数学调整的加权采样时间。
 
-- 加权采样时间 – 在周期函数中使用时，加权采样时间是输入信号的采样时间乘以 **Weight value** 参数指定的值（`Ts * w`）。在非周期或触发函数中使用时，加权采样时间是自上次执行以来经过的时间乘以权重值。
-- 加权采样率 – 在周期函数中使用时，加权采样率是加权采样时间的倒数（`1/(Ts * w)`）。当模块在非周期函数中使用时，加权采样率不相关。
-- 经数学调整的加权采样时间 – 该模块将输入信号 `u` 的值加到加权采样时间、从加权采样时间中减去 `u`，或将 `u` 乘以或除以加权采样时间。
+- 加权采样时间 – 在周期函数中使用时，加权采样时间是输入信号的采样时间乘以 **Weight value** 参数指定的值（`Ts * w`）。在非周期或触发函数中使用时，加权采样时间是从上次执行以来经过的时间乘以权重值。
+- 加权采样率 – 在周期函数中使用时，加权采样率是加权采样时间的倒数（`1/(Ts * w)`）。当模块在非周期函数中使用时，加权采样率不适用。
+- 经数学调整的加权采样时间 – 该模块将输入信号 `u` 的值加到加权采样时间上、从加权采样时间中减去 `u`，或者将 `u` 与加权采样时间相乘或相除。
 
-用于推导输出的采样时间和输出的数据类型取决于模块是在周期还是非周期（或触发）执行上下文中使用。
+用于推导输出的采样时间以及输出的数据类型取决于该模块是在周期还是非周期（或触发）执行上下文中使用。
 
-| 模块执行上下文 | 用于推导输出的采样时间 | 输出信号的数据类型 |
+| 模块的执行上下文 | 用于推导输出的采样时间 | 输出信号的数据类型 |
 | --- | --- | --- |
-| 周期 | 模型的采样时间 | - 符号与输入信号值的符号相同。 - 字长为输入信号字长或 `long   long` 的一半中的较大值。 - 缩放为加权采样时间的最佳精度缩放。 |
-| 非周期或触发 | 自上次执行以来经过的时间 | - 数据类型为无符号。 - 字长足够大，以考虑模型配置参数 **Application lifespan** 的设置。 - 缩放为模型配置参数 **Clock resolution** 的设置的最佳精度缩放。 |
+| 周期 | 模型的采样时间 | - 符号与输入信号值的符号相同。 - 字长是输入信号字长或 `long long` 的一半中的较大值。 - 缩放是加权采样时间的最佳精度缩放。 |
+| 非周期或触发 | 自上次执行以来经过的时间 | - 数据类型为无符号。 - 字长足够大，以考虑模型配置参数 **Application lifespan** 的设置。 - 缩放是模型配置参数 **Clock resolution** 设置的最佳精度缩放。 |
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 
@@ -48,37 +48,37 @@ chinese_source: worker-translation
 
 ### **Operation** — 数学运算 `+`（默认）| `-` | `*` | `/` | `Ts Only` | `1/Ts Only`
 
-指定用于调整输入信号的运算。例如，如果指定 `+` 运算，则该模块将加权采样时间加到输入信号的值。当在非周期函数中使用该模块时，值 `1/Ts Only` 不相关。
+指定用于调整输入信号的运算。例如，如果指定 `+` 运算，该模块将加权采样时间加到输入信号的值上。当在非周期函数中使用该模块时，值 `1/Ts Only` 不适用。
 
-#### 程序化使用
-
-|  |
-| --- |
-| **模块参数：** `TsampMathOp` |
-| **类型：** 字符向量 |
-| **值：** `'+' | '-' | '*' | '/' | 'Ts Only' | '1/Ts Only'` |
-| **默认值：** `'+'` |
-
-### **Weight value** — 采样时间权重 `1.0`（默认）| 实值标量
-
-以实值标量形式输入采样时间的权重。该模块将输入信号的采样时间乘以您指定的值。例如，如果在采样时间为 `0.2` 的模型的周期函数中使用该模块，并且指定权重值为 `3`，则加权采样时间为 `0.6`。
-
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `weightValue` |
-| **类型：** 字符向量 |
-| **值：** 实值标量 |
-| **默认值：** `1.0` |
+| **模块参数**：`TsampMathOp` |
+| **类型**：character vector |
+| **值**：`'+' | '-' | '*' | '/' | 'Ts Only' | '1/Ts Only'` |
+| **默认值**：`'+'` |
+
+### **Weight value** — 采样时间的权重 `1.0`（默认）| 实值标量
+
+以实值标量形式输入采样时间的权重。该模块将输入信号的采样时间乘以您指定的值。例如，如果在采样时间为 `0.2` 的模型的周期函数中使用该模块，并指定权重值为 `3`，则加权采样时间为 `0.6`。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`weightValue` |
+| **类型**：character vector |
+| **值**：real-valued scalar |
+| **默认值**：`1.0` |
 
 ### **Implement using** — 调整采样时间的方法 `Online Calculations`（默认）| `Offline Scaling Adjustment`
 
-选择通过应用在线计算还是通过应用离线缩放来调整采样时间。此选项仅适用于定点运算和整数运算。对于浮点数据类型，模块会忽略此选项。
+选择是通过应用在线计算还是通过应用离线缩放来调整采样时间。此选项仅适用于定点运算和整数运算。对于浮点数据类型，该模块会忽略此选项。
 
 | `Ts * w` 的结果 | 两种模式的输出数据类型 | 模块执行 |
 | --- | --- | --- |
-| 2 的幂（正或负）或整数值 | 当 **Output data type** 设置为 `Inherit: Inherit via internal rule` 时相同 | 在两种模式下效率相同 |
+| 2 的幂（正或负）或整数值 | 当 **Output data type** 设置为 `Inherit: Inherit via internal rule` 时相同 | 两种模式下效率相同 |
 | 不是 2 的幂且不是整数值 | 不同 | 离线缩放模式效率更高 |
 
 **注意**
@@ -89,14 +89,14 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **Operation** 设置为 `*` 或 `/`。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `TsampMathImp` |
-| **类型：** 字符向量 |
-| **值：** `'Online Calculations' | 'Offline Scaling Adjustment'` |
-| **默认值：** `'Online Calculations'` |
+| **模块参数**：`TsampMathImp` |
+| **类型**：character vector |
+| **值**：`'Online Calculations' | 'Offline Scaling Adjustment'` |
+| **默认值**：`'Online Calculations'` |
 
 ### 信号属性
 
@@ -104,33 +104,33 @@ chinese_source: worker-translation
 
 指定模块输出信号的数据类型。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**： `OutDataTypeStr` |
-| **类型**： 字符向量 |
-| **值**： `'Inherit: Inherit via internal rule'` | `'Inherit: Inherit via back propagation'` | `double` | `single` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16,0)` | `fixdt(1,16,20,0)` | `'<data type expression>'` |
-| **默认值**： `'Inherit: Inherit via internal rule'` |
+| **模块参数**：`OutDataTypeStr` |
+| **类型**：character vector |
+| **值**：`'Inherit: Inherit via internal rule'` | `'Inherit: Inherit via back propagation'` | `double` | `single` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16,0)` | `fixdt(1,16,20,0)` | `'<data type expression>'` |
+| **默认值**：`'Inherit: Inherit via internal rule'` |
 
 ### **Integer rounding mode** — 定点运算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
 指定定点运算的舍入模式。有关详细信息，请参阅 Rounding Modes (Fixed-Point Designer)。
 
-模块参数舍入到最接近的可表示值。要控制模块参数的舍入，请在掩码字段中输入使用 MATLAB 舍入函数的表达式。
+模块参数舍入到最接近的可表示值。要控制模块参数的舍入，请在掩码字段中使用 MATLAB 舍入函数输入表达式。
 
 #### 依赖关系
 
 要启用此参数，请将 **Operation** 参数设置为 `+`、`-`、`*` 或 `/`。如果将 **Operation** 设置为 `*` 或 `/`，还必须将 **Implement using** 参数设置为 `Online Calculations`。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `RndMeth` |
-| **类型：** 字符向量 |
-| **值：** `'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | 'Zero'` |
-| **默认值：** `'Floor'` |
+| **模块参数**：`RndMeth` |
+| **类型**：character vector |
+| **值**：`'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | 'Zero'` |
+| **默认值**：`'Floor'` |
 
 ### **Saturate on integer overflow** — 溢出操作的方法 `off`（默认）| `on`
 
@@ -138,42 +138,42 @@ chinese_source: worker-translation
 
 | 目标 | 操作 | 溢出行为 | 示例 |
 | --- | --- | --- | --- |
-| 模型可能有溢出情况，并且您希望在生成的代码中显式提供饱和保护。 | 选中复选框（`on`）。 | 饱和到数据类型可表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型可表示的最大值是 127。大于此最大值的模块运算结果会导致 8 位整数溢出。选中此参数时，模块输出在 127 处饱和。类似地，模块输出在最小值 -128 处饱和。 |
-| 您希望优化生成的代码。您希望避免过度指定模块如何处理超出范围的信号。有关详细信息，请参阅 Troubleshoot Signal Range Errors。 | 清除复选框（`off`）。 | 将溢出环绕为数据类型可表示的相应值。 | `int8`（有符号 8 位整数）数据类型可表示的最大值是 127。大于此最大值的模块运算结果会导致 8 位整数溢出。清除此参数时，软件将导致溢出的值解释为 `int8`，这可能会产生意外结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时是 -126。 |
+| 模型可能存在溢出情况，并且您希望在生成的代码中提供显式的饱和保护。 | 选中复选框（`on`）。 | 饱和到数据类型可以表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值是 127。大于此最大值的模块运算结果会导致 8 位整数溢出。当您选择此参数时，模块输出在 127 处饱和。类似地，模块输出在最小值 -128 处饱和。 |
+| 您希望优化生成的代码。您希望避免过度指定模块如何处理超出范围的信号。有关详细信息，请参阅 Troubleshoot Signal Range Errors。 | 清除复选框（`off`）。 | 将溢出环绕到数据类型可表示的适当值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值是 127。大于此最大值的模块运算结果会导致 8 位整数溢出。当您清除此参数时，软件将导致溢出的值解释为 `int8`，这可能会产生意外结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时为 -126。 |
 
-当您选中 **Saturate on integer overflow** 时，饱和应用于模块上的每个内部运算，而不仅仅是输出或结果。当代码生成器检测到不可能发生溢出时，它不会生成饱和代码。
+当您选择 **Saturate on integer overflow** 时，饱和适用于模块上的每个内部运算，而不仅仅是输出或结果。当代码生成器检测到不可能发生溢出时，它不会生成饱和代码。
 
 #### 依赖关系
 
 要启用此参数，请将 **Operation** 参数设置为 `+`、`-`、`*` 或 `/`。如果将 **Operation** 设置为 `*` 或 `/`，还必须将 **Implement using** 参数设置为 `Online Calculations`。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `SaturateOnIntegerOverflow` |
-| **类型：** 字符向量 |
-| **值：** `'off' | 'on'` |
-| **默认值：** `'off'` |
+| **模块参数**：`SaturateOnIntegerOverflow` |
+| **类型**：character vector |
+| **值**：`'off' | 'on'` |
+| **默认值**：`'off'` |
 
 ### **Mode** — 数据类型模式 `Inherit`（默认）| `Built in` | `Fixed point` | `Expression`
 
-选择希望如何指定 **Output data type** 的数据类型属性。您可以选择：
+选择您希望如何指定 **Output data type** 的数据类型属性。您可以选择：
 
 - `Inherit` — 指定继承数据类型的规则，例如 `Inherit: Same as input`。
-- `Built in` — 指定内置数据类型，例如 `double`。
+- `Built in`— 指定内置数据类型，例如 `double`。
 - `Fixed point` — 指定数据类型的定点属性。
-- `Expression` — 指定可计算为有效数据类型的表达式，例如 `fixdt(1,16)`。
+- `Expression` — 指定求值为有效数据类型的表达式，例如 `fixdt(1,16)`。
 
-有关详细信息，请参阅使用 Data Type Assistant 指定数据类型。
+有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
 ### **Signedness** — 定点数据的有符号性 `Signed`（默认）| `Unsigned`
 
-指定定点数据是有符号还是无符号。`Signed` 数据可以表示正值和负值，但 `Unsigned` 数据仅表示正值。有关详细信息，请参阅使用 Data Type Assistant 指定数据类型。
+指定定点数据是有符号还是无符号。`Signed` 数据可以表示正值和负值，但 `Unsigned` 数据仅表示正值。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
 ### **Scaling** — 定点数据的缩放方法 `Best precision`（默认）| `Binary point`
 
-指定定点数据的缩放方法，以避免溢出情况并最小化量化误差。有关详细信息，请参阅使用 Data Type Assistant 指定数据类型。
+指定定点数据的缩放方法，以避免溢出情况并最小化量化误差。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
 #### 依赖关系
 
@@ -181,7 +181,7 @@ chinese_source: worker-translation
 
 ### **Word length** — 保存量化整数的字的位大小 `16`（默认）| 从 2 到 128 的整数
 
-将保存量化整数的字的位大小指定为从 2 到 128 的正整数。有关详细信息，请参阅使用 Data Type Assistant 指定数据类型。
+将保存量化整数的字的位大小指定为从 2 到 128 的正整数。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
 #### 依赖关系
 
@@ -220,7 +220,7 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **Mode** 设置为 `Built in` 或 `Fixed point`。有关详细信息，请参阅使用 Data Type Assistant 指定数据类型。
+要启用此参数，请将 **Mode** 设置为 `Built in` 或 `Fixed point`。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
 
 ## 所属库
 
@@ -228,8 +228,8 @@ Simulink / Math Operations
 
 ## 模块特性
 
-|  |
-| --- |
+|  |  |
+| --- | --- |
 | **数据类型** | `Boolean` | `double` | `fixed point` | `integer` | `single` |
 | **直接馈通** | `yes` |
 | **多维信号** | `no` |
@@ -246,11 +246,11 @@ Simulink / Math Operations
 
 **在 R2006a 之前引入**
 
-### R2023b: Weighted Sample Time Math 模块更新
+### R2023b：Weighted Sample Time Math 模块更新
 
 Weighted Sample Time Math 模块现在支持：
 
-- 其他输出类型
+- 额外的输出类型
 
   - `double`
   - `single`
@@ -264,37 +264,41 @@ Weighted Sample Time Math 模块现在支持：
   - `uint64`
   - `fixdt(1,16,0)`
   - `fixdt(1,16,20,0)`
-- `Fixed point` 作为 **Mode** 参数的新选项，这会启用以下定点参数：
+- `Fixed point` 作为 **Mode** 参数的新选项，可启用以下定点参数：
 
   - **Signedness**
   - **Scaling**
   - **Word length**
   - **Slope**
   - **Bias**
-  - **Data type override**
+  - **数据类型替代**
 
 ## 描述
 
 支持涉及采样时间的计算
 
-Weighted Sample Time 模块输出加权采样时间、加权采样率或经数学调整的加权采样时间，具体取决于 **Operation** 和 **Weight value** 参数的设置以及函数输出的执行上下文。
+Weighted Sample Time 模块根据 **Operation** 和 **Weight value** 参数的设置以及函数输出的执行上下文，输出加权采样时间、加权采样率或经数学调整的加权采样时间。
 
 您可以使用 **Operation** 参数指定模块运算。
 
-用于推导输出的采样时间取决于模块是在周期还是非周期（或触发）执行上下文中使用。对于周期执行上下文，模块使用模型的采样时间。对于非周期或触发执行上下文，模块使用离散信号的采样时间。
+用于推导输出的采样时间取决于该模块是在周期还是非周期（或触发）执行上下文中使用。对于周期执行上下文，该模块使用模型的采样时间。对于非周期或触发执行上下文，该模块使用离散信号的采样时间。
 
-使用 **Weight value** 参数指定采样时间权重因子。如果权重值 `w` 为 `1`，该值不会出现在模块图标上的方程中。
+使用 **Weight value** 参数指定采样时间权重因子。如果权重值 `w` 为 `1`，则该值不会出现在模块图标上的方程中。
 
 **提示**
 
-您可以使用 Weighted Sample Time 和 Weighted Sample Time Math 模块从 Simulink® 信号中提取采样时间。将 **Operation** 参数设置为 `Ts Only`，并将 **Weight value** 参数设置为 `1.0`。使用此配置，模块输出输入信号的采样时间。
+您可以使用 Weighted Sample Time 和 Weighted Sample Time Math 模块从 Simulink® 信号中提取采样时间。将 **Operation** 参数设置为 `Ts Only`，并将 **Weight value** 参数设置为 `1.0`。使用此配置，该模块输出输入信号的采样时间。
 
-该模块使用 MATLAB® 运算符的优先级规则计算输出。例如，如果 **Operation** 参数设置为 `+`，则该模块使用以下表达式计算输出：
+该模块使用 MATLAB® 运算符的优先级规则计算其输出。例如，如果 **Operation** 参数设置为 `+`，该模块使用以下表达式计算输出：
 
-    u + (Ts * w)
+```
+u + (Ts * w)
+```
 
-如果 **Operation** 参数设置为 `/`，则该模块使用以下表达式计算输出：
+如果 **Operation** 参数设置为 `/`，该模块使用以下表达式计算输出：
 
-    (u / Ts) / w)
+```
+(u / Ts) / w)
+```
 
-有关详细信息，请参阅运算符优先级。
+有关详细信息，请参阅 Operator Precedence。

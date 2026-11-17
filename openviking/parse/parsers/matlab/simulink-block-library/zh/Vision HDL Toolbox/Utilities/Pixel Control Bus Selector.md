@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Pixel Control Bus Selector'
-family: 'utilities'
+family: 'visionhdl'
 product_id: 'visionhdl'
 product_name: 'Vision HDL Toolbox'
 documentation_release: R2025b
@@ -21,42 +21,38 @@ chinese_source: worker-translation
 ### **Port\_1** — 伴随像素流 `pixelcontrol` 总线的控制信号
 
 `pixelcontrol` 总线包含五个信号。
-这些信号描述像素的有效性及其在帧中的位置。有关更多信息，请参阅 Pixel Control Bus。
+这些信号描述像素的有效性及其在帧中的位置。有关详细信息，请参阅 Pixel Control Bus。
 
 **数据类型：** `bus`
 ### 输出
 
-### **Port\_1** — 帧中水平线的第一个像素标量
+### **Port\_1** — 帧水平行中的第一个像素 标量
 
-帧中水平线的第一个像素，以 `Boolean` 标量形式返回。此端口从输入总线返回
-`hStart` 信号。
-
-**数据类型：** `Boolean`
-
-### **Port\_2** — 帧中水平线的最后一个像素标量
-
-帧中水平线的最后一个像素，以 `Boolean` 标量形式返回。此端口从输入总线返回
-`hEnd` 信号。
+帧水平行中的第一个像素，以 `Boolean` 标量形式返回。此端口从输入总线返回 `hStart` 信号。
 
 **数据类型：** `Boolean`
 
-### **Port\_3** — 帧第一（顶部）行的第一个像素标量
+### **Port\_2** — 帧水平行中的最后一个像素 标量
 
-帧第一（顶部）行的第一个像素，以 `Boolean` 标量形式返回。此端口从输入总线返回
-`vStart` 信号。
-
-**数据类型：** `Boolean`
-
-### **Port\_4** — 帧最后（底部）行的最后一个像素标量
-
-帧最后（底部）行的最后一个像素，以 `Boolean` 标量形式返回。此端口从输入总线返回
-`vEnd` 信号。
+帧水平行中的最后一个像素，以 `Boolean` 标量形式返回。此端口从输入总线返回 `hEnd` 信号。
 
 **数据类型：** `Boolean`
 
-### **Port\_5** — 有效像素指示符标量
+### **Port\_3** — 帧第一（顶部）行中的第一个像素 标量
 
-有效像素指示符，以 `Boolean` 标量形式返回。此端口从输入总线返回 `valid` 信号。
+帧第一（顶部）行中的第一个像素，以 `Boolean` 标量形式返回。此端口从输入总线返回 `vStart` 信号。
+
+**数据类型：** `Boolean`
+
+### **Port\_4** — 帧最后（底部）行中的最后一个像素 标量
+
+帧最后（底部）行中的最后一个像素，以 `Boolean` 标量形式返回。此端口从输入总线返回 `vEnd` 信号。
+
+**数据类型：** `Boolean`
+
+### **Port\_5** — 有效像素指示 标量
+
+有效像素指示，以 `Boolean` 标量形式返回。此端口从输入总线返回 `valid` 信号。
 
 **数据类型：** `Boolean`
 
@@ -74,15 +70,15 @@ R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成：使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-此模块支持为 Simulink 加速器和快速加速器模式以及 DPI 组件生成 C/C++ 代码。
+此模块支持用于 Simulink 加速器和快速加速器模式以及 DPI 组件生成的 C/C++ 代码生成。
 
-### HDL 代码生成：使用 HDL Coder™ 生成用于 FPGA 和 ASIC 设计的 VHDL、Verilog 和 SystemVerilog 代码。
+### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
-要详细了解将总线用于 HDL 代码生成，请参阅 Buses (HDL Coder) 和 Use Buses to Improve Readability of Model and Generate HDL Code (HDL Coder)。
+要了解有关使用总线进行 HDL 代码生成的更多信息，请参阅 Buses (HDL Coder) 和 Use Buses to Improve Readability of Model and Generate HDL Code (HDL Coder)。
 
 **HDL 架构**
 
@@ -92,7 +88,7 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 |  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟，在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出端的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
 | **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
 | **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 

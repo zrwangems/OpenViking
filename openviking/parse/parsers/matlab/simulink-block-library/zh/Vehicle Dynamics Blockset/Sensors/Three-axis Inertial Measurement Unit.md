@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Three-axis Inertial Measurement Unit'
-family: 'sensors'
+family: 'vdynblks'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b
@@ -18,347 +18,346 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **A\_b** — 实际加速度三元素向量
+### **A\_b** — 实际加速度三元向量
 
-体轴坐标系中的实际加速度，指定为三元素向量，单位采用所选单位。
-
-**数据类型：** `double`
-
-### **w** — 角速率三元素向量
-
-体轴坐标系中的角速率，指定为三元素向量，单位为 radians per second。
+在机体坐标系下的实际加速度，指定为三元向量，单位为所选单位。
 
 **数据类型：** `double`
 
-### **w\_dot** — 角加速度三元素向量
+### **w** — 角速率三元向量
 
-体轴坐标系中的角加速度，指定为三元素向量，单位为 radians per second squared。
-
-**数据类型：** `double`
-
-### **CG** — 重心位置三元素向量
-
-重心位置，指定为三元素向量，单位采用所选单位。
+在机体坐标系下的角速率，指定为三元向量，单位为弧度每秒。
 
 **数据类型：** `double`
 
-### **g** — 重力三元素向量
+### **w\_dot** — 角加速度三元向量
 
-体轴中的重力，指定为三元素向量，单位采用所选单位。
+在机体坐标系下的角加速度，指定为三元向量，单位为弧度每二次方秒。
 
 **数据类型：** `double`
 
+### **CG** — 重心位置三元向量
+
+重心位置，指定为三元向量，单位为所选单位。
+
+**数据类型：** `double`
+
+### **g** — 重力三元向量
+
+机体坐标系下的重力，指定为三元向量，单位为所选单位。
+
+**数据类型：** `double`
 ### 输出
 
-### **A\_meas** — 测量加速度三元素向量
+### **A\_meas** — 测量加速度三元向量
 
-来自加速度计的测量加速度，指定为三元素向量，单位采用所选单位。
+来自加速度计的测量加速度，指定为三元向量，单位为所选单位。
 
 **数据类型：** `double`
 
-### **w\_meas** — 测量角速率三元素向量
+### **w\_meas** — 测量角速率三元向量
 
-来自陀螺仪的测量角速率，指定为三元素向量，单位为 radians per second。
+来自陀螺仪的测量角速率，指定为三元向量，单位为弧度每秒。
 
 **数据类型：** `double`
 
 ## 参数
 
-#### 主要
+#### 主
 
-### **Units** — 单位 `Metric (MKS)` (默认) | `English`
+### **Units** — 单位 `Metric (MKS)`（默认）| `English`
 
 输入和输出单位，指定为：
 
 | 单位 | 加速度 | 长度 |
 | --- | --- | --- |
-| `Metric (MKS)` | Meters per second squared | Meters |
-| `English` (British Imperial) | Feet per second squared | Feet |
+| `Metric (MKS)` | 米每二次方秒 | 米 |
+| `English`（英制） | 英尺每二次方秒 | 英尺 |
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`units` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'Metric (MKS)'` | `'English'` |
-| **默认**：`'Metric (MKS)'` |
+| **默认值**：`'Metric (MKS)'` |
 
-### **IMU location** — IMU 位置 `[0 0 0]` (默认) | three-element vector
+### **IMU location** — IMU 位置 `[0 0 0]`（默认）| 三元向量
 
-IMU 的位置（也是加速度计组位置），相对于车辆重心，沿车辆固定轴。该测量参考与重心输入相同。单位采用所选长度单位。
+IMU 的位置，同时也是加速度计组的位置，从载具重心沿载具固定轴测量。该测量参考与重心输入相同。单位采用所选长度单位。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`imu` |
-| **类型**：character vector |
-| **值**：three-element vector |
-| **默认**：`'[0 0 0]'` |
+| **类型**：字符向量 |
+| **值**：三元向量 |
+| **默认值**：`'[0 0 0]'` |
 
-### **Update rate** — 更新率 `0` (默认) | real, double scalar
+### **Update rate** — 更新速率 `0`（默认）| 实数双精度标量
 
-加速度计和陀螺仪的更新率，指定为 real, double scalar，单位为秒。更新率为 0 会创建连续加速度计和连续陀螺仪。如果选择 **Noise on** 参数且更新率为 0，则模块以 0.1 的速率更新噪声。
+加速度计和陀螺仪的更新速率，指定为实数双精度标量，单位为秒。更新速率为 0 时创建连续加速度计和连续陀螺仪。如果选择 **Noise on** 参数且更新速率为 0，模块以 0.1 的速率更新噪声。
 
 **提示**
 
-如果你：
+如果您：
 
-- 将此参数值更新为 0（continuous）
-- 为模型配置固定步长求解器
+- 将此参数值更新为 0（连续）
+- 为模型配置定步长求解器
 
-还必须选中 **Solver** 窗格中的 **Automatically handle rate transition for data transfer** 复选框。该复选框使软件能够正确处理速率转换。
+您还必须选中 **Solver** 窗格中的 **Automatically handle rate transition for data transfer** 复选框。此复选框使软件能够正确处理速率转换。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`a_Ts` |
-| **类型**：character vector |
-| **值**：real, double scalar |
-| **默认**：`'0'` |
+| **类型**：字符向量 |
+| **值**：实数双精度标量 |
+| **默认值**：`'0'` |
 
 #### 加速度计
 
-### **Second order dynamics for accelerometer** — 二阶动态特性 `on` (默认) | `off`
+### **Second order dynamics for accelerometer** — 二阶动态特性 `on`（默认）| `off`
 
-要将二阶动态特性应用于加速度读数，请选中此复选框。
+要对加速度读数应用二阶动态特性，请选中此复选框。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`dtype_a` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
-| **默认**：`'on'` |
+| **默认值**：`'on'` |
 
-### **Accelerometer natural frequency (rad/sec)** — 加速度计自然频率 `190` (默认) | real, double scalar
+### **Accelerometer natural frequency (rad/sec)** — 加速度计自然频率 `190`（默认）| 实数双精度标量
 
-加速度计的自然频率，指定为 real, double scalar，单位为 radians per second。
+加速度计的自然频率，指定为实数双精度标量，单位为弧度每秒。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`w_a` |
-| **类型**：character vector |
-| **值**：real, double scalar |
-| **默认**：`'190'` |
+| **类型**：字符向量 |
+| **值**：实数双精度标量 |
+| **默认值**：`'190'` |
 
 #### 依赖关系
 
-要启用此参数，请选择 **Second order dynamics for accelerometer**。
+要启用此参数，请选中 **Second order dynamics for accelerometer**。
 
-### **Accelerometer damping ratio** — 加速度计阻尼比 `0.707` (默认) | real, double scalar
+### **Accelerometer damping ratio** — 加速度计阻尼比 `0.707`（默认）| 实数双精度标量
 
-加速度计的阻尼比，指定为 real, double scalar，无量纲。
+加速度计的阻尼比，指定为实数双精度标量，无量纲。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`z_a` |
-| **类型**：character vector |
-| **值**：real, double scalar |
+| **类型**：字符向量 |
+| **值**：实数双精度标量 |
 | **默认**：`'0.707'` |
 
 #### 依赖关系
 
-要启用此参数，请选择 **Second order dynamics for accelerometer**。
+要启用此参数，请选择 **加速度计二阶动力学**。
 
-### **Accelerometer scale factor and cross-coupling** — 比例因子和交叉耦合 `[1 0 0; 0 1 0; 0 0 1]` (默认) | 3-by-3 matrix
+### **Accelerometer scale factor and cross-coupling** — 比例因子和交叉耦合 `[1 0 0; 0 1 0; 0 0 1]`（默认）| 3×3 矩阵
 
-比例因子和交叉耦合，指定为 3-by-3 matrix，用于使加速度计偏离体轴，并沿体轴缩放加速度。
+比例因子和交叉耦合，指定为 3×3 矩阵，用于将加速度计从机体轴倾斜，并沿机体轴缩放加速度。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`a_sf_cc` |
-| **类型**：character vector |
-| **值**：3-by-3 matrix |
+| **类型**：字符向量 |
+| **值**：3×3 矩阵 |
 | **默认**：`'[1 0 0; 0 1 0; 0 0 1]'` |
 
-### **Accelerometer measurement bias** — 加速度计测量偏置 `[0 0 0]` (默认) | three-element vector
+### **Accelerometer measurement bias** — 加速度计测量偏置 `[0 0 0]`（默认）| 三元素向量
 
-沿加速度计各轴的长期偏置，指定为三元素向量，单位采用所选加速度单位。
+沿加速度计轴的长期偏置，指定为三元素向量，单位为选定的加速度单位。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`a_bias` |
-| **类型**：character vector |
-| **值**：three-element vector |
+| **类型**：字符向量 |
+| **值**：三元素向量 |
 | **默认**：`'[0 0 0]'` |
 
-### **Accelerometer upper and lower limits** — 加速度的最小值和最大值 `[-inf -inf -inf inf inf inf]` (默认) | six-element vector
+### **Accelerometer upper and lower limits** — 加速度的最小值和最大值 `[-inf -inf -inf inf inf inf]`（默认）| 六元素向量
 
-加速度计各轴上的三个最小加速度值和三个最大加速度值，指定为六元素向量，单位采用所选加速度单位。
+加速度计各轴上的三个最小值和三个最大值，指定为六元素向量，单位为选定的加速度单位。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`a_sat` |
-| **类型**：character vector |
-| **值**：six-element vector |
+| **类型**：字符向量 |
+| **值**：六元素向量 |
 | **默认**：`'[-inf -inf -inf inf inf inf]'` |
 
 #### 陀螺仪
 
-### **Second-order dynamics for gyro** — 陀螺仪二阶动态特性 `on` (默认) | `off`
+### **Second-order dynamics for gyro** — 陀螺仪二阶动力学 `on`（默认）| `off`
 
-要将二阶动态特性应用于陀螺仪读数，请选中此复选框。
+要对陀螺仪读数应用二阶动力学，请选中此复选框。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`dtype_g` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认**：`'on'` |
 
-### **Gyro natural frequency (rad/sec)** — 陀螺仪自然频率 `190` (默认) | real, double scalar
+### **Gyro natural frequency (rad/sec)** — 陀螺仪固有频率 `190`（默认）| 实数双精度标量
 
-陀螺仪的自然频率，指定为 real, double scalar，单位为 radians per second。
+陀螺仪的固有频率，指定为实数双精度标量，单位为弧度每秒。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`w_g` |
-| **类型**：character vector |
-| **值**：real, double scalar |
+| **类型**：字符向量 |
+| **值**：实数双精度标量 |
 | **默认**：`'190'` |
 
 #### 依赖关系
 
-要启用此参数，请选择 **Second-order dynamics for gyro**。
+要启用此参数，请选择 **陀螺仪二阶动力学**。
 
-### **Gyro damping ratio** — 陀螺仪阻尼比 `0.707` (默认) | real, double scalar
+### **Gyro damping ratio** — 陀螺仪阻尼比 `0.707`（默认）| 实数双精度标量
 
-陀螺仪的阻尼比，指定为 real, double scalar，无量纲。
+陀螺仪的阻尼比，指定为实数双精度标量，无量纲。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`z_g` |
-| **类型**：character vector |
-| **值**：real, double scalar |
+| **类型**：字符向量 |
+| **值**：实数双精度标量 |
 | **默认**：`'0.707'` |
 
 #### 依赖关系
 
-要启用此参数，请选择 **Second-order dynamics for gyro**。
+要启用此参数，请选择 **陀螺仪二阶动力学**。
 
-### **Gyro scale factors and cross-coupling** — 陀螺仪比例因子和交叉耦合 `[1 0 0; 0 1 0; 0 0 1]` (默认) | 3-by-3 matrix
+### **Gyro scale factors and cross-coupling** — 陀螺仪比例因子和交叉耦合 `[1 0 0; 0 1 0; 0 0 1]`（默认）| 3×3 矩阵
 
-陀螺仪比例因子和交叉耦合，指定为 3-by-3 matrix，用于使陀螺仪偏离体轴，并沿体轴缩放角速率。
+陀螺仪比例因子和交叉耦合，指定为 3×3 矩阵，用于将陀螺仪从机体轴倾斜，并沿机体轴缩放角速率。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`g_sf_cc` |
-| **类型**：character vector |
-| **值**：3-by-3 matrix |
+| **类型**：字符向量 |
+| **值**：3×3 矩阵 |
 | **默认**：`'[1 0 0; 0 1 0; 0 0 1]'` |
 
-### **Gyro measurement bias** — 陀螺仪测量偏置 `[0 0 0]` (默认) | three-element vector
+### **Gyro measurement bias** — 陀螺仪测量偏置 `[0 0 0]`（默认）| 三元素向量
 
-沿陀螺仪各轴的长期偏置，指定为三元素向量，单位为 radians per second。
+沿陀螺仪轴的长期偏置，指定为三元素向量，单位为弧度每秒。
 
 #### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`g_bias` |
-| **类型**：character vector |
-| **值**：three-element vector |
+| **类型**：字符向量 |
+| **值**：三元素向量 |
 | **默认**：`'[0 0 0]'` |
 
-### **G-sensitive bias** — 速率最大变化 `[0 0 0]` (默认) | three-element vector
+### **G-sensitive bias** — 速率的最大变化量 `[0 0 0]`（默认）| 三元素向量
 
-由线性加速度引起的速率最大变化，指定为三元素向量，单位为 radians per second per g-unit。
+由线性加速度引起的速率最大变化量，指定为三元素向量，单位为弧度每秒每 g。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`g_sens` |
-| **类型**：character vector |
-| **值**：three-element vector |
-| **默认**：`'[0 0 0]'` |
+| **类型**：字符向量 |
+| **值**：三元素向量 |
+| **默认值**：`'[0 0 0]'` |
 
-### **Gyro upper and lower limits** — 角速率的最小值和最大值 `[-inf -inf -inf inf inf inf]` (默认) | six-element vector
+### **Gyro upper and lower limits** — 角速率的最小值和最大值 `[-inf -inf -inf inf inf inf]`（默认）| 六元素向量
 
-陀螺仪各轴上的三个最小角速率值和三个最大角速率值，指定为六元素向量，单位为 radians per second。
+陀螺仪各轴角速率的三个最小值和三个最大值，指定为六元素向量，单位为弧度每秒。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`g_sat` |
-| **类型**：character vector |
-| **值**：six-element vector |
-| **默认**：`'[-inf -inf -inf inf inf inf]'` |
+| **类型**：字符向量 |
+| **值**：六元素向量 |
+| **默认值**：`'[-inf -inf -inf inf inf inf]'` |
 
-#### 噪声
+#### Noise
 
-### **Noise on** — 白噪声 `on` (默认) | `off`
+### **Noise on** — 白噪声 `on`（默认）| `off`
 
-要将白噪声应用于加速度和陀螺仪读数，请选中此复选框。
+要对加速度计和陀螺仪读数施加白噪声，请选中此复选框。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`a_rand` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
-| **默认**：`'on'` |
+| **默认值**：`'on'` |
 
-### **Noise seeds** — 噪声种子 `[23093 23094 23095 23096 23097 23098]` (默认) | six-element vector
+### **Noise seeds** — 噪声种子 `[23093 23094 23095 23096 23097 23098]`（默认）| 六元素向量
 
 加速度计和陀螺仪各轴高斯噪声生成器的标量种子，指定为六元素向量。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`a_seeds` |
-| **类型**：character vector |
-| **值**：six-element vector |
-| **默认**：`'[23093 23094 23095 23096 23097 23098]'` |
+| **类型**：字符向量 |
+| **值**：六元素向量 |
+| **默认值**：`'[23093 23094 23095 23096 23097 23098]'` |
 
 #### 依赖关系
 
-要启用此参数，请选择 **Noise on**。
+要启用此参数，请选中 **Noise on**。
 
-### **Noise power** — 噪声功率 `[0.001 0.001 0.001 0.0001 0.0001 0.0001]` (默认) | six-element vector
+### **Noise power** — 噪声功率 `[0.001 0.001 0.001 0.0001 0.0001 0.0001]`（默认）| 六元素向量
 
-加速度计和陀螺仪各轴白噪声的功率谱密度 (PSD) 高度，指定为六元素向量，单位为：
+加速度计和陀螺仪各轴白噪声的功率谱密度（PSD）高度，指定为六元素向量，单位为：
 
 - `Metric (MKS)` 时为 (m/s2)/Hz
 - `English` 时为 (ft/s2)/Hz
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`a_pow` |
-| **类型**：character vector |
-| **值**：six-element vector |
-| **默认**：`'[0.001 0.001 0.001 0.0001 0.0001 0.0001]'` |
+| **类型**：字符向量 |
+| **值**：六元素向量 |
+| **默认值**：`'[0.001 0.001 0.001 0.0001 0.0001 0.0001]'` |
 
 #### 依赖关系
 
-要启用此参数，请选择 **Noise on**。
+要启用此参数，请选中 **Noise on**。
 
 ## 所属库
 
@@ -366,11 +365,11 @@ Vehicle Dynamics Blockset / Sensors
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ Code Generation 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -378,8 +377,8 @@ Vehicle Dynamics Blockset / Sensors
 
 ## 描述
 
-实现三轴惯性测量单元 (IMU)
+实现三轴惯性测量单元（IMU）
 
-Three-Axis Inertial Measurement Unit 模块实现一个惯性测量单元 (IMU)，其中包含三轴加速度计和三轴陀螺仪。
+Three-Axis Inertial Measurement Unit 模块实现包含三轴加速度计和三轴陀螺仪的惯性测量单元（IMU）。
 
-有关方程和误差应用的说明，请参阅 Three-axis Accelerometer (Aerospace Blockset) 和 Three-axis Gyroscope (Aerospace Blockset)。
+有关方程和误差应用的描述，请参阅 Three-axis Accelerometer (Aerospace Blockset) 和 Three-axis Gyroscope (Aerospace Blockset)。

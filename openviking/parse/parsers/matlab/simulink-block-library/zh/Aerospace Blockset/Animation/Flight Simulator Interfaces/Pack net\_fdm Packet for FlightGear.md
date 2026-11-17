@@ -24,7 +24,7 @@ chinese_source: worker-translation
 
 经度，指定为标量，单位为 rad。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show position/attitude inputs** 复选框。
 
@@ -34,7 +34,7 @@ chinese_source: worker-translation
 
 纬度，指定为标量，单位为 rad。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show position/attitude inputs** 复选框。
 
@@ -44,7 +44,7 @@ chinese_source: worker-translation
 
 高度，指定为标量，单位为 m。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show position/attitude inputs** 复选框。
 
@@ -54,7 +54,7 @@ chinese_source: worker-translation
 
 滚转角，指定为标量，单位为 rad。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show position/attitude inputs** 复选框。
 
@@ -64,7 +64,7 @@ chinese_source: worker-translation
 
 俯仰角，指定为标量，单位为 rad。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show position/attitude inputs** 复选框。
 
@@ -74,7 +74,7 @@ chinese_source: worker-translation
 
 偏航角，指定为标量，单位为 rad。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show position/attitude inputs** 复选框。
 
@@ -86,7 +86,7 @@ chinese_source: worker-translation
 
 迎角，指定为标量，单位为 rad。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -96,7 +96,7 @@ chinese_source: worker-translation
 
 侧滑角，指定为标量，单位为 rad。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -106,7 +106,7 @@ chinese_source: worker-translation
 
 滚转角速率，指定为标量，单位为 rad/sec。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -116,7 +116,7 @@ chinese_source: worker-translation
 
 俯仰角速率，指定为标量，单位为 rad/sec。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -126,7 +126,7 @@ chinese_source: worker-translation
 
 偏航角速率，指定为标量，单位为 rad/sec。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -136,7 +136,7 @@ chinese_source: worker-translation
 
 校准空速，指定为标量，单位为 knots。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -146,37 +146,37 @@ chinese_source: worker-translation
 
 爬升率，指定为标量，单位为 feet/sec。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
 **数据类型：** `single`
 
-### **vnorth** — 机体坐标系中的北向速度标量
+### **vnorth** — 机体坐标系北向速度标量
 
-机体坐标系中的北向速度，指定为标量，单位为 ft/sec。
+机体坐标系北向速度，指定为标量，单位为 ft/sec。
 
-#### 依赖关系
-
-要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
-
-**数据类型：** `single`
-
-### **veast** — 机体坐标系中的东向速度标量
-
-机体坐标系中的东向速度，指定为标量，单位为 feet/sec。
-
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
 **数据类型：** `single`
 
-### **vdown** — 下降速度标量
+### **veast** — 机体坐标系东向速度标量
 
-下降速度，指定为标量，单位为 feet/sec。
+机体坐标系东向速度，指定为标量，单位为 feet/sec。
 
-#### 依赖关系
+#### 依赖
+
+要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
+
+**数据类型：** `single`
+
+### **vdown** — 向下速度标量
+
+向下速度，指定为标量，单位为 feet/sec。
+
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -186,7 +186,7 @@ chinese_source: worker-translation
 
 相对于当地气团的机体坐标系北向速度，指定为标量，单位为 ft/sec。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -196,17 +196,17 @@ chinese_source: worker-translation
 
 相对于当地气团的机体坐标系东向速度，指定为标量，单位为 ft/sec。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
 **数据类型：** `single`
 
-### **vwind body down** — 相对于气团的机体坐标系下降速度标量
+### **vwind body down** — 相对于气团的机体坐标系向下速度标量
 
-相对于气团的机体坐标系下降速度，指定为标量，单位为 ft/sec。
+相对于气团的机体坐标系向下速度，指定为标量，单位为 ft/sec。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -216,7 +216,7 @@ chinese_source: worker-translation
 
 机体坐标系 *X* 加速度，指定为标量，单位为 ft/sec2。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -226,7 +226,7 @@ chinese_source: worker-translation
 
 机体坐标系 *Y* 加速度，指定为标量，单位为 ft/sec2。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -236,7 +236,7 @@ chinese_source: worker-translation
 
 机体坐标系 *Z* 加速度，指定为标量，单位为 ft/sec2。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -246,7 +246,7 @@ chinese_source: worker-translation
 
 失速量 [0-1]，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
@@ -256,29 +256,29 @@ chinese_source: worker-translation
 
 侧滑球偏转，指定为标量，单位为 degrees。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show velocity/acceleration inputs** 复选框。
 
 **数据类型：** `single`
 
-#### 控制面位置输入
+#### 操纵面位置输入
 
 ### **elevator** — 归一化升降舵位置标量
 
 归一化升降舵位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
 **数据类型：** `single`
 
-### **elevator\_trim\_tab** — 归一化升降舵调整片位置标量
+### **elevator\_trim\_tab** — 归一化升降舵配平片位置标量
 
-归一化升降舵调整片位置，指定为标量。
+归一化升降舵配平片位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
@@ -288,7 +288,7 @@ chinese_source: worker-translation
 
 归一化左襟翼位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
@@ -298,7 +298,7 @@ chinese_source: worker-translation
 
 归一化右襟翼位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
@@ -306,9 +306,9 @@ chinese_source: worker-translation
 
 ### **left\_aileron** — 归一化左副翼位置标量
 
-归一化左副翼位置。指定为标量。
+归一化左副翼位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
@@ -318,7 +318,7 @@ chinese_source: worker-translation
 
 归一化右副翼位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
@@ -328,7 +328,7 @@ chinese_source: worker-translation
 
 归一化方向舵位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
@@ -338,7 +338,7 @@ chinese_source: worker-translation
 
 归一化前轮位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
@@ -348,7 +348,7 @@ chinese_source: worker-translation
 
 归一化减速板位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
@@ -358,7 +358,7 @@ chinese_source: worker-translation
 
 归一化扰流板位置，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show control surface position inputs** 复选框。
 
@@ -370,7 +370,7 @@ chinese_source: worker-translation
 
 发动机数量，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
@@ -380,17 +380,17 @@ chinese_source: worker-translation
 
 发动机状态（off、cranking、running），指定为向量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
 **数据类型：** `uint32`
 
-### **rpm** — 发动机 RPM 向量
+### **rpm** — 发动机转速向量
 
-发动机 RPM，指定为向量，单位为 rev/min。
+发动机转速，指定为向量，单位为 rev/min。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
@@ -400,7 +400,7 @@ chinese_source: worker-translation
 
 燃油流量，指定为向量，单位为 gal/hr。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
@@ -410,7 +410,7 @@ chinese_source: worker-translation
 
 燃油压力，指定为向量，单位为 psi。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
@@ -420,57 +420,57 @@ chinese_source: worker-translation
 
 排气温度，指定为向量，单位为 deg F。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
 **数据类型：** `single`
 
-### **cht** — 气缸头温度标量
+### **cht** — 气缸盖温度标量
 
-气缸头温度，指定为向量，单位为 deg F。
+气缸盖温度，指定为向量，单位为 deg F。
 
-#### 依赖关系
-
-要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
-
-**数据类型：** `single`
-
-### **mp\_osi** — 歧管压力向量
-
-歧管压力，指定为向量，单位为 psi。
-
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
 **数据类型：** `single`
 
-### **tit** — 涡轮入口温度向量
+### **mp\_osi** — 进气歧管压力向量
 
-涡轮入口温度，指定为向量，单位为 deg F。
+进气歧管压力，指定为向量，单位为 psi。
 
-#### 依赖关系
-
-要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
-
-**数据类型：** `single`
-
-### **oil\_temp** — 油温向量
-
-油温，指定为向量，单位为 deg F。
-
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
 **数据类型：** `single`
 
-### **oil\_px** — 油压向量
+### **tit** — 涡轮进口温度向量
 
-油压，指定为向量，单位为 psi。
+涡轮进口温度，指定为向量，单位为 deg F。
 
-#### 依赖关系
+#### 依赖
+
+要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
+
+**数据类型：** `single`
+
+### **oil\_temp** — 滑油温度向量
+
+滑油温度，指定为向量，单位为 deg F。
+
+#### 依赖
+
+要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
+
+**数据类型：** `single`
+
+### **oil\_px** — 滑油压力向量
+
+滑油压力，指定为向量，单位为 psi。
+
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
@@ -480,7 +480,7 @@ chinese_source: worker-translation
 
 燃油箱数量，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
@@ -490,7 +490,7 @@ chinese_source: worker-translation
 
 每个燃油箱的燃油量，指定为向量，单位为 gal。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show engine/fuel inputs** 复选框。
 
@@ -498,11 +498,11 @@ chinese_source: worker-translation
 
 #### 起落架输入
 
-### **num\_wheels** — 车轮数量标量
+### **num\_wheels** — 机轮数量标量
 
-车轮数量，指定为标量。
+机轮数量，指定为标量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show landing gear inputs** 复选框。
 
@@ -512,7 +512,7 @@ chinese_source: worker-translation
 
 轮载开关，指定为向量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show landing gear inputs** 复选框。
 
@@ -522,7 +522,7 @@ chinese_source: worker-translation
 
 起落架归一化位置，指定为向量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show landing gear inputs** 复选框。
 
@@ -532,17 +532,17 @@ chinese_source: worker-translation
 
 起落架归一化转向，指定为向量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show landing gear inputs** 复选框。
 
 **数据类型：** `single`
 
-### **gear\_compression** — 起落架归一化压缩向量
+### **gear\_compression** — 起落架归一化压缩量向量
 
-起落架归一化压缩，指定为向量。
+起落架归一化压缩量，指定为向量。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show landing gear inputs** 复选框。
 
@@ -554,7 +554,7 @@ chinese_source: worker-translation
 
 离地高度，指定为标量，单位为 m。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show environment inputs** 复选框。
 
@@ -564,7 +564,7 @@ chinese_source: worker-translation
 
 当前 UNIX 时间，指定为标量，单位为 sec。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show environment inputs** 复选框。
 
@@ -574,7 +574,7 @@ chinese_source: worker-translation
 
 相对于 UNIX 时间的偏移秒数，指定为标量，单位为 sec。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show environment inputs** 复选框。
 
@@ -584,27 +584,26 @@ chinese_source: worker-translation
 
 能见度（用于视觉效果），指定为标量，单位为 m。
 
-#### 依赖关系
+#### 依赖
 
 要启用此端口，请选中 **Show environment inputs** 复选框。
 
 **数据类型：** `single`
-
 ### 输出
 
-### **net\_fdm** — 为 FlightGear 生成的包数组
+### **net\_fdm** — 为 FlightGear 生成的数据包数组
 
-为 FlightGear 生成的包，指定为数组。
+为 FlightGear 生成的数据包，指定为数组。
 
 **数据类型：** `single` | `double` | `uint32`
 
 ## 参数
 
-### **Show position/altitude inputs** — 位置和高度输入 `on`（默认） | `off`
+### **Show position/altitude inputs** — 位置和高度输入 `on`（默认）| `off`
 
-选中此复选框可在 FlightGear `net_fdm` 数据包中包括位置和高度输入。
+选中此复选框以在 FlightGear `net_fdm` 数据包中包含位置和高度输入。
 
-#### 依赖关系
+#### 依赖
 
 选中此复选框以启用这些输入端口。
 
@@ -614,25 +613,25 @@ chinese_source: worker-translation
 | --- | --- | --- | --- | --- |
 | *`longitude`* | rad | double | 1 | 大地经度 |
 | *`latitude`* | rad | double | 1 | 大地纬度 |
-| *`altitude`* | m | double | 1 | 海平面以上的高度 |
+| *`altitude`* | m | double | 1 | 海平面以上高度 |
 | *`theta`* | rad | single | 1 | 俯仰角 |
 | *`phi`* | rad | single | 1 | 滚转角 |
 | *`psi`* | rad | single | 1 | 偏航角 |
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `ShowPositionAttitudeInputs` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
-| **默认值：** `'on'` |
+| **默认：** `'on'` |
 
-### **Show velocity/acceleration inputs** — 速度/加速度输入 `off`（默认） | `on`
+### **Show velocity/acceleration inputs** — 速度和加速度输入 `off`（默认）| `on`
 
-选中此复选框可在 FlightGear `net_fdm` 数据包中包括速度/加速度输入。
+选中此复选框以在 FlightGear `net_fdm` 数据包中包含速度和加速度输入。
 
-#### 依赖关系
+#### 依赖
 
 选中此复选框以启用这些输入端口。
 
@@ -647,66 +646,66 @@ chinese_source: worker-translation
 | *`dpsi/dt`* | rad/sec | single | 1 | 偏航角速率 |
 | *`Vcas`* | knot | single | 1 | 校准空速 |
 | *`climb_rate`* | feet/sec | single | 1 | 爬升率 |
-| *`v_north`* | feet/sec | single | 1 | 机体坐标系中的北向速度 |
-| *`v_east`* | feet/sec | single | 1 | 机体坐标系中的东向速度 |
-| *`v_down`* | feet/sec | single | 1 | 下降速度 |
+| *`v_north`* | feet/sec | single | 1 | 机体坐标系北向速度 |
+| *`v_east`* | feet/sec | single | 1 | 机体坐标系东向速度 |
+| *`v_down`* | feet/sec | single | 1 | 向下速度 |
 | *`v_wind_body_north`* | feet/sec | single | 1 | 相对于当地气团的机体坐标系北向速度 |
 | *`v_wind_body_east`* | feet/sec | single | 1 | 相对于当地气团的机体坐标系东向速度 |
-| *`v_wind_body_down`* | feet/sec | single | 1 | 相对于气团的机体坐标系下降速度 |
+| *`v_wind_body_down`* | feet/sec | single | 1 | 相对于气团的机体坐标系向下速度 |
 | *`Axpilot`* | feet/sec2 | single | 1 | 机体坐标系 *X* 加速度 |
 | *`Aypilot`* | feet/sec2 | single | 1 | 机体坐标系 *Y* 加速度 |
 | *`Azpilot`* | feet/sec2 | single | 1 | 机体坐标系 *Z* 加速度 |
 | *`stall_warning`* | — | single | 1 | 失速量 [0-1] |
 | *`slip_deg`* | degrees | single | 1 | 侧滑球偏转 |
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `ShowVelocityAccelerationInputs` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
-| **默认值：** `'off'` |
+| **默认：** `'off'` |
 
-### **Show control surface position inputs** — 控制面位置输入 `off`（默认） | `on`
+### **Show control surface position inputs** — 控制面位置输入 `off`（默认）| `on`
 
-选中此复选框可在 FlightGear `net_fdm` 数据包中包括控制面位置输入。
+选中此复选框可将控制面位置输入包含在 FlightGear `net_fdm` 数据包中。
 
-#### 依赖关系
+#### 依赖项
 
-选中此复选框以启用这些输入端口。
+选中此复选框可启用以下输入端口。
 
 **信号组 3：控制面位置输入**
 
 | 名称 | 单位 | 类型 | 宽度 | 描述 |
 | --- | --- | --- | --- | --- |
-| *`elevator`* | 1 (dimensionless) | single | 1 | 归一化升降舵位置 |
-| *`elevator_trim_tab`* | 1 (dimensionless) | single | 1 | 归一化升降舵调整片位置 |
-| *`left_flap`* | 1 (dimensionless) | single | 1 | 归一化左襟翼位置 |
-| *`right_flap`* | 1 (dimensionless) | single | 1 | 归一化右襟翼位置 |
-| *`left_aileron`* | 1 (dimensionless) | single | 1 | 归一化左副翼位置 |
-| *`right_aileron`* | 1 (dimensionless) | single | 1 | 归一化右副翼位置 |
-| *`rudder`* | 1 (dimensionless) | single | 1 | 归一化方向舵位置 |
-| *`nose_wheel`* | 1 (dimensionless) | single | 1 | 归一化前轮位置 |
-| *`speedbrake`* | 1 (dimensionless) | single | 1 | 归一化减速板位置 |
-| *`spoilers`* | 1 (dimensionless) | single | 1 | 归一化扰流板位置 |
+| *`elevator`* | 1（无量纲） | single | 1 | 归一化升降舵位置 |
+| *`elevator_trim_tab`* | 1（无量纲） | single | 1 | 归一化升降舵配平片位置 |
+| *`left_flap`* | 1（无量纲） | single | 1 | 归一化左襟翼位置 |
+| *`right_flap`* | 1（无量纲） | single | 1 | 归一化右襟翼位置 |
+| *`left_aileron`* | 1（无量纲） | single | 1 | 归一化左副翼位置 |
+| *`right_aileron`* | 1（无量纲） | single | 1 | 归一化右副翼位置 |
+| *`rudder`* | 1（无量纲） | single | 1 | 归一化方向舵位置 |
+| *`nose_wheel`* | 1（无量纲） | single | 1 | 归一化前轮位置 |
+| *`speedbrake`* | 1（无量纲） | single | 1 | 归一化减速板位置 |
+| *`spoilers`* | 1（无量纲） | single | 1 | 归一化扰流板位置 |
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `ShowControlSurfacePositionInputs` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
-| **默认值：** `'off'` |
+| **默认：** `'off'` |
 
-### **Show engine/fuel inputs** — 发动机/燃油输入 `off`（默认） | `on`
+### **Show engine/fuel inputs** — 发动机/燃油输入 `off`（默认）| `on`
 
-选中此复选框可在 FlightGear `net_fdm` 数据包中包括发动机/燃油输入。
+选中此复选框可将发动机和燃油输入包含在 FlightGear `net_fdm` 数据包中。
 
-#### 依赖关系
+#### 依赖项
 
-选中此复选框以启用这些输入端口。
+选中此复选框可启用以下输入端口。
 
 **信号组 4：发动机/燃油输入**
 
@@ -714,61 +713,61 @@ chinese_source: worker-translation
 | --- | --- | --- | --- | --- |
 | *`num_engines`* | — | uint32 | 1 | 发动机数量 |
 | *`eng_state`* | — | uint32 | 4 | 发动机状态（off、cranking、running） |
-| *`rpm`* | rev/min | single | 4 | 发动机 RPM |
+| *`rpm`* | rev/min | single | 4 | 发动机转速 |
 | *`fuel_flow`* | gal/hour | single | 4 | 燃油流量 |
 | *`fuel_px`* | psi | single | 4 | 燃油压力 |
 | *`egt`* | deg F | single | 4 | 排气温度 |
-| *`cht`* | deg F | single | 4 | 气缸头温度 |
-| *`mp_osi`* | psi | single | 4 | 歧管压力 |
-| *`tit`* | deg F | single | 4 | 涡轮入口温度 |
-| *`oil_temp`* | deg F | single | 4 | 油温 |
-| *`oil_px`* | psi | single | 4 | 油压 |
+| *`cht`* | deg F | single | 4 | 气缸盖温度 |
+| *`mp_osi`* | psi | single | 4 | 进气歧管压力 |
+| *`tit`* | deg F | single | 4 | 涡轮进口温度 |
+| *`oil_temp`* | deg F | single | 4 | 滑油温度 |
+| *`oil_px`* | psi | single | 4 | 滑油压力 |
 | *`num_tanks`* | — | uint32 | 1 | 燃油箱数量 |
-| *`fuel_quantity`* | gal | single | 4 | 每个燃油箱的燃油量 |
+| *`fuel_quantity`* | gal | single | 4 | 每个油箱的燃油量 |
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `ShowEngineFuelInputs` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
-| **默认值：** `'off'` |
+| **默认：** `'off'` |
 
-### **Show landing gear inputs** — 起落架输入 `off`（默认） | `on`
+### **Show landing gear inputs** — 起落架输入 `off`（默认）| `on`
 
-选中此复选框可在 FlightGear `net_fdm` 数据包中包括起落架输入。
+选中此复选框可将起落架输入包含在 FlightGear `net_fdm` 数据包中。
 
-#### 依赖关系
+#### 依赖项
 
-选中此复选框以启用这些输入端口。
+选中此复选框可启用以下输入端口。
 
 **信号组 5：起落架输入**
 
 | 名称 | 单位 | 类型 | 宽度 | 描述 |
 | --- | --- | --- | --- | --- |
-| *`num_wheels`* | — | uint32 | 1 | 车轮数量 |
-| *`wow`* | — | uint32 | 3 | 轮载开关 |
+| *`num_wheels`* | — | uint32 | 1 | 机轮数量 |
+| *`wow`* | — | uint32 | 3 | 机轮承重开关 |
 | *`gear_pos`* | — | single | 3 | 起落架归一化位置 |
 | *`gear_steer`* | — | single | 3 | 起落架归一化转向 |
-| *`gear_compression`* | — | single | 3 | 起落架归一化压缩 |
+| *`gear_compression`* | — | single | 3 | 起落架归一化压缩量 |
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `ShowLandingGearInputs` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
-| **默认值：** `'off'` |
+| **默认：** `'off'` |
 
-### **Show environment inputs** — 环境输入 `off`（默认） | `on`
+### **Show environment inputs** — 环境输入 `off`（默认）| `on`
 
-选中此复选框可在 FlightGear `net_fdm` 数据包中包括环境输入。
+选中此复选框可将环境输入包含在 FlightGear `net_fdm` 数据包中。
 
-#### 依赖关系
+#### 依赖项
 
-选中此复选框以启用这些输入端口。
+选中此复选框可启用以下输入端口。
 
 **信号组 6：环境输入**
 
@@ -776,30 +775,30 @@ chinese_source: worker-translation
 | --- | --- | --- | --- | --- |
 | *`agl`* | m | single | 1 | 离地高度 |
 | *`cur_time`* | sec | uint32 | 1 | 当前 UNIX 时间 |
-| *`warp`* | sec | int32 | 1 | 相对于 UNIX 时间的偏移秒数 |
-| *`visibility`* | m | single | 1 | 能见度，单位为米（用于视觉效果） |
+| *`warp`* | sec | int32 | 1 | UNIX 时间的偏移量（秒） |
+| *`visibility`* | m | single | 1 | 能见度（米，用于视觉效果） |
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `ShowEnvironmentInputs` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
-| **默认值：** `'off'` |
+| **默认：** `'off'` |
 
-### **Sample time** — 采样时间 `1/30`（默认） | scalar
+### **Sample time** — 采样时间 `1/30`（默认）| 标量
 
 指定采样时间（-1 表示继承）。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**： `SampleTime` |
-| **类型**： character vector |
-| **值**： scalar |
-| **默认值**： `'1/30'` |
+| **模块参数**：`SampleTime` |
+| **类型**：字符向量 |
+| **值**：标量 |
+| **默认**：`'1/30'` |
 
 ## 所属库
 
@@ -807,11 +806,11 @@ Aerospace Blockset / Animation / Flight Simulator Interfaces
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -821,7 +820,7 @@ Aerospace Blockset / Animation / Flight Simulator Interfaces
 
 为 FlightGear 生成 net_fdm 数据包
 
-Pack net\_fdm Packet for FlightGear 模块根据单独输入创建与特定版本 FlightGear 飞行模拟器兼容的 FlightGear `net_fdm` 数据包。此模块接受 FlightGear `net_fdm` 数据包支持的所有信号。这些信号分为六组：
+Pack net\_fdm Packet for FlightGear 模块根据单独的输入创建与特定版本 FlightGear 飞行模拟器兼容的 FlightGear `net_fdm` 数据包。此模块接受 FlightGear `net_fdm` 数据包支持的所有信号。这些信号分为六组：
 
 - 位置/姿态输入
 - 速度/加速度输入
@@ -830,6 +829,6 @@ Pack net\_fdm Packet for FlightGear 模块根据单独输入创建与特定版�
 - 起落架输入
 - 环境输入
 
-要启用或禁用这些组的输入，请选择关联的模块参数。模块输入端口会根据请求的信号组而变化。对于属于非活动信号组的包值，模块会插入零。
+要启用或禁用这些组的输入，请选择关联的模块参数。模块输入端口根据所请求的信号组而变化。对于非活动信号组中的部分数据包值，模块会插入零。
 
-Aerospace Blockset™ 产品支持从 v2.6 开始的 FlightGear 版本。如果您使用的 FlightGear 版本早于 2.6，模型会显示来自 Simulink® Upgrade Advisor 的通知。请考虑使用 Upgrade Advisor 升级您的 FlightGear 版本。有关详细信息，请参阅支持的 FlightGear 版本。
+Aerospace Blockset™ 产品支持从 v2.6 开始的 FlightGear 版本。如果您使用的 FlightGear 版本早于 2.6，模型会显示来自 Simulink® Upgrade Advisor 的通知。请考虑使用 Upgrade Advisor 升级您的 FlightGear 版本。有关详细信息，请参阅 Supported FlightGear Versions。

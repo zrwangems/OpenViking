@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Detect Fall Nonpositive'
-family: 'logic-and-bit-operations'
+family: 'hdlcoder'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
@@ -23,21 +23,20 @@ chinese_source: worker-translation
 输入信号，指定为标量、向量或矩阵。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ### 输出
 
 ### **Port\_1** — 输出信号 标量 | 向量 | 矩阵
 
 检测下降沿的输出信号，指定为标量、向量或矩阵。
 
-- 当输入信号小于或等于零，且其前一个值大于零时，输出为 true（等于 `1`）。
-- 当输入信号大于零时，或者如果它为非正数，且其前一个值也为非正数时，输出为 false（等于 `0`）。
+- 当输入信号小于或等于零，且其前一个值大于零时，输出为真（等于 `1`）。
+- 当输入信号大于零，或者如果其为非正值且其前一个值也为非正值时，输出为假（等于 `0`）。
 
 **数据类型：** `uint8` | `Boolean`
 
 ## 参数
 
-### **初始条件** — 布尔表达式 `U/z <= 0` 的初始条件 0（默认） | 标量 | 向量 | 矩阵
+### **Initial condition** — 布尔表达式 `U/z <= 0` 的初始条件 0 （默认） | 标量 | 向量 | 矩阵
 
 设置布尔表达式 `U/z <= 0` 的初始条件。
 
@@ -45,36 +44,36 @@ chinese_source: worker-translation
 
 |  |
 | --- |
-| **模块参数：** `vinit` |
-| **类型：** 字符向量 |
-| **值：** 标量 | 向量 | 矩阵 |
-| **默认值：** `'0'` |
+| **模块参数**：`vinit` |
+| **类型**：character vector |
+| **值**：scalar | vector | matrix |
+| **默认值**：`'0'` |
 
-### **输入处理** — 指定基于采样或基于帧的处理 `Elements as channels (sample based)`（默认） | `Columns as channels (frame based)`
+### **Input processing** — 指定基于采样或基于帧的处理 `Elements as channels (sample based)` （默认） | `Columns as channels (frame based)`
 
 指定模块执行基于采样还是基于帧的处理：
 
-- `Columns as channels (frame based)` — 将输入的每一列视为单独通道（基于帧的处理）。
+- `Columns as channels (frame based)` — 将输入的每一列视为独立通道（基于帧的处理）。
 
   **注意**
 
   基于帧的处理需要 DSP System Toolbox™ 许可证。
 
   有关详细信息，请参阅 Sample- and Frame-Based Concepts (DSP System Toolbox)。
-- `Elements as channels (sample based)` — 将输入的每个元素视为单独通道（基于采样的处理）。
+- `Elements as channels (sample based)` — 将输入的每个元素视为独立通道（基于采样的处理）。
 
-使用 **输入处理** 指定模块执行基于采样还是基于帧的处理。有关这两种处理模式的详细信息，请参阅 Sample- and Frame-Based Concepts (DSP System Toolbox)。
+使用 **Input processing** 指定模块执行基于采样还是基于帧的处理。有关这两种处理模式的详细信息，请参阅 Sample- and Frame-Based Concepts (DSP System Toolbox)。
 
 #### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`InputProcessing` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`'Columns as channels (frame based)'` | `'Elements as channels (sample based)'` |
 | **默认值**：`'Elements as channels (sample based)'` |
 
-### **输出数据类型** — 输出数据类型 `boolean`（默认） | `uint8`
+### **Output data type** — 输出数据类型 `boolean` （默认） | `uint8`
 
 将输出数据类型指定为 `boolean` 或 `uint8`。
 
@@ -82,10 +81,10 @@ chinese_source: worker-translation
 
 |  |
 | --- |
-| **模块参数：** `OutDataTypeStr` |
-| **类型：** 字符向量 |
-| **值：** `'boolean' | 'uint8'` |
-| **默认值：** `'boolean'` |
+| **模块参数**：`OutDataTypeStr` |
+| **类型**：character vector |
+| **值**：`'boolean' | 'uint8'` |
+| **默认值**：`'boolean'` |
 
 ## 所属库
 
@@ -95,23 +94,21 @@ Simulink / Logic and Bit Operations
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Boolean` | `double` | `fixed point` | `integer` | `single` |
-| **直接馈通** | `yes` |
-| **多维信号** | `yes` |
-| **可变大小信号** | `yes` |
-| **过零检测** | `no` |
+| **Data Types** | `Boolean` | `double` | `fixed point` | `integer` | `single` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `yes` |
+| **Variable-Size Signals** | `yes` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 生成的代码在某些条件下依赖于 `memcpy` 或 `memset` 函数（`string.h`）。
 
-### HDL 代码生成
-使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
+### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 架构**
 
@@ -121,27 +118,25 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
 |  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过移动设计中的现有延迟，在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 在生成的代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 在生成的代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 
-### PLC 代码生成
-使用 Simulink® PLC Coder™ 生成 Structured Text 代码。
+### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
-### 定点转换
-使用 Fixed-Point Designer™ 设计和仿真定点系统。
+### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2006a 之前引入**
+**在 R2006a 之前推出**
 
 ## 描述
 
-检测当信号值下降到非正值且其前一个值严格为正时的下降沿
+当信号值下降到非正值且其前一个值为严格正值时检测下降沿
 
-Detect Fall Nonpositive 模块判断输入是否小于或等于零，且其前一个值是否大于零。
+Detect Fall Nonpositive 模块确定输入是否小于或等于零，且其前一个值大于零。
 
-- 当输入信号小于或等于零，且其前一个值大于零时，输出为 true（等于 `1`）。
-- 当输入信号大于零时，或者如果它为非正数，且其前一个值也为非正数时，输出为 false（等于 `0`）。
+- 当输入信号小于或等于零，且其前一个值大于零时，输出为真（等于 `1`）。
+- 当输入信号大于零，或者如果其为非正值且其前一个值也为非正值时，输出为假（等于 `0`）。
 
 此模块仅支持离散采样时间。

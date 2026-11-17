@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Induction Machine Direct Torque Control'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,9 +18,9 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **FluxRef** — 磁通标量
+### **FluxRef** — 磁链标量
 
-参考定子磁通。
+参考定子磁链。
 
 **数据类型：** `single` | `double`
 
@@ -41,7 +41,6 @@ chinese_source: worker-translation
 定子相电流。
 
 **数据类型：** `single` | `double`
-
 ### 输出
 
 ### **G** — 门极脉冲矢量 | `0` 或 `1`
@@ -52,25 +51,25 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **Stator resistance (Ohm)** — 电阻 `0.25`（默认）| 正标量
+### **Stator resistance (Ohm)** — 电阻 `0.25`（默认值）| 正标量
 
-电机定子的电阻。
+电机定子电阻。
 
-### **Number of pole pairs** — 极对数 `1`（默认）| 正整数
+### **Number of pole pairs** — 极对数 `1`（默认值）| 正整数
 
 电机极对数。
 
-### **Flux hysteresis bandwidth (Wb)** — 磁通 `0.02`（默认）| 正标量
+### **Flux hysteresis bandwidth (Wb)** — 磁链 `0.02`（默认值）| 正标量
 
-围绕磁通设定点对称分布的总带宽。
+围绕磁链设定点对称分布的总带宽。
 
-### **Torque hysteresis bandwidth (N\*m)** — 转矩 `10`（默认）| 正标量
+### **Torque hysteresis bandwidth (N\*m)** — 转矩 `10`（默认值）| 正标量
 
 围绕设定点对称分布的总带宽。
 
-### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| 正标量
+### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认值）| 正标量
 
-连续模块执行之间的时间，以 s 为单位。在执行期间，模块产生输出，并在适当情况下更新其内部状态。有关详细信息，请参见 What Is Sample Time? 和 Specify Sample Time。
+连续模块执行之间的时间，以 s 为单位。在执行期间，模块产生输出，并在适当情况下更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果此模块位于连续变步长模型中，请使用正标量显式指定采样时间。
 
@@ -80,7 +79,7 @@ Simscape / Electrical / Control / Induction Machine Control
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -94,15 +93,15 @@ Simscape / Electrical / Control / Induction Machine Control
 
 感应电机 DTC
 
-Induction Machine Direct Torque Control 模块实现感应电机直接转矩控制 (DTC) 结构。该图显示了该模块的等效电路。
+Induction Machine Direct Torque Control 模块实现感应电机直接转矩控制（DTC）结构。该图显示了该模块的等效电路。
 
 ### 方程
 
-为了估计转矩和磁通，Induction Machine Direct Torque Control 模块使用后向欧拉法在静止 *ɑβ* 参考坐标系中对电机电压方程进行离散化。*ɑβ* 坐标系中定子磁通的离散时间方程为：
+为了估计转矩和磁链，Induction Machine Direct Torque Control 模块使用后向欧拉法在静止 *ɑβ* 参考坐标系中离散化电机电压方程。*ɑβ* 坐标系中定子磁链的离散时间方程为：
 
 ψα=(vα−iαRs)Tszz−1
 
-和
+以及
 
 ψβ=(vβ−iβRs)Tszz−1
 
@@ -111,27 +110,27 @@ Induction Machine Direct Torque Control 模块实现感应电机直接转矩控�
 - *vɑ* 是 *ɑ* 轴电压。
 - *iɑ* 是 *ɑ* 轴电流。
 - *Rs* 是定子电阻。
-- *Ψɑ* 是 *ɑ* 轴定子磁通。
+- *Ψɑ* 是 *ɑ* 轴定子磁链。
 - *vβ* 是 *β* 轴电压。
 - *iβ* 是 *β* 轴电流。
-- *Ψβ* 是 *β* 轴定子磁通。
+- *Ψβ* 是 *β* 轴定子磁链。
 
-该模块计算转矩和磁通如下：
+该模块计算转矩和磁链如下：
 
 T=3p2(ψαiβ−ψβiα)
 
-和
+以及
 
 ψs=ψα2+ψβ2
 
 其中：
 
 - *p* 是极对数。
-- *Ψs* 是定子磁通。
+- *Ψs* 是定子磁链。
 
-为了检测磁通和转矩估计误差，该模块使用滞环比较器。该图显示了滞环比较器和相关开关扇区。
+为了检测磁链和转矩估计误差，该模块使用滞环比较器。该图显示了滞环比较器及相关的开关扇区。
 
-该表显示了逆变器高侧系统的最佳开关。
+该表显示了逆变器高侧系统的最优开关。
 
 | *cΨ*, *cT**S*(*θ*) | | *S0* | *S1* | *S2* | *S3* | *S4* | *S5* |
 | --- | --- | --- | --- | --- | --- | --- | --- |

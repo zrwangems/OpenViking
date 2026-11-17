@@ -9,7 +9,7 @@ official_category: 'Logitech G29'
 documentation_page: 'logitechg29steeringwheel'
 documentation_source_path: 'io_ref/logitechg29steeringwheel.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Logitech G29 Steering Wheel
@@ -18,9 +18,9 @@ chinese_source: official
 
 ### 输出
 
-### **Buttons** — 方向盘按钮状态 0（=未按下） | 1（=按下）
+### **Buttons** — 方向盘按钮状态 0（= 未按下）| 1（= 已按下）
 
-`Buttons` 的输出是一个布尔值向量，用于指示方向盘上按钮的状态。向量中按钮值的顺序为：
+`Buttons` 输出是一个布尔值向量，用于指示方向盘上按钮的状态。向量中按钮值的顺序为：
 
 1. Square
 2. X
@@ -36,47 +36,47 @@ chinese_source: official
 12. Option
 13. PS
 
-**数据类型:** `Boolean`
+**数据类型：** `Boolean`
 
-### **Steering** — 方向盘位置的值 0（=最左侧） | 65535（=最右侧）
+### **Steering** — 方向盘位置值 0（= 最左）| 65535（= 最右）
 
-`Steering` 输出值表示方向盘的位置。
+`Steering` 输出值指示方向盘的位置。
 
-**数据类型:** `uint16`
+**数据类型：** `uint16`
 
-### **Pedals** — 油门、刹车和离合器踏板状态 0（=未踩下） | 255（=完全踩下）
+### **Pedals** — 油门、制动和离合器踏板状态 0（= 未踩下）| 255（= 完全踩下）
 
-`Pedals` 的输出是一个值向量，用于指示油门、刹车和离合器踏板的状态。向量中踏板值的顺序为：
+`Pedals` 输出是一个值向量，用于指示油门、制动和离合器踏板的状态。向量中踏板值的顺序为：
 
-1. 节流阀
-2. 制动器
-3. 离合器
+1. Throttle
+2. Brake
+3. Clutch
 
-**数据类型:** `uint8`
+**数据类型：** `uint8`
 
-### **Direction** — 方向盘方向键按钮状态 0（=上） | 2（=右） | 4（=下） | 6（=左） | 8（=未按下）
+### **Direction** — 方向盘方向板按钮状态 0（= UP）| 2（= RIGHT）| 4（= DOWN）| 6（= LEFT）| 8（= UNPRESSED）
 
-`Direction` 输出值表示方向键被按下。当您按下方向键时，在方向键按钮之间会出现中间值。
+`Direction` 输出值指示方向板上按钮的按下情况。当您在方向板的按钮之间按下方向板时，会出现中间值。
 
-**数据类型:** `uint8`
+**数据类型：** `uint8`
 
-### **Status** — 方向盘通信状态 0 (默认) | 负值
+### **Status** — 与方向盘通信的状态 0（默认）| 负值
 
-`Status` 输出值表示与方向盘通信成功（0）或通信失败（负值）。
+`Status` 输出值指示与方向盘通信成功（0）或通信失败（负值）。
 
-**数据类型:** `int32`
+**数据类型：** `int32`
 
 ## 参数
 
-### **sampleTime** — 方向盘数据采样时间 -1（继承） (默认)
+### **sampleTime** — 方向盘数据的采样时间 -1（继承）（默认）
 
-选择方向盘数据的采样时间。推荐的 `sampleTime` 为 10 毫秒。
+选择方向盘数据的采样时间。推荐的 `sampleTime` 为 10ms。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`sampleTime` |
+| **模块参数：** `sampleTime` |
 
 ## 所属库
 
@@ -84,22 +84,22 @@ Simulink Real-Time / Logitech G29
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2018b 中推出**
+**在 R2018b 中引入**
 
 ## 描述
 
-接收 Logitech G29 方向盘读取数据
+接收 Logitech G29 Steering Wheel 读取数据
 
-Logitech G29 Steering Wheel 模块从 Logitech® G29 方向盘（仅限 PS3）读取数据。该模块不支持手动变速器模块。
+Logitech G29 Steering Wheel 模块从 Logitech® G29 Steering Wheel（仅限 PS3）读取数据。该模块不支持 Stick Shift 模块。
 
 **注意**
 
-将罗技 G29 方向盘设备连接到目标计算机的 USB 端口。
+将 Logitech G29 Steering Wheel 设备连接到目标计算机上的 USB 端口。

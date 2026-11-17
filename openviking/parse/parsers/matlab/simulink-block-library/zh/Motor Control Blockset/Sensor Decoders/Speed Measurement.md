@@ -9,7 +9,7 @@ official_category: 'Sensor Decoders'
 documentation_page: 'speedmeasurement'
 documentation_source_path: 'ref/speedmeasurement.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Speed Measurement
@@ -18,145 +18,156 @@ chinese_source: official
 
 ### 输入
 
-### **θ** — 转子的角位置 标量
+### **θ** — 转子角位置 标量
 
-以弧度、度或标幺指定的转子角位置。
+转子的角位置，以弧度、度或标幺值指定。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Ts** — 采样时间，在此采样时间过后模块将再次执行 标量
+### **Ts** — 模块再次执行前的采样时间 标量
 
-每两个连续的模块执行实例之间的固定时间间隔（以秒为单位）。
+模块每两次连续执行之间的固定时间间隔（以秒为单位）。
 
 #### 依赖关系
 
-要启用此端口，请选择**高级选项** > **使用输入端口设置离散步长**参数。
+要启用此端口，请选择 **Advanced Options** >
+**Use input port for Discrete step size** 参数。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 ### 输出
 
 ### **⍵** — 转子角速度 标量
 
-模块根据角位置输入计算的角速度。
+模块根据角位置输入计算得到的角速度。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
 ## 参数
 
-### **位置单位** — 角位置的单位 **弧度** (默认) | **度** | **标幺**
+### **Position unit** — 角位置单位 `Radians`（默认）| `Degrees` | `Per unit`
 
 角位置 `θ` 的单位。
 
-### **位置换算数据类型** — 映射输入位置的范围 **uint32** (默认) | **uint16** | **uint64**
+### **Position scaling datatype** — 映射输入位置的范围 `uint32`（默认）| `uint16` | `uint64`
 
-用于在内部映射输入位置以适应无符号整数数据类型的范围。例如，对于 uint32 数据类型，该模块在 `(0 - 2π)` 到 `(0 - (232-1))` 的范围内缩放输入。
+用于在内部映射输入位置以适配无符号整数数据类型的范围。
+例如，对于 uint32 数据类型，模块将范围 `(0 - 2π)` 内的输入缩放至
+`(0 - (232-1))`。
 
-### **转速计算准则** — 转速计算的方法 **最大应用转速** (默认) | **转速分辨率** | **转速计算的时间间隔**
+### **Speed calculation criteria** — 速度计算方法 `Maximum application speed`（默认）| `Speed resolution` | `Time interval for speed calculation`
 
-模块中使用的转速计算方法。所选方法用于确定该模块可以测量的转子转速范围。
+模块中使用的速度计算方法。所选方法决定模块可测量的转子速度范围。
 
-这些参数根据**转速计算准则**参数更改值：
+这些参数根据 **Speed calculation
+criteria** 参数改变取值：
 
-| 参数名称 | 最大应用转速 | 转速分辨率 | 转速计算的时间间隔 |
+| 参数名称 | Maximum application speed | Speed Resolution | Time interval for speed calculation |
 | --- | --- | --- | --- |
-| **转速计算的延迟(采样数)** | `299` | `28` | `28` |
-| **最大可测量转速(RPM)** | `1000` | `10344.8276` | `10713.2857` |
-| **可测量转速分辨率(RPM)** | `4.6566e-07` | `4.9892e-06` | `4.9892e-06` |
+| **Delays for speed calculation (number of samples)** | `299` | `28` | `28` |
+| **Maximum measurable speed (RPM)** | `1000` | `10344.8276` | `10713.2857` |
+| **Measurable speed resolution (RPM)** | `4.6566e-07` | `4.9892e-06` | `4.9892e-06` |
 
-### **离散步长(秒)** — 采样时间，在此采样时间过后模块将再次执行 `100e-6` (默认) | 标量
+### **Discrete step size (s)** — 模块再次执行前的采样时间 `100e-6`（默认）| 标量
 
-每两个连续的模块执行实例之间的固定时间间隔（以秒为单位）。
+模块每两次连续执行之间的固定时间间隔（以秒为单位）。
 
-这些参数根据**离散步长(秒)** 参数值更改值：
+这些参数根据 **Discrete step size
+(s)** 参数值改变取值：
 
-- **转速计算的延迟(采样数)**
-- **最大可测量转速(RPM)**
-- **可测量转速分辨率(RPM)**
-
-#### 依赖关系
-
-要启用此参数，请清除**高级选项** > **使用输入端口设置离散步长**参数。
-
-### **最大应用转速(RPM)** — 最大可测量转子转速 `1000` (默认) | 标量
-
-该模块可以测量的最大转子转速（以转数/分钟为单位）。
-
-以下参数根据**最大应用转速(RPM)** 参数值更改值：
-
-- **转速计算的延迟(采样数)**
-- **最大可测量转速(RPM)**
-- **可测量转速分辨率(RPM)**
+- **Delays for speed calculation (number of samples)**
+- **Maximum measurable speed (RPM)**
+- **Measurable speed resolution (RPM)**
 
 #### 依赖关系
 
-要启用此参数，请将**转速计算准则**设置为**最大应用转速**。
+要启用此参数，请清除 **Advanced Options** >
+**Use input port for Discrete step size** 参数。
 
-### **转速分辨率(RPM)** — 最小可探测转速 `5e-6` (默认) | 标量
+### **Maximum application speed (RPM)** — 最大可测量转子速度 `1000`（默认）| 标量
 
-在该模块可以检测到的单位时间内 `θ` 输入变化的最小值。
+模块可测量的最大转子速度（以每分钟转数为单位）。
 
-这些参数根据**转速分辨率(RPM)** 参数值更改值：
+这些参数根据 **Maximum application speed
+(RPM)** 参数值改变取值：
 
-- **转速计算的延迟(采样数)**
-- **最大可测量转速(RPM)**
-- **可测量转速分辨率(RPM)**
+- **Delays for speed calculation (number of samples)**
+- **Maximum measurable speed (RPM)**
+- **Measurable speed resolution (RPM)**
 
 #### 依赖关系
 
-要启用此参数，请将**转速计算准则**设置为**转速分辨率**。
+要启用此参数，请将 **Speed calculation criteria** 设置为
+`Maximum application speed`。
 
-### **转速计算的延迟(采样数)** — 测量的角位置采样数 `299` 或 `28` (默认) | 标量
+### **Speed Resolution (RPM)** — 最小可检测速度 `5e-6`（默认）| 标量
 
-模块测量的角位置输入的采样数，用于计算平均位置值。
+模块可检测的 `θ` 输入每单位时间变化的最小值。
 
-以下参数根据**转速计算的延迟(采样数)** 参数值更改值：
+这些参数根据 **Speed Resolution
+(RPM)** 参数值改变取值：
 
-- **最大可测量转速(RPM)**
-- **可测量转速分辨率(RPM)**
+- **Delays for speed calculation (number of samples)**
+- **Maximum measurable speed (RPM)**
+- **Measurable speed resolution (RPM)**
+
+#### 依赖关系
+
+要启用此参数，请将 **Speed calculation criteria** 设置为
+`Speed resolution`。
+
+### **Delays for speed calculation (number of samples)** — 用于计算速度的延迟（采样数） `299` 或 `28`（默认）| 标量
+
+模块用于计算平均位置值的角位置输入的采样数。
+
+这些参数会根据 **Delays for speed calculation (number of samples)** 参数值改变取值：
+
+- **Maximum measurable speed (RPM)**
+- **Measurable speed resolution (RPM)**
 
 **注意**
 
-**转速计算的延迟(采样数)** 参数的最大限制设置为 2^30（或 1073741824）。此限制会影响**最大可测量转速(RPM)** 和**可测量转速分辨率(RPM)** 参数的值，它们可能并不总是与所需值匹配。
+**Delays for speed calculation (number of samples)** 参数的最大限制设置为 2^30（或 1073741824）。此限制会影响 **Maximum measurable speed (RPM)** 和 **Measurable speed resolution (RPM)** 参数的值，并且它们可能并不总是与所需值匹配。
 
 #### 依赖关系
 
-要启用此参数，请将**转速计算准则**设置为**转速计算的时间间隔**。
+要启用此参数，请将 **Speed calculation criteria** 设置为 `Time interval for speed calculation`。
 
-### **最大可测量转速(RPM)** — 最大可测量转速 `1000` 或 `10344.8276` 或 `10713.2857` (默认) | 标量
+### **Maximum measurable speed (RPM)** — 最大可测量速度 `1000` 或 `10344.8276` 或 `10713.2857`（默认）| 标量
 
-该模块可以测量的绝对最大转速。
+模块能够测量的绝对最大速度。
 
-此参数不可配置，它使用的值是使用其他参数内部计算获得的。
+此参数不可配置，并使用由其他参数在内部计算得到的值。
 
-### **可测量转速分辨率(RPM)** — 用于转速计算的最小转速分辨率 `4.6566e-07` 或 `4.9892e-06` (默认) | 标量
+### **Measurable speed resolution (RPM)** — 用于速度计算的最小速度分辨率 `4.6566e-07` 或 `4.9892e-06`（默认）| 标量
 
-模块用于转速计算的最小转速分辨率。它始终小于或等于**转速分辨率(RPM)**。
+模块用于速度计算的最小速度分辨率。它始终小于或等于 **Speed Resolution (RPM)**。
 
-此参数不可配置，它使用的值是使用其他参数内部计算获得的。
+此参数不可配置，并使用由其他参数在内部计算得到的值。
 
-### **转速单位** — 角速度输出的单位 **RPM** (默认) | **度/秒** | **弧度/秒** | **基于最大可测量转速的标幺** | **基于对话框的标幺**
+### **Speed unit** — 角速度输出的单位 `RPM`（默认）| `Degrees/Sec` | `Radians/Sec` | `Per unit based on maximum measurable speed` | `Per unit based on dialog`
 
 角速度输出的单位。
 
-### **标幺转速(RPM)** — 以标幺为单位计算的转速 (RPM) `1000` (默认)
+### **Per unit speed (RPM)** — 用于标幺值计算的速度（以 RPM 为单位） `1000`（默认）
 
-指定以标幺为单位计算的转速 (RPM)。
+指定用于标幺值计算的速度，以 RPM 为单位。
 
 #### 依赖关系
 
-仅当为**转速单位**选择**基于对话框的标幺**时，此参数才会出现。
+仅当 **Speed unit** 选择 `Per unit based on dialog` 时，此参数才会出现。
 
-### **转速数据类型** — 角速度输出的数据类型 **单精度** (默认) | **双精度** | **定点**
+### **Speed data type** — 角速度输出的数据类型 `single`（默认）| `double` | `fixed point`
 
 角速度输出 `⍵` 的数据类型。
 
 **注意**
 
-Speed Measurement 模块可能偶尔会显示警告消息 `'Wrap on overflow detected``'`。
+Speed Measurement 模块可能偶尔会显示警告消息
+`'Wrap on overflow detected`.`'`
 
-### **使用输入端口设置离散步长** — 通过输入端口指定采样步长 `off` (默认) | `on`
+### **Use input port for Discrete step size** — 使用输入端口指定采样步长 `off`（默认）| `on`
 
-如果您想使用输入端口指定采用步长，请选择此参数。
+如果要使用输入端口指定采样步长，请选择此参数。
 
 ## 所属库
 
@@ -164,42 +175,44 @@ Motor Control Blockset / Sensor Decoders Motor Control Blockset HDL Support / Se
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
+### HDL 代码生成
+使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供了影响 HDL 实现和综合逻辑的额外配置选项。
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 架构**
 
-此模块具有单一默认 HDL 架构。
+此模块具有单一的默认 HDL 架构。
 
 **HDL 模块属性**
 
 |  |  |
 | --- | --- |
 |  |  |
-| **ConstrainedOutputPipeline** | 要通过移动设计中的现有延迟来放置在输出端的寄存器的数量。分布式流水线不会重新分布这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
-| **SharingFactor** | 要映射到单个共享资源的功能等效的资源数量。默认值为 0。另请参阅Resource Sharing (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+| **SharingFactor** | 要映射到单个共享资源的等效功能资源数量。默认值为 0。另请参阅 Resource Sharing (HDL Coder)。 |
 
-### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
+### 定点转换
+使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2020a 中推出**
+**在 R2020a 中引入**
 
-### R2025a: 增加了新的输入端口和模块参数
+### R2025a：新增输入端口和模块参数
 
-“模块参数”对话框现在包含**使用输入端口设置离散步长**参数，以便您从单独的输入端口**采样时间**指定离散步长。
+模块参数对话框现在包含 **Use input port for Discrete step size** 参数，供您从单独的输入端口 **Ts** 指定离散步长。
 
 ## 描述
 
-根据转子的角位置计算转速
+根据转子角位置计算速度
 
 Speed Measurement 模块通过计算角位置相对于时间的变化，根据转子的角位置计算角速度。

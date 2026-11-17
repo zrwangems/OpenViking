@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Cycler'
-family: 'cyclers'
+family: 'simscape-battery'
 product_id: 'simscape-battery'
 product_name: 'Battery'
 documentation_release: R2025b
@@ -20,45 +20,45 @@ chinese_source: worker-translation
 
 ### **i** — 电流，A 物理信号
 
-与流过 Cycler 的电流关联的物理信号输入端口。
+与通过 cycler 的电流相关联的物理信号输入端口。
 
 #### 依赖关系
 
-要启用此端口，请将**配置**参数设置为 `Galvanostat, specify current` 或 `Cycler, specify current or voltage`。
+要启用此端口，请将 **Configuration** 参数设置为 `Galvanostat, specify current` 或 `Cycler, specify current or voltage`。
 
 ### **v** — 电压，V 物理信号
 
-与 Cycler 两端电压关联的物理信号输入端口。
+与 cycler 两端电压相关联的物理信号输入端口。
 
 #### 依赖关系
 
-要启用此端口，请将**配置**参数设置为 `Potentiostat, specify voltage` 或 `Cycler, specify current or voltage`。
+要启用此端口，请将 **Configuration** 参数设置为 `Potentiostat, specify voltage` 或 `Cycler, specify current or voltage`。
 
 ### **c** — 控制，无量纲物理信号
 
-控制 Cycler 行为的物理信号输入端口。
+控制 cycler 行为的物理信号输入端口。
 
 #### 依赖关系
 
-要启用此端口，请将**配置**参数设置为 `Cycler, specify current or voltage`。
+要启用此端口，请将 **Configuration** 参数设置为 `Cycler, specify current or voltage`。
 
 ### 守恒
 
-### **+** — 正极端子电气
+### **+** — 正极端子 电气
 
-与 Cycler 正极端子关联的电气守恒端口。
+与 cycler 正极端子相关联的电气守恒端口。
 
-### **-** — 负极端子电气
+### **-** — 负极端子 电气
 
-与 Cycler 负极端子关联的电气守恒端口。
+与 cycler 负极端子相关联的电气守恒端口。
 
 ## 参数
 
-### **电流符号约定** — 电流的符号约定选项 `Positive for device discharge (IEC 62660)`（默认） | `Positive for device charge`
+### **Current sign convention** — 电流的符号约定选项 `Positive for device discharge (IEC 62660)`（默认）| `Positive for device charge`
 
 电流符号的约定选项。
 
-### **配置** — 模块配置 `Cycler, specify current or voltage`（默认） | `Galvanostat, specify current` | `Potentiostat, specify voltage`
+### **Configuration** — 模块配置 `Cycler, specify current or voltage`（默认）| `Galvanostat, specify current` | `Potentiostat, specify voltage`
 
 用于配置模块行为的选项。
 
@@ -68,7 +68,7 @@ Simscape / Battery / Cyclers
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -80,21 +80,21 @@ Simscape / Battery / Cyclers
 
 ## 描述
 
-理想恒电流仪、恒电位仪或循环仪
+理想恒流仪、恒压仪或 cycler
 
-Cycler 模块实现理想恒电流仪、恒电位仪或循环仪。
+Cycler 模块实现理想的恒流仪、恒压仪或 cycler。
 
-要将此模块配置为恒电流仪，请将**配置**参数设置为 `Galvanostat, specify current`。然后，Cycler 模块表示理想电流源或电流汇，其强度足以维持流过它的指定电流，而无论其两端电压如何。输出电流是物理信号端口 **i** 处的值。
+要将此模块配置为恒流仪，请将 **Configuration** 参数设置为 `Galvanostat, specify current`。此时 Cycler 模块表示一个理想的电流源或电流吸收器，其能力足以维持通过它的指定电流，而不受其两端电压的影响。输出电流为物理信号端口 **i** 处的值。
 
-要将此模块配置为恒电位仪，请将**配置**参数设置为 `Potentiostat, specify voltage`。然后，Cycler 模块表示理想电压源，其强度足以维持其输出端的指定电压，而无论流过它的电流如何。输出电压是物理信号端口 **v** 处的值。
+要将此模块配置为恒压仪，请将 **Configuration** 参数设置为 `Potentiostat, specify voltage`。此时 Cycler 模块表示一个理想的电压源，其能力足以维持其输出端的指定电压，而不受通过它的电流的影响。输出电压为物理信号端口 **v** 处的值。
 
-要将此模块配置为循环仪，请将**配置**参数设置为 `Cycler, specify current or voltage`。当控制物理信号端口 **c** 处的值等于 `0` 时，循环仪关闭。当控制物理信号端口 **c** 处的值等于 `1` 时，此模块表示恒电流仪。当控制物理信号端口 **c** 处的值等于 `2` 时，此模块表示恒电位仪。
+要将此模块配置为 cycler，请将 **Configuration** 参数设置为 `Cycler, specify current or voltage`。当控制物理信号端口 **c** 处的值等于 `0` 时，cycler 关闭。当控制物理信号端口 **c** 处的值等于 `1` 时，此模块表示恒流仪。当控制物理信号端口 **c** 处的值等于 `2` 时，此模块表示恒压仪。
 
-下表显示了 Cycler 模块的整体行为：
+此表显示了 Cycler 模块的整体行为：
 
-| 配置 | | | | |
+| Configuration | | | | |
 | --- | --- | --- | --- | --- |
 | `Galvanostat, specify current` | `Potentiostat, specify voltage` | `Cycler, specify current or voltage` | | |
 | 输入端口 **c** 处的值 | | |
 | 0 | 1 | 2 |
-| Cycler 模块表示理想电流源。 | Cycler 模块表示理想电压源。 | Cycler 模块关闭。 | Cycler 模块表示恒电流仪。 | Cycler 模块表示恒电位仪。 |
+| Cycler 模块表示理想电流源。 | Cycler 模块表示理想电压源。 | Cycler 模块关闭。 | Cycler 模块表示恒流仪。 | Cycler 模块表示恒压仪。 |

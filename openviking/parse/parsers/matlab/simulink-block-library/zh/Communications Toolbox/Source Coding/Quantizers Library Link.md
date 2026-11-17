@@ -9,12 +9,12 @@ official_category: 'Source Coding'
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Communications Toolbox
 
-Communications Toolbox 基础知识学习
+了解 Communications Toolbox 的基础知识
 
 设计、仿真和分析通信系统的物理层
 
@@ -26,27 +26,27 @@ Communications Toolbox 基础知识学习
 - **PDF 文档**
 - **PDF 文档**
 
-Communications Toolbox™ 提供了算法和 App，用于通信系统的设计、端到端仿真、分析和验证。该工具箱包括基于图形的 App，可让您生成自定义波形或基于标准的波形。您可以创建测试向量来验证接收机性能，或通过向波形添加射频损伤来创建用于人工智能 (AI) 应用的数据集。该工具箱允许您以统计方法或使用包括地形和建筑物的射线追踪解决方案进行建模。您可以对信道退化的影响进行补偿，并使用 SDR 通过空口 (OTA) 测试来验证您的设计。
+Communications Toolbox™ 提供用于通信系统设计、端到端仿真、分析和验证的算法和应用程序。该工具箱包含一个基于图形的应用程序，可让您生成自定义或基于标准的波形。您可以通过向波形添加 RF 损伤来创建测试向量以验证接收机性能，或为人工智能（AI）应用创建数据集。该工具箱允许您以统计方式或使用包含地形和建筑物的射线追踪解决方案对传播信道进行建模。您可以补偿信道退化的影响，并使用 SDR 通过空中（OTA）测试来验证您的设计。
 
-Communications Toolbox 有助于（使用 Antenna Toolbox™ 和 RF Blockset™）对从天线到射频链再到位处理的通信链路进行建模。您可以使用云或本地集群（通过 Parallel Computing Toolbox™）加速 BER 仿真。该工具箱可帮助您使用 AI 方法（通过 Deep Learning Toolbox™）解决通信问题。
+Communications Toolbox 促进了从天线到 RF 链到比特处理的通信链路建模（使用 Antenna Toolbox™ 和 RF Blockset™）。您可以使用云或本地集群加速 BER 仿真（使用 Parallel Computing Toolbox™）。该工具箱帮助您使用 AI 技术解决通信问题（使用 Deep Learning Toolbox™）。
 
-## Communications Toolbox 快速入门
+## 入门
 
-Communications Toolbox 基础知识学习
+了解 Communications Toolbox 的基础知识
 
 ## PHY 组件
 
-物理层功能，包括波形生成、源编码、差错控制编码、调制、MIMO、空时编码、滤波、均衡和同步
+物理层功能，包括波形生成、信源编码、差错控制编码、调制、MIMO、空时编码、滤波、均衡和同步
 
-## 射频组件建模
+## RF 组件建模
 
-行为射频组件建模和损伤校正
+行为级 RF 组件建模和损伤校正
 
 ## 传播和信道模型
 
-站点与地形可视化、传播模型设定（包括 Longley-Rice）、信号强度、信号覆盖图以及静态和衰落信道模型
+站点和地形可视化、传播模型规范（包括 Longley-Rice）、信号强度、信号覆盖图以及静态和衰落信道模型
 
-## AI 在无线通信中的应用
+## 无线 AI
 
 无线通信系统中的机器学习、深度学习和强化学习
 
@@ -58,37 +58,37 @@ Communications Toolbox 基础知识学习
 
 DLL、MAC 子层、LLC 子层和多节点通信
 
-## 符合标准的系统
+## 标准兼容系统
 
-符合各种标准的系统模型
+兼容各种标准的系统模型
 
 ## 测试和测量
 
 波形生成、文件 IO 格式、可视化和性能分析
 
-## 加速与部署
+## 加速和部署
 
-帮助您加速代码执行并为桌面计算机和嵌入式目标生成独立应用程序的工作流
+帮助您加速代码以及为桌面计算机和嵌入式目标生成独立应用程序的工作流
 
-## 支持的硬件 - 软件无线电
+## 支持的硬件 – 软件定义无线电
 
-支持第三方软件无线电硬件，如 RTL-SDR、ADALM-PLUTO 和 USRP™ 无线电
+支持第三方软件定义无线电硬件，如 RTL-SDR、ADALM-PLUTO 和 USRP™ 无线电
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个对应于以下 MATLAB 命令的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：。
 
 - (English)
 - (Deutsch)
@@ -97,11 +97,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择一个网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -132,7 +132,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

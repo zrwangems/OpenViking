@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Detrend'
-family: 'statistics'
+family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
@@ -20,14 +20,14 @@ chinese_source: worker-translation
 
 ### **Input** — 输入数据向量
 
-输入数据，指定为向量。该模块去除在最小二乘意义上最佳拟合数据的直线。
+输入数据，指定为向量。该模块会去除在最小二乘意义上最佳拟合数据的直线。
 
 **数据类型：** `single` | `double`
 ### 输出
 
 ### **Output** — 输出数据列向量
 
-输出数据，以列向量形式返回。该模块返回去除在最小二乘意义上最佳拟合数据的直线后剩余的数据。
+输出数据，以列向量形式返回。该模块在去除最小二乘意义上最佳拟合数据的直线后，返回剩余数据。
 
 **数据类型：** `single` | `double`
 
@@ -65,12 +65,11 @@ DSP System Toolbox / Statistics
 Detrend 模块通过减去在最小二乘意义上最佳拟合数据的直线，从长度为 *M* 的输入向量 *u* 中去除线性趋势。
 
 最小二乘直线 *û* = *ax* +
-*b* 是参数为 *a* 和
+*b* 是具有参数 *a* 和
 *b* 的直线，它使以下量最小化
 
 ∑i=1M(ui−u^i)2
 
-对于 *x* 的 *M* 个等间距值，其中
-*ui* 是输入向量中的第 *i* 个
-元素。输出 *y* =
-*u*-*û* 始终是 *M*×1 列向量。
+其中 *x* 取 *M* 个等间距值，
+*ui* 是输入向量中的第 *i* 个元素。输出 *y* =
+*u*-*û* 始终是一个 *M*×1 列向量。

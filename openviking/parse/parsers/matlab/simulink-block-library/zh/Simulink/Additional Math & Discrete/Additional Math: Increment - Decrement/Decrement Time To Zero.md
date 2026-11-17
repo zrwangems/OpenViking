@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Decrement Time To Zero'
-family: 'additional-math-discrete'
+family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -23,12 +23,12 @@ chinese_source: worker-translation
 输入信号，指定为标量、向量或矩阵。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ### 输出
 
 ### **Port\_1** — 输出信号 标量 | 向量 | 矩阵
 
-输出是输入信号的实际值减去采样时间 `Ts` 后的结果。输出永远不会低于零。输出具有与输入相同的数据类型和维度。
+输出是输入信号的实世界值减去采样时间 `Ts` 后的结果。输出永远不会低于零。
+输出与输入具有相同的数据类型和维度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
@@ -62,6 +62,6 @@ Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement
 
 ## 描述
 
-将信号的实际值按采样时间递减，但仅递减到零
+将信号的实世界值按采样时间递减，但仅递减至零
 
-Decrement Time To Zero 模块将信号的实际值按采样时间 `Ts` 递减。输出永远不会低于零。
+Decrement Time To Zero 模块将信号的实世界值减去采样时间 `Ts`。输出永远不会低于零。

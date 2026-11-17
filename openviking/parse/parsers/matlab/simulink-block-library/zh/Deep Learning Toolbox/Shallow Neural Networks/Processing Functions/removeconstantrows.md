@@ -16,23 +16,23 @@ chinese_source: worker-translation
 
 ## 端口
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 参数
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 所属库
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -50,21 +50,24 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | `X` | `N`×`Q` 矩阵 |
-| `max_range` | 要删除的行的最大取值范围（默认值为 0） |
+| `max_range` | 要删除的行的最大值范围（默认为 0） |
 
 并返回
 
 |  |  |
 | --- | --- |
-| `Y` | 已删除 `N` `-` `M` 行的 `M`×`Q` 矩阵 |
+| `Y` | 删除了 `N` `-` `M` 行的 `M`×`Q` 矩阵 |
 | `PS` | 允许对值进行一致处理的处理设置 |
 
-`[Y,PS] = removeconstantrows(X,FP)` 以结构体形式接受参数：
+`[Y,PS] = removeconstantrows(X,FP)` 将参数作为结构体接受：
 `FP.max_range`。
 
-`Y = removeconstantrows('apply',X,PS)` 在给定 `X` 和设置 `PS` 的情况下返回 `Y`。
+`Y = removeconstantrows('apply',X,PS)` 返回 `Y`，
+给定 `X` 和设置 `PS`。
 
-`X = removeconstantrows('reverse',Y,PS)` 在给定 `Y` 和设置 `PS` 的情况下返回 `X`。
+`X = removeconstantrows('reverse',Y,PS)` 返回 `X`，
+给定 `Y` 和设置 `PS`。
 
-输入矩阵中的任何 `NaN` 值都被视为缺失数据，并且不被视为唯一值。因此，例如，`removeconstantrows`
-会从矩阵 `[1 1 1 NaN; 1 1 1 2]` 中删除第一行。
+输入矩阵中的任何 `NaN` 值被视为缺失数据，并且
+不被视为唯一值。因此，例如，`removeconstantrows`
+从矩阵 `[1 1 1 NaN; 1 1 1 2]` 中删除第一行。

@@ -9,108 +9,100 @@ official_category: 'Propulsion'
 documentation_page: 'propulsion'
 documentation_source_path: 'propulsion.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Propulsion
 
 Propulsion
 
-Internal combustion engines, electric motors, and controllers
+内燃机、电动机和控制器
 
-Propulsion systems in powertrains include internal combustion spark-ignition (SI) engines, compression-ignition (CI) engines, and electric motors. Use the propulsion blocks to assemble engine subsystems and controllers for hardware-in-the-loop (HIL) engine control design, vehicle-level fuel economy, and performance simulations.
+动力总成中的推进系统包括内燃机火花点火（SI）发动机、压缩点火（CI）发动机和电动机。使用推进模块来组装发动机子系统和控制器，用于硬件在环（HIL）发动机控制设计、整车级燃油经济性和性能仿真。
 
-## Blocks
+## 模块
 
-### Internal Combustion Engines, Components, and Controllers
+### 内燃机、组件和控制器
 
-#### Engines and Controllers
-
-|  |  |
-| --- | --- |
-| Mapped CI Engine | Compression-ignition engine model using lookup tables |
-| Mapped SI Engine | Spark-ignition engine model using lookup tables |
-| Simple Engine | Simplified engine model using lookup tables *(Since R2021b)* |
-| CI Controller | Compression-ignition controller that includes air mass flow, torque, and EGR estimation |
-| SI Controller | Spark-ignition engine controller that uses the driver torque request |
-
-#### Components
+#### 发动机和控制器
 
 |  |  |
 | --- | --- |
-| CI Core Engine | Compression-ignition engine from intake to exhaust port |
-| SI Core Engine | Spark-ignition engine from intake to exhaust port |
-| Mapped Core Engine | Steady-state core engine model using lookup tables |
-| Boost Drive Shaft | Boost drive shaft speed |
-| Compressor | Compressor for boosted engines |
-| Control Volume System | Constant volume open thermodynamic system with heat transfer |
-| Flow Boundary | Flow boundary for ambient temperature and pressure |
-| Flow Restriction | Isentropic ideal gas flow through an orifice |
-| Heat Exchanger | Intercooler or exhaust gas recirculation (EGR) cooler |
-| Turbine | Turbine for boosted engines |
+| Mapped CI Engine | 使用查找表的压缩点火发动机模型 |
+| Mapped SI Engine | 使用查找表的火花点火发动机模型 |
+| Simple Engine | 使用查找表的简化发动机模型 *(自 R2021b 起)* |
+| CI Controller | 包含空气质量流量、扭矩和 EGR 估计的压缩点火控制器 |
+| SI Controller | 使用驾驶员扭矩请求的火花点火发动机控制器 |
 
-### Electric Motors, Inverters, and Controllers
-
-#### Motors and Inverters
+#### 组件
 
 |  |  |
 | --- | --- |
-| Flux-Based PMSM | Flux-based permanent magnet synchronous motor |
-| Induction Motor | Three-phase induction motor |
-| Interior PMSM | Three-phase interior permanent magnet synchronous motor with sinusoidal back electromotive force |
-| Mapped Motor | Mapped motor and drive electronics operating in torque-control mode |
-| Surface Mount PMSM | Three-phase exterior permanent magnet synchronous motor with sinusoidal back electromotive force |
-| Three-Phase Voltage Source Inverter | Three-phase voltage source inverter |
+| CI Core Engine | 从进气口到排气口的压缩点火发动机 |
+| SI Core Engine | 从进气口到排气口的火花点火发动机 |
+| Mapped Core Engine | 使用查找表的稳态核心发动机模型 |
+| Boost Drive Shaft | 增压驱动轴转速 |
+| Compressor | 增压发动机的压缩机 |
+| Control Volume System | 带传热的定容开放热力学系统 |
+| Flow Boundary | 环境温度和压力的流动边界 |
+| Flow Restriction | 通过孔口的等熵理想气体流动 |
+| Heat Exchanger | 中冷器或废气再循环（EGR）冷却器 |
+| Turbine | 增压发动机的涡轮 |
 
-#### Controllers
+### 电动机、逆变器和控制器
+
+#### 电动机和逆变器
 
 |  |  |
 | --- | --- |
-| Equivalent Consumption Minimization Strategy | Energy management controller for P0–P4 hybrid electric vehicles |
-| Flux-Based PM Controller | Controller for a flux-based permanent magnet synchronous motor |
-| IM Controller | Internal torque-based, field-oriented controller for an induction motor with an optional outer-loop speed controller |
-| Interior PM Controller | Torque-based, field-oriented controller for an internal permanent magnet synchronous motor |
-| Surface Mount PM Controller | Torque-based, field-oriented controller for a surface mount permanent magnet synchronous motor |
+| Flux-Based PMSM | 基于磁链的永磁同步电机 |
+| Induction Motor | 三相感应电机 |
+| Interior PMSM | 具有正弦反电动势的三相内置式永磁同步电机 |
+| Mapped Motor | 在扭矩控制模式下运行的映射电机和驱动电子设备 |
+| Surface Mount PMSM | 具有正弦反电动势的三相表贴式永磁同步电机 |
+| Three-Phase Voltage Source Inverter | 三相电压源逆变器 |
 
-## Topics
+#### 控制器
+
+|  |  |
+| --- | --- |
+| Equivalent Consumption Minimization Strategy | 用于 P0–P4 混合动力电动汽车的能量管理控制器 |
+| Flux-Based PM Controller | 用于基于磁链的永磁同步电机的控制器 |
+| IM Controller | 用于感应电机的基于内部扭矩的磁场定向控制器，带有可选的外环速度控制器 |
+| Interior PM Controller | 用于内置式永磁同步电机的基于扭矩的磁场定向控制器 |
+| Surface Mount PM Controller | 用于表贴式永磁同步电机的基于扭矩的磁场定向控制器 |
+
+## 主题
 
 ### Engines
 
 - **Calibrate and Resize Engines and Electric Motors**
-  Use reference applications and virtual vehicle composer to calibrate and resize
-  engines and electric motors.
-- **Calibrate, Validate, and Optimize CI Engine with Dynamometer Test Harness**
-  Simulate a compression-ignition (CI) engine and controller under a dynamometer
-  test harness using the CI engine dynamometer reference application.
-- **Calibrate, Validate, and Optimize SI Engine with Dynamometer Test Harness**
-  Simulate a spark-ignition (SI) engine and controller under a dynamometer test
-  harness using the SI engine dynamometer reference application.
-- **Calibrate, Validate, and Optimize SI H2 Engine with Dynamometer Test Harness**
-  Simulate a hydrogen-fueled spark-ignition (SI) engine and controller under a
-  dynamometer test harness using the SI H2 engine dynamometer reference
-  application.
-- **Calibrate ECMS Block for Objective Hybrid Vehicle Fuel Economy Assessment**
-  Calibrate the Equivalent Consumption Minimization Strategy block in
-  the HEV P2 reference application.
+  使用参考应用和虚拟车辆 composer 来校准和调整发动机与电动机的尺寸。
+- **使用测功机测试台架校准、验证和优化 CI 发动机**
+  使用 CI 发动机测功机参考应用，在测功机测试 harness 下仿真压缩点火（CI）发动机和控制器。
+- **使用测功机测试台架校准、验证和优化 SI 发动机**
+  使用 SI 发动机测功机参考应用，在测功机测试 harness 下仿真火花点火（SI）发动机和控制器。
+- **使用测功机测试台架校准、验证和优化 SI H2 发动机**
+  使用 SI H2 发动机测功机参考应用，在测功机测试 harness 下仿真氢燃料火花点火（SI）发动机和控制器。
+- **为客观的混合动力车辆燃油经济性评估校准 ECMS 模块**
+  在 HEV P2 参考应用中校准等效消耗最小化策略模块。
 
 ### Electric Motors
 
-- **Develop, Resize, and Calibrate Motors with Dynamometer Test Harness**
-  Develop a control test bench, resize e-motors, and calibrate controllers using the
-  motor dynamometer reference application.
-- **Generate Optimal Current Controller Calibration Tables for Permanent Magnet Synchronous Motors**
+- **使用测功机测试台架开发、调整尺寸和校准电机**
+  使用电机测功机参考应用开发控制测试台、调整 e-motors 尺寸并校准控制器。
+- **为永磁同步电机生成最优电流控制器校准表**
 
-  Generate optimized current controller and flux parameters for permanent magnet
-  synchronous motor (PMSM) blocks.
+  为永磁同步电机（PMSM）模块生成优化的电流控制器和磁通参数。
 
   - STEP 1: **Generate Current Controller Parameters**
   - STEP 2: **Generate Feed-Forward Flux Parameters**
-  - STEP 3: **Generate Parameters for Flux-Based PMSM Block**
+  - 步骤 3：**为基于磁链的 PMSM 模块生成参数**
 
 ## Related Information
 
 - **Engine Calibration Maps**
-- **Estimate Motor Parameters Using Motor Control Blockset Parameter Estimation Tool (Motor Control Blockset)**
+- **使用电机控制模块集参数估计工具估计电机参数（电机控制模块集）**
 
 ## Featured Examples
 
@@ -118,35 +110,31 @@ Build Conventional Vehicle Model
 
 ### Build Conventional Vehicle Model
 
-Build a vehicle with an internal combustion engine using the conventional vehicle
-reference application.
+使用传统车辆参考应用构建带有内燃机的车辆。
 
-Calibrate Mapped Electric Motors Using Data
+使用数据校准映射电机
 
-### Calibrate Mapped Electric Motors Using Data
+### 使用数据校准映射电机
 
-Use the Virtual Vehicle Composer to calibrate mapped electric motors
-from imported data.
+使用 Virtual Vehicle Composer 根据导入的数据校准映射电动机。
 
-Calibrate Mapped CI Engine Using Data
+使用数据校准映射 CI 发动机
 
-### Calibrate Mapped CI Engine Using Data
+### 使用数据校准映射 CI 发动机
 
-Use the Virtual Vehicle Composer to calibrate mapped CI engines from
-imported data.
+使用 Virtual Vehicle Composer 根据导入的数据校准映射 CI 发动机。
 
-Calibrate Mapped SI Engine Using Data
+使用数据校准映射 SI 发动机
 
-### Calibrate Mapped SI Engine Using Data
+### 使用数据校准映射 SI 发动机
 
-Use the Virtual Vehicle Composer to calibrate mapped SI engines from
-imported data.
+使用 Virtual Vehicle Composer 根据导入的数据校准映射 SI 发动机。
 
 Detect Misfires Using On-Board Diagnostics
 
 ### Detect Misfires Using On-Board Diagnostics
 
-Implement onboard-diagnostics (OBD) to detect and report engine misfires.
+实现车载诊断（OBD）以检测并报告发动机失火。
 
 - Open Model
 
@@ -154,45 +142,43 @@ Resize CI Engines
 
 ### Resize CI Engines
 
-Resize compression-ignition (CI) engines using the dynamometer reference
-application.
+使用测功机参考应用调整压缩点火（CI）发动机的尺寸。
 
 Resize SI Engines
 
 ### Resize SI Engines
 
-Resize the spark-ignition (SI) engines using the dynamometer reference
-application.
+使用测功机参考应用调整火花点火（SI）发动机的尺寸。
 
 Resize Electric Motors
 
 ### Resize Electric Motors
 
-Resize motors using the dynamometer reference application.
+使用测功机参考应用调整电机尺寸。
 
-Read and Write Block Parameters to Excel
+读取和写入模块参数到 Excel
 
-### Read and Write Block Parameters to Excel
+### 读取和写入模块参数到 Excel
 
-Read data and write Mapped SI Engine block parameters to an Excel® data file.
+读取数据并将 Mapped SI Engine 模块参数写入 Excel® 数据文件。
 
 - Open Live Script
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个对应于以下 MATLAB 命令的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB Command Window 中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
 Close
 
 MathWorks
 MathWorks
 
-选择网站
+Select a Web Site
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：
 
 - (English)
 - (Deutsch)
@@ -201,19 +187,19 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择一个网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
-美洲
+Americas
 
 - América Latina (Español)
 - Canada (English)
 - United States (English)
 
-欧洲
+Europe
 
 - Belgium (English)
 - Denmark (English)
@@ -236,7 +222,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+Asia Pacific
 
 - Australia (English)
 - India (English)
@@ -247,4 +233,4 @@ MathWorks
 - 日本 (日本語)
 - 한국 (한국어)
 
-联系您当地的办事处
+Contact your local office

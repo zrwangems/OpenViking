@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Force Conversion'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -31,7 +31,7 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 力 标量 | 数组
 
-力，以标量或数组形式返回，以最终力单位表示。
+力，以最终力单位返回为标量或数组。
 
 #### 依赖关系
 
@@ -54,7 +54,7 @@ chinese_source: worker-translation
 
 输入端口标签取决于 **Initial unit** 设置。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
@@ -76,7 +76,7 @@ chinese_source: worker-translation
 
 输出端口标签取决于 **Final unit** 设置。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
@@ -91,7 +91,7 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -99,12 +99,12 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2006a 之前引入**
 
 ## 描述
 
-从力单位转换为所需的力单位
+将力单位转换为所需的力单位
 
 Force Conversion 模块计算从指定的输入力单位到指定的输出力单位的转换因子，并将该转换因子应用于输入信号。
 
-Force Conversion 模块的端口标签会根据从 **Initial unit** 和 **Final unit** 列表中选择的输入和输出单位而变化。
+Force Conversion 模块的端口标签根据从 **Initial unit** 和 **Final unit** 列表中选择的输入和输出单位而变化。

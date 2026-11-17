@@ -9,7 +9,7 @@ official_category: 'Electrical Systems / Motors'
 documentation_page: 'pmsmconfiguration'
 documentation_source_path: '../mcb/ref/pmsmconfiguration.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # PMSM Configuration
@@ -18,74 +18,74 @@ chinese_source: official
 
 ### 输出
 
-### **Config** — 模块配置信号 矢量
+### **Config** — 模块配置信号向量
 
-PMSM 的配置信号，包括使用此模块配置的以下参数。
+PMSM 的配置信号，包含以下参数，这些参数通过此模块进行配置。
 
 | 配置元素 | | | 单位 |
 | --- | --- | --- | --- |
 | 极对数 | | | - |
-| 每相定子电阻 | | | 欧姆 |
-| 定子 d 轴电感 | | | 亨 |
-| 定子 q 轴电感 | | | 亨 |
-| 永磁磁链常量 | | | 韦伯 |
+| 每相定子电阻 | | | ohm |
+| 定子 d 轴电感 | | | Henries |
+| 定子 q 轴电感 | | | Henries |
+| 永磁磁链常数 | | | Weber |
 | 惯量 | | | kgm^2 |
-| 反电动势、电动势 | | | Vpk\_LL/krpm  Vpk\_LL 是线电压峰值 |
-| 粘性阻尼 | | | N·m/（弧度/秒） |
-| 机械输入配置（转矩或转速） | | | - |
+| 反电动势，EMF | | | Vpk\_LL/krpm  Vpk\_LL 是峰值线电压测量值 |
+| 粘性阻尼 | | | N·m/(rad/s) |
+| 机械输入配置（Torque 或 Speed） | | | - |
 
-**数据类型:** `single`
+**数据类型：** `single`
 
 ## 参数
 
 ### 模块选项
 
-### **机械输入配置** — 选择端口配置 **转矩** (默认) | **转速**
+### **Mechanical input configuration** — 选择端口配置 `Torque`（默认）| `Speed`
 
-下表总结了每个配置中的输入端口和输出端口。
+下表总结了每种配置下的输入和输出端口。
 
-| 机械输入配置参数值 | | | LdTrq/Spd 端口配置 |
+| Mechanical input configuration 参数值 | | | LdTrq/Spd 端口配置 |
 | --- | --- | --- | --- |
-| 转矩 | | | **LdTrq** |
-| 转速 | | | **Spd** |
+| Torque | | | **LdTrq** |
+| Speed | | | **Spd** |
 
-### **采样时间(Ts)** — 采样时间，在此采样时间过后模块将再次执行 `1e-6` (默认) | 标量
+### **Sample Time (Ts)** — 模块再次执行前的采样时间 `1e-6`（默认）| 标量
 
-每两个连续的模块执行实例之间的固定时间间隔（以秒为单位）。
+模块每两次连续执行之间的固定时间间隔（以秒为单位）。
 
 ### 参数
 
-### **极对数** — 极对 `4` (默认) | 标量
+### **Number of pole pairs** — 极对数 `4`（默认）| 标量
 
-电机中的极对数 *P*。
+电机中的极对数，*P*。
 
-### **每相定子电阻(欧姆)** — 定子的电阻 `0.02` (默认) | 标量
+### **Stator resistance per phase (Ohm)** — 定子电阻 `0.02`（默认）| 标量
 
-每相位的定子电阻 *Rs*，以欧姆为单位。
+每相定子电阻，*Rs*，单位为 ohm。
 
-### **定子 d 轴电感(H)** — *d* 轴电感 `1.7e-3` (默认) | 标量
+### **Stator d-axis inductance (H)** — *d* 轴电感 `1.7e-3`（默认）| 标量
 
-定子电感 *Ld*，以 H 为单位。
+定子电感，*Ld*，单位为 H。
 
-### **定子 q 轴电感(H)** — *q* 轴电感 `3.2e-3` (默认) | 标量
+### **Stator q-axis inductance (H)** — *q* 轴电感 `3.2e-3`（默认）| 标量
 
-定子电感 *Lq*，以 H 为单位。
+定子电感，*Lq*，单位为 H。
 
-### **永磁链常量(Wb)** — 磁链常量 `0.2205` (默认) | 标量
+### **Permanent flux linkage constant (Wb)** — 磁链常数 `0.2205`（默认）| 标量
 
-永磁链常量 *λpm*，以 Wb 为单位。
+永磁磁链常数，*λpm*，单位为 Wb。
 
-### **惯量(kgm^2)** — 物理惯量 `0.0027` (默认) | 标量
+### **Inertia (kgm^2)** — 物理惯量 `0.0027`（默认）| 标量
 
-电机的物理惯量 *J*，以 kg.m^2 为单位。
+电机的物理惯量，*J*，单位为 kg.m^2。
 
-### **粘性阻尼(Nm/rad/s)** — 粘性阻尼 `4.924e-4` (默认) | 标量
+### **Viscous damping (Nm/rad/s)** — 粘性阻尼 `4.924e-4`（默认）| 标量
 
-电机的粘性阻尼 *F*，以 N·m/（弧度/秒）为单位。
+电机的粘性阻尼，*F*，单位为 N·m/(rad/s)。
 
-### **静态摩擦(Nm)** — 静态摩擦 `0` (默认) | 标量
+### **Static friction (Nm)** — 静摩擦 `0`（默认）| 标量
 
-电机中的静态摩擦 *Tf*，以 N·m 为单位。
+电机中的静摩擦，*Tf*，单位为 N·m。
 
 ## 所属库
 
@@ -93,18 +93,18 @@ Motor Control Blockset HDL Support / Electrical Systems / Motors
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 版本历史
 
-**在 R2022b 中推出**
+**在 R2022b 中引入**
 
 ## 描述
 
 配置 PMSM 系统参数
 
-PMSM Configuration 模块生成永磁同步电机/电机 (PMSM) 的配置信号。您可以使用此信号来更新支持 FPGA 部署的 PMSM 模块的参数，例如 PMSM HDL 模块。
+PMSM Configuration 模块为永磁同步电机/电动机（PMSM）生成配置信号。您可以使用此信号更新支持 FPGA 部署的 PMSM 模块（例如 PMSM HDL 模块）的参数。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Adjoint of 3x3 Matrix'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -33,7 +33,7 @@ chinese_source: worker-translation
 
 ## 参数
 
-R2025b 中未记录。
+在 R2025b 中未记录。
 
 ## 所属库
 
@@ -41,11 +41,11 @@ Aerospace Blockset / Utilities / Math Operations
 
 ## 模块特性
 
-R2025b 中未记录。
+在 R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
 ## 版本历史
 
@@ -55,4 +55,4 @@ R2025b 中未记录。
 
 计算矩阵的伴随矩阵
 
-Adjoint of 3x3 Matrix 模块计算输入矩阵的伴随矩阵。相关方程参见算法。
+Adjoint of 3x3 Matrix 模块计算输入矩阵的伴随矩阵。相关方程请参见算法。

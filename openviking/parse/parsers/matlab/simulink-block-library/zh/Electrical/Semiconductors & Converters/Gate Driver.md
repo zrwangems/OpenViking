@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Gate Driver'
-family: 'semiconductors-converters'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -20,9 +20,9 @@ chinese_source: worker-translation
 
 ### **u** — 控制信号，无量纲物理信号
 
-指定输入控制值的输入物理信号。
+输入物理信号，用于指定输入控制值。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为
 `PS input`。
@@ -32,16 +32,16 @@ chinese_source: worker-translation
 
 与脉宽调制信号关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为
 `Electrical input ports`。
 
-### **REF** — 浮动零伏参考电气
+### **REF** — 浮地零伏参考电气
 
-与浮动零伏参考关联的电气守恒端口。
+与浮地零伏参考关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为
 `Electrical input ports`。
@@ -52,8 +52,7 @@ chinese_source: worker-translation
 
 ### **S** — 源极或发射极连接电气
 
-与源极或发射极关联的电气守恒端口。
-将此端口连接到 MOSFET 模块的源极或 IGBT 模块的发射极。
+与源极或发射极关联的电气守恒端口。将此端口连接到 MOSFET 模块的源极或 IGBT 模块的发射极。
 
 ## 参数
 
@@ -67,7 +66,7 @@ chinese_source: worker-translation
 
 对应于逻辑 1 电平的输入信号值。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为
 `PS input`。
@@ -76,7 +75,7 @@ chinese_source: worker-translation
 
 对应于逻辑 0 电平的输入信号值。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为
 `PS input`。
@@ -85,7 +84,7 @@ chinese_source: worker-translation
 
 对应于逻辑 1 电平的输入电压值。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为
 `Electrical input ports`。
@@ -94,18 +93,18 @@ chinese_source: worker-translation
 
 对应于逻辑 0 电平的输入电压值。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为
 `Electrical input ports`。
 
 ### 输出
 
-### **On-state gate-source voltage** — 导通状态所需的输出电压 15 V（默认）
+### **On-state gate-source voltage** — 导通状态所需输出电压 15 V（默认）
 
 驱动器处于导通状态时所需的输出电压。
 
-### **Off-state gate-source voltage** — 关断状态所需的输出电压 0 V（默认）
+### **Off-state gate-source voltage** — 关断状态所需输出电压 0 V（默认）
 
 驱动器处于关断状态时所需的输出电压。
 
@@ -113,52 +112,51 @@ chinese_source: worker-translation
 
 ### **Propagation delay (logic 0->logic 1)** — 开通传播延迟 50 ns（默认）
 
-当输入上升到逻辑 1 输入电平以上时，输出状态从关断到导通的转换在等于开通传播延迟的延迟之后开始。
+当输入上升超过逻辑 1 输入电平时，输出状态从关断到导通的转换在等于开通传播延迟的延迟之后启动。
 
 ### **Propagation delay (logic 1->logic 0)** — 关断传播延迟 50 ns（默认）
 
-当输入下降到逻辑 0 输入值以下时，输出状态从导通到关断的转换在等于关断传播延迟的延迟之后开始。
+当输入下降低于逻辑 0 输入值时，输出状态从导通到关断的转换在等于关断传播延迟的延迟之后启动。
 
 ### 动态特性
 
-### **Parameterization** — 选择驱动器参数化 `Output impedance`（默认）| `Rise and fall times`
+### **Parameterization** — 选择驱动器参数化方式 `Output impedance`（默认）| `Rise and fall times`
 
 选择驱动器参数化类型：
 
-- `Output impedance` — 指定
-  导通状态和关断状态的栅极驱动电阻。
+- `Output impedance` — 指定导通状态和关断状态的栅极驱动电阻。
 - `Rise and fall times` —
   指定上升时间、下降时间和负载电容。
 
 ### **On-state gate drive resistance** — 导通状态的栅极驱动电阻 2 Ω（默认）
 
-导通状态下的栅极驱动电阻。
+驱动器处于导通状态时的栅极驱动电阻。
 
-#### 依赖项
+#### 依赖关系
 
 当 **Parameterization** 参数设置为 `Output impedance` 时启用。
 
 ### **Off-state gate drive resistance** — 关断状态的栅极驱动电阻 2 Ω（默认）
 
-关断状态下的栅极驱动电阻。
+驱动器处于关断状态时的栅极驱动电阻。
 
-#### 依赖项
+#### 依赖关系
 
 当 **Parameterization** 参数设置为 `Output impedance` 时启用。
 
 ### **Rise time** — 驱动器上升时间 20 ns（默认）
 
-驱动器上升时间，从 10% 到 90%。
+驱动器从 10% 到 90% 的上升时间。
 
-#### 依赖项
+#### 依赖关系
 
 当 **Parameterization** 参数设置为 `Rise and fall times` 时启用。
 
 ### **Fall time** — 驱动器下降时间 20 ns（默认）
 
-驱动器下降时间，从 90% 到 10%。
+驱动器从 90% 到 10% 的下降时间。
 
-#### 依赖项
+#### 依赖关系
 
 当 **Parameterization** 参数设置为 `Rise and fall times` 时启用。
 
@@ -166,34 +164,33 @@ chinese_source: worker-translation
 
 驱动器负载电容。
 
-#### 依赖项
+#### 依赖关系
 
 当 **Parameterization** 参数设置为 `Rise and fall times` 时启用。
 
 ### 故障
 
-### **State fault** — 用于对栅极驱动器中的故障状态建模的选项 `Add fault`（默认）
+### **State fault** — 在栅极驱动器中建模故障状态的选项 `Add fault`（默认）
 
-用于对 Gate Driver 模块中的故障状态建模的选项。
+在 Gate Driver 模块中建模故障状态的选项。
 
-要添加故障，请单击 **Add fault**
-超链接。
+要添加故障，请点击 **Add fault** 超链接。
 
 ### **Failure mode** — 故障后驱动器的状态 `Fail off`（默认）| `Fail on`
 
 选择驱动器是通过使所连接的半导体器件永久关断还是永久导通来发生故障。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请通过单击 **State fault** 参数中的 **Add fault** 超链接，向 Gate Driver 模块添加故障。
+要启用此参数，请通过点击 **State fault** 参数中的 **Add fault** 超链接向 Gate Driver 模块添加故障。
 
-创建故障后，您可以在 **Fault Inspector** 窗口中更改属性。当您打开具有故障的模块时，将显示 **Open Fault Inspector** 超链接，而不是 **Add fault** 超链接。有关展示如何包含故障的示例，请参阅分析直流电枢绕组故障。
+创建故障后，您可以在 **Fault Inspector** 窗口中更改属性。当您打开包含故障的模块时，**Open Fault Inspector** 超链接将代替 **Add fault** 超链接出现。有关如何包含故障的示例，请参阅 Analyze a DC Armature Winding Fault。
 
-### **Trigger fault at time** — 进入故障状态之前的时间 `0` `s`（默认）| nonnegative scalar
+### **Trigger fault at time** — 进入故障状态之前的时间 `0` `s`（默认）| 非负标量
 
 模块进入故障状态的仿真时间。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Timed`。
 
@@ -217,17 +214,17 @@ R2025b 中未记录。
 
 栅极驱动器集成电路的行为模型
 
-Gate Driver 模块提供栅极驱动器集成电路的抽象表示。该模块对输入迟滞、传播延迟以及开通/关断动态特性进行建模。除非显式地对栅极驱动器电路建模，否则应始终使用此模块或 Half-Bridge Driver 模块来设置 MOSFET 模块上的栅源电压或 IGBT 模块上的栅射电压。不要将受控电压源直接连接到半导体栅极，因为这会忽略决定开关动态特性的栅极驱动器输出阻抗。
+Gate Driver 模块提供了栅极驱动器集成电路的抽象表示。该模块对输入迟滞、传播延迟和开通/关断动态特性进行建模。除非显式地对栅极驱动器电路建模，否则请始终使用此模块或 Half-Bridge Driver 模块来设置 MOSFET 模块的栅源电压或 IGBT 模块的栅射电压。不要将受控电压源直接连接到半导体栅极，因为这会忽略决定开关动态特性的栅极驱动器输出阻抗。
 
-通过将 **Modeling option** 参数设置为以下任一值，可以对电气或物理信号输入端口建模：
+您可以通过将 **Modeling option** 参数设置为以下任一值来对电气或物理信号输入端口建模：
 
-- `PS input` — 驱动器输出状态由物理信号输入 u 控制。如果您的所有控制器（包括 PWM 波形生成）都由 Simulink® 模块确定，请使用此建模选项。此建模选项为默认值。
-- `Electrical input ports` — 驱动器输出状态由两个电气输入连接 PWM 和 REF 控制。如果您的模型具有上游模拟组件，例如 Controlled PWM Voltage 源，请使用此选项。
+- `PS input` — 驱动器输出状态由物理信号输入 u 控制。如果您的所有控制器（包括 PWM 波形生成）均由 Simulink® 模块确定，请使用此建模选项。此建模选项为默认值。
+- `Electrical input ports` — 驱动器输出状态由两个电气输入连接 PWM 和 REF 控制。如果您的模型具有上游模拟组件（例如 Controlled PWM Voltage 源），请使用此选项。
 
-当输入上升到逻辑 1 输入电平以上时，输出状态从关断到导通的转换在等于开通传播延迟的延迟之后开始。**G** 和 **S** 端口上的所需输出电压从关断状态输出电压阶跃到导通状态输出电压，但实际输出电压由与 **On-state gate drive resistance** 值和总负载电容相关的 RC 时间常数决定。类似地，当输入下降到逻辑 0 输入值以下时，输出状态从导通到关断的转换在等于关断传播延迟的延迟之后开始，并且其动态特性现在由 **Off-state gate drive resistance** 值决定。
+当输入上升超过逻辑 1 输入电平时，输出状态从关断到导通的转换在等于开通传播延迟的延迟之后启动。**G** 和 **S** 端口两端所需的输出电压从关断状态输出电压阶跃到导通状态输出电压，但实际输出电压由与 **On-state gate drive resistance** 值和总负载电容相关的 RC 时间常数决定。类似地，当输入下降低于逻辑 0 输入值时，输出状态从导通到关断的转换在等于关断传播延迟的延迟之后启动，并且动态特性现在由 **Off-state gate drive resistance** 值决定。
 
 ### 故障
 
-要对 Gate Driver 模块中的故障建模，请在 **Faults** 部分中，单击要建模的故障旁边的 **Add fault**。有关故障建模的更多信息，请参阅故障行为建模和故障触发。
+要对 Gate Driver 模块中的故障建模，请在 **Faults** 部分中，点击要建模的故障旁边的 **Add fault**。有关故障建模的详细信息，请参阅 Fault Behavior Modeling and Fault Triggering。
 
-您可以在指定的仿真时间将故障插入到栅极驱动器的输出中，以使所连接的半导体器件永久关断或永久导通。使用此功能可将故障半导体器件表示为在开路条件下失效或在正常导通状态下失效。
+您可以在指定的仿真时间将故障插入栅极驱动器的输出，使所连接的半导体器件永久关断或永久导通。使用此功能可将故障半导体器件表示为开路故障或正常导通状态故障。

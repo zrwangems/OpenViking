@@ -9,93 +9,76 @@ official_category: ''
 documentation_page: 'index'
 documentation_source_path: 'index.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Automated Driving Toolbox
 
-Learn the basics of Automated Driving Toolbox
+了解 Automated Driving Toolbox 的基础知识
 
-Design, simulate, and test ADAS and autonomous driving systems
+设计、仿真和测试 ADAS 与自动驾驶系统
 
-- Release Notes
-- PDF Documentation
-- PDF Documentation
+- 发行说明
+- PDF 文档
+- PDF 文档
 
-- **Release Notes**
-- **PDF Documentation**
-- **PDF Documentation**
+- **发行说明**
+- **PDF 文档**
+- **PDF 文档**
 
-Automated Driving Toolbox™ provides algorithms and tools for designing, simulating, and testing
-ADAS and autonomous driving systems. You can design and test vision and lidar
-perception systems, as well as sensor fusion, path planning, and vehicle
-controllers. Visualization tools include a bird’s-eye-view plot and scope for sensor
-coverage, detections and tracks, and displays for video, lidar, and maps. The
-toolbox lets you import and work with HERE HD Live Map data and ASAM OpenDRIVE® road networks.
+Automated Driving Toolbox™ 提供用于设计、仿真和测试 ADAS 与自动驾驶系统的算法和工具。您可以设计并测试视觉和激光雷达感知系统，以及传感器融合、路径规划和车辆控制器。可视化工具包括鸟瞰图绘图和传感器覆盖范围、检测与航迹的示波器，以及视频、激光雷达和地图的显示。该工具箱允许您导入并使用 HERE HD Live Map 数据和 ASAM OpenDRIVE® 道路网络。
 
-Using the Ground Truth Labeler app, you can automate the labeling of ground truth to
-train and evaluate perception algorithms. For hardware-in-the-loop (HIL) testing and
-desktop simulation of perception, sensor fusion, path planning, and control logic,
-you can generate and simulate driving scenarios. You can simulate camera, radar, and
-lidar sensor output in a photorealistic 3D environment and sensor detections of
-objects and lane boundaries in a 2.5D simulation environment.
+使用 Ground Truth Labeler 应用，您可以自动化真值标注，以训练和评估感知算法。对于硬件在环（HIL）测试以及感知、传感器融合、路径规划和控制的桌面仿真，您可以生成并仿真驾驶场景。您可以在逼真的 3D 环境中仿真摄像头、雷达和激光雷达传感器输出，并在 2.5D 仿真环境中仿真对象和车道边界的传感器检测。
 
-Automated Driving Toolbox provides reference application examples for common ADAS and automated
-driving features, including forward collision warning, autonomous emergency braking,
-adaptive cruise control, lane keeping assist, and parking valet. The toolbox
-supports C/C++ code generation for rapid prototyping and HIL testing, with support
-for sensor fusion, tracking, path planning, and vehicle controller
-algorithms.
+Automated Driving Toolbox 为常见 ADAS 和自动驾驶功能提供参考应用示例，包括前向碰撞预警、自动紧急制动、自适应巡航控制、车道保持辅助和代客泊车。该工具箱支持用于快速原型开发和 HIL 测试的 C/C++ 代码生成，并支持传感器融合、跟踪、路径规划和车辆控制器算法。
 
-## Get Started
+## 入门
 
-Learn the basics of Automated Driving Toolbox
+了解 Automated Driving Toolbox 的基础知识
 
-## File I/O
+## 文件 I/O
 
-Read and visualize automotive data from external sources
+读取并可视化来自外部来源的汽车数据
 
-## Ground Truth Labeling
+## 真值标注
 
-Interactive ground truth labeling of multiple signals
+对多个信号进行交互式真值标注
 
-## Scenario Simulation
+## 场景仿真
 
-Author scenes, generate synthetic sensor data, build scenarios from real-world
-sensor data, create scenario variants, test algorithms in simulated
-environments
+创作场景、生成合成传感器数据、从真实世界传感器数据构建场景、创建场景变体、在仿真环境中测试算法
 
-## Detection and Tracking
+## 检测与跟踪
 
-Camera sensor configuration, visual perception, lidar processing, tracking and sensor fusion
+摄像头传感器配置、视觉感知、激光雷达处理、跟踪与传感器融合
 
-## Localization and Mapping
+## 定位与建图
 
-SLAM, HERE HD Live Map data analysis, map visualization
+SLAM、HERE HD Live Map 数据分析、地图可视化
 
-## Planning and Control
+## 规划与控制
 
-Vehicle costmaps, optimal RRT\* path planning, lateral and longitudinal controllers
+车辆代价地图、最优 RRT\* 路径规划、横向和纵向控制器
 
-## Applications
+## 应用
 
-Examples for design and testing of automated driving applications
+用于自动驾驶应用设计与测试的示例
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个与以下 MATLAB 命令对应的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB 命令窗口中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：.
 
 - (English)
 - (Deutsch)
@@ -104,11 +87,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择一个网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -139,7 +122,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

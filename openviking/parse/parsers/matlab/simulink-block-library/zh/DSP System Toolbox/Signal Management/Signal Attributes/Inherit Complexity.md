@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Inherit Complexity'
-family: 'signal-management'
+family: 'dsp-system-toolbox-hdl-support'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
-official_category: 'Signal Management / Signal Attributes'
+official_category: 'Signal Management'
 documentation_page: 'inheritcomplexity'
 documentation_source_path: 'ref/inheritcomplexity.html'
 language: zh-CN
@@ -18,31 +18,31 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Data** — 数据输入 标量 | 向量 | *N*-D 数组
+### **Data** — 数据输入 标量 | 向量 | *N* 维数组
 
-将数据输入指定为标量、向量或 *N*-D 数组。
-
-**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-**复数支持：** Yes
-
-### **Ref** — 参考输入 标量 | 向量 | *N*-D 数组
-
-将参考输入指定为标量、向量或 *N*-D 数组。
+将数据输入指定为标量、向量或 *N* 维数组。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-**复数支持：** Yes
+**复数支持：** 是
+
+### **Ref** — 参考输入 标量 | 向量 | *N* 维数组
+
+将参考输入指定为标量、向量或 *N* 维数组。
+
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+**复数支持：** 是
 ### 输出
 
-### **Output** — 输出 标量 | 向量 | *N*-D 数组
+### **Output** — 输出 标量 | 向量 | *N* 维数组
 
-Inherit Complexity 模块的输出，以标量、向量或 *N*-D 数组形式返回。
+Inherit Complexity 模块的输出，以标量、向量或 *N* 维数组形式返回。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-**复数支持：** Yes
+**复数支持：** 是
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -68,9 +68,9 @@ DSP System Toolbox / Signal Management / Signal Attributes
 
 HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
-Inherit Complexity 模块支持为以下输入类型生成 HDL 代码：
+Inherit Complexity 模块支持以下输入类型的 HDL 代码生成：
 
-- 数据和参考端口处的输入复/实性，例如 real 或 complex
+- 数据和参考端口处的输入复数性，例如实数或复数
 - 向量、矩阵和总线输入
 
 **HDL 架构**
@@ -81,16 +81,16 @@ Inherit Complexity 模块支持为以下输入类型生成 HDL 代码：
 
 | 常规 | |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出端的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要插入生成代码中的输入流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要插入生成代码中的输出流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出端的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 
 **限制**
 
 此模块具有以下 HDL 代码生成限制：
 
-- 不支持 half-precision 数据类型。
-- 不支持 non-virtual 总线输入。
+- 不支持半精度数据类型。
+- 不支持非虚拟总线输入。
 
 ## 版本历史
 
@@ -98,10 +98,10 @@ Inherit Complexity 模块支持为以下输入类型生成 HDL 代码：
 
 ## 描述
 
-更改输入的复/实性以匹配参考信号
+将输入的复数性更改为与参考信号匹配
 
-Inherit Complexity 模块复制 **Data** 输入端口处的数据，并采用 **Ref** 端口处参考信号的复/实性。当数据输入为 real 且参考输入为 complex 时，该模块会将零值虚部分量 `0i` 追加到 **Data** 输入端口中数据的每个元素。
+Inherit Complexity 模块复制 **Data** 输入端口处的数据，并采用 **Ref** 端口处参考信号的复数性。当数据输入为实数且参考输入为复数时，该模块会在 **Data** 输入端口处数据的每个元素后附加一个零值虚部分量 `0i`。
 
-当数据输入为 complex 且参考输入为 real 时，该模块输出数据输入的实部分量。
+当数据输入为复数且参考输入为实数时，该模块输出数据输入的实部分量。
 
-当数据输入和参考输入均为 real，或数据输入和参考输入均为 complex 时，该模块按原样传播数据输入，不做任何更改。
+当数据输入和参考输入均为实数，或数据输入和参考输入均为复数时，该模块原样传播数据输入，不做任何更改。

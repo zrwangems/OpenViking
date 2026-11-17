@@ -9,7 +9,7 @@ official_category: 'C2802x'
 documentation_page: 'c28xi2creceive'
 documentation_source_path: 'ref/c28xi2creceive.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # C28x I2C Receive
@@ -20,96 +20,96 @@ chinese_source: official
 
 ### **SAR** — 外设地址寄存器值 标量
 
-外设地址寄存器的值。
+外设地址寄存器值。
 
-#### 依赖关系
+#### 依赖
 
-只有当 **Peripheral address source** 设置为**输入端口**时，才会出现此端口。
+此端口仅在 **Peripheral address source** 设置为 `Input port` 时出现。
 
-**数据类型:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
+**数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
 ### 输出
 
 ### **RD** — 从 I2C 总线接收的数据 标量 | 向量
 
 从 I2C 总线读取的数据。
 
-**数据类型:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
+**数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
 
 ### **status** — I2C 通信状态 标量
 
 来自 I2C 状态寄存器 (I2CSTR) 的状态值。
 
-#### 依赖关系
+#### 依赖
 
-仅当选择 **Output receiving status** 时才会显示此端口。
+此端口仅在选中 **Output receiving status** 时出现。
 
-**数据类型:** `uint16`
+**数据类型：** `uint16`
 
 ## 参数
 
-### **模块** — 通信模块 **I2C\_A** (默认) | **I2C\_B**
+### **Module** — 用于通信的模块 `I2C_A`（默认）| `I2C_B`
 
-用于通信的 I2C 模块。不同 C2000™ 处理器支持的 I2C 模块数量各不相同。
+用于通信的 I2C 模块。不同 C2000™ 处理器支持的 I2C 模块数量有所不同。
 
-### **寻址格式** — 通信地址格式 **7 位寻址** (默认) | **10 位寻址** | **自由数据格式**
+### **Addressing format** — 通信的地址格式 `7–Bit addressing`（默认）| `10–Bit addressing` | `Free data format`
 
-通信地址格式。该图显示了每种选项的格式。I2C Receive 模块将 R/W 位设置为 0。
+通信的地址格式。下图显示了每个选项的格式。I2C Receive 模块将 R/W 位设置为 0。
 
-S - 开始位
+S — 起始位
 
-R/W - 读/写
+R/W — 读/写
 
-ACK - 确认
+ACK — 应答
 
-P - 停止位
+P — 停止位
 
-MSB - 最高有效位
+MSB — 最高有效位
 
-LSB - 最低有效位
+LSB — 最低有效位
 
-### **外设地址源** — I2C 外设的外设地址源 **通过对话框指定** (默认) | **输入端口**
+### **Peripheral address source** — I2C 外设的外设地址来源 `Specify via dialog`（默认）| `Input port`
 
-设置 I2C 外设地址寄存器的方法。
+设置 I2C 外设的外设地址寄存器的方法。
 
-### **外设地址寄存器** — 外设地址寄存器值 `80` (默认) | 标量
+### **Peripheral address register** — 外设地址寄存器值 `80`（默认）| 标量
 
-根据所选的寻址格式，输入 7 位或 10 位外设地址。
+根据所选的地址格式，输入 7 位或 10 位外设地址。
 
-#### 依赖关系
+#### 依赖
 
-只有当 **Peripheral address source** 设置为**通过对话框指定**时，此参数才会出现。
+此参数仅在 **Peripheral address source** 设置为 `Specify via dialog` 时出现。
 
-### **位计数** — 通信比特计数 **8** (默认) | [1 8] 范围内的整数
+### **Bit count** — 通信的位数 `8`（默认）| [1 8] 范围内的整数
 
-I2C 模块接收到的数据字节中的位数。
+I2C 模块接收的数据字节中的位数。
 
-### **读取的数据长度** — 接收的数据长度 `1` (默认) | 标量
+### **Read data length** — 接收数据的长度 `1`（默认）| 标量
 
-模块接收到的**数据类型**数量（不是字节数）。如果此参数设置为大于 `1`，则输出将是一个向量。
+模块接收的 **Data type** 的数量（不是字节数）。如果此参数设置为大于 `1` 的值，则输出将为向量。
 
-### **初始输出** — I2C 节点输出对模型的价值 `0` (默认) | 标量 | 向量
+### **Initial output** — I2C 节点输出到模型的值 `0`（默认）| 标量 | 向量
 
-I2C 节点在接收到数据之前输出给模型的值。默认情况下，如果未收到 I2C 值，则该模块输出 `0`。
+I2C 节点在接收到数据之前输出到模型的值。默认情况下，如果未接收到 I2C 值，模块输出 `0`。
 
-### **设置 NACK 位** — I2C 应答周期中的 NACK 位 `off` (默认) | `on`
+### **Set NACK bit** — I2C 应答周期期间的 NACK 位 `off`（默认）| `on`
 
-在 I2C 确认周期内生成无确认位 (NACK)，并忽略来自发送 I2C 节点的新位。
+在 I2C 应答周期期间生成无应答位 (NACK)，并忽略来自发送 I2C 节点的新位。
 
-### **启用停止条件** — 停止消息发送到 I2C Transmit 模块 `off` (默认) | `on`
+### **Enable stop condition** — 向 I2C Transmit 模块发送停止消息 `off`（默认）| `on`
 
 使 I2C Receive 模块（控制器）能够向 I2C Transmit 模块（外设）发送停止消息。
 
-### **输出接收状态** — 指示 I2C Receive 模块何时接收到消息 `off` (默认) | `on`
+### **Output receiving status** — 指示 I2C Receive 模块何时接收到消息 `off`（默认）| `on`
 
-启用状态输出端口，该端口指示 I2C Receive 模块何时收到消息。
+启用状态输出端口，该端口指示 I2C Receive 模块何时接收到消息。
 
-### **采样时间** — 从 I2C 设备读取数据的频率 `0.001` (默认) | `–1` | 标量
+### **Sample time** — 从 I2C 设备读取数据的频率 `0.001`（默认）| `–1` | 标量
 
-以秒为单位记录该模块的采样时间。要异步执行此模块，请将此参数设置为 `-1`。
+模块的采样时间，以秒为单位。要异步执行此模块，请将此参数设置为 `-1`。
 
-### **数据类型** — 数据向量中的数据类型 **int8** (默认) | **uint8** | **int16** | **uint16** | **int32** | **uint32**
+### **Data type** — 数据向量中的数据类型 `int8`（默认）| `uint8` | `int16` | `uint16` | `int32` | `uint32`
 
-设置接收到的数据的数据类型。如果接收到的数据大小小于 8 位，则数据右对齐。
+设置所接收数据的数据类型。如果接收数据的大小小于 8 位，则数据右对齐。
 
 ## 所属库
 
@@ -117,22 +117,22 @@ C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x 
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 描述
 
-配置集成电路间通信 (I2C) 模块以从 I2C 总线接收数据
+配置 inter-integrated circuit (I2C) 模块以从 I2C 总线接收数据
 
-I2C Receive 模块配置集成电路间 (I2C) 模块，使其能够从双线 I2C 串行总线接收数据。I2C Receive 模块支持处理器与外部外设或其他控制器之间的 I2C 总线通信。该模块既可以运行在外设模式下，也可以运行在控制器模式下。
+I2C Receive 模块配置 inter-integrated circuit (I2C) 模块以从两线 I2C 串行总线接收数据。I2C Receive 模块支持处理器与外部外设或其他控制器之间的 I2C 总线通信。该模块可以在外设模式或控制器模式下运行。
 
-当 I2C 模块配置为控制器时，该模块会从外围设备接收数据。当 I2C 模块配置为外设时，该模块会从控制器接收数据。通过导航至 **配置参数** > **硬件实现** > **Target hardware resources** 配置 I2C 模块。
+当 I2C 模块配置为控制器时，该模块从外设接收数据。当 I2C 模块配置为外设时，该模块从控制器接收数据。通过导航到 **Configuration Parameters** > **Hardware Implementation** > **Target hardware resources** 来配置 I2C 模块。
 
-要从外设读取数据，请使用 I2C Transmit 模块将要读取的寄存器的地址发送到外设。使用 I2C Receive 模块从外设读取数据之前，确保数据已从 Tx FIFO 发送到外设。有关更多信息，请参阅使用 I2C 总线访问传感器。
+要从外设读取数据，请使用 I2C Transmit 模块将要读取的寄存器地址发送到外设。确保在通过 I2C Receive 模块从外设读取数据之前，数据已从 Tx FIFO 发送到外设。有关详细信息，请参阅 Using the I2C Bus to Access Sensors。

@@ -9,7 +9,7 @@ official_category: 'Flip Flops'
 documentation_page: 'jkflipflop'
 documentation_source_path: '../simulink/ref_extras/jkflipflop.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # J-K Flip-Flop
@@ -24,12 +24,16 @@ chinese_source: official
 
 #### 依赖关系
 
-J-K Flip-Flop 模块接受的数据类型取决于**将逻辑信号实现为布尔数据(而不是双精度数据)** 配置参数的设置：
+J-K Flip-Flop 模块接受的数据类型取决于 **Implement logic signals as boolean data
+(vs. double)** 配置参数的设置：
 
-- `On` - J-K Flip-Flop 模块只接受 `boolean` 类型的实数标量信号。
-- `Off` - J-K Flip-Flop 模块接受 `boolean` 或 `double` 类型的实数标量信号（两个输入必须具有相同的类型）。
+- `On` — J-K Flip-Flop 模块
+  仅接受类型为 `boolean` 的实标量信号。
+- `Off` — J-K Flip-Flop
+  模块接受类型为 `boolean` 或 `double`
+  的实标量信号（两个输入必须具有相同类型）。
 
-**数据类型:** `double` | `Boolean`
+**数据类型：** `double` | `Boolean`
 
 ### **CLK** — 时钟信号 标量
 
@@ -37,12 +41,16 @@ J-K Flip-Flop 模块接受的数据类型取决于**将逻辑信号实现为布�
 
 #### 依赖关系
 
-J-K Flip-Flop 模块接受的数据类型取决于**将逻辑信号实现为布尔数据(而不是双精度数据)** 配置参数的设置：
+J-K Flip-Flop 模块接受的数据类型取决于 **Implement logic signals as boolean data
+(vs. double)** 配置参数的设置：
 
-- `On` - J-K Flip-Flop 模块只接受 `boolean` 类型的实数标量信号
-- `Off` - J-K Flip-Flop 模块接受 `boolean` 或 `double` 类型的实数标量信号（两个输入必须具有相同的类型）。
+- `On` — J-K Flip-Flop 模块
+  仅接受类型为 `boolean` 的实标量信号
+- `Off` — J-K Flip-Flop
+  模块接受类型为 `boolean` 或 `double`
+  的实标量信号（两个输入必须具有相同类型）。
 
-**数据类型:** `double` | `Boolean`
+**数据类型：** `double` | `Boolean`
 
 ### **K** — 输入信号 K 标量
 
@@ -50,40 +58,47 @@ J-K Flip-Flop 模块接受的数据类型取决于**将逻辑信号实现为布�
 
 #### 依赖关系
 
-J-K Flip-Flop 模块接受的数据类型取决于**将逻辑信号实现为布尔数据(而不是双精度数据)** 配置参数的设置：
+J-K Flip-Flop 模块接受的数据类型取决于 **Implement logic signals as boolean data
+(vs. double)** 配置参数的设置：
 
-- `On` - J-K Flip-Flop 模块只接受 `boolean` 类型的实数标量信号
-- `Off` - J-K Flip-Flop 模块接受 `boolean` 或 `double` 类型的实数标量信号（两个输入必须具有相同的类型）。
+- `On` — J-K Flip-Flop 模块
+  仅接受类型为 `boolean` 的实标量信号
+- `Off` — J-K Flip-Flop
+  模块接受类型为 `boolean` 或 `double`
+  的实标量信号（两个输入必须具有相同类型）。
 
-**数据类型:** `double` | `Boolean`
+**数据类型：** `double` | `Boolean`
 ### 输出
 
 ### **Q** — 输出信号 Q 标量
 
-输出信号 **!Q**，具有与输入相同的维度和数据类型。
+输出信号 **!Q**，具有与输入相同的维度和
+数据类型。
 
-**数据类型:** `double` | `Boolean`
+**数据类型：** `double` | `Boolean`
 
 ### **!Q** — 输出信号 !Q 标量
 
-输出信号 **!Q**，具有与输入相同的维度和数据类型。
+输出信号 **!Q**，具有与输入相同的维度和
+数据类型。
 
-**数据类型:** `double` | `Boolean`
+**数据类型：** `double` | `Boolean`
 
 ## 参数
 
-### **初始条件(Q 的状态)** — 输出 Q 的初始值 `0` (默认) | 标量
+### **Initial condition (state of Q)** — 输出 Q 的初始值 `0`（默认）| 标量
 
-指定输出 **Q** 的初始值。非零值被视为 true (`1`)。
+指定输出 **Q** 的初始值。非零
+值被视为真（`1`）。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**：`initial_condition` |
-| **类型：**字符向量 |
-| **值：**标量 |
-| **默认值：**`'0'` |
+| **模块参数：** `initial_condition` |
+| **类型：** 字符向量 |
+| **值：** 标量 |
+| **默认：** `'0'` |
 
 ## 所属库
 
@@ -91,35 +106,53 @@ Simulink Extras / Flip Flops
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 版本历史
 
-**在 R2008b 中推出**
+**在 R2008b 中引入**
 
 ## 描述
 
-负边沿触发的 J-K 触发器建模
+对负边沿触发的 J-K 触发器进行建模
 
-J-K Flip-Flop 模块对负边沿触发的 J-K 触发器进行建模。J-K flip-flop 模块有三个输入，即 **J**，**K** 和 **CLK**。在时钟信号 (**CLK**) 的负（下降）沿，J-K Flip-Flop 模块根据以下真值表输出 **Q** 及其反值 **!Q**。在此真值表中，**Q**n-1 是前一时间步的输出。
+J-K Flip-Flop 模块对负边沿触发的 J-K 触发器进行建模。J-K
+触发器模块具有三个输入：**J**、
+**K** 和 **CLK**。在时钟信号（**CLK**）的负（下降）沿，
+J-K Flip-Flop 模块根据以下真值表输出 **Q** 及其补码 **!Q**。
+在此真值表中，**Q**n-1 是上一时间
+步的输出。
 
 **注意**
 
-J-K Flip-Flop 模块将非零输入视为 true (`1`)。
+J-K Flip-Flop 模块将非零输入视为真
+（`1`）。
 
-| J | K | Qn | !Qn |
+| J | K | Q n | !Q n |
 | --- | --- | --- | --- |
-| 0 | 0 | Qn-1 | !Qn-1 |
+| 0 | 0 | Q n-1 | !Q n-1 |
 | 0 | 1 | 0 | 1 |
 | 1 | 0 | 1 | 0 |
-| 1 | 1 | !Qn-1 | Qn-1 |
+| 1 | 1 | !Q n-1 | Q n-1 |
 
-当 **J** 为 1 且 **K** 为 0 时，触发器进入设置状态（**Q**n 为 1）。当 **J** 为 0 且 **K** 为 1 时，触发器进入重置状态（**Q**n 为 0）。当 **J** 和 **K** 都为 0 时，触发器停留在先前的状态（**Q**n 为 **Q**n-1）。当 **J** 和 **K** 都为 1 时，触发器会发生切换（**Q**n 是 **Q**n-1 的反值）。
+当 **J** 为 1 且 **K** 为 0 时，触发器进入
+置位状态（**Q**n 为 1）。当
+**J** 为 0 且 **K** 为 1 时，触发器进入
+复位状态（**Q**n 为 0）。当 **J**
+和 **K** 均为 0 时，触发器保持
+先前状态（**Q**n 为
+**Q**n-1）。当 **J**
+和 **K** 均为 1 时，触发器翻转
+（**Q**n 为
+**Q**n-1 的补码）。
 
-### 布尔或双精度数据类型的逻辑信号
+### 逻辑信号作为布尔或双精度数据类型
 
-**将逻辑信号实现为布尔数据(而不是双精度数据)** 配置参数设置会影响 J-K Flip-Flop 模块的输入和输出数据类型，因为该模块是使用 Combinatorial Logic 模块的封装子系统。有关此配置参数的详细信息，请参阅将逻辑信号实现为布尔数据(而不是双精度数据)。
+**Implement logic signals as boolean data (vs. double)** 配置
+参数设置会影响 J-K Flip-Flop 模块的输入和输出数据类型，因为该模块是一个使用
+Combinatorial Logic 模块的掩码子系统。有关此配置参数的更多
+信息，请参阅 Implement logic signals as Boolean data (vs. double)。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PMOS Capacitor'
-family: 'semiconductors-converters'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,19 +16,19 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **G** — 栅极端子电气
+### **G** — 栅极端子电气端口
 
-与 NMOS 电容器的栅极端子相关联的电气守恒端口。
+与 NMOS 电容器栅极端子关联的电气守恒端口。
 
-### **B** — 体端子电气
+### **B** — 体端子电气端口
 
-与 NMOS 电容器的体端子相关联的电气守恒端口。
+与 NMOS 电容器体端子关联的电气守恒端口。
 
 ## 参数
 
-要交互式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
+要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
 ### 主要
 
@@ -38,7 +38,7 @@ chinese_source: worker-translation
 
 ### **Gate-bulk capacitance lookup table, Cgb(T,Vgb)** — 栅极-体电容查找表 `[3.4574, 3.4541, 3.4407, 3.4274, 3.404, 3.374, 3.3339, 3.2938, 3.227, 3.1402, 3.0467, 2.9332, 2.8063, 2.6828, 2.5426, 2.3255, 2.0985, 1.7679, 1.5576, 1.2671, .9466, .6895, .4691, .2688, .182, .1386, .1152, .1085, .0952, .0851, .08, .0785, .0751, .0751, .0751]` `nF`（默认）| 正元素向量或矩阵
 
-栅极-体电容的查找表，指定为温度和栅极-体电压的函数。行数必须等于 **Temperature, T** 参数的元素个数。列数必须等于 **Gate-bulk voltage, Vgb** 参数的元素个数。
+栅极-体电容的查找表，指定为温度和栅极-体电压的函数。行数必须等于 **Temperature, T** 参数的元素数。列数必须等于 **Gate-bulk voltage, Vgb** 参数的元素数。
 
 #### 依赖关系
 
@@ -72,7 +72,7 @@ chinese_source: worker-translation
 
 ### **Band-gap energy, EG** — 带隙能量 `1.12` `eV`（默认）| 标量
 
-带隙的能量。将此参数设置为适合电容器中半导体材料的值。
+带隙能量。请将此参数设置为适合电容器中半导体材料的值。
 
 #### 依赖关系
 
@@ -86,9 +86,9 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **Capacitor model** 设置为 `Fundamental nonlinear equations`。
 
-### **Surface potential, phib** — 表面电位 `0.9115` `V`（默认）| 正标量
+### **Surface potential, phib** — 表面势 `0.9115` `V`（默认）| 正标量
 
-半导体表面电位，此时表面少数载流子浓度等于体多数载流子浓度。模块在此值处在耗尽模式和反型模式之间过渡。
+半导体表面势，在该值下表面少数载流子浓度等于体多数载流子浓度。模块在此值处进行耗尽模式和反型模式之间的转换。
 
 #### 依赖关系
 
@@ -96,15 +96,15 @@ chinese_source: worker-translation
 
 ### **Body factor, gamma** — 体效应参数 `1.1798` `V^(1/2)`（默认）| 正标量
 
-体效应参数，它将阈值电压 `Vth` 与平带电压相关联。
+体效应参数，它将阈值电压 `Vth` 与平带电压关联起来。
 
 #### 依赖关系
 
 要启用此参数，请将 **Capacitor model** 设置为 `Fundamental nonlinear equations`。
 
-### **Model high-frequency C-V behavior for strong inversion** — 对强反型模式的高频 C-V 行为建模的选项 `off`（默认）| `on`
+### **Model high-frequency C-V behavior for strong inversion** — 为强反型模式建模高频 C-V 特性的选项 `off`（默认）| `on`
 
-对强反型模式的高频 C-V 行为建模的选项。如果清除此参数，模块假定少数载流子可以快速响应电压变化，并且在氧化层下方形成反型层电荷。否则，模块假定少数载流子没有足够的时间快速响应电压变化并在 MOS 电容器的氧化层下方形成反型层电荷。
+为强反型模式建模高频 C-V 特性的选项。如果清除此参数，模块假定少数载流子能够快速响应电压变化，并在氧化层下方形成反型层电荷。否则，模块假定少数载流子没有足够的时间快速响应电压变化并在 MOS 电容器的氧化层下方形成反型层电荷。
 
 #### 依赖关系
 
@@ -112,13 +112,13 @@ chinese_source: worker-translation
 
 ### **Measurement temperature** — 模块引用参数时的温度 `25` `degC`（默认）| 正标量
 
-模块引用这些参数时的温度。
+模块引用参数时的温度。
 
 #### 依赖关系
 
 要启用此参数，请将 **Capacitor model** 设置为 `Fundamental nonlinear equations`。
 
-### 温度相关性
+### 温度依赖性
 
 ### **Parameterization** — 指定器件仿真温度的选项 `None - Simulate at parameter measurement temperature`（默认）| `Model temperature dependence`
 
@@ -128,7 +128,7 @@ chinese_source: worker-translation
 
 ### **Device simulation temperature** — 仿真器件的温度 `25` `degC`（默认）| 正标量
 
-仿真器件的温度。
+仿真器件时的温度。
 
 #### 依赖关系
 
@@ -143,7 +143,7 @@ Simscape / Electrical / Semiconductors & Converters
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -157,31 +157,31 @@ Simscape / Electrical / Semiconductors & Converters
 
 P 型金属-氧化物-半导体电容器
 
-PMOS Capacitor 模块表示 P 型金属-氧化物-半导体（PMOS）电容器。您可以使用 MOS 方程参数来参数化此模块，或者使用表格化电容查找表将值参数化为温度和电压的函数。
+PMOS Capacitor 模块表示 P 型金属-氧化物-半导体（PMOS）电容器。您可以使用 MOS 方程参数对此模块进行参数化，也可以使用表格化电容查找表将值参数化为温度和电压的函数。
 
 下图显示了构成 MOS 电容器的元件：
 
-MOS 电容器的示意图。顶部元件是栅极，中间元件是氧化层组件，底部元件是半导体。
+MOS 电容器的示意图。顶部元件是栅极，中间元件是氧化物组件，底部元件是半导体。
 
 PMOS Capacitor 模块使用 N 型体半导体。
 
 ### 基于方程的模型
 
-当您将 **Capacitor model** 参数设置为 `Fundamental nonlinear equations` 时，PMOS Capacitor 模块根据栅极-体电压 `Vgb`、平带电压 `Vfb` 和阈值电压 `Vth` 的值以三种工作模式运行：
+当您将 **Capacitor model** 参数设置为 `Fundamental nonlinear equations` 时，PMOS Capacitor 模块根据栅极-体电压 `Vgb`、平带电压 `Vfb` 和阈值电压 `Vth` 的值在三种工作模式下运行：
 
 - Vgb>Vfb — 积累模式。金属板上的电压将体材料的多数载流子（即电子）积累在半导体表面。
-- Vth<Vgb≤Vfb — 耗尽模式。电压诱导少数载流子（即空穴），并在表面产生耗尽区。
+- Vth<Vgb≤Vfb — 耗尽模式。电压诱导少数载流子（即空穴）并在表面产生耗尽区。
 - Vgb≤Vth — 反型模式。半导体表面的多数载流子类型发生反转。
 
-为了计算平带电压，模块使用以下方程：
+为计算平带电压，模块使用以下方程：
 
-Vfb=Vth+φ+γφ,
+Vfb=Vth+φ+γφ，
 
-其中 *γ* 是体效应参数，*φ* 是表面电位。
+其中 *γ* 是体因子，*φ* 是表面势。
 
-模块使用以下方程调整表面电位 *φ* 的值：
+模块使用以下方程调整表面势 *φ* 的值
 
-φ(Tsim)=kTsimqlog(TmeasTsim)3+TsimTmeasφ(Tmeas)+EG(1−TsimTmeas),
+φ(Tsim)=kTsimqlog(TmeasTsim)3+TsimTmeasφ(Tmeas)+EG(1−TsimTmeas)，
 
 其中：
 
@@ -193,7 +193,7 @@ Vfb=Vth+φ+γφ,
 
 此方程定义了电容器的总栅极电荷 `QG`，
 
-QG=−(Qacc+Qdep+Qinv),
+QG=−(Qacc+Qdep+Qinv)，
 
 其中：
 
@@ -215,30 +215,30 @@ Qacc=−Cox⋅(Vgb−Vfb)Qdep=0Qinv=0
 
 Qacc=0Qdep=Coxγ22(1−4(Vgb−Vfb)γ2−1)Qinv=0
 
-其中 *Cox* 是总氧化层电容，*γ* 是体效应参数。
+其中 *Cox* 是总氧化层电容，*γ* 是体因子。
 
 **反型模式**
 
 当栅极-体电压小于或等于阈值栅极电压时，模块进入反型工作模式。在反型模式下，半导体表面的多数载流子类型发生反转。模块使用以下方程计算积累电荷、耗尽电荷和反型电荷：
 
-Qacc=0Qdep={Coxγ22(1−4(Vth−Vfb)γ2−1)if you clear Model high-frequency C-V behavior at strong inversionCoxγ22(1−4(Vth−Vfb)γ2−1)−11Cox+1Cdep(Vgb−Vth)if you select Model high-frequency C-V behavior at strong inversion}Qinv={−Cox⋅(Vgb−Vth)if you clear Model high-frequency C-V behavior at strong inversion0if you select Model high-frequency C-V behavior at strong inversion}
+Qacc=0Qdep={Coxγ22(1−4(Vth−Vfb)γ2−1)如果清除强反型下的高频 C-V 行为模型Coxγ22(1−4(Vth−Vfb)γ2−1)−11Cox+1Cdep(Vgb−Vth)如果选择强反型下的高频 C-V 行为模型}Qinv={−Cox⋅(Vgb−Vth)如果清除强反型下的高频 C-V 行为模型0如果选择强反型下的高频 C-V 行为模型}
 
-其中 *Cox* 是总氧化层电容，*γ* 是体效应参数，*Cdep* 是耗尽电容。
+其中 *Cox* 是总氧化层电容，*γ* 是体因子，*Cdep* 是耗尽电容。
 
-如果您选择 **Model high-frequency C-V behavior at strong inversion** 参数，模块假定少数载流子没有足够的时间对施加电压的变化做出反应。因此，反型电荷 *Qinv* 为零，施加电压降落在氧化层电容和耗尽区电容上。
+如果选择 **Model high-frequency C-V behavior at strong inversion** 参数，模块假定少数载流子没有足够的时间对施加电压的变化做出反应。因此，反型电荷 *Qinv* 为零，施加电压降落在氧化层电容和耗尽区电容上。
 
-如果您清除 **Model high-frequency C-V behavior at strong inversion** 参数，模块则假定少数载流子有足够的时间快速响应电压变化，并在 MOS 电容器的氧化层下方形成反型层电荷。
+如果清除 **Model high-frequency C-V behavior at strong inversion** 参数，模块则假定少数载流子有足够的时间快速响应电压变化，并在 MOS 电容器的氧化层下方形成反型层电荷。
 
-### 表格模型
+### 表格化模型
 
-当您将 **Capacitor model** 参数设置为 `Lookup table (2-D, temperature dependent)` 时，PMOS Capacitor 模块以电压和温度的形式将电容器的总栅极电荷 `QG` 制成表格。要使用表格化电容查找表将模块参数参数化为温度和电压的函数，请指定 **Gate-bulk capacitance lookup table, Cgb(T,Vgb)**、**Gate-bulk voltage, Vgb** 和 **Temperature, T** 参数。
+当您将 **Capacitor model** 参数设置为 `Lookup table (2-D, temperature dependent)` 时，PMOS Capacitor 模块将电容器的总栅极电荷 `QG` 表示为电压和温度的表格。要使用表格化电容查找表将模块参数参数化为温度和电压的函数，请指定 **Gate-bulk capacitance lookup table, Cgb(T,Vgb)**、**Gate-bulk voltage, Vgb** 和 **Temperature, T** 参数。
 
-如果您在 **Temperature, T** 参数中仅指定一个值，则电容器的 C-V 特性将与温度无关。
+如果 **Temperature, T** 参数中仅指定一个值，则电容器的 C-V 特性变得与温度无关。
 
-为确保在一个完整 AC 周期内栅极电荷守恒，模块将 **Gate-bulk capacitance lookup table, Cgb(T,Vgb)** 参数转换为等效电荷查找表。模块使用此等效电荷表，通过线性插值和外推方法计算栅极电荷 *Qg* 相对于电压的变化。
+为确保在一个完整 AC 周期内的栅极电荷守恒，模块将 **Gate-bulk capacitance lookup table, Cgb(T,Vgb)** 参数转换为等效电荷查找表。模块使用此等效电荷表，通过线性插值和外推方法计算栅极电荷 *Qg* 相对于电压的变化。
 
 ### 变量
 
-要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
+要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或属性检查器中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-使用标称值指定模型中变量的预期量级。使用基于标称值的系统缩放可提高仿真稳健性。标称值可以来自不同来源。其中一个来源是模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 System Scaling by Nominal Values。
+使用标称值来指定模型中变量的预期量级。使用基于标称值的系统缩放可提高仿真鲁棒性。标称值可以来自不同来源。其中一个来源是模块对话框或属性检查器中的 **Nominal Values** 部分。有关详细信息，请参阅 System Scaling by Nominal Values。

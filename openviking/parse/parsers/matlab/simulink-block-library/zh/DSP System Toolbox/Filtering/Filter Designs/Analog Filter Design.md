@@ -9,7 +9,7 @@ official_category: 'Filtering / Filter Designs'
 documentation_page: 'analogfilterdesign'
 documentation_source_path: 'ref/analogfilterdesign.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Analog Filter Design
@@ -20,192 +20,192 @@ chinese_source: official
 
 ### **Port\_1** — 输入信号 标量
 
-要滤波的输入信号，指定为基于采样的、连续时间实数值标量值。
+滤波器的输入信号，指定为基于采样的、连续时间、实值标量值。
 
-**数据类型:** `double`
+**数据类型：** `double`
 ### 输出
 
 ### **Port\_1** — 输出信号 标量
 
-滤波后的信号，以双精度实数标量值形式返回。
+滤波后的信号，以实数双精度标量值返回。
 
-**数据类型:** `double`
+**数据类型：** `double`
 
 ## 参数
 
-### **设计方法** — 滤波器设计 **巴特沃斯** (默认) | **切比雪夫 I** | **切比雪夫 II** | **椭圆** | **贝塞尔**
+### **Design method** — 滤波器设计 `Butterworth`（默认）| `Chebyshev I` | `Chebyshev II` | `Elliptic` | `Bessel`
 
-滤波器设计方法有：
+滤波器设计方法包括：
 
-- **巴特沃斯** - 巴特沃斯滤波器的幅值响应在通带内具有最大平坦度，并在整体上呈现单调性。巴特沃斯设计使用工具箱函数 `butter`。
-- **切比雪夫 I 型** - 切比雪夫 I 型滤波器的幅值响应在通带中采用等波纹，在阻带中呈现单调性。切比雪夫 I 型设计使用工具箱函数 `cheby1`。
-- **切比雪夫 II 型** - 切比雪夫 II 型滤波器的幅值响应在通带中呈现单调性，在阻带中采用等波纹。切比雪夫 II 型设计使用工具箱函数 `cheby2`。
-- **椭圆** - 椭圆滤波器的幅值响应在通带和阻带内都采用等波纹。椭圆设计使用工具箱函数 `ellip`。
-- **贝塞尔** - 贝塞尔滤波器的幅值响应在通带内具有最大平坦度，并在整体上呈现单调性。该滤波器具有最平坦的线性相位响应。贝塞尔设计使用函数 `besself`。
+- `Butterworth` — Butterworth 滤波器的幅值响应在通带内最大平坦，整体单调。Butterworth 设计使用工具箱函数 `butter`。
+- `Chebyshev I` — Chebyshev I 滤波器的幅值响应在通带内等波纹，在阻带内单调。Chebyshev I 设计使用工具箱函数 `cheby1`。
+- `Chebyshev II` — Chebyshev II 滤波器的幅值响应在通带内单调，在阻带内等波纹。Chebyshev II 设计使用工具箱函数 `cheby2`。
+- `Elliptic` — 椭圆滤波器的幅值响应在通带和阻带内均为等波纹。椭圆设计使用工具箱函数 `ellip`。
+- `Bessel` — Bessel 滤波器的幅值响应在通带内最大平坦，整体单调。该滤波器具有最大平坦的线性相位响应。Bessel 设计使用函数 `besself`。
 
-**可调:** Yes
+**可调：** 是
 
-### **滤波器类型** — 滤波器类型 **低通** (默认) | **高通** | **带通** | **带阻**
+### **Filter type** — 滤波器类型 `Lowpass`（默认）| `Highpass` | `Bandpass` | `Bandstop`
 
-要设计的滤波器的类型：
+要设计的滤波器类型：
 
-- **低通**
-- **高通**
-- **带通**
-- **带阻**
+- `Lowpass`
+- `Highpass`
+- `Bandpass`
+- `Bandstop`
 
-**可调:** Yes
+**可调：** 是
 
-### **滤波器阶数** — 滤波器阶数 `8` (默认) | 标量值
+### **Filter order** — 滤波器阶数 `8`（默认）| 标量值
 
-当 `Filter type` 设置为以下值时滤波器的阶数：
+当 `Filter type` 设置为以下值时，滤波器的阶数：
 
-- **低通**
-- **高通**
+- `Lowpass`
+- `Highpass`
 
-当**滤波器类型**设置为以下值时，最终滤波器的阶数是**滤波器阶数**值的*两倍*：
+当 **Filter type** 设置为以下值时，最终滤波器的阶数为 **Filter order** 值的*两倍*：
 
-- **带通**
-- **带阻**
+- `Bandpass`
+- `Bandstop`
 
-.
+。
 
-### **通带边缘频率(弧度/秒)** — 通带边缘频率 `30` (默认) | 标量值
+### **Passband edge frequency (rad/s)** — 通带边缘频率 `30`（默认）| 标量值
 
-通带边缘频率，以弧度/秒为单位。
+通带边缘频率，以 rad/s 为单位。
 
-**可调:** Yes
-
-#### 依赖关系
-
-仅在以下情况下，此参数才出现：`Design method` 设置为：
-
-- **巴特沃斯**
-- **切比雪夫 I**
-- **椭圆**
-- **贝塞尔**
-
-且 `Filter type` 设置为：
-
-- **低通**
-- **高通**
-
-### **下通带边缘频率(弧度/秒)** — 下通带边缘频率 `30` (默认) | 标量值
-
-下通带边缘频率，以弧度/秒为单位指定。
-
-**可调:** Yes
+**可调：** 是
 
 #### 依赖关系
 
-仅在以下情况下，此参数才出现：`Design method` 设置为：
+此参数仅在 `Design method` 设置为以下值时出现：
 
-- **巴特沃斯**
-- **切比雪夫 I**
-- **椭圆**
-- **贝塞尔**
+- `Butterworth`
+- `Chebyshev I`
+- `Elliptic`
+- `Bessel`
 
-且 `Filter type` 设置为：
+且 `Filter type` 设置为以下值时出现：
 
-- **带通**
-- **带阻**
+- `Lowpass`
+- `Highpass`
 
-### **上通带边缘频率(弧度/秒)** — 上通带边缘频率 `80` (默认) | 标量值
+### **Lower passband edge frequency (rad/s)** — 通带下边缘频率 `30`（默认）| 标量值
 
-上通带边缘频率，以弧度/秒为单位指定。
+通带下边缘频率，以 rad/s 为单位指定。
 
-**可调:** Yes
-
-#### 依赖关系
-
-仅在以下情况下，此参数才出现：`Design method` 设置为：
-
-- **巴特沃斯**
-- **切比雪夫 I**
-- **椭圆**
-- **贝塞尔**
-
-且 `Filter type` 设置为：
-
-- **带通**
-- **带阻**
-
-### **阻带边缘频率(弧度/秒)** — 阻带边缘频率 `30` (默认) | 标量值
-
-阻带边缘频率，以弧度/秒为单位指定。
-
-**可调:** Yes
+**可调：** 是
 
 #### 依赖关系
 
-仅在以下情况下，此参数才出现：`Design method` 设置为：
+此参数仅在 `Design method` 设置为以下值时出现：
 
-- **切比雪夫 II**
+- `Butterworth`
+- `Chebyshev I`
+- `Elliptic`
+- `Bessel`
 
-且 `Filter type` 设置为：
+且 `Filter type` 设置为以下值时出现：
 
-- **低通**
-- **高通**
+- `Bandpass`
+- `Bandstop`
 
-### **下阻带边缘频率(弧度/秒)** — 下阻带边缘频率 `30` (默认) | 标量值
+### **Upper passband edge frequency (rad/s)** — 通带上边缘频率 `80`（默认）| 标量值
 
-下阻带边缘频率，以弧度/秒为单位。
+通带上边缘频率，以 rad/s 为单位指定。
 
-**可调:** Yes
-
-#### 依赖关系
-
-仅在以下情况下，此参数才出现：`Design method` 设置为：
-
-- **切比雪夫 II**
-
-且 `Filter type` 设置为：
-
-- **带通**
-- **带阻**
-
-### **上阻带边缘频率(弧度/秒)** — 上阻带边缘频率 `80` (默认) | 标量值
-
-上阻带边缘频率，以弧度/秒为单位指定。
-
-**可调:** Yes
+**可调：** 是
 
 #### 依赖关系
 
-仅在以下情况下，此参数才出现：`Design method` 设置为：
+此参数仅在 `Design method` 设置为以下值时出现：
 
-- **切比雪夫 II**
+- `Butterworth`
+- `Chebyshev I`
+- `Elliptic`
+- `Bessel`
 
-且 `Filter type` 设置为：
+且 `Filter type` 设置为以下值时出现：
 
-- **带通**
-- **带阻**
+- `Bandpass`
+- `Bandstop`
 
-### **通带波纹(dB)** — 通带波纹 `2` (默认) | 标量值
+### **Stopband edge frequency (rad/s)** — 阻带边缘频率 `30`（默认）| 标量值
+
+阻带边缘频率，以 rad/s 为单位指定。
+
+**可调：** 是
+
+#### 依赖关系
+
+此参数仅在 `Design method` 设置为以下值时出现：
+
+- `Chebyshev II`
+
+且 `Filter type` 设置为以下值时出现：
+
+- `Lowpass`
+- `Highpass`
+
+### **Lower stopband edge frequency (rad/s)** — 阻带下边缘频率 `30`（默认）| 标量值
+
+阻带下边缘频率，以 rad/s 为单位。
+
+**可调：** 是
+
+#### 依赖关系
+
+此参数仅在 `Design method` 设置为以下值时出现：
+
+- `Chebyshev II`
+
+且 `Filter type` 设置为以下值时出现：
+
+- `Bandpass`
+- `Bandstop`
+
+### **Upper stopband edge frequency (rad/s)** — 阻带上边缘频率 `80`（默认）| 标量值
+
+阻带上边缘频率，以 rad/s 为单位指定。
+
+**可调：** 是
+
+#### 依赖关系
+
+此参数仅在 `Design method` 设置为以下值时出现：
+
+- `Chebyshev II`
+
+且 `Filter type` 设置为以下值时出现：
+
+- `Bandpass`
+- `Bandstop`
+
+### **Passband ripple in dB** — 通带波纹 `2`（默认）| 标量值
 
 通带波纹，以 dB 为单位指定。
 
-**可调:** Yes
+**可调：** 是
 
 #### 依赖关系
 
-仅在以下情况下，此参数才出现：`Design method` 设置为：
+此参数仅在 `Design method` 设置为以下值时出现：
 
-- **切比雪夫 I**
-- **椭圆**
+- `Chebyshev I`
+- `Elliptic`
 
-### **阻带衰减(dB)** — 阻带衰减 `40` (默认) | 标量值
+### **Stopband attenuation in dB** — 阻带衰减 `40`（默认）| 标量值
 
 阻带衰减，以 dB 为单位。
 
-**可调:** Yes
+**可调：** 是
 
 #### 依赖关系
 
-仅在以下情况下，此参数才出现：`Design method` 设置为：
+此参数仅在 `Design method` 设置为以下值时出现：
 
-- **切比雪夫 II**
-- **椭圆**
+- `Chebyshev II`
+- `Elliptic`
 
 ## 所属库
 
@@ -223,28 +223,28 @@ DSP System Toolbox / Filtering / Filter Designs
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-不推荐将此模块用于生产代码生成。
+此模块不建议用于生产代码生成。
 
-请考虑使用模型离散化器 (Simulink)将此连续模块映射到支持代码生成的离散等效模块。要访问模型离散化器，请在 **App** 选项卡上的 **App** 下，在**控制系统**下点击**模型离散化器**。
+请考虑使用 Model Discretizer (Simulink) 将此连续模块映射为支持代码生成的离散等效模块。要访问 Model Discretizer，请在 **Apps** 选项卡上的 **Apps** 下，在 **Control Systems** 下，点击 **Model Discretizer**。
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2006a 之前引入**
 
 ## 描述
 
-设计和实现模拟滤波器
+设计并实现模拟滤波器
 
-Analog Filter Design 模块在高通、低通、带通或带阻配置中设计并实现一个巴特沃斯、切比雪夫 I 型、切比雪夫 II 型、椭圆或贝塞尔滤波器。
+Analog Filter Design 模块以高通、低通、带通或带阻配置设计并实现 Butterworth、Chebyshev I 型、Chebyshev II 型、椭圆或 Bessel 滤波器。
 
-您从对话框中的 `Design method` 和 `Filter type` 下拉列表中选择滤波器的设计和带配置。对于设计方法和带配置的每种组合，会显示一组适当的辅助参数。有关详细信息，请参阅设计/带组合表。
+您可以从对话框中的 `Design method` 和 `Filter type` 下拉列表中选择滤波器的设计和频带配置。对于每种设计方法和频带配置的组合，都会显示一组相应的辅助参数。有关更多详细信息，请参阅设计/频带组合表。
 
-Analog Filter Design 模块使用一种状态空间滤波器表示，并使用 Simulink® Continuous 库中的 State-Space (Simulink) 模块应用该滤波器。所有设计方法都使用 Signal Processing Toolbox™ 函数来设计滤波器。
+Analog Filter Design 模块使用状态空间滤波器表示，并使用 Simulink® Continuous 库中的 State-Space (Simulink) 模块来应用滤波器。所有设计方法都使用 Signal Processing Toolbox™ 函数来设计滤波器。
 
-Analog Filter Design 模块基于 Signal Processing Toolbox 软件的滤波器设计功能而构建。
+Analog Filter Design 模块基于 Signal Processing Toolbox 软件的滤波器设计功能构建。
 
 **注意**
 
-Analog Filter Design 模块不适用于 Simulink 离散求解器，该求解器在您在**模型配置参数**对话框的**求解器**窗格中将**求解器**列表设置为**离散(无连续状态)** 时启用。请改为选择连续求解器之一（例如 `ode4`）。
+Analog Filter Design 模块不能与 Simulink 离散求解器一起使用，当您在 **Model Configuration Parameters** 对话框的 **Solver** 窗格中将 **Solver** 列表设置为 `Discrete (no continuous states)` 时，该求解器会被启用。请改为选择一种连续求解器（例如 `ode4`）。

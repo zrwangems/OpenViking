@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Binary-Output RS Decoder'
-family: 'error-detection-and-correction'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -18,40 +18,38 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **In** — Reed-Solomon 码字二进制列向量
+### **In** — 里德-所罗门码字二进制列向量
 
-以 bits 表示的 Reed-Solomon 码字，指定为一个
+以比特表示的里德-所罗门码字，指定为
 (*N*C×(*N*
 – *K* + *S* –
-*P*)×*M*)-by-1 二进制列
+*P*)×*M*)×1 二进制列
 向量。*N*C 是
 码字数量，*N* 是 **Codeword length N
 (symbols)**，*K* 是 **Message
 length K (symbols)**，*S* 是
 **Shortened message length S (symbols)**，
-*P* 是每个码字的打孔数量，并且
-*M* 是每个 symbol 的 bits 数量。
+*P* 是每个码字的删余数，*M* 是每个符号的比特数。
 
-有关详细信息，请参阅 RS 模块中的输入和输出信号长度。
+有关详细信息，请参阅 Input and Output Signal Length in RS Blocks。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `ufix(1)`
 
-### **Era** — 擦除向量二进制列向量
+### **Era** — 删除向量二进制列向量
 
-以 symbols 为单位的擦除向量，指定为一个
+以符号表示的删除向量，指定为
 (*N*C×(*N*
 – *K* + *S* –
-*P*))-by-1 二进制列向量。
+*P*))×1 二进制列向量。
 *N*C 是
 码字数量，*N* 是 **Codeword length N
 (symbols)**，*K* 是 **Message
 length K (symbols)**，*S* 是
 **Shortened message length S (symbols)**，
-*P* 是每个码字的打孔数量，并且
-*M* 是每个 symbol 的 bits 数量。
+*P* 是每个码字的删余数，*M* 是每个符号的比特数。
 
-擦除值 1 对应于码字中相同位置的已擦除 bits。值 0 对应于未擦除的 bits。有关
-详细信息，请参阅打孔与擦除。
+删除值为 1 对应于码字中相同位置的已删除比特。值为 0 对应于未删除的比特。有关
+详细信息，请参阅 Puncturing and Erasures。
 
 #### 依赖关系
 
@@ -63,42 +61,41 @@ port**。
 
 ### **Out** — 解码消息二进制列向量
 
-以 bits 表示的解码消息，返回为以下之一：
+以比特表示的解码消息，返回为以下之一：
 
-- 当没有消息缩短时，为一个
-  (*N*C×*K*×*M*)-by-1
+- 当没有消息缩短时，返回
+  (*N*C×*K*×*M*)×1
   二进制列向量。
-- 当有消息缩短时，为一个
-  (*N*C×*S*×*M*)-by-1
+- 当有消息缩短时，返回
+  (*N*C×*S*×*M*)×1
   二进制列向量。
 
 *N*C 是
 消息字数量，*K* 是 **Message
-length K (symbols)**，*M* 是每个
-symbol 的 bits 数量，并且 *S* 是 **Shortened
+length K (symbols)**，*M* 是每个符号的
+比特数，*S* 是 **Shortened
 message length S (symbols)**。
 
 **注意**
 
-解码后的消息字数量等于码字数量。
+解码消息字的数量等于码字的数量。
 
-有关详细信息，请参阅 RS 模块中的输入和输出信号长度。
+有关详细信息，请参阅 Input and Output Signal Length in RS Blocks。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `ufix(1)`
 
-### **Err** — 解码错误 integer 向量
+### **Err** — 解码错误整数向量
 
 符号解码错误，返回为具有
-*N*C 个元素的 integer 向量，其中
-*N*C 是
-码字数量。此端口指示在解码每个码字期间检测到的符号错误数量。负整数表示
-模块检测到的错误数量超过了使用指定编码方案所能纠正的错误数量。
+*N*C 个元素的整数向量，其中
+*N*C 是码字数量。此端口指示在解码每个码字期间检测到的符号错误数。负整数表示该
+模块检测到的错误数超过了使用指定编码方案所能纠正的错误数。
 
 **注意**
 
-一个 (*N*,*K*) Reed-Solomon 码
-最多可以在每个码字中纠正 `floor((N-K)/2)` 个符号错误
-（不是 bit 错误）。当接收到的码字包含
+(*N*,*K*) 里德-所罗门码
+在每个码字中最多可纠正 `floor((N-K)/2)` 个符号错误
+（不是比特错误）。当接收到的码字包含
 超过 (*N*-*K*)/2 个符号
 错误时，会发生解码失败。
 
@@ -109,36 +106,35 @@ symbol errors**。
 
 **数据类型：** `double`
 
-有关详细信息，请参阅支持的数据类型。
+有关详细信息，请参阅 Supported Data Types。
 
 ## 参数
 
 要以交互方式编辑模块参数，请使用
-Property Inspector。在 Simulink® Toolstrip 中，在 **Simulation** 选项卡上的
+Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在
 **Prepare** 库中，选择 **Property
 Inspector**。
 
-### **Codeword length N (symbols)** — 码字长度 `7`（默认）| integer
+### **Codeword length N (symbols)** — 码字长度 `7`（默认）| 整数
 
-以 symbols 为单位的码字长度，指定为 integer。
+以符号表示的码字长度，指定为整数。
 
-有关详细信息，请参阅 M 和码字长度 N 的限制以及 RS 模块中的输入和输出信号长度。
+有关详细信息，请参阅 Restrictions on M and Codeword Length N and Input and Output Signal Length in RS Blocks。
 
-### **Message length K (symbols)** — 消息字长度 `3`（默认）| integer
+### **Message length K (symbols)** — 消息字长度 `3`（默认）| 整数
 
-以 symbols 为单位的消息字长度，指定为范围 [1,
-*N*–2] 中的 integer，其中 *N* 是码字
+以符号表示的消息字长度，指定为范围 [1,
+*N*–2] 内的整数，其中 *N* 是码字
 长度。
 
-### **Shortened message length S (symbols)** — 缩短消息字长度 `3`（默认）| integer
+### **Shortened message length S (symbols)** — 缩短的消息字长度 `3`（默认）| 整数
 
-以 symbols 为单位的缩短消息字长度，指定为 integer，使得
+以符号表示的缩短消息字长度，指定为整数，满足
 *S* ≤ *K*。当 **Shortened
 message length S (symbols)** < **Message length K
-(symbols)** 时，Reed-Solomon 码被缩短。
+(symbols)** 时，里德-所罗门码被缩短。
 
-仍然为
-全长度 (*N*, *K*) 码指定 *N* 和 *K* 值，但
+您仍需为全长 (*N*, *K*) 码指定 *N* 和 *K* 值，但
 解码会缩短为
 (*N*–*K*+*S*,
 *S*) 码。
@@ -148,20 +144,18 @@ message length S (symbols)** < **Message length K
 要启用此参数，请选择 **Specify shortened message
 length**。
 
-### **Generator polynomial** — 生成多项式 `rsgenpoly(7, 3, [], [], 'double')`（默认）| polynomial character vector | binary row vector | binary Galois row vector
+### **Generator polynomial** — 生成多项式 `rsgenpoly(7, 3, [], [], 'double')`（默认）| 多项式字符向量 | 二进制行向量 | 二进制伽罗瓦行向量
 
 生成多项式，其值从 0 到
-2*M*–1，按
-降幂顺序，指定为以下之一：
+2*M*–1，按降幂顺序排列，指定为以下之一：
 
-- 多项式字符向量。有关详细信息，请参阅 Communications Toolbox 中的多项式表示。
-- 一个 integer 行向量，按降幂顺序表示
-  生成多项式的系数。
-- 一个 integer Galois 行向量，按降幂顺序表示
-  生成多项式的系数。
+- 多项式字符向量。有关详细信息，请参阅 Representation of Polynomials in Communications Toolbox。
+- 表示生成多项式按降幂顺序排列的系数的
+  整数行向量。
+- 表示生成多项式按降幂顺序排列的系数的
+  整数伽罗瓦行向量。
 
-每个系数是由
-primitive polynomial 定义的 Galois 域的一个元素。有关详细信息，请参阅指定生成多项式。
+每个系数都是由本原多项式定义的伽罗瓦域的元素。有关详细信息，请参阅 Specify the Generator Polynomial。
 
 **示例：** `[1 3 1 2 3]`，等效于
 `rsgenpoly(7,3)`
@@ -171,22 +165,20 @@ primitive polynomial 定义的 Galois 域的一个元素。有关详细信息，
 要启用此参数，请选择 **Specify generator
 polynomial**。
 
-### **Primitive polynomial** — 本原多项式 `'X^3 + X + 1'`（默认）| polynomial character vector | binary row vector
+### **Primitive polynomial** — 本原多项式 `'X^3 + X + 1'`（默认）| 多项式字符向量 | 二进制行向量
 
-按降幂顺序的 primitive polynomial。此多项式的
-阶数为 *M*，并定义与
-形成消息字和码字的整数相对应的有限 Galois 域
-GF(2M)。将 primitive polynomial 指定为以下
-之一：
+按降幂顺序排列的本原多项式。此多项式为
+*M* 阶，定义了与构成消息字和码字的整数相对应的有限伽罗瓦域
+GF(2M)。将本原多项式指定为以下之一：
 
-- 多项式字符向量。有关详细信息，请参阅 Communications Toolbox 中的多项式表示。
-- 一个二进制行向量，表示
-  生成多项式的系数。
+- 多项式字符向量。有关详细信息，请参阅 Representation of Polynomials in Communications Toolbox。
+- 表示生成多项式系数的
+  二进制行向量。
 
-有关详细信息，请参阅 M 和码字长度 N 的限制。
+有关详细信息，请参阅 Restrictions on M and Codeword Length N。
 
-**示例：** `'X^3 + X + 1'`，这是用于 (7,3) 码的 primitive
-polynomial，`ppoly = primpoly(3,'nodisplay');
+**示例：** `'X^3 + X + 1'`，这是用于 (7,3) 码的本原
+多项式，`ppoly = primpoly(3,'nodisplay');
 int2bit(ppoly,ceil(log2(max(ppoly))))'`
 
 #### 依赖关系
@@ -194,29 +186,30 @@ int2bit(ppoly,ceil(log2(max(ppoly))))'`
 要启用此参数，请选择 **Specify primitive
 polynomial**。
 
-### **Puncture vector** — 打孔向量 `[ones(2,1); zeros(2,1)]`（默认）| binary column vector
+### **Puncture vector** — 删余向量 `[ones(2,1); zeros(2,1)]`（默认）| 二进制列向量
 
-打孔向量，指定为一个
-(*N*–*K*)-by-1 二进制列向量。
-带有 `1` 的元素索引表示未经更改
-通过模块的数据 *symbol* 索引。带有 `0` 的元素索引表示
-从数据流中被打孔（即移除）的数据
-*symbol* 索引。有关详细信息，请参阅打孔与擦除。
+删余向量，指定为
+(*N*–*K*)×1 二进制列向量。
+元素索引为 `1` 的位置表示通过该模块
+原样传递的数据
+*符号*索引。元素索引为 `0` 的位置表示从数据流中
+删余或移除的数据
+*符号*索引。有关详细信息，请参阅 Puncturing and Erasures。
 
 #### 依赖关系
 
 要启用此参数，请选择 **Punctured
 code**。
 
-### **Enable erasures input port** — 启用擦除输入端口 off（默认）| on
+### **Enable erasures input port** — 启用删除输入端口 off（默认）| on
 
-选中此复选框会启用擦除端口
-**Era**。有关详细信息，请参阅打孔与擦除。
+选中此复选框将启用删除端口
+**Era**。有关详细信息，请参阅 Puncturing and Erasures。
 
-### **Output number of corrected symbol errors** — 启用端口以输出已纠正符号错误数量 off（默认）| on
+### **Output number of corrected symbol errors** — 启用端口以输出已纠正符号错误数 off（默认）| on
 
-选中此复选框会启用一个附加输出端口
-**Err**，它指示模块在输入码字中纠正的符号错误数量。
+选中此复选框将启用一个额外的输出端口
+**Err**，它指示该模块在输入码字中纠正的符号错误数。
 
 ### **Output data type** — 模块的输出类型 `Same as input`（默认）| `boolean` | `double`
 
@@ -245,28 +238,27 @@ Communications Toolbox / Error Detection and Correction / Block
 
 ## 版本历史
 
-**在 R2006a 之前引入**
+**在 R2006a 之前推出**
 
 ## 描述
 
-解码 Reed-Solomon 码以恢复二进制向量数据
+解码里德-所罗门码以恢复二进制向量数据
 
-Binary-Output RS Decoder 模块从二进制 Reed-Solomon 码字向量中
-恢复二进制消息向量。为正确解码，此模块中的参数值
-必须与对应的 Binary-Input RS Encoder 模块中的参数值匹配。
+Binary-Output RS Decoder 模块从二进制里德-所罗门码字向量中恢复二进制消息向量。为了正确解码，
+此模块中的参数值必须与对应的 Binary-Input RS Encoder 模块中的参数值匹配。
 
-该码的 symbols 是长度为 *M* 的二进制序列，
-对应于 Galois 域
-*GF*(2*M*) 的元素。每个
-symbol 中的第一个 bit 是最高有效位。
+该码的符号是长度为 *M* 的二进制序列，
+对应于伽罗瓦域
+*GF*(2*M*) 的元素。每个符号中的
+第一个比特是最高有效位。
 
 此图显示了码字长度
 *N*=7 和消息字长度 *K*=2 时解码器的输入-输出字长度。由于
 *N*=2*M*–1，当
-*N*=7 时，symbol 长度 *M*=3。
+*N*=7 时，符号长度 *M*=3。
 
-每个输入码字是长度为 21 的二进制向量，表示 7 个三 bit
-整数。每个对应的输出消息字是长度为 6 的二进制向量，
-表示 2 个三 bit 整数。有关详细信息，请参阅 RS 模块中的输入和输出信号长度。
+每个输入码字是长度为 21 的二进制向量，表示 7 个三位
+整数。每个对应的输出消息字是长度为 6 的二进制向量，表示
+2 个三位整数。有关详细信息，请参阅 Input and Output Signal Length in RS Blocks。
 
 此图标显示了所有端口，包括可选端口：

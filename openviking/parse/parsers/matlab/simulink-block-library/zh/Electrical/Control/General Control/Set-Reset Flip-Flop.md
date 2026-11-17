@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Set-Reset Flip-Flop'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -33,33 +33,33 @@ chinese_source: worker-translation
 
 ### **Q** — 输出信号 `0` | `1`
 
-输出信号 **Q**，其维度和数据类型与输入**信号**相同。
+输出信号 **Q**，其维度和数据类型与输入 **signal** 相同。
 
 **数据类型：** `Boolean`
 
 ### **!Q** — 互补输出信号 `0` | `1`
 
-输出信号 **!Q**，其维度和数据类型与输入**信号**相同。
+输出信号 **!Q**，其维度和数据类型与输入 **signal** 相同。
 
 **数据类型：** `Boolean`
 
 ## 参数
 
-### **未定义状态时的优先级** — 状态优先级 `Set` (default) | `Reset`
+### **Priority when undefined state** — 状态优先级 `Set`（默认）| `Reset`
 
-未定义状态的优先级，即当 *Set* 和 *Reset* 均为 `true` 时。
+未定义状态的优先级，即当 *Set* 和 *Reset* 同时为 `true` 时。
 
-### **Q 状态的初始条件** — 输出 Q 的初始值 `0` (default) | `1`
+### **Initial condition for Q state** — 输出 Q 的初始值 `0`（默认）| `1`
 
 *Q* 状态的初始条件。
 
-### **采样时间（-1 表示继承）** — 模块采样时间 `-1` (default) | `0` | 正标量
+### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| `0` | 正标量
 
-连续模块执行之间的时间。执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
+连续模块执行之间的时间。在执行期间，模块产生输出，并在适当的情况下更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 对于继承的离散时间操作，将此参数设置为 `-1`。对于离散时间操作，将此参数设置为正整数。对于连续时间操作，将此参数设置为 `0`。
 
-如果此模块位于支持在连续操作和离散操作之间切换的封装子系统或变体子系统中，请提升此参数，以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
+如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
 
 ## 所属库
 
@@ -67,7 +67,7 @@ Simscape / Electrical / Control / General Control
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -83,15 +83,15 @@ Simscape / Electrical / Control / General Control
 
 Set-Reset Flip-Flop 模块实现置位-复位触发器或双稳态多谐振荡器。
 
-除非施加外部触发，否则模块保持输出信号 Q 和 !Q。外部触发（*Set*）会产生状态变化，该状态变化将一直保持，直到施加第二个外部触发（*Reset*）。
+除非施加外部触发，否则该模块保持输出信号 Q 和 !Q 不变。外部触发（*Set*）产生状态变化，该变化将保持到施加第二个外部触发（*Reset*）为止。
 
-下表显示了模块输入信号和输出信号之间的关系。
+下表显示了模块输入和输出信号之间的关系。
 
 | Set | Reset | Q | !Q |
 | --- | --- | --- | --- |
-| 0 | 0 | 上一个 Q | 上一个 !Q |
+| 0 | 0 | Last Q | Last !Q |
 | 0 | 1 | 0 | 1 |
 | 1 | 0 | 1 | 0 |
-| 1 | 1 | 未定义 | 未定义 |
+| 1 | 1 | Undefined | Undefined |
 
 当状态未定义时，优先级作为外部参数提供。

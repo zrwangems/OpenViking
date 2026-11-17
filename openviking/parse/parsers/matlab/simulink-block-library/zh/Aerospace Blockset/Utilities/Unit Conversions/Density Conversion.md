@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Density Conversion'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -18,30 +18,30 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 密度标量 | 数组
+### **Port\_1** — 密度 标量 | 数组
 
-包含密度，以初始密度单位指定为标量或数组。
+包含密度，指定为标量或数组，以初始密度单位表示。
 
 #### 依赖关系
 
-输入端口标签取决于 **初始单位** 设置。
+输入端口标签取决于 **Initial unit** 设置。
 
 **数据类型：** `double`
 ### 输出
 
-### **Port\_1** — 密度标量 | 数组
+### **Port\_1** — 密度 标量 | 数组
 
-包含密度，以初始密度单位返回为标量或数组。
+包含密度，返回为标量或数组，以初始密度单位表示。
 
 #### 依赖关系
 
-输出端口标签取决于 **最终单位** 设置。
+输出端口标签取决于 **Final unit** 设置。
 
 **数据类型：** `double`
 
 ## 参数
 
-### **初始单位** — 输入单位 `lbm/ft^3`（默认） | `kg/m^3` | `slug/ft^3` | `lbm/in^3`
+### **Initial unit** — 输入单位 `lbm/ft^3`（默认）| `kg/m^3` | `slug/ft^3` | `lbm/in^3`
 
 输入单位，指定为：
 
@@ -54,18 +54,18 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-输入端口标签取决于 **初始单位** 设置。
+输入端口标签取决于 **Initial unit** 设置。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`IU` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'lbm/ft^3'` | `'kg/m^3'` | `'slug/ft^3'` | `'lbm/in^3'` |
 | **默认值**：`'lbm/ft^3'` |
 
-### **最终单位** — 输出单位 `kg/m^3`（默认） | `lbm/ft^3` | `slug/ft^3` | `lbm/in^3`
+### **Final unit** — 输出单位 `kg/m^3`（默认）| `lbm/ft^3` | `slug/ft^3` | `lbm/in^3`
 
 输出单位，指定为：
 
@@ -78,14 +78,14 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-输出端口标签取决于 **最终单位** 设置。
+输出端口标签取决于 **Final unit** 设置。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数**：`OU` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'lbm/ft^3'` | `'kg/m^3'` | `'slug/ft^3'` | `'lbm/in^3'` |
 | **默认值**：`'kg/m^3'` |
 
@@ -95,7 +95,7 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -103,12 +103,12 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 版本历史
 
-**R2006a 之前引入**
+**在 R2006a 之前引入**
 
 ## 描述
 
-从密度单位转换为所需密度单位
+从密度单位转换为所需的密度单位
 
-Density Conversion 模块计算从指定输入密度单位到指定输出密度单位的转换因子，并将该转换因子应用于输入信号。
+Density Conversion 模块计算从指定的输入密度单位到指定的输出密度单位的转换因子，并将该转换因子应用于输入信号。
 
-Density Conversion 模块端口标签根据从 **初始单位** 和 **最终单位** 列表中选择的输入和输出单位而变化。
+Density Conversion 模块的端口标签根据从 **Initial unit** 和 **Final unit** 列表中选择的输入和输出单位而变化。

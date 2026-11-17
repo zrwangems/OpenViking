@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Difference'
-family: 'math-functions'
+family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
@@ -18,59 +18,59 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 输入信号向量 | 矩阵 | *N* 维数组
+### **Port\_1** — 输入信号 向量 | 矩阵 | *N* 维数组
 
 输入信号，指定为向量、矩阵或 *N* 维数组。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-**复数支持：** Yes
+**复数支持：** 是
 ### 输出
 
-### **Port\_1** — 输出信号向量 | 矩阵 | *N* 维数组
+### **Port\_1** — 输出信号 向量 | 矩阵 | *N* 维数组
 
-输入的相邻行、列或指定维度之间的差分，以向量、矩阵或 *N* 维数组形式返回。
+输入的相邻行、列或指定维度之间的差值，以向量、矩阵或 *N* 维数组形式返回。
 
-输出与输入具有相同的数据类型和复数性，但计算差分的维度会减少一。其他维度的长度保持不变。
+输出的数据类型和复数性与输入相同，但计算差值的维度长度减一。其他维度的长度保持不变。
 
-有关如何计算输出的更多详细信息，请参阅 Difference along 参数。
+有关输出计算方式的更多详细信息，请参阅沿参数方向的差分。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-**复数支持：** Yes
+**复数支持：** 是
 
 ## 参数
 
 ### 主选项卡
 
-### **Running difference** — 运行差分 `No`（默认）| `Yes`
+### **运行差分** — 运行差分 `No`（默认）| `Yes`
 
-指定该模块是否计算运行差分。
+指定模块是否计算运行差分。
 
-- `No` –– 该模块计算当前输入指定维度中相邻元素之间的差分。在此模式下，该模块可根据 Difference along 参数沿输入的列、行或指定维度计算差分。
-- `Yes` –– 该模块沿输入的列计算运行差分。有关详细信息，请参阅 Running Operation。
+- `No` —— 模块计算当前输入指定维度中相邻元素之间的差值。在此模式下，模块可以根据沿参数方向的差分计算输入沿列、行或指定维度的差值。
+- `Yes` —— 模块计算输入沿列的运行差分。有关更多信息，请参阅运行操作。
 
-### **Difference along** — 差分维度 `Columns`（默认）| `Rows` | `Specified dimension`
+### **沿参数方向的差分** — 差分维度 `Columns`（默认）| `Rows` | `Specified dimension`
 
-指定该模块沿输入的列、行或指定维度计算差分。
+指定模块计算输入沿列、行或指定维度的差值。
 
-- `Columns` –– 该模块计算输入每一列中相邻元素之间的差分。等效 MATLAB® 代码为：
+- `Columns` —— 模块计算输入每一列中相邻元素之间的差值。等效的 MATLAB® 代码为：
 
   ```
   y = diff(u)
   ```
 
-  对于 *M*×*N* 输入，输出是一个 (*M* – 1)×*N* 矩阵，其第 *j* 列包含以下元素：
+  对于 *M*×*N* 输入，输出为 (*M* – 1)×*N* 矩阵，其第 *j* 列包含以下元素：
 
   yi,j=ui+1,j−ui,j     1≤i≤(M−1)
-- `Rows` –– 该模块计算输入每一行中相邻元素之间的差分。等效 MATLAB 代码为：
+- `Rows` —— 模块计算输入每一行中相邻元素之间的差值。等效的 MATLAB 代码为：
 
   ```
   y = diff(u,[],2)
   ```
 
-  输出是一个 *M*×(*N*-1) 矩阵，其第 *i* 行包含以下元素：
+  输出为 *M*×(*N*–1) 矩阵，其第 *i* 行包含以下元素：
 
   yi,j=ui,j+1−ui,j     1≤j≤(N−1)
-- `Specified dimension` –– 该模块的行为是前述按行差分的扩展。该模块沿你在 **Dimension** 参数中指定的维度计算相邻元素之间的差分。等效 MATLAB 代码为：
+- `Specified dimension` —— 模块的行为是前述按行差分的扩展。模块计算沿**维度**参数中指定维度的相邻元素之间的差值。等效的 MATLAB 代码为：
 
   ```
   y = diff(u,[],d)
@@ -78,21 +78,21 @@ chinese_source: worker-translation
 
   其中 *d* 是维度。
 
-  输出是一个数组，其在指定维度上的长度比输入少一，而在其他维度上的长度保持不变。例如，考虑一个 *M*×*N*×*P*×*R* 输入数组，其元素为 *u(i,j,k,l)*，并假设 **Dimension** 参数的值为 `3`。该模块的输出是一个 *M*×*N*×(*P*–1)×*R* 数组，包含以下元素：
+  输出是一个数组，其在指定维度上的长度比输入少一，其他维度上的长度保持不变。例如，考虑一个 *M*×*N*×*P*×*R* 输入数组，其元素为 *u(i,j,k,l)*，并假设**维度**参数的值为 `3`。模块的输出为 *M*×*N*×(*P*–1)×*R* 数组，包含以下元素：
 
   yi,j,k,l=ui,j,k+1,l−ui,j,k,l     1≤k≤(P−1)
 
-### **Dimension** — 基于一的维度 `1`（默认）| `2` | `3`
+### **维度** — 基于一的维度 `1`（默认）| `2` | `3`
 
-指定用于计算逐元素差分的基于一的维度。
+指定用于计算逐元素差值的基于一的维度。
 
 #### 依赖关系
 
-要启用此参数，请为 **Difference along** 参数选择 `Specified dimension`。
+要启用此参数，请为**沿参数方向的差分**参数选择 `Specified dimension`。
 
 ### 数据类型选项卡
 
-### **Rounding mode** — 舍入操作的方法 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
+### **舍入模式** — 舍入运算的方法 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
 将定点运算的舍入模式指定为以下之一：
 
@@ -104,61 +104,61 @@ chinese_source: worker-translation
 - `Simplest`
 - `Zero`
 
-有关更多详细信息，请参阅 Rounding Modes。
+有关更多详细信息，请参阅舍入模式。
 
-### **Saturate on integer overflow** — 溢出操作方法 off（默认）| on
+### **整数溢出时饱和** — 溢出操作的方法 off（默认）| on
 
-选中此参数时，该模块会对其定点运算的结果进行饱和处理。清除此参数时，该模块会对其定点运算的结果进行环绕处理。有关 `saturate` 和 `wrap` 的详细信息，请参阅 overflow mode for fixed-point operations。
+选中此参数时，模块对其定点运算的结果进行饱和处理。清除此参数时，模块对其定点运算的结果进行回绕处理。有关 `saturate` 和 `wrap` 的详细信息，请参阅定点运算的溢出模式。
 
-### **Accumulator** — 累加器数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Same as input` | `fixdt([],16,0)`
+### **累加器** — 累加器数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Same as input` | `fixdt([],16,0)`
 
-**Accumulator** 指定 Difference 模块中累加运算输出的数据类型。
+**累加器**指定 Difference 模块中累加运算输出的数据类型。
 
-- `Inherit: Inherit via internal rule` — 该模块基于内部规则继承累加器数据类型。有关此规则的更多信息，请参阅 Inherit via Internal Rule。
-- `Inherit: Same as input` — 该模块将累加器数据类型指定为与输入数据类型相同。
-- `fixdt([],16,0)` — 该模块指定一个自动有符号、二进制点、定标、定点数据类型，字长为 16 位，小数长度为 0。
+- `Inherit: Inherit via internal rule` —— 模块根据内部规则继承累加器数据类型。有关此规则的更多信息，请参阅通过内部规则继承。
+- `Inherit: Same as input` —— 模块将累加器数据类型指定为与输入数据类型相同。
+- `fixdt([],16,0)` —— 模块指定一个自动有符号、二进制点、定标定点数据类型，字长为 16 位，小数长度为 0。
 
-或者，你可以使用 **Data Type Assistant** 设置 **Accumulator** 数据类型。要使用助手，请点击 **Show data type assistant** 按钮。
+或者，您可以使用**数据类型助手**设置**累加器**数据类型。要使用助手，请点击**显示数据类型助手**按钮。
 
-有关数据类型助手的更多信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
+有关数据类型助手的更多信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
 
-有关如何在此模块中使用累加器数据类型的说明，请参阅 Fixed-Point Data Types。
+有关如何在此模块中使用累加器数据类型的说明，请参阅定点数据类型。
 
-### **Output** — 输出数据类型 `Inherit: Same as accumulator`（默认）| `Inherit: Same as input` | `fixdt([],16,0)`
+### **输出** — 输出数据类型 `Inherit: Same as accumulator`（默认）| `Inherit: Same as input` | `fixdt([],16,0)`
 
-**Output** 指定 Difference 模块输出的数据类型。
+**输出**指定 Difference 模块输出的数据类型。
 
-- `Inherit: Same as input` — 该模块将输出数据类型指定为与输入数据类型相同。
-- `Inherit: Same as accumulator` — 该模块将输出数据类型指定为与累加器数据类型相同。
-- `fixdt([],16,0)` — 该模块指定一个自动有符号、二进制点、定标、定点数据类型，字长为 16 位，小数长度为 0。
+- `Inherit: Same as input` —— 模块将输出数据类型指定为与输入数据类型相同。
+- `Inherit: Same as accumulator` —— 模块将输出数据类型指定为与累加器数据类型相同。
+- `fixdt([],16,0)` —— 模块指定一个自动有符号、二进制点、定标定点数据类型，字长为 16 位，小数长度为 0。
 
-或者，你可以使用 **Data Type Assistant** 设置 **Output** 数据类型。要使用助手，请点击 **Show data type assistant** 按钮。
+或者，您可以使用**数据类型助手**设置**输出**数据类型。要使用助手，请点击**显示数据类型助手**按钮。
 
-有关更多信息，请参阅 Control Data Types of Signals (Simulink)。
+有关更多信息，请参阅控制信号的数据类型 (Simulink)。
 
-有关输出数据类型的更多信息，请参阅 Fixed-Point Data Types。
+有关输出数据类型的更多信息，请参阅定点数据类型。
 
-### **Output Minimum** — 模块可以输出的最小值 `[]`（默认）| 标量
+### **输出最小值** — 模块可以输出的最小值 `[]`（默认）| 标量
 
-指定该模块可以输出的最小值。Simulink 使用此最小值执行：
+指定模块可以输出的最小值。Simulink 使用此最小值执行：
 
-- 仿真范围检查。请参阅 Specify Signal Ranges (Simulink)。
+- 仿真范围检查。请参阅指定信号范围 (Simulink)。
 - 定点数据类型的自动定标。
 
-### **Output Maximum** — 模块可以输出的最大值 `[]`（默认）| 标量
+### **输出最大值** — 模块可以输出的最大值 `[]`（默认）| 标量
 
-指定该模块可以输出的最大值。Simulink 使用此最大值执行：
+指定模块可以输出的最大值。Simulink 使用此最大值执行：
 
-- 仿真范围检查。请参阅 Specify Signal Ranges (Simulink)。
+- 仿真范围检查。请参阅指定信号范围 (Simulink)。
 - 定点数据类型的自动定标。
 
-### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
+### **锁定数据类型设置以防止定点工具更改** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
-选择此参数可防止定点工具覆盖你在模块对话框中指定的数据类型。
+选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
 
 **注意**
 
-浮点继承优先于在此窗格上定义的数据类型设置。当输入为浮点型时，该模块会忽略这些设置，并且所有内部数据类型均为浮点型。
+浮点继承优先于此窗格上定义的数据类型设置。当输入为浮点时，模块忽略这些设置，所有内部数据类型均为浮点。
 
 ## 所属库
 
@@ -186,6 +186,6 @@ DSP System Toolbox / Math Functions / Math Operations
 
 ## 描述
 
-沿输入的指定维度计算逐元素差分
+计算输入沿指定维度的逐元素差值
 
-Difference 模块计算输入数组 *u* 的行、列或指定维度中相邻元素之间的差分。你可以配置该模块仅在当前输入内计算差分，或跨连续输入计算差分（运行差分）。
+Difference 模块计算输入数组 *u* 的相邻行、列或指定维度中相邻元素之间的差值。您可以将模块配置为仅计算当前输入内的差值，或跨连续输入计算差值（运行差分）。

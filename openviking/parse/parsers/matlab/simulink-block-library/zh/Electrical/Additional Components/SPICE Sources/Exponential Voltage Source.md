@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Exponential Voltage Source'
-family: 'additional-components'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -20,37 +20,37 @@ chinese_source: worker-translation
 
 ### **+** — 正电压电气
 
-与 DC current source 正电压相关联的电气守恒端口
+与直流电流源正电压相关联的电气守恒端口
 
 ### **-** — 负电压电气
 
-与 DC current source 负电压相关联的电气守恒端口
+与直流电流源负电压相关联的电气守恒端口
 
 ## 参数
 
-### **初始值，V1** — 输出电压初始值 `0` `V`（默认）
+### **Initial value, V1** — 输出电压初始值 `0` `V`（默认）
 
-时间零点的输出电压值，单位为 V。
+零时刻的输出电压值，单位为 V。
 
-### **脉冲值，V2** — 输出电压渐近值 `0` `V`（默认）
+### **Pulse value, V2** — 输出电压渐近值 `0` `V`（默认）
 
-输出为高时输出电压的渐近值，单位为 V。
+输出为高电平时输出电压的渐近值，单位为 V。
 
-### **上升延迟时间，TDR** — 上升延迟时间 `0` `s`（默认）
+### **Rise delay time, TDR** — 上升延迟时间 `0` `s`（默认）
 
 上升时间延迟，单位为 s。
 
-### **上升时间，TR** — 上升时间 `1e-9` `s`（默认） | 正标量
+### **Rise time, TR** — 上升时间 `1e-9` `s`（默认） | 正标量
 
-输出电流从 **初始值，V1** 值上升到 **脉冲值，V2** 值所需的时间。
+输出电流从 **Initial Value, V1** 值上升到 **Pulse Value, V2** 值所需的时间。
 
-### **下降延迟时间，TDF** — 下降延迟时间 `0` `s`（默认）
+### **Fall delay time, TDF** — 下降延迟时间 `0` `s`（默认）
 
 下降时间延迟。
 
-### **下降时间，TF** — 下降时间 `1e-9` `s`（默认） | 正标量
+### **Fall time, TF** — 下降时间 `1e-9` `s`（默认） | 正标量
 
-输出电流从 **脉冲值，V2** 值下降到 **初始值，V1** 值所需的时间。
+输出电流从 **Pulse value, V2** 值下降到 **Initial value, V1** 值所需的时间。
 
 ## 所属库
 
@@ -66,27 +66,21 @@ R2025b 中未记录。
 
 ## 版本历史
 
-**R2008a 中引入**
+**在 R2008a 中引入**
 
 ## 描述
 
 指数脉冲电压源
 
-Exponential Voltage Source 模块表示一个电压源，其输出电压值是随时间变化的指数脉冲，并且与通过源的电流无关。以下方程描述输出电流随时间变化：
+Exponential Voltage Source 模块表示一个电压源，其输出电压值是时间的指数脉冲函数，并且与流过该源的电流无关。以下方程描述了输出电压随时间的变化：
 
 Vout(0≤Time≤TDR))=V1Vout(TDR<Time≤TDF)=V1+(V2-V1)\*(1-e-(Time-TDR)/TR)Vout(TDF<Time)=V1+(V2-V1)\*(e-(Time-TDF)/TF-e-(Time-TDR)/TR)
 
 其中：
 
-- *V1* 是 **初始值，V1**
-  参数值。
-- *V2* 是 **脉冲值，V2**
-  参数值。
-- *TDR* 是 **上升延迟时间，TDR**
-  参数值。
-- *TR* 是 **上升时间，TR** 参数
-  值。
-- *TDF* 是 **下降延迟时间，TDF**
-  参数值。
-- *TF* 是 **下降时间，TF**
-  参数值。
+- *V1* 是 **Initial value, V1** 参数值。
+- *V2* 是 **Pulse value, V2** 参数值。
+- *TDR* 是 **Rise delay time, TDR** 参数值。
+- *TR* 是 **Rise time, TR** 参数值。
+- *TDF* 是 **Fall delay time, TDF** 参数值。
+- *TF* 是 **Fall time, TF** 参数值。

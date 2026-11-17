@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Bit Clear'
-family: 'logic-and-bit-operations'
+family: 'hdlcoder'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
@@ -27,23 +27,23 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 输出信号 标量 | 向量
 
-输出由设置为零的指定二进制位组成。
+输出由设置为零的指定位组成。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 
 ## 参数
 
-### **位索引** — 位索引 0（默认）| 标量 | 向量
+### **Index of bit** — 位索引 0（默认）| 标量 | 向量
 
-位索引，其中第 0 位是最低有效位。
+位索引，其中位 0 是最低有效位。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`iBit` |
-| **类型**：character vector |
-| **取值**：标量 | 向量 |
+| **类型**：字符向量 |
+| **值**：标量 | 向量 |
 | **默认值**：`'0'` |
 
 ## 所属库
@@ -54,14 +54,14 @@ Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Booleana` | `fixed point` | `integer` |
-| **直接馈通** | `yes` |
-| **多维信号** | `yes` |
-| **可变大小信号** | `no` |
-| **过零检测** | `no` |
+| **Data Types** | `Booleana` | `fixed point` | `integer` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `yes` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 |  |  |
 | --- | --- |
-| a 不建议将位运算用于 Boolean 信号。 | |
+| a 不建议将位操作与布尔信号一起使用。 | |
 
 ## 扩展功能
 
@@ -69,21 +69,21 @@ Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 架构**
 
-此模块有一个默认 HDL 架构。
+此模块具有一个默认 HDL 架构。
 
 **HDL 模块属性**
 
 |  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟，在输出端放置的寄存器数量。分布式流水线不会重新分布这些寄存器。默认值为 `0`。有关详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成代码中插入的输入流水线级数。分布式流水线和受约束的输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成代码中插入的输出流水线级数。分布式流水线和受约束的输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 
-### PLC 代码生成 使用 Simulink® PLC Coder™ 生成 Structured Text 代码。
+### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
@@ -93,8 +93,8 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
 ## 描述
 
-将存储整数的指定二进制位设置为零
+将存储整数的指定位设置为零
 
-Bit Clear 模块将存储整数的指定二进制位（由其索引给出）设置为零。缩放将被忽略。
+Bit Clear 模块将存储整数的指定位（由其索引给出）设置为零。缩放被忽略。
 
-您可以使用 **位索引** 参数指定要设置为零的位，其中第 0 位是最低有效位。
+您可以使用 **Index of bit** 参数指定要设置为零的位，其中位零是最低有效位。

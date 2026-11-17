@@ -9,7 +9,7 @@ official_category: 'Controls / Control Reference'
 documentation_page: 'acimfeedforwardcontrol'
 documentation_source_path: '../mcb/ref/acimfeedforwardcontrol.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # ACIM Feed Forward Control
@@ -18,90 +18,155 @@ chinese_source: official
 
 ### 输入
 
-### **Isd** — D 轴定子电流 标量
+### **Isd** — *d* 轴定子电流标量
 
-沿旋转 *dq* 参考系的 *d* 轴的定子电流。
+沿旋转 *dq* 参考坐标系 *d* 轴的定子电流。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Isq** — Q 轴定子电流 标量
+### **Isq** — *q* 轴定子电流标量
 
-沿旋转 *dq* 参考系的 *q* 轴的定子电流。
+沿旋转 *dq* 参考坐标系 *q* 轴的定子电流。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **ωm** — 转子的机械转速 标量
+### **ωm** — 转子机械转速标量
 
 转子的机械转速。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 ### 输出
 
-### **VsdFF** — d 轴前馈电压 标量
+### **VsdFF** — *d* 轴前馈电压标量
 
-沿旋转 *dq* 参考系的 *d* 轴的前馈电压。
+沿旋转 *dq* 参考坐标系 *d* 轴的前馈电压。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **VsqFF** — q 轴前馈电压 标量
+### **VsqFF** — *q* 轴前馈电压标量
 
-沿旋转 *dq* 参考系的 *q* 轴的前馈电压。
+沿旋转 *dq* 参考坐标系 *q* 轴的前馈电压。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
 ## 参数
 
-### **极对数** — 电机中可用的极对数 `2` (默认) | 标量
+### **Number of pole pairs** — 电机中可用的极对数 `2`（默认）| 标量
 
 感应电机中可用的极对数。
 
-### **定子泄漏电感(H)** — 定子绕组的泄漏电感 `6.81e-3` (默认) | 标量
+### **Motor parameter input method** — 电机参数类型 `Linear model with lumped parameters`（默认）| `Non-linear model with D,Q-flux linkage LUTs`
 
-与定子绕组相关的泄漏磁通产生的电感（以亨为单位）。
+*自 R2025a 起*
 
-### **转子泄漏电感(H)** — 转子绕组的漏感 `6.81e-3` (默认) | 标量
+模块用于生成前馈电压增益的电机参数。将参数设置为以下值之一：
 
-与转子绕组相关的泄漏磁通产生的电感（以亨为单位）。
+- `Linear model with lumped parameters` — 使用电机电感 *Ls*、*Lr*、*Lm* 的集中电路值和额定磁通生成电压增益。
+- `Non-linear model with D,Q-flux linkage LUTs` — 使用 *d* 轴和 *q* 轴磁链查找表生成电压增益。
 
-### **磁化电感(H)** — 感应电机的磁化电感 `30e-3` (默认) | 标量
+### **Stator leakage inductance (H)** — 定子绕组漏电感 `6.81e-3`（默认）| 标量
 
-由磁化磁通产生的电感（以亨为单位）。
+与定子绕组交链的漏磁通引起的电感（单位：亨利）。
 
-### **额定磁通(Wb)** — 电机的额定磁通 `38.2e-3` (默认) | 标量
+#### 依赖关系
 
-感应电机的额定磁通（以韦伯为单位）。
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Linear model with lumped parameters`。
 
-### **输出饱和(V)** — 输出值的饱和界限 `24/sqrt(3)` (默认) | 标量
+### **Rotor leakage inductance (H)** — 转子绕组漏电感 `6.81e-3`（默认）| 标量
 
-模块输出 `VsdFF` 和 `VsqFF` 的饱和界限（以伏特为单位）。
+与转子绕组交链的漏磁通引起的电感（单位：亨利）。
 
-### **输入单位** — 输入值的单位 **标幺(PU)** (默认) | **SI 单位**
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Linear model with lumped parameters`。
+
+### **Magnetizing Inductance (H)** — 感应电机的励磁电感 `30e-3`（默认）| 标量
+
+励磁磁通引起的电感（单位：亨利）。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Linear model with lumped parameters`。
+
+### **Rated Flux (Wb)** — 电机额定磁通 `38.2e-3`（默认）| 标量
+
+感应电机的额定磁通（单位：韦伯）。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Linear model with lumped parameters`。
+
+### **D-axis current breakpoint vector, id (A)** — *d* 轴电流查找向量 `[0, 150, 350, 500]`（默认）| 向量
+
+*自 R2025a 起*
+
+用于磁链查找表的 *d* 轴电流查找向量（以百分比表示）。该向量可包含任意数量的元素。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Non-linear model with D,Q-flux linkage LUTs`。
+
+### **Q-axis current breakpoint vector, id (A)** — *q* 轴电流查找向量 `[0, 250, 500]`（默认）| 向量
+
+*自 R2025a 起*
+
+用于磁链查找表的 *q* 轴电流查找向量（以百分比表示）。该向量可包含任意数量的元素。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Non-linear model with D,Q-flux linkage LUTs`。
+
+### **D-axis flux linkage LUT, FluxD (id,iq) (Wb)** — 参考 *d* 轴磁链查找数据 `4.4e-2 * repmat([0, 150, 350, 500]', 1, 3)`（默认）| 向量
+
+*自 R2025a 起*
+
+*d* 轴磁链查找表数据（单位：韦伯）。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Non-linear model with D,Q-flux linkage LUTs`。
+
+### **Q-axis flux linkage LUT, FluxD (id,iq) (Wb)** — 参考 *q* 轴磁链查找数据 `2.1e-3 * repmat([0, 250, 500], 4, 1)`（默认）| 向量
+
+*自 R2025a 起*
+
+*q* 轴磁链查找表数据（单位：韦伯）。
+
+#### 依赖关系
+
+要启用此参数，请将 **Motor parameter input method** 参数设置为 `Non-linear model with D,Q-flux linkage LUTs`。
+
+### **Output Saturation (V)** — 输出值的饱和限值 `24/sqrt(3)`（默认）| 标量
+
+模块输出 `VsdFF` 和 `VsqFF` 的饱和限值（单位：伏特）。
+
+### **Input units** — 输入值的单位 `Per-Unit (PU)`（默认）| `SI Units`
 
 输入值的单位。
 
-### **基电压(V)** — 标幺制的基电压 `24/sqrt(3)` (默认) | 标量
+### **Base Voltage (V)** — 标幺制系统的基准电压 `24/sqrt(3)`（默认）| 标量
 
-标幺制的基电压（以伏特为单位）。
+标幺制系统的基准电压（单位：伏特）。
 
-#### 依存关系
+#### 依赖关系
 
-要启用此参数，请将**输入单位**设置为**标幺(PU)**。
+要启用此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
 
-### **基电流(A)** — 标幺制的基电流 `5.3611` (默认) | 标量
+### **Base Current (A)** — 标幺制系统的基准电流 `5.3611`（默认）| 标量
 
-标幺制的基电流（以安培为单位）。
+标幺制系统的基准电流（单位：安培）。
 
-#### 依存关系
+#### 依赖关系
 
-要启用此参数，请将**输入单位**设置为**标幺(PU)**。
+要启用此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
 
-### **基转速(rpm)** — 标幺制的基转速 `1500` (默认) | 标量
+### **Base Speed (rpm)** — 标幺制系统的基准转速 `1500`（默认）| 标量
 
-标幺制的基转速（以 rpm 为单位）。
+标幺制系统的基准转速（单位：rpm）。
 
-#### 依存关系
+#### 依赖关系
 
-要启用此参数，请将**输入单位**设置为**标幺(PU)**。
+要启用此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
 
 ## 所属库
 
@@ -109,15 +174,15 @@ Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供了影响 HDL 实现和综合逻辑的额外配置选项。
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 架构**
 
@@ -128,42 +193,46 @@ HDL Coder™ 提供了影响 HDL 实现和综合逻辑的额外配置选项。
 |  |  |
 | --- | --- |
 |  |  |
-| **ConstrainedOutputPipeline** | 要通过移动设计中的现有延迟来放置在输出端的寄存器的数量。分布式流水线不会重新分布这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
-| **SharingFactor** | 要映射到单个共享资源的功能等效的资源数量。默认值为 0。另请参阅Resource Sharing (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出端的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+| **SharingFactor** | 映射到单个共享资源的功能等效资源数量。默认值为 0。另请参阅 Resource Sharing (HDL Coder)。 |
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2020b 中推出**
+**在 R2020b 中引入**
+
+### R2025a：使用新的模块参数计算前馈电压增益
+
+模块参数对话框现在包含一些参数，使您能够根据磁链查找表数据计算前馈电压增益。
 
 ## 描述
 
 解耦 d 轴和 q 轴电流以消除扰动
 
-ACIM Feed Forward Control 模块可以解耦 *d* 轴和 *q* 轴电流控制，并生成对应的前馈电压增益以用于感应电机的磁场定向控制。
+ACIM Feed Forward Control 模块解耦 *d* 轴和 *q* 轴电流控制，并为感应电机的磁场定向控制生成相应的前馈电压增益。
 
-该模块接受 *d* 轴和 *q* 轴电流以及转子机械转速的反馈值。
+该模块接受 *d* 轴和 *q* 轴电流的反馈值以及转子的机械转速。
 
 ### 方程
 
-如果您在**输入单位**参数中选择**标幺(PU)**，则该模块会在执行任何计算之前将输入转换为 SI 单位。在计算输出后，该模块将这些值转换回标幺 (PU) 值。
+如果在 **Input units** 参数中选择 `Per-Unit (PU)`，则模块在执行任何计算之前会将输入转换为 SI 单位。计算输出后，模块会将值转换回标幺值（PU）。
 
-电机电感和定子磁通表示为：
+电机电感和定子磁链表示为：
 
-Ls= Lls+ Lm
+Ls= Lls+ Lm
 
-Lr= Llr+ Lm
+Lr= Llr+ Lm
 
 σ=1−(Lm2Ls⋅Lr)
 
-λsd= LmLrλrd+σLsisd
+λsd= LmLrλrd+σLsisd
 
-λsq= σLsisq
+λsq= σLsisq
 
-下列方程描述模块如何计算前馈增益。
+这些方程描述了模块如何计算前馈增益。
 
 VsdFF=−ωeλsq
 
@@ -174,13 +243,13 @@ VsqFF=ωeλsd
 其中：
 
 - ωe 是对应于定子电压频率的电角速度（弧度/秒）。
-- Lls 是定子漏感（亨）。
-- Llr 是转子泄漏电感（亨）。
-- Ls 是定子电感（亨）。
-- Lr 是转子电感（亨）。
-- Lm 是电机的磁化电感（亨）。
-- σ 是感应电机的总漏磁因子。
+- Lls 是定子漏电感（亨利）。
+- Llr 是转子漏电感（亨利）。
+- Ls 是定子电感（亨利）。
+- Lr 是转子电感（亨利）。
+- Lm 是电机的励磁电感（亨利）。
+- σ 是感应电机的总漏磁系数。
 - λsd 是定子的 *d* 轴磁链（韦伯）。
 - λsq 是定子的 *q* 轴磁链（韦伯）。
 - λrd 是转子的 *d* 轴磁链（韦伯）。
-- isd 和 isq 是定子的 *d* 轴和 *q* 轴电流（安培）。
+- isd 和 isq 是定子 *d* 轴和 *q* 轴电流（安培）。

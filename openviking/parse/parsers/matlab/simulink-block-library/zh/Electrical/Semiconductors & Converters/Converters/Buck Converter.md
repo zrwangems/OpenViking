@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Buck Converter'
-family: 'semiconductors-converters'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,104 +18,103 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **G** — 开关器件栅极控制物理信号 | 标量
+### **G** — 开关器件门极控制物理信号 | 标量
 
-与开关器件的栅极端子关联的物理信号端口。
+与开关器件门极端子关联的物理信号端口。
 
 #### 依赖关系
 
-要启用此端口，请将 **建模选项** 设置为 `Nonsynchronous converter`，并将 **栅极控制端口** 设置为 `PS`。
+要启用此端口，请将 **Modeling option** 设置为 `Nonsynchronous converter`，并将 **Gate-control port** 设置为 `PS`。
 
 **数据类型：** `double`
-
 ### 守恒
 
-### **G** — 开关器件栅极控制电气 | 向量
+### **G** — 开关器件门极控制电气 | 向量
 
-与开关器件的栅极端子关联的电气守恒端口。
+与开关器件门极端子关联的电气守恒端口。
 
 #### 依赖关系
 
-要启用此端口，请将 **建模选项** 设置为 `Synchronous converter`。
+要启用此端口，请将 **Modeling option** 设置为 `Synchronous converter`。
 
 **数据类型：** `double`
 
-### **G+** — 开关器件栅极控制正端子电气 | 标量
+### **G+** — 开关器件门极控制正极端子电气 | 标量
 
-与开关器件正栅极端子关联的正电气守恒端口。
+与开关器件正极门极端子关联的正极电气守恒端口。
 
 #### 依赖关系
 
-要启用此端口，请将 **建模选项** 设置为 `Nonsynchronous converter`，并将 **栅极控制端口** 设置为 `Electrical`。
+要启用此端口，请将 **Modeling option** 设置为 `Nonsynchronous converter`，并将 **Gate-control port** 设置为 `Electrical`。
 
 **数据类型：** `double`
 
-### **G-** — 开关器件栅极控制负端子电气 | 标量
+### **G-** — 开关器件门极控制负极端子电气 | 标量
 
-与开关器件负栅极端子关联的负电气守恒端口。
+与开关器件负极门极端子关联的负极电气守恒端口。
 
 #### 依赖关系
 
-要启用此端口，请将 **建模选项** 设置为 `Nonsynchronous converter`，并将 **栅极控制端口** 设置为 `Electrical`。
+要启用此端口，请将 **Modeling option** 设置为 `Nonsynchronous converter`，并将 **Gate-control port** 设置为 `Electrical`。
 
 **数据类型：** `double`
 
 ### **1+** — 正直流电压 1 电气 | 标量
 
-与第一个直流电压的正端子关联的电气守恒端口。
+与第一个直流电压正极端子关联的电气守恒端口。
 
 **数据类型：** `double`
 
 ### **1-** — 负直流电压 1 电气 | 标量
 
-与第一个直流电压的负端子关联的电气守恒端口。
+与第一个直流电压负极端子关联的电气守恒端口。
 
 **数据类型：** `double`
 
 ### **2+** — 正直流电压 2 电气 | 标量
 
-与第二个直流电压的正端子关联的电气守恒端口。
+与第二个直流电压正极端子关联的电气守恒端口。
 
 **数据类型：** `double`
 
 ### **2-** — 负直流电压 2 电气 | 标量
 
-与第二个直流电压的负端子关联的电气守恒端口。
+与第二个直流电压负极端子关联的电气守恒端口。
 
 **数据类型：** `double`
 
 ## 参数
 
-### **建模选项** — 建模非同步还是同步转换器 `Nonsynchronous converter`（默认）| `Synchronous converter`
+### **Modeling option** — 是否对非同步或同步转换器建模 `Nonsynchronous converter`（默认）| `Synchronous converter`
 
-建模非同步转换器还是同步转换器。
+是否对非同步或同步转换器建模。
 
 ### 开关器件
 
-此表显示了 **开关器件** 参数的可见性如何取决于你选择的 **开关器件**。要了解如何阅读该表，请参阅参数依赖关系。
+此表显示了 **Switching Devices** 参数的可见性如何取决于您选择的 **Switching device**。要了解如何阅读此表，请参阅参数依赖关系。
 
 **开关器件参数依赖关系**
 
 | 参数和选项 | | | | | |
 | --- | --- | --- | --- | --- | --- |
-| **开关器件** | | | | | |
+| **Switching device** | | | | | |
 | *`Ideal Semiconductor Switch`* | *`GTO`* | *`IGBT`* | *`MOSFET`* | *`Thyristor`* | *`Averaged Switch`* |
-| 导通状态电阻 | 正向电压 | 正向电压 | 漏源导通电阻 | 正向电压 | 导通状态电阻 |
-| 关断状态电导 | 导通状态电阻 | 导通状态电阻 | 关断状态电导 | 导通状态电阻 |
-| 阈值电压 | 关断状态电导 | 关断状态电导 | 阈值电压 | 关断状态电导 |
-| 栅极触发电压, Vgt | 阈值电压 | 栅极触发电压, Vgt | 用于栅极输入分段常数近似的整数（0 表示禁用） |
-| 栅极关断电压, Vgt\_off | 栅极关断电压, Vgt\_off |
-| 维持电流 | 维持电流 |
+| On-state resistance | Forward voltage | Forward voltage | Drain-source on resistance | Forward voltage | On-state resistance |
+| Off-state conductance | On-state resistance | On-state resistance | Off-state conductance | On-state resistance |
+| Threshold voltage | Off-state conductance | Off-state conductance | Threshold voltage | Off-state conductance |
+| 栅极触发电压，Vgt | 阈值电压 | 栅极触发电压，Vgt | 用于栅极输入分段常数近似的整数（0 表示禁用） |
+| Gate turn-off voltage, Vgt\_off | Gate turn-off voltage, Vgt\_off |
+| Holding current | Holding current |
 
-### **栅极控制端口** — 为开关栅极指定物理控制端口还是电气控制端口 `PS`（默认）| `Electrical`
+### **Gate-control port** — 是否为开关门极指定物理或电气控制端口 `PS`（默认）| `Electrical`
 
-为开关栅极指定物理控制端口还是电气控制端口。
+是否为开关门极指定物理或电气控制端口。
 
 #### 依赖关系
 
-要启用此端口，请将 **建模选项** 设置为 `Nonsynchronous converter`。
+要启用此端口，请将 **Modeling option** 设置为 `Nonsynchronous converter`。
 
-### **开关器件** — 开关类型 `Ideal Semiconductor Switch`（默认）| `GTO` | `IGBT` | `MOSFET` | `Thyristor` | `Averaged Switch`
+### **Switching device** — 开关类型 `Ideal Semiconductor Switch`（默认）| `GTO` | `IGBT` | `MOSFET` | `Thyristor` | `Averaged Switch`
 
 转换器的开关器件类型。对于同步模型，开关是相同的。
 
@@ -123,23 +122,23 @@ chinese_source: worker-translation
 
 请参阅开关器件参数依赖关系表。
 
-### **正向电压** — 电压 `0.8` `V`（默认）| 标量
+### **Forward voltage** — 电压 `0.8` `V`（默认）| 标量
 
-对于不同的开关器件类型，**正向电压** 取为：
+对于不同的开关器件类型，**Forward voltage** 取值为：
 
-- GTO — 使器件 I-V 特性的斜率为 1/*Ron* 所需的阳极和阴极模块端口之间的最小电压，其中 *Ron* 是 **导通状态电阻** 的值
-- IGBT — 使二极管 I-V 特性的斜率为 1/*Ron* 所需的集电极和发射极模块端口之间的最小电压，其中 *Ron* 是 **导通状态电阻** 的值
+- GTO — 使器件 I-V 特性梯度为 1/*Ron* 所需的阳极和阴极模块端口之间的最小电压，其中 *Ron* 是 **On-state resistance** 的值
+- IGBT — 使二极管 I-V 特性梯度为 1/*Ron* 所需的集电极和发射极模块端口之间的最小电压，其中 *Ron* 是 **On-state resistance** 的值
 - Thyristor — 使器件导通所需的最小电压
 
 #### 依赖关系
 
 请参阅开关器件参数依赖关系表。
 
-### **导通状态电阻** — 电阻 `0.001` `Ohm`（默认）| 标量
+### **On-state resistance** — 电阻 `0.001` `Ohm`（默认）| 标量
 
-对于不同的开关器件类型，**导通状态电阻** 取为：
+对于不同的开关器件类型，**On-state resistance** 取值为：
 
-- GTO — 正向电压之上的电压随电流的变化率
+- GTO — 高于正向电压时电压对电流的变化率
 - Ideal semiconductor switch — 器件导通时的阳极-阴极电阻
 - IGBT — 器件导通时的集电极-发射极电阻
 - Thyristor — 器件导通时的阳极-阴极电阻
@@ -149,43 +148,43 @@ chinese_source: worker-translation
 
 请参阅开关器件参数依赖关系表。
 
-### **漏源导通电阻** — 电阻 `0.001` `Ohm`（默认）| 标量
+### **Drain-source on resistance** — 电阻 `0.001` `Ohm`（默认）| 标量
 
-漏极与源极之间的电阻，该电阻还取决于栅源电压。
+漏极和源极之间的电阻，该电阻还取决于栅极-源极电压。
 
 #### 依赖关系
 
 请参阅开关器件参数依赖关系表。
 
-### **关断状态电导** — 电导 `1e-5` `1/Ohm`（默认）| 标量
+### **Off-state conductance** — 电导 `1e-5` `1/Ohm`（默认）| 标量
 
-器件关断时的电导。该值必须小于 1/*R*，其中 *R* 是 **导通状态电阻** 的值。
+器件关断时的电导。该值必须小于 1/*R*，其中 *R* 是 **On-state resistance** 的值。
 
-对于不同的开关器件类型，**导通状态电阻** 取为：
+对于不同的开关器件类型，**On-state resistance** 取值为：
 
 - GTO — 阳极-阴极电导
 - Ideal semiconductor switch — 阳极-阴极电导
 - IGBT — 集电极-发射极电导
-- MOSFET — 漏源电导
+- MOSFET — 漏极-源极电导
 - Thyristor — 阳极-阴极电导
 
 #### 依赖关系
 
 请参阅开关器件参数依赖关系表。
 
-### **阈值电压** — 电压阈值 `6` `V`（默认）| 标量
+### **Threshold voltage** — 电压阈值 `6` `V`（默认）| 标量
 
-栅极电压阈值。当栅极电压高于此值时，器件导通。对于不同的开关器件类型，关注的器件电压为：
+栅极电压阈值。当栅极电压高于此值时，器件导通。对于不同的开关器件类型，所关注的器件电压为：
 
 - Ideal semiconductor switch — 栅极-阴极电压
 - IGBT — 栅极-发射极电压
-- MOSFET — 栅源电压
+- MOSFET — 栅极-源极电压
 
 #### 依赖关系
 
 请参阅开关器件参数依赖关系表。
 
-### **栅极触发电压, Vgt** — 电压阈值 `1` `V`（默认）| 标量
+### **Gate trigger voltage, Vgt** — 电压阈值 `1` `V`（默认）| 标量
 
 栅极-阴极电压阈值。当栅极-阴极电压高于此值时，器件导通。
 
@@ -193,7 +192,7 @@ chinese_source: worker-translation
 
 请参阅开关器件参数依赖关系表。
 
-### **栅极关断电压, Vgt\_off** — 电压阈值 `-1` `V`（默认）| 标量
+### **Gate turn-off voltage, Vgt\_off** — 电压阈值 `-1` `V`（默认）| 标量
 
 栅极-阴极电压阈值。当栅极-阴极电压低于此值时，器件关断。
 
@@ -201,74 +200,74 @@ chinese_source: worker-translation
 
 请参阅开关器件参数依赖关系表。
 
-### **维持电流** — 电流阈值 `1` `A`（默认）| 标量
+### **Holding current** — 电流阈值 `1` `A`（默认）| 标量
 
-栅极电流阈值。当电流高于此值时，即使栅极-阴极电压降到栅极触发电压以下，器件仍保持导通。
+栅极电流阈值。当电流高于此值时，即使栅极-阴极电压降至栅极触发电压以下，器件仍保持导通。
 
 #### 依赖关系
 
 请参阅开关器件参数依赖关系表。
 
-### **用于栅极输入分段常数近似的整数（0 表示禁用）** — FPGA 部署的整数模式 `0`（默认）| 非负标量
+### **Integer for piecewise constant approximation of gate input (0 for disabled)** — FPGA 部署的整数模式 `0`（默认）| 非负标量
 
-用于对 FPGA 部署的栅极输入执行分段常数近似的整数。
+用于对 FPGA 部署的门极输入执行分段常数逼近的整数。
 
 #### 依赖关系
 
-要启用此参数，请将 **开关器件** 设置为 `Averaged Switch`。
+要启用此参数，请将 **Switching device** 设置为 `Averaged Switch`。
 
 ### 二极管
 
-此表显示了 **二极管** 参数的可见性如何取决于你如何配置 **建模选项**、**模型动态** 和 **反向恢复时间参数化** 参数。要了解如何阅读该表，请参阅参数依赖关系。
+此表显示了 **Diode** 参数的可见性如何取决于您如何配置 **Modeling option**、**Model dynamics** 和 **Reverse recovery time parameterization** 参数。要了解如何阅读此表，请参阅参数依赖关系。
 
 **二极管参数依赖关系**
 
 | 参数和选项 | | | | | | | | |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **建模选项** | | | | | | | | |
+| **Modeling option** | | | | | | | | |
 | *`PS control port`* 或 *`Electrical control ports`* | | | | *`Synchronous converter`* | | | | |
-| **模型动态** | | | | **模型动态** | | | | |
+| **Model dynamics** | | | | **Model dynamics** | | | | |
 | *`Diode with no dynamics`* | *`Diode with charge dynamics`* | | | *`None`* | *`Diode with no dynamics`* | *`Diode with charge dynamics`* | | |
-| 正向电压 | 正向电压 | | | 正向电压 | 正向电压 | | |
-| 导通电阻 | 导通电阻 | | | 导通电阻 | 导通电阻 | | |
-| 关断电导 | 关断电导 | | | 关断电导 | 关断电导 | | |
-| 结电容 | | | 结电容 | | |
-| 峰值反向电流, iRM | | | 峰值反向电流, iRM | | |
-| 测量 iRM 时的初始正向电流 | | | 测量 iRM 时的初始正向电流 | | |
-| 测量 iRM 时的电流变化率 | | | 测量 iRM 时的电流变化率 | | |
-| **反向恢复时间参数化** | | | **反向恢复时间参数化** | | |
+| Forward voltage | Forward voltage | | | Forward voltage | Forward voltage | | |
+| On resistance | On resistance | | | On resistance | On resistance | | |
+| Off conductance | Off conductance | | | Off conductance | Off conductance | | |
+| Junction capacitance | | | Junction capacitance | | |
+| Peak reverse current, iRM | | | Peak reverse current, iRM | | |
+| Initial forward current when measuring iRM | | | Initial forward current when measuring iRM | | |
+| Rate of change of current when measuring iRM | | | Rate of change of current when measuring iRM | | |
+| **Reverse recovery time parameterization** | | | **Reverse recovery time parameterization** | | |
 | *`Specify stretch factor`* | *`Specify reverse recovery time directly`* | `Specify reverse recovery charge` | *`Specify stretch factor`* | *`Specify reverse recovery time directly`* | *`Specify reverse recovery charge`* |
-| 反向恢复时间拉伸因子 | 反向恢复时间, trr | 反向恢复电荷, Qrr | 反向恢复时间拉伸因子 | 反向恢复时间, trr | 反向恢复电荷, Qrr |
+| Reverse recovery time stretch factor | Reverse recovery time, trr | Reverse recovery charge, Qrr | Reverse recovery time stretch factor | Reverse recovery time, trr | Reverse recovery charge, Qrr |
 
-### **模型动态** — 二极管模型 `Protection diode with no dynamics`（默认）| `Protection diode with charge dynamics` | `None`
+### **Model dynamics** — 二极管模型 `Protection diode with no dynamics`（默认）| `Protection diode with charge dynamics` | `None`
 
 二极管类型。选项包括：
 
 - `None` — 此选项不适用于非同步转换器。
-- `Diode with no dynamics` — 选择此选项以使用 Diode 模块优先考虑仿真速度。此选项是非同步转换器的默认值。
-- `Diode with charge dynamics` — 选择此选项以使用 Diode 模块的换向二极管模型，在反向模式电荷动态方面优先考虑模型保真度。
+- `Diode with no dynamics` — 选择此选项可使用 Diode 模块优先考虑仿真速度。此选项是非同步转换器的默认值。
+- `Diode with charge dynamics` — 选择此选项可使用 Diode 模块的换向二极管模型，在反向模式电荷动态方面优先考虑模型保真度。
 
 **注意**
 
-如果你在 **开关器件** 设置中为 **开关器件** 参数选择 `Averaged Switch`，则此参数不可见，并自动选择 `Diode with no dynamics`。
+如果您在 **Switching Device** 设置中为 **Switching Device** 参数选择 `Averaged Switch`，则此参数不可见，并且会自动选择 `Diode with no dynamics`。
 
 #### 依赖关系
 
 请参阅二极管参数依赖关系表。
 
-### **正向电压** — 电压 `0.8` `V`（默认）| 标量
+### **Forward voltage** — 电压 `0.8` `V`（默认）| 标量
 
-使二极管 I-V 特性的斜率为 1/*Ron* 所需的正和负模块端口之间的最小电压，其中 *Ron* 是 **导通电阻** 的值。
+使二极管 I-V 特性梯度为 1/*Ron* 所需的正极和负极模块端口之间的最小电压，其中 *Ron* 是 **On resistance** 的值。
 
-### **导通电阻** — 电阻 `0.001` `Ohm`（默认）| 标量
+### **On resistance** — 电阻 `0.001` `Ohm`（默认）| 标量
 
-**正向电压** 之上的电压随电流的变化率。
+高于 **Forward voltage** 时电压对电流的变化率。
 
-### **关断电导** — 电导 `1e-5` `1/Ohm`（默认）| 标量
+### **Off conductance** — 电导 `1e-5` `1/Ohm`（默认）| 标量
 
 反向偏置二极管的电导。
 
-### **结电容** — 电容 `50` `nF`（默认）| 标量
+### **Junction capacitance** — 电容 `50` `nF`（默认）| 标量
 
 二极管结电容。
 
@@ -276,7 +275,7 @@ chinese_source: worker-translation
 
 请参阅二极管参数依赖关系表。
 
-### **峰值反向电流, iRM** — 电流 `-235` `A`（默认）| 小于 `0` 的标量
+### **Peak reverse current, iRM** — 电流 `-235` `A`（默认）| 小于 `0` 的标量
 
 由外部测试电路测得的峰值反向电流。
 
@@ -284,15 +283,15 @@ chinese_source: worker-translation
 
 请参阅二极管参数依赖关系表。
 
-### **测量 iRM 时的初始正向电流** — 电流 `300` `A`（默认）| 大于 `0` 的标量
+### **Initial forward current when measuring iRM** — 电流 `300` `A`（默认）| 大于 `0` 的标量
 
-测量峰值反向电流时的初始正向电流。该值必须大于零。
+测量峰值反向电流时的初始正向电流。此值必须大于零。
 
 #### 依赖关系
 
 请参阅二极管参数依赖关系表。
 
-### **测量 iRM 时的电流变化率** — 电流变化率 `-50` `A/us`（默认）| 标量
+### **Rate of change of current when measuring iRM** — 电流变化率 `-50` `A/us`（默认）| 标量
 
 测量峰值反向电流时的电流变化率。
 
@@ -300,42 +299,42 @@ chinese_source: worker-translation
 
 请参阅二极管参数依赖关系表。
 
-### **反向恢复时间参数化** — 恢复时间模型 `Specify stretch factor`（默认）| `Specify reverse recovery time directly` | `Specify reverse recovery charge`
+### **Reverse recovery time parameterization** — 恢复时间模型 `Specify stretch factor`（默认）| `Specify reverse recovery time directly` | `Specify reverse recovery charge`
 
-用于参数化恢复时间的模型。当你选择 `Specify stretch factor` 或 `Specify reverse recovery charge` 时，可以指定一个值，模块使用该值推导反向恢复时间。
-
-#### 依赖关系
-
-请参阅二极管参数依赖关系表。
-
-### **反向恢复时间拉伸因子** — 拉伸因子 `3`（默认）| 大于 `1` 的标量
-
-模块用于计算 **反向恢复时间, trr** 的值。与指定反向恢复电荷相比，指定拉伸因子是参数化反向恢复时间更简单的方法。拉伸因子的值越大，反向恢复电流耗散所需的时间越长。
+用于参数化恢复时间的模型。当您选择 `Specify stretch factor` 或 `Specify reverse recovery charge` 时，可以指定一个值，模块使用该值来推导反向恢复时间。
 
 #### 依赖关系
 
 请参阅二极管参数依赖关系表。
 
-### **反向恢复时间, trr** — 时间 `15` `us`（默认）| 标量
+### **Reverse recovery time stretch factor** — 拉伸因子 `3`（默认）| 大于 `1` 的标量
 
-电流最初降至零（二极管关断时）的时间与电流降至小于峰值反向电流 10% 的时间之间的间隔。
-
-**反向恢复时间, trr** 参数的值必须大于 **峰值反向电流, iRM** 参数的值除以 **测量 iRM 时的电流变化率** 参数的值。
+模块用于计算 **Reverse recovery time, trr** 的值。指定拉伸因子比指定反向恢复电荷更容易参数化反向恢复时间。拉伸因子的值越大，反向恢复电流消散所需的时间越长。
 
 #### 依赖关系
 
 请参阅二极管参数依赖关系表。
 
-### **反向恢复电荷, Qrr** — 电荷 `1500` `s*uA`（默认）| 标量
+### **Reverse recovery time, trr** — 时间 `15` `us`（默认）| 标量
 
-模块用于计算 **反向恢复时间, trr** 的值。如果二极管器件的数据手册指定的是反向恢复电荷值而不是反向恢复时间值，请使用此参数。
+电流最初降至零（二极管关断时）的时间与电流降至峰值反向电流的 10% 以下的时间之间的间隔。
 
-反向恢复电荷是二极管关断时继续耗散的总电荷。该值必须小于 −i2RM2a，
+**Reverse recovery time, trr** 参数的值必须大于 **Peak reverse current, iRM** 参数的值除以 **Rate of change of current when measuring iRM** 参数的值。
+
+#### 依赖关系
+
+请参阅二极管参数依赖关系表。
+
+### **Reverse recovery charge, Qrr** — 电荷 `1500` `s*uA`（默认）| 标量
+
+模块用于计算 **Reverse recovery time, trr** 的值。如果您的二极管器件数据手册指定了反向恢复电荷的值而不是反向恢复时间的值，请使用此参数。
+
+反向恢复电荷是二极管关断时继续消散的总电荷。该值必须小于 −i2RM2a，
 
 其中：
 
-- *iRM* 是为 **峰值反向电流, iRM** 指定的值。
-- *a* 是为 **测量 iRM 时的电流变化率** 指定的值。
+- *iRM* 是为 **Peak reverse current, iRM** 指定的值。
+- *a* 是为 **Rate of change of current when measuring iRM** 指定的值。
 
 #### 依赖关系
 
@@ -343,38 +342,38 @@ chinese_source: worker-translation
 
 ### LC 滤波器
 
-### **电感** — 滤波器电感 `1e-6` `H`（默认）| 正标量
+### **Inductance** — 滤波器电感 `1e-6` `H`（默认）| 正标量
 
 LC 滤波器的电感。
 
-### **电感器串联电阻** — 电感器串联电阻 `0` `Ohm`（默认）| 零或正标量
+### **Inductor series resistance** — 电感串联电阻 `0` `Ohm`（默认）| 零或正标量
 
-电感器的串联电阻。
+电感的串联电阻。
 
-### **电容** — 滤波器电容 `1e-7` `F`（默认）| 正标量
+### **Capacitance** — 滤波器电容 `1e-7` `F`（默认）| 正标量
 
 LC 滤波器的电容。
 
-### **电容器有效串联电阻** — 电容器电阻 `1e-6` `Ohm`（默认）| 零或正标量
+### **Capacitor effective series resistance** — 电容电阻 `1e-6` `Ohm`（默认）| 零或正标量
 
-电容器的串联电阻。
+电容的串联电阻。
 
 ### 缓冲器
 
-如果将 **开关器件** 设置为 `Averaged Switch`，则 **缓冲器** 参数选项卡不可见。
+如果您将 **Switching device** 设置为 `Averaged Switch`，则 **Snubbers** 参数选项卡不可见。
 
-该表总结了 **缓冲器** 参数依赖关系。要了解如何阅读该表，请参阅参数依赖关系。
+该表总结了 **Snubbers** 参数依赖关系。要了解如何阅读此表，请参阅参数依赖关系。
 
 **缓冲器参数依赖关系**
 
 | 缓冲器参数依赖关系 | |
 | --- | --- |
-| **缓冲器** | |
+| **Snubber** | |
 | *`None`* | *`RC Snubber`* |
-| 缓冲电阻 |
-| 缓冲电容 |
+| Snubber resistance |
+| Snubber capacitance |
 
-### **缓冲器** — 缓冲器模型 `None`（默认）| `RC snubber`
+### **Snubber** — 缓冲器模型 `None`（默认）| `RC snubber`
 
 开关器件缓冲器。
 
@@ -382,7 +381,7 @@ LC 滤波器的电容。
 
 请参阅缓冲器参数依赖关系表。
 
-### **缓冲电阻** — 电阻 `0.1`（默认）| `Ohm` | 标量
+### **Snubber resistance** — 电阻 `0.1`（默认）| `Ohm` | 标量
 
 开关器件缓冲器的电阻。
 
@@ -390,7 +389,7 @@ LC 滤波器的电容。
 
 请参阅缓冲器参数依赖关系表。
 
-### **缓冲电容** — 电容 `1e-7`（默认）| `F` | 标量
+### **Snubber capacitance** — 电容 `1e-7`（默认）| `F` | 标量
 
 开关器件缓冲器的电容。
 
@@ -404,7 +403,7 @@ Simscape / Electrical / Semiconductors & Converters / Converters
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -416,80 +415,78 @@ Simscape / Electrical / Semiconductors & Converters / Converters
 
 ## 描述
 
-Controller-driven DC-DC step-down voltage regulator
+由控制器驱动的 DC-DC 降压型电压调节器
 
-Buck Converter 模块表示一种由附加控制器和栅极信号发生器驱动的、可降低 DC 电压的转换器。Buck 转换器也称为降压电压调节器，因为它们降低电压幅值。
+Buck Converter 模块表示一个由所连接的控制器和门极信号发生器驱动的、对直流电压进行降压的变换器。Buck 变换器也称为降压型电压调节器，因为它们会降低电压幅值。
 
-Buck Converter 模块允许您对具有一个开关器件的非同步转换器或具有两个开关器件的同步转换器进行建模。开关器件类型的选项包括：
+Buck Converter 模块允许您对具有一个开关器件的非同步变换器或具有两个开关器件的同步变换器进行建模。开关器件类型的选项包括：
 
-- GTO — 门极关断晶闸管。有关该器件的 I-V 特性信息，请参阅 GTO。
-- Ideal semiconductor switch — 有关该器件的 I-V 特性信息，请参阅 Ideal Semiconductor Switch。
-- IGBT — 绝缘栅双极型晶体管。有关该器件的 I-V 特性信息，请参阅 IGBT (Ideal, Switching)。
-- MOSFET — N 沟道金属氧化物半导体场效应晶体管。有关该器件的 I-V 特性信息，请参阅 MOSFET (Ideal, Switching)。
-- Thyristor — 有关该器件的 I-V 特性信息，请参阅 Thyristor (Piecewise Linear)。
-- Averaged Switch — 带有反并联二极管的半导体开关。控制信号端口 **G** 接受区间 [0,1] 中的值。当 **G** 等于 `0` 或 `1` 时，平均开关分别完全打开或完全闭合。该开关的行为类似于带有反并联二极管的 Ideal Semiconductor Switch 模块。当 **G** 介于 0 和 1 之间时，平均开关部分打开。您可以在指定周期内对脉宽调制 (PWM) 信号求平均。然后，您可以对模型进行欠采样，并使用调制波形代替 PWM 信号。
+- GTO — 门极关断晶闸管。有关该器件的 I-V 特性信息，请参见 GTO。
+- Ideal semiconductor switch — 有关该器件的 I-V 特性信息，请参见 Ideal Semiconductor Switch。
+- IGBT — 绝缘栅双极型晶体管。有关该器件的 I-V 特性信息，请参见 IGBT (Ideal, Switching)。
+- MOSFET — N 沟道金属氧化物半导体场效应晶体管。有关该器件的 I-V 特性信息，请参见 MOSFET (Ideal, Switching)。
+- Thyristor — 有关该器件的 I-V 特性信息，请参见 Thyristor (Piecewise Linear)。
+- Averaged Switch — 带反并联二极管的半导体开关。控制信号端口 **G** 接受区间 [0,1] 内的值。当 **G** 等于 `0` 或 `1` 时，平均开关分别完全断开或完全闭合。该开关的行为类似于带反并联二极管的 Ideal Semiconductor Switch 模块。当 **G** 介于 0 和 1 之间时，平均开关部分断开。您可以在指定周期内对脉宽调制 (PWM) 信号进行平均。然后，您可以对模型进行欠采样，并使用调制波形代替 PWM 信号。
 
-### 转换器拓扑
+### 变换器拓扑
 
-您可以将此转换器建模为具有物理信号栅极控制端口或两个电气控制端口的非同步转换器，或建模为具有一个电气控制端口的同步转换器。要选择转换器拓扑，请将 **Modeling option** 参数设置为以下值之一：
+您可以将此变换器建模为具有物理信号门极控制端口或两个电气控制端口的非同步变换器，或建模为具有电气控制端口的同步变换器。要选择变换器拓扑，请将 **Modeling option** 参数设置为以下之一：
 
-- `Nonsynchronous converter` — 具有可选物理或电气栅极控制端口的非同步转换器。
-- `Synchronous converter` — 具有多路复用栅极信号的同步转换器。
+- `Nonsynchronous converter` — 具有可选物理或电气门极控制端口的非同步变换器。
+- `Synchronous converter` — 具有多路复用门极信号的同步变换器。
 
-非同步 Buck 转换器模型包含一个开关器件、一个二极管、一个电感器和一个输出电容器。
+非同步 buck 变换器模型包含一个开关器件、一个二极管、一个电感器和一个输出电容器。
 
-同步 Buck 转换器模型包含两个开关器件、一个电感器和一个输出电容器。
+同步 buck 变换器模型包含两个开关器件、一个电感器和一个输出电容器。
 
 在每种情况下，电容器都会平滑输出电压。
 
 ### 保护
 
-对于同步转换器模型，您可以为 S2 开关器件包含一个集成保护二极管。集成二极管通过为反向电流提供导通路径来保护半导体器件。当半导体器件突然关断对负载的电压供应时，感性负载可能产生高反向电压尖峰。
+对于同步变换器模型，您可以为 S2 开关器件包含一个集成保护二极管。集成二极管通过为反向电流提供导通路径来保护半导体器件。当半导体器件突然切断对负载的电压供应时，感性负载可能会产生高反向电压尖峰。
 
-要包含并配置内部保护二极管模块，请使用 **Diode** 参数。下表展示了如何根据您的目标设置 **Model dynamics** 参数。
+要包含并配置内部保护二极管模块，请使用 **Diode** 参数。下表显示了如何根据您的目标设置 **Model dynamics** 参数。
 
 | 目标 | | 要选择的值 | 集成保护二极管 |
 | --- | --- | --- | --- |
-| 不包括保护。 | | `None` | None |
-| 包括保护。 | 优先考虑仿真速度。 | `Diode with no dynamics` | Diode 模块 |
-|  | 通过精确指定反向模式电荷动态来优先保证模型保真度。 | `Diode with charge dynamics` | Diode 模块的动态模型 |
+| 不包含保护。 | | `None` | 无 |
+| 包含保护。 | 优先考虑仿真速度。 | `Diode with no dynamics` | Diode 模块 |
+| 通过精确指定反向模式电荷动态来优先考虑模型保真度。 | `Diode with charge dynamics` | Diode 模块的动态模型 |
 
-您还可以为每个开关器件包含一个缓冲电路。缓冲电路包含串联连接的电阻和电容。它们保护开关器件免受感性负载在器件关断对负载的电压供应时产生的高电压影响。缓冲电路还可防止开关器件导通时出现过大的电流变化率。
+您还可以为每个开关器件包含一个缓冲电路。缓冲电路包含一个串联连接的电阻器和电容器。它们保护开关器件免受感性负载在器件切断对负载的电压供应时产生的高电压影响。缓冲电路还可以防止开关器件导通时出现过大的电流变化率。
 
 要为每个开关器件包含并配置缓冲电路，请使用 **Snubbers** 参数。
 
-### 栅极控制
+### 门极控制
 
-要将栅极控制电压信号连接到开关器件的栅极端口，对于：
+要将门极控制电压信号连接到开关器件的门极端口，对于：
 
-- 非同步转换器模型：
+- 非同步变换器模型：
 
   - PS 控制端口模型：
 
-    1. 使用 Simulink-PS Converter 模块将 Simulink® 栅极控制电压信号转换为物理信号。
+    1. 使用 Simulink-PS Converter 模块将 Simulink® 门极控制电压信号转换为物理信号。
     2. 将 Simulink-PS Converter 模块连接到 **G** 端口。
-
   - 电气控制端口模型：
 
-    1. 将 Simscape™ 电气域正 DC 电压信号连接到 **G+** 端口。
-    2. 将 Simscape 电气域负 DC 电压信号连接到 **G-** 端口。
+    1. 将 Simscape™ 电气域正直流电压信号连接到 **G+** 端口。
+    2. 将 Simscape 电气域负直流电压信号连接到 **G-** 端口。
+- 同步变换器模型：
 
-- 同步转换器模型：
-
-  1. 使用 Simulink-PS Converter 模块将每个 Simulink 栅极控制电压信号转换为物理信号。
-  2. 使用 Two-Pulse Gate Multiplexer 将转换后的栅极控制信号多路复用为单个向量。
+  1. 使用 Simulink-PS Converter 模块将每个 Simulink 门极控制电压信号转换为物理信号。
+  2. 使用 Two-Pulse Gate Multiplexer 将转换后的门极控制信号多路复用为单个向量。
   3. 将向量信号连接到 **G** 端口。
 
-### Averaged Switch 中用于 FPGA 部署的分段常数逼近
+### 用于 FPGA 部署的平均开关中的分段常数近似
 
-如果将 **Switching device** 参数设置为 `Averaged switch`，并且您的模型使用分区求解器，则此模块会产生非线性分区，因为平均模式方程包含作为输入 **G** 的函数的模式 *Gsat*。为了使这些方程与硬件描述语言 (HDL) 代码生成兼容，并因此与 FPGA 部署兼容，请将 **Integer for piecewise constant approximation of gate input (0 for disabled)** 参数设置为大于 `0` 的值。此模块随后将 *Gsat* 模式视为具有固定范围的分段常数整数。这会将先前的非线性分区转换为线性时变分区。
+如果您将 **Switching device** 参数设置为 `Averaged switch`，并且您的模型使用分区求解器，则此模块会产生非线性分区，因为平均模式方程包含作为输入 **G** 函数的模式 *Gsat*。为了使这些方程与硬件描述语言 (HDL) 代码生成兼容，从而可用于 FPGA 部署，请将 **Integer for piecewise constant approximation of gate input (0 for disabled)** 参数设置为大于 `0` 的值。然后，此模块会将 *Gsat* 模式视为具有固定范围的分段常数整数。这会将先前的非线性分区转换为线性时变分区。
 
-范围 `[0,K]` 内的整数值（其中 *K* 是 **Integer for piecewise constant approximation of gate input (0 for disabled)** 的值）现在与范围 `[0,1]` 内的每个实数值模式相关联。此模块通过将原始模式除以 K 来计算分段常数模式，以将其归一化回范围 `[0,1]`：
+范围 `[0,K]` 内的整数值（其中 *K* 是 **Integer for piecewise constant approximation of gate input (0 for disabled)** 的值）现在与范围 `[0,1]` 内的每个实数值模式相关联。该模块通过将原始模式除以 K 将其归一化回范围 `[0,1]` 来计算分段常数模式：
 
 uI=(floor(u⋅K))u^=uIK
 
 ### 变量
 
-要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或属性检查器中的 **Initial Targets** 部分。有关详细信息，请参阅为模块变量设置优先级和初始目标。
+要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参见 Set Priority and Initial Target for Block Variables。
 
-标称值提供了一种指定模型中变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。您可以使用不同来源指定标称值，包括模块对话框或属性检查器中的 **Nominal Values** 部分。有关详细信息，请参阅按标称值进行系统缩放。
+标称值提供了一种指定模型中变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。您可以使用不同的来源指定标称值，包括模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参见 System Scaling by Nominal Values。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Circulator'
-family: 'circuit-envelope'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -20,54 +20,55 @@ R2025b 中未记录。
 
 ## 参数
 
-### **Select component** — 环行器方向 `Circulator clockwise` (default) | `Circulator counter clockwise` | `Tee H-plane (S11=0)` | `Reciprocal phase shifter`
+### **Select component** — 环行器方向 `Circulator clockwise`（默认）| `Circulator counter clockwise` | `Tee H-plane (S11=0)` | `Reciprocal phase shifter`
 
 环行器方向，指定为：
 
 - `Circulator clockwise`
 
-  默认选项是 `Circulator clockwise`。
-  `Circulator clockwise` 的 S 参数矩阵为：
+  默认选项为 `Circulator clockwise`。
+  `Circulator clockwise` 的 s 参数矩阵为：
 
   [001100010]
 
   `Circulator counter clockwise`
 
-  `Circulator counter clockwise` 的 S 参数矩阵为：
+  `Circulator counter clockwise` 的 s 参数矩阵为：
 
   [010001100]
 - `Tee H-plane (S11=0)`
 
-  `Tee H-plane (S11=0)` 的 S 参数矩阵为：
+  `Tee H-plane (S11=0)` 的 s 参数矩阵为：
 
   (010100001)
 - `Reciprocal phase shifter`
 
-  `Reciprocal phase shifter` 的 S 参数矩阵为：
+  `Reciprocal phase shifter` 的 s 参数矩阵为：
 
   (0phase120phase120000phase33)(−j2)
 
-### **Reference impedances (Ohm)** — 环行器的参考阻抗 `50` (default) | positive scalar | three-tuple vector
+### **Reference impedances (Ohm)** — 环行器的参考阻抗 `50`（默认）| 正标量 | 三元组向量
 
 环行器的参考阻抗，指定为正标量或三元组向量。
 
 **注意**
 
-当所有端口的参考阻抗不相等时，Circulator 模块内部的模型会归一化到 50 ohms。
+当所有端口的参考阻抗不相等时，Circulator 模块内部的模型会归一化到 50 欧姆。
 
-### **Phase shift, ports 1 and 2 (rad)** — 端口 1 和端口 2 中信号相移的角度 `0` (default) | positive scalar
+### **Phase shift, ports 1 and 2 (rad)** — 端口 1 和端口 2 中信号的相位偏移角度 `0`（默认）| 正标量
 
-端口 1 和端口 2 中信号相移的角度，指定为以 rad 表示的正标量。
+端口 1 和端口 2 中信号的相位偏移角度，以弧度为单位指定为正标量。
 
-### **Phase shift, ports 3 (rad)** — 端口 3 中信号相移的角度 `0` (default) | positive scalar
+### **Phase shift, ports 3 (rad)** — 端口 3 中信号的相位偏移角度 `0`（默认）| 正标量
 
-端口 3 中信号相移的角度，指定为以 rad 表示的正标量。
+端口 3 中信号的相位偏移角度，以弧度为单位指定为正标量。
 
-### **Ground and hide negative terminals** — 将 RF 电路端子接地 `on` (default) | `off`
+### **Ground and hide negative terminals** — 将 RF 电路端子接地 `on`（默认）| `off`
 
-选择此参数以将负端子接地并隐藏。要显示负端子，请清除此参数。通过显示这些端子，您可以将它们连接到模型的其它部分。
+选择此参数可将负极端子接地并隐藏。
+要暴露负极端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其它部分。
 
-默认情况下，选中此选项。
+默认情况下，此选项处于选中状态。
 
 ## 所属库
 
@@ -83,10 +84,10 @@ R2025b 中未记录。
 
 ## 版本历史
 
-**R2014a 中引入**
+**在 R2014a 中引入**
 
 ## 描述
 
-使用 S 参数对理想频率无关环行器建模
+使用 S 参数对理想频率无关环行器进行建模
 
-使用 Circulator 模块在电路包络环境中对理想无源三端口环行器建模。环行器用于控制 RF 电路内部信号的方向和流动。Circulator 模块可根据参数选择使信号按顺时针或逆时针方向环行。
+使用 Circulator 模块在电路包络环境中对理想无源三端口环行器进行建模。环行器用于控制 RF 电路内部的信号方向和流动。根据参数选择，Circulator 模块可以使信号沿顺时针或逆时针方向环行。

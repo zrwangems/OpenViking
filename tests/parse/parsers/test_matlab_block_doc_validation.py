@@ -19,13 +19,23 @@ from extract_r2025b_block_manifest import (  # noqa: E402
     canonicalize_cross_product_documents,
     write_browser_tree,
 )
+from scrape_r2025b_all_blocks import has_chinese_documentation_body  # noqa: E402
 from scrape_simulink_blocks import localized_content  # noqa: E402
 from translate_r2025b_all_blocks import (  # noqa: E402
+    localize_generic_labels,
+    preserve_source_heading_structure,
     split_source,
     table_shapes,
     validate_translation,
 )
-from validate_r2025b_block_library import content_lines, markdown_body, xml_occurrences  # noqa: E402
+from validate_r2025b_block_library import (  # noqa: E402
+    content_lines,
+    markdown_body,
+    untranslated_prose,
+    validate_chinese_language,
+    validate_translation_for_audit,
+    xml_occurrences,
+)
 
 
 def test_table_shapes_ignore_enum_pipes_and_compare_every_table():
@@ -45,6 +55,45 @@ def test_table_shapes_ignore_enum_pipes_and_compare_every_table():
         validate_translation(source, translated.rsplit("\n", 2)[0])
 
 
+def test_translation_rejects_dropped_paragraphs_and_english_prose():
+    source = "# Gain\n\n## Description\n\nMultiply the input.\n\n## Version History\n\n**Introduced in R2006a**"
+    translated = "# Gain\n\n## 描述\n\n将输入相乘。\n\n## 版本历史\n\n**在 R2006a 中引入**"
+    validate_translation_for_audit(source, translated)
+    with pytest.raises(ValueError, match="paragraph/block count changed"):
+        validate_translation(source, translated.rsplit("\n\n", 1)[0])
+    with pytest.raises(ValueError, match="untranslated English prose"):
+        validate_translation_for_audit(
+            source, translated.replace("将输入相乘。", "Multiply the input.")
+        )
+    assert untranslated_prose("## 所属库\n\nSimulink / Math Operations") == []
+    assert untranslated_prose("SOC=qbatteryqnom(T,n) for N=1 and δAH=0") == []
+    with pytest.raises(ValueError, match="section mismatch"):
+        validate_translation_for_audit(source, translated.replace("## 描述", "## 参数"))
+    with pytest.raises(ValueError, match="empty Chinese section"):
+        validate_chinese_language("## 描述\n\n## 版本历史\n\n内容")
+
+
+def test_generic_documentation_labels_are_localized():
+    source = (
+        "#### Programmatic Use\n\n| **Block Parameter**: `Gain` |\n"
+        "| **Type**: character vector |\n| **Values**: `1` |\n"
+        "| **Default**: `'1'` |\n\n**Introduced before R2006a**"
+    )
+    translated = localize_generic_labels(source)
+    assert "#### 编程使用" in translated
+    assert "**模块参数**：`Gain`" in translated
+    assert "**类型**：character vector" in translated
+    assert "**值**：`1`" in translated
+    assert "**默认值**：`'1'`" in translated
+    assert "**在 R2006a 之前引入**" in translated
+
+
+def test_translation_preserves_block_name_and_heading_levels():
+    assert preserve_source_heading_structure(
+        "# Gain\n\n### Input", "# 增益\n\n## 输入"
+    ) == "# Gain\n\n### 输入"
+
+
 def test_large_table_is_not_split_between_rows():
     table = "| A | B |\n| --- | --- |\n" + "\n".join(
         f"| signal_{index} | value_{index} |" for index in range(100)
@@ -53,6 +102,15 @@ def test_large_table_is_not_split_between_rows():
     chunks = split_source(source, limit=500)
     assert any(table in chunk for chunk in chunks)
     assert sum(chunk.count("signal_") for chunk in chunks) == 100
+
+
+def test_chinese_site_footer_does_not_make_english_fallback_official():
+    english_with_footer = (
+        "Create a custom block\n\nThe block has one input.\n\n"
+        "选择网站\n\n选择网站以获取翻译的可用内容。"
+    )
+    assert not has_chinese_documentation_body(english_with_footer)
+    assert has_chinese_documentation_body("创建自定义模块\n\n该模块有一个输入。")
 
 
 def test_nested_description_uses_informative_section_not_empty_wrapper():

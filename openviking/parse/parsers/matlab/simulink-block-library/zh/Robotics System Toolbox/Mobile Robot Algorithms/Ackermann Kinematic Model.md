@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Ackermann Kinematic Model'
-family: 'mobile-robot-algorithms'
+family: 'robotics'
 product_id: 'robotics'
 product_name: 'Robotics System Toolbox'
 documentation_release: R2025b
@@ -18,52 +18,58 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **v** — 车辆速度 numeric scalar
+### **v** — 车辆速度 数值标量
 
-车辆速度，以 meters per second 指定。
+车辆速度，以米每秒为单位指定。
 
-### **dψ/dt** — 转向角速度 numeric scalar
+### **dψ/dt** — 转向角速度 数值标量
 
-车辆的转向角速度，以 radians per second 指定。
+车辆的转向角速度，以弧度每秒为单位指定。
 ### 输出
 
-### **state** — 车辆状态 four-element vector
+### **state** — 车辆状态 四元向量
 
-当前 *xy*-位置、朝向和转向角，指定为 [*x y θ ψ*]，单位为 meters and radians。
+当前 *xy* 位置、朝向和转向角，指定为 [*x y θ ψ*]，以米和弧度为单位。
 
-### **stateDot** — `state` 输出的导数 four-element vector
+### **stateDot** — `state` 输出的导数 四元向量
 
-车辆的线速度和角速度，指定为 [*xDot
-yDot thetaDot psiDot*] 向量，单位为 meters per second and radians per second。
-线速度和角速度通过求 `state` 输出的时间导数计算得出。
+车辆的线速度和角速度，指定为 [*xDot yDot thetaDot psiDot*] 向量，以米每秒和弧度每秒为单位。
+线速度和角速度通过对 `state`
+输出求时间导数来计算。
 
 ## 参数
 
-### **轴距** — 前轴和后轴之间的距离 `1` (默认) | positive numeric scalar
+### **Wheel base** — 前后轴之间的距离 `1`（默认）| 正数值标量
 
-轴距指的是车辆前轴和后轴之间的距离，以 meters 指定。
+轴距是指车辆前轴和后轴之间的距离，
+以米为单位指定。
 
-### **车辆速度范围** — 最小和最大车辆速度 `[-Inf Inf]` (默认) | two-element vector
+### **Vehicle speed range** — 最小和最大车辆速度 `[-Inf Inf]`（默认）| 二元向量
 
-车轮速度范围是一个 two-element vector，提供车辆车轮的最小和最大速度，[*MinSpeed MaxSpeed*]，以 radians per second 指定。
+车轮速度范围是一个二元向量，提供最小和最大
+车辆车轮速度，[*MinSpeed MaxSpeed*]，以弧度每秒
+为单位指定。
 
-### **最大转向角** — 最大转向角 `pi/4` (默认) | positive numeric scalar
+### **Maximum steering angle** — 最大转向角 `pi/4`（默认）| 正数值标量
 
-最大转向角指的是车辆可以向右或向左转向的最大量，以 radians 指定。默认值为 `pi/4`。
+最大转向角，指车辆可以向右或向左转向的最大量，
+以弧度为单位指定。默认值为
+`pi/4`。
 
-### **初始状态** — 车辆初始状态 `[0;0;0;0]` (默认) | four-element vector
+### **Initial state** — 车辆初始状态 `[0;0;0;0]`（默认）| 四元向量
 
-车辆的初始 *x*、`y` 位置、航向角 *theta* 和转向角 *psi*。
+车辆的初始 *x*、`y` 位置、
+航向角 *theta* 和转向角 *psi*。
 
-### **仿真方式** — 要运行的仿真类型 `Interpreted execution` (默认) | `Code generation`
+### **Simulate using** — 要运行的仿真类型 `Interpreted execution`（默认）| `Code generation`
 
 - `Interpreted execution` — 使用
   MATLAB® 解释器仿真模型。有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
 - `Code generation` — 使用
-  生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码会在后续
+  生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码将在后续
   仿真中重用。
 
-**可调：** No
+**Tunable:** No
 
 ## 所属库
 
@@ -71,7 +77,7 @@ Robotics System Toolbox / Mobile Robot Algorithms
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -79,12 +85,19 @@ Robotics System Toolbox / Mobile Robot Algorithms
 
 ## 版本历史
 
-**R2019b 中引入**
+**在 R2019b 中引入**
 
 ## 描述
 
 使用 Ackermann 运动学模型的类汽车车辆运动
 
-Ackermann Kinematic Model 模块创建一个使用 Ackermann 转向的类汽车车辆模型。该模型表示一辆具有两个轴的车辆，两轴之间的距离为 `Wheel base`。车辆状态定义为 four-element vector，[*x y θ ψ*]，其中包含全局 *xy-*位置、车辆航向 *θ* 和转向角 *ψ*。车辆航向和 *xy*-位置定义在后轴中心。角度以 radians 指定，全局位置以 meters 指定。车辆的转向输入以 `dψ/dt` 给出，单位为 radians per second。
+Ackermann Kinematic Model 模块创建一个使用 Ackermann 转向的类汽车车辆模型。该模型表示一辆具有两个车轴的车辆，两轴之间由
+距离 `Wheel base` 分隔。车辆
+状态定义为四元向量 [*x y θ ψ*]，包含
+全局 *xy* 位置、车辆航向 *θ* 和转向
+角 *ψ*。车辆航向和 *xy* 位置
+定义在后轴中心。角度以弧度为单位指定，全局
+位置以米为单位指定。车辆的转向输入以 `dψ/dt` 给出，单位为
+弧度每秒。
 
-标有 x、y、theta、psi、速度、轴距和转弯半径的 Ackermann 运动学模型示意图
+带有 x、y、theta、psi、速度、轴距和转弯半径标注的 Ackermann 运动学模型图

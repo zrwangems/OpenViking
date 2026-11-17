@@ -32,195 +32,195 @@ chinese_source: worker-translation
 
 ### **DCM** — 方向余弦矩阵 3×3 矩阵
 
-方向余弦矩阵，指定为表示平面地球坐标到机体固定轴坐标的 3×3 矩阵。
+方向余弦矩阵，指定为 3×3 矩阵，表示平地坐标系到机体固定轴坐标系的转换。
 
 **数据类型：** `double`
 ### 输出
 
 ### **Vwind** — 湍流速度 三元素向量
 
-湍流速度，返回为三元素向量，与 **DCM** 输入处于同一机体坐标参考系中，采用指定单位。
+湍流速度，返回为三元素向量，采用与 **DCM** 输入相同的机体坐标参考，单位为所选单位。
 
 **数据类型：** `double`
 
 ### **ωwind** — 湍流角速率 三元素向量
 
-湍流角速率，指定为三元素向量，单位为 radians per second。
+湍流角速率，指定为三元素向量，单位为弧度每秒。
 
 **数据类型：** `double`
 
 ## 参数
 
-### **Units** — 风速单位 `Metric (MKS)`（默认） | `English (Velocity in ft/s)` | `English (Velocity in kts)`
+### **Units** — 风速单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
 由湍流引起的风速单位，指定为：
 
 | 单位 | 风速 | 高度 | 空速 |
 | --- | --- | --- | --- |
-| `Metric (MKS)` | Meters/second | Meters | Meters/second |
-| `English (Velocity in ft/s)` | Feet/second | Feet | Feet/second |
-| `English (Velocity in kts)` | Knots | Feet | Knots |
+| `Metric (MKS)` | 米/秒 | 米 | 米/秒 |
+| `English (Velocity in ft/s)` | 英尺/秒 | 英尺 | 英尺/秒 |
+| `English (Velocity in kts)` | 节 | 英尺 | 节 |
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`units` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'Metric (MKS)'` | `'English (Velocity in ft/s)'` | `'English (Velocity in kts)'` |
-| **默认**：`'Metric (MKS)'` |
+| **默认值**：`'Metric (MKS)'` |
 
-### **Specification** — 军用参考 `MIL-F-8785C`（默认） | `MIL-HDBK-1797` | `MIL-HDBK-1797B`
+### **Specification** — 军用参考标准 `MIL-F-8785C`（默认）| `MIL-HDBK-1797` | `MIL-HDBK-1797B`
 
-军用参考，影响湍流尺度长度在横向和垂直方向上的应用，指定为 `MIL-F-8785C`、`MIL-HDBK-1797` 或 `MIL-HDBK-1797B`。
+军用参考标准，影响湍流尺度长度在横向和垂直方向上的应用，指定为 `MIL-F-8785C`、`MIL-HDBK-1797` 或 `MIL-HDBK-1797B`。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`spec` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'MIL-F-8785C'` | `'MIL-HDBK-1797'` | `'MIL-HDBK-1797B'` |
-| **默认**：`'MIL-F-8785C'` |
+| **默认值**：`'MIL-F-8785C'` |
 
-### **Model type** — 湍流模型 `Continuous Von Karman (+q -r)`（默认） | `Continuous Von Karman (+q +r)` | `Continuous Von Karman (-q +r)` | `Continuous Dryden (+q -r)` | `Continuous Dryden (+q +r)` | `Continuous Dryden (-q +r)` | `Discrete Dryden (+q -r)` | `Discrete Dryden (+q +r)` | `Discrete Dryden (-q +r)`
+### **Model type** — 湍流模型 `Continuous Von Karman (+q -r)`（默认）| `Continuous Von Karman (+q +r)` | `Continuous Von Karman (-q +r)` | `Continuous Dryden (+q -r)` | `Continuous Dryden (+q +r)` | `Continuous Dryden (-q +r)` | `Discrete Dryden (+q -r)` | `Discrete Dryden (+q +r)` | `Discrete Dryden (-q +r)`
 
 风湍流模型，指定为：
 
 |  |  |
 | --- | --- |
-| `Continuous Von Karman (+q -r)` | 使用 Von Kármán 速度谱的连续表示，具有正垂直角速率谱和负横向角速率谱。 |
-| `Continuous Von Karman (+q +r)` | 使用 Von Kármán 速度谱的连续表示，具有正垂直角速率谱和正横向角速率谱。 |
-| `Continuous Von Karman (-q +r)` | 使用 Von Kármán 速度谱的连续表示，具有负垂直角速率谱和正横向角速率谱。 |
-| `Continuous Dryden (+q -r)` | 使用 Dryden 速度谱的连续表示，具有正垂直角速率谱和负横向角速率谱。 |
-| `Continuous Dryden (+q +r)` | 使用 Dryden 速度谱的连续表示，具有正垂直角速率谱和正横向角速率谱。 |
-| `Continuous Dryden (-q +r)` | 使用 Dryden 速度谱的连续表示，具有负垂直角速率谱和正横向角速率谱。 |
-| `Discrete Dryden (+q -r)` | 使用 Dryden 速度谱的离散表示，具有正垂直角速率谱和负横向角速率谱。 |
-| `Discrete Dryden (+q +r)` | 使用 Dryden 速度谱的离散表示，具有正垂直角速率谱和正横向角速率谱。 |
-| `Discrete Dryden (-q +r)` | 使用 Dryden 速度谱的离散表示，具有负垂直角速率谱和正横向角速率谱。 |
+| `Continuous Von Karman (+q -r)` | 使用 Von Kármán 速度谱的连续表示，具有正垂直和负横向角速率谱。 |
+| `Continuous Von Karman (+q +r)` | 使用 Von Kármán 速度谱的连续表示，具有正垂直和正横向角速率谱。 |
+| `Continuous Von Karman (-q +r)` | 使用 Von Kármán 速度谱的连续表示，具有负垂直和正横向角速率谱。 |
+| `Continuous Dryden (+q -r)` | 使用 Dryden 速度谱的连续表示，具有正垂直和负横向角速率谱。 |
+| `Continuous Dryden (+q +r)` | 使用 Dryden 速度谱的连续表示，具有正垂直和正横向角速率谱。 |
+| `Continuous Dryden (-q +r)` | 使用 Dryden 速度谱的连续表示，具有负垂直和正横向角速率谱。 |
+| `Discrete Dryden (+q -r)` | 使用 Dryden 速度谱的离散表示，具有正垂直和负横向角速率谱。 |
+| `Discrete Dryden (+q +r)` | 使用 Dryden 速度谱的离散表示，具有正垂直和正横向角速率谱。 |
+| `Discrete Dryden (-q +r)` | 使用 Dryden 速度谱的离散表示，具有负垂直和正横向角速率谱。 |
 
 Continuous Von Kármán 选项符合传递函数描述。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`model` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'Continuous Von Karman (+q +r)'` | `'Continuous Von Karman (-q +r)'` | `'Continuous Dryden (+q -r)'` | `'Continuous Dryden (+q +r)'` | `'Continuous Dryden (-q +r)'` | `'Discrete Dryden (+q -r)'` | `'Discrete Dryden (+q +r)'` | `'Discrete Dryden (-q +r)'` |
-| **默认**：`'Continuous Von Karman (+q +r)'` |
+| **默认值**：`'Continuous Von Karman (+q +r)'` |
 
-### **Wind speed at 6 m defines the low altitude intensity** — 测得风速 `15`（默认） | real scalar
+### **Wind speed at 6 m defines the low altitude intensity** — 测量风速 `15`（默认）| 实标量
 
-在高度 20 feet (6 meters) 处测得的风速，指定为 real scalar，它为低空湍流模型提供强度。
+在 20 英尺（6 米）高度处测量的风速，指定为实标量，为低空湍流模型提供强度。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`W20` |
-| **类型**：character vector |
-| **值**：real scalar |
-| **默认**：`'15'` |
+| **类型**：字符向量 |
+| **值**：实标量 |
+| **默认值**：`'15'` |
 
-### **Wind direction at 6 m (degrees clockwise from north)** — 测得风向 `0`（默认） | real scalar
+### **Wind direction at 6 m (degrees clockwise from north)** — 测量风向 `0`（默认）| 实标量
 
-在高度 20 feet (6 meters) 处测得的风向，指定为 real scalar，该角度用于帮助将低空湍流模型转换到机体坐标。
+在 20 英尺（6 米）高度处测量的风向，指定为实标量，该角度用于辅助将低空湍流模型转换到机体坐标系。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Wdeg` |
-| **类型**：character vector |
-| **值**：real scalar |
-| **默认**：`'0'` |
+| **类型**：字符向量 |
+| **值**：实标量 |
+| **默认值**：`'0'` |
 
-### **Probability of exceedance of high-altitude intensity** — 湍流强度 `10^-2 - Light`（默认） | `10^-1` | `2x10^-1` | `10^-3 - Moderate` | `10^-4` | `10^-5 - Severe` | `10^-6`
+### **Probability of exceedance of high-altitude intensity** — 湍流强度 `10^-2 - Light`（默认）| `10^-1` | `2x10^-1` | `10^-3 - Moderate` | `10^-4` | `10^-5 - Severe` | `10^-6`
 
-湍流强度被超过的概率，指定为 `10^-2 - Light`、`10^-1`、`2x10^-1`、`10^-3 - Moderate`、`10^-4`、`10^-5 - Severe` 或 `10^-6`。在 2000 feet 以上，湍流强度由查找表确定，该表给出湍流强度作为高度和湍流强度被超过概率的函数。
+湍流强度被超过的概率，指定为 `10^-2 - Light`、`10^-1`、`2x10^-1`、`10^-3 - Moderate`、`10^-4`、`10^-5 - Severe` 或 `10^-6`。在 2000 英尺以上，湍流强度由查找表确定，该表给出湍流强度作为高度和湍流强度被超过概率的函数。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`TurbProb` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'2x10^-1'` | `'10^-1'` | `'10^-2 - Light'` | `'10^-3 - Moderate'` | `'10^-4'` | `'10^-5 - Severe'` | `'10^-6'` |
-| **默认**：`'10^-2 - Light'` |
+| **默认值**：`'10^-2 - Light'` |
 
-### **Scale length at medium/high altitudes** — 湍流尺度长度 `762`（默认） | real scalar
+### **Scale length at medium/high altitudes** — 湍流尺度长度 `762`（默认）| 实标量
 
-在 2000 feet 以上的湍流尺度长度，指定为 real scalar。假定该长度为常数。
+2000 英尺以上的湍流尺度长度，指定为实标量。假定该长度为常数。
 
-根据军用规范，对于 Dryden 谱的纵向湍流尺度长度，推荐使用 1750 feet。
+根据军用规范，Dryden 谱的纵向湍流尺度长度推荐为 1750 英尺。
 
 **注意**
 
-备用尺度长度值会改变功率谱密度渐近线和阵风载荷。
+替代的尺度长度值会改变功率谱密度渐近线和阵风载荷。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`L_high` |
-| **类型**：character vector |
-| **值**：real scalar |
-| **默认**：`'762'` |
+| **类型**：字符向量 |
+| **值**：实标量 |
+| **默认值**：`'762'` |
 
-### **Wingspan** — 翼展 `10`（默认） | real scalar
+### **Wingspan** — 翼展 `10`（默认）| 实标量
 
-翼展，指定为 real scalar，在计算角速率上的湍流时需要。
+翼展，指定为实标量，在计算角速率湍流时需要用到。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Wingspan` |
-| **类型**：character vector |
-| **值**：real scalar |
-| **默认**：`'10'` |
+| **类型**：字符向量 |
+| **值**：实标量 |
+| **默认值**：`'10'` |
 
-### **Band limited noise sample time (seconds)** — 噪声采样时间 `0.1`（默认） | real scalar
+### **Band limited noise sample time (seconds)** — 噪声采样时间 `0.1`（默认）| 实标量
 
-噪声采样时间，指定为 real scalar，在该时间生成单位方差白噪声信号。
+噪声采样时间，指定为实标量，即生成单位方差白噪声信号的采样时间。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`ts` |
-| **类型**：character vector |
-| **值**：real scalar |
-| **默认**：`'0.1'` |
+| **类型**：字符向量 |
+| **值**：实标量 |
+| **默认值**：`'0.1'` |
 
-### **Random noise seeds** — 噪声种子 [ug vg wg pg] `[23341 23342 23343 23344]`（默认） | four-element vector
+### **Random noise seeds** — 噪声种子 [ug vg wg pg] `[23341 23342 23343 23344]`（默认）| 四元素向量
 
-随机噪声种子，指定为 four-element vector，用于生成湍流信号，三个速度分量各一个，以及滚转角速率一个：
+随机噪声种子，指定为四元素向量，用于生成湍流信号，三个速度分量各一个，滚转角速率一个：
 
-俯仰和偏航角速率上的湍流基于对垂直和横向速度成形滤波器输出的进一步成形。
+俯仰和偏航角速率上的湍流基于垂直和横向速度成形滤波器输出的进一步整形。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Seed` |
-| **类型**：character vector |
-| **值**：four-element vector |
-| **默认**：`'[23341 23342 23343 23344]'` |
+| **类型**：字符向量 |
+| **值**：四元素向量 |
+| **默认值**：`'[23341 23342 23343 23344]'` |
 
-### **Turbulence on** — 湍流信号 `on`（默认） | `off`
+### **Turbulence on** — 湍流信号 `on`（默认）| `off`
 
 要生成湍流信号，请选中此复选框。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`T_on` |
-| **类型**：character vector |
+| **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
-| **默认**：`'on'` |
+| **默认值**：`'on'` |
 
 ## 所属库
 
@@ -228,7 +228,7 @@ Aerospace Blockset / Environment / Wind
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -240,6 +240,6 @@ Aerospace Blockset / Environment / Wind
 
 ## 描述
 
-生成具有 Von Kármán 速度谱的连续风湍流
+使用 Von Kármán 速度谱生成连续风湍流
 
-Von Kármán Wind Turbulence Model (Continuous) 模块使用 Von Kármán 谱表示，通过将带限白噪声通过适当的成形滤波器来向航空航天模型添加湍流。此模块实现 Military Specification MIL-F-8785C、Military Handbook MIL-HDBK-1797 和 Military Handbook MIL-HDBK-1797B 中的数学表示。有关详细信息，请参阅 Algorithms。
+Von Kármán Wind Turbulence Model (Continuous) 模块使用 Von Kármán 谱表示，通过将带限白噪声通过适当的成形滤波器，为航空航天模型添加湍流。该模块实现了军用规范 MIL-F-8785C、军用手册 MIL-HDBK-1797 和军用手册 MIL-HDBK-1797B 中的数学表示。有关详细信息，请参阅算法。

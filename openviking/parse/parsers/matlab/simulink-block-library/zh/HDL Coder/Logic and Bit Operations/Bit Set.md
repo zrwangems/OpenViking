@@ -9,7 +9,7 @@ official_category: 'Logic and Bit Operations'
 documentation_page: 'bitset'
 documentation_source_path: '../simulink/slref/bitset.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Bit Set
@@ -20,30 +20,30 @@ chinese_source: official
 
 ### **Port\_1** — 输入信号 标量 | 向量
 
-具有存储整数的指定位的输入信号。
+具有存储整数指定比特位的输入信号。
 
-**数据类型:** `single` | `double` | `Boolean` | `fixed point`
+**数据类型：** `single` | `double` | `Boolean` | `fixed point`
 ### 输出
 
 ### **Port\_1** — 输出信号 标量 | 向量
 
-指定位设置为 1 的输出信号。
+将指定比特位设置为 1 的输出信号。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 
 ## 参数
 
-### **位的索引** — 位的索引 0 (默认) | 标量 | 向量
+### **Index of bit** — 比特位索引 0（默认）| 标量 | 向量
 
-位的索引，其中位 0 是最低有效位。
+比特位的索引，其中比特位 0 为最低有效位。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`iBit` |
-| **类型**：字符向量 |
-| **值**：正整数 |
+| **类型**：character vector |
+| **值**：positive integer |
 | **默认值**：`'0'` |
 
 ## 所属库
@@ -54,18 +54,18 @@ Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Booleana` | `fixed point` | `integer` |
-| **直接馈通** | `是` |
-| **多维信号** | `是` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **Data Types** | `Booleana` | `fixed point` | `integer` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `yes` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 |  |  |
 | --- | --- |
-| a 建议不要对布尔信号进行位运算。 | |
+| a 不建议对布尔信号使用位运算。 | |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
@@ -79,9 +79,9 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 |  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过移动设计中现有延迟的方式来放置在输出端的寄存器的数量。分布式流水线不会重新分发这些寄存器。默认值为 `0`。有关详细信息，请参阅ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
@@ -89,12 +89,13 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2006a 之前引入**
 
 ## 描述
 
-将存储整数的指定位设置为 1
+将存储整数的指定比特位设置为 1
 
-Bit Set 模块将存储整数的指定位设置为 1。忽略定标。
+Bit Set 模块将存储整数的指定比特位设置为 1。
+缩放被忽略。
 
-您可以使用**位的索引**参数指定要设置为 1 的位，其中位 0 是最低有效位。
+您可以使用 **Index of bit** 参数指定要设置为 1 的比特位，其中比特位 0 为最低有效位。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PCCVS2'
-family: 'additional-components'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,37 +16,37 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **1+** — 第一个控制输入的正电压（电气）
+### **1+** — 第一个控制输入电气正电压
 
-与 PCCVS2 的第一个控制输入的正电压关联的电气守恒端口。
+与 PCCVS2 第一个控制输入正电压相关联的电气守恒端口。
 
-### **1-** — 第一个控制输入的负电压（电气）
+### **1-** — 第一个控制输入电气负电压
 
-与 PCCVS2 的第一个控制输入的负电压关联的电气守恒端口。
+与 PCCVS2 第一个控制输入负电压相关联的电气守恒端口。
 
-### **2+** — 第二个控制输入的正电压（电气）
+### **2+** — 第二个控制输入电气正电压
 
-与 PCCVS2 的第二个控制输入的正电压关联的电气守恒端口。
+与 PCCVS2 第二个控制输入正电压相关联的电气守恒端口。
 
-### **2-** — 第二个控制输入的负电压（电气）
+### **2-** — 第二个控制输入电气负电压
 
-与 PCCVS2 的第二个控制输入的负电压关联的电气守恒端口。
+与 PCCVS2 第二个控制输入负电压相关联的电气守恒端口。
 
-### **+** — 正输出电压（电气）
+### **+** — 输出正电压电气端口
 
-与 PCCVS2 的正输出电压关联的电气守恒端口。
+与 PCCVS2 输出正电压相关联的电气守恒端口。
 
-### **-** — 负输出电压（电气）
+### **-** — 输出负电压电气端口
 
-与 PCCVS2 的负输出电压关联的电气守恒端口。
+与 PCCVS2 输出负电压相关联的电气守恒端口。
 
 ## 参数
 
-### **Polynomial coefficients** — 多项式系数 `[ 0 1 1 ]`（默认）
+### **Polynomial coefficients** — 多项式系数 `[ 0 1 1 ]`（默认值）
 
-将输入电流与输出电压关联的多项式系数，如前文所述。
+将输入电流与输出电压关联起来的多项式系数，如前一节所述。
 
 ## 所属库
 
@@ -54,7 +54,7 @@ Simscape / Electrical / Additional Components / SPICE Sources
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -68,7 +68,7 @@ Simscape / Electrical / Additional Components / SPICE Sources
 
 具有两个控制输入的多项式电流控制电压源
 
-PCCVS2（Two-Input Polynomial Current-Controlled Voltage Source）模块表示一个电压源，其输出电压值是流经各对控制输入端口的电流的多项式函数。以下方程描述了该电压源两端电压随时间的变化：
+PCCVS2（双输入多项式电流控制电压源）模块表示一个电压源，其输出电压值是流经各对控制输入端口电流的多项式函数。以下方程描述了源两端电压随时间的变化：
 
 Vout=p1+p2\*Iin1+p3\*Iin2+p4\*Iin12+p5Iin1\*Iin2+p6\*Iin22+…
 

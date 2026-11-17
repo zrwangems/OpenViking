@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Quaternion Normalize'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -31,7 +31,6 @@ chinese_source: worker-translation
 3 , ...] 形式表示的四元数，指定为四元数或四元数向量。
 
 **数据类型：** `double`
-
 ### 输出
 
 ### **normal(q)** — 归一化四元数 归一化四元数 | 归一化四元数向量
@@ -42,7 +41,7 @@ chinese_source: worker-translation
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -50,7 +49,7 @@ Aerospace Blockset / Utilities / Math Operations
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -58,10 +57,10 @@ Aerospace Blockset / Utilities / Math Operations
 
 ## 版本历史
 
-**R2006a 之前引入**
+**在 R2006a 之前引入**
 
 ## 描述
 
 归一化四元数
 
-Quaternion Normalize 模块计算给定四元数的归一化四元数。Aerospace Blockset™ 使用按标量优先约定定义的四元数。有关用于四元数和归一化四元数的方程，请参阅算法。
+Quaternion Normalize 模块为给定的四元数计算归一化四元数。Aerospace Blockset™ 使用按标量优先约定定义的四元数。有关四元数和归一化四元数所使用的方程，请参见算法。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SPST Relay'
-family: 'switches-breakers'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -20,25 +20,25 @@ chinese_source: worker-translation
 
 ### **PS** — 物理信号控制物理信号
 
-使继电器通电和断电的物理信号输入端口。
+为使继电器通电和断电的物理信号输入端口。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请在 **主** 设置中将 **控制端口** 参数设置为 `PS`。
-
+要启用此端口，请在**Main**设置中将**Control port**参数设置为
+`PS`。
 ### 输出
 
 ### **x** — 继电器状态物理信号
 
-继电器相对于 **C**-**S** 连接的状态：
+继电器在**C**-**S**连接方面的状态：
 
 - 1 — 闭合连接
 - 0 — 断开连接
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请在 **主** 设置中将 **状态端口** 参数设置为 `Visible`。
-
+要启用此端口，请在**Main**设置中将**State port**参数设置为
+`Visible`。
 ### 守恒
 
 ### **S** — 常闭触点电气
@@ -51,242 +51,294 @@ chinese_source: worker-translation
 
 ### **+** — 绕组正极端子电气
 
-与 SPST 继电器绕组正电压端子关联的电气守恒端口。通过绕组的电流控制继电器状态。
+与 SPST 继电器绕组正电压端子关联的电气守恒端口。通过绕组的电流控制继电器
+状态。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请将 **主** 设置中的 **控制端口** 参数设置为 `Electrical`。
+要启用此端口，请在**Main**设置中将**Control port**参数设置为
+`Electrical`。
 
 ### **-** — 绕组负极端子电气
 
-与 SPST 继电器绕组负电压端子关联的电气守恒端口。通过绕组的电流控制继电器状态。
+与 SPST 继电器绕组负电压端子关联的电气守恒端口。通过绕组的电流控制继电器
+状态。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请将 **主** 设置中的 **控制端口** 设置为 `Electrical`。
+要启用此端口，请在**Main**设置中将**Control port**设置为
+`Electrical`。
 
 ## 参数
 
-### 主
+### 主要参数
 
-### **控制端口** — 输入端口选择 `PS` (默认) | `Electrical`
+### **Control port** — 输入端口选择 `PS`（默认）| `Electrical`
 
 继电器状态控制方法，指定为：
 
-- `PS` — **PS** 物理信号输入端口
-- `Electrical` — 与继电器绕组端子关联的 **+** 和 **-** 电气守恒端口
+- `PS` —
+  **PS**物理信号输入
+  端口
+- `Electrical` —
+  与继电器绕组端子关联的
+  **+**和**-**
+  电气守恒端口
 
-下表显示了此参数如何影响 **主** 设置中其他参数的可见性。要了解如何阅读该表，请参阅参数依赖关系
+下表显示了此参数如何影响**Main**设置中其他
+参数的可见性。要了解如何阅读该表，请参阅参数依赖关系
 
-****控制端口** 参数依赖关系**
+****Control Port** 参数
+依赖关系**
 
-| **控制端口** | |
+| **Control port** | |
 | --- | --- |
 | `PS` | `Electrical` |
-| **闭合电阻** | **闭合电阻** |
-| **断开电导** | **断开电导** |
-| **阈值** |
-| **状态端口** | **状态端口** |
+| **Closed resistance** | **Closed resistance** |
+| **Open conductance** | **Open conductance** |
+| **Threshold** |
+| **State port** | **State port** |
 
-### **闭合电阻** — 闭合触点电阻 `0.01` `Ohm` (默认) | 正标量
+### **Closed resistance** — 连接触点电阻 `0.01` `Ohm`（默认）| 正标量
 
 闭合继电器触点两端的电阻。
 
-### **断开电导** — 开路电导 `1e-8` `1/Ohm` (默认) | 正标量
+### **Open conductance** — 开路电导 `1e-8` `1/Ohm`（默认）| 正标量
 
 断开继电器触点两端的电导。
 
-### **阈值** — 继电器阈值 `0` (默认) | 非负标量
+### **Threshold** — 继电器阈值 `0`（默认）| 非负标量
 
-继电器的阈值。如果物理信号输入升至阈值以上，则继电器通电。相反，如果物理信号输入降至阈值以下，则继电器断电。
+继电器的阈值。如果物理信号输入升至阈值以上，
+继电器通电。相反，如果物理信号输入降至
+阈值以下，继电器断电。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **控制端口** 设置为 `PS`。
+要启用此参数，请将**Control port**设置为
+`PS`。
 
-### **状态端口** — 继电器状态输出端口可见性 `Hidden` (默认) | `Visible`
+### **State port** — 继电器状态输出端口可见性 `Hidden`（默认）| `Visible`
 
-输出继电器状态的物理信号端口的可见性。如果连接闭合，此参数值为 `1`，否则为 `0`。
+输出继电器状态的物理信号端口的可见性。如果连接闭合，此参数
+值为 `1`，否则为
+`0`。
 
-要启用 **x** 端口，请将此参数设置为 `Visible`。
+要启用 **x** 端口，请将此参数设置为
+`Visible`。
 
-### 绕组
+### Winding
 
-要启用这些参数，请在 **主** 设置中将 **控制端口** 参数设置为 `Electrical`。
+要启用这些参数，请在**Main**设置中将
+**Control port**参数设置为
+`Electrical`。
 
-### **额定电压** — 额定电压 `5` `V` (默认) | 正标量
+### **Rated voltage** — 额定电压 `5` `V`（默认）| 正标量
 
-正常工作条件下施加到操作线圈的标准电压。电流阈值取决于此参数的值。
+在正常工作条件下施加到操作线圈的标准电压。电流
+阈值取决于此参数的值。
 
-### **通电所需额定电压百分比** — 通电所需额定电压百分比 `75` (默认) | 正标量
+### **Percent rated voltage to energize** — 使继电器通电的额定电压百分比 `75`（默认）| 正标量
 
-使继电器通电所需的额定电压最小百分比。电流阈值取决于此参数的值。
+使继电器通电所需的额定电压最小百分比。电流
+阈值取决于此参数的值。
 
-### **断电所需额定电压百分比** — 断电所需额定电压百分比 `25` (默认) | 正标量
+### **Percent rated voltage to de-energize** — 使继电器断电的额定电压百分比 `25`（默认）| 正标量
 
-使继电器断电所需的额定电压百分比。电流阈值取决于此参数的值。
+使继电器断电所需的额定电压百分比。电流阈值
+取决于此参数的值。
 
-### **绕组电感** — 绕组电感 `0.08` `H` (默认) | 正标量
+### **Winding inductance** — 绕组电感 `0.08` `H`（默认）| 正标量
 
 绕组电感。
 
-### **绕组串联电阻** — 绕组串联电阻 `12.5` `Ohm` (默认) | 正标量
+### **Winding series resistance** — 绕组串联电阻 `12.5` `Ohm`（默认）| 正标量
 
-绕组端子之间的电阻。电流阈值取决于此参数的值。
+绕组端子之间的电阻。电流阈值取决于此
+参数的值。
 
-### **绕组并联电导** — 绕组并联电导 `1e-9` `1/Ohm` (默认) | 正标量
+### **Winding parallel conductance** — 绕组并联电导 `1e-9` `1/Ohm`（默认）| 正标量
 
 绕组电导。
 
-### 机械
+### Mechanical
 
-### **断开 C-S 连接的时间** — 断开连接 C-S 的延迟时间 `0` `s` (默认) | 非负标量
+### **Time-to-break C-S connection** — 断开 C-S 连接的延迟时间 `0` `s`（默认）| 非负标量
 
-当继电器通电时，断开端口 **C** 和 **S** 之间连接的机械切换时间。
+当继电器通电时，断开端口
+**C**和**S**之间连接的
+机械开关时间。
 
-### **闭合 C-S 连接的时间** — 闭合连接 C-S 的延迟时间 `0` `s` (默认) | 非负标量
+### **Time-to-make C-S connection** — 建立 C-S 连接的延迟时间 `0` `s`（默认）| 非负标量
 
-当继电器断电时，闭合端口 **C** 和 **S** 之间连接的机械切换时间。
+当继电器断电时，建立端口 **C**
+和 **S** 之间连接的机械开关时间。
 
 ### 故障
 
-### **开关故障** — 用于添加开关故障的选项 `Add fault`
+### **Switch fault** — 添加开关故障的选项 `Add fault`
 
-用于添加开关故障的选项。
+添加开关故障的选项。
 
-要添加故障，请单击 **Add fault** 超链接。
+要添加故障，请单击 **Add fault**
+超链接。
 
-### **开关故障** — 开关故障模型 `C-S stuck closed` (默认) | `C open circuit (no path to S)` | `Degraded contact resistance`
+### **Switch fault** — 开关故障模型 `C-S stuck closed`（默认）| `C open circuit (no path to S)` | `Degraded contact resistance`
 
 开关故障模型。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请针对 **开关故障** 参数单击 **Add fault** 超链接。
+要启用此参数，请单击 **Switch fault**
+参数的 **Add fault**
+超链接。
 
-### **触发类型** — 触发类型 `Always on` (默认) | `Timed` | `Behavioral` | `Additional triggers` | `Conditional` | `Manual`
+### **Trigger type** — 触发类型 `Always on`（默认）| `Timed` | `Behavioral` | `Additional triggers` | `Conditional` | `Manual`
 
 触发类型，指定为以下选项之一：
 
-- `Always On` — 故障在仿真开始时注入。
-- `Timed` — 当仿真时间达到为 **在时间触发故障** 参数指定的值时，故障注入。
-- `Behavioral` — 故障在仿真期间由于故障参数值而注入。将 **触发类型** 设置为 `Behavioral` 会启用定义故障条件的模块参数。
-- `Additional triggers` — 故障由于模块对话框中不可用的其他触发器而注入。选择此选项并单击 **Open fault properties** 超链接，以在属性检查器中将 **触发类型** 设置为以下值之一：
+- `Always On` — 故障在仿真开始时
+  注入。
+- `Timed` — 当仿真时间达到您为 **Trigger fault at time**
+  参数指定的值时，故障注入。
+- `Behavioral` — 故障因仿真期间的故障
+  参数值而注入。将 **Trigger type** 设置为
+  `Behavioral` 会启用定义
+  故障条件的模块参数。
+- `Additional triggers` — 故障因模块对话框中不可用的附加触发器
+  而注入。选择此选项
+  并单击 **Open fault properties** 超链接，以在属性检查器中将
+  **Trigger type** 设置为以下值之一：
 
-  - `Conditional` — 故障由于反映与信号关联行为的条件而注入。条件会在每个时间步评估 **条件** 参数中的布尔表达式。当触发条件第一次变为 true 时，模块进入故障状态，并在仿真的其余部分保持故障状态。要了解更多信息，请参阅创建和管理条件。
-  - `Manual` — 当您在 **故障仪表板** 窗格中切换状态时，故障注入或清除。要了解更多信息，请参阅在模型中手动触发故障。
+  - `Conditional` — 故障因反映与信号关联行为的条件
+    而注入。
+    条件在每个时间步评估
+    **Condition** 参数中的布尔表达式。当触发条件首次变为 true 时，
+    模块进入故障状态，并在仿真的其余时间保持故障状态。
+    要了解更多信息，请参阅创建和管理条件。
+  - `Manual` — 当您在 **Fault Dashboard** 窗格中切换状态时，
+    故障注入或清除。
+    要了解更多信息，请参阅在模型中手动触发故障。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请针对 **开关故障** 参数单击 **Add fault** 超链接。
+要启用此参数，请单击 **Switch fault**
+参数的 **Add fault**
+超链接。
 
-### **在时间触发故障** — 进入故障状态前的时间 `0` `s` (默认) | 非负标量
+### **Trigger fault at time** — 进入故障状态之前的时间 `0` `s`（默认）| 非负标量
 
 模块进入故障状态的仿真时间。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请针对 **开关故障** 参数单击 **Add fault** 超链接，并将 **触发类型** 设置为 `Timed`。
+要启用此参数，请单击 **Switch fault** 参数的 **Add fault**
+超链接，并将 **Trigger type** 设置为
+`Timed`。
 
-### **最大允许负载电流** — 故障转换的负载电流阈值 `inf` `A` (默认) | 正标量
+### **Maximum load permissible current** — 故障转换的负载电流阈值 `inf` `A`（默认）| 正标量
 
-故障转换的电流阈值。如果电流持续超过此值的时间长于 **超过电流时失效的时间** 参数的值，则模块进入故障状态。
+故障转换的电流阈值。如果电流连续超过此值的时间长于 **Time to
+fail when exceeding current** 参数的值，则模块进入故障状态。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请针对 **开关故障** 参数单击 **Add fault** 超链接，并将 **触发类型** 设置为 `Behavioral`。
+要启用此参数，请单击 **Switch fault** 参数的 **Add fault**
+超链接，并将 **Trigger type** 设置为
+`Behavioral`。
 
-### **超过电流时失效的时间** — 超过电流时失效的时间 `1` `s` (默认) | 正标量
+### **Time to fail when exceeding current** — 超过电流时发生故障的时间 `1` `s`（默认）| 正标量
 
-电流必须连续超过最大允许电流多长时间，故障才会触发。
-
-#### 依赖关系
-
-要启用此参数，请针对 **开关故障** 参数单击 **Add fault** 超链接，并将 **触发类型** 设置为 `Behavioral`。
-
-### **触发配置** — 用于启用其他触发类型的选项 `Open fault properties`
-
-用于启用模块对话框中不可用的其他触发类型的选项。要将 **触发类型** 参数设置为 `Conditional` 或 `Manual`，请单击 **Open fault properties** 超链接，并在属性检查器中设置 **触发类型**。
+在故障触发之前，电流必须连续超过最大允许电流的
+时间量。
 
 #### 依赖关系
 
-要启用此参数，请针对 **开关故障** 参数单击 **Add fault** 超链接，并将 **触发类型** 设置为 `Additional triggers`。
+要启用此参数，请点击 **Switch fault** 参数的 **Add fault** 超链接，并将 **Trigger type** 设置为 `Behavioral`。
 
-### **退化触点电阻** — 退化触点电阻 `1e-9` `Ohm` (默认) | 正标量
+### **Trigger configuration** — 启用附加触发类型的选项 `Open fault properties`
+
+启用模块对话框中不可用的附加触发类型的选项。要将 **Trigger type** 参数设置为 `Conditional` 或 `Manual`，请点击 **Open fault properties** 超链接，并在 Property Inspector 中设置 **Trigger type**。
+
+#### 依赖关系
+
+要启用此参数，请点击 **Switch fault** 参数的 **Add fault** 超链接，并将 **Trigger type** 设置为 `Additional triggers`。
+
+### **Degraded contact resistance** — 退化触点电阻 `1e-9` `Ohm`（默认）| 正标量
 
 故障 **S** 触点的退化电阻。
 
 #### 依赖关系
 
-要启用此参数，请针对 **开关故障** 参数单击 **Add fault** 超链接，并将 **开关故障** 设置为 `Degraded contact resistance`。
+要启用此参数，请点击 **Switch fault** 参数的 **Add fault** 超链接，并将 **Switch fault** 设置为 `Degraded contact resistance`。
 
-### **退化触点电阻的时间常数** — 退化触点电阻的时间常数 `1e-3` (默认) | 正标量
+### **Time constant for degraded contact resistance** — 退化触点电阻的时间常数 `1e-3`（默认）| 正标量
 
-触点电阻降为退化状态的时间常数。
-
-#### 依赖关系
-
-要启用此参数，请针对 **开关故障** 参数单击 **Add fault** 超链接，并将 **开关故障** 设置为 `Degraded contact resistance`。
-
-### **绕组故障** — 用于添加绕组故障的选项 `Add fault`
-
-用于添加绕组故障的选项。
-
-要添加故障，请单击 **Add fault** 超链接。
+触点电阻降至退化状态的时间常数。
 
 #### 依赖关系
 
-要启用此参数，请将 **控制端口** 设置为 `Electrical`。
+要启用此参数，请点击 **Switch fault** 参数的 **Add fault** 超链接，并将 **Switch fault** 设置为 `Degraded contact resistance`。
 
-### **绕组开路过渡的时间常数** — 绕组失效的时间常数 `1e-3` `s` (默认) | 正标量
+### **Winding fault** — 添加绕组故障的选项 `Add fault`
 
-绕组失效的时间常数。此常数是描述从正常状态到开路过渡的特征时间。您可以将此值计算为故障发生时响应达到其稳态值 63% 所需的时间。
+添加绕组故障的选项。
+
+要添加故障，请点击 **Add fault** 超链接。
 
 #### 依赖关系
 
-要启用此参数，请将 **控制端口** 设置为 `Electrical` 并针对 **绕组故障** 参数单击 **Add fault** 超链接。
+要启用此参数，请将 **Control port** 设置为 `Electrical`。
 
-### **触发类型** — 触发类型 `Always on` (默认) | `Timed` | `Behavioral` | `Additional triggers` | `Conditional` | `Manual`
+### **Time constant for winding open circuit transition** — 绕组失效的时间常数 `1e-3` `s`（默认）| 正标量
+
+绕组失效的时间常数。该常数是描述从正常状态过渡到开路状态的特征时间。您可以将其计算为故障发生时响应达到其稳态值 63% 所需的时间。
+
+#### 依赖关系
+
+要启用此参数，请将 **Control port** 设置为 `Electrical`，并点击 **Winding fault** 参数的 **Add fault** 超链接。
+
+### **Trigger type** — 触发类型 `Always on`（默认）| `Timed` | `Behavioral` | `Additional triggers` | `Conditional` | `Manual`
 
 触发类型，指定为以下选项之一：
 
 - `Always On` — 故障在仿真开始时注入。
-- `Timed` — 当仿真时间达到为 **在时间触发故障** 参数指定的值时，故障注入。
-- `Behavioral` — 故障在仿真期间由于故障参数值而注入。将 **触发类型** 设置为 `Behavioral` 会启用定义故障条件的模块参数。
-- `Additional triggers` — 故障由于模块对话框中不可用的其他触发器而注入。选择此选项并单击 **Open fault properties** 超链接，以在属性检查器中将 **触发类型** 设置为以下值之一：
+- `Timed` — 故障在仿真时间达到 **Trigger fault at time** 参数指定的值时注入。
+- `Behavioral` — 故障因仿真期间的故障参数值而注入。将 **Trigger type** 设置为 `Behavioral` 会启用定义故障条件的模块参数。
+- `Additional triggers` — 故障因模块对话框中不可用的附加触发器而注入。选择此选项并点击 **Open fault properties** 超链接，在 Property Inspector 中将 **Trigger type** 设置为以下值之一：
 
-  - `Conditional` — 故障由于反映与信号关联行为的条件而注入。条件会在每个时间步评估 **条件** 参数中的布尔表达式。当触发条件第一次变为 true 时，模块进入故障状态，并在仿真的其余部分保持故障状态。要了解更多信息，请参阅创建和管理条件。
-  - `Manual` — 当您在 **故障仪表板** 窗格中切换状态时，故障注入或清除。要了解更多信息，请参阅在模型中手动触发故障。
-
-#### 依赖关系
-
-要启用此参数，请针对 **绕组故障** 参数单击 **Add fault** 超链接。
-
-### **在时间触发故障** — 进入故障状态前的时间 `0` `s` (默认) | 非负标量
-
-模块进入故障状态的仿真时间。
+  - `Conditional` — 故障因反映信号相关行为的条件而注入。条件在每个时间步评估 **Condition** 参数中的布尔表达式。当触发条件首次变为 true 时，模块进入故障状态，并在仿真的剩余时间内保持故障状态。要了解更多信息，请参阅 Create and Manage Conditionals。
+  - `Manual` — 当您在 **Fault Dashboard** 窗格中切换状态时，故障注入或清除。要了解更多信息，请参阅 Manually Trigger Faults in Models。
 
 #### 依赖关系
 
-要启用此参数：
+要启用此参数，请点击 **Winding fault** 参数的 **Add fault** 超链接。
 
-- 将 **控制端口** 设置为 `Electrical`。
-- 针对 **绕组故障** 参数单击 **Add fault** 超链接。
-- 将 **触发类型** 设置为 `Timed`。
+### **Trigger fault at time** — 进入故障状态之前的时间 `0` `s`（默认）| 非负标量
 
-### **最大允许绕组电压** — 最大允许绕组电压 `inf` `V` (默认) | 正标量
-
-继电器绕组的最大电压。如果电压超过此值第 *k* 次，则模块进入故障状态，其中 *k* 是 **超过电压失效的事件数** 参数的值。
+模块进入故障状态时的仿真时间。
 
 #### 依赖关系
 
 要启用此参数：
 
-- 将 **控制端口** 设置为 `Electrical`。
-- 针对 **绕组故障** 参数单击 **Add fault** 超链接。
-- 将 **触发类型** 设置为 `Behavioral`。
+- 将 **Control port** 设置为 `Electrical`。
+- 点击 **Winding fault** 参数的 **Add fault** 超链接。
+- 将 **Trigger type** 设置为 `Timed`。
 
-### **超过电压失效的事件数** — 超过电压失效的事件数 `1` (默认) | 正标量整数
+### **Maximum permissible winding voltage** — 最大允许绕组电压 `inf` `V`（默认）| 正标量
+
+继电器绕组的最大电压。如果电压超过此值达到第 *k* 次，模块进入故障状态，其中 *k* 是 **Number of events to fail when exceeding voltage** 参数的值。
+
+#### 依赖关系
+
+要启用此参数：
+
+- 将 **Control port** 设置为 `Electrical`。
+- 点击 **Winding fault** 参数的 **Add fault** 超链接。
+- 将 **Trigger type** 设置为 `Behavioral`。
+
+### **Number of events to fail when exceeding voltage** — 超过电压时失效的事件数 `1`（默认）| 正标量整数
 
 在开路绕组故障触发之前，继电器必须超过绕组电压阈值的次数。
 
@@ -294,45 +346,45 @@ chinese_source: worker-translation
 
 要启用此参数：
 
-- 将 **控制端口** 设置为 `Electrical`。
-- 针对 **绕组故障** 参数单击 **Add fault** 超链接。
-- 将 **触发类型** 设置为 `Behavioral`。
+- 将 **Control port** 设置为 `Electrical`。
+- 点击 **Winding fault** 参数的 **Add fault** 超链接。
+- 将 **Trigger type** 设置为 `Behavioral`。
 
-### **最大允许绕组电流** — 最大允许绕组电流 `inf` `A` (默认) | 正标量
+### **Maximum permissible winding current** — 最大允许绕组电流 `inf` `A`（默认）| 正标量
 
-故障转换的电流阈值。如果电流持续超过此值的时间长于 **超过绕组电流时失效的时间** 参数的值，则模块进入故障状态。
-
-#### 依赖关系
-
-要启用此参数：
-
-- 将 **控制端口** 设置为 `Electrical`。
-- 针对 **绕组故障** 参数单击 **Add fault** 超链接。
-- 将 **触发类型** 设置为 `Behavioral`。
-
-### **超过绕组电流时失效的时间** — 超过绕组电流时失效的时间 `1` `s` (默认) | 正标量
-
-电流必须连续超过最大允许电流多长时间，故障才会触发。
+故障转换的电流阈值。如果电流连续超过此值的时间超过 **Time to fail when exceeding winding current** 参数的值，模块进入故障状态。
 
 #### 依赖关系
 
 要启用此参数：
 
-- 将 **控制端口** 设置为 `Electrical`。
-- 针对 **绕组故障** 参数单击 **Add fault** 超链接。
-- 将 **触发类型** 设置为 `Behavioral`。
+- 将 **Control port** 设置为 `Electrical`。
+- 点击 **Winding fault** 参数的 **Add fault** 超链接。
+- 将 **Trigger type** 设置为 `Behavioral`。
 
-### **触发配置** — 用于启用其他触发类型的选项 `Open fault properties`
+### **Time to fail when exceeding winding current** — 超过绕组电流时失效的时间 `1` `s`（默认）| 正标量
 
-用于启用模块对话框中不可用的其他触发类型的选项。要将 **触发类型** 参数设置为 `Conditional` 或 `Manual`，请单击 **Open fault properties** 超链接，并在属性检查器中设置 **触发类型**。
+在故障触发之前，电流必须连续超过最大允许电流的时间量。
 
 #### 依赖关系
 
 要启用此参数：
 
-- 将 **控制端口** 设置为 `Electrical`。
-- 针对 **绕组故障** 参数单击 **Add fault** 超链接。
-- 将 **触发类型** 设置为 `Additional triggers`。
+- 将 **Control port** 设置为 `Electrical`。
+- 点击 **Winding fault** 参数的 **Add fault** 超链接。
+- 将 **Trigger type** 设置为 `Behavioral`。
+
+### **Trigger configuration** — 启用附加触发类型的选项 `Open fault properties`
+
+启用模块对话框中不可用的附加触发类型的选项。要将 **Trigger type** 参数设置为 `Conditional` 或 `Manual`，请点击 **Open fault properties** 超链接，并在 Property Inspector 中设置 **Trigger type**。
+
+#### 依赖关系
+
+要启用此参数：
+
+- 将 **Control port** 设置为 `Electrical`。
+- 点击 **Winding fault** 参数的 **Add fault** 超链接。
+- 将 **Trigger type** 设置为 `Additional triggers`。
 
 ## 所属库
 
@@ -340,7 +392,7 @@ Simscape / Electrical / Switches & Breakers / Relays
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -350,15 +402,15 @@ Simscape / Electrical / Switches & Breakers / Relays
 
 **在 R2019b 中引入**
 
-### R2024a：使用 Simscape 故障接口实现故障
+### R2024a：使用 Simscape faults 接口实现故障
 
-SPST Relay 模块现在支持 Simscape 故障接口。要了解更多信息，请参阅 Simscape 故障简介。
+SPST Relay 模块现在支持 Simscape faults 接口。要了解更多信息，请参阅 Introduction to Simscape Faults。
 
-由于此更改，**故障** 设置中的参数名称和依赖关系已更改。
+由于此更改，**Faults** 设置中的参数名称和依赖关系已更改。
 
 ### R2023a：使用单个参数实现故障的时间触发器或行为触发器
 
-**Enable temporal trigger** 和 **Enable behavioral trigger** 参数已删除，并替换为 **Fault trigger** 参数。您可以将 **Fault trigger** 参数设置为 `Temporal` 或 `Behavioral`。您只能启用一个触发器。
+**Enable temporal trigger** 和 **Enable behavioral trigger** 参数已被移除，并由 **Fault trigger** 参数替代。您可以将 **Fault trigger** 参数设置为 `Temporal` 或 `Behavioral`。您只能启用一个触发器。
 
 如果您在较早版本中创建了模型并同时启用了时间触发器和行为触发器，现在仅启用时间触发器。因此，如果行为触发器在您的模型中导致故障，仿真结果会有所不同。
 
@@ -366,10 +418,9 @@ SPST Relay 模块现在支持 Simscape 故障接口。要了解更多信息，�
 
 ## 描述
 
-带延迟和故障的单刀单掷继电器
+带延迟和故障的单极单掷继电器
 
-SPST Relay 模块对单刀单掷继电器进行建模。
-该模块具有三种可能状态：
+SPST Relay 模块对单极单掷继电器进行建模。该模块具有三种可能的状态：
 
 - 失电 — 公共触点 **C** 从与常开触点 **S** 连接变为断开。
 - 得电 — 公共触点 **C** 从与常开触点 **S** 断开变为连接。
@@ -380,21 +431,21 @@ SPST Relay 模块对单刀单掷继电器进行建模。
 - 使用物理信号输入端口或电气守恒端口控制继电器状态。
 - 输出继电器状态。
 - 延迟连接的断开和闭合。
-- 引入行为故障或时间故障，导致连接粘连、开路或接触电阻退化。
+- 引入行为故障或时间故障，导致连接卡住、开路或触点电阻退化。
 
 ### 继电器状态控制
 
 该模块有两种控制变体：
 
-- 物理信号 (PS) 控制 — 继电器状态取决于输入物理信号的值与继电器阈值的比较结果。继电器阈值 *th* 是您为 **Threshold** 参数指定的值。
-- 电气控制 — 继电器状态取决于流过正、负电气守恒端口的电流与继电器上限和下限阈值的比较结果，这些端口表示继电器绕组。上限和下限阈值取决于您为 **Winding** 设置中的参数指定的值。
+- 物理信号（PS）控制 — 继电器状态取决于输入物理信号的值与继电器阈值的比较结果。继电器阈值 *th* 是您为 **Threshold** 参数指定的值。
+- 电气控制 — 继电器状态取决于流过正负电气守恒端口（代表继电器绕组）的电流与继电器上限和下限阈值的比较结果。上限和下限阈值取决于您为 **Winding** 设置中的参数指定的值。
 
 对于 PS 控制变体，在仿真开始时：
 
 - 如果输入信号 *PS* 小于或等于 *th*，则继电器失电，公共触点 **C** 与常开触点 **S** 断开。
 - 如果输入信号 *PS* 大于 *th*，则继电器得电，**C** 连接到常开触点 **S**。
 
-仿真开始后，如果 *PS* 上升到 *th* 以上，模块从失电状态变为得电状态，并且 **C**–**S** 连接在 **Time-to-make C-S connection** 中指定的延迟后闭合。
+仿真开始后，如果 *PS* 上升到 *th* 以上，模块从失电状态变为得电状态，**C**–**S** 连接在 **Time-to-make C-S connection** 中指定的延迟后闭合。
 
 如果模块从得电状态变为失电状态，即 *PS* 下降到 *th* 或以下，**C**–**S** 连接在 **Time-to-break C-S connection** 中指定的延迟后断开。
 
@@ -418,9 +469,9 @@ ide−energized\_current=Rated Voltage\*Percent rated voltage to de−
 
 ### 输出继电器状态
 
-要查看继电器状态，请公开端口 **x**，这是一个输出每个连接状态的物理信号端口。要公开 **x** 端口，请在 **Main** 设置中将 **State port** 设置为 `Visible`。
+要查看继电器状态，请暴露端口 **x**，这是一个输出每个连接状态的物理信号端口。要暴露 **x** 端口，请在 **Main** 设置中将 **State port** 设置为 `Visible`。
 
-下表显示了继电器状态与连接状态的关系。闭合连接的值为 1。断开连接的值为 0。
+下表显示了继电器状态与连接状态的关系。闭合连接的状​​态为 1。断开连接的状态为 0。
 
 **继电器和连接状态**
 
@@ -433,7 +484,7 @@ ide−energized\_current=Rated Voltage\*Percent rated voltage to de−
 
 您可以在 **Mechanical** 设置中指定闭合和断开连接的延迟。下表显示了闭合和断开时间延迟如何影响触点 **S1** 和 **S2** 与公共触点 **C** 之间的连接。
 
-| **Mechanical** 设置 | 继电器状态 | **C**–**S** 连接状态 | 结果，其中 **C**–**S** 为蓝色，**PS** 为黄色 |
+| **Mechanical** 设置 | 继电器状态 | **C**–**S** 连接状态 | 结果，**C**–**S** 为蓝色，**PS** 为黄色 |
 | --- | --- | --- | --- |
 | | 参数 | 值 | | --- | --- | | **Time-to-break C-S connection** | `0` | | **Time-to-make C-S connection** | `0` | | 失电 | 0 |  |
 | 得电 | 1 |
@@ -444,7 +495,7 @@ ide−energized\_current=Rated Voltage\*Percent rated voltage to de−
 
 ### 故障
 
-要对 SPST Relay 模块中的故障进行建模，请在 **Faults** 部分中，单击要建模故障旁边的 **Add fault**。有关故障建模的详细信息，请参阅故障行为建模和故障触发。
+要在 SPST Relay 模块中对故障建模，请在 **Faults** 部分中，单击要建模的故障旁边的 **Add fault**。有关故障建模的详细信息，请参阅 Fault Behavior Modeling and Fault Triggering。
 
 您可以向绕组添加开关故障或开路故障。如果添加开关故障，可以将 **Switch fault** 参数设置为：
 
@@ -452,134 +503,134 @@ ide−energized\_current=Rated Voltage\*Percent rated voltage to de−
 - `C open circuit (no path to S)`
 - `Degraded contact resistance`
 
-您可以使用 **Trigger type** 参数指定故障如何发生以及何时发生。
+您可以使用 **Trigger type** 参数指定故障发生的方式和时间。
 
-有关向模块添加故障以及指定故障触发器的详细信息，请参阅 Simscape 故障简介。
+有关向模块添加故障以及指定故障触发的详细信息，请参阅 Introduction to Simscape Faults。
 
-****C**–**S** 粘连闭合故障**
+****C**–**S** 常闭故障**
 
-**C**–**S** 粘连闭合故障发生在公共触点 **C** 机械上、电气上或化学上粘连到常闭触点 **S** 时。此类故障的原因包括：
+如果公共触点 **C** 在机械、电气或化学上粘滞到常闭触点 **S**，则会发生 **C**–**S** 常闭故障。此类故障的原因包括：
 
-- 触点熔焊，可能由于浪涌电流或超过额定值的分断电流或负载短路引起。
+- 触点熔焊，可能是由于浪涌电流或分断电流超过额定值或负载短路。
 - 机械损坏。
 - 绝缘劣化。
 - 感性电压。
 
-**C**–**S** 粘连闭合故障的连接状态等于 `1`。
+**C**–**S** 常闭故障的连接状态等于 `1`。
 
-**C**–**S** 粘连闭合行为故障仅当负载电流超过电流阈值的时间超过行为触发时间阈值时才会发生。也就是说，行为故障仅在以下条件下发生：
+**C**–**S** 常闭行为故障只有在负载电流超过电流阈值的时间超过行为触发时间阈值时才会发生。也就是说，行为故障只有在以下情况下才会发生：
 
-iload>ith,
+iload>ith，
 
-and
+并且
 
-ti>i\_th>tth\_b,
+ti>i\_th>tth\_b，
 
 其中：
 
 - *iload* 是负载电流。
-- *ith* 是为 **Maximum permissible load current** 参数指定的值。
+- *ith* 是 **Maximum permissible load current** 参数的指定值。
 - *ti>i\_th* 是超过电流阈值的时间。
-- *tth\_b* 是为 **Time to fail when exceeding current** 参数指定的值。
+- *tth\_b* 是 **Time to fail when exceeding current** 参数的指定值。
 
-当故障触发时，如果 **C**–**S**：
+当故障触发时，如果 **C**–**S** 为：
 
 - 闭合 — **C**–**S** 在仿真的剩余时间内保持闭合。
-- 断开 — 除非继电器得电并且 **C**–**S** 连接闭合，否则故障不会生效。一旦闭合，**C**–**S** 连接在仿真的剩余时间内保持闭合。
+- 断开 — 除非继电器通电并且 **C**–**S** 连接闭合，否则故障不会生效。一旦闭合，**C**–**S** 连接将在仿真的剩余时间内保持闭合。
 
-****C** 开路（无路径到 **S**）故障**
+****C** 开路（无通向 **S** 的路径）故障**
 
-**C** 开路（无路径到 **S**）故障发生在公共触点 **C** 机械上卡在断开位置时。此类故障可能在以下情况下发生：
+如果公共触点 **C** 在机械上卡在断开位置，则会发生 **C** 开路（无通向 **S** 的路径）故障。此类故障可能发生在以下情况：
 
 - 存在触点损坏或劣化。
-- 开关连接器在继电器中间机械卡住。
+- 开关连接器在继电器中部发生机械卡滞。
 
-**C** 开路（无路径到 **S**）故障的故障状态等于 `0`。
+**C** 开路（无通向 **S** 的路径）故障的故障状态等于 `0`。
 
-**C** 开路行为故障仅当负载电流超过电流阈值的时间超过行为触发时间阈值时才会发生。也就是说，行为故障仅在以下条件下发生：
+**C** 开路行为故障只有在负载电流超过电流阈值的时间超过行为触发时间阈值时才会发生。也就是说，行为故障只有在以下情况下才会发生：
 
-iload>ith,
+iload>ith，
 
-and then
+然后
 
-ti>i\_th>tth\_b,
+ti>i\_th>tth\_b，
 
 其中：
 
 - *iload* 是负载电流。
-- *ith* 是为 **Maximum permissible load current** 参数指定的值。
+- *ith* 是 **Maximum permissible load current** 参数的指定值。
 - *ti>i\_th* 是超过电流阈值的时间。
-- *tth\_b* 是为 **Time to fail when exceeding current** 参数指定的值。
+- *tth\_b* 是 **Time to fail when exceeding current** 参数的指定值。
 
 当超过时间故障阈值时，如果：
 
-- 继电器处于开路状态，即连接已断开且尚未闭合，则继电器在仿真的剩余时间内保持开路。
-- **C**–**S** 连接闭合，则除非继电器失电并且已闭合的连接断开，否则故障不会生效。如果连接断开，继电器变为开路，并在仿真的剩余时间内保持开路。
+- 继电器处于开路状态，也就是说，连接已断开且尚未接通，则继电器在仿真的剩余时间内保持断开。
+- **C**–**S** 连接已闭合，则除非继电器断电并且已闭合的连接断开，否则故障不会生效。如果连接断开，继电器将变为开路，并在仿真的剩余时间内保持断开。
 
 当超过行为故障阈值时，如果：
 
-- 继电器处于开路状态，即连接已断开且尚未闭合，则继电器在仿真的剩余时间内保持开路。
-- **C**–**S** 连接闭合，则继电器状态立即变为开路，并在仿真的剩余时间内保持开路。
+- 继电器处于开路状态，也就是说，连接已断开且尚未接通，则继电器在仿真的剩余时间内保持断开。
+- **C**–**S** 连接已闭合，则继电器状态立即变为开路，并在仿真的剩余时间内保持开路。
 
-**退化接触电阻故障**
+**退化触点电阻故障**
 
-退化接触电阻故障的原因包括：
+退化触点电阻故障的原因包括：
 
-- 过度使用引起的过载条件。高浪涌电流和电压可能导致过载条件，继电器过度切换也可能导致过载条件。过载条件最终触发电阻电弧，产生热量并使触点材料退化。
-- 干扰继电器触点操作的化学污染。污染物（可能包括氧化膜或异物颗粒）往往会产生偏高或不稳定的接触电阻读数。
+- 过度使用引起的过载条件。高浪涌电流和电压会导致过载条件，继电器的过度切换也会导致过载条件。过载条件最终会触发电弧，从而产生热量并使触点材料退化。
+- 干扰继电器触点操作的化学污染。污染物可能包括氧化膜或外来颗粒，往往会产生高且不稳定的接触电阻读数。
 - 继电器寿命终止。
 
-**C**–**S** 连接的退化接触电阻故障的故障状态等于 0 或 1。
+**C**–**S** 连接的退化触点电阻故障的故障状态等于 0 或 1。
 
 当时间故障首次发生时，**S** 的接触电阻为：
 
-rcontact\_s(t)=rcontact\_fault\_s−(rcontact\_fault\_s−rcontact)sech(t−tth\_tτ),
+rcontact\_s(t)=rcontact\_fault\_s−(rcontact\_fault\_s−rcontact)sech(t−tth\_tτ)，
 
 其中：
 
 - *rcontact\_fault\_s* 是故障 **S** 接触电阻的最终值。
-- *rcontact* 是未故障的 **S** 接触电阻。
+- *rcontact* 是未故障 **S** 接触电阻。
 - *tth\_t* 是 **Trigger fault at time** 参数的值。
 
-退化接触电阻行为故障仅当负载电流超过电流阈值的时间超过行为触发时间阈值时才会发生。也就是说，行为故障仅在以下条件下发生：
+退化触点电阻行为故障只有在负载电流超过电流阈值的时间超过行为触发时间阈值时才会发生。也就是说，行为故障只有在以下情况下才会发生：
 
-iload>ith,
+iload>ith，
 
-and then
+然后
 
-ti>i\_th>tth\_b,
+ti>i\_th>tth\_b，
 
 其中：
 
 - *iload* 是负载电流。
-- *ith* 是为 **Maximum permissible load current** 参数指定的值。
+- *ith* 是 **Maximum permissible load current** 参数的指定值。
 - *ti>i\_th* 是超过电流阈值的时间。
-- *tth\_b* 是为 **Time to fail when exceeding current** 参数指定的值。
+- *tth\_b* 是 **Time to fail when exceeding current** 参数的指定值。
 
-对于行为故障，如果 iS−C>ith 在时间间隔 *tth\_b* 内连续成立，
+对于行为故障，如果 iS−C>ith 在时间区间 *tth\_b* 内连续成立，
 
-rcontact\_s(t)=rcontact\_fault\_s−(rcontact\_fault\_s−rcontact)sech(ti>i\_th−tth\_bτ),
+rcontact\_s(t)=rcontact\_fault\_s−(rcontact\_fault\_s−rcontact)sech(ti>i\_th−tth\_bτ)，
 
 其中：
 
-- *iS-C* 是公共触点到常闭触点 **C**–**S** 的电流。
-- *ith* 是为 **Maximum permissible load current** 参数指定的值。
-- *tth\_b* 是为 **Time to fail when exceeding current** 参数指定的值。
+- *iS-C* 是公共触点至常闭触点 **C**–**S** 的电流。
+- *ith* 是 **Maximum permissible load current** 参数的指定值。
+- *tth\_b* 是 **Time to fail when exceeding current** 参数的指定值。
 - *rcontact\_fault\_s* 是故障 **S** 接触电阻的最终值。
-- *rcontact* 是未故障的 **S** 接触电阻。
+- *rcontact* 是未故障 **S** 接触电阻。
 - *τ* 是 **Time constant for degraded contact resistance** 参数的值。
 
-当超过 **C**–**S** 连接的时间故障阈值时，接触电阻立即退化，并在仿真的剩余时间内保持退化。
+当 **C**–**S** 连接超过时间故障阈值时，接触电阻立即退化，并在仿真的剩余时间内保持退化。
 
-当就 *iS-C* 而言超过 **C**–**S** 的行为故障阈值时，**C**–**S** 连接的电阻立即退化，并在仿真的剩余时间内保持退化。
+当 **C**–**S** 超过行为故障阈值时，就 *iS-C* 而言，**C**–**S** 连接的电阻立即退化，并在仿真的剩余时间内保持退化。
 
 **绕组开路故障**
 
-开路绕组故障仅适用于电气控制变体。绕组线圈开路可能导致此类故障。
+开路绕组故障仅适用于电气控制变体。绕组线圈中的开路可能导致此类故障。
 
 对于定时故障，模块将绕组电流近似为：
 
-Ldidt+Ri=vwinding\*sech(t−tth\_tτ),
+Ldidt+Ri=vwinding\*sech(t−tth\_tτ)，
 
 其中：
 
@@ -590,39 +641,39 @@ Ldidt+Ri=vwinding\*sech(t−tth\_tτ),
 - *tth\_t* 是 **Trigger fault at time** 参数的值。
 - *τ* 是 **Time constant for winding open circuit transition** 参数的值。
 
-绕组中的行为故障仅当满足以下条件之一时才会发生：
+绕组中的行为故障只有在满足以下条件之一时才会发生：
 
 - 绕组电流超过电流阈值的时间超过行为触发时间阈值。
 - 绕组电压超过电压阈值的次数超过电压过载次数阈值。
 
-也就是说，行为故障仅在以下条件下发生：
+也就是说，行为故障只有在以下情况下才会发生：
 
 iwinding>ith
 
-and then
+然后
 
-ti>i\_th>tth\_b,
+ti>i\_th>tth\_b，
 
 其中：
 
 - *iwinding* 是绕组电流。
-- *ith* 是为 **Maximum permissible winding current** 参数指定的值。
+- *ith* 是 **Maximum permissible winding current** 参数的指定值。
 - *ti>i\_th* 是超过电流阈值的时间。
-- *tth\_b* 是为 **Time to fail when exceeding current** 参数指定的值。
+- *tth\_b* 是 **Time to fail when exceeding current** 参数的指定值。
 
 或者如果：
 
-vwinding>vth,
+vwinding>vth，
 
-and then
+并且随后
 
-Nv>v\_th>Nth,
+Nv>v\_th>Nth，
 
 其中：
 
 - *vwinding* 是绕组电压。
-- *vth* 是为 **Maximum permissible winding voltage** 参数指定的值。
+- *vth* 是 **Maximum permissible winding voltage** 参数的指定值。
 - *Nv>v\_th* 是超过电压阈值的次数。
-- *Nth* 是为 **Number of events to fail when exceeding voltage** 参数指定的值。
+- *Nth* 是 **Number of events to fail when exceeding voltage** 参数的指定值。
 
 一旦故障触发，**C**–**S** 在仿真的剩余时间内保持闭合。

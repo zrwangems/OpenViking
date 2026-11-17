@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Pulse Current Source'
-family: 'additional-components'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,58 +16,58 @@ chinese_source: worker-translation
 
 ## 端口
 
-### Conserving
+### 守恒端口
 
-### **+** — 正极端子 electrical
+### **+** — 正极端口电气
 
-与脉冲电流源正极端子关联的电气守恒端口。
+与脉冲电流源正极端口关联的电气守恒端口。
 
-### **-** — 负极端子 electrical
+### **-** — 负极端口电气
 
-与脉冲电流源负极端子关联的电气守恒端口。
+与脉冲电流源负极端口关联的电气守恒端口。
 
 ## 参数
 
-### **初始值，I1** — 初始输出电流 `0` `A`（默认值）
+### **Initial value, I1** — 初始输出电流 `0` `A`（默认）
 
-时间为零时的输出电流值，单位为 A。
+时间零点的输出电流值，单位为 A。
 
-### **脉冲值，I2** — 高输出电流 `0` `A`（默认值）
+### **Pulse value, I2** — 高电平输出电流 `0` `A`（默认）
 
 输出为高电平时的输出电流值，单位为 A。
 
-### **脉冲延迟时间，TD** — 脉冲延迟时间 `0` `s`（默认值）
+### **Pulse delay time, TD** — 脉冲延迟时间 `0` `s`（默认）
 
 脉冲首次开始的时间，单位为 s。
 
-### **脉冲上升时间，TR** — 脉冲上升时间 `1e-9` `s`（默认值） | 非负标量
+### **Pulse rise time, TR** — 脉冲上升时间 `1e-9` `s`（默认）| 非负标量
 
-输出电流从 **初始值，I1** 值上升到 **脉冲值，I2** 值所需的时间。该值必须大于或等于 `0`。
+输出电流从 **Initial value, I1** 值上升到 **Pulse value, I2** 值所需的时间。该值必须大于或等于 `0`。
 
-### **脉冲下降时间，TF** — 脉冲下降时间 `1e-9` `s`（默认值） | 非负标量
+### **Pulse fall time, TF** — 脉冲下降时间 `1e-9` `s`（默认）| 非负标量
 
-输出电流从 **脉冲值，I2** 值下降到 **初始值，I1** 值所需的时间。该值必须大于或等于 `0`。
+输出电流从 **Pulse value, I2** 值下降到 **Initial value, I1** 值所需的时间。该值必须大于或等于 `0`。
 
-### **脉冲宽度，PW** — 输出脉冲时间宽度 `Inf` `s`（默认值） | 正标量
+### **Pulse width, PW** — 输出脉冲时间宽度 `Inf` `s`（默认）| 正标量
 
 输出脉冲的时间宽度。该值必须大于 `0`。
 
-### **脉冲周期，PER** — 输出脉冲周期 `Inf` `s`（默认值） | 正标量
+### **Pulse period, PER** — 输出脉冲周期 `Inf` `s`（默认）| 正标量
 
-输出脉冲的周期。对于默认值 `Inf``s`，模块产生一个周期为无穷大的单脉冲。
+输出脉冲的周期。对于默认值 `Inf``s`，该模块产生一个周期为无穷大的单脉冲。
 
-### **包含并联电导，GMIN** — 是否包含并联电导 `Yes`（默认值） | `No`
+### **Include parallel conductance, GMIN** — 是否包含并联电导 `Yes`（默认）| `No`
 
-指定电流源是否包含并联电导。并联电导 *GMIN* 的值取决于您的模型是否包含 Environment Parameters 模块。
+指定电流源是否包含并联电导。并联电导的值 *GMIN* 取决于您的模型是否包含 Environment Parameters 模块。
 
-此表显示了并联电导 *GMIN* 的可能值：
+下表显示了并联电导 *GMIN* 的可能值：
 
 **并联电导 GMIN 的值**
 
-| 包含并联电导，GMIN | | | | |
+| Include parallel conductance, GMIN | | | | |
 | --- | --- | --- | --- | --- |
 | *`Yes`* | | *`No`* | | |
-| **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，并且它不影响电流源。 | | |
+| **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，且它不影响电流源。 | | |
 | *GMIN* 等于 Environment Parameters 模块中 **GMIN** 参数的值。 | *GMIN* = `1e-12` `Ohm` |
 
 ## 所属库
@@ -76,7 +76,7 @@ Simscape / Electrical / Sources Simscape / Electrical / Additional Components / 
 
 ## 模块特性
 
-未在 R2025b 中记录。
+在 R2025b 中未记录。
 
 ## 扩展功能
 
@@ -90,7 +90,7 @@ Simscape / Electrical / Sources Simscape / Electrical / Additional Components / 
 
 周期性方波电流源
 
-Pulse Current Source 模块表示一种电流源，其输出电流值是随时间变化的周期性方波脉冲，并且与源端子两端的电压无关。以下方程描述了流经源的电流随时间的变化：
+Pulse Current Source 模块表示一个电流源，其输出电流值是时间的周期性方波脉冲函数，并且与源两端电压无关。以下方程描述了通过源的电流随时间的函数关系：
 
 Iout(0)=I1
 
@@ -106,7 +106,7 @@ Iout(TD+PER)=I1
 
 其中：
 
-- *I1* 是时间为零时的输出电流。
+- *I1* 是时间零点的输出电流。
 - *I2* 是输出为高电平时的输出电流。
 - *TD* 是脉冲首次开始的时间。
 - *TR* 是输出电流从 *I1* 上升到 *I2* 所需的时间。
@@ -114,16 +114,16 @@ Iout(TD+PER)=I1
 - *PW* 是输出脉冲的时间宽度。
 - *PER* 是输出脉冲的周期。
 
-模块通过线性插值确定中间时间点处的值。
+该模块通过线性插值确定中间时间点的值。
 
-为 *PW* 和 *PER* 指定的值对模块输出有以下影响：
+*PW* 和 *PER* 的指定值对模块输出有以下影响：
 
-- 如果 *PW* 和 *PER* 均为无穷大，则模块在时间 *TD* 处产生阶跃响应。
-- 如果 *PER* 为无穷大且 *PW* 为有限值，则模块产生一个宽度为 *PW*、周期为无穷大的单脉冲。
-- 如果 *PW* 为无穷大且 *PER* 为有限值，则模块产生阶跃响应，其中每 *PER* 秒出现宽度为 *TR* 的脉冲并降至值 *I1*。
-- 如果 *PW* > *PER*，则模块产生阶跃响应，其中每 *PER* 秒出现宽度为 *TR* 的脉冲并降至值 *I1*。
+- 如果 *PW* 和 *PER* 均为无穷大，该模块在时间 *TD* 产生阶跃响应。
+- 如果 *PER* 为无穷大且 *PW* 为有限值，该模块产生宽度为 *PW*、周期为无穷大的单脉冲。
+- 如果 *PW* 为无穷大且 *PER* 为有限值，该模块产生阶跃响应，每 *PER* 秒出现宽度为 *TR*、值为 *I1* 的脉冲。
+- 如果 *PW* > *PER*，该模块产生阶跃响应，每 *PER* 秒出现宽度为 *TR*、值为 *I1* 的脉冲。
 
-模块内部使用一个小电导来防止数值仿真问题。该电导连接器件的 + 和 - 端口，并具有电导 *GMIN*：
+该模块内部使用一个小电导以防止数值仿真问题。该电导连接器件的 + 和 - 端口，其电导值为 *GMIN*：
 
-- 默认情况下，*GMIN* 与 Environment Parameters 模块的 **GMIN** 参数匹配，该参数的默认值为 `1e–12``1/Ohm`。
-- 要更改 *GMIN*，请将 Environment Parameters 模块添加到您的模型，并将 **GMIN** 参数设置为所需值。
+- 默认情况下，*GMIN* 与 Environment Parameters 模块的 **GMIN** 参数匹配，其默认值为 `1e–12``1/Ohm`。
+- 要更改 *GMIN*，请将 Environment Parameters 模块添加到您的模型中，并将 **GMIN** 参数设置为所需值。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Determinant of 3x3 Matrix'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -18,14 +18,14 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 输入矩阵 3-by-3 矩阵
+### **Port\_1** — 输入矩阵 3×3 矩阵
 
-输入矩阵，指定为 3-by-3 矩阵。
+输入矩阵，指定为 3×3 矩阵。
 
 **数据类型：** `double`
 ### 输出
 
-### **Port\_1** — 行列式标量
+### **Port\_1** — 行列式 标量
 
 行列式，输出为标量。
 
@@ -45,14 +45,14 @@ R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
 ## 版本历史
 
-**R2006a 之前引入**
+**在 R2006a 之前引入**
 
 ## 描述
 
 计算矩阵的行列式
 
-Determinant of 3x3 Matrix 模块计算输入矩阵的行列式。有关相关方程，请参阅算法。
+Determinant of 3x3 Matrix 模块计算输入矩阵的行列式。相关方程请参见算法。

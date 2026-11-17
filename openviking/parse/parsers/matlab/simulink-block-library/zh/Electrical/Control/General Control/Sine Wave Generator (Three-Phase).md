@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sine Wave Generator (Three-Phase)'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,20 +18,21 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **mag** — 生成的三相正弦波的幅值，标量
+### **mag** — 生成的三相正弦波幅值 标量
 
 生成的三相正弦波的幅值，指定为标量。
 
 ### **ang** — 生成的三相正弦波的相移，deg 标量
 
-生成的三相正弦波中相 *a* 的相移，指定为以 degrees 为单位的标量。
+生成的三相正弦波中 *a* 相的相移，指定为以度为单位的标量。
 
 ### **freq** — 生成的三相正弦波的频率，Hz 标量
 
 生成的三相正弦波的频率，指定为以 Hz 为单位的标量。
+
 ### 输出
 
-### **abc** — 三相正弦波向量
+### **abc** — 三相正弦波 向量
 
 三相正弦波，以 Simulink 信号向量形式返回。
 
@@ -43,11 +44,11 @@ chinese_source: worker-translation
 
 ### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| `0` | 正标量
 
-连续模块执行之间的时间。执行期间，模块产生输出，并在适当情况下更新其内部状态。有关详细信息，请参阅什么是采样时间？和指定采样时间。
+连续模块执行之间的时间。在执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
-对于 inherited 离散时间操作，将此参数设置为 `-1`。对于离散时间操作，将此参数设置为正整数。对于连续时间操作，将此参数设置为 `0`。
+对于继承的离散时间操作，将此参数设置为 `-1`。对于离散时间操作，将此参数设置为正整数。对于连续时间操作，将此参数设置为 `0`。
 
-如果此模块位于支持在连续操作和离散操作之间切换的封装子系统或变体子系统中，请提升此参数，以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅在封装上提升模块参数。
+如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
 
 ## 所属库
 
@@ -55,7 +56,7 @@ Simscape / Electrical / Control / General Control
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -67,6 +68,6 @@ Simscape / Electrical / Control / General Control
 
 ## 描述
 
-离散时间或连续时间三相正弦波生成器
+离散时间或连续时间三相正弦波发生器
 
-Sine Wave Generator (Three-Phase) 模块根据幅值、相移和频率输入生成平衡三相正弦波。
+Sine Wave Generator (Three-Phase) 模块根据幅值、相移和频率输入生成平衡的三相正弦波。

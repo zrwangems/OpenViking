@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PCCVS'
-family: 'additional-components'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,21 +16,21 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **p1** — 控制输入的正电压（电气）
+### **p1** — 控制输入电气的正电压
 
-与 PCCVS 控制输入的正电压相关联的电气守恒端口。
+与控制输入的正电压 PCCVS 相关联的电气守恒端口。
 
-### **n1** — 控制输入的负电压（电气）
+### **n1** — 控制输入电气的负电压
 
-与 PCCVS 控制输入的负电压相关联的电气守恒端口。
+与控制输入的负电压 PCCVS 相关联的电气守恒端口。
 
-### **p2** — 正输出电压（电气）
+### **p2** — 正输出电压电气
 
 与 PCCVS 正输出电压相关联的电气守恒端口。
 
-### **n2** — 负输出电压（电气）
+### **n2** — 负输出电压电气
 
 与 PCCVS 负输出电压相关联的电气守恒端口。
 
@@ -38,7 +38,7 @@ chinese_source: worker-translation
 
 ### **Polynomial coefficients** — 多项式系数 `[0, 1]`（默认）
 
-用于将输入电流与输出电压关联起来的多项式系数，如上一节所述。
+将输入电流与输出电压关联起来的多项式系数，如上一节所述。
 
 ## 所属库
 
@@ -46,7 +46,7 @@ Simscape / Electrical / Additional Components / SPICE Sources
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -60,16 +60,16 @@ Simscape / Electrical / Additional Components / SPICE Sources
 
 多项式电流控制电压源
 
-PCCVS（Polynomial Current-Controlled Voltage Source）模块表示一个电压源，其输出电压值是流经输入端口的电流的多项式函数。以下方程描述了源两端电压随时间的变化：
+PCCVS（多项式电流控制电压源）模块表示一个电压源，其输出电压值是流过输入端口电流的多项式函数。以下方程描述了源两端电压随时间的变化：
 
-- 如果为 **Polynomial coefficients** 参数指定 *n* 元多项式系数向量：
+- 如果为 **Polynomial coefficients** 参数指定一个 *n* 元素的多项式系数向量：
 
   Vout=p(0)+p(1)\*Iin+...+p(n−1)\*Iinn−1+p(n)\*Iinn
-- 如果为 **Polynomial coefficients** 参数指定标量系数：
+- 如果为 **Polynomial coefficients** 参数指定一个标量系数：
 
   Vout=p\*Iin
 
 其中：
 
-- *Iin* 是流经输入端口的电流。
+- *Iin* 是流过输入端口的电流。
 - *p* 是 **Polynomial coefficients** 参数值。

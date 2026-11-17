@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Incidence & Airspeed'
-family: 'flight-parameters'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -20,14 +20,14 @@ chinese_source: worker-translation
 
 ### **U, w** — 速度二元素向量
 
-机体的速度，指定为二元素向量，在机体固定坐标系中分解。
+机体的速度，指定为二元素向量，并分解到机体固定坐标系中。
 
 **数据类型：** `double`
 ### 输出
 
-### **ɑ** — 入射角标量
+### **ɑ** — 迎角标量
 
-入射角，以标量形式返回，单位为 radians。
+迎角，以标量形式返回，单位为弧度。
 
 **数据类型：** `double`
 
@@ -59,13 +59,13 @@ R2025b 中未记录。
 
 ## 描述
 
-计算入射角和空速
+计算迎角和空速
 
-Incidence & Airspeed 模块通过计算速度矢量与机体之间的夹角，以及根据机体固定坐标系中的速度分量计算总空速，为 3DoF 运动方程模型提供支持。
+Incidence & Airspeed 模块通过计算速度向量与机体之间的夹角，以及根据机体固定坐标系中的速度分量计算总空速，来支持 3DoF 运动方程模型。
 
 α=atan(wu)V=u2+w2
 
 **注意**
 
-- 对于固定翼飞机，由 Incidence & Airspeed 模块计算的角 α 是相对风与机体纵轴之间的夹角。在许多航空航天工程参考资料中，该角被称为迎角。Incidence & Airspeed 将该角称为入射角。
-- 对于垂直起降（VTOL）构型，计算所用的方程与固定翼飞机相同 [1]。但是，在涉及巡航与悬停之间转换的机动中，可能存在速度值较低或为零的情形，从而导致不正确的入射角和侧滑角。因此，不建议使用该模块分析 VTOL 构型。作为替代方案，可使用 6DOF Wind (Quaternion) 或 6DOF Wind (Wind Angles) 模块，它们提供 α 和 β 作为输出。
+- 对于固定翼飞机，Incidence & Airspeed 模块计算的角度 α 是相对风与机体纵轴之间的夹角。在许多航空航天工程参考文献中，该角度被称为攻角。Incidence & Airspeed 将该角度称为迎角。
+- 对于垂直起降（VTOL）构型，用于计算的方程与固定翼飞机相同 [1]。然而，在涉及巡航与悬停之间转换的机动中，可能会出现速度值较低或为零的场景，从而导致迎角和侧滑角计算不正确。因此，不建议使用该模块分析 VTOL 构型。作为替代方案，可使用 6DOF Wind (Quaternion) 或 6DOF Wind (Wind Angles) 模块，它们可提供 α 和 β 作为输出。

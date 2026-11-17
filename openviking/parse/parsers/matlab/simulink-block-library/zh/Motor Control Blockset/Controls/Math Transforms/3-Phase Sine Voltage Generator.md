@@ -9,7 +9,7 @@ official_category: 'Controls / Math Transforms'
 documentation_page: '3phasesinevoltagegenerator'
 documentation_source_path: 'ref/3phasesinevoltagegenerator.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # 3-Phase Sine Voltage Generator
@@ -18,44 +18,44 @@ chinese_source: official
 
 ### 输入
 
-### **A** — 参考电压振幅 标量
+### **A** — 参考电压幅值标量
 
-参考电压信号的最大振幅。
+参考电压信号的最大幅值。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **θe** — 参考电压位置 标量
+### **θe** — 参考电压位置标量
 
 参考电压信号的位置或相位值。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 ### 输出
 
-### **Va** — 平衡三相电压的 *a* 轴分量 标量
+### **Va** — 平衡三相电压的 *a* 轴分量标量
 
-沿 *abc* 参考系的 *a* 轴的平衡三相电压信号分量。
+平衡三相电压信号沿 *abc* 参考坐标系 *a* 轴的分量。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Vb** — 平衡三相电压的 *b* 轴分量 标量
+### **Vb** — 平衡三相电压的 *b* 轴分量标量
 
-沿 *abc* 参考系的 *b* 轴的平衡三相电压信号分量。
+平衡三相电压信号沿 *abc* 参考坐标系 *b* 轴的分量。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **Vc** — 平衡三相电压的 *c* 轴分量 标量
+### **Vc** — 平衡三相电压的 *c* 轴分量标量
 
-沿 *abc* 参考系的 *c* 轴的平衡三相电压信号分量。
+平衡三相电压信号沿 *abc* 参考坐标系 *c* 轴的分量。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
 ## 参数
 
-### **Theta 单位** — `θe` 的单位 **标幺** (默认) | **弧度** | **度**
+### **Theta units** — `θe` 的单位 `Per-unit`（默认）| `Radians` | `Degrees`
 
-您作为输入提供的参考电压位置的单位。
+作为输入提供的参考电压位置的单位。
 
-### **查找表的数据点数** — 查找表的大小 `1024` (默认) | 标量
+### **Number of data points for lookup table** — 查找表的大小 `1024`（默认）| 标量
 
 查找表的大小。
 
@@ -65,31 +65,31 @@ Motor Control Blockset / Controls / Math Transforms
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2020a 中推出**
+**在 R2020a 中引入**
 
 ## 描述
 
-生成平衡的三相正弦信号
+生成平衡三相正弦信号
 
-3-Phase Sine Voltage Generator 模块使用信号振幅和位置输入生成平衡的三相正弦信号。
+3-Phase Sine Voltage Generator 模块使用信号幅值和位置输入生成平衡三相正弦信号。
 
-该模块使用查找表方法。当与 Motor Control Blockset™ 中附带的示例所采用的模型设置和配置结合使用时，这种方法可以优化代码执行。您可以在**查找表的数据点数**参数中指定查找表点数。
+该模块使用查找表方法。当与 Motor Control Blockset™ 中提供的示例所采用的模型设置和配置一起使用时，此方法可实现优化的代码执行。您可以在 **Number of data points for lookup table** 参数中指定查找表的点数。
 
-下图显示位置输入和三相正弦输出信号随时间的变化。
+下图显示了位置输入和三相正弦输出信号随时间变化的曲线图。
 
 ### 方程
 
-以下方程描述该模块如何计算平衡的三相正弦信号。
+以下方程描述了该模块如何计算平衡三相正弦信号。
 
 - Va=A×sinωt
 - Vb=A×sin(ωt−2π3)
@@ -97,6 +97,6 @@ R2025b 官方文档未提供。
 
 其中：
 
-- A 是参考电压振幅（伏特）。
-- ω 是参考电压位置输入信号 (`θe`) 的频率（弧度/秒）。
+- A 是参考电压幅值（伏特）。
+- ω 是参考电压位置输入信号（`θe`）的频率（弧度/秒）。
 - t 是时间（秒）。

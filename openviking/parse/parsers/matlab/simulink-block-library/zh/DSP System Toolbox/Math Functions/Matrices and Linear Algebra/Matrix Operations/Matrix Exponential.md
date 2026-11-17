@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Matrix Exponential'
-family: 'math-functions'
+family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
@@ -23,7 +23,7 @@ chinese_source: worker-translation
 将输入数据指定为方阵。
 
 **数据类型：** `single` | `double`
-**复数支持：** Yes
+**复数支持：** 是
 ### 输出
 
 ### **Output 1** — 矩阵指数输出矩阵
@@ -31,11 +31,11 @@ chinese_source: worker-translation
 输入方阵的矩阵指数输出。
 
 **数据类型：** `single` | `double`
-**复数支持：** Yes
+**复数支持：** 是
 
 ## 参数
 
-未在 R2025b 中记录。
+在 R2025b 中未记录。
 
 ## 所属库
 
@@ -53,11 +53,10 @@ DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Opera
 
 ## 扩展功能
 
-### C/C++ 代码生成
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
-
-生成的代码在某些条件下依赖 `memcpy` 或 `memset` 函数（`string.h`）。
+生成的代码在某些条件下依赖于 `memcpy` 或
+`memset` 函数（`string.h`）。
 
 ## 版本历史
 

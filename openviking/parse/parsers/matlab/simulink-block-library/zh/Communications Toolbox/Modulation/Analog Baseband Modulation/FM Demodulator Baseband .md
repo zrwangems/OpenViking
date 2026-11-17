@@ -27,23 +27,23 @@ chinese_source: worker-translation
 
 ### **Out** — 输出数据信号 `scalar` | `vector` | `matrix`
 
-输出信号，返回为实数标量、向量或矩阵。此端口上的数据具有与输入信号相同的数据类型和大小。
+输出信号，返回为实数标量、向量或矩阵。此端口上的数据与输入信号具有相同的数据类型和大小。
 
 **数据类型：** `double` | `single`
 
 ## 参数
 
-要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条中的 **仿真** 选项卡上的 **准备** 库中，选择 **属性检查器**。
+要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
-### **Frequency deviation (Hz)** — 解调器的频率偏移 `75e3` (默认) | `positive scalar`
+### **Frequency deviation (Hz)** — 解调器的频率偏差 `75e3`（默认值）| `positive scalar`
 
-解调器的频率偏移，以 Hz 为单位，指定为正标量。系统带宽等于频率偏移与消息带宽之和的两倍。
+解调器的频率偏差，以 Hz 为单位，指定为正标量。系统带宽等于频率偏差与消息带宽之和的两倍。
 
-### **Simulate using** — 要运行的仿真类型 `Code generation` (默认) | `Interpreted execution`
+### **Simulate using** — 要运行的仿真类型 `Code generation`（默认值）| `Interpreted execution`
 
 要运行的仿真类型，指定为 `Code generation` 或 `Interpreted execution`。
 
-- `Code generation` — 通过使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution` 选项。
+- `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution` 选项。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
@@ -70,6 +70,6 @@ Communications Toolbox / Modulation / Analog Baseband Modulation
 
 ## 描述
 
-使用 FM 方法解调
+使用 FM 方法进行解调
 
-FM Demodulator Baseband 模块对复输入信号进行解调，并返回实输出信号。
+FM Demodulator Baseband 模块对复数输入信号进行解调，并返回实数输出信号。

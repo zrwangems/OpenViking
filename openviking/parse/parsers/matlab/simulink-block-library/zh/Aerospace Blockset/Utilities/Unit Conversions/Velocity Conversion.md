@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Velocity Conversion'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -18,47 +18,47 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 速度标量 | 数组
+### **Port\_1** — 速度 标量 | 数组
 
 速度，指定为标量或数组，以初始速度单位表示。
 
-#### 依赖项
+#### 依赖关系
 
-输入端口标签取决于 **初始单位** 设置。
+输入端口标签取决于 **Initial unit** 设置。
 
 **数据类型：** `double`
 ### 输出
 
-### **Port\_1** — 速度标量 | 数组
+### **Port\_1** — 速度 标量 | 数组
 
-速度，以标量或数组形式返回，以最终速度单位表示。
+速度，以最终速度单位返回为标量或数组。
 
-#### 依赖项
+#### 依赖关系
 
-输出端口标签取决于 **最终单位** 设置。
+输出端口标签取决于 **Final unit** 设置。
 
 **数据类型：** `double`
 
 ## 参数
 
-### **初始单位** — 输入单位 `ft/s`（默认） | `m/s` | `km/s` | `in/s` | `km/h` | `mph` | `kts` | `ft/min`
+### **Initial unit** — 输入单位 `ft/s`（默认）| `m/s` | `km/s` | `in/s` | `km/h` | `mph` | `kts` | `ft/min`
 
 输入单位，指定为：
 
 |  |  |
 | --- | --- |
-| `m/s` | Meters per second |
-| `ft/s` | Feet per second |
-| `km/s` | Kilometers per second |
-| `in/s` | Inches per second |
-| `km/h` | Kilometers per hour |
-| `mph` | Miles per hour |
-| `kts` | Nautical miles per hour |
-| `ft/min` | Feet per minute |
+| `m/s` | 米每秒 |
+| `ft/s` | 英尺每秒 |
+| `km/s` | 千米每秒 |
+| `in/s` | 英寸每秒 |
+| `km/h` | 千米每小时 |
+| `mph` | 英里每小时 |
+| `kts` | 海里每小时 |
+| `ft/min` | 英尺每分钟 |
 
-#### 依赖项
+#### 依赖关系
 
-输入端口标签取决于 **初始单位** 设置。
+输入端口标签取决于 **Initial unit** 设置。
 
 #### 编程使用
 
@@ -69,24 +69,24 @@ chinese_source: worker-translation
 | **值**：`'m/s'` | `'ft/s'` | `'km/s'` | `'in/s'` | `'km/h'` | `'mph'` | `'kts'` | `'ft/min'` |
 | **默认值**：`'ft/s'` |
 
-### **最终单位** — 输出单位 `m/s`（默认） | `ft/s` | `km/s` | `in/s` | `km/h` | `mph` | `kts` | `ft/min`
+### **Final unit** — 输出单位 `m/s`（默认）| `ft/s` | `km/s` | `in/s` | `km/h` | `mph` | `kts` | `ft/min`
 
 输出单位，指定为：
 
 |  |  |
 | --- | --- |
-| `m/s` | Meters per second |
-| `ft/s` | Feet per second |
-| `km/s` | Kilometers per second |
-| `in/s` | Inches per second |
-| `km/h` | Kilometers per hour |
-| `mph` | Miles per hour |
-| `kts` | Nautical miles per hour |
-| `ft/min` | Feet per minute |
+| `m/s` | 米每秒 |
+| `ft/s` | 英尺每秒 |
+| `km/s` | 千米每秒 |
+| `in/s` | 英寸每秒 |
+| `km/h` | 千米每小时 |
+| `mph` | 英里每小时 |
+| `kts` | 海里每小时 |
+| `ft/min` | 英尺每分钟 |
 
-#### 依赖项
+#### 依赖关系
 
-输出端口标签取决于 **最终单位** 设置。
+输出端口标签取决于 **Final unit** 设置。
 
 #### 编程使用
 
@@ -103,7 +103,7 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -115,8 +115,8 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 描述
 
-将速度单位转换为所需速度单位
+从速度单位转换为所需的速度单位
 
-Velocity Conversion 模块计算从指定输入速度单位到指定输出速度单位的转换因子，并将该转换因子应用于输入信号。
+Velocity Conversion 模块计算从指定的输入速度单位到指定的输出速度单位的转换因子，并将该转换因子应用于输入信号。
 
-Velocity Conversion 模块的端口标签会根据从 **初始单位** 和 **最终单位** 列表中选择的输入和输出单位而变化。
+Velocity Conversion 模块的端口标签根据从 **Initial unit** 和 **Final unit** 列表中选择的输入和输出单位而变化。

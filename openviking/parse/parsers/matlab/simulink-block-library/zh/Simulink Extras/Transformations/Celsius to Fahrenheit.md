@@ -18,22 +18,22 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — Celsius degree 输入标量
+### **Port\_1** — 摄氏度输入 标量
 
-指定 Celsius degrees 的输入信号。
+指定摄氏度的输入信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 ### 输出
 
-### **Port\_1** — Fahrenheit degree 输出标量
+### **Port\_1** — 华氏度输出 标量
 
-指定 Fahrenheit degrees 的输出信号。
+指定华氏度的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -41,11 +41,11 @@ Simulink Extras / Transformations
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -53,11 +53,11 @@ Simulink Extras / Transformations
 
 ## 描述
 
-将 degrees Celsius 转换为 degrees Fahrenheit
+将摄氏度转换为华氏度
 
-Celsius to Fahrenheit 模块根据以 degrees Celsius 为单位的输入温度计算以 degrees Fahrenheit 为单位的输出温度。
+Celsius to Fahrenheit 模块根据输入的摄氏度温度计算输出的华氏度温度。
 
 *T*F =
 (9/5)*T*C + 32
 
-*T*C 是以 degrees Celsius 为单位的温度，*T*F 是以 degrees Fahrenheit 为单位的温度。
+*T*C 是以摄氏度表示的温度，*T*F 是以华氏度表示的温度。

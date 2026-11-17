@@ -16,27 +16,27 @@ chinese_source: worker-translation
 
 ## 端口
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 参数
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 所属库
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 描述
 
@@ -46,10 +46,10 @@ chinese_source: worker-translation
 
 绝对值
 
-此模块计算 IQ number 输入的绝对值。输出也是 IQ number。
+该模块计算 IQ 数值输入的绝对值。输出也是 IQ 数值。
 
 **注意**
 
-此模块的实现不会在代码生成期间调用对应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q format。有关详细信息，请参阅 Using the IQmath Library。
+该模块的实现不会在代码生成期间调用相应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而该模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关详细信息，请参阅 Using the IQmath Library。
 
 - C2000 Absolute IQN 模块

@@ -48,14 +48,20 @@ R2025b 中未记录。
 
 ### R2023a: 将被移除
 
-Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。Isothermal Liquid 库中的模块提供更高的精度、可用性和数值性能。
+Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。
+Isothermal Liquid 库中的模块提供更高的精度、可用性和
+数值性能。
 
-有关更新模型的详细信息，请参阅《将 Hydraulic 模型升级为使用 Isothermal Liquid 模块》。
+有关更新模型的详细信息，请参阅 Upgrading Hydraulic Models to Use Isothermal Liquid Blocks。
 
 ## 描述
 
-（将被移除）具有恒定流量特性的理想液压能源
+（将被移除）理想液压能源，以恒定流量为特征
 
-Hydraulic Constant Flow Rate Source 模块表示一种理想液压能源，它足够强大，能够在源两端存在压差的情况下仍在其出口处保持指定流量。**Source flow rate** 参数指定通过源的流量。
+Hydraulic Constant Flow Rate Source 模块表示一个理想的
+液压能源，其功率足以在源两端存在压差的情况下
+仍在其出口处维持指定流量。**Source flow rate** 参数指定通过
+源的流量。
 
-模块连接 T 和 P 分别对应液压入口和出口端口。模块正方向为从端口 T 到端口 P。
+模块连接 T 和 P 分别对应液压入口端口和出口端口。
+模块正方向为从端口 T 到端口 P。

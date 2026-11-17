@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Query Instrument'
-family: 'instrument-control-toolbox'
+family: 'instrument'
 product_id: 'instrument'
 product_name: 'Instrument Control Toolbox'
 documentation_release: R2025b
-official_category: 'Instrument Control Toolbox'
+official_category: ''
 documentation_page: 'queryinstrument'
 documentation_source_path: 'queryinstrument.html'
 language: zh-CN
@@ -16,109 +16,109 @@ chinese_source: worker-translation
 
 ## 端口
 
-R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 参数
 
-**模块采样时间**
-:   模块采样时间参数是对话框选项卡之外的唯一设置。默认值为 `1`。将该值设置为 `-1` 会使模块继承时序。正值用作采样周期。
+**Block sample time**
+:   Block sample time 参数是对话框选项卡之外的唯一设置。默认值为 `1`。将值设置为 `-1` 会使模块继承时序。正值用作采样周期。
 
 ### 硬件配置选项卡
 
-**硬件配置**选项卡用于定义与仪器通信的设置。建立接口时，您有两种选择：
+**Hardware Configuration** 选项卡用于定义与仪器通信的设置。建立接口有两种选择：
 
 - 指定新的硬件配置。
 - 使用 MATLAB® 工作区中的接口对象。
 
-下图显示了**硬件配置**选项卡设置为使用串行端口接口指定新的硬件配置。
+下图显示了 **Hardware Configuration** 选项卡设置为使用串行端口接口指定新的硬件配置。
 
-由于某些参数适用于多种接口类型，因此此处按字母顺序列出这些参数。
+由于某些参数适用于多种接口类型，因此此处按字母顺序显示。
 
-**波特率**
-:   串行或 VISA serial 接口的比特传输速率。
+**Baudrate**
+:   串行或 VISA 串行接口传输比特的速率。
 
-**板卡索引**
-:   GPIB、VISA GPIB、VISA TCPIP 或 VISA USB 仪器接口所用板卡的索引。
+**Board index**
+:   用于与仪器进行 GPIB、VISA GPIB、VISA TCPIP 或 VISA USB 接口通信的板卡索引。
 
-**板卡供应商**
-:   用于仪器接口的 GPIB 板卡的供应商。可选项包括 Keysight®（前身为 Agilent®）、ICS Electronics™、Measurement Computing™ (MCC) 和 National Instruments™。
+**Board vendor**
+:   用于与仪器接口通信的 GPIB 板卡供应商。可选值为 Keysight®（原 Agilent®）、ICS Electronics™、Measurement Computing™ (MCC) 和 National Instruments™。
 
-**机箱索引**
+**Chassis index**
 :   VXI 机箱的索引号。用于 VISA VXI 和 VISA VXI-GPIB 接口类型。
 
-**缓冲区大小**
-:   读取操作期间可存储在软件输入缓冲区中的总字节数。
+**Buffer size**
+:   读取操作期间软件输入缓冲区中可存储的总字节数。
 
-**接口**
-:   选择仪器的硬件接口类型。可选项为 Instrument Control Toolbox™ 软件支持的接口。上图显示了串行端口接口的配置。
+**Interface**
+:   选择与仪器通信的硬件接口类型。选项为 Instrument Control Toolbox™ 软件支持的接口。上图显示了串行端口接口的配置。
 
-**逻辑地址**
+**Logical address**
 :   VXI 仪器的逻辑地址。用于 VISA VXI 和 VISA VXI-GPIB 接口类型。
 
-**制造商 ID**
+**Manufacturer ID**
 :   VISA USB 仪器的制造商 ID。有关详细信息，请参阅 ManufacturerID 属性。
 
-**型号代码**
+**Model code**
 :   VISA USB 仪器的型号代码。有关详细信息，请参阅 ModelCode 属性。
 
-**端口**
-:   串行接口使用的端口：COM1、COM2 等。
+**Port**
+:   串行接口的端口：COM1、COM2 等。
 
-**主地址**
+**Primary address**
 :   仪器在 GPIB 上的主地址。
 
-**远程主机**
+**Remote host**
 :   仪器的主机名或 IP 地址。用于 UDP、TCPIP 或 VISA TCPIP 接口类型。
 
-**远程端口**
-:   仪器或远程主机上用于通信的端口。用于 UDP、TCPIP 或 VISA TCPIP 接口类型。
+**Remote port**
+:   用于通信的仪器或远程主机上的端口。用于 UDP、TCPIP 或 VISA TCPIP 接口类型。
 
-**次地址**
-:   仪器在 GPIB 上的次地址。
+**Secondary address**
+:   仪器在 GPIB 上的辅助地址。
 
-**序列号**
-:   以字符向量形式定义的 VISA USB 仪器序列号。有关详细信息，请参阅 SerialNumber 属性。
+**Serial number**
+:   VISA USB 仪器的序列号，定义为字符向量。有关详细信息，请参阅 SerialNumber 属性。
 
-**超时时间**
-:   允许完成查询操作的时间，以秒为单位。
+**Timeout**
+:   完成查询操作所允许的时间（秒）。
 
-**VISA 供应商**
-:   为任意 VISA 接口类型选择 VISA 供应商。可选项包括 Keysight（前身为 Agilent）、National Instruments 和 Tektronix®。
+**VISA vendor**
+:   用于任何 VISA 接口类型的 VISA 供应商。可选值为 Keysight（原 Agilent）、National Instruments 和 Tektronix®。
 
-**使用 MATLAB 工作区中的接口对象**
-:   选择此选项以使用 MATLAB 工作区中的接口对象。
+**使用来自 MATLAB 工作区的接口对象**
+:   选择此选项可使用 MATLAB 工作区中的接口对象。
 
-**工作区对象**
-:   输入要使用的 MATLAB 工作区中的对象名称。
+**Workspace object**
+:   输入要从 MATLAB 工作区使用的对象名称。
 
 ### 仪器初始化选项卡
 
-**仪器初始化**选项卡用于定义首次打开与仪器的连接时要执行的操作。
+**Instrument Initialization** 选项卡用于定义首次打开与仪器的连接时发生的情况。
 
 **None**
-:   默认初始化选项为 None。
+:   默认初始化选项为 none。
 
 **Send string**
 :   作为仪器命令发送到仪器的字符串，用于初始化仪器或将其设置为已知状态。
 
 **Execute function**
-:   任何将表示仪器的接口对象作为其唯一参数的函数。您可以编写此函数，使其包含多条仪器命令和初始化数据。
+:   任何以表示仪器的接口对象作为唯一参数的函数。您可以编写此函数以包含多个仪器命令和初始化数据。
 
 ### 查询选项卡
 
-**查询**选项卡用于定义可选的查询命令、设置响应格式，以及定义模块在收到仪器初始响应后执行的操作。
+**查询**选项卡用于定义可选的查询命令、设置响应格式，以及定义模块在收到初始仪器响应后的行为。
 
 **查询命令**
-:   这是发送到仪器的查询命令，通常用于请求仪器状态或数据。*此命令为可选项*——如果您要从仪器检索信息或数据，且无需查询命令即可完成，则可以将此字段留空。
+:   这是发送到仪器的查询命令。它通常是请求仪器状态或数据的命令。*此命令是可选的*——如果您正在从仪器检索信息或数据，且不需要查询命令即可完成该操作，则可以将此字段留空。
 
 **数据格式**
-:   可选项包括 `ASCII`、`Binary` 或 `Binblock`（二进制块——`binblock` 格式在 `binblockwrite` 函数参考页中介绍）。
+:   您的选项为 `ASCII`、`Binary` 或 `Binblock`（二进制块——`binblock` 格式在 `binblockwrite` 函数参考页中有描述）。
 
 **ASCII 格式字符串**
-:   仅在格式为 `ASCII` 时可用，用于定义数据的格式字符串。有关格式列表，请参阅 `fscanf` 函数。
+:   仅当格式为 `ASCII` 时可用，此项定义数据的格式字符串。有关格式列表，请参阅 `fscanf` 函数。
 
 **精度**
-:   用于二进制或 binblock 格式。可选项包括：
+:   用于二进制或 binblock 格式。您的选项为：
 
     - `8-bit integer`（默认）
     - `16-bit integer`
@@ -129,49 +129,49 @@ R2025b 中未提供文档。
     - `32-bit float`
     - `64-bit float`
 
-**字节顺序**
-:   当以二进制或 binblock 格式使用超过 8 位的数据时，可以指定仪器采用的数据字节顺序。可选项包括 `Big Endian` 或 `Little Endian`。
+**字节序**
+:   当使用超过 8 位的二进制或 binblock 格式时，您可以指定仪器数据的字节序。您的选项为 `Big Endian` 或 `Little Endian`。
 
-**要读取的二进制值数量**
+**要读取的二进制值**
 :   用于二进制格式。指定要从仪器读取的二进制值数量。
 
 **从输入缓冲区中移除额外字节**
-:   如果要在查询前从输入缓冲区中移除任何额外字节，请选择此选项。
+:   如果您希望在查询之前从输入缓冲区中移除任何额外字节，请选择此选项。
 
-**初始响应后的操作**
-:   定义在收到仪器的首次响应后要执行的操作。可选项包括 Repeat query for new data、Recycle original data、Hold final value、Output zero 或 Stop simulation。
+**初始响应之后**
+:   此项定义在收到仪器首次响应后要执行的操作。您的选项为 Repeat query for new data、Recycle original data、Hold final value、Output zero 或 Stop simulation。
 
 **启用帧输出**
-:   帧是组合为单个向量的一系列采样。在基于帧的处理中，帧中的所有采样都会同时处理。在基于采样的处理中，采样会逐个处理。基于帧的处理的优点是可以大幅提高仿真速度。例如，如果要从仪器读取波形而不是单点测量，则可能会使用帧。
+:   帧是组合成单个向量的样本序列。在基于帧的处理中，帧中的所有样本同时处理。在基于样本的处理中，样本一次处理一个。基于帧的处理的优势在于它可以大幅提高仿真速度。例如，如果您要从仪器读取波形而不是单点测量值，则可以使用帧。
 
 **帧大小**
-:   帧大小决定一帧中的采样数。
+:   帧大小决定一帧中的样本数量。
 
 **注意**
 
-对话框中显示的硬件信息在您首次打开对话框时确定并缓存。要使用新值刷新显示，请重新启动 MATLAB。
+对话框框中显示的硬件信息在您首次打开对话框时确定并缓存。要使用新值刷新显示，请重新启动 MATLAB。
 
 ## 所属库
 
-R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 模块特性
 
-R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2006a 之前引入**
 
-### R2024b: 错误
+### R2024b：错误
 
-将此模块添加到模型时会引发错误。打开任何包含此模块的现有模型都会导致错误。由于此错误，模型无法进行仿真。您仍然可以打开模块参数对话框并查看参数值。
+此模块在添加到模型时会抛出错误。打开任何包含此模块的现有模型都会导致错误。由于此错误，模型无法仿真。您仍然可以打开模块参数对话框并查看参数值。
 
-请改用以下接口专用模块：
+请改用特定接口模块：
 
 - Serial Configuration
 - Serial Receive
@@ -182,23 +182,25 @@ R2025b 中未提供文档。
 - UDP Send
 - VISA
 
-与 Query Instrument 和 To Instrument 相比，这些接口专用模块均支持更多属性，并且性能有所提升。
+与 Query Instrument 和 To Instrument 相比，这些特定接口模块都支持附加属性并具有改进的性能。
 
-### R2023b: 将被移除
+### R2023b：将被移除
 
-Simulink 模块 Query Instrument 和 To Instrument 将被移除。
+Query Instrument 和 To Instrument Simulink 模块将被移除。
 
 ## 描述
 
 （将被移除）查询或读取仪器数据
 
-Query Instrument 模块配置并打开与仪器的接口，初始化仪器，并查询仪器以获取数据。配置和初始化在模型开始执行时进行。模块在模型运行期间查询仪器以获取数据。
+Query Instrument 模块配置并打开与仪器的接口，初始化仪器，并向仪器查询数据。配置和初始化在模型执行开始时进行。模块在模型运行期间向仪器查询数据。
 
 该模块没有输入端口。该模块有一个输出端口，对应于从仪器接收的数据。
 
 ### 其他支持的功能
 
-- 此模块支持使用加速器模式，但不支持 Rapid Accelerator 或代码生成。
-- 该模块支持使用模型引用，因此您的模型可以将其他 Simulink® 模型作为模块化组件包含进来。
+- 此模块支持使用加速模式，但不支持快速
+  加速或代码生成。
+- 此模块支持使用模型引用，因此您的模型
+  可以将其他 Simulink® 模型作为模块化组件包含在内。
 
-有关这些功能的详细信息，请参阅 Simulink 文档。
+有关这些功能的更多信息，请参阅 Simulink 文档。

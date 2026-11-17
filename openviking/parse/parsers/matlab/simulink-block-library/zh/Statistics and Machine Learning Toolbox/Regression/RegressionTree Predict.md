@@ -9,7 +9,7 @@ official_category: 'Regression'
 documentation_page: 'regressiontreepredict'
 documentation_source_path: 'regressiontreepredict.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # RegressionTree Predict
@@ -20,157 +20,157 @@ chinese_source: official
 
 ### **x** — 预测变量数据 行向量 | 列向量
 
-预测变量数据，指定为一个观测值的行向量或列向量。
+预测变量数据，指定为一个观测的行向量或列向量。
 
-**x** 中的变量必须与用来训练  所指定的模型的预测变量具有相同的顺序。
+**x** 中的变量顺序必须与训练 **Select trained machine learning model** 所指定模型的预测变量顺序相同。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 ### 输出
 
 ### **yfit** — 预测响应 标量
 
 预测响应，以标量形式返回。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 
 ## 参数
 
 ### 主要
 
-### **选择经过训练的机器学习模型** — 回归树模型 `treeMdl` (默认) | `RegressionTree` 对象 | `CompactRegressionTree` 对象
+### **Select trained machine learning model** — 回归树模型 `treeMdl`（默认）| `RegressionTree` 对象 | `CompactRegressionTree` 对象
 
-指定包含 `RegressionTree` 对象或 `CompactRegressionTree` 对象的工作区变量的名称。
+指定包含 `RegressionTree` 对象或 `CompactRegressionTree` 对象的工作区变量名称。
 
-使用 `fitrtree` 训练模型时，适用以下限制：
+当您使用 `fitrtree` 训练模型时，以下限制适用：
 
-- 预测变量数据不能包含分类预测变量（`logical`、`categorical`、`char`、`string` 或 `cell`）。如果在表中提供训练数据，预测变量必须为数值（`double` 或 `single`）。此外，不能使用 `CategoricalPredictors` 名称-值参量。要在模型中包含分类预测变量，请在拟合模型之前使用 `dummyvar` 对其进行预处理。
-- `ResponseTransform` 名称-值参量的值必须为 `'none'`（默认值）。
-- 您无法使用替代分裂；也就是说，`Surrogate` 名称-值参量的值必须为 `'off'`（默认值）。
+- 预测变量数据不能包含分类预测变量（`logical`、`categorical`、`char`、`string` 或 `cell`）。如果您在表中提供训练数据，预测变量必须是数值型（`double` 或 `single`）。此外，您不能使用 `CategoricalPredictors` 名称-值参数。要在模型中包含分类预测变量，请在拟合模型之前使用 `dummyvar` 对其进行预处理。
+- `ResponseTransform` 名称-值参数的值必须为 `'none'`（默认）。
+- 您不能使用代理分割；即 `Surrogate` 名称-值参数的值必须为 `'off'`（默认）。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`TrainedLearner` |
-| **类型：**工作区变量 |
-| **值：**`RegressionTree` 对象 | `CompactRegressionTree` 对象 |
-| **默认值**：`'treeMdl'` |
+| **模块参数：** `TrainedLearner` |
+| **类型：** 工作区变量 |
+| **值：** `RegressionTree` 对象 | `CompactRegressionTree` 对象 |
+| **默认：** `'treeMdl'` |
 
 ### 数据类型
 
 #### 定点运算参数
 
-### **整数舍入模式** — 定点运算的舍入模式 **向下** (默认) | **向上** | **收敛** | **最邻近值** | **舍入** | **最简** | **零**
+### **Integer rounding mode** — 定点运算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
 指定定点运算的舍入模式。有关详细信息，请参阅舍入模式 (Fixed-Point Designer)。
 
-模块参数始终舍入到最邻近的可表示值。要控制模块参数的舍入方法，请使用 MATLAB® 舍入函数在封装字段中输入表达式。
+模块参数始终舍入到最接近的可表示值。要控制模块参数的舍入，请使用 MATLAB® 舍入函数在掩码字段中输入表达式。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数：**`RndMeth` |
-| **类型：**字符向量 |
-| **值：**`"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"` |
-| **默认值**：`"Floor"` |
+| **模块参数：** `RndMeth` |
+| **类型：** 字符向量 |
+| **值：** `"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"` |
+| **默认：** `"Floor"` |
 
-### **对整数溢出进行饱和处理** — 溢出操作的方法 `off` (默认) | `on`
+### **Saturate on integer overflow** — 溢出操作的方法 `off`（默认）| `on`
 
-指定对溢出是进行饱和处理还是绕回处理。
+指定溢出是饱和还是回绕。
 
-| 操作 | 基本原理 | 对溢出的影响 | 示例 |
+| 操作 | 理由 | 对溢出的影响 | 示例 |
 | --- | --- | --- | --- |
-| 选中此复选框 (`on`)。 | 您的模型可能有溢出，并且您希望在生成的代码中具有显式饱和保护。 | 将溢出饱和处理为数据类型能够表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。如果选中此复选框，模块输出将在达到 127 时饱和。类似地，模块输出将在达到最小输出值 -128 时饱和。 |
-| 清除此复选框 (`off`)。 | 您想优化所生成代码的效率。  您希望避免过度地指定信号超出范围时模块的处理方式。有关详细信息，请参阅信号范围错误故障排除 (Simulink)。 | 溢出将绕回到数据类型可以表示的合适值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。在该复选框处于清除状态时，软件会将导致溢出的值解释为 `int8`，这可能产生意外结果。例如，以 `int8` 表示的模块结果 130（二进制 1000 0010）为 -126。 |
+| 选中此复选框（`on`）。 | 您的模型可能存在溢出，并且您希望在生成的代码中具有显式的饱和保护。 | 溢出饱和到数据类型所能表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型所能表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。选中该复选框后，模块输出饱和于 127。类似地，模块输出饱和于最小值 –128。 |
+| 清除此复选框（`off`）。 | 您希望优化生成代码的效率。您希望避免过度指定模块如何处理超出范围的信号。有关详细信息，请参阅 Troubleshoot Signal Range Errors (Simulink)。 | 溢出回绕到数据类型所能表示的适当值。 | `int8`（有符号 8 位整数）数据类型所能表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。清除该复选框后，软件将导致溢出的值解释为 `int8`，这可能会产生非预期的结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时为 –126。 |
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`SaturateOnIntegerOverflow` |
-| **类型：**字符向量 |
-| **值：**`"off" | "on"` |
+| **模块参数**：`SaturateOnIntegerOverflow` |
+| **类型**：character vector |
+| **值**：`"off" | "on"` |
 | **默认值**：`"off"` |
 
-### **锁定输出数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 `off` (默认) | `on`
+### **Lock output data type setting against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
-选择此参数可防止定点工具覆盖您对模块指定的数据类型。有关详细信息，请参阅Use Lock Output Data Type Setting (Fixed-Point Designer)。
+选中此参数可防止定点工具覆盖您为模块指定的数据类型。有关详细信息，请参阅 Use Lock Output Data Type Setting (Fixed-Point Designer)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`LockScale` |
-| **类型：**字符向量 |
-| **值：**`"off" | "on"` |
+| **模块参数**：`LockScale` |
+| **类型**：character vector |
+| **值**：`"off" | "on"` |
 | **默认值**：`"off"` |
 
 #### 数据类型
 
-### **输出数据类型** — yfit 输出的数据类型 **Inherit: auto** (默认) | **双精度** | **单精度** | **半精度** | **int8** | **uint8** | **int16** | **uint16** | **int32** | **uint32** | **int64** | **uint64** | **布尔型** | **fixdt(1,16,0)** | **fixdt(1,16,2^0,0)** | **<数据类型表达式>**
+### **Output data type** — yfit 输出的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-为 **yfit** 输出指定数据类型。该类型可以继承、直接指定或表示为数据类型对象，如 `Simulink.NumericType`。
+指定 **yfit** 输出的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
-当您选择 **Inherit: auto** 时，模块使用继承数据类型的规则。
+当您选择 `Inherit: auto` 时，模块使用继承数据类型的规则。
 
-有关数据类型的详细信息，请参阅控制信号的数据类型 (Simulink)。
+有关数据类型的详细信息，请参阅 Control Data Types of Signals (Simulink)。
 
-点击**显示数据类型助手**按钮  以显示**数据类型助手**，这有助于您设置数据类型属性。有关详细信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
+单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`OutDataTypeStr` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`"Inherit: auto"` | `"double"` | `"single"` | `"half"` | `"int8"` | `"uint8"` | `"int16"` | `"uint16"` | `"int32"` | `"uint32"` | `"int64"` | `"uint64"` | `"boolean"` | `"fixdt(1,16,0)"` | `"fixdt(1,16,2^0,0)"` | `"<data type expression>"` |
 | **默认值**：`"Inherit: auto"` |
 
-### **输出数据类型最小值** — 范围检查的 yfit 输出最小值 `[]` (默认) | 标量
+### **Output data type Minimum** — 用于范围检查的 yfit 输出最小值 `[]`（默认）| 标量
 
-指定 Simulink® 检查的 **yfit** 输出范围下限值。
+指定 Simulink® 检查的 **yfit** 输出范围的下限值。
 
-Simulink 使用最小值执行下列操作：
+Simulink 使用最小值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink)和启用仿真范围检查 (Simulink)）。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如软件在环 (SIL) 模式或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 对某些模块进行参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出数据类型最小值**参数不会对实际 **yfit** 信号进行饱和处理或截断。为此，请改用 Saturation (Simulink) 模块。
+**Output data type Minimum** 参数不会饱和或裁剪实际的 **yfit** 信号。如需执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`OutMin` |
-| **类型**：字符向量 |
-| **值**：`'[]'` | 标量 |
+| **类型**：character vector |
+| **值**：`'[]'` | scalar |
 | **默认值**：`'[]'` |
 
-### **输出数据类型最大值** — 范围检查的 yfit 输出最大值 `[]` (默认) | 标量
+### **Output data type Maximum** — 用于范围检查的 yfit 输出最大值 `[]`（默认）| 标量
 
-指定 Simulink 检查的 **yfit** 输出范围上限值。
+指定 Simulink 检查的 **yfit** 输出范围的上限值。
 
-Simulink 使用最大值执行下列操作：
+Simulink 使用最大值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink)和启用仿真范围检查 (Simulink)）。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 对某些模块进行参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 优化从模型生成的代码。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如 SIL 或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**输出数据类型最大值**参数不会对实际 **yfit** 信号进行饱和处理或截断。为此，请改用 Saturation (Simulink) 模块。
+**Output data type Maximum** 参数不会饱和或裁剪实际的 **yfit** 信号。如需执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`OutMax` |
-| **类型**：字符向量 |
-| **值**：`'[]'` | 标量 |
+| **类型**：character vector |
+| **值**：`'[]'` | scalar |
 | **默认值**：`'[]'` |
 
 ## 所属库
@@ -181,21 +181,21 @@ Statistics and Machine Learning Toolbox / Regression
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Boolean` | `double` | `fixed point` | `half` | `integer` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `否` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **Data Types** | `Boolean` | `double` | `fixed point` | `half` | `integer` | `single` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2021a 中推出**
+**在 R2021a 中引入**
 
 ## 描述
 
@@ -203,4 +203,4 @@ Statistics and Machine Learning Toolbox / Regression
 
 RegressionTree Predict 模块使用回归树对象（`RegressionTree` 或 `CompactRegressionTree`）预测响应。
 
-通过指定包含经过训练的回归对象的工作区变量的名称，将该对象导入模块中。输入端口 **x** 接收一个观测值（预测变量数据），输出端口 **yfit** 返回该观测值的预测响应。
+通过指定包含该对象的工作区变量名称，将训练好的回归对象导入模块。输入端口 **x** 接收一个观测值（预测变量数据），输出端口 **yfit** 返回该观测值的预测响应。

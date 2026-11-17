@@ -9,28 +9,28 @@ official_category: 'Electrical / Electrical Sources'
 documentation_page: 'dccurrentsource'
 documentation_source_path: 'ref/dccurrentsource.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # DC Current Source
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **+** — 正极端子 电气
+### **+** — 正极端子电气
 
-与电气源正极端子相关联的电气守恒端口。
+与源正极端子关联的电气守恒端口。
 
-### **-** — 负极端子 电气
+### **-** — 负极端子电气
 
-与电气源负极端子相关联的电气守恒端口。
+与源负极端子关联的电气守恒端口。
 
 ## 参数
 
-### **恒定电流** — 输出电流 `1 A` (默认) | 标量
+### **Constant current** — 输出电流 `1 A`（默认）| 标量
 
-源两端的电流。您可以指定正值，也可以指定负值。
+通过源的电流。您可以指定正值或负值。
 
 ## 所属库
 
@@ -38,22 +38,22 @@ Simscape / Foundation Library / Electrical / Electrical Sources
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2007a 中推出**
+**在 R2007a 中引入**
 
 ## 描述
 
-理想的恒定电流源
+理想恒流源
 
-DC Current Source 模块表示理想的电流源，无论该电流源两端的电压多大，它都能将通过的电流保持在指定值。
+DC Current Source 模块表示一个理想电流源，其足够强大，无论源两端的电压如何，都能维持通过它的指定电流。
 
-您可以使用**恒定电流**参数指定输出电流，可以是正值，也可以是负值。
+您可以使用 **Constant current** 参数指定输出电流，该参数可以为正值或负值。
 
-箭头指示电流的正方向。
+电流的正方向由箭头指示。

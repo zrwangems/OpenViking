@@ -9,73 +9,56 @@ official_category: ''
 documentation_page: 'soc-blockset-model-structure'
 documentation_source_path: 'ug/soc-blockset-model-structure.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # SoC Blockset Model Structure
 
-An SoC Blockset™ model consists of a top model that includes at least one of these reference models.
+一个 SoC Blockset™ 模型由一个顶层模型组成，该顶层模型包含至少一个以下参考模型。
 
-An SoC Blockset™ model consists of a top model that includes at least one of these reference
-models.
+一个 SoC Blockset™ 模型由一个顶层模型组成，该顶层模型包含至少一个以下参考模型。
 
-- An FPGA reference model represents the FPGA part of an SoC device. The top model
-  can include at most one FPGA reference model. For information on how to set up an
-  FPGA reference model, see User Logic on FPGA.
-- A processor reference model represents the processor part of an SoC device. The
-  top model can include one or more processor reference models. For information on how
-  to set up a processor reference model, see Software and Task Management on Processor.
+- 一个 FPGA 参考模型表示 SoC 器件的 FPGA 部分。顶层模型最多可以包含一个 FPGA 参考模型。有关如何设置 FPGA 参考模型的信息，请参阅 User Logic on FPGA。
+- 一个处理器参考模型表示 SoC 器件的处理器部分。顶层模型可以包含一个或多个处理器参考模型。有关如何设置处理器参考模型的信息，请参阅 Software and Task Management on Processor。
 
-The processor and the FPGA subsystems communicate through a Memory Channel,
-Register Channel or
-Interrupt Channel
-block.
+处理器和 FPGA 子系统通过 Memory Channel、Register Channel 或 Interrupt Channel 模块进行通信。
 
-In addition to FPGA and processor reference models, the top model can include additional
-SoC Blockset blocks, such as the blocks listed here, for modeling interfaces and test bench
-components.
+除了 FPGA 和处理器参考模型之外，顶层模型还可以包含其他 SoC Blockset 模块，例如此处列出的用于建模接口和测试平台组件的模块。
 
-- ADC
-  Interface, PWM
-  Interface, LED, Push
-  Button
-- IO Data
-  Sink, IO Data
-  Source, Stream Data Source
+- ADC Interface、PWM Interface、LED、Push Button
+- IO Data Sink、IO Data Source、Stream Data Source
 
-The following image shows an SoC Blockset model, with an FPGA reference model, a processor reference model,
-communicating over a memory channel.
+下图展示了一个 SoC Blockset 模型，其中包含一个 FPGA 参考模型、一个处理器参考模型，并通过内存通道进行通信。
 
-Block diagram of top model. The top model includes an FPGA model, a processor model, a memory channel connected to a memory controller, and a register channel. The processor connects to a testbench unit with a scope to display simulation output.
+顶层模型的框图。顶层模型包含一个 FPGA 模型、一个处理器模型、一个连接到内存控制器的内存通道，以及一个寄存器通道。处理器连接到一个带有示波器的测试平台单元，用于显示仿真输出。
 
-For an example of an SoC Blockset model, see Streaming Data from Hardware to Software.
+有关 SoC Blockset 模型的示例，请参阅 Streaming Data from Hardware to Software。
 
-SoC Blockset provides project templates for common SoC use-cases. Use them as a starting
-point for your design.
+SoC Blockset 为常见的 SoC 用例提供了项目模板。可将它们用作设计的起点。
 
-## See Also
+## 另请参阅
 
-### Topics
+### 主题
 
-- Use Template to Create SoC Model
+- 使用模板创建SoC模型
 - Create an SoC Project Application
-- Build Error When FPGA or Processor Model Not Detected
+- 未检测到FPGA或处理器模型时出现构建错误
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个对应于以下 MATLAB 命令的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB Command Window 中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择网站以获取翻译内容（如可用），并查看本地活动和优惠。根据您的位置，我们建议您选择：
 
 - (English)
 - (Deutsch)
@@ -84,11 +67,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -119,7 +102,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

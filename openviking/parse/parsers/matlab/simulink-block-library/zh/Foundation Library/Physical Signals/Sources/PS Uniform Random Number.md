@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PS Uniform Random Number'
-family: 'physical-signals'
+family: 'simscape'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b
@@ -18,9 +18,9 @@ chinese_source: worker-translation
 
 ### 输出
 
-### **Y** — 输出 physical signal，unitless physical signal
+### **Y** — 输出物理信号，无量纲物理信号
 
-输出 physical signal。
+输出物理信号。
 
 ## 参数
 
@@ -34,7 +34,7 @@ chinese_source: worker-translation
 
 ### **Seed** — 起始种子 `0`（默认）
 
-随机数生成器的起始种子。对于给定的种子，输出可重复。种子必须是 0 到 (2^32 – 1) 范围内的整数。
+随机数生成器的起始种子。对于给定的种子，输出是可重复的。种子必须是 0 到 (2^32 – 1) 范围内的整数。
 
 ### **Sample time** — 采样时间间隔 `1 s`（默认）
 
@@ -46,7 +46,7 @@ Simscape / Foundation Library / Physical Signals / Sources
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -56,11 +56,11 @@ Simscape / Foundation Library / Physical Signals / Sources
 
 **在 R2013a 中引入**
 
-### R2019a: 单位传播
+### R2019a：单位传播
 
 在 R2019a 之前，此模块不传播物理单位。
 
-如果您的模型包含不支持单位传播的旧版模块，请使用 Upgrade Advisor 将模块升级到最新版本。有关详细信息，请参阅 Upgrading Models with Legacy Physical Signal Blocks。
+如果您的模型包含没有单位传播的旧版模块，请使用 Upgrade Advisor 将模块升级到最新版本。有关详细信息，请参阅 Upgrading Models with Legacy Physical Signal Blocks。
 
 ## 描述
 
@@ -68,8 +68,8 @@ Simscape / Foundation Library / Physical Signals / Sources
 
 PS Random Number 模块在您指定的区间内生成均匀分布的随机数。要生成正态（高斯）分布的随机数，请使用 PS Random Number 模块。
 
-该模块的行为与 Simulink® Uniform Random Number 模块相同（除了它生成 physical signal 而不是 Simulink 信号）。
+模块行为与 Simulink® Uniform Random Number 模块相同（不同之处在于它生成物理信号而非 Simulink 信号）。
 
-您可以选择将初始时间偏移指定为 **Sample time** 参数的一部分。在这种情况下，模块输出 0，直到仿真时间达到 *`offset`* 值，此时随机序列开始。
+您可以选择将初始时间偏移指定为 **Sample time** 参数的一部分。在这种情况下，模块在仿真时间达到 *`offset`* 值之前输出 0，此时随机序列开始。
 
-使用相同种子和参数的 PS Uniform Random Number 模块生成可重复的序列。每次仿真开始时，种子都会重置为指定值。
+使用相同种子和参数的 PS Uniform Random Number 模块生成可重复的序列。每次仿真开始时，种子都会重置为指定的值。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Negative Supply Rail'
-family: 'sources'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,17 +16,17 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **-** — 负电压电气
+### **-** — 负电压电气端口
 
-与负电源轨的负电压关联的电气守恒端口。
+与负电源轨负电压关联的电气守恒端口。
 
 ## 参数
 
-### **恒定电压** — 恒定输出电压 `-1` `V`（默认）
+### **Constant voltage** — 恒定输出电压 `-1` `V`（默认值）
 
-输出端口处相对于 Electrical Reference 模块接地端口的电压。
+输出端口相对于 Electrical Reference 模块接地端口的电压。
 
 ## 所属库
 
@@ -48,7 +48,7 @@ R2025b 中未记录。
 
 理想负电源轨
 
-Negative Supply Rail 模块表示理想负电源轨。使用此模块代替 Simscape™ DC Voltage Source 模块，以定义相对于必须出现在每个模型中的 Simscape Electrical Reference 模块的输出电压。
+Negative Supply Rail 模块表示理想负电源轨。使用此模块代替 Simscape™ DC Voltage Source 模块，以定义相对于每个模型中必须出现的 Simscape Electrical Reference 模块的输出电压。
 
 **注意**
 

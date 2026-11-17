@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Variable-Displacement Pump (TL)'
-family: 'thermal-liquid'
+family: 'hydro'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b
@@ -18,285 +18,324 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **D** — 排量体积，cm^3/rev 物理信号
+### **D** — 排量，cm^3/rev 物理信号
 
-用于每转排出的流体体积的物理信号输入端口。平滑函数使正负输入值之间的过渡更平缓。
+用于每转排出的流体体积的物理信号输入端口。
+平滑函数可缓和正负输入值之间的过渡。
 
-### **EV** — 容积效率，无量纲物理信号
+### **EV** — 容积效率，无量纲 物理信号
 
-用于容积效率系数的物理信号输入端口。输入信号的上限为 **最大容积效率** 参数值，下限为 **最小容积效率** 参数值。
-
-#### 依赖关系
-
-要启用此端口，请将 **泄漏和摩擦参数化** 设置为 `Input signal - volumetric and mechanical efficiencies`。
-
-### **EM** — 机械效率，无量纲物理信号
-
-用于机械效率系数的物理信号输入端口。输入信号的上限为 **最大机械效率** 参数值，下限为 **最小机械效率** 参数值。
+用于容积效率系数的物理信号输入端口。
+输入信号的上限为 **Maximum volumetric
+efficiency** 参数值，下限为
+**Minimum volumetric efficiency** 参数
+值。
 
 #### 依赖关系
 
-要启用此端口，请将 **泄漏和摩擦参数化** 设置为 `Input signal - volumetric and mechanical efficiencies`。
+要启用此端口，请将 **Leakage and friction
+parameterization** 设置为 `Input signal -
+volumetric and mechanical efficiencies`。
+
+### **EM** — 机械效率，无量纲 物理信号
+
+用于机械效率系数的物理信号输入端口。
+输入信号的上限为 **Maximum mechanical
+efficiency** 参数值，下限为
+**Minimum mechanical efficiency** 参数
+值。
+
+#### 依赖关系
+
+要启用此端口，请将 **Leakage and friction
+parameterization** 设置为 `Input signal -
+volumetric and mechanical efficiencies`。
 
 ### **LV** — 容积损失，m^3/s 物理信号
 
-用于容积损失的物理信号输入端口，容积损失是泵入口之间的内部泄漏流量。
+用于容积损失的物理信号输入端口，容积损失即泵入口之间的内部泄漏流量。
 
 #### 依赖关系
 
-要启用此端口，请将 **泄漏和摩擦参数化** 设置为 `Input signal - volumetric and mechanical losses`。
+要启用此端口，请将 **Leakage and friction
+parameterization** 设置为 `Input signal -
+volumetric and mechanical losses`。
 
 ### **LM** — 机械损失，N\*m 物理信号
 
-用于机械损失的物理信号输入端口，机械损失是旋转泵轴上的摩擦力矩。
+用于机械损失的物理信号输入端口，机械损失即旋转泵轴上的摩擦扭矩。
 
 #### 依赖关系
 
-要启用此端口，请将 **泄漏和摩擦参数化** 设置为 `Input signal - volumetric and mechanical losses`。
-
+要启用此端口，请将 **Leakage and friction
+parameterization** 设置为 `Input signal -
+volumetric and mechanical losses`。
 ### 守恒
 
-### **A** — 泵入口热液体
+### **A** — 泵入口 热液体
 
 与泵入口关联的热液体守恒端口。
 
-### **B** — 泵出口热液体
+### **B** — 泵出口 热液体
 
 与泵出口关联的热液体守恒端口。
 
-### **C** — 泵壳体机械旋转
+### **C** — 泵壳体 机械旋转
 
 与泵壳体关联的机械旋转守恒端口。
 
-### **R** — 泵轴机械旋转
+### **R** — 泵轴 机械旋转
 
 与旋转泵轴关联的机械旋转守恒端口。
 
 ## 参数
 
-### **泄漏和摩擦参数化** — 泄漏流量和摩擦力矩的参数化 `Analytical` (默认) | `Tabulated data - volumetric and mechanical efficiencies` | `Tabulated data - volumetric and mechanical losses` | `Input signal - volumetric and mechanical efficiencies` | `Input signal - volumetric and mechanical losses`
+### **Leakage and friction parameterization** — 泄漏流量和摩擦扭矩的参数化方法 `Analytical`（默认）| `表格数据 - 体积和机械 efficiencies` | `表格数据 - 体积和机械 losses` | `输入信号 - 体积和机械 efficiencies` | `输入信号 - 体积和机械 losses`
 
-计算由内部泄漏和摩擦引起的流量损失和扭矩损失的方法。如果模块参数通常可从组件数据表中获得，请使用 `Analytical`。当您选择 `Tabulated data - volumetric and mechanical efficiencies` 或 `Tabulated data - volumetric and mechanical losses` 时，模块使用查找表将压力增益、角速度和排量映射到组件效率或损失。
+用于计算因内部泄漏和摩擦导致的流量和扭矩损失的方法。如果模块参数通常可从组件数据表中获得，请使用 `Analytical`。当您选择 `表格数据 - 体积和机械
+efficiencies` 或 `Tabulated data - volumetric
+and mechanical losses` 时，模块使用查找表将压力增益、角速度和排量映射到组件效率或损失。
 
-当您选择 `Input signal - volumetric and mechanical efficiencies` 或 `Input signal - volumetric and mechanical losses` 时，模块执行的泄漏流量和摩擦力矩计算分别与 `Tabulated data - volumetric and mechanical efficiencies` 或 `Tabulated data - volumetric and mechanical losses` 设置相同。当您选择 `Input signal - volumetric and mechanical efficiencies` 时，模块启用 **EV** 和 **EM** 端口。您可以使用这些端口指定容积效率和机械效率。当您选择 `Input signal - volumetric and mechanical losses` 时，模块启用 **LV** 和 **LM** 端口。您可以使用这些端口指定容积损失和机械损失。
+当您选择 `输入信号 - 体积和机械
+efficiencies` 或 `Input signal - volumetric and
+mechanical losses` 时，模块执行的泄漏流量和摩擦扭矩计算分别与 `Tabulated
+data - volumetric and mechanical efficiencies` 或
+`表格数据 - 体积和机械
+losses` 设置相同。当您选择
+`输入信号 - 体积和机械
+efficiencies` 时，模块启用
+**EV** 和 **EM** 端口。您可以使用这些
+端口指定容积效率和机械效率。当您选择
+`输入信号 - 体积和机械
+losses` 时，模块启用 **LV** 和
+**LM** 端口。您可以使用这些端口指定
+容积损失和机械损失。
 
-### **标称排量** — 用于指定容积效率的排量 `30` `cm^3/rev` (默认) | positive scalar
+### **Nominal displacement** — 用于指定容积效率的排量 `30` `cm^3/rev`（默认）| 正标量
 
-给定容积效率下的流体排量。这些值通常可在制造商数据表中的标准工况下获得。模块使用此参数计算泄漏流量和摩擦力矩。
+给定容积效率下的流体排量。这些值通常可在制造商数据表中的标准工况下获得。模块使用此参数计算泄漏流量和摩擦扭矩。
 
-### **标称轴角速度** — 给定容积效率下的轴角速度 `1800` `rpm` (默认) | scalar
+### **Nominal shaft angular velocity** — 给定容积效率下的轴角速度 `1800` `rpm`（默认）| 标量
 
-与给定容积效率对应的旋转轴角速度。制造商数据表中的标准工况通常会列出这些值。模块使用此参数计算泄漏流量和摩擦力矩。
+与给定容积效率对应的旋转轴角速度。制造商数据表中的标准工况通常会列出这些值。模块使用此参数计算泄漏流量和摩擦扭矩。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Analytical`。
+要启用此参数，请将 **Leakage and friction
+parameterization** 设置为
+`Analytical`。
 
-### **标称压力增益** — 对应容积效率的压力增益 `10` `MPa` (默认) | scalar
+### **Nominal pressure gain** — 对应容积效率的压力增益 `10` `MPa`（默认）| 标量
 
 与给定容积效率对应的压力增益。制造商数据表中的标准工况通常会列出这些值。模块使用此参数计算内部泄漏流量。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Analytical`。
+要启用此参数，请将 **Leakage and friction
+parameterization** 设置为
+`Analytical`。
 
-### **标称动力黏度** — 用于指定容积效率的动力黏度 `0.9` `cP` (默认) | scalar
+### **Nominal dynamic viscosity** — 用于指定容积效率的动力粘度 `0.9` `cP`（默认）| 标量
 
-给定容积效率下液压流体的动力黏度。这些值通常可在制造商数据表中的标准工况下获得。模块使用此参数计算内部泄漏流量。
-
-#### 依赖关系
-
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Analytical`。
-
-### **标称条件下的容积效率** — 指定标称条件下的容积效率 `0.92` (默认) | scalar in the range (0,1)
-
-给定条件下的容积效率。模块将容积效率定义为实际体积流量与理想体积流量之比。制造商数据表中的标准工况通常会列出这些值。模块使用此参数计算内部泄漏流量。
+给定容积效率下液压流体的动力粘度。这些值通常可在制造商数据表中的标准工况下获得。模块使用此参数计算内部泄漏流量。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Analytical`。
+要启用此参数，请将 **Leakage and friction
+parameterization** 设置为
+`Analytical`。
 
-### **标称条件下的机械效率** — 理想机械功率与实际机械功率之比 `0.88` (默认) | positive scalar
+### **Volumetric efficiency at nominal conditions** — 指定标称工况下的容积效率 `0.92`（默认）| (0,1) 范围内的标量
 
-标称条件下理想机械功率与实际机械功率之比。
-
-#### 依赖关系
-
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Analytical`。
-
-### **空载扭矩** — 引起轴旋转所需的最小扭矩 `0` `N*m` (默认) | scalar
-
-克服密封摩擦并使机械轴旋转的扭矩。此扭矩是总摩擦力矩中与负载无关的分量。
+给定工况下的容积效率。模块将容积效率定义为实际体积流量与理想体积流量之比。制造商数据表中的标准工况通常会列出这些值。模块使用此参数计算内部泄漏流量。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Analytical`。
+要启用此参数，请将 **Leakage and friction
+parameterization** 设置为
+`Analytical`。
 
-### **压力增益向量, dp** — 给定容积效率和机械效率或损失对应的压力增益 `[.1, 1, 2]` `MPa` (默认) | vector
+### **Mechanical efficiency at nominal conditions** — 理想机械功率与实际机械功率之比 `0.88`（默认）| 正标量
 
-对应表格效率或损失数据的压力增益。该向量必须至少包含两个元素，且严格递增。
-
-指定单个八分圆 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式以及生成的八分圆，请参阅运行模式。
-
-#### 依赖关系
-
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Tabulated data - volumetric and mechanical efficiencies` 或 `Tabulated data - volumetric and mechanical losses`。
-
-### **轴角速度向量, w** — 用于指定容积效率和机械效率或损失的角速度 `[250, 500, 1000, 2000, 3000, 4000]` `rpm` (默认) | vector
-
-对应表格效率或损失数据的轴角速度。该向量必须至少包含两个元素，且严格递增。
-
-指定单个八分圆 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式以及生成的八分圆，请参阅运行模式。
+标称工况下理想机械功率与实际机械功率之比。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Tabulated data - volumetric and mechanical efficiencies` 或 `Tabulated data - volumetric and mechanical losses`。
+要启用此参数，请将 **Leakage and friction
+parameterization** 设置为
+`Analytical`。
 
-### **排量向量, D** — 用于指定容积效率和机械效率或损失的排量 `[-30, -19, 19, 30]` `cm^3/rev` (默认)
+### **No-load torque** — 引起轴旋转所需的最小扭矩 `0` `N*m`（默认）| 标量
+
+克服密封摩擦并引起机械轴旋转所需的扭矩。此扭矩是总摩擦扭矩中与负载无关的分量。
+
+#### 依赖关系
+
+要启用此参数，请将 **Leakage and friction
+parameterization** 设置为
+`Analytical`。
+
+### **Pressure gain vector, dp** — 给定容积效率和机械效率或损失下的压力增益 `[.1, 1, 2]` `MPa`（默认）| 向量
+
+与相应表格效率或损失数据对应的压力增益。该向量必须至少包含两个严格递增顺序的元素。
+
+指定单个八分仪 (*ɷ*,
+*Δp*, *D*) 的数据。有关参数规格对应的运行模式以及由此产生的八分仪，请参阅 Operating Modes。
+
+#### 依赖关系
+
+要启用此参数，请将 **Leakage and friction
+parameterization** 设置为 `Tabulated data -
+volumetric and mechanical efficiencies` 或
+`表格数据 - 体积和机械
+losses`。
+
+### **Shaft angular velocity vector, w** — 用于指定容积效率和机械效率或损失的角速度 `[250, 500, 1000, 2000, 3000, 4000]` `rpm`（默认）| 向量
+
+用于对应表格效率或损失数据的轴角速度。该向量必须至少包含两个元素，且严格递增。
+
+指定单个八分仪 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式及所得八分仪，请参阅 Operating Modes。
+
+#### 依赖关系
+
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `表格数据 - 体积和机械 efficiencies` 或 `表格数据 - 体积和机械 losses`。
+
+### **Displacement vector, D** — 用于指定容积效率和机械效率或损失的排量 `[-30, -19, 19, 30]` `cm^3/rev`（默认）
 
 用于指定效率或损失表格数据的排量。该向量必须至少包含两个元素，且严格递增。
 
-指定单个八分圆 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式以及生成的八分圆，请参阅运行模式。
+指定单个八分仪 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式及所得八分仪，请参阅 Operating Modes。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Tabulated data - volumetric and mechanical efficiencies` 或 `Tabulated data - volumetric and mechanical losses`。
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `表格数据 - 体积和机械 efficiencies` 或 `表格数据 - 体积和机械 losses`。
 
-### **容积效率表, e\_v(dp,w,D)** — 给定压力增益、角速度和排量下的容积效率 `repmat([.816, .908, .954, .977, .981, .984; .325, .663, .831, .916, .925, .946; .137, .568, .78, .892, .893, .91], 1, 1, 4)` (默认) | matrix
+### **Volumetric efficiency table, e\_v(dp,w,D)** — 给定压力增益、角速度和排量下的容积效率 `repmat([.816, .908, .954, .977, .981, .984; .325, .663, .831, .916, .925, .946; .137, .568, .78, .892, .893, .91], 1, 1, 4)`（默认）| 矩阵
 
-指定流体压力增益、轴角速度和排量下的容积效率。效率必须在 `0`–`1` 范围内。*M*、*N* 和 *L* 是指定查找表向量的大小：
+在指定流体压力增益、轴角速度和排量下的容积效率。效率必须在 `0`–`1` 范围内。*M*、*N* 和 *L* 是指定查找表向量的大小：
 
-- *M* 是 **压力增益向量, dp** 参数中的向量元素数。
-- *N* 是 **轴角速度向量, w** 参数中的向量元素数。
-- *L* 是 **排量向量, D** 参数中的向量元素数。
+- *M* 是 **Pressure gain vector, dp** 参数中向量元素的数量。
+- *N* 是 **Shaft angular velocity vector, w** 参数中向量元素的数量。
+- *L* 是 **Displacement vector, D** 参数中向量元素的数量。
 
-指定单个八分圆 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式以及生成的八分圆，请参阅运行模式。
+指定单个八分仪 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式及所得八分仪，请参阅 Operating Modes。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Tabulated data - volumetric and mechanical efficiencies`。
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `表格数据 - 体积和机械 efficiencies`。
 
-### **机械效率表, e\_m(dp,w,D)** — 给定压力增益、角速度和排量下的机械效率 `repmat([.996, .996, .996, .996, .996, .996; .988, .989, .989, .989, .989, .99; .981, .981, .982, .982, .983, .984], 1, 1, 4)` (默认) | matrix
+### **Mechanical efficiency table, e\_m(dp,w,D)** — 给定压力增益、角速度和排量下的机械效率 `repmat([.996, .996, .996, .996, .996, .996; .988, .989, .989, .989, .989, .99; .981, .981, .982, .982, .983, .984], 1, 1, 4)`（默认）| 矩阵
 
 与指定流体压力增益、轴角速度和排量对应的机械效率。效率必须在 `0`–`1` 范围内。*M*、*N* 和 *L* 是指定查找表向量的大小：
 
-- *M* 是 **压力增益向量, dp** 参数中的向量元素数。
-- *N* 是 **轴角速度向量, w** 参数中的向量元素数。
-- *L* 是 **排量向量, D** 参数中的向量元素数。
+- *M* 是 **Pressure gain vector, dp** 参数中向量元素的数量。
+- *N* 是 **Shaft angular velocity vector, w** 参数中向量元素的数量。
+- *L* 是 **Displacement vector, D** 参数中向量元素的数量。
 
-指定单个八分圆 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式以及生成的八分圆，请参阅运行模式。
-
-#### 依赖关系
-
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Tabulated data - volumetric and mechanical efficiencies`。
-
-### **容积损失表, q\_loss(dp,w,D)** — 对应压力增益、角速度和位移的内部泄漏流量 `repmat([.0282, .0253, .0241, .0235, .0291, .0325; .2596, .1271, .1017, .0917, .1216, .1142; .7874, .1901, .141, .1211, .1797, .1978] * 1e-3, 1, 1, 4)` `m^3/s` (默认) | matrix
-
-指定流体压力增益、轴角速度和排量下的容积损失。模块将容积损失定义为端口 **A** 和端口 **B** 之间的内部泄漏体积流量。*M*、*N* 和 *L* 是指定查找表向量的大小：
-
-- *M* 是 **压力增益向量, dp** 参数中的向量元素数。
-- *N* 是 **轴角速度向量, w** 参数中的向量元素数。
-- *L* 是 **排量向量, D** 参数中的向量元素数。
-
-指定单个八分圆 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式以及生成的八分圆，请参阅运行模式。
+指定单个八分仪 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式及所得八分仪，请参阅 Operating Modes。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Tabulated data - volumetric and mechanical losses`。
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `表格数据 - 体积和机械 efficiencies`。
 
-### **机械损失表, torque\_loss(dp,w,D)** — 对应压力增益、角速度和位移的摩擦力矩 `repmat([.002, .002, .002, .002, .002, .002; .06, .055, .055, .055, .055, .05; .19, .19, .18, .18, .17, .16], 1, 1, 4)` `N*m` (默认) | matrix
+### **Volumetric loss table, q\_loss(dp,w,D)** — 对应压力增益、角速度和排量的内部泄漏流量 `repmat([.0282, .0253, .0241, .0235, .0291, .0325; .2596, .1271, .1017, .0917, .1216, .1142; .7874, .1901, .141, .1211, .1797, .1978] * 1e-3, 1, 1, 4)` `m^3/s`（默认）| 矩阵
 
-给定压力增益、轴角速度和排量下的机械损失。模块将机械损失定义为密封件和内部组件引起的摩擦力矩。*M*、*N* 和 *L* 是指定查找表向量的大小：
+在指定流体压力增益、轴角速度和排量下的容积损失。该模块将容积损失定义为端口 **A** 和端口 **B** 之间的内部泄漏体积流量。*M*、*N* 和 *L* 是指定查找表向量的大小：
 
-- *M* 是 **压力增益向量, dp** 参数中的向量元素数。
-- *N* 是 **轴角速度向量, w** 参数中的向量元素数。
-- *L* 是 **排量向量, D** 参数中的向量元素数。
+- *M* 是 **Pressure gain vector, dp** 参数中向量元素的数量。
+- *N* 是 **Shaft angular velocity vector, w** 参数中向量元素的数量。
+- *L* 是 **Displacement vector, D** 参数中向量元素的数量。
 
-指定单个八分圆 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式以及生成的八分圆，请参阅运行模式。机械损失的表格数据必须遵循图中的约定：正角速度对应正值，负角速度对应负值。
-
-#### 依赖关系
-
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Tabulated data - volumetric and mechanical losses`。
-
-### **最小容积效率** — 容积效率输入信号的下饱和边界 `1e-3` (默认) | scalar in the range (0,1)
-
-容积效率允许的最小值。来自物理信号端口 **EV** 的输入会将低于此值的输入饱和。
+指定单个八分仪 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式及所得八分仪，请参阅 Operating Modes。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Input signal - volumetric and mechanical efficiencies`。
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `表格数据 - 体积和机械 losses`。
 
-### **最大容积效率** — 容积效率输入信号的上饱和边界 `1` (默认) | scalar in the range (0,1)
+### **Mechanical loss table, torque\_loss(dp,w,D)** — 对应压力增益、角速度和排量的摩擦力矩 `repmat([.002, .002, .002, .002, .002, .002; .06, .055, .055, .055, .055, .05; .19, .19, .18, .18, .17, .16], 1, 1, 4)` `N*m`（默认）| 矩阵
 
-容积效率允许的最大值。来自物理信号端口 **EV** 的输入会将高于此值的输入饱和。
+在给定压力增益、轴角速度和排量下的机械损失。该模块将机械损失定义为由于密封件和内部组件产生的摩擦力矩。*M*、*N* 和 *L* 是指定查找表向量的大小：
 
-#### 依赖关系
+- *M* 是 **Pressure gain vector, dp** 参数中向量元素的数量。
+- *N* 是 **Shaft angular velocity vector, w** 参数中向量元素的数量。
+- *L* 是 **Displacement vector, D** 参数中向量元素的数量。
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Input signal - volumetric and mechanical efficiencies`。
-
-### **最小机械效率** — 容积效率输入信号的下饱和边界 `1e-3` (默认) | scalar in the range (0,1)
-
-机械效率允许的最小值。来自物理信号端口 **EM** 的输入会将低于此值的输入饱和。
+指定单个八分仪 (*ɷ*, *Δp*, *D*) 的数据。有关参数规格对应的运行模式及所得八分仪，请参阅 Operating Modes。机械损失的表格数据必须遵循图中的约定，即在正角速度下为正值，在负角速度下为负值。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Input signal - volumetric and mechanical efficiencies`。
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `表格数据 - 体积和机械 losses`。
 
-### **最大机械效率** — 容积效率输入信号的上饱和边界 `1` (默认) | scalar in the range (0,1)
+### **Minimum volumetric efficiency** — 容积效率输入信号的下饱和边界 `1e-3`（默认）| 范围 (0,1) 内的标量
 
-机械效率允许的最大值。来自物理信号端口 **EM** 的输入会将高于此值的输入饱和。
-
-#### 依赖关系
-
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Input signal - volumetric and mechanical efficiencies`。
-
-### **马达-泵转换的压力增益阈值** — 启动电动机与泵模式之间平滑过渡的压力增益 `1e-3` `MPa` (默认) | scalar
-
-从入口到出口的压力增益，低于该值时模块开始在马达和泵模式之间过渡。模块使用双曲正切函数平滑泄漏流量和摩擦力矩。
+容积效率允许的最小值。来自物理信号端口 **EV** 的输入将在低于此值时饱和。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Input signal -
-volumetric and mechanical efficiencies` 或
-`Input signal - volumetric and mechanical
-losses`。
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `输入信号 - 体积和机械 efficiencies`。
 
-### **电机-泵转换的角速度阈值** — 启动泵和电机模式之间平滑转换的角速度 `100` `rpm` (默认) | 标量
+### **Maximum volumetric efficiency** — 容积效率输入信号的上饱和边界 `1`（默认）| 范围 (0,1) 内的标量
 
-轴角速度低于该值时，模块开始在马达和泵模式之间转换。模块使用双曲正切函数来平滑泄漏流量和摩擦扭矩。
+容积效率允许的最大值。来自物理信号端口 **EV** 的输入将在高于此值时饱和。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Input signal -
-volumetric and mechanical efficiencies` 或
-`Input signal - volumetric and mechanical
-losses`。
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `输入信号 - 体积和机械 efficiencies`。
 
-### **端口 A 和 B 处的横截面积** — 组件入口和出口处的流通面积 `0.01` `m^2` (默认) | 正标量
+### **Minimum mechanical efficiency** — 容积效率输入信号的下饱和边界 `1e-3`（默认）| 范围 (0,1) 内的标量
 
-组件入口和出口处的流通面积。假定这些面积相等。
-
-### **检查是否超出所提供的表格数据范围运行** — 用于在表格数据范围之外的运行条件的仿真警告模式 `None` (默认) | `Warning` | `Error`
-
-用于在表格数据范围之外的运行条件的仿真警告模式。如果选择 `Warning`，当流体压力增益或轴角速度超出指定的表格数据时，模块会生成警告。该警告不会导致仿真停止。如果选择 `Error`，则在超出表格数据范围的情况下仿真将停止。
+机械效率允许的最小值。来自物理信号端口 **EM** 的输入将在低于此值时饱和。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为：
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `输入信号 - 体积和机械 efficiencies`。
 
-- `Tabulated data - volumetric and mechanical
-  efficiencies`
-- `Tabulated data - volumetric and mechanical
-  losses`
+### **Maximum mechanical efficiency** — 容积效率输入信号的上饱和边界 `1`（默认）| 范围 (0,1) 内的标量
 
-### **检查是否在泵模式之外运行** — 用于在泵模式之外的运行条件的仿真警告模式 `None` (默认) | `Warning` | `Error`
-
-用于在泵模式之外的运行条件的仿真警告模式。当您将此参数设置为 `Warning` 时，如果泵转换到电机模式，模块会生成警告。该警告不会导致仿真停止。如果选择 `Error`，则在泵模式之外的情况下仿真将停止。
+机械效率允许的最大值。来自物理信号端口 **EM** 的输入将在高于此值时饱和。
 
 #### 依赖关系
 
-要启用此参数，请将 **泄漏和摩擦参数化** 设置为 `Input signal -
-volumetric and mechanical losses`。
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `输入信号 - 体积和机械 efficiencies`。
+
+### **Pressure gain threshold for motor-pump transition** — Pressure gain at which to initiate smooth transition between motor and pump modes `1e-3` `MPa`（默认）| 标量
+
+从入口到出口的压力增益，低于该值时模块开始在马达和泵模式之间过渡。模块使用双曲正切函数来平滑泄漏流量和摩擦力矩。
+
+#### 依赖关系
+
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `输入信号 - 体积和机械 efficiencies` 或 `输入信号 - 体积和机械 losses`。
+
+### **Angular velocity threshold for motor-pump transition** — Angular velocity at which to initiate smooth transition between pump and motor modes `100` `rpm`（默认）| 标量
+
+轴角速度，低于该值时模块开始在泵和马模式之间过渡。模块使用双曲正切函数来平滑泄漏流量和摩擦力矩。
+
+#### 依赖关系
+
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `输入信号 - 体积和机械 efficiencies` 或 `输入信号 - 体积和机械 losses`。
+
+### **Cross-sectional area at ports A and B** — Flow area at component inlet and outlet `0.01` `m^2`（默认）| 正标量
+
+组件入口和出口处的流通面积。假设各面积相等。
+
+### **Check if operating beyond the range of supplied tabulated data** — Simulation warning mode for operating conditions outside range of tabulated data `None`（默认）| `Warning` | `Error`
+
+工作条件超出表格数据范围时的仿真警告模式。如果选择 `Warning`，当流体压力增益或轴角速度超出指定的表格数据范围时，模块会生成警告。该警告不会导致仿真停止。如果选择 `Error`，当条件超出表格数据范围时，仿真将停止。
+
+#### 依赖关系
+
+要启用此参数，请将 **Leakage and friction parameterization** 设置为：
+
+- `表格数据 - 体积和机械 efficiencies`
+- `表格数据 - 体积和机械 losses`
+
+### **Check if operating outside of pump mode** — Simulation warning mode for operating conditions outside pump mode `None`（默认）| `Warning` | `Error`
+
+工作条件超出泵模式时的仿真警告模式。当将此参数设置为 `Warning` 时，如果泵过渡到马达模式，模块会生成警告。该警告不会导致仿真停止。如果选择 `Error`，当条件超出泵模式时，仿真将停止。
+
+#### 依赖关系
+
+要启用此参数，请将 **Leakage and friction parameterization** 设置为 `输入信号 - 体积和机械 losses`。
 
 ## 所属库
 
@@ -304,7 +343,7 @@ Simscape / Fluids / Thermal Liquid / Pumps & Motors
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -312,55 +351,55 @@ Simscape / Fluids / Thermal Liquid / Pumps & Motors
 
 ## 版本历史
 
-**R2017b 中引入**
+**在 R2017b 中引入**
 
-### R2024a：检查模块是否在计算数据范围之外运行
+### R2024a: 检查模块是否在计算数据范围之外运行
 
-**检查是否超出所提供的表格数据的八分区运行** 参数已重命名为 **检查是否超出所提供的表格数据范围运行**。您可以启用 **检查是否超出所提供的表格数据范围运行** 参数来检查模块是否在模块参数指定的数据范围之外运行，即在模块已扩展数据的区域中运行。
+**Check if operating beyond the octants of supplied tabulated data** 参数已重命名为 **Check if operating beyond the range of supplied tabulated data**。您可以启用 **Check if operating beyond the range of supplied tabulated data** 参数来检查模块是否在模块参数指定的数据范围之外运行，即在模块已扩展数据的区域中运行。
 
 ## 描述
 
-可变排量双向热液体泵
+Variable-displacement bidirectional thermal liquid pump
 
-Variable-Displacement Pump 模块表示一种从机械旋转网络提取功率并将其传递到热液体网络的设备。泵排量在仿真期间根据端口 **D** 处的物理输入信号变化。
+Variable-Displacement Pump 模块表示一种从机械旋转网络提取功率并将其传递给热液体网络的设备。泵的排量在仿真过程中根据端口 **D** 处的物理输入信号而变化。
 
-端口 **A** 和 **B** 表示泵入口。端口 **R** 和 **C** 表示驱动轴和壳体。在正常运行期间，如果端口 **R** 相对于端口 **C** 的角速度为正，则从端口 **A** 到端口 **B** 的压力增益为正。
+端口 **A** 和 **B** 表示泵的入口。端口 **R** 和 **C** 表示驱动轴和壳体。在正常运行期间，如果端口 **R** 相对于端口 **C** 的角速度为正，则从端口 **A** 到端口 **B** 的压力增益为正。
 
-### 运行模式
+### 工作模式
 
-该模块有四种运行模式，如下图所示。
+该模块有四种工作模式，如下图所示。
 
-工作模式取决于从端口 **A** 到端口 **B** 的压力增益，*Δp* = *p*B – *p*A；角速度，*ω* = *ω*R – *ω*C；以及端口 **D** 处的流体体积排量。上图将这些模式映射到 *Δp*-*ω*-*D* 图的八分区：
+工作模式取决于从端口 **A** 到端口 **B** 的压力增益，*Δp = p*B – *p*A；角速度，*ω = ω*R – *ω*C；以及端口 **D** 处的流体体积排量。上图将这些模式映射到 *Δp*-*ω*-*D* 图的八个象限：
 
-- 标记为 **1** 的象限表示正向泵模式。在此模式下，正的轴角速度导致从端口 **A** 到端口 **B** 的压力升高以及从端口 **A** 到端口 **B** 的流量。
-- 标记为 **2** 的象限表示反向电机模式。在此模式下，从端口 **B** 到端口 **A** 的流量导致从 **B** 到 **A** 的压力降低以及负的轴角速度。
-- 标记为 **3** 的象限表示反向泵模式。在此模式下，负的轴角速度导致从端口 **B** 到端口 **A** 的压力升高以及从端口 **B** 到端口 **A** 的流量。
-- 标记为 **4** 的象限表示正向电机模式。在此模式下，从端口 **A** 到端口 **B** 的流量导致从 **A** 到 **B** 的压力降低以及正的轴角速度。
-- 标记为 **5** 的象限表示反向电机模式。在此模式下，从端口 **B** 到端口 **A** 的流量导致从 **B** 到 **A** 的压力降低以及正的轴角速度。
-- 标记为 **6** 的象限表示正向泵模式。在此模式下，负的轴角速度导致从端口 **A** 到端口 **B** 的压力升高以及从端口 **A** 到端口 **B** 的流量。
-- 标记为 **7** 的象限表示正向电机模式。在此模式下，从端口 **A** 到端口 **B** 的流量导致从 **A** 到 **B** 的压力降低以及负的轴角速度。
-- 标记为 **8** 的象限表示反向泵模式。在此模式下，正的轴角速度导致从端口 **B** 到端口 **A** 的压力升高以及从端口 **B** 到端口 **A** 的流量。
+- 标记为 **1** 的象限表示正向泵模式。在此模式下，正轴角速度导致从端口 **A** 到端口 **B** 的压力升高，以及从端口 **A** 到端口 **B** 的流动
+- 标记为 **2** 的象限表示反向马达模式。在此模式下，从端口 **B** 到端口 **A** 的流动导致从 **B** 到 **A** 的压力降低以及负轴角速度。
+- 标记为 **3** 的象限表示反向泵模式。在此模式下，负轴角速度导致从端口 **B** 到端口 **A** 的压力升高，以及从端口 **B** 到端口 **A** 的流动
+- 标记为 **4** 的象限表示正向马达模式。在此模式下，从端口 **A** 到端口 **B** 的流动导致从 **A** 到 **B** 的压力降低以及正轴角速度。
+- 标记为 **5** 的象限表示反向马达模式。在此模式下，从端口 **B** 到端口 **A** 的流动导致从 **B** 到 **A** 的压力降低以及正轴角速度。
+- 标记为 **6** 的象限表示正向泵模式。在此模式下，负轴角速度导致从端口 **A** 到端口 **B** 的压力升高，以及从端口 **A** 到端口 **B** 的流动
+- 标记为 **7** 的象限表示正向马达模式。在此模式下，从端口 **A** 到端口 **B** 的流动导致从 **A** 到 **B** 的压力降低以及负轴角速度。
+- 标记为 **8** 的象限表示反向泵模式。在此模式下，正轴角速度导致从端口 **B** 到端口 **A** 的压力升高，以及从端口 **B** 到端口 **A** 的流动
 
-与系统响应时间相比，泵的响应时间可忽略不计。泵几乎瞬时达到稳态，并被视为准稳态组件。
+与系统响应时间相比，泵的响应时间可以忽略不计。泵几乎瞬时达到稳态，并被视为准稳态组件。
 
 ### 能量平衡
 
-该模块将泵所做的机械功与能量交换相关联。控制能量平衡方程为：
+模块将泵所做的机械功与能量交换相关联。控制能量平衡方程为：
 
 ϕA+ϕB+Phydro=0,
 
 其中：
 
 - *Φ*A 和 *Φ*B 分别是端口 **A** 和 **B** 处的能量流率。
-- *P*hydro 是泵液压功率，它是泵端口之间压力差的函数：Phydro=Δpm˙ρ。
+- *P*hydro 是泵的液压功率，它是泵端口之间压力差的函数：Phydro=Δpm˙ρ。
 
-该模块因扭矩 *τ* 和角速度 *ω* 产生机械功率：
+模块由于扭矩 *τ* 和角速度 *ω* 产生机械功率：
 
-Pmech=τω.
+Pmech=τω。
 
-### 流量和驱动扭矩
+### 流量和驱动力矩
 
-泵处生成的质量流量为
+泵产生的质量流量为
 
 m˙=m˙Ideal−m˙Leak,
 
@@ -370,23 +409,23 @@ m˙=m˙Ideal−m˙Leak,
 - m˙Ideal 是理想质量流量。
 - m˙Leak 是内部泄漏质量流量。
 
-为泵提供动力所需的驱动扭矩为
+为泵提供动力所需的驱动力矩为
 
 τ=τIdeal+τFriction,
 
 其中：
 
-- *τ* 是实际驱动扭矩。
-- *τ*Ideal 是理想驱动扭矩。
-- *τ*Friction 是摩擦扭矩。
+- *τ* 是实际驱动力矩。
+- *τ*Ideal 是理想驱动力矩。
+- *τ*Friction 是摩擦力矩。
 
-**理想流量和理想扭矩**
+**理想流量和理想力矩**
 
 理想质量流量为
 
 m˙Ideal=ρDω,
 
-理想所需扭矩为
+理想所需力矩为
 
 τIdeal=DΔp,
 
@@ -395,123 +434,123 @@ m˙Ideal=ρDω,
 - *ρ* 是热液体端口 **A** 和 **B** 处流体密度的平均值。
 - *ω* 是轴角速度。
 - *Δp* 是从入口到出口的压力增益。
-- *D* 是在物理信号端口 **D** 处指定的 **排量**。
+- *D* 是在物理信号端口 **D** 处指定的 **Displacement**。
 
-### 泄漏和摩擦参数化
+### 泄漏与摩擦参数化
 
-您可以通过解析方式、使用表格效率或损失，或使用输入效率或输入损失来参数化泄漏和摩擦。
+您可以通过使用表格化的效率或损失，或者通过使用输入效率或输入损失，以解析方式对泄漏与摩擦进行参数化。
 
-**解析**
+**解析方式**
 
-当您将 **泄漏和摩擦参数化** 参数设置为 `Analytical` 时，泄漏流量为
+当您将 **Leakage and Friction Parameterization** 参数设置为 `Analytical` 时，泄漏流量为
 
-m˙Leak=KHPρAvgΔpμAvg,
+m˙Leak=KHPρAvgΔpμAvg，
 
-摩擦扭矩为
+摩擦力矩为
 
-τFriction=(τ0+KTP|Δp||D|DNomtanh4ω(5e−5)ωNom),
+τFriction=(τ0+KTP|Δp||D|DNomtanh4ω(5e−5)ωNom)，
 
 其中：
 
-- *K*HP 是层流管道流的 Hagen-Poiseuille 系数。该模块根据指定的标称参数计算此系数。
-- *μ* 是流体的动力粘度，它是各端口值的平均值。
-- *k* 是标称排量下的摩擦扭矩与压力增益系数，该模块根据 **标称条件下的机械效率** 参数 *ηm,nom* 确定它：
+- *K*HP 是层流管道流的 Hagen-Poiseuille 系数。该模块根据指定的标称参数计算该系数。
+- *μ* 是流体的动力粘度，取端口处数值的平均值。
+- *k* 是标称排量下的摩擦力矩与压力增益系数，该模块根据 **Mechanical efficiency at nominal conditions** 参数 *ηm,nom* 确定：
 
-  k=τfr,nom−τ0Δpnom.
+  k=τfr,nom−τ0Δpnom。
 
-  *τfr,nom* 是标称条件下的摩擦扭矩：
+  *τfr,nom* 是标称条件下的摩擦力矩：
 
-  τfr,nom=(1−ηm,nomηm,nom)DnomΔpnom.
-- *Δp*Nom 是 **标称压力增益** 参数的值。此值是指定标称容积效率时的压力增益。
-- *D*Nom 是 **标称排量** 参数的值。
-- *τ*0 是 **空载扭矩** 参数的值。
-- *ω*Nom 是 **标称轴角速度** 参数的值。
+  τfr,nom=(1−ηm,nomηm,nom)DnomΔpnom。
+- *Δp*Nom 是 **Nominal pressure gain** 参数的值。该值是指定标称容积效率时的压力增益。
+- *D*Nom 是 **Nominal Displacement** 参数的值。
+- *τ*0 是 **No-load torque** 参数的值。
+- *ω*Nom 是 **Nominal shaft angular velocity** 参数的值。
 
 该模块根据标称流体和组件参数确定 Hagen-Poiseuille 系数
 
-KHP=DNomωNomμNom(1−ηv,Nom)ΔpNom,
+KHP=DNomωNomμNom(1−ηv,Nom)ΔpNom，
 
 其中：
 
-- *ω*Nom 是 **标称轴角速度** 参数的值。此值是该模块指定标称容积效率时的角速度。
-- *μ*Nom 是 **标称动力粘度** 参数的值。此值是该模块指定标称容积效率时的动力粘度。
-- *η*v,Nom 是 **标称条件下的容积效率** 参数的值。这是与指定标称条件对应的容积效率。
+- *ω*Nom 是 **Nominal shaft angular velocity** 参数的值。该值是模块指定标称容积效率时的角速度。
+- *μ*Nom 是 **Nominal Dynamic viscosity** 参数的值。该值是模块指定标称容积效率时的动力粘度。
+- *η*v,Nom 是 **Volumetric efficiency at nominal conditions** 参数的值。这是与指定标称条件对应的容积效率。
 
-**表格效率**
+**表格化效率**
 
-当您将 **泄漏和摩擦参数化** 参数设置为 `Tabulated data - volumetric and mechanical efficiencies` 时，泄漏流量为
+当您将 **Leakage and friction parameterization** 参数设置为 `表格数据 - 体积和机械 efficiencies` 时，泄漏流量为
 
-m˙Leak=m˙Leak,Pump(1+α)2+m˙Leak,Motor(1−α)2,
+m˙Leak=m˙Leak,Pump(1+α)2+m˙Leak,Motor(1−α)2，
 
-摩擦扭矩为
+摩擦力矩为
 
-τFriction=τFriction,Pump1+α2+τFriction,Motor1−α2,
+τFriction=τFriction,Pump1+α2+τFriction,Motor1−α2，
 
 其中：
 
-- *α* 是用于电机-泵转换的数值平滑参数。
-- m˙Leak,Motor 是电机模式下的泄漏流量。
+- *α* 是用于泵-马达转换的数值平滑参数。
+- m˙Leak,Motor 是马达模式下的泄漏流量。
 - m˙Leak,Pump 是泵模式下的泄漏流量。
-- *τ*Friction,Motor 是电机模式下的摩擦扭矩。
-- *τ*Friction,Pump 是泵模式下的摩擦扭矩。
+- *τ*Friction,Motor 是马达模式下的摩擦力矩。
+- *τ*Friction,Pump 是泵模式下的摩擦力矩。
 
-此双曲函数描述平滑参数 *α*
+该双曲函数描述平滑参数 *α*
 
-α=tanh(4ΔpΔpThreshold)·tanh(4ωωThreshold)·tanh(4DDThreshold),
+α=tanh(4ΔpΔpThreshold)·tanh(4ωωThreshold)·tanh(4DDThreshold)，
 
 其中：
 
-- *Δp*Threshold 是 **泵-电机转换的压力增益阈值** 模块参数的值。
-- *ω*Threshold 是 **泵-电机转换的角速度阈值** 模块参数的值。
-- *D*Threshold 是 **电机-泵转换的角速度阈值** 模块参数的值。
+- *Δp*Threshold 是 **Pressure gain threshold for pump-motor transition** 模块参数的值。
+- *ω*Threshold 是 **Angular velocity threshold for pump-motor transition** 模块参数的值。
+- *D*Threshold 是 **Angular velocity threshold for motor-pump transition** 模块参数的值。
 
-该模块根据容积效率计算泄漏流量，**容积效率表** 参数在 *Δp*–*ɷ*–*D* 域上指定该容积效率。在泵模式下运行时，泄漏流量为：
+该模块根据容积效率计算泄漏流量，容积效率由 **Volumetric efficiency table** 参数在 *Δp*–*ɷ*–*D* 域上指定。当在泵模式下运行时，泄漏流量为：
 
-m˙Leak,Pump=(1−ηv)m˙Ideal,
+m˙Leak,Pump=(1−ηv)m˙Ideal，
 
-其中 *η*v 是容积效率，该模块通过表格数据的插值或外推获得它。类似地，在电机模式下运行时，泄漏流量为：
+其中 *η*v 是容积效率，该模块通过表格数据的插值或外推获得。类似地，当在马达模式下运行时，泄漏流量为：
 
-m˙Leak,Motor=−(1−ηv)m˙.
+m˙Leak,Motor=−(1−ηv)m˙。
 
-该模块根据机械效率计算摩擦扭矩，**机械效率表** 参数在 *Δp*–*ɷ*–*D* 域上指定该机械效率。在泵模式下运行时，摩擦扭矩为
+该模块根据机械效率计算摩擦力矩，机械效率由 **Mechanical efficiency table** 参数在 *Δp*–*ɷ*–*D* 域上指定。当在泵模式下运行时，摩擦力矩为
 
-τFriction,Pump=(1−ηm)τ,
+τFriction,Pump=(1−ηm)τ，
 
-其中 *η*m 是机械效率，该模块通过表格数据的插值或外推获得它。类似地，在电机模式下运行时，摩擦扭矩为
+其中 *η*m 是机械效率，该模块通过表格数据的插值或外推获得。类似地，当在马达模式下运行时，摩擦力矩为
 
-τFriction,Motor=−(1−ηm)τIdeal.
+τFriction,Motor=−(1−ηm)τIdeal。
 
-**表格损失**
+**表格化损失**
 
-当您将 **泄漏和摩擦参数化** 参数设置为 `Tabulated data - volumetric and mechanical losses` 时，该模块以表格形式在 *Δp*–*ɷ*–*D* 域上指定泄漏体积流量：
+当您将 **Leakage and friction parameterization** 参数设置为 `表格数据 - 体积和机械 losses` 时，该模块以表格形式在 *Δp*–*ɷ*–*D* 域上指定泄漏体积流量：
 
-qLeak=qLeak(Δp,ω,D).
+qLeak=qLeak(Δp,ω,D)。
 
 该模块根据体积流量计算由泄漏引起的质量流量：
 
-m˙Leak=ρqLeak.
+m˙Leak=ρqLeak。
 
-该模块以表格形式计算摩擦扭矩：
+该模块以表格形式计算摩擦力矩：
 
-τFriction=τFriction(Δp,ω,D),
+τFriction=τFriction(Δp,ω,D)，
 
-其中 *q*Leak(*Δp*,*ω*,*D*) 和 *τ*Friction(*Δp*,*ω*,*D*) 是体积损失和机械损失，通过在 **体积损失表** 和 **机械损失表** 参数中的表格数据进行插值或外推来指定。
+其中 *q*Leak(*Δp*,*ω*,*D*) 和 *τ*Friction(*Δp*,*ω*,*D*) 是通过 **Volumetric loss table** 和 **Mechanical loss table** 参数中表格数据的插值或外推指定的体积损失和机械损失。
 
 **输入效率**
 
-当您将 **泄漏和摩擦参数化** 参数设置为 `Input signal - volumetric and mechanical efficiencies` 时，泄漏流量和摩擦扭矩计算与 `Tabulated data - volumetric and mechanical efficiencies` 设置相同。该模块用物理信号输入端口 **EV** 和 **EM** 替换容积效率和机械效率查找表。
+当您将 **Leakage and friction parameterization** 参数设置为 `输入信号 - 体积和机械 efficiencies` 时，泄漏流量和摩擦力矩的计算与 `表格数据 - 体积和机械 efficiencies` 设置相同。该模块将容积效率和机械效率查找表替换为物理信号输入端口 **EV** 和 **EM**。
 
-效率是正值，值介于 `0` 和 `1` 之间。该模块将超出这些边界的输入值设置为 `0`（对于小于 `0` 的输入）或 `1`（对于大于 `1` 的输入）。该模块将效率信号饱和在 **最小容积效率** 或 **最小机械效率** 参数的值，以及 **最大容积效率** 或 **最大机械效率** 参数的值。
+效率为正值，其值介于 `0` 和 `1` 之间。该模块将超出这些范围的输入值设置为 `0`（对于小于 `0` 的输入）或 `1`（对于大于 `1` 的输入）。该模块将效率信号饱和在 **Minimum volumetric efficiency** 或 **Minimum mechanical efficiency** 参数的值以及 **Maximum volumetric efficiency** 或 **Maximum mechanical efficiency** 参数的值。
 
 **输入损失**
 
-当您将 **泄漏和摩擦参数化** 参数设置为 `Input signal - volumetric and mechanical losses` 时，泄漏流量和摩擦扭矩计算与 `Tabulated data - volumetric and mechanical efficiencies` 设置相同。该模块用物理信号输入端口 **LV** 和 **LM** 替换体积损失和机械损失查找表。
+当您将 **Leakage and friction parameterization** 参数设置为 `输入信号 - 体积和机械 losses` 时，泄漏流量和摩擦力矩的计算与 `表格数据 - 体积和机械 efficiencies` 设置相同。该模块将容积损失和机械损失查找表替换为物理信号输入端口 **LV** 和 **LM**。
 
-该模块期望输入为正，并根据组件运行的 *Δp*–*ɷ* 象限自动设置符号。如果您提供负信号，该模块返回零损失。
+该模块期望输入为正值，并根据组件运行所在的 *Δp*–*ɷ* 象限自动设置符号。如果您提供负信号，该模块返回零损失。
 
-### 假设和限制
+### 假设与限制
 
 - 该模块将泵视为准稳态组件。
-- 该模块忽略流体惯性和高程的影响。
-- 泵壁是刚性的。
+- 该模块忽略流体惯性和高度的影响。
+- 泵壁为刚性。
 - 该模块忽略外部泄漏。

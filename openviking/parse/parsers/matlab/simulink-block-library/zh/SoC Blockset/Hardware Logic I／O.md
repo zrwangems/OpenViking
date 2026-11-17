@@ -9,207 +9,194 @@ official_category: ''
 documentation_page: 'hardware-io-devices'
 documentation_source_path: 'hardware-io-devices.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Hardware I/O Devices
 
 Hardware I/O Devices
 
-Model the connection between the IO devices on your board and your FPGA
-logic
+对板卡上的 IO 设备与 FPGA 逻辑之间的连接进行建模
 
-Use these blocks to create models that simulate the connection between
-your SoC design and these IO devices.
+使用这些模块创建模型，以仿真 SoC 设计与这些 IO 设备之间的连接。
 
-## Blocks
+## 模块
 
 |  |  |
 | --- | --- |
-| AD936x Receiver | Receive data from AD936x-based Zynq radio hardware *(Since R2024b)* |
-| AD936x Transmitter | Send data to AD936x-based Zynq radio hardware *(Since R2024b)* |
-| AD936x Data Read | Read data from AD936x-based Zynq radio hardware *(Since R2024b)* |
-| AD936x Data Write | Write data to AD936x-based Zynq radio hardware *(Since R2024b)* |
-| HDMI Rx | Convert video stream to YCbCr 4:2:2 pixel stream |
-| HDMI Tx | Convert YCbCr 4:2:2 pixel stream to video frame |
-| RF Data Converter | Provide RF data path interface to hardware logic |
-| ADC To Vector | Convert concatenated 16-bit ADC input samples to vector outputs |
-| Vector To DAC | Convert vector inputs to concatenated 16-bit DAC output samples |
-| RFDC Bus Creator | Convert control signals into RF Data Converter real-time interface-compatible bus *(Since R2022a)* |
-| RFDC Bus Selector | Convert RF Data Converter real-time interface-compatible bus into control signals *(Since R2022a)* |
-| OTAVA DTRX2 | Integrate OTAVA DTRX2 mmWave radio card with ZCU208 board *(Since R2023a)* |
-| Aurora 64B66B | Provide high-speed serial communication using Xilinx Aurora interface *(Since R2023a)* |
+| AD936x Receiver | 从基于 AD936x 的 Zynq 无线电硬件接收数据 *(自 R2024b 起)* |
+| AD936x Transmitter | 向基于 AD936x 的 Zynq 无线电硬件发送数据 *(自 R2024b 起)* |
+| AD936x Data Read | 从基于 AD936x 的 Zynq 无线电硬件读取数据 *(自 R2024b 起)* |
+| AD936x Data Write | 向基于 AD936x 的 Zynq 无线电硬件写入数据 *(自 R2024b 起)* |
+| HDMI Rx | 将视频流转换为 YCbCr 4:2:2 像素流 |
+| HDMI Tx | 将 YCbCr 4:2:2 像素流转换为视频帧 |
+| RF Data Converter | 为硬件逻辑提供 RF 数据路径接口 |
+| ADC To Vector | 将拼接的 16 位 ADC 输入采样转换为向量输出 |
+| Vector To DAC | 将向量输入转换为拼接的 16 位 DAC 输出采样 |
+| RFDC Bus Creator | 将控制信号转换为 RF Data Converter 实时接口兼容总线 *(自 R2022a 起)* |
+| RFDC Bus Selector | 将 RF Data Converter 实时接口兼容总线转换为控制信号 *(自 R2022a 起)* |
+| OTAVA DTRX2 | 将 OTAVA DTRX2 毫米波无线电卡与 ZCU208 板集成 *(自 R2023a 起)* |
+| Aurora 64B66B | 使用 Xilinx Aurora 接口提供高速串行通信 *(自 R2023a 起)* |
 
-## Tools
+## 工具
 
 |  |  |
 | --- | --- |
-| HDL IP Importer | Import HDL IP core into SoC model *(Since R2023a)* |
+| HDL IP Importer | 将 HDL IP 核导入 SoC 模型 *(自 R2023a 起)* |
 
-## Topics
+## 主题
 
-### Wireless Applications
+### 无线应用
 
 - **Introduction To Custom OFDM Using AMD RFSoC**
-  Design and verify a transmitter and receiver for a custom OFDM communication system by
-  using SoC Blockset™ on AMD® RFSoC device.
-- **OFDM Transmit and Receive Using AMD RFSoC Device**
-  Simulate and deploy OFDM transmit and receive algorithm using SoC Blockset on Xilinx® RFSoC device.
-- **Introduction to 5G NR Signal Detection using AMD RFSoC**
-  Deploy primary synchronization signal (PSS) correlation and synchronization signal block (SSB) demodulation using SoC Blockset on Xilinx RFSoC device.
-- **5G NR SIB1 Recovery for FR1 and FR2 Using AMD RFSoC Device**
-  Deploy 5G NR SIB1 recovery algorithm for FR1 and FR2 using SoC Blockset on Xilinx RFSoC device.
-- **5G NR Downlink Signal Measurements Using AMD RFSoC Device**
-  Measure SSB signal quality and error vector magnitude (EVM) of the received resource grid using SoC Blockset on Xilinx RFSoC device.
+  使用 SoC Blockset™ 在 AMD® RFSoC 设备上设计并验证自定义 OFDM 通信系统的发射机和接收机。
+- **使用 AMD RFSoC 设备进行 OFDM 发送和接收**
+  使用 SoC Blockset 在 Xilinx® RFSoC 设备上仿真并部署 OFDM 发射和接收算法。
+- **使用 AMD RFSoC 进行 5G NR 信号检测简介**
+  使用 SoC Blockset 在 Xilinx RFSoC 设备上部署主同步信号 (PSS) 相关和同步信号块 (SSB) 解调。
+- **使用 AMD RFSoC 设备进行 FR1 和 FR2 的 5G NR SIB1 恢复**
+  使用 SoC Blockset 在 Xilinx RFSoC 设备上部署适用于 FR1 和 FR2 的 5G NR SIB1 恢复算法。
+- **使用 AMD RFSoC 设备进行 5G NR 下行信号测量**
+  使用 SoC Blockset 在 Xilinx RFSoC 设备上测量接收资源网格的 SSB 信号质量和误差向量幅度 (EVM)。
 - **DVB-S2 HDL PL Header Recovery Using Analog Devices AD9361/AD9364**
-  Deploy Digital Video Broadcasting Satellite Second Generation (DVB-S2) time,
-  frequency, and phase synchronization and PL header recovery algorithm using SoC Blockset.
+  使用 SoC Blockset 部署数字视频广播卫星第二代 (DVB-S2) 时间、频率和相位同步以及 PL 报头恢复算法。
 - **DVB-S2 Receive Using AMD RFSoC Device**
-  Simulate and deploy DVB-S2 transmit and receive algorithm using SoC Blockset on Xilinx RFSoC device.
+  使用 SoC Blockset 在 Xilinx RFSoC 设备上仿真并部署 DVB-S2 发射和接收算法。
 - **WLAN Receiver Using AMD RFSoC Device**
-  Simulate and deploy WLAN transmit and receive algorithm using SoC Blockset on Xilinx RFSoC device.
+  使用 SoC Blockset 在 Xilinx RFSoC 设备上仿真并部署 WLAN 发射和接收算法。
 - **Pulse-Doppler Radar Using AMD RFSoC Device**
-  Build, simulate, and deploy pulse-Doppler radar system using SoC Blockset on Xilinx RFSoC device.
-- **GPS Acquisition and Tracking Using AMD RFSoC Device**
-  Simulate and deploy global positioning system (GPS) acquisition algorithm on ZCU111
-  evaluation kit.
+  使用 SoC Blockset 在 Xilinx RFSoC 设备上构建、仿真并部署脉冲多普勒雷达系统。
+- **使用 AMD RFSoC 设备进行 GPS 捕获和跟踪**
+  在 ZCU111 评估套件上仿真并部署全球定位系统 (GPS) 捕获算法。
 - **Monitor and Analyze Applications Targeted to AMD RFSoC Devices**
-  Monitor, analyze, and debug ADC, DAC, and valid signals of AXI4-Stream interface of RF
-  Data Converter using FPGA data capture.
+  使用 FPGA 数据捕获来监测、分析和调试 RF Data Converter 的 AXI4-Stream 接口的 ADC、DAC 和有效信号。
 
-### Video Applications
+### 视频应用
 
-- **Edge Detection and Image Overlay**
-  Implement an edge detection and image overlay system with HDMI input and
-  output.
-- **Vertical Video Flipping Using External Memory**
-  Flip an incoming video stream vertically by using a random-access external memory
-  interface.
-- **Contrast Limited Adaptive Histogram Equalization with External Memory**
-  This example shows how to implement the contrast-limited adaptive histogram equalization (CLAHE) algorithm for FPGA, including an external memory interface.
+- **边缘检测与图像叠加**
+  实现一个具有 HDMI 输入和输出的边缘检测与图像叠加系统。
+- **使用外部存储器进行垂直视频翻转**
+  通过使用随机访问外部存储器接口，对输入视频流进行垂直翻转。
+- **使用外部存储器的对比度受限自适应直方图均衡化**
+  此示例展示如何为 FPGA 实现对比度受限自适应直方图均衡化（CLAHE）算法，包括外部存储器接口。
 
-## Featured Examples
+## 精选示例
 
-RF Data Recording and Playback for RFSoC Devices
+用于 RFSoC 设备的 RF 数据记录与回放
 
-### RF Data Recording and Playback for RFSoC Devices
+### 用于 RFSoC 设备的 RF 数据记录与回放
 
-Capture real-world RF data from RFSoC devices, and then use this data in MATLAB® and Simulink® for simulation and analysis.
+从 RFSoC 设备捕获真实世界的 RF 数据，然后在 MATLAB® 和 Simulink® 中使用此数据进行仿真和分析。
 
-- Open Script
+- 打开脚本
 
-Validate RF Data Converter Configuration
+验证 RF 数据转换器配置
 
-### Validate RF Data Converter Configuration
+### 验证 RF 数据转换器配置
 
-Validate RF data converter (RFDC) configuration in simulation.
+在仿真中验证 RF 数据转换器（RFDC）配置。
 
-- Open Script
+- 打开脚本
 
-Transmit and Receive Tone Using AMD RFSoC Device - Part 1 System Design
+使用 AMD RFSoC 设备发送和接收单音 - 第 1 部分 系统设计
 
-### Transmit and Receive Tone Using AMD RFSoC Device - Part 1 System Design
+### 使用 AMD RFSoC 设备发送和接收单音 - 第 1 部分 系统设计
 
-Design and simulate data path using SoC Blockset on Xilinx RFSoC device.
+在 Xilinx RFSoC 设备上使用 SoC Blockset 设计和仿真数据路径。
 
-- Open Script
+- 打开脚本
 
-Transmit and Receive Tone Using AMD RFSoC Device - Part 2 Deployment
+使用 AMD RFSoC 设备发送和接收单音 - 第 2 部分 部署
 
-### Transmit and Receive Tone Using AMD RFSoC Device - Part 2 Deployment
+### 使用 AMD RFSoC 设备发送和接收单音 - 第 2 部分 部署
 
-Implement and verify design using SoC Blockset on Xilinx RFSoC device.
+在 Xilinx RFSoC 设备上使用 SoC Blockset 实现并验证设计。
 
-- Open Script
+- 打开脚本
 
-Transmit and Receive Tone Using OTAVA DTRX2 mmWave Radio Card
+使用 OTAVA DTRX2 毫米波无线电卡发送和接收单音
 
-### Transmit and Receive Tone Using OTAVA DTRX2 mmWave Radio Card
+### 使用 OTAVA DTRX2 毫米波无线电卡发送和接收单音
 
-Integrate OTAVA DTRX2 mmWave radio card with Xilinx
+使用 SoC Blockset 将 OTAVA DTRX2 毫米波无线电卡与 Xilinx
 Zynq®
-UltraScale+™ RFSoC ZCU208 Evaluation Kit using SoC Blockset.
+UltraScale+™ RFSoC ZCU208 评估套件集成。
 
-- Open Script
+- 打开脚本
 
-Transmit and Receive Tones Using AD9361 Dual-Channels
+使用 AD9361 双通道发送和接收单音
 
-### Transmit and Receive Tones Using AD9361 Dual-Channels
+### 使用 AD9361 双通道发送和接收单音
 
-Design, simulate, and deploy dual-channel application system with AD9361 RF card using
-SoC Blockset on Xilinx
+在 Xilinx
 Zynq
-UltraScale+ MPSoC ZCU102 Evaluation Kit.
+UltraScale+ MPSoC ZCU102 评估套件上使用 SoC Blockset 设计、仿真和部署带有 AD9361 RF 卡的双通道应用系统。
 
-- Open Script
+- 打开脚本
 
-QPSK Transmit and Receive Using Zynq and FMCOMMS2/3/4
+使用 Zynq 和 FMCOMMS2/3/4 进行 QPSK 发送和接收
 
-### QPSK Transmit and Receive Using Zynq and FMCOMMS2/3/4
+### 使用 Zynq 和 FMCOMMS2/3/4 进行 QPSK 发送和接收
 
-Simulate and deploy quadrature phase-shift keying (QPSK) transmit and receive
-algorithm using SoC Blockset.
+使用 SoC Blockset 仿真和部署正交相移键控（QPSK）发送和接收算法。
 
-- Open Script
+- 打开脚本
 
-Frequency Hopping Using Xilinx RFSoC Device
+使用 Xilinx RFSoC 设备进行跳频
 
-### Frequency Hopping Using Xilinx RFSoC Device
+### 使用 Xilinx RFSoC 设备进行跳频
 
-Design and implement frequency hopping algorithm using Xilinx RF Data Converter numerically controlled oscillator (NCO) real time
-ports.
+使用 Xilinx RF 数据转换器数控振荡器（NCO）实时端口设计和实现跳频算法。
 
-- Open Script
+- 打开脚本
 
-Detect and Capture Wideband Radar Signal Using AMD RFSoC Device
+使用 AMD RFSoC 设备检测和捕获宽带雷达信号
 
-### Detect and Capture Wideband Radar Signal Using AMD RFSoC Device
+### 使用 AMD RFSoC 设备检测和捕获宽带雷达信号
 
-Build, simulate, and deploy wideband radar signal detection and capture system using
-SoC Blockset on Xilinx RFSoC device.
+在 Xilinx RFSoC 设备上使用 SoC Blockset 构建、仿真和部署宽带雷达信号检测与捕获系统。
 
-- Open Script
+- 打开脚本
 
-Import Custom HDL IP into SoC Blockset Design
+将自定义 HDL IP 导入 SoC Blockset 设计
 
-### Import Custom HDL IP into SoC Blockset Design
+### 将自定义 HDL IP 导入 SoC Blockset 设计
 
-Import HDL IP and integrate it into SoC Blockset design.
+导入 HDL IP 并将其集成到 SoC Blockset 设计中。
 
-- Open Script
+- 打开脚本
 
-Minimum Variance Distortionless Response Beamformer Using AMD RFSoC Device
+使用 AMD RFSoC 设备的最小方差无失真响应波束形成器
 
-### Minimum Variance Distortionless Response Beamformer Using AMD RFSoC Device
+### 使用 AMD RFSoC 设备的最小方差无失真响应波束形成器
 
-Deploy minimum variance distortionless response algorithm on AMD RFSoC device.
+在 AMD RFSoC 设备上部署最小方差无失真响应算法。
 
-- Open Script
+- 打开脚本
 
-Multi-Tile Synchronization Using AMD RFSoC Device
+使用 AMD RFSoC 设备的多片同步
 
-### Multi-Tile Synchronization Using AMD RFSoC Device
+### 使用 AMD RFSoC 设备的多片同步
 
-Implement and use multi-tile synchronization using RF Data Converter block on
-AMD RFSoC device.
+在 AMD RFSoC 设备上使用 RF Data Converter 模块实现并使用多片同步。
 
-- Open Script
+- 打开脚本
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个对应于某个 MATLAB 命令的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB Command Window 中输入该命令以运行它。
+Web 浏览器不支持 MATLAB 命令。
 
 Close
 
 MathWorks
 MathWorks
 
-选择网站
+Select a Web Site
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站，以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：
 
 - (English)
 - (Deutsch)
@@ -218,11 +205,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择一个网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -253,7 +240,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

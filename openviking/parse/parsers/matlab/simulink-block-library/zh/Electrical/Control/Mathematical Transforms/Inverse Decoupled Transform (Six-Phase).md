@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Inverse Decoupled Transform (Six-Phase)'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -26,26 +26,26 @@ chinese_source: worker-translation
 
 ### **θelec** — 旋转角度标量
 
-旋转参考坐标系的角度位置，指定为标量。
+旋转参考坐标系的角位置，指定为标量。
 
 **数据类型：** `single` | `double`
 ### 输出
 
-### **abc** — *a*、*b* 和 *c* 相分量向量
+### **abc** — *a* 相、*b* 相和 *c* 相分量向量
 
-三相系统在 *abc* 参考坐标系中的分量，返回为向量。
+*abc* 参考坐标系中三相系统的分量，以向量形式返回。
 
 **数据类型：** `single` | `double`
 
-### **xyz** — *x*、*y* 和 *z* 相分量向量
+### **xyz** — *x* 相、*y* 相和 *z* 相分量向量
 
-三相系统在 *xyz* 参考坐标系中的分量，返回为向量。
+*xyz* 参考坐标系中三相系统的分量，以向量形式返回。
 
 **数据类型：** `single` | `double`
 
 ## 参数
 
-### **a 相轴对齐** — *dqz1z2o1o2* 参考坐标系对齐 `Q-axis`（默认）| `D-axis`
+### **Phase-a axis alignment** — *dqz1z2o1o2* 参考坐标系对齐方式 `Q-axis`（默认）| `D-axis`
 
 是否将 *abc* 参考坐标系的 *a* 相向量与旋转参考坐标系的 *d* 轴或 *q* 轴对齐。
 
@@ -67,22 +67,22 @@ R2025b 中未记录。
 
 ## 描述
 
-实现 dqz 1 z 2 o 1 o 2 到 abc 和 xyz 变换
+实现 dqz 1 z 2 o 1 o 2 到 abc 和 xyz 的变换
 
-Inverse Decoupled Transform (Six-Phase) 模块将旋转参考坐标系中的直轴、交轴、*z1*、*z2*、*o1* 和 *o2* 分量转换为 *abc* 和 *xyz* 参考坐标系中的六相系统分量。三相系统 *abc* 和 *xyz* 在空间上偏移 30 electrical degrees。
+Inverse Decoupled Transform (Six-Phase) 模块将旋转参考坐标系中的直轴、交轴、*z1*、*z2*、*o1* 和 *o2* 分量转换为 *abc* 和 *xyz* 参考坐标系中六相系统的分量。三相系统 *abc* 和 *xyz* 在空间上相差 30 电角度。
 
-您可以配置该模块，以在时间 *t* = 0 时使五相系统的 a 相轴与旋转参考坐标系的 *d* 轴或 *q* 轴对齐。
+您可以将该模块配置为在时间 *t* = 0 时将五相系统的 *a* 相轴与旋转参考坐标系的 *d* 轴或 *q* 轴对齐。
 
-*θ = ωt + Offset* 是 *q* 轴对齐时 *a* 轴与 *q* 轴之间的角度，或 *d* 轴对齐时 *a* 轴与 *d* 轴之间的角度，其中：
+*θ = ωt + Offset* 是 *q* 轴对齐时 *a* 轴与 *q* 轴之间的夹角，或 *d* 轴对齐时 *a* 轴与 *d* 轴之间的夹角，其中：
 
 - *ω* 是旋转参考坐标系的旋转速度。
-- *t* 是自初始对齐起的时间，单位为 s。
-- Offset=0,     d−axis alignment−π2,     q−axis alignment
+- *t* 是从初始对齐开始的时间，单位为 s。
+- Offset=0,     d−axis alignment−π2,    q−axis alignment
 
 ### 方程
 
-Inverse Decoupled Transform (Six-Phase) 模块按如下方式实现该变换
+Inverse Decoupled Transform (Six-Phase) 模块将变换实现为
 
 [abcxyz]=[cosθ−sinθ1010cos(θ−2π3)−sin(θ−2π3)−12−3210cos(θ+2π3)−sin(θ+2π3)−123210cos(θ−π6)−sin(θ−π6)−321201cos(θ−5π6)−sin(θ−5π6)321201cos(θ+π2)−sin(θ+π2)0−101][dqz1z2o1o2]
 
-*z1*–*z2* 和 *o1*–*o2* 对不形成旋转磁势。它们为广义零序分量。
+*z1*–*z2* 和 *o1*–*o2* 对不形成旋转磁势。它们是广义零序分量。

@@ -9,54 +9,54 @@ official_category: 'Dashboard'
 documentation_page: 'lamp'
 documentation_source_path: 'slref/lamp.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Lamp
 
 ## 端口
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 参数
 
-### **连接** — 要连接和显示的信号 信号连接选项
+### **Connection** — 要连接的信号及显示信号连接选项
 
-Dashboard 模块不使用端口来连接到模型元素。要将 Dashboard 模块连接到模型中的参数值，请使用连接模式、Simulink® 工具条或“模块参数”对话框中的**连接**表。有关连接模式以及如何使用工具条进行连接的信息，请参阅Connect Dashboard Blocks to Simulink Model。
+Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块连接到模型中的参数值，请使用连接模式、Simulink® 工具条或模块参数对话框中的 **Connection** 表。有关连接模式以及如何使用工具条进行连接的信息，请参阅 Connect Dashboard Blocks to Simulink Model。
 
-使用**连接**表连接 Display 模块或更改 Display 模块的连接：
+要使用 **Connection** 表连接显示模块或更改显示模块的连接：
 
-1. 选择模块。
-2. 要连接该模块，请在属性检查器的**参数**选项卡上点击**连接**。要更改模块的连接，请改为点击**更改**。
+1. 选择该模块。
+2. 要连接该模块，请在属性检查器的 **Parameters** 选项卡上点击 **Connect**。要更改该模块的连接，请改为点击 **Change**。
 3. 选择要连接的信号线。
 4. 在表中，选择要连接的信号。
-5. 点击**应用**。
+5. 点击 **Apply**。
 
-您还可以将 Dashboard 模块连接到 Stateflow 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
+您还可以将 Dashboard 模块连接到 Stateflow 流程图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Binding` |
-| **类型：**`Simulink.HMI.SignalSpecification` |
-| **默认值：**`[]` |
+| **类型**：`Simulink.HMI.SignalSpecification` |
+| **默认值**：`[]` |
 
-### **状态** — 信号值和颜色对组 标量和 `RGB` 向量
+### **States** — 信号值与颜色对 标量和 `RGB` 向量
 
-状态将显示颜色与连接的信号值的相匹配。每个状态由**状态**和**颜色**组成。
+状态将显示颜色与所连接信号的值进行匹配。每个状态由一个 **State** 和一个 **Color** 组成。
 
-- **状态** - 使 Lamp 模块显示指定颜色的已连接信号值。
-- **颜色** - 当连接的信号值与对应的**状态**值匹配时信号灯的颜色。您可以从标准颜色调色板中选择，也可以使用 `RGB` 值指定自定义颜色。
+- **State** — 使 Lamp 模块显示指定颜色的所连接信号值。
+- **Color** — 当所连接信号值与对应的 **State** 值匹配时的 Lamp 颜色。您可以从标准颜色调色板中选择，或使用 `RGB` 值指定自定义颜色。
 
-`[undefined]` 状态指定当连接的信号值与**状态**表中指定的任何值都不匹配时，Lamp 模块的颜色。点击 **+** 按钮可添加另一个状态。
+`[undefined]` 状态指定当所连接信号值与 **States** 表中指定的任何值都不匹配时 Lamp 模块的颜色。点击 **+** 按钮添加另一个状态。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式为 Lamp 模块指定 `State` 和 `Color` 参数值，请使用包含以下字段的结构体数组：
 
-- `Value` - 导致 Lamp 模块显示指定颜色指示的标量 `double` 信号值。
-- `Color` - `1`×`3` `[r g b]` 向量，其值介于 `0` 和 `1` 之间，指定要显示的 Lamp 模块的颜色。
+- `Value` — 使 Lamp 模块显示指定颜色指示的标量 `double` 信号值。
+- `Color` — `1`×`3` 的 `[r g b]` 向量，值介于 `0` 和 `1` 之间，指定 Lamp 模块要显示的颜色。
 
 ```
 lampState1.Value = 1;
@@ -69,22 +69,22 @@ lampStates = [lampState1 lampState2];
 |  |
 | --- |
 | **模块参数**：`StateColors` |
-| **类型：**结构体数组 |
-| **默认值：**结构体 |
+| **类型**：structure array |
+| **默认值**：structure |
 
-`ColorDefault` 参数指定当所连接信号的值与任何指定的状态值都不匹配时，Lamp 模块的颜色。将 `ColorDefault` 参数指定为 `1`×`3` `[r g b]` 向量，其值介于 `0` 和 `1` 之间。
+`ColorDefault` 参数指定当所连接信号的值与任何指定的状态值都不匹配时 Lamp 模块的颜色。将 `ColorDefault` 参数指定为 `1`×`3` 的 `[r g b]` 向量，值介于 `0` 和 `1` 之间。
 
 |  |
 | --- |
 | **模块参数**：`ColorDefault` |
-| **类型：**`[r g b]` 向量 |
+| **类型**：`[r g b]` vector |
 | **默认值**：`[0.7529 0.7529 0.7529]` |
 
-### **图标** — Lamp 模块外观 SVG 图像
+### **Icon** — Lamp 模块外观 SVG 图像
 
-使用一个图标来配置模型中 Lamp 模块的外观。您可以从内置形状、汽车图标和无线图标中进行选择，也可以上传您自己的自定义 SVG 文件作为图标。
+使用图标来配置模型中 Lamp 模块的外观。您可以从内置形状、汽车和无线图标中选择，也可以上传自己的自定义 SVG 文件作为图标。
 
-要查看图标选项，请在**图标**选项卡上选择**图标类型**。要使用您自己的 SVG 文件作为模块图标，请选择**自定义**作为**图标类型**并上传 SVG 文件。Lamp 模块的状态颜色可以应用于下列 SVG 元素：
+要查看图标选项，请在 **Icon** 选项卡上选择一个 **Icon Type**。要将自己的 SVG 文件用作模块图标，请选择 `Custom` 作为 **Icon Type** 并上传 SVG 文件。Lamp 模块的状态颜色可以应用于以下 SVG 元素：
 
 - `altGlyph`
 - `circle`
@@ -99,124 +99,124 @@ lampStates = [lampState1 lampState2];
 
 **形状图标**
 
-| 图标 | 基本形状库模块名称 | 编程使用的值 |
+| 图标 | Basic Shapes 库模块名称 | Programmatic Use 值 |
 | --- | --- | --- |
-| Lamp icon: a solid gray circle | Lamp | `Default` |
-| Circle icon: a solid black circle | Circle | `Circle` |
-| Hexagon icon: a solid hexagon | Hexagon | `Hexagon` |
-| Pentagon icon: a solid pentagon | Pentagon | `Pentagon` |
-| Rectangle icon: a solid rectangle | Rectangle | `Rectangle` |
-| Square icon: a solid square | Square | `Square` |
-| Triangle icon: a solid triangle | Triangle | `Triangle` |
-| Check1 icon: a check mark | Check1 | `Check1` |
-| Check2 icon: a check mark with slightly curved lines | Check2 | `Check2` |
-| Check3 icon: the outline of a check mark | Check3 | `Check3` |
-| Check4 icon: a check mark with a divot along its outline | Check4 | `Check4` |
-| Ex1 icon: a cross mark | Ex1 | `Ex1` |
-| Ex2 icon: a cross mark with one curved line | Ex2 | `Ex2` |
-| Ex3 icon: the outline of a cross mark | Ex3 | `Ex3` |
-| Ex4 icon: a cross mark with a divot along the outline | Ex4 | `Ex4` |
-| Face icon: the outline of a face with a closed mouth in a straight line | Face | `Face` |
-| Frown1 icon: the outline of a face with an open downturned mouth | Frown1 | `Frown1` |
-| Frown2 icon: the outline of a face with a closed downturned mouth | Frown2 | `Frown2` |
-| Smile1 icon: the outline of a face with an open upturned mouth | Smile1 | `Smile1` |
-| Smile2 icon: the outline of a face with a closed upturned mouth | Smile2 | `Smile2` |
-| Solid Face icon: a solid face with a closed mouth in a straight line | Solid Face | `SolidFace` |
-| Solid Frown1 icon: a solid face with an open downturned mouth | Solid Frown1 | `SolidFrown1` |
-| Solid Frown2 icon: a closed downturned mouth | Solid Frown2 | `SolidFrown2` |
-| Solid Smile1 icon: a solid face with an open upturned mouth | Solid Smile1 | `SolidSmile1` |
-| Solid Smile2 icon: a solid face with a closed upturned mouth | Solid Smile2 | `SolidSmile2` |
+| Lamp 图标：一个实心灰色圆形 | Lamp | `Default` |
+| Circle 图标：一个实心黑色圆形 | Circle | `Circle` |
+| Hexagon 图标：一个实心六边形 | Hexagon | `Hexagon` |
+| Pentagon 图标：一个实心五边形 | Pentagon | `Pentagon` |
+| Rectangle 图标：一个实心矩形 | Rectangle | `Rectangle` |
+| Square 图标：一个实心正方形 | Square | `Square` |
+| Triangle 图标：一个实心三角形 | Triangle | `Triangle` |
+| Check1 图标：一个对勾 | Check1 | `Check1` |
+| Check2 图标：一个线条略微弯曲的对勾 | Check2 | `Check2` |
+| Check3 图标：一个对勾的轮廓 | Check3 | `Check3` |
+| Check4 图标：一个轮廓上有凹痕的对勾 | Check4 | `Check4` |
+| Ex1 图标：一个叉号 | Ex1 | `Ex1` |
+| Ex2 图标：一个有一条曲线条的叉号 | Ex2 | `Ex2` |
+| Ex3 图标：一个叉号的轮廓 | Ex3 | `Ex3` |
+| Ex4 图标：一个轮廓上有凹痕的叉号 | Ex4 | `Ex4` |
+| Face 图标：一张闭嘴呈直线的脸的轮廓 | Face | `Face` |
+| Frown1 图标：一张张嘴向下弯的脸的轮廓 | Frown1 | `Frown1` |
+| Frown2 图标：一张闭嘴向下弯的脸的轮廓 | Frown2 | `Frown2` |
+| Smile1 图标：一张张嘴向上弯的脸的轮廓 | Smile1 | `Smile1` |
+| Smile2 图标：一张闭嘴向上弯的脸的轮廓 | Smile2 | `Smile2` |
+| Solid Face 图标：一张闭嘴呈直线的实心脸 | Solid Face | `SolidFace` |
+| Solid Frown1 图标：一张张嘴向下弯的实心脸 | Solid Frown1 | `SolidFrown1` |
+| Solid Frown2 图标：一张闭嘴向下弯的实心脸 | Solid Frown2 | `SolidFrown2` |
+| Solid Smile1 图标：一张张嘴向上弯的实心脸 | Solid Smile1 | `SolidSmile1` |
+| Solid Smile2 图标：一张闭嘴向上弯的实心脸 | Solid Smile2 | `SolidSmile2` |
 
 **汽车图标**
 
-| 图标 | 汽车指示灯库模块名称 | 编程使用的值 |
+| 图标 | Automotive Indicator Lamps 库模块名称 | Programmatic Use 值 |
 | --- | --- | --- |
-| Adaptive Cruise Control icon: a speedometer with an arrow pointing to a tick mark and the silhouette of a car in the background | Adaptive Cruise Control | `AdaptiveCruiseControl` |
-| Adaptive Cruise Control Failure icon: a speedometer with an exclamation mark next to it and the silhouette of a car in the background | Adaptive Cruise Control Failure | `AdaptiveCruiseControlFailure` |
-| Anti-Lock Brake System icon: a circle labeled "ABS" in a set of parentheses | Antilock Brake System | `AntilockBrakeSystem` |
-| Battery icon: the outline of a battery with a plus symbol on the positive pole, and a negative symbol on the negative pole | Battery | `Battery` |
-| Check Engine icon: the outline of an engine labeled "Check Engine" | Check Engine | `CheckEngine` |
-| Check Engine2 icon: the outline of an engine with the silhouette of a lightning rod on it and the word "CHECK" underneath it | Check Engine2 | `CheckEngine2` |
-| Cruise Control icon: a speedometer with an arrow pointing to one of the tick marks | Cruise Control | `CruiseControl` |
-| Eco Mode icon: a solid leaf shape labeled "ECO" | Eco Mode | `EcoMode` |
-| Electronic Stability icon: a circle labeled "ESP" in a set of parentheses | Electronic Stability | `ElectronicStability` |
-| Engine icon: the silhouette of an engine | Engine | `Engine` |
-| Engine Coolant Temp icon: a thermometer with waves in the background | Engine Coolant Temp | `EngineCoolantTemp` |
-| Engine Failure icon: the silhouette of an engine with an exclamation mark on it | Engine Failure | `EngineFailure` |
-| Engine Heating icon: the silhouette of an engine with three wavy arrows pointing upwards on it | Engine Heating | `EngineHeating` |
-| Engine Oil icon: the silhouette of an oil can | Engine Oil | `EngineOil` |
-| Exterior Bulb Failure icon: the silhouette of a glowing light bulb with an exclamation mark on it | Exterior Bulb Failure | `ExteriorBulbFailure` |
-| Front Fog Light icon: the outline of a fog light lamp emitting rays of light to the left that are depicted as diagonal lines on top of a wavy vertical line that represents the fog | Front Fog Light | `FrontFogLight` |
-| Fuel icon: the silhouette of a gas pump with an arrow pointing left on it | Fuel | `Fuel` |
-| Hazards icon: the outline of a warning triangle | Hazards | `Hazards` |
-| Headlamp Leveling icon: the outline of a lamp emitting rays of light with an arrow pointing clockwise above them and an arrow pointing counterclockwise below them | Headlamp Leveling | `HeadlampLeveling` |
-| High Beams icon: the outline of a lamp emitting horizontal rays of light | High Beams | `HighBeams` |
-| Hill Descent Control icon: the outline of a car driving down a slope | Hill Descent Control | `HillDescentControl` |
-| Lighting Switch icon: the silhouette of a glowing light bulb | Lighting Switch | `LightingSwitch` |
-| High Beams icon: the outline of a lamp emitting rays of light that run diagonally downward | Low Beams | `LowBeams` |
-| Parking Assistance icon: the letter "P" next to a solid triangle, and the "P" emits a detection signal represented as three curved lines aimed at the triangle | Parking Assistance | `ParkingAssistance` |
-| Rear Fog Light icon: the outline of a fog light lamp emitting rays of light to the right that are depicted as horizontal lines on top of a wavy vertical line that represents the fog | Rear Fog Light | `RearFogLight` |
-| Side Lights icon: the outline two lamps emitting rays of light to the left and right | Side Lights | `SideLights` |
-| Stability Control icon: the silhouette of a car with wavy lines behind it | Stability Control | `StabilityControl` |
-| Stability Control Off icon: the silhouette of a car with wavy lines behind it and the word "OFF" underneath | Stability Control Off | `StabilityControlOff` |
-| Tire Monitor icon: the outline of the cross-section of a tire with an exclamation mark on it | Tire Monitor | `TireMonitor` |
-| Traction Control icon: the outline of the cross-section of a tire with the label "TC" | Traction Control | `TractionControl` |
-| Traction Control Off icon: the outline of the cross-section of a tire with the label "TC" and a diagonal slash through the whole image | Traction Control Off | `TractionControlOff` |
-| Traction Control Failure icon: the outline of the cross-section of a tire with the label "TC" and an exclamation mark next to it | Traction Control Failure | `TractionControlFailure` |
-| Turn Signal Left icon: a solid arrow pointing left | Turn Signal Left | `TurnSignalLeft` |
-| Turn Signal Right icon: a solid arrow pointing right | Turn Signal Right | `TurnSignalRight` |
+| Adaptive Cruise Control 图标：一个速度表，箭头指向一个刻度线，背景中有汽车轮廓 | Adaptive Cruise Control | `AdaptiveCruiseControl` |
+| Adaptive Cruise Control Failure 图标：一个速度表，旁边有一个感叹号，背景中有汽车轮廓 | Adaptive Cruise Control Failure | `AdaptiveCruiseControlFailure` |
+| Anti-Lock Brake System 图标：一个圆圈，在一对括号中标注有 "ABS" | Antilock Brake System | `AntilockBrakeSystem` |
+| Battery 图标：一个电池的轮廓，正极上有加号，负极上有减号 | Battery | `Battery` |
+| Check Engine 图标：一个发动机的轮廓，标注有 "Check Engine" | Check Engine | `CheckEngine` |
+| Check Engine2 图标：一个发动机的轮廓，上面有避雷针的轮廓，下方有 "CHECK" 字样 | Check Engine2 | `CheckEngine2` |
+| Cruise Control 图标：一个速度表，箭头指向其中一个刻度线 | Cruise Control | `CruiseControl` |
+| Eco Mode 图标：一个实心叶子形状，标注有 "ECO" | Eco Mode | `EcoMode` |
+| Electronic Stability 图标：一个圆圈，在一对括号中标注有 "ESP" | Electronic Stability | `ElectronicStability` |
+| Engine 图标：一个发动机的轮廓 | Engine | `Engine` |
+| Engine Coolant Temp 图标：一个温度计，背景中有波浪 | Engine Coolant Temp | `EngineCoolantTemp` |
+| Engine Failure 图标：一个发动机的轮廓，上面有一个感叹号 | Engine Failure | `EngineFailure` |
+| Engine Heating 图标：一个发动机的轮廓，上面有三个向上的波浪箭头 | Engine Heating | `EngineHeating` |
+| Engine Oil 图标：一个油壶的轮廓 | Engine Oil | `EngineOil` |
+| Exterior Bulb Failure 图标：一个发光的灯泡的轮廓，上面有一个感叹号 | Exterior Bulb Failure | `ExteriorBulbFailure` |
+| Front Fog Light 图标：一个雾灯的轮廓，向左发出光线，光线表示为斜线，位于代表雾的波浪垂直线之上 | Front Fog Light | `FrontFogLight` |
+| Fuel 图标：一个加油泵的轮廓，上面有一个向左的箭头 | Fuel | `Fuel` |
+| Hazards 图标：一个警告三角形的轮廓 | Hazards | `Hazards` |
+| Headlamp Leveling 图标：一个灯的轮廓，发出光线，上方有一个顺时针方向的箭头，下方有一个逆时针方向的箭头 | Headlamp Leveling | `HeadlampLeveling` |
+| High Beams 图标：一个灯的轮廓，发出水平光线 | High Beams | `HighBeams` |
+| Hill Descent Control 图标：一辆汽车下坡行驶的轮廓 | Hill Descent Control | `HillDescentControl` |
+| Lighting Switch 图标：一个发光的灯泡的轮廓 | Lighting Switch | `LightingSwitch` |
+| High Beams 图标：一个灯的轮廓，发出斜向下的光线 | Low Beams | `LowBeams` |
+| Parking Assistance 图标：字母 "P" 旁边有一个实心三角形，"P" 发出表示为三条曲线的检测信号，指向三角形 | Parking Assistance | `ParkingAssistance` |
+| Rear Fog Light 图标：一个雾灯的轮廓，向右发出光线，光线表示为水平线，位于代表雾的波浪垂直线之上 | Rear Fog Light | `RearFogLight` |
+| Side Lights 图标：两个灯的轮廓，向左和向右发出光线 | Side Lights | `SideLights` |
+| Stability Control 图标：一辆汽车后面有波浪线的轮廓 | Stability Control | `StabilityControl` |
+| Stability Control Off 图标：一辆汽车后面有波浪线的轮廓，下方有 "OFF" 字样 | Stability Control Off | `StabilityControlOff` |
+| Tire Monitor 图标：轮胎横截面的轮廓，上面有一个感叹号 | Tire Monitor | `TireMonitor` |
+| Traction Control 图标：轮胎横截面的轮廓，标注有 "TC" | Traction Control | `TractionControl` |
+| Traction Control Off 图标：轮胎横截面的轮廓，标注有 "TC"，整个图像上有一条斜线 | Traction Control Off | `TractionControlOff` |
+| Traction Control Failure 图标：轮胎横截面的轮廓，标注有 "TC"，旁边有一个感叹号 | Traction Control Failure | `TractionControlFailure` |
+| Turn Signal Left 图标：一个指向左侧的实心箭头 | Turn Signal Left | `TurnSignalLeft` |
+| Turn Signal Right 图标：一个指向右侧的实心箭头 | Turn Signal Right | `TurnSignalRight` |
 
 **无线图标**
 
-| 图标 | 图标名称 | 编程使用的值 |
+| 图标 | 图标名称 | Programmatic Use 值 |
 | --- | --- | --- |
-| Network icon: the wireless internet connection icon | Network | `Network` |
-| Network No Signal icon: the wireless internet connection icon grayed out,with a crossed-out circle next to it | Network No Signal | `NetworkNoSignal` |
-| Network Transmission icon: a wireless internet tower | Network Transmission | `NetworkTransmission` |
-| Network3G icon: the wireless internet connection icon with "3G" next to it | Network3G | `Network3G` |
-| Network4G icon: the wireless internet connection icon with "4G" next to it | Network4G | `Network4G` |
-| Network5G icon: the wireless internet connection icon with "4G" next to it | Network5G | `Network5G` |
+| Network 图标：无线互联网连接图标 | Network | `Network` |
+| Network No Signal 图标：无线互联网连接图标变灰，旁边有一个带叉的圆圈 | Network No Signal | `NetworkNoSignal` |
+| Network Transmission 图标：一个无线互联网信号塔 | Network Transmission | `NetworkTransmission` |
+| Network3G 图标：无线互联网连接图标，旁边有 "3G" | Network3G | `Network3G` |
+| Network4G 图标：无线互联网连接图标，旁边有 "4G" | Network4G | `Network4G` |
+| Network5G 图标：无线互联网连接图标，旁边有 "4G" | Network5G | `Network5G` |
 
 #### 提示
 
 - 您可以使用工具条中的模块选项卡更改 Lamp 模块的图标。
-- Dashboard 库包含为每个图标提供预配置 Lamp 模块的库。
-- 如果您要自定义 Lamp 模块的外观（该外观无法通过选择图标来实现），请考虑使用 Customizable Blocks 库中的 Lamp 模块来设计您自己的指示灯。
+- Dashboard 库中包含为每个图标预配置了 Lamp 模块的库。
+- 如果您想要在选择图标的能力之外自定义 Lamp 模块的外观，请考虑使用 Customizable Blocks 库中的 Lamp 模块设计您自己的指示灯。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Icon` |
-| **类型：**字符串 | 字符向量 |
-| **默认值：**`'Default'` |
+| **类型**：string | character vector |
+| **默认值**：`'Default'` |
 
-### **标签** — 模块标签位置 `Top` (默认) | `Bottom` | `Hide`
+### **Label** — 模块标签位置 `Top`（默认）| `Bottom` | `Hide`
 
-模块标签的位置。当模块连接到模型中的元素时，标签是所连接的元素的名称。
+模块标签的位置。当模块连接到模型中的元素时，标签为所连接元素的名称。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`LabelPosition` |
-| **类型：**字符向量 |
+| **类型**：character vector |
 | **值**：`'Top'` | `'Bottom'` | `'Hide'` |
 | **默认值**：`'Top'` |
 
-### **不透明度** — 模块不透明度 `1` (默认) | 标量
+### **Opacity** — 模块不透明度 `1`（默认）| 标量
 
-模块不透明度，指定为 0 到 1 之间的标量值。
+模块不透明度，指定为介于 0 和 1 之间的标量值。
 
-**示例:** `0.5`
+**示例：** `0.5`
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`Opacity` |
-| **类型：**标量 |
-| **默认值：**`1` |
+| **模块参数**：`Opacity` |
+| **类型**：scalar |
+| **默认值**：`1` |
 
 ## 所属库
 
@@ -226,46 +226,46 @@ Simulink / Dashboard
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Boolean` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` |
-| **直接馈通** | `否` |
-| **多维信号** | `否` |
-| **可变大小信号** | `否` |
-| **过零检测** | `否` |
+| **Data Types** | `Boolean` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-Dashboard 模块在代码生成中会被忽略。
+Dashboard 模块在代码生成时被忽略。
 
 ## 版本历史
 
-**在 R2015a 中推出**
+**在 R2015a 中引入**
 
 ## 描述
 
-显示反映信号灯上信号值的颜色
+在灯上显示反映信号值的颜色
 
-Lamp 模块会显示一种颜色，用来指示其所连接的信号的值。要配置 Lamp 模块以提供仿真期间所需的信息，请指定一个或多个状态，这些状态将信号值与要显示的 Lamp 模块的颜色配对。您可以将 Lamp 模块与其他 Dashboard 模块结合使用，为您的模型构建包含各种控件和指示器的交互式仪表板。
+Lamp 模块显示指示所连接信号值的颜色。要将 Lamp 模块配置为在仿真期间提供您需要的信息，请指定一个或多个状态，这些状态将信号值与 Lamp 模块要显示的颜色配对。您可以将 Lamp 模块与其他 Dashboard 模块一起使用，为您的模型构建交互式控件和指示器仪表板。
 
-### 信号灯图标
+### Lamp 图标
 
-您可以通过选择一个内置图标或上传您自己的自定义图标来更改 Lamp 模块的外观。内置图标包括基本形状、汽车指示灯和无线图标。您可以使用**图标**参数或使用工具条中的模块选项卡来更改 Lamp 模块的图标。Dashboard 库还包含为每个图标提供预配置的 Lamp 模块版本的库。有关完整的详细信息，请参阅图标。
+您可以通过选择内置图标之一或上传自己的自定义图标来更改 Lamp 模块的外观。内置图标包括基本形状、汽车指示灯和无线图标。您可以使用 **Icon** 参数或使用工具条中的模块选项卡更改 Lamp 模块的图标。Dashboard 库还包含为每个图标预配置了 Lamp 模块版本的库。有关完整详细信息，请参阅 Icon。
 
-Lamp Icon drop-down menu showing basic shape icons, automotive indicator lamps, wireless icons, and the option to choose a custom icon
+Lamp 图标下拉菜单，显示基本形状图标、汽车指示灯、无线图标以及选择自定义图标的选项
 
-如果您要自定义 Lamp 模块的外观（该外观无法通过选择图标来实现），请考虑使用 Customizable Blocks 库中的 Lamp 模块来设计您自己的指示灯。
+如果您想要在选择图标的能力之外自定义 Lamp 模块的外观，请考虑使用 Customizable Blocks 库中的 Lamp 模块设计您自己的指示灯。
 
 ### 连接 Dashboard 模块
 
-Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
+Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在该模块上并点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
 
-要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择您要连接的信号。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。要查看 Dashboard 模块显示连接模块的值，请运行仿真。
+要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择要连接的信号。然后，将鼠标悬停在 Dashboard 模块上并点击 Done Connecting 按钮 。要查看 Dashboard 模块显示所连接模块的值，请运行仿真。
 
-有关连接 Dashboard 模块的详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
+有关连接 Dashboard 模块的详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
 
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
+您还可以将 Dashboard 模块连接到 Stateflow® 流程图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
 
-此动画说明如何将 Lamp 模块连接到您的模型。
+此动画展示了如何将 Lamp 模块连接到您的模型。
 
-An unconnected Lamp block connects to the signal that a Ramp block sends to a Terminator block.
+一个未连接的 Lamp 模块连接到 Ramp 模块发送到 Terminator 模块的信号。

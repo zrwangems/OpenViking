@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Gamma Correction'
-family: 'conversions'
+family: 'vision'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b
@@ -37,7 +37,6 @@ chinese_source: worker-translation
 要启用此端口，请将 **Operation** 参数设置为 `De-gamma`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `uint8` | `uint16` | `Boolean` | `fixed point`
-
 ### 输出
 
 ### **I'** — 伽马校正后的输出图像矩阵 | 数组
@@ -50,9 +49,9 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `uint8` | `uint16` | `Boolean` | `fixed point`
 
-### **I** — 移除伽马校正后的输出图像矩阵 | 数组
+### **I** — 去除伽马后的输出图像矩阵 | 数组
 
-移除伽马校正后的输出图像，返回为 *M*×*N* 矩阵或 *M*×*N*×*C* 数组，其中 *C* 是颜色通道数。
+去除伽马后的输出图像，返回为 *M*×*N* 矩阵或 *M*×*N*×*C* 数组，其中 *C* 是颜色通道数。
 
 #### 依赖关系
 
@@ -67,7 +66,7 @@ chinese_source: worker-translation
 指定模块执行的伽马操作。
 
 - `Gamma` — 对输入图像应用伽马校正。
-- `De-gamma` — 从输入图像移除伽马校正。
+- `De-gamma` — 从输入图像中去除伽马校正。
 
 ### **Gamma** — 伽马值 `2.2`（默认）| 标量
 
@@ -79,7 +78,7 @@ chinese_source: worker-translation
 
 ### **Break point** — 断点值 `0.018`（默认）| 标量
 
-指定标量断点值，该值表示伽马曲线线性段末端处的 *I* 轴值。有关详细信息，请参阅 Gamma Correction Method。
+指定标量断点值，该值表示伽马曲线线性段末端的 *I* 轴值。有关详细信息，请参阅 Gamma Correction Method。
 
 #### 依赖关系
 
@@ -98,13 +97,11 @@ Computer Vision Toolbox / Conversions
 | **可变大小信号** | `yes` |
 |  |  |
 | --- | --- |
-| a 支持字长小于或等于 16 bits。 | |
+| a 支持小于或等于 16 位的字长。 | |
 
 ## 扩展功能
 
-### C/C++ 代码生成
-
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -112,6 +109,6 @@ Computer Vision Toolbox / Conversions
 
 ## 描述
 
-对图像或视频流应用或移除伽马校正
+对图像或视频流应用或去除伽马校正
 
-Gamma Correction 模块对图像或视频流应用或移除伽马校正。
+Gamma Correction 模块对图像或视频流应用或去除伽马校正。

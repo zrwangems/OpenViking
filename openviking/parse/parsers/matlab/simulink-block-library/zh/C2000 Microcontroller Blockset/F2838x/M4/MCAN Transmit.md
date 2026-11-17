@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'MCAN Transmit'
-family: 'f280015x'
+family: 'ti-c2000'
 product_id: 'ti-c2000'
 product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
@@ -18,7 +18,7 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **TX** — 输入数据端口向量 | 标量
+### **TX** — 输入数据端口 向量 | 标量
 
 该模块接受 `Raw data` 或 `CAN Msg` 格式的消息。
 
@@ -28,14 +28,14 @@ chinese_source: worker-translation
 **数据类型：** `uint8` | `CAN Msg`
 ### 输出
 
-### **Status** — CAN 消息传输状态标量
+### **Status** — CAN 消息传输状态 标量
 
-输出端口，用于显示 CAN 消息传输状态。Status 端口输出：
+用于显示 CAN 消息传输状态的输出端口。状态端口输出：
 
-- `0` - 当 CAN 消息添加到发送 FIFO/Queue 时
-- `1` - 当 CAN 消息未添加到发送 FIFO/Queue 时
+- `0` - 当 CAN 消息被添加到发送 FIFO/队列时
+- `1` - 当 CAN 消息未被添加到发送 FIFO/队列时
 
-#### 依赖项
+#### 依赖关系
 
 要启用此端口，请选择 **Output Status** 参数。
 
@@ -43,20 +43,20 @@ chinese_source: worker-translation
 
 ### **Data format** — 数据输出类型 `Raw data`（默认） | `CAN Msg`
 
-选择一种类型以将消息写入发送 FIFO 或队列。此消息随后会传输到与硬件连接的 CAN 网络。
+选择一种类型以将消息写入发送 FIFO 或队列。该消息随后被传输到与硬件连接的 CAN 网络。
 
-- `Raw data` – 若要将消息写为 1-by-*N* `uint8` 数组，请将 **Data Format** 选择为 `Raw data`。
+- `Raw data` – 若要将消息写为 1×*N* 的 `uint8` 数组，请将 **Data Format** 选择为 `Raw data`。
 - `CAN Msg` – 若要以 CAN 消息格式写入消息，请将 **Data Format** 选择为 `CAN Msg`，然后执行以下步骤：
 
-  1. 将 C2000™ Microcontroller Blockset/Target Communication 库中的 CAN FD Pack 模块添加到您的模型。
-  2. 将 CAN FD Pack 模块的输出连接到 **MCAN Transmit** 模块的输入
-  3. 使用 CAN Pack 模块的 **Data to be input as** 列表中的选项，指定您要创建消息还是要上传 CAN 数据库文件。如果您选择上传 CAN 数据库文件，则 CAN FD Pack 模块会从上传的文件继承消息属性。
+  1. 从 C2000™ Microcontroller Blockset/Target Communication 库向您的模型中添加一个 CAN FD Pack 模块。
+  2. 将 CAN FD Pack 模块的输出连接到 **MCAN Transmit** 模块的输入。
+  3. 使用 CAN Pack 模块的 **Data to be input as** 列表中的选项，指定您是要创建消息还是要上传 CAN 数据库文件。如果您选择上传 CAN 数据库文件，CAN FD Pack 模块将从上传的文件中继承消息属性。
 
 ### **Frame format** — 帧格式类型 `CAN-FD`（默认） | `Classic CAN`
 
 CAN 帧格式。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Data Format** 设置为 `Raw data`。
 
@@ -64,47 +64,47 @@ CAN 帧格式。
 
 CAN 消息标识符类型。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Data Format** 设置为 `Raw data`。
 
-### **Identifier** — 消息标识符 `100`（默认） | `长度为 11 或 29 bits 的数字标识符`
+### **Identifier** — 消息标识符 `100`（默认） | `长度为 11 位或 29 位的数字标识符`
 
-标识符，对于标准帧大小为 11 bits 长，对于扩展帧大小为 29 bits 长，以十进制、二进制或十六进制格式指定。对于二进制和十六进制格式，分别使用 `bin2dec(' ')` 和 `hex2dec(' ')` 将输入转换为数值。该标识符用于创建传输到 CAN 总线的 CAN 消息。
+标识符，对于标准帧长度为 11 位，对于扩展帧长度为 29 位，以十进制、二进制或十六进制格式指定。对于二进制和十六进制格式，请分别使用 `bin2dec(' ')` 和 `hex2dec(' ')` 转换输入。该标识符用于创建传输到 CAN 总线的 CAN 消息。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Data Format** 设置为 `Raw data`。
 
-### **Length (bytes)** — 消息长度 `64`（默认） | `小于或等于 64(CAN-FD) 的正整数` | `小于或等于 8(Classic CAN) 的正整数`
+### **Length (bytes)** — 消息长度 `64`（默认） | `小于或等于 64 的正整数（CAN-FD）` | `小于或等于 8 的正整数（Classic CAN）`
 
-CAN 消息中数据的长度，以 bytes 为单位。
+CAN 消息中数据的长度（以字节为单位）。
 
-对于 **Classic CAN** 帧格式，消息长度在 `0-8` bytes 之间，对于 **CAN-FD** 帧格式，范围为 `0-64`。当传输端口处的数据长度与您在此处指定的长度不匹配时，模块会显示错误。
+**Classic CAN** 帧格式的消息长度在 `0-8` 字节之间，**CAN-FD** 帧格式的范围在 `0-64` 之间。当发送端口的数据长度与您在此处指定的长度不匹配时，模块将显示错误。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Data Format** 设置为 `Raw data`。
 
 ### **Remote Frame** — 启用远程消息 `off`（默认） | `on`
 
-选择此参数可将 CAN 消息配置为远程消息。输入端口处的数据不会考虑用于传输。
+选择此参数可将 CAN 消息配置为远程消息。输入端口的数据不参与传输。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Data format** 设置为 `Raw data`，并将 **Frame format** 设置为 `Classic CAN`。
 
-### **Enable bit rate switching** — 启用比特率切换消息 `off`（默认） | `on`
+### **Enable bit rate switching** — 启用位速率切换消息 `off`（默认） | `on`
 
-选择此参数可将 CAN 消息配置为比特率切换。CAN 消息中的数据将以您在硬件配置参数中指定的数据速率传输。
+选择此参数可将 CAN 消息配置为位速率切换。CAN 消息中的数据将以您在硬件配置参数中指定的数据速率传输。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Data format** 设置为 `Raw data`，并将 **Frame format** 设置为 `CAN-FD`。
 
 ### **Output Status** — 启用输出状态 `off`（默认） | `on`
 
-当您选择 **Output Status** 参数时，模块会配置端口的 **Status**。该端口输出 CAN 消息传输状态。
+当您选择 **Output Status** 参数时，模块将配置端口的 **Status**。该端口输出 CAN 消息传输状态。
 
 ## 所属库
 
@@ -112,11 +112,11 @@ C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F2
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -124,14 +124,14 @@ C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F2
 
 ## 描述
 
-将串行数据发送到 CAN 总线
+向 CAN 总线发送串行数据
 
-MCAN Transmit 模块将消息发送到连接到硬件的控制器局域网（CAN）。
+MCAN Transmit 模块将消息发送到与硬件连接的控制器局域网（CAN）。
 
-在 Raw data 模式下，该模块接受 uint8 类型的 1-D 数组。在 CAN msg 模式下，该模块接受来自 CAN-FD Pack 模块的 Simulink® 总线信号。
+在 Raw data 模式下，该模块接受 `uint8` 类型的一维数组。在 CAN msg 模式下，该模块接受来自 CAN-FD Pack 模块的 Simulink® 总线信号。
 
 **注意**
 
 在 MCAN Transmit 模块中，如果发送 FIFO 已满，则数据不会被传输。
 
-使用模块参数对话框指定 **Data Format** 及其属性。在 Configuration Parameters 中配置 CAN 模块的属性。有关更多信息，请参阅 Model Configuration Parameters for Texas Instruments C2000 Processors。
+使用模块参数对话框指定 **Data Format** 及其属性。在 Configuration Parameters 中配置 CAN 模块的属性。更多信息请参阅 Model Configuration Parameters for Texas Instruments C2000 Processors。

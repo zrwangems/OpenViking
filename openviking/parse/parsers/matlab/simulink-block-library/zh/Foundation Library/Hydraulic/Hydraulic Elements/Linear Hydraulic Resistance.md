@@ -32,15 +32,15 @@ chinese_source: worker-translation
 
 ## 所属库
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成：使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -48,7 +48,9 @@ chinese_source: worker-translation
 
 ### R2023a: 将被移除
 
-Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。Isothermal Liquid 库中的模块提供更高的准确性、可用性和数值性能。
+Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。
+Isothermal Liquid 库中的模块提供更高的精度、可用性和
+数值性能。
 
 有关更新模型的详细信息，请参阅 Upgrading Hydraulic Models to Use Isothermal Liquid Blocks。
 
@@ -56,14 +58,24 @@ Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。Iso
 
 （将被移除）具有线性阻力损失的液压管道
 
-Linear Hydraulic Resistance 模块表示一种液压阻力，其中压力损失与流量直接成正比。该模块在开发的初步阶段可能很有用，也可作为加速仿真的强大手段，尤其是在流量相对于工作点变化不显著时。
+Linear Hydraulic Resistance 模块表示一种液压阻力，其中
+压力损失与流量成正比。该模块在开发的初步
+阶段可能很有用，或者作为一种加速仿真的强大手段，特别是在流量
+相对于工作点变化不大的情况下。
 
-连接 A 和 B 是分别与该模块入口和出口关联的液压守恒端口。
+连接 A 和 B 是分别与模块入口和
+出口关联的守恒液压端口。
 
-该模块的正方向是从端口 A 到端口 B。这意味着如果流体从 A 流向 B，则流量为正，并且压力损失确定为 p=pA−pB。
+模块正方向为从端口 A 到端口 B。这意味着如果流体从 A 流向 B，则流量为
+正值，压力损失确定为 p=pA−pB。
 
 ### 变量
 
-要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
+要在仿真之前设置模块变量的优先级和初始目标值，请使用
+模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关更多信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-标称值提供了一种在模型中指定变量预期量级的方法。使用基于标称值的系统缩放可提高仿真稳健性。标称值可以来自不同来源，其中之一是模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 Modify Nominal Values for a Block Variable。
+标称值提供了一种指定模型中变量预期量级的方法。
+使用基于标称值的系统缩放可提高仿真鲁棒性。标称
+值可以来自不同来源，其中之一是模块对话框或 Property Inspector 中的 **Nominal
+Values** 部分。有关更多
+信息，请参阅 Modify Nominal Values for a Block Variable。

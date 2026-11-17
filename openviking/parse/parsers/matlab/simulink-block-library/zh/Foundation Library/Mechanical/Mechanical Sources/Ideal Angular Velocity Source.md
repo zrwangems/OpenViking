@@ -9,7 +9,7 @@ official_category: 'Mechanical / Mechanical Sources'
 documentation_page: 'idealangularvelocitysource'
 documentation_source_path: 'ref/idealangularvelocitysource.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Ideal Angular Velocity Source
@@ -18,22 +18,22 @@ chinese_source: official
 
 ### 输入
 
-### **S** — 控制信号 (rad/s) 物理信号
+### **S** — 控制信号，rad/s 物理信号
 
-物理信号输入端口，通过该端口应用驱动该源的控制信号。
+物理信号输入端口，通过该端口施加驱动源的控制信号。
 ### 守恒
 
-### **R** — 杆 机械旋转
+### **R** — 杆机械旋转
 
-与源移动部件（杆）相关联的机械旋转守恒端口。
+与源运动部件（杆）关联的机械旋转守恒端口。
 
-### **C** — 外壳 机械旋转
+### **C** — 壳体机械旋转
 
-与源参考点（外壳）相关联的机械旋转守恒端口。
+与源参考点（壳体）关联的机械旋转守恒端口。
 
 ## 参数
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -41,22 +41,25 @@ Simscape / Foundation Library / Mechanical / Mechanical Sources
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-**在 R2007a 中推出**
+**在 R2007a 中引入**
 
 ## 描述
 
-机械旋转系统中理想的角速度源
+机械旋转系统中的理想角速度源
 
-Ideal Angular Velocity Source 模块表示理想的角速度源，可在其端子处产生与输入物理信号成比例的速度差。从某种意义上说，这是一个理想源，因为它假设无论施加在系统上的扭矩多大，它都能将速度保持在指定值。
+Ideal Angular Velocity Source 模块表示一个理想角速度源，它在其端子处生成与输入物理信号成比例的速度差。该源是理想的，因为它被假定具有足够的功率，无论系统上施加的扭矩如何，都能维持指定的速度。
 
-连接端 R 和 C 是机械旋转守恒端口。端口 S 是物理信号端口，通过该端口应用驱动该源的控制信号。源两端的相对速度（速度差）与控制端口 S 处的信号成正比。各种 Simulink® 信号源均可用于生成所需的速度变化曲线。
+连接 R 和 C 是机械旋转守恒端口。端口 S 是物理信号端口，通过该端口施加驱动源的控制信号。源两端的相对速度（速度差）与控制端口 S 处的信号直接成比例。可以使用 Simulink® 信号源的各种类型来生成所需的速度变化曲线。
 
-此模块的正方向是从端口 R 到端口 C。这意味着速度测量为 *ω* = *ω*R – *ω*C，其中 *ω*R 和 *ω*C 分别是端口 R 和端口 C 处的绝对角速度，并且如果方向是从 R 到 C，则通过源的扭矩为正。如果源向端口 R 输送能量，则源产生的功率为负。
+模块正方向是从端口 R 到端口 C。这意味着速度测量为 *ω* = *ω*R –
+*ω*C，其中
+*ω*R、
+*ω*C 分别是端口 R 和 C 处的绝对角速度，通过源的扭矩如果从 R 指向 C 则为正。如果源向端口 R 提供能量，则源产生的功率为负。

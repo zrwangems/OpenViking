@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sinusoidal Translational Velocity Source'
-family: 'sources'
+family: 'sdl'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b
@@ -22,9 +22,9 @@ chinese_source: worker-translation
 
 与基座接口关联的机械平移守恒端口。
 
-### **F** — 随动接口机械平移
+### **F** — 从动接口机械平移
 
-与随动接口关联的机械平移守恒端口。
+与从动接口关联的机械平移守恒端口。
 
 ## 参数
 
@@ -54,9 +54,7 @@ Simscape / Driveline / Sources
 
 ## 扩展功能
 
-### C/C++ 代码生成
-
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -68,29 +66,25 @@ Simscape / Driveline / Sources
 
 Sinusoidal Translational Velocity Source 模块产生具有恒定偏移的正弦平移速度。
 
-基座接口与随动接口之间的相对平移速度为
+基座接口与从动接口之间的相对平移速度为
 
-vFB=vF−vB,
+vFB=vF−vB，
 
 其中：
 
-- *v FB* 是相对
-  平移速度。
-- *vF* 是随动接口处的绝对平移
-  速度。
-- *vB* 是基座接口处的绝对平移
-  速度。
+- *v FB* 是相对平移速度。
+- *vF* 是从动接口处的绝对平移速度。
+- *vB* 是基座接口处的绝对平移速度。
 
 该模块生成的正弦平移速度的定义方程为
 
-v=vo+A\*sin(2πft+φ),
+v=vo+A\*sin(2πft+φ)，
 
 其中：
 
 - *v* 是输出平移速度。
-- *vo* 是输出的偏移平移
-  速度。
+- *vo* 是输出的偏移平移速度。
 - *A* 是正弦波的峰值幅度。
-- *f* 是以 Hz 为单位的正弦波频率。
+- *f* 是正弦波的频率，单位为 Hz。
 - *t* 是时间。
 - φ 是正弦波的相移。

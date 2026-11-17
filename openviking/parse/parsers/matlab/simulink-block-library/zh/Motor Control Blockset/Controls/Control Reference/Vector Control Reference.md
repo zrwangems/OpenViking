@@ -9,7 +9,7 @@ official_category: 'Controls / Control Reference'
 documentation_page: 'vectorcontrolreference'
 documentation_source_path: 'ref/vectorcontrolreference.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Vector Control Reference
@@ -18,42 +18,42 @@ chinese_source: official
 
 ### 输入
 
-### **magref** — 参考矢量的幅值 标量
+### **magref** — 参考矢量幅值 标量
 
-作为输入提供给模块的参考电压、电流或磁通矢量的幅值。
+作为模块输入提供的参考电压、电流或磁链矢量的幅值。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
-### **θe** — 参考矢量的电气位置 标量
+### **θe** — 参考矢量电角度位置 标量
 
-作为输入提供给模块的参考电压、电流或磁通矢量的电气位置。
+作为模块输入提供的参考电压、电流或磁链矢量的电角度位置。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 ### 输出
 
 ### **dref** — 参考矢量的 *d* 轴分量 标量
 
-参考电压、电流或磁通矢量在 *dq* 旋转参考系的直轴上的分量。
+参考电压、电流或磁链矢量沿旋转 *dq* 参考坐标系直轴的分量。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
 ### **qref** — 参考矢量的 *q* 轴分量 标量
 
-参考电压、电流或磁通矢量在 *dq* 旋转参考系的交轴上的分量。
+参考电压、电流或磁链矢量沿旋转 *dq* 参考坐标系交轴的分量。
 
-**数据类型:** `single` | `double` | `fixed point`
+**数据类型：** `single` | `double` | `fixed point`
 
 ## 参数
 
-### **alpha (a 相)轴对齐** — *dq* 参考系对齐 **D 轴** (默认) | **Q 轴**
+### **Alpha (phase-a) axis alignment** — *dq* 参考坐标系对齐方式 `D-axis`（默认） | `Q-axis`
 
-将旋转参考系的 *d* 或 *q* 轴与静止参考系的 *α* 轴对齐。
+将旋转参考坐标系的 *d* 轴或 *q* 轴与静止参考坐标系的 *α* 轴对齐。
 
-### **Theta 单位** — 输入位置值的单位 **标幺** (默认) | **弧度** | **度**
+### **Theta units** — 输入位置值的单位 `Per-unit`（默认） | `Radians` | `Degrees`
 
-参考电压、电流或磁通矢量的输入电气位置的单位。
+参考电压、电流或磁链矢量输入电角度位置的单位。
 
-### **三角查找表的数据点数** — 查找表数组的大小 `1024` (默认) | 标量
+### **Number of data points for trigonometric lookup table** — 查找表数组大小 `1024`（默认） | 标量
 
 查找表数组的大小。
 
@@ -63,29 +63,29 @@ Motor Control Blockset / Controls / Control Reference
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2020a 中推出**
+**在 R2020a 中引入**
 
 ## 描述
 
 计算参考矢量的 d 轴和 q 轴分量
 
-Vector Control Reference 模块可计算您作为输入提供给模块的参考电压、电流或磁通矢量的 *d* 轴和 *q* 轴分量。
+Vector Control Reference 模块计算作为模块输入提供的参考电压、电流或磁链矢量的 *d* 轴和 *q* 轴分量。
 
-该模块接受参考矢量的幅值和位置作为输入。该模块沿 *dq* 旋转参考系的直轴和交轴输出参考矢量分量。
+该模块接受参考矢量的幅值和位置作为输入。模块输出参考矢量沿旋转 *dq* 参考坐标系直轴和交轴的分量。
 
 ### 方程
 
-该模块使用以下方程来计算 *d* 轴和 *q* 轴矢量分量输出。
+该模块使用以下方程计算 *d* 轴和 *q* 轴矢量分量输出。
 
 dref=magref×cosθe
 
@@ -96,4 +96,4 @@ qref=magref×sinθe
 - dref 是参考矢量的 *d* 轴分量。
 - qref 是参考矢量的 *q* 轴分量。
 - magref 是参考矢量的幅值。
-- θe 是参考矢量的电气位置。
+- θe 是参考矢量的电角度位置。

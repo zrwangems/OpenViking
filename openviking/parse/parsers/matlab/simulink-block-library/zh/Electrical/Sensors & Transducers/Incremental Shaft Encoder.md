@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Incremental Shaft Encoder'
-family: 'sensors-transducers'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -20,45 +20,45 @@ chinese_source: worker-translation
 
 ### **R** — 旋转速度 机械旋转
 
-与传感器正探针关联的机械旋转守恒端口。
+与传感器正探头关联的机械旋转守恒端口。
 
 ### **C** — 旋转速度 机械旋转
 
-与传感器负（参考）探针关联的机械旋转守恒端口。
+与传感器负（参考）探头关联的机械旋转守恒端口。
 
 ### **A** — 电压 电气
 
-编码电输出。
+编码电气输出。
 
 ### **B** — 电压 电气
 
-编码电输出。
+编码电气输出。
 
 ### **Z** — 索引或同步 电气
 
-索引或同步电输出。
+索引（或同步）电气输出。
 
 ### **Ref** — 电压 电气
 
-浮地零伏参考。
+浮零伏参考。
 
 ## 参数
 
-### **每转脉冲数** — 脉冲计数 `2`（默认）
+### **Pulses per revolution** — 脉冲计数 `2`（默认）
 
-轴每转一圈在 *A* 和 *B* 每个相位上产生的脉冲数。
+轴每转在 *A* 和 *B* 各相上产生的脉冲数。
 
-### **输出电压幅值** — 电压 `5` `V`（默认）
+### **Output voltage amplitude** — 电压 `5` `V`（默认）
 
-当输出为高电平时，轴编码器输出电压的幅值。
+输出为高电平时轴编码器输出电压的幅值。
 
-### **索引脉冲相对于轴初始角度的偏移** — 位置 `0` `deg`（默认）
+### **Index pulse offset relative to shaft initial angle** — 位置 `0` `deg`（默认）
 
-索引脉冲 *Z* 相对于仿真开始时轴角度的偏移。此参数允许您设置索引脉冲的初始位置。
+索引脉冲 *Z* 相对于仿真开始时轴角度的偏移量。此参数用于设置索引脉冲的初始位置。
 
 ## 所属库
 
-Simscape / 电气 / 传感器与换能器
+Simscape / Electrical / Sensors & Transducers
 
 ## 模块特性
 
@@ -74,12 +74,12 @@ R2025b 中未记录。
 
 ## 描述
 
-将角位置转换为电脉冲的行为模型
+将角位置转换为电气脉冲的行为模型
 
-Incremental Shaft Encoder 模块表示一种将轴的角位置信息转换为电脉冲的设备。该模块在轴每转一圈时在端口 **A** 和 **B** 上产生 *N* 个脉冲，其中 *N* 是您为 **每转脉冲数** 参数指定的值。脉冲 *A* 和 *B* 相位相差 90 度。如果轴沿正方向旋转，则 *A* 超前 *B*。该模块每转一圈在端口 **Z** 上产生一个索引脉冲。*Z* 脉冲的正跳变始终与 *A* 脉冲的正跳变重合，并且 *Z* 脉冲的长度等于 *A* 和 *B* 脉冲的长度。端口 **A**、**B** 和 **Z** 处的电压是相对于 **Ref** 参考端口电压定义的。
+Incremental Shaft Encoder 模块表示一种将轴角位置信息转换为电气脉冲的设备。该模块在轴每转时在端口 **A** 和 **B** 上产生 *N* 个脉冲，其中 *N* 是您为 **Pulses per revolution** 参数指定的值。脉冲 *A* 和 *B* 相位相差 90 度。如果轴沿正方向旋转，则 *A* 超前 *B*。该模块每转在端口 **Z** 上产生一个索引脉冲。*Z* 脉冲的正跳变始终与 *A* 脉冲的正跳变重合，且 *Z* 脉冲长度等于 *A* 和 *B* 脉冲的长度。端口 **A**、**B** 和 **Z** 处的电压相对于 **Ref** 参考端口电压定义。
 
-如果您需要对轴编码器信号进行建模，以支持解码算法的开发或包含量化效应，请使用此模块。否则，请使用 Simscape™ Foundation 库中的 Ideal Rotational Motion Sensor 模块。
+如果您需要建模轴编码器信号，以支持解码算法的开发或包含量化效应，请使用此模块。否则，请使用 Simscape™ Foundation 库中的 Ideal Rotational Motion Sensor 模块。
 
-### 假设和限制
+### 假设与限制
 
 - Incremental Shaft Encoder 模块不可线性化。对于需要模型线性化的控制设计研究，请使用 Simscape Foundation 库中的 Ideal Rotational Motion Sensor 模块。

@@ -9,35 +9,27 @@ official_category: 'Environment'
 documentation_page: 'environment'
 documentation_source_path: 'environment.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Environment
 
 Environment
 
-Simulate aspects of environment, such as atmospheric
-conditions, gravity, magnetic fields, wind
+模拟环境的不同方面，例如大气条件、重力、磁场、风
 
-Use environment-standards-based reference models to model standard
-atmospheric, gravity, and magnetic field profiles and implement standard
-wind conditions. Use ephemeris data to calculate position and velocity
-of celestial bodies.
+使用基于环境标准的参考模型来建模标准大气、重力和磁场剖面，并实现标准风条件。使用星历数据计算天体的位置和速度。
 
 ## Categories
 
 - Atmosphere
-  Implement general atmospheric profiles such as ISA,
-  COESA; nonstandard day simulations; lapse rate atmosphere; pressure
-  altitude
+  实现通用大气剖面，例如 ISA、COESA；非标准日模拟；递减率大气；压力高度
 - Gravity
-  Calculate gravity and magnetic fields for any point
-  on Earth
+  计算地球上任意点的重力和磁场
 - Wind
-  Implement wind-related simulations, such as turbulence, gust, shear, horizontal
-  wind
+  实现与风相关的仿真，例如湍流、阵风、切变、水平风
 - Celestial Phenomena
-  Calculate position and velocity of bodies
+  计算天体的位置和速度
 
 ## Featured Examples
 
@@ -45,15 +37,15 @@ Fly the De Havilland Beaver
 
 ### Fly the De Havilland Beaver
 
-Model the De Havilland Beaver using Simulink® and Aerospace Blockset™ software.
+使用 Simulink® 和 Aerospace Blockset™ 软件对 De Havilland Beaver 进行建模。
 
 - Open Live Script
 
-Fly the De Havilland Beaver with Unreal Engine Visualization
+使用 Unreal Engine 可视化驾驶 De Havilland Beaver
 
-### Fly the De Havilland Beaver with Unreal Engine Visualization
+### 使用 Unreal Engine 可视化驾驶 De Havilland Beaver
 
-Model the De Havilland Beaver using Simulink and Aerospace Blockset software with Unreal Engine® and Cesium® visualization.
+使用 Simulink 和 Aerospace Blockset 软件以及 Unreal Engine® 和 Cesium® 可视化对 De Havilland Beaver 进行建模。
 
 - Open Live Script
 
@@ -61,33 +53,33 @@ HL-20 Project with Optional FlightGear Interface
 
 ### HL-20 Project with Optional FlightGear Interface
 
-Model NASA HL-20 lifting body and controller modeled in Simulink and Aerospace Blockset, using FlightGear for visualization.
+在 Simulink 和 Aerospace Blockset 中建模 NASA HL-20 升力体及控制器，并使用 FlightGear 进行可视化。
 
 - Open Live Script
 
-Parachute Simulation Study with Monte Carlo Analysis
+使用 Monte Carlo 分析的降落伞仿真研究
 
-### Parachute Simulation Study with Monte Carlo Analysis
+### 使用 Monte Carlo 分析的降落伞仿真研究
 
-Simulate a package with a parachute being dropped from an airplane.
+模拟从飞机上投放带降落伞的包裹。
 
 - Open Live Script
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击的链接对应于以下 MATLAB 命令：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+请在 MATLAB 命令窗口中输入命令以运行该命令。
+Web 浏览器不支持 MATLAB 命令。
 
 Close
 
 MathWorks
 MathWorks
 
-选择网站
+Select a Web Site
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择网站以获取翻译后的内容（如果可用），并查看本地活动和优惠。根据您的位置，我们建议您选择：.
 
 - (English)
 - (Deutsch)
@@ -96,19 +88,19 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您还可以从以下列表中选择网站
 
-**如何获得最佳网站性能**
+**How to Get Best Site Performance**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置进行优化。
 
-美洲
+Americas
 
 - América Latina (Español)
 - Canada (English)
 - United States (English)
 
-欧洲
+Europe
 
 - Belgium (English)
 - Denmark (English)
@@ -131,7 +123,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+Asia Pacific
 
 - Australia (English)
 - India (English)
@@ -142,4 +134,4 @@ MathWorks
 - 日本 (日本語)
 - 한국 (한국어)
 
-联系您当地的办事处
+Contact your local office

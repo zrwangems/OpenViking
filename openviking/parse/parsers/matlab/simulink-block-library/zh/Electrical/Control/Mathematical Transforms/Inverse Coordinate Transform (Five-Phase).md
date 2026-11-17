@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Inverse Coordinate Transform (Five-Phase)'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -29,20 +29,19 @@ chinese_source: worker-translation
 旋转参考坐标系的角度位置，指定为标量。
 
 **数据类型：** `single` | `double`
-
 ### 输出
 
 ### **abcde** — *a*、*b*、*c*、*d* 和 *e* 相分量向量
 
-五相系统在 *abcde* 参考坐标系中的分量，以向量形式返回。
+*abcde* 参考坐标系中五相系统的分量，以向量形式返回。
 
 **数据类型：** `single` | `double`
 
 ## 参数
 
-### **Phase-a axis alignment** — *dqxy0* 参考坐标系对齐 `Q-axis` (default) | `D-axis`
+### **Phase-a axis alignment** — *dqxy0* 参考坐标系对齐方式 `Q-axis`（默认）| `D-axis`
 
-是否将 *abcde* 参考坐标系的 *a* 相向量对齐到旋转参考坐标系的 *d*-axis 或 *q*-axis。
+是否将 *abcde* 参考坐标系的 *a* 相向量对齐到旋转参考坐标系的 *d* 轴或 *q* 轴。
 
 ## 所属库
 
@@ -50,12 +49,11 @@ Simscape / Electrical / Control / Mathematical Transforms
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
@@ -67,12 +65,12 @@ Simscape / Electrical / Control / Mathematical Transforms
 
 Inverse Coordinate Transform (Five-Phase) 模块将旋转参考坐标系中的时域直轴、交轴、*x*、*y* 和零分量转换为 *abcde* 参考坐标系中五相系统的分量。
 
-您可以配置该模块，以在时间 *t* = 0 时将五相系统的 *a*-axis 对齐到旋转参考坐标系的 *d*-axis 或 *q*-axis。
+您可以将该模块配置为在时间 *t* = 0 时将五相系统的 *a* 相轴对齐到旋转参考坐标系的 *d* 轴或 *q* 轴。
 
-*θ = ωt + Offset* 是 *q*-axis alignment 时 *a* 与 *q* 轴之间的角度，或 *d*-axis alignment 时 *a* 与 *d* 轴之间的角度，其中：
+*θ = ωt + Offset* 是 *q* 轴对齐时 *a* 轴与 *q* 轴之间的角度，或 *d* 轴对齐时 *a* 轴与 *d* 轴之间的角度，其中：
 
 - *ω* 是旋转参考坐标系的旋转速度。
-- *t* 是从初始对齐开始的时间，单位为 s。
+- *t* 是距初始对齐的时间，单位为 s。
 - Offset=​π2,      d−axis alignment 0,        q−axis alignment
 
 ### 方程

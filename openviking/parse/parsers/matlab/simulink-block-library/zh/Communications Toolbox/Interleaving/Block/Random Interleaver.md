@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Random Interleaver'
-family: 'interleaving'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -16,7 +16,7 @@ chinese_source: worker-translation
 
 ## 端口
 
-R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 参数
 
@@ -28,11 +28,11 @@ R2025b 中未提供文档。
 
 ## 所属库
 
-R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 模块特性
 
-R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -40,14 +40,14 @@ R2025b 中未提供文档。
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2006a 之前引入**
 
 ## 描述
 
-使用随机置换对输入符号重新排序
+使用随机置换重新排列输入符号
 
-Random Interleaver 模块使用随机置换重新排列其输入向量中的元素。该模块接受列向量输入信号。**Number of elements** 参数指示输入向量中包含多少个数值。
+Random Interleaver 模块使用随机置换重新排列其输入向量的元素。该模块接受列向量输入信号。**Number of elements** 参数表示输入向量中有多少个数字。
 
-该模块接受以下数据类型：`int8`、`uint8`、`int16`、`uint16`、`int32`、`uint32`、`boolean`、`single`、`double` 和 fixed-point。输出信号的数据类型继承自输入信号。
+该模块接受以下数据类型：`int8`、`uint8`、`int16`、`uint16`、`int32`、`uint32`、`boolean`、`single`、`double` 和定点。输出信号的数据类型继承自输入信号。
 
-**Initial seed** 参数用于初始化模块确定置换时所用的随机数生成器。给定种子时，该模块生成的置换是可预测的，但不同的种子会产生不同的置换。
+**Initial seed** 参数用于初始化模块用来确定置换的随机数生成器。对于给定的种子，该模块是可预测的，但不同的种子会产生不同的置换。

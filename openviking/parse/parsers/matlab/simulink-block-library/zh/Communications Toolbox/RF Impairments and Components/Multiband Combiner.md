@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Multiband Combiner'
-family: 'rf-impairments-and-components'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -18,66 +18,90 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **In** — 输入信号 *N*samp×*N*chan 矩阵
+### **In** — 输入信号 *N*samp-by-*N*chan 矩阵
 
-输入信号，指定为 *N*samp×*N*chan 矩阵。*N*samp 是每通道的输入样本数，*N*chan 是通道数。
+输入信号，指定为
+*N*samp-by-*N*chan
+矩阵。*N*samp 是每个通道的输入样本数，
+*N*chan 是通道数。
 
 **数据类型：** `double` | `single`
 **复数支持：** 是
 ### 输出
 
-### **Out** — 输出信号 *N*out×1 向量
+### **Out** — 输出信号 *N*out-by-1 向量
 
-输出信号，返回为与输入信号 `In` 具有相同数据类型的 *N*out×1 向量。*N*out 是输出样本数。**速率选项**参数指定单速率或多速率模式。有关详细信息，请参阅算法。
+输出信号，返回为与输入信号 `In` 数据类型相同的 *N*out-by-1
+向量。
+*N*out 是输出样本数。**Rate
+options** 参数指定单速率或多速率模式。有关
+更多信息，请参阅算法部分。
 
 ## 参数
 
-要交互式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡上，在**准备**库中选择**属性检查器**。
+要以交互方式编辑模块参数，请使用
+Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在
+**Prepare** 库中，选择 **Property
+Inspector**。
 
-### **输入采样率 (Hz)** — 输入信号采样率 `1e6`（默认）| 正标量
+### **Input sample rate (Hz)** — 输入信号采样率 `1e6`（默认）| 正标量
 
 输入信号采样率，以 Hz 为单位，指定为正标量。
 
-### **频率偏移 (Hz)** — 频率偏移 `[0 1e6]`（默认）| 标量 | 1×*N*chan 向量
+### **Frequency offsets (Hz)** — 频率偏移 `[0 1e6]`（默认）| 标量 | 1-by-*N*chan 向量
 
 频率偏移，以 Hz 为单位，指定为以下选项之一。
 
-- 标量 — 输入信号的每个通道都按此标量值进行频移。
-- 1×*N*chan 向量 — 输入信号的每个通道都按此向量中的对应值进行频移。*N*chan 是输入信号 `In` 的通道数。
+- 标量 — 输入信号的每个通道按此标量值进行频率偏移。
+- 1-by-*N*chan 向量 — 输入信号的每个通道按此向量中的对应值进行频率偏移。
+  *N*chan 是输入信号 `In` 中的通道数。
 
-### **速率选项** — 处理速率的选项 `Enforce single-rate processing`（默认）| `Allow multirate processing`
+### **Rate options** — 处理速率选项 `Enforce single-rate processing`（默认）| `Allow multirate processing`
 
-处理速率的选项，指定为以下值之一。
+处理速率选项，指定为以下值之一。
 
-- `Enforce single-rate processing` — 输出采样率必须是输入采样率的整数倍。输出中的行数大于或等于输入信号中的行数。输出帧率等于输入帧率。
-- `Allow multirate processing` — 输出具有与输入相同的行数。输出帧率大于或等于输入帧率。
+- `Enforce single-rate processing` — 输出采样率
+  必须是输入采样率的整数倍。输出中的行数
+  大于或等于输入信号中的行数。输出帧速率
+  等于输入帧速率。
+- `Allow multirate processing` — 输出的行数与输入相同。
+  输出帧速率大于或等于输入
+  帧速率。
 
-有关详细信息，请参阅算法部分。
+有关更多信息，请参阅算法部分。
 
-### **输出采样率选项** — 输出采样率的选项 `Auto`（默认）| `Specify via property`
+### **Output sample rate options** — 输出采样率选项 `Auto`（默认）| `Specify via property`
 
-输出采样率的选项，指定为以下值之一。
+输出采样率选项，指定为以下值之一。
 
-- `Auto` — 模块对输入信号进行插值，以确保信号的最终采样率足以避免原始信号在频移以生成输出信号后其频率内容发生失真。
-- `Specify via property` — 使用**输出采样率 (Hz)**参数指定输出采样率。
+- `Auto` — 该模块对输入信号进行插值，以确保
+  信号的最终采样率足以避免在信号经过频率偏移
+  以产生输出信号后原始信号的频率内容发生
+  失真。
+- `Specify via property` — 使用 **Output sample rate
+  (Hz)** 参数指定输出采样率。
 
-### **输出采样率 (Hz)** — 输出信号采样率 `3e6`（默认）| 正标量
+### **Output sample rate (Hz)** — 输出信号采样率 `3e6`（默认）| 正标量
 
 输出信号采样率，以 Hz 为单位，指定为正标量。
 
 #### 提示
 
-为避免失真，请将此值指定为大于或等于自动计算的输出采样率。要确定自动计算的输出采样率，请先在**输出采样率选项**参数设置为 `Auto` 的情况下运行模块。
+为避免失真，请将此值指定为大于或等于
+自动计算的输出采样率。要确定自动计算的
+输出采样率，请先将 **Output sample rate
+options** 参数设置为 `Auto` 运行该模块。
 
 #### 依赖关系
 
-要启用此参数，请将**输出采样率选项**参数设置为 `Specify via property`。
+要启用此参数，请将 **Output sample rate
+options** 参数设置为 `Specify via property`。
 
-### **输出延迟 (samples)** — 输出延迟 只读：`36`（默认）| 正标量
+### **Output delay (samples)** — 输出延迟 只读：`36`（默认）| 正标量
 
 此参数为只读。
 
-输出延迟，以 samples 为单位，指定为正标量。
+输出延迟，以样本为单位，指定为正标量。
 
 ## 所属库
 
@@ -101,6 +125,7 @@ Communications Toolbox / RF Impairments and Components
 
 ## 描述
 
-对信号进行频移并合并
+对信号进行频率偏移并合并
 
-Multiband Combiner 模块对输入信号进行插值，将输入信号频移到指定的频带，然后将它们合并为单个信号。有关详细信息，请参阅算法部分。
+Multiband Combiner 模块对输入信号进行插值，将其偏移到指定的频带，
+然后将其合并为单个信号。有关更多信息，请参阅算法部分。

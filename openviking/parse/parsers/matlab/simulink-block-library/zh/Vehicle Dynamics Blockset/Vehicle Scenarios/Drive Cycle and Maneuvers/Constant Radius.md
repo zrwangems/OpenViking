@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Constant Radius'
-family: 'vehicle-scenarios'
+family: 'vdynblks'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b
@@ -20,13 +20,13 @@ chinese_source: worker-translation
 
 ### **X** — 车辆质心纵向位置 标量
 
-全局坐标系中车辆质心的纵向位置，指定为标量，单位为 m。
+车辆质心在全局坐标系中的纵向位置，指定为标量，单位为 m。
 
 **数据类型：** `double`
 
 ### **Y** — 车辆质心横向位置 标量
 
-全局坐标系中车辆质心的横向位置，指定为标量，单位为 m。
+车辆质心在全局坐标系中的横向位置，指定为标量，单位为 m。
 
 **数据类型：** `double`
 
@@ -36,20 +36,20 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 
-### **ay** — 车辆横向加速度 标量
+### **ay** — 车辆侧向加速度 标量
 
-停止仿真所需的车辆横向加速度，指定为标量，单位为 gee。
+停止仿真所需的车辆侧向加速度，指定为标量，单位为 gee。
 
 #### 依赖关系
 
-要启用此参数，请选择 **在横向加速度阈值处停止仿真**。
+要启用此参数，请选中 **Stop simulation at lateral acceleration threshold**。
 
 **数据类型：** `double`
 ### 输出
 
 ### **DrvRef** — 驾驶员参考数据总线
 
-驾驶员参考数据，返回为一个总线，其中包含以下模块值。
+驾驶员参考数据，以包含以下模块值的总线形式返回。
 
 | 信号 | 描述 | 单位 |
 | --- | --- | --- |
@@ -63,48 +63,48 @@ chinese_source: worker-translation
 
 **数据类型：** `bus`
 
-### **DrvCmd** — 驾驶员命令数据总线
+### **DrvCmd** — 驾驶员指令数据总线
 
-驾驶员命令数据，返回为一个总线，其中包含以下模块值。
+驾驶员指令数据，以包含以下模块值的总线形式返回。
 
 | 信号 | | 描述 | 单位 |
 | --- | --- | --- | --- |
-| `SteerCmd` | `EnblSteerCmd` | Boolean 信号，用于覆盖驾驶员模型转向命令 | one |
+| `SteerCmd` | `EnblSteerCmd` | 用于覆盖驾驶员模型转向指令的布尔信号 | one |
 | `SteerCmd` | 方向盘转角 | one |
-| `SteerZero` | 当值为 `true` 时，用于将驾驶员模型转向命令覆盖为零的 Boolean 信号 | one |
-| `SteerHld` | 当为 `true` 时，用于保持当前驾驶员模型转向输出的 Boolean 信号 | one |
-| `AccelCmd` | `EnblAccelCmd` | Boolean 信号，用于覆盖驾驶员模型加速命令 | one |
+| `SteerZero` | 当值为 `true` 时，用于以零覆盖驾驶员模型转向指令的布尔信号 | one |
+| `SteerHld` | 当为 `true` 时，用于保持当前驾驶员模型转向输出的布尔信号 | one |
+| `AccelCmd` | `EnblAccelCmd` | 用于覆盖驾驶员模型加速指令的布尔信号 | one |
 | `AccelCmd` | 归一化加速踏板输入 | one |
-| `AccelHld` | 当为 `true` 时，用于保持当前驾驶员模型加速输出的 Boolean 信号 | one |
-| `AccelZero` | 当值为 `true` 时，用于将驾驶员模型加速命令覆盖为零的 Boolean 信号 | one |
-| `DecelCmd` | `EnblDecelCmd` | Boolean 信号，用于覆盖驾驶员模型减速命令 | one |
+| `AccelHld` | 当为 `true` 时，用于保持当前驾驶员模型加速输出的布尔信号 | one |
+| `AccelZero` | 当值为 `true` 时，用于以零覆盖驾驶员模型加速指令的布尔信号 | one |
+| `DecelCmd` | `EnblDecelCmd` | 用于覆盖驾驶员模型减速指令的布尔信号 | one |
 | `DecelCmd` | 归一化减速踏板或制动输入 | one |
-| `DecelHld` | 当为 `true` 时，用于保持当前驾驶员模型减速输出的 Boolean 信号 | one |
-| `DecelZero` | 当值为 `true` 时，用于将驾驶员模型减速命令覆盖为零的 Boolean 信号 | one |
+| `DecelHld` | 当为 `true` 时，用于保持当前驾驶员模型减速输出的布尔信号 | one |
+| `DecelZero` | 当值为 `true` 时，用于以零覆盖驾驶员模型减速指令的布尔信号 | one |
 | `HndBrkCmd` | 归一化手刹或驻车制动输入 | one |
-| `TransCmd` | `TransModeCmd` | 用于指定变速器模式的命令 | one |
-| `GearCmd` | 用于指定手动挡位编号或自动变速器换挡杆位置的命令 | one |
-| `UpShiftCmd` | 升挡命令 | one |
-| `DwnShiftCmd` | 降挡命令 | one |
-| `ClutchCmd` | 手动变速器的归一化离合器分离命令 | one |
+| `TransCmd` | `TransModeCmd` | 用于指定变速器模式的指令 | one |
+| `GearCmd` | 用于指定手动挡位编号或自动变速器换挡杆位置的指令 | one |
+| `UpShiftCmd` | 升挡指令 | one |
+| `DwnShiftCmd` | 降挡指令 | one |
+| `ClutchCmd` | 手动变速器的归一化离合器分离指令 | one |
 
 **注意**
 
-默认情况下，`TransCmd` 总线不会主动使用。使用 Bus Assignment 模块覆盖 `TransCmd` 总线，以自定义并扩展场景。
+默认情况下，`TransCmd` 总线不会被主动使用。使用 Bus Assignment 模块覆盖 `TransCmd` 总线，以自定义和扩展场景。
 
-框图，其中 Bus Assignment 模块覆盖 Constant Radius 模块的 TransCmd 输出。
+Bus Assignment 模块覆盖 Constant Radius 模块的 TransCmd 输出的框图。
 
 **数据类型：** `bus`
 
 ## 参数
 
-要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® Toolstrip 的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
+要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
-### **机动开始时间, tStart [s]** — 开始时间 `2` (default) | 正标量
+### **Maneuver start time, tStart [s]** — 开始时间 `2`（默认）| 正标量
 
 机动开始时间，单位为 s。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -113,14 +113,14 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `tStart` |
-| **值：** | `2` (default) | 正标量 |
+| **值：** | `2`（默认） | 正标量 |
 | **数据类型：** | `double` |
 
-### **纵向速度设定值, velRef** — 目标速度 `35` (default) | 正标量
+### **纵向速度设定点，velRef** — 目标速度 `35`（默认） | 正标量
 
 目标速度。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -129,14 +129,14 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `velRef` |
-| **值：** | `35` (default) | 正标量 |
+| **值：** | `35`（默认） | 正标量 |
 | **数据类型：** | `double` |
 
-### **纵向速度设定值单位, velRefUnit []** — 单位 `mph` (default)
+### **纵向速度设定点单位，velRefUnit []** — 单位 `mph`（默认）
 
 目标速度的单位。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -145,14 +145,14 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `velRefUnit` |
-| **值：** | `mph` (default) | character vector |
+| **值：** | `mph`（默认） | 字符向量 |
 | **数据类型：** | `character vector` |
 
-### **R** — 要跟踪的半径 `100` (default) | 正标量
+### **R** — 要跟踪的半径 `100`（默认） | 正标量
 
 要跟踪的半径，单位为 m。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -161,14 +161,14 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `R` |
-| **值：** | `100` (default) | 正标量 |
+| **值：** | `100`（默认） | 正标量 |
 | **数据类型：** | `double` |
 
-### **初始纵向位置, X\_o [m]** — 初始纵向起点 `0` (default) | 标量
+### **初始纵向位置，X\_o [m]** — 初始纵向起点 `0`（默认） | 标量
 
-圆形参考在全局坐标中的初始纵向起点，单位为 m。
+圆形参考轨迹在全局坐标系中的初始纵向起点，单位为 m。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -177,14 +177,14 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `X_o` |
-| **值：** | `0` (default) | 标量 |
+| **值：** | `0`（默认） | 标量 |
 | **数据类型：** | `double` |
 
-### **初始横向位置, Y\_o [m]** — 初始横向起点 `0` (default) | 标量
+### **初始横向位置，Y\_o [m]** — 初始横向起点 `0`（默认） | 标量
 
-圆形参考在全局坐标中的初始横向起点，单位为 m。
+圆形参考轨迹在全局坐标系中的初始横向起点，单位为 m。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -193,14 +193,14 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `Y_o` |
-| **值：** | `0` (default) | 标量 |
+| **值：** | `0`（默认） | 标量 |
 | **数据类型：** | `double` |
 
-### **初始横摆角, psi\_o [rad]** — 起始航向角 `0` (default) | 标量
+### **初始偏航角，psi\_o [rad]** — 起始航向角 `0`（默认） | 标量
 
-圆形参考在全局坐标中的起始航向角，单位为 rad。
+圆形参考轨迹在全局坐标系中的起始航向角，单位为 rad。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -209,18 +209,18 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `psi_o` |
-| **值：** | `0` (default) | 标量 |
+| **值：** | `0`（默认） | 标量 |
 | **数据类型：** | `double` |
 
-### **内侧和外侧锥桶边界之间的距离, radialConeDist [m]** — 锥桶之间的径向距离 `6` (default) | 正标量
+### **内侧和外侧锥体边界之间的距离，radialConeDist [m]** — 锥体之间的径向距离 `6`（默认） | 正标量
 
-锥桶之间的径向距离，单位为 m。
+锥体之间的径向距离，单位为 m。
 
-#### 依赖关系
+#### 依赖项
 
-要启用此参数，请选择 **实例化 3D 锥桶（需要 Simulation 3D Scene Configuration）**。
+要启用此参数，请选择 **Instantiate 3D cones (Simulation 3D Scene Configuration required)**。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -229,75 +229,75 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `radialConeDist` |
-| **值：** | `6` (default) | 正标量 |
+| **值：** | `6`（默认） | 正标量 |
 | **数据类型：** | `double` |
 
-### **横向加速度绝对阈值, ayMax [g]** — 停止仿真前允许的最大横向加速度 `0.5` (default) | 正标量
+### **横向加速度绝对阈值，ayMax [g]** — 仿真停止前允许的最大横向加速度 `0.5`（默认） | 正标量
 
-停止仿真前允许的最大横向加速度，单位为 g。
+仿真停止前允许的最大横向加速度，单位为 g。
 
 #### 依赖关系
 
-要启用此参数，请选择 **在横向加速度阈值处停止仿真**。
+要启用此参数，请选择 **Stop simulation at lateral acceleration threshold**。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `ayMax` |
-| **值：** | `0.5` (default) | 正标量 |
+| **值：** | `0.5`（默认） | 正标量 |
 | **数据类型：** | `double` |
 
-### **机动方向, steerDir** — 机动方向 `Right` (default) | `Left`
+### **Maneuver direction, steerDir** — 机动方向 `Right`（默认） | `Left`
 
 将机动方向设置为 `Right` 或 `Left`。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `steerDir` |
-| **值：** | `Right` (default) | `Left` |
+| **值：** | `Right`（默认） | `Left` |
 | **数据类型：** | `character vector` |
 
-### **在横向加速度阈值处停止仿真** — 在横向加速度阈值处停止仿真的选项 `off` (default) | `on`
+### **Stop simulation at lateral acceleration threshold** — 在横向加速度阈值处停止仿真的选项 `off`（默认） | `on`
 
-选择此参数可在横向加速度阈值处停止仿真。
+选择此参数以在横向加速度阈值处停止仿真。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `ayStop` |
-| **值：** | `off` (default) | `on` |
+| **值：** | `off`（默认） | `on` |
 | **数据类型：** | `character vector` |
 
-### **实例化 3D 锥桶（需要 Simulation 3D Scene Configuration）** — 实例化 3D 锥桶的选项 `off` (default) | `on`
+### **Instantiate 3D cones (Simulation 3D Scene Configuration required)** — 实例化 3D 锥桶的选项 `off`（默认） | `on`
 
-选择此参数可实例化 3D 锥桶。需要 Simulation 3D Scene Configuration 模块。
+选择此参数以实例化 3D 锥桶。需要 Simulation 3D Scene Configuration 模块。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `use3DCones` |
-| **值：** | `off` (default) | `on` |
+| **值：** | `off`（默认） | `on` |
 | **数据类型：** | `character vector` |
 
 ## 所属库
@@ -306,7 +306,7 @@ Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -320,4 +320,4 @@ Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers
 
 生成用于跟踪恒定半径路径的命令
 
-Constant Radius 模块使用车辆反馈生成开环纵向速度参考和参考位姿，以跟踪恒定半径路径，这有助于表征车辆的侧倾和不足转向响应，通常是在不同速度下。您可以将这些参考直接与 Predictive Driver 模块一起使用，并将 **横向控制类型, controlTypeLat** 参数设置为 `Stanley`。您还可以改变半径和行驶方向，并可选地在指定的横向加速度限值处停止仿真。
+Constant Radius 模块生成开环纵向速度参考和参考位姿，利用车辆反馈来跟踪恒定半径路径，这有助于表征车辆的侧倾和不足转向响应，通常在不同速度下进行。您可以将这些参考直接与 Predictive Driver 模块配合使用，并将 **Lateral control type, controlTypeLat** 参数设置为 `Stanley`。您还可以改变半径和行驶方向，并可选地在指定的横向加速度限制处停止仿真。

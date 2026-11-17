@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Incidence, Sideslip, & Airspeed'
-family: 'flight-parameters'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -18,22 +18,22 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Vb** — 机体速度三元素向量
+### **Vb** — 机体三元素速度矢量
 
-机体的速度，指定为三元素向量，并分解到机体固定坐标系中。
+机体的速度，指定为三元素矢量，在机体固定坐标系中分解。
 
 **数据类型：** `double`
 ### 输出
 
-### **ɑ** — 入射角标量
+### **ɑ** — 迎角标量
 
-入射角，以标量形式返回，单位为 radians。
+迎角，以标量形式返回，单位为弧度。
 
 **数据类型：** `double`
 
 ### **β** — 侧滑角标量
 
-侧滑角，以标量形式返回，单位为 radians。
+侧滑角，以标量形式返回，单位为弧度。
 
 **数据类型：** `double`
 
@@ -65,15 +65,15 @@ R2025b 中未记录。
 
 ### R2022b：更新以减少除零问题
 
-Incidence, Sideslip, & Airspeed 模块现在降低了因飞机在无前向运动悬停时引起的除零问题的可能性。在以前的版本中，无前向运动悬停可能会导致除零问题。
+Incidence, Sideslip, & Airspeed 模块现在减少了由飞机无前向运动悬停引起的除零问题的可能性。在之前的版本中，无前向运动悬停可能会导致除零问题。
 
 ## 描述
 
-计算入射角、侧滑角和空速
+计算迎角、侧滑角和空速
 
-Incidence, Sideslip, & Airspeed 模块根据机体固定坐标系中的速度分量计算速度向量与机体之间的角度，以及总空速。有关计算中使用的方程，参见算法。
+Incidence, Sideslip, & Airspeed 模块计算速度矢量与机体之间的角度，以及从机体固定坐标系中的速度分量计算总空速。有关计算中使用的方程，请参阅算法。
 
 **注意**
 
-- 对于固定翼飞机，由 Incidence, Sideslip, & Airspeed 模块计算的角 α 是相对风与机体纵轴之间的夹角。在许多航空航天工程参考文献中，该角被称为攻角。Incidence, Sideslip, & Airspeed 将该角称为入射角。
-- 对于垂直起降 (VTOL) 配置，用于计算的方程与固定翼飞机 [1] 相同。然而，在涉及巡航与悬停之间过渡的机动中，可能会出现速度值低或为零的情形，从而导致错误的入射角和侧滑角。因此，不建议使用该模块分析 VTOL 配置。作为替代，可使用 6DOF Wind (Quaternion) 或 6DOF Wind (Wind Angles) 模块，它们提供 α 和 β 作为输出。
+- 对于固定翼飞机，Incidence, Sideslip, & Airspeed 模块计算的角 α 是相对风与机体纵轴之间的角度。该角度在许多航空航天工程参考文献中称为迎角。Incidence, Sideslip, & Airspeed 将此角称为 incidence angle。
+- 对于垂直起降（VTOL）构型，用于计算的方程与固定翼飞机的方程相同 [1]。然而，在涉及巡航与悬停之间过渡的机动中，可能存在速度低或为零的情况，导致迎角和侧滑角不正确。因此，不建议使用此模块分析 VTOL 构型。作为替代方案，请使用 6DOF Wind (Quaternion) 或 6DOF Wind (Wind Angles) 模块，它们提供 α 和 β 作为输出。

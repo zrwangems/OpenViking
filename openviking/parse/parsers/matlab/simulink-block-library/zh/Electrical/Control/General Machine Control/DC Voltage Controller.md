@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DC Voltage Controller'
-family: 'control'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -24,9 +24,9 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 
-### **v** — 测得直流电压标量
+### **v** — 测量直流电压标量
 
-被控对象的测得直流输出电压。
+被控对象的测量直流输出电压。
 
 **数据类型：** `single` | `double`
 
@@ -35,7 +35,6 @@ chinese_source: worker-translation
 积分器的外部复位信号（上升沿）。
 
 **数据类型：** `single` | `double`
-
 ### 输出
 
 ### **Control** — 控制信号标量
@@ -58,23 +57,23 @@ chinese_source: worker-translation
 
 控制器的抗饱和增益 *Kaw*。
 
-### **Control action upper limit** — 控制信号的上限，*controlmax* `1`（默认）| 正标量
+### **Control action upper limit** — 控制信号上限，*controlmax* `1`（默认）| 正标量
 
 **Control** 输出信号的上限。该值必须大于 **Control action lower limit** 参数的值。
 
-### **Control action lower limit** — 控制信号的下限，*controlmin* `0`（默认）| 非负标量
+### **Control action lower limit** — 控制信号下限，*controlmin* `0`（默认）| 非负标量
 
 **Control** 输出信号的下限。
 
 ### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| 正标量
 
-时间，以 s 为单位，表示连续模块执行之间的间隔。在执行期间，模块产生输出，并在适当情况下更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
+连续模块执行之间的时间，单位为 s。在执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
-如果此模块位于触发子系统内，则通过将此参数设置为 `-1` 来继承采样时间。如果此模块位于连续变步长模型中，则使用正标量显式指定采样时间。
+如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果此模块位于连续变步长模型中，请使用正标量显式指定采样时间。
 
-### **Discretization sample time** — 用于离散化的采样时间 `0.001`（默认）| 正标量
+### **Discretization sample time** — 离散化采样时间 `0.001`（默认）| 正标量
 
-时间，以 s 为单位，表示连续离散化之间的间隔。
+连续离散化之间的时间，单位为 s。
 
 ### **Time constant voltage filter** — 直流电压滤波器时间常数，*τ* `0.001`（默认）| 正标量
 
@@ -135,23 +134,23 @@ control=(Kp+KiTszz−1)(vref−v),
 - *Ki* 是积分增益。
 - *Ts* 是采样时间。
 - *vref* 是参考电压。
-- *v* 是测得电压。
+- *v* 是测量电压。
 
-PI 控制计算会在闭环传递函数中产生一个零点。为对消该零点，该模块使用以下离散时间零点对消传递函数：
+PI 控制计算会在闭环传递函数中产生一个零点。为对消该零点，模块使用以下离散时间零点对消传递函数：
 
-GZC(z)=TsKiKpz+(Ts−KpKiKpKi).
+GZC(z)=TsKiKpz+(Ts−KpKiKpKi)。
 
-为避免积分器输出饱和，该模块使用抗饱和机制。积分器增益则等于
+为避免积分器输出饱和，模块使用抗饱和机制。积分器增益则等于
 
 Ki+Kaw(controlsat−controlunsat),
 
 其中：
 
 - *Kaw* 是抗饱和增益。
-- *controlsat* 是饱和控制信号，该模块将其计算为 controlsat=min(max(controlunsat,controlmin),controlmax),
+- *controlsat* 是饱和控制信号，模块将其计算为 controlsat=min(max(controlunsat,controlmin),controlmax)，
 
   其中：
 
-  - *controlunsat* 是非饱和控制信号。
+  - *controlunsat* 是未饱和控制信号。
   - *controlmin* 是控制信号的下限。
   - *vmax* 是控制信号的上限。

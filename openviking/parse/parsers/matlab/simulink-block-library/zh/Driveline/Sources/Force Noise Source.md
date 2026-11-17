@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Force Noise Source'
-family: 'sources'
+family: 'sdl'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b
@@ -20,8 +20,8 @@ chinese_source: worker-translation
 
 ### **P** — 单边噪声功率谱密度物理信号
 
-噪声的功率谱密度 (*PSD*) 是每单位带宽的平均噪声功率，单位为 N2/Hz。
-
+噪声的功率谱密度（*PSD*）是每单位带宽的平均噪声功率，单位为
+N2/Hz。
 ### 守恒
 
 ### **B** — 基座接口机械平移
@@ -34,27 +34,27 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **Sample time** — 时间步长周期和偏移量 `1e-3` `s`（默认）| `[step, offset]` `s`
+### **Sample time** — 时间步周期和偏移量 `1e-3` `s`（默认）| `[step, offset]` `s`
 
-时间 *step* 周期和初始时间 *offset* 的值。如果为 *step* 指定标量值，则该模块假定 *offset* 值为 `0`。要为初始时间偏移量指定非零值，请使用向量 `[step, offset]` 指定参数值。*offset* 值必须小于 *step* 值且大于或等于零。
+时间*步长*周期和初始时间*偏移量*的值。如果为*步长*指定标量值，模块假定*偏移量*值为 `0`。要指定初始时间偏移量的非零值，请使用向量 `[step, offset]` 指定参数值。*偏移量*值必须小于*步长*值且大于或等于零。
 
 ### **Repeatability** — 随机数种子控制 `Not repeatable`（默认）| `Repeatable` | `Specify seed`
 
-随机数种子是初始化随机数生成器的数字。种子是 `0` 或正整数。要控制随机数种子，请将此参数设置为：
+随机数种子是初始化随机数生成器的数字。种子为 `0` 或正整数。要控制随机数种子，请将此参数设置为：
 
-- `Not repeatable` — 每次仿真模型时种子都会更改。该模块使用 MATLAB® 随机数生成器命令重置随机种子：
+- `Not repeatable` — 每次仿真模型时种子都会改变。模块使用 MATLAB® 随机数生成器命令重置随机种子：
 
   ```
   seed = randi(2^32-1);
   ```
-- `Repeatable` — 每次仿真开始时种子都是相同的随机数。该模块使用 `Not repeatable` 参数所用的同一 MATLAB 随机数生成器命令设置该值。
+- `Repeatable` — 每次仿真开始时种子都是相同的随机数。模块使用与 `Not repeatable` 参数相同的 MATLAB 随机数生成器命令设置该值。
 
-  当您从 Sources 库将 Force Noise Source 模块添加到模型时，该模块会为重复种子生成并存储一个随机值。当您从模型中的现有模块复制 Force Noise Source 模块时，副本会为重复种子生成新的随机值。
-- `Specify seed` — 种子是您使用 **Seed** 参数指定的数字。仅当您为 **Repeatability** 参数选择 `Specify seed` 时，**Seed** 参数才可用。
+  当您从 Sources 库向模型中添加 Force Noise Source 模块时，模块会为重复种子生成并存储一个随机值。当您从模型中现有模块复制 Force Noise Source 模块时，副本会为重复种子生成一个新的随机值。
+- `Specify seed` — 种子是您使用 **Seed** 参数指定的数字。**Seed** 参数仅在您为 **Repeatability** 参数选择 `Specify seed` 时可用。
 
 ### **Seed** — 随机数生成种子值 `0`（默认）
 
-种子必须是 `0` 或正整数。仅当您为 **Repeatability** 参数选择 `Specify seed` 时，此参数才可用。
+种子必须为 `0` 或正整数。此参数仅在您为 **Repeatability** 参数选择 `Specify seed` 时可用。
 
 ## 所属库
 
@@ -62,7 +62,7 @@ Simscape / Driveline / Sources
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -74,16 +74,16 @@ Simscape / Driveline / Sources
 
 ## 描述
 
-为零均值正态（高斯）分布力建模
+建模零均值正态（高斯）分布力
 
-Force Noise Source 模块使用 Simscape™ Foundation 库中的 PS Random Number 源生成零均值正态（高斯）分布力。该模块产生的力取决于两个因素：
+Force Noise Source 模块使用 Simscape™ Foundation 库中的 PS Random Number 源生成零均值正态（高斯）分布力。模块产生的力取决于两个因素：
 
 - 输入到模块的噪声功率谱密度
-- 一个随机数种子，您通过 **Repeatability** 参数以及（如适用）**Seed** 参数控制该种子
+- 您使用 **Repeatability** 以及（如适用）**Seed** 参数控制的随机数种子
 
-该模块生成的力的定义方程为
+模块生成的力的定义方程为
 
-F=PSD/2N(0,1)h,
+F=PSD/2N(0,1)h，
 
 其中：
 

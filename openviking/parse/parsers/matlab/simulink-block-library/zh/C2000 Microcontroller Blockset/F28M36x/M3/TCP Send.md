@@ -26,33 +26,33 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **连接模式** — 将模块设置为服务器或客户端 `Server`（默认）| `Client`
+### **Connection mode** — 将模块设置为服务器或客户端 `Server`（默认）| `Client`
 
 将模块设置为 TCP/IP 服务器或客户端。
 
-当您将此参数设置为 `Server` 时，必须提供 **本地 IP 端口**。本地端口充当 TCP/IP 服务器的侦听端口。
+当您将此参数设置为 `Server` 时，必须提供 **Local IP Port**。本地端口充当 TCP/IP 服务器的监听端口。
 
-当您将此参数设置为 `Client` 时，必须提供要向其发送数据的 TCP/IP 服务器的 **远程 IP 地址** 和 **远程 IP 端口**。
+当您将此参数设置为 `Client` 时，必须提供要向其发送数据的 TCP/IP 服务器的 **Remote IP Address** 和 **Remote IP Port**。
 
-### **远程 IP 地址** — 数据要发送到的服务器的远程 IP 地址 `192.168.1.2`（默认）| 任何有效 IP 地址
+### **Remote IP Address** — 数据发送到的服务器的远程 IP 地址 `192.168.1.2`（默认）| 任何有效的 IP 地址
 
-指定数据要发送到的服务器的远程 IP 地址。
-
-#### 依赖关系
-
-仅当您将 **连接模式** 参数设置为 `Client` 时，此参数才会出现。
-
-### **远程 IP 端口** — 数据要发送到的服务器的远程 IP 端口 `25000`（默认）| [1 到 65,535]
-
-指定数据要发送到的服务器的端口号。
+指定数据发送到的服务器的远程 IP 地址。
 
 #### 依赖关系
 
-仅当您将 **连接模式** 参数设置为 `Client` 时，此参数才会出现。
+此参数仅在您将 **Connection mode** 参数设置为 `Client` 时显示。
 
-### **本地 IP 端口** — 发送主机上用于发送数据的 IP 端口 `25001`（默认）| [1 到 65,535]
+### **Remote IP Port** — 数据发送到的服务器的远程 IP 端口 `25000`（默认）| [1 到 65,535]
 
-指定用于发送数据的应用程序的端口号。此本地端口充当发送主机的侦听端口。
+指定数据发送到的服务器的端口号。
+
+#### 依赖关系
+
+此参数仅在您将 **Connection mode** 参数设置为 `Client` 时显示。
+
+### **Local IP Port** — 发送主机的 IP 端口，数据从该端口发送 `25001`（默认）| [1 到 65,535]
+
+指定发送数据的应用程序的端口号。此本地端口充当发送主机的监听端口。
 
 ## 所属库
 
@@ -60,11 +60,11 @@ Simulink Coder Support Package for NXP FRDM-K64F Board
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -74,4 +74,4 @@ Simulink Coder Support Package for NXP FRDM-K64F Board
 
 通过 TCP/IP 网络向远程主机发送数据
 
-TCP Send 模块通过有线网络将数据发送到远程主机或另一个硬件板。您可以将模块的 **连接模式** 设置为 `Server` 或 `Client`。当您将 **连接模式** 设置为 `Client` 时，必须提供要向其发送数据的服务器的 **远程 IP 地址** 和 **远程 IP 端口**。当您将 **连接模式** 设置为 `Server` 时，必须提供 **本地 IP 端口**。此 **本地 IP 端口** 充当 TCP/IP 服务器的侦听端口。
+TCP Send 模块通过有线网络向远程主机或另一块硬件板发送数据。您可以将模块的 **Connection mode** 设置为 `Server` 或 `Client`。当您将 **Connection mode** 设置为 `Client` 时，必须提供要向其发送数据的服务器的 **Remote IP Address** 和 **Remote IP Port**。当您将 **Connection mode** 设置为 `Server` 时，必须提供 **Local IP Port**。此 **Local IP Port** 充当 TCP/IP 服务器的监听端口。

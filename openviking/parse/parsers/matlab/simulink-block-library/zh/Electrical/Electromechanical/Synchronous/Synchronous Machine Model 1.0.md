@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Synchronous Machine Model 1.0'
-family: 'electromechanical'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -18,45 +18,45 @@ chinese_source: worker-translation
 
 ### 守恒
 
-### **R** — 机器转子机械旋转
+### **R** — 电机转子机械旋转
 
-与机器转子关联的机械旋转守恒端口。
+与电机转子关联的机械旋转守恒端口。
 
-### **C** — 机器机壳机械旋转
+### **C** — 电机机壳机械旋转
 
-与机器机壳关联的机械旋转守恒端口。
+与电机机壳关联的机械旋转守恒端口。
 
 ### **~** — 三相复合电气
 
 与定子绕组关联的可扩展三相端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Composite three-phase ports`，并将 **绕组类型** 设置为 `Wye-wound` 或 `Delta-wound`。
+要启用此端口，请将 **Electrical connection** 设置为 `Composite three-phase ports`，并将 **Winding type** 设置为 `Wye-wound` 或 `Delta-wound`。
 
 ### **a** — *a* 相电气
 
-与 *a* 相相关联的电气守恒端口。
+与 *a* 相关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Expanded three-phase ports`，并将 **绕组类型** 设置为 `Wye-wound` 或 `Delta-wound`。
+要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`，并将 **Winding type** 设置为 `Wye-wound` 或 `Delta-wound`。
 
 ### **b** — *b* 相电气
 
-与 *b* 相相关联的电气守恒端口。
+与 *b* 相关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Expanded three-phase ports`，并将 **绕组类型** 设置为 `Wye-wound` 或 `Delta-wound`。
+要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`，并将 **Winding type** 设置为 `Wye-wound` 或 `Delta-wound`。
 
 ### **c** — *c* 相电气
 
-与 *c* 相相关联的电气守恒端口。
+与 *c* 相关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Expanded three-phase ports`，并将 **绕组类型** 设置为 `Wye-wound` 或 `Delta-wound`。
+要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`，并将 **Winding type** 设置为 `Wye-wound` 或 `Delta-wound`。
 
 ### **~1** — 定子正端连接电气
 
@@ -64,9 +64,9 @@ chinese_source: worker-translation
 
 与定子正端连接关联的可扩展三相端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Composite three-phase ports`，并将 **绕组类型** 设置为 `Open-end`。
+要启用此端口，请将 **Electrical connection** 设置为 `Composite three-phase ports`，并将 **Winding type** 设置为 `Open-end`。
 
 ### **~2** — 定子负端连接电气
 
@@ -74,9 +74,9 @@ chinese_source: worker-translation
 
 与定子负端连接关联的可扩展三相端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Composite three-phase ports`，并将 **绕组类型** 设置为 `Open-end`。
+要启用此端口，请将 **Electrical connection** 设置为 `Composite three-phase ports`，并将 **Winding type** 设置为 `Open-end`。
 
 ### **a1** — *a* 正端连接电气
 
@@ -84,9 +84,9 @@ chinese_source: worker-translation
 
 与 *a* 正端连接关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Expanded three-phase ports`，并将 **绕组类型** 设置为 `Open-end`。
+要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`，并将 **Winding type** 设置为 `Open-end`。
 
 ### **b1** — *b* 正端连接电气
 
@@ -94,9 +94,9 @@ chinese_source: worker-translation
 
 与 *b* 正端连接关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Expanded three-phase ports`，并将 **绕组类型** 设置为 `Open-end`。
+要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`，并将 **Winding type** 设置为 `Open-end`。
 
 ### **c1** — *c* 正端连接电气
 
@@ -104,9 +104,9 @@ chinese_source: worker-translation
 
 与 *c* 正端连接关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Expanded three-phase ports`，并将 **绕组类型** 设置为 `Open-end`。
+要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`，并将 **Winding type** 设置为 `Open-end`。
 
 ### **a2** — *a* 负端连接电气
 
@@ -114,9 +114,9 @@ chinese_source: worker-translation
 
 与 *a* 负端连接关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Expanded three-phase ports`，并将 **绕组类型** 设置为 `Open-end`。
+要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`，并将 **Winding type** 设置为 `Open-end`。
 
 ### **b2** — *b* 负端连接电气
 
@@ -124,9 +124,9 @@ chinese_source: worker-translation
 
 与 *b* 负端连接关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Expanded three-phase ports`，并将 **绕组类型** 设置为 `Open-end`。
+要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`，并将 **Winding type** 设置为 `Open-end`。
 
 ### **c2** — *c* 负端连接电气
 
@@ -134,81 +134,81 @@ chinese_source: worker-translation
 
 与 *c* 负端连接关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **电气连接** 设置为 `Expanded three-phase ports`，并将 **绕组类型** 设置为 `Open-end`。
+要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`，并将 **Winding type** 设置为 `Open-end`。
 
 ### **n** — 中性相电气
 
-与中性相相关联的电气守恒端口。
+与中性相关联的电气守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **绕组类型** 设置为 `Wye-wound`，并将 **零序** 设置为 `Include`。
+要启用此端口，请将 **Winding type** 设置为 `Wye-wound`，并将 **Zero sequence** 设置为 `Include`。
 
-### **fd+** — 励磁绕组正端子电气
+### **fd+** — 励磁绕组正极端子电气
 
-与励磁绕组正端子关联的电气守恒端口。
+与励磁绕组正极端子关联的电气守恒端口。
 
-### **fd-** — 励磁绕组负端子电气
+### **fd-** — 励磁绕组负极端子电气
 
-与励磁绕组负端子关联的电气守恒端口。
+与励磁绕组负极端子关联的电气守恒端口。
 
 ### **HA** — 绕组 A 热端口热
 
 与绕组 A 关联的热守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **建模选项** 设置为 `Show thermal port`。
+要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
 
 ### **HB** — 绕组 B 热端口热
 
 与绕组 B 关联的热守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **建模选项** 设置为 `Show thermal port`。
+要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
 
 ### **HC** — 绕组 C 热端口热
 
 与绕组 C 关联的热守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **建模选项** 设置为 `Show thermal port`。
+要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
 
 ### **HR** — 转子热端口热
 
 与转子关联的热守恒端口。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请将 **建模选项** 设置为 `Show thermal port`。
+要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
 
 ## 参数
 
-### **建模选项** — 是否启用热端口 `No thermal port`（默认） | `Show thermal port`
+### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
 是否启用模块的热端口，并对将功率转换为热量的损耗效应进行建模。
 
-### 主要
+### 主
 
-### **电气连接** — 电气连接 `Composite three-phase ports`（默认） | `Expanded three-phase ports`
+### **Electrical connection** — 电气连接 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
-是使用复合三相端口还是扩展三相端口。
+选择使用复合三相端口还是扩展三相端口。
 
-### **绕组类型** — 绕组配置 `Wye-wound`（默认） | `Delta-wound` | `Open-end`
+### **Winding type** — 绕组配置 `Wye-wound`（默认）| `Delta-wound` | `Open-end`
 
 *自 R2024a 起*
 
 选择绕组配置：
 
-- `Wye-wound` — 绕组为 wye-wound。
-- `Delta-wound` — 绕组为 delta-wound。*a* 相连接在端口 **a** 和 **b** 之间，*b* 相连接在端口 **b** 和 **c** 之间，*c* 相连接在端口 **c** 和 **a** 之间。
-- `Open-end` — 绕组采用 open-end 配置。模块将绕组的每一端作为电气连接暴露。
+- `Wye-wound` — 绕组为星形连接。
+- `Delta-wound` — 绕组为三角形连接。*a* 相连接在端口 **a** 和 **b** 之间，*b* 相连接在端口 **b** 和 **c** 之间，*c* 相连接在端口 **c** 和 **a** 之间。
+- `Open-end` — 绕组为开端配置。模块将绕组的每一端作为电气连接暴露出来。
 
-### **建模保真度** — 建模保真度 `Constant Ld, Lq, Lmf and Lf`（默认） | `Tabulated Ld, Lq, Lmf and Lf`
+### **Modeling fidelity** — 建模保真度 `Constant Ld, Lq, Lmf and Lf`（默认）| `Tabulated Ld, Lq, Lmf and Lf`
 
 选择建模保真度：
 
@@ -223,201 +223,201 @@ chinese_source: worker-translation
 
   Lf=f4(if)
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0` 时，此参数才可见。
 
-### **极对数** — 转子极对数 `4`（默认） | integer
+### **Number of pole pairs** — 转子极对数 `4`（默认）| 整数
 
 转子上的永磁极对数。
 
-### **定子参数化** — 参数化方法 `Specify Ld, Lq and L0`（默认） | `Specify Ls, Lm, and Ms`
+### **Stator parameterization** — 参数化方法 `Specify Ld, Lq and L0`（默认）| `Specify Ls, Lm, and Ms`
 
 定子参数化方法。
 
-#### 依赖项
+#### 依赖关系
 
-**定子参数化** 设置会影响其他参数的可见性。
+**Stator parameterization** 设置会影响其他参数的可见性。
 
-### **定子 d 轴电感，Ld** — 电感 `0.00015` `H`（默认）
+### **Stator d-axis inductance, Ld** — 电感 `0.00015` `H`（默认）
 
 电机定子的直轴电感。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Constant Ld, Lq, Lmf and Lf` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Constant Ld, Lq, Lmf and Lf` 时，此参数才可见。
 
-### **定子 q 轴电感，Lq** — 电感 `0.00021` `H`（默认）
+### **Stator q-axis inductance, Lq** — 电感 `0.00021` `H`（默认）
 
 电机定子的交轴电感。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Constant Ld, Lq, Lmf and Lf` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Constant Ld, Lq, Lmf and Lf` 时，此参数才可见。
 
-### **直轴电流向量，iD** — 直轴电流向量 `[-200, 0, 200]` `A`（默认）
+### **Direct-axis current vector, iD** — 直轴电流向量 `[-200, 0, 200]` `A`（默认）
 
-直轴电流向量，iD。
+直轴电流向量 iD。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
 
-### **交轴电流向量，iQ** — 交轴电流向量 `[-200, 0, 200]` `A`（默认）
+### **Quadrature-axis current vector, iQ** — 交轴电流向量 `[-200, 0, 200]` `A`（默认）
 
-交轴电流向量，iQ。
+交轴电流向量 iQ。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
 
-### **励磁电流向量，iF** — 励磁电流向量 `[-20, 0, 20]` `A`（默认）
+### **Excitation current vector, iF** — 励磁电流向量 `[-20, 0, 20]` `A`（默认）
 
-励磁电流向量，iF。
+励磁电流向量 iF。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
 
-### **Ld 矩阵，Ld(id,iq,if)** — Ld 矩阵 `0.00015 * ones(3, 3, 3)` `H`（默认）
+### **Ld matrix, Ld(id,iq,if)** — Ld 矩阵 `0.00015 * ones(3, 3, 3)` `H`（默认）
 
 Ld 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
 
-### **Lq 矩阵，Lq(id,iq,if)** — Lq 矩阵 `0.00021 * ones(3, 3, 3)` `H`（默认）
+### **Lq matrix, Lq(id,iq,if)** — Lq 矩阵 `0.00021 * ones(3, 3, 3)` `H`（默认）
 
 Lq 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
 
-### **磁场-电枢互感，Lmf(id,iq,if)** — 磁场-电枢互感 `0.007 * ones(3, 3, 3)` `H`（默认）
+### **Mutual field armature inductance, Lmf(id,iq,if)** — 励磁电枢互感 `0.007 * ones(3, 3, 3)` `H`（默认）
 
-磁场-电枢互感。
+励磁电枢互感。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
 
-### **Lf 向量，Lf(if)** — Lf 向量 `0.5 * ones(1, 3)` `H`（默认）
+### **Lf vector, Lf(if)** — Lf 向量 `0.5 * ones(1, 3)` `H`（默认）
 
 Lf 向量。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0`，并将 **建模保真度** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Tabulated Ld, Lq, Lmf and Lf` 时，此参数才可见。
 
-### **定子零序电感，L0** — 电感 `0.000012` `H`（默认）
+### **Stator zero-sequence inductance, L0** — 电感 `0.000012` `H`（默认）
 
 电机定子的零轴电感。
 
-#### 依赖项
+#### 依赖关系
 
-仅当 **定子参数化** 设置为 `Specify Ld, Lq and L0` 且 **零序** 设置为 `Include` 时，此参数才可见。
+仅当 **Stator parameterization** 设置为 `Specify Ld, Lq and L0`，并且 **Zero sequence** 设置为 `Include` 时，此参数才可见。
 
-### **定子每相自感，Ls** — 电感 `0.00016` `H`（默认）
+### **Stator self-inductance per phase, Ls** — 电感 `0.00016` `H`（默认）
 
 三个定子绕组的平均自感。此参数必须：
 
 - 大于 0。
-- 大于 **定子电感波动，Lm** 的幅值。
-- 大于 **定子互感，Ms** 的幅值。
+- 大于 **Stator inductance fluctuation, Lm** 的幅值。
+- 大于 **Stator mutual inductance, Ms** 的幅值。
 
-#### 依赖项
+#### 依赖关系
 
-仅当 **定子参数化** 设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
+仅当 **Stator parameterization** 设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
 
-### **定子电感波动，Lm** — 电感 `-0.00002` `H`（默认）
+### **Stator inductance fluctuation, Lm** — 电感 `-0.00002` `H`（默认）
 
 自感和互感随转子角度的波动。
 
-#### 依赖项
+#### 依赖关系
 
-仅当 **定子参数化** 设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
+仅当 **Stator parameterization** 设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
 
-### **定子互感，Ms** — 电感 `0.00002` `H`（默认）
+### **Stator mutual inductance, Ms** — 电感 `0.00002` `H`（默认）
 
 定子绕组之间的平均互感。
 
-#### 依赖项
+#### 依赖关系
 
-仅当 **定子参数化** 设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
+仅当 **Stator parameterization** 设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
 
-### **励磁绕组电感，Lf** — 电感 `0.5` `H`（默认）
+### **Field winding inductance, Lf** — 电感 `0.5` `H`（默认）
 
 励磁绕组的电感。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Constant Ld, Lq, Lmf and Lf`，或者将 **定子参数化** 参数设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Constant Ld, Lq, Lmf and Lf`，或将 **Stator parameterization** 参数设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
 
-### **磁场-电枢互感，Lmf** — 电感 `0.007` `H`（默认）
+### **Mutual field armature inductance, Lmf** — 电感 `0.007` `H`（默认）
 
-电枢-磁场互感。
+电枢-励磁互感。
 
-#### 依赖项
+#### 依赖关系
 
-仅当将 **定子参数化** 参数设置为 `Specify Ld, Lq, and L0` 且将 **建模保真度** 参数设置为 `Constant Ld, Lq, Lmf and Lf`，或者将 **定子参数化** 参数设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
+仅当将 **Stator parameterization** 参数设置为 `Specify Ld, Lq, and L0`，并将 **Modeling fidelity** 参数设置为 `Constant Ld, Lq, Lmf and Lf`，或将 **Stator parameterization** 参数设置为 `Specify Ls, Lm, and Ms` 时，此参数才可见。
 
-### **定子每相电阻，Rs** — 电阻 `0.08` `Ohm`（默认）
+### **Stator resistance per phase, Rs** — 电阻 `0.08` `Ohm`（默认）
 
 每个定子绕组的电阻。
 
-### **励磁绕组电阻，Rf** — 电阻 `3` `Ohm`（默认）
+### **Field winding resistance, Rf** — 电阻 `3` `Ohm`（默认）
 
 励磁绕组的电阻。
 
-### **零序** — 零序模型 `Include`（默认） | `Exclude`
+### **Zero sequence** — 零序模型 `Include`（默认）| `Exclude`
 
 零序模型：
 
-- `Include` — 优先考虑模型保真度。如果对使用 Partitioning 求解器的仿真包含零序项，则会发生错误。有关更多信息，请参见使用 Partitioning 求解器提高仿真速度。
+- `Include` — 优先考虑模型保真度。如果为使用 Partitioning 求解器的仿真包含零序项，则会发生错误。有关详细信息，请参阅 Increase Simulation Speed Using the Partitioning Solver。
 - `Exclude` — 优先考虑桌面仿真或实时部署的仿真速度。
 
-#### 依赖项
+#### 依赖关系
 
 如果此参数设置为：
 
-- `Include` 且 **定子参数化** 设置为 **Specify Ld, Lq, and L0** — **定子零序电感，L0** 参数可见。
-- `Exclude` — **定子零序电感，L0** 参数不可见。
+- `Include`，并且 **Stator parameterization** 设置为 **Specify Ld, Lq, and L0** — **Stator zero-sequence inductance, L0** 参数可见。
+- `Exclude` — **Stator zero-sequence inductance, L0** 参数不可见。
 
 ### 机械
 
-### **转子惯量** — 惯量 `0.01` `kg*m^2`（默认）
+### **Rotor inertia** — 惯量 `0.01` `kg*m^2`（默认）
 
 转子的惯量。
 
-### **转子阻尼** — 阻尼 `0` `N*m/(rad/s)`（默认）
+### **Rotor Damping** — 阻尼 `0` `N*m/(rad/s)`（默认）
 
 转子的阻尼。
 
-### **转子角度定义** — 角度 `Angle between the a-phase magnetic axis and the d-axis`（默认） | `Angle between the a-phase magnetic axis and the q-axis`
+### **Rotor angle definition** — 角度 `Angle between the a-phase magnetic axis and the d-axis`（默认）| `Angle between the a-phase magnetic axis and the q-axis`
 
-转子角度测量的参考点。如果选择默认值，则对于零转子角度，转子磁通与 *a* 相磁通对齐。否则，对于零转子角度，*a* 相电流生成最大转矩值。
+转子角度测量的参考点。如果选择默认值，则对于零转子角度，转子和 *a* 相磁通对齐。否则，对于零转子角度，*a* 相电流会产生最大转矩值。
 
 ### 热
 
-要启用这些参数，请将 **建模选项** 设置为 `Show thermal port`。
+要启用这些参数，请将 **Modeling option** 设置为 `Show thermal port`。
 
-### **测量温度** — 测量温度 `298.15` `K`（默认）
+### **Measurement temperature** — 测量温度 `298.15` `K`（默认）
 
-电机参数所对应的温度。
+电机参数的标称温度。
 
-### **电阻温度系数** — 电阻温度系数 `3.93e-3` `1/K`（默认）
+### **Resistance temperature coefficient** — 电阻温度系数 `3.93e-3` `1/K`（默认）
 
-电阻与温度关系方程中的系数 α，如《执行器模块热模型》所述。默认值适用于铜。
+电阻与温度关系方程中的系数 α，如 Thermal Model for Actuator Blocks 中所述。默认值为铜的值。
 
-### **每个定子绕组的热质量** — 每个定子绕组的热质量 `100` `J/K`（默认）
+### **Thermal mass for each stator winding** — 每个定子绕组的热质量 `100` `J/K`（默认）
 
-A、B 和 C 绕组的热质量值。热质量是将温度升高一度所需的能量。
+A、B 和 C 绕组的热质量值。热质量是使温度升高一度所需的能量。
 
-### **转子热质量** — 转子热质量 `200` `J/K`（默认）
+### **Rotor thermal mass** — 转子热质量 `200` `J/K`（默认）
 
-转子的热质量，即将转子温度升高一度所需的能量。
+转子的热质量，即使转子温度升高一度所需的能量。
 
 ## 所属库
 
@@ -435,33 +435,33 @@ R2025b 中未记录。
 
 **在 R2018a 中引入**
 
-### R2024a：定子绕组的 Open-end 和 delta-wound 配置
+### R2024a：定子绕组的开端和三角形连接配置
 
-除了 wye-wound 配置外，还可以将机器的定子绕组建模为 delta-wound 配置或 open-end 配置。
+除了星形连接配置外，您还可以将电机的定子绕组建模为三角形连接配置或开端配置。
 
-要将机器的定子绕组建模为 delta-wound 配置，请将 **绕组类型** 参数设置为 `Delta-wound`。*a* 相连接在端口 **a** 和 **b** 之间，*b* 相连接在端口 **b** 和 **c** 之间，*c* 相连接在端口 **c** 和 **a** 之间。
+要将电机的定子绕组建模为三角形连接配置，请将 **Winding type** 参数设置为 `Delta-wound`。*a* 相连接在端口 **a** 和 **b** 之间，*b* 相连接在端口 **b** 和 **c** 之间，*c* 相连接在端口 **c** 和 **a** 之间。
 
-要将机器的定子绕组建模为 open-end 配置，请将 **绕组类型** 参数设置为 `Open-end`。然后，Synchronous Machine Model 1.0 模块会通过启用相应的电气守恒端口来暴露绕组的每一端。
+要将电机的定子绕组建模为开端配置，请将 **Winding type** 参数设置为 `Open-end`。然后，Synchronous Machine Model 1.0 模块通过启用相应的电气守恒端口来暴露绕组的每一端。
 
 ### R2021b：电气连接端口更新
 
-从 R2021b 起，要在复合端口和扩展端口之间切换，请将 **电气连接** 参数设置为 `Composite three-phase ports` 或 `Expanded three-phase ports`。
+从 R2021b 起，要在复合端口和扩展端口之间切换，请将 **Electrical connection** 参数设置为 `Composite three-phase ports` 或 `Expanded three-phase ports`。
 
-由于这些更改，对于在更早版本中保存的模型，请检查此模块的 **电气连接** 参数。
+由于这些更改，在早期版本中保存的模型内，请检查此模块的 **Electrical connection** 参数。
 
 ## 描述
 
 带励磁回路且无阻尼绕组的同步电机
 
-Synchronous Machine Model 1.0 模块使用同步电机的简化参数化模型。使用该模块对带励磁绕组且无阻尼绕组的同步电机进行建模。
+Synchronous Machine Model 1.0 模块使用简化的参数化模型来描述同步电机。使用该模块可对具有励磁绕组且无阻尼绕组的同步电机进行建模。
 
-该图展示了定子和转子绕组的等效电路。
+下图展示了定子和转子绕组的等效电路。
 
-您还可以通过将 **Winding type** 分别设置为 `Delta-wound` 或 `Open-end`，以三角形接法或开放式绕组配置对定子绕组进行建模。
+您还可以通过将 **Winding type** 设置为 `Delta-wound` 或 `Open-end`，分别以三角形接法或开端配置对定子绕组进行建模。
 
 ### 电机结构
 
-该图展示了转子上具有单对极的电机结构。对于坐标轴约定，当转子机械角度 *θr* 为零时，*a* 相磁通与转子磁体磁通对齐。该模块支持第二种转子轴定义，其中转子机械角度定义为 *a* 相磁轴与转子 *q* 轴之间的角度。
+下图展示了转子上具有单对极的电机结构。对于坐标轴约定，当转子机械角度 *θr* 为零时，*a* 相磁通与转子磁通对齐。该模块支持第二种转子轴定义，其中转子机械角度定义为 *a* 相磁轴与转子 *q* 轴之间的夹角。
 
 ### 方程
 
@@ -482,18 +482,18 @@ vf=Rfif+dψfdt，
 
 其中：
 
-- *vf* 是励磁绕组各相的电压。
+- *vf* 是励磁绕组两端的电压。
 - *Rf* 是励磁绕组的等效电阻。
 - *if* 是流过励磁绕组的电流。
 - dψfdt 是励磁绕组中磁通的变化率。
 
-励磁绕组和三个星形连接的定子绕组共同贡献了链过每个绕组的磁通。总磁通定义为
+励磁绕组和三个星形连接的定子绕组共同贡献了链接每个绕组的磁通。总磁通定义为
 
 [ψaψbψc]=[LaaLabLacLbaLbbLbcLcaLcbLcc][iaibic]+[LamfLbmfLcmf]if，
 
 其中：
 
-- *ψa*、*ψb* 和 *ψc* 是链过每个定子绕组的总磁通。
+- *ψa*、*ψb* 和 *ψc* 是链接每个定子绕组的总磁通。
 - *Laa*、*Lbb* 和 *Lcc* 是定子绕组的自感。
 - *Lab*、*Lac*、*Lba*、*Lbc*、*Lca* 和 *Lcb* 是定子绕组的互感。
 - *Lamf*、*Lbmf* 和 *Lcmf* 是励磁绕组的互感。
@@ -522,11 +522,11 @@ Lca=Lac=−Ms−Lmcos(2(θe+π/6+2π/3))，
 
 - *θe* 是转子电角度。
 - *rotor offset* 在您相对于 d 轴定义转子电角度时为 `0`，在您相对于 q 轴定义转子电角度时为 `-pi/2`。
-- *Ls* 是每相定子自感。该值是每个定子绕组自感的平均值。
-- *Lm* 是定子电感波动。该值是自感和互感随转子角度变化时的波动量。
-- *Ms* 是定子互感。该值是定子绕组之间互感的平均值。
+- *Ls* 是每相定子自感。该值是每个定子绕组的平均自感。
+- *Lm* 是定子电感波动。该值是自感和互感随转子角度变化的波动量。
+- *Ms* 是定子互感。该值是定子绕组之间的平均互感。
 
-链过绕组 *a-a’* 的磁化磁通在 *θe* = 0° 时最大，在 *θe* = 90° 时为零。因此：
+链接绕组 *a-a’* 的磁化磁通在 *θe* = 0° 时最大，在 *θe* = 90° 时为零。因此：
 
 Lmf=[LamfLbmfLcmf]=[LmfcosθeLmfcos(θe−2π/3)Lmfcos(θe+2π/3)]
 
@@ -536,10 +536,10 @@ Lmf=[LamfLbmfLcmf]=[LmfcosθeLmfcos(θe−2π/3)Lmfcos(θe+2π/3)]
 
 其中：
 
-- *Lmf* 是励磁绕组与电枢绕组之间的互感。
-- *ψf* 是链过励磁绕组的磁通。
+- *Lmf* 是励磁电枢互感。
+- *ψf* 是链接励磁绕组的磁通。
 - *Lf* 是励磁绕组电感。
-- [Lmf]T 是 *Lmf* 向量的转置，即
+- [Lmf]T 是 *Lmf* 向量的转置，即，
 
   [Lmf]T=[LamfLbmfLcmf]T=[LamfLbmfLcmf]。
 
@@ -584,12 +584,12 @@ Jdωdt=T=TL−Bmω。
 - *TL* 是负载转矩。
 - *Bm* 是转子阻尼。
 
-### 模型热效应
+### 建模热效应
 
-您可以暴露热端口，以对将功率转换为热量的损耗效应进行建模。要暴露热端口，请将 **Modeling option** 参数设置为以下任一值：
+您可以暴露热端口来对将功率转换为热量的损耗效应进行建模。要暴露热端口，请将 **Modeling option** 参数设置为以下之一：
 
-- `No thermal port` — 该模块包含与定子绕组相关联的扩展电气守恒端口，但不包含热端口。
-- `Show thermal port` — 该模块包含与定子绕组相关联的扩展电气守恒端口，以及每个绕组和转子的热守恒端口。
+- `No thermal port` — 该模块包含与定子绕组相关的扩展电气守恒端口，但不包含热端口。
+- `Show thermal port` — 该模块包含与定子绕组相关的扩展电气守恒端口，以及每个绕组和转子的热守恒端口。
 
 有关在执行器模块中使用热端口的详细信息，请参阅 Simulating Thermal Effects in Rotational and Translational Actuators。
 
@@ -597,4 +597,4 @@ Jdωdt=T=TL−Bmω。
 
 要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-标称值提供了一种在模型中指定变量预期量级的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。您可以使用不同来源指定标称值，包括模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 System Scaling by Nominal Values。
+标称值提供了一种在模型中指定变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。您可以使用不同的来源指定标称值，包括模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 System Scaling by Nominal Values。

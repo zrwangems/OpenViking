@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Poppet Valve (TL)'
-family: 'thermal-liquid'
+family: 'hydro'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b
@@ -16,65 +16,65 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **A** — 液体端口 热液体
+### **A** — 液体端口 thermal liquid
 
 与阀入口 A 关联的热液体守恒端口。
 
-### **B** — 液体端口 热液体
+### **B** — 液体端口 thermal liquid
 
 与阀入口 B 关联的热液体守恒端口。
 
 ### 输入
 
-### **S** — 阀芯位移，m 物理信号
+### **S** — 阀芯位移，m physical signal
 
 与阀芯位移关联的物理信号端口，单位为 m。
 
 ## 参数
 
-### **阀座规格** — 阀座几何形状 `Sharp-edged`（默认） | `Conical`
+### **Valve seat specification** — 阀座几何形状 `Sharp-edged`（默认）| `Conical`
 
 阀座的几何形状。模块使用此参数计算阀芯与阀座之间的开口面积。
 
-### **锥角** — 阀座开口角度 `120` `deg`（默认） | 正标量
+### **Cone angle** — 阀座开口角度 `120` `deg`（默认）| 正标量
 
 阀座开口的角度。
 
 #### 依赖关系
 
-要启用此参数，请将 **阀座规格** 设置为 `Conical`。
+要启用此参数，请将 **Valve seat specification** 设置为 `Conical`。
 
-### **球直径** — 阀芯直径 `0.01` `m`（默认） | 正标量
+### **Ball diameter** — 阀芯直径 `0.01` `m`（默认）| 正标量
 
 阀芯的直径。
 
-### **孔口直径** — 阀座孔口直径 `7e-3` `m`（默认） | 正标量
+### **Orifice diameter** — 阀座孔口直径 `7e-3` `m`（默认）| 正标量
 
 阀座孔口直径。
 
-### **阀芯在阀座中的位置** — 阀芯偏移量 `0` `m`（默认） | 非负标量
+### **Poppet position when in the seat** — 阀芯偏移量 `0` `m`（默认）| 非负标量
 
-阀关闭时的阀芯偏移量。正值且非零表示阀门部分打开。负值且非零表示重叠阀，该阀在由端口 **S** 的物理信号设定的初始位移内保持关闭。
+阀关闭时的阀芯偏移量。正的、非零值表示阀部分开启。负的、非零值表示重叠阀，该阀在由端口 **S** 处物理信号设定的初始位移范围内保持关闭。
 
-### **泄漏面积** — 完全关闭位置时的间隙面积 `1e-10` `m^2`（默认） | 正标量
+### **Leakage area** — 完全关闭位置时的间隙面积 `1e-10` `m^2`（默认）| 正标量
 
-阀门处于完全关闭位置时所有间隙的总和。模块将较小的数值饱和到此值。此参数通过保持流量连续性来提高数值稳定性。
+阀处于完全关闭位置时所有间隙的总和。模块将较小的数值饱和到此值。此参数通过保持流量连续性来帮助提高数值稳定性。
 
-### **平滑因子** — 完全关闭位置时的间隙面积 `0.01`（默认） | [0,1] 范围内的标量
+### **Smoothing factor** — 完全关闭位置时的间隙面积 `0.01`（默认）| 范围 [0,1] 内的标量
 
-连续平滑因子，用于在阀门处于接近打开或接近关闭位置时，为流量响应引入一层渐变变化。将此值设置为小于 1 的非零数值，以提高在这些工况下仿真的稳定性。
+连续平滑因子，在阀处于接近开启或接近关闭位置时引入一层流量响应的渐变变化。将此值设置为小于 1 的非零数值，以提高在这些工况下仿真的稳定性。
 
-### **端口 A 和 B 处的横截面积** — 守恒端口处的面积 `0.01` `m^2`（默认） | 正标量
+### **Cross-sectional area at ports A and B** — 守恒端口处的面积 `0.01` `m^2`（默认）| 正标量
 
-端口 **A** 和 **B** 处的面积，用于确定通过阀门质量流量的压力-流量方程。
+端口 **A** 和 **B** 处的面积，用于确定通过阀的质量流量的压力-流量速率方程。
 
-### **流量系数** — 流量系数 `0.64`（默认） | 正标量
+### **Discharge coefficient** — 流量系数 `0.64`（默认）| 正标量
 
-修正因子，用于考虑理论流动中的排出损失。
+用于修正理论流量中排放损失的修正因子。
 
-### **临界雷诺数** — 层流的上限雷诺数 `150`（默认） | 正标量
+### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过孔口的层流的上限雷诺数。
 
@@ -84,7 +84,7 @@ Simscape / Fluids / Thermal Liquid / Valves & Orifices / Flow Control Valves
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -96,28 +96,28 @@ Simscape / Fluids / Thermal Liquid / Valves & Orifices / Flow Control Valves
 
 ## 描述
 
-热液体网络中的提升阀流量控制阀
+热液体网络中的阀芯流量控制阀
 
-Poppet Valve (TL) 模块表示热液体网络中的流量控制。您可以将阀座几何形状指定为锐边或锥形。使用端口 **S** 的物理信号设置阀芯位移。
+Poppet Valve (TL) 模块表示热液体网络中的流量控制。您可以将阀座几何形状指定为锐边或锥形。使用端口 **S** 处的物理信号设置阀芯位移。
 
-两个提升阀示意图。锐边阀座的阀座角为 90 度。锥形阀座的阀座角为锐角。正位移是指阀芯远离阀座移动。
+两个阀芯阀示意图。锐边阀座具有 90 度阀座角。锥形阀座具有锐角阀座角。正位移是指阀芯远离阀座移动。
 
 ### 质量平衡
 
-阀门中的质量守恒方程为
+阀中的质量守恒方程为
 
 m˙A+m˙B=0,
 
 其中：
 
-- m˙A 是通过端口 **A** 进入阀门的质量流量。
-- m˙B 是通过端口 **B** 进入阀门的质量流量。
+- m˙A 是通过端口 **A** 流入阀的质量流量。
+- m˙B 是通过端口 **B** 流入阀的质量流量。
 
-### 动量平衡
+### Momentum Balance
 
 阀门上的压差为：
 
-pA−pB=m˙m˙2+m˙cr22ρAvgCd2S2[1−(SRS)2]PRLoss,
+pA−pB=m˙m˙2+m˙cr22ρAvgCd2S2[1−(SRS)2]PRLoss，
 
 其中：
 
@@ -125,78 +125,78 @@ pA−pB=m˙m˙2+m˙cr22ρAvgCd2S2[1−(SRS)2]PRLoss,
 - *p*B 是端口 **B** 处的压力。
 - m˙ 是质量流量。
 - *ρ*Avg 是平均液体密度。
-- *C*d 是 **流量系数** 参数的值。
+- *C*d 是 **Discharge coefficient** 参数的值。
 - m˙cr 是临界质量流量：
 
-  m˙cr=RecrμAvgπ4SR.
+  m˙cr=RecrμAvgπ4SR。
 
   其中：
 
-  - *Recr* 是 **临界雷诺数** 参数的值。
+  - *Recr* 是 **Critical Reynolds number** 参数的值。
   - *μAvg* 是平均流体动力粘度。
-- *S* 是 **端口 A 和 B 处的横截面积** 参数的值。
+- *S* 是 **Cross-sectional area at port A and B** 参数的值。
 - *PR*Loss 是压力比：
 
-  PRLoss=1−(SR/S)2(1−Cd2)−Cd(SR/S)1−(SR/S)2(1−Cd2)+Cd(SR/S).
+  PRLoss=1−(SR/S)2(1−Cd2)−Cd(SR/S)1−(SR/S)2(1−Cd2)+Cd(SR/S)。
 
-### 能量平衡
+### Energy Balance
 
 阀门中的能量守恒方程为
 
-ϕA+ϕB=0,
+ϕA+ϕB=0，
 
 其中：
 
-- *ϕ*A 是通过端口 **A** 进入阀门的能量流量。
-- *ϕ*B 是通过端口 **B** 进入阀门的能量流量。
+- *ϕ*A 是通过端口 **A** 流入阀门的能量流率。
+- *ϕ*B 是通过端口 **B** 流入阀门的能量流率。
 
-### 锐边阀座的开口面积
+### Opening Area With a Sharp-Edged Seat
 
-当您将 **阀座规格** 设置为 `Sharp-edged` 时，模块使用以下公式计算阀门开口面积：
+当您将 **Valve seat specification** 设置为 `Sharp-edged` 时，该模块使用以下公式计算阀门开口面积
 
-A=πro(1−(rpdOB)2)dOB(h)+Aleak,
+A=πro(1−(rpdOB)2)dOB(h)+Aleak，
 
 其中：
 
-- *r*o 是阀孔口半径。
-- *r*p 是阀芯半径。
-- *d*OB(*h*) 是阀芯中心与孔口边缘之间的距离。该距离是阀门升程 *h* 的函数。
+- *r*o 是阀孔半径。
+- *r*p 是阀锥半径。
+- *d*OB(*h*) 是阀锥中心与孔边缘之间的距离。该距离是阀门升程 *h* 的函数。
 - *Aleak* 是泄漏面积。
 
 最大位移 *h*max 为
 
-hmax=2rp2−ro2+roro2+4rp22−rp2−ro2.
+hmax=2rp2−ro2+roro2+4rp22−rp2−ro2。
 
-图中显示了硬边阀座的示意图。
+该图显示了锐边阀座的示意图。
 
-硬边阀座的示意图。
+锐边阀座的示意图。
 
-### 锥形阀座的开口面积
+### Opening Area With a Conical Seat
 
-当您将 **阀座规格** 设置为 `Conical` 时，模块使用几何关系计算阀门开口面积，使得
+当您将 **Valve seat specification** 设置为 `Conical` 时，该模块使用几何关系计算阀门开口面积，使得
 
-A=πrpsin(θ)h+π2sin(θ2)sin(θ)h2+Aleak.
+A=πrpsin(θ)h+π2sin(θ2)sin(θ)h2+Aleak。
 
 最大位移 *h*max 为：
 
-hmax=rp2+ro2cos(θ2)−rpsin(θ2),
+hmax=rp2+ro2cos(θ2)−rpsin(θ2)，
 
-其中 *θ* 是 **锥角**。图中显示了锥形阀座的示意图。
+其中 *θ* 是 **Cone angle**。该图显示了锥形阀座的示意图。
 
 锥形阀座的示意图。
 
-### 数值平滑的位移
+### Numerically Smoothed Displacement
 
-模块计算阀芯位移 *h*，使得
+该模块计算阀锥位移 *h*，使得
 
 h={0,(S−Smin)≤0hMax,(S−Smin)≥hMax(S−Smin),Else
 
 其中：
 
 - *S* 是物理信号输入。
-- *Smin* 是 **阀芯在阀座中的位置** 参数。
+- *Smin* 是 **Poppet position when in the seat** 参数。
 - *hMax* 是最大位移。
 
-如果 **平滑因子** 参数非零，模块会在 `0` 和 *hMax* 之间平滑地饱和阀芯位移。
+如果 **Smoothing factor** 参数非零，则该模块在 `0` 和 *hMax* 之间平滑饱和阀锥位移。
 
 有关详细信息，请参阅 Numerical Smoothing。

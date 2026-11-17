@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Unicycle Kinematic Model'
-family: 'mobile-robot-algorithms'
+family: 'robotics'
 product_id: 'robotics'
 product_name: 'Robotics System Toolbox'
 documentation_release: R2025b
@@ -18,63 +18,73 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **dϕ/dt** — 车轮角速度 numeric scalar
+### **dϕ/dt** — 车轮角速度 数值标量
 
-车轮的角速度，单位为 radians per second。
-
-#### 依赖关系
-
-要启用此端口，请将 `Vehicle inputs` 参数设置为 `Wheel Speed & Heading Angular Velocity`。
-
-### **v** — 车辆速度 numeric scalar
-
-车辆速度，单位为 meters per second。
+车轮的角速度，以弧度每秒为单位。
 
 #### 依赖关系
 
-要启用此端口，请将 `Vehicle inputs` 参数设置为 `Vehicle Speed & Heading Angular Velocity`。
+要启用此端口，请将 `Vehicle
+inputs` 参数设置为 `Wheel Speed & Heading Angular
+Velocity`。
 
-### **ω** — 转向角速度 numeric scalar
+### **v** — 车辆速度 数值标量
 
-车辆的角速度，单位为 radians per second。正值使车辆左转，负值使车辆右转。
+车辆速度，以米每秒为单位指定。
 
+#### 依赖关系
+
+要启用此端口，请将 `Vehicle
+inputs` 参数设置为 `Vehicle Speed & Heading Angular
+Velocity`。
+
+### **ω** — 转向角速度 数值标量
+
+车辆的角速度，以弧度每秒为单位指定。正值使车辆向左转向，负值使车辆向右转向。
 ### 输出
 
-### **state** — 车辆位姿 three-element vector
+### **state** — 车辆位姿 三元素向量
 
-车辆的当前 *xy* 位置和朝向，指定为 *[x y theta]* 向量，单位为 meters 和 radians。
+车辆当前的 *xy* 位置和朝向，以 *[x y theta]* 向量形式指定，单位为米和弧度。
 
-### **stateDot** — `state` 输出的导数 three-element vector
+### **stateDot** — `state` 输出的导数 三元素向量
 
-车辆的线速度和角速度，指定为 *[xDot yDot thetaDot]* 向量，单位为 meters per second 和 radians per second。线速度和角速度通过求 `state` 输出的导数计算得到。
+车辆的线速度和角速度，以 *[xDot
+yDot thetaDot]* 向量形式指定，单位为米每秒和弧度每秒。线速度和角速度通过对 `state`
+输出求导计算得出。
 
 ## 参数
 
-### **Vehicle inputs** — 车辆的速度和方向输入类型 `Vehicle Speed & Heading Angular Velocity` (默认) | `Wheel Speed & Heading Angular Velocity`
+### **Vehicle inputs** — 车辆的速度和方向输入类型 `Vehicle Speed & Heading Angular Velocity`（默认）| `Wheel Speed & Heading Angular Velocity`
 
 用于控制车辆的速度和方向输入类型。选项包括：
 
-- `Vehicle Speed & Heading Angular Velocity` — 车速，单位为 meters per second，以及航向角速度，单位为 radians per second。
-- `Wheel Speed & Heading Angular Velocity` — 车轮速度，单位为 radians per second，以及航向角速度，单位为 radians per second。
+- `Vehicle Speed & Heading Angular Velocity` —
+  车辆速度，以米每秒为单位，以及航向角速度，以弧度每秒为单位。
+- `Wheel Speed & Heading Angular Velocity` — 车轮
+  速度，以弧度每秒为单位，以及航向角速度，以弧度每秒为单位。
 
-### **Wheel radius** — 车辆的车轮半径 `0.1` (默认) | positive numeric scalar
+### **Wheel radius** — 车辆的车轮半径 `0.1`（默认）| 正数值标量
 
-车辆的车轮半径，单位为 meters。
+车辆的车轮半径，以米为单位指定。
 
-### **Wheel speed range** — 车辆最小和最大速度 `[-Inf Inf]` (默认) | two-element vector
+### **Wheel speed range** — 车辆速度的最小值和最大值 `[-Inf Inf]`（默认）| 二元素向量
 
-最小和最大车轮速度，单位为 radians per second。
+车轮速度的最小值和最大值，以弧度每秒为单位指定。
 
-### **Initial state** — 前轴和后轴之间的距离 `[0;0;0]` (默认) | three-element vector
+### **Initial state** — 前后轴之间的距离 `[0;0;0]`（默认）| 三元素向量
 
-车辆的初始 *x*-、`y`-位置和朝向 *theta*。
+车辆的初始 *x*、`y` 位置和朝向 *theta*。
 
-### **Simulate using** — 要运行的仿真类型 `Interpreted execution` (默认) | `Code generation`
+### **Simulate using** — 要运行的仿真类型 `Interpreted execution`（默认）| `Code generation`
 
-- `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-- `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不更改，后续仿真会重用该 C 代码。
+- `Interpreted execution` — 使用
+  MATLAB® 解释器仿真模型。有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
+- `Code generation` — 使用
+  生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码将在后续
+  仿真中重复使用。
 
-**可调：** No
+**Tunable:** No
 
 ## 所属库
 
@@ -94,8 +104,10 @@ R2025b 中未记录。
 
 ## 描述
 
-使用单轮车运动学模型计算车辆运动
+使用独轮车运动学模型计算车辆运动
 
-Unicycle Kinematic Model 模块创建一个单轮车车辆模型，以仿真简化的类汽车车辆动力学。此模型将车辆近似为具有给定车轮半径 `Wheel radius` 的单轮车，该单轮车可根据转向角速度 `ω` 原地旋转。
+Unicycle Kinematic Model 模块创建一个独轮车车辆模型，用于
+仿真简化的类汽车车辆动力学。该模型将车辆近似为具有给定车轮半径 `Wheel radius`
+的独轮车，该独轮车可以根据转向角速度 `ω` 原地旋转。
 
-标注了 x、y、theta、velocity、steering velocity 和 wheel radius 的单轮车运动学模型图
+带有 x、y、theta、速度、转向速度和车轮半径标注的独轮车运动学模型图

@@ -40,16 +40,16 @@ R2025b 中未记录。
 
 ## 描述
 
-IQ 数与 long integer 相乘的结果的整数部分
+IQ 数与长整数相乘结果的整数部分
 
 # C2000 Integer part IQN x int32
 
-IQ 数与 long integer 相乘的结果的整数部分
+IQ 数与长整数相乘结果的整数部分
 
-此模块将 IQ 输入与 long integer 输入相乘，并以 long integer 形式返回所得 IQ 数的整数部分。
+此模块将一个 IQ 输入和一个长整数输入相乘，并以长整数形式返回所得 IQ 数的整数部分。
 
 **注意**
 
-此模块的实现不会在代码生成期间调用对应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关详细信息，请参阅 Using the IQmath Library。
+此模块的实现不会在代码生成期间调用相应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关详细信息，请参阅 Using the IQmath Library。
 
 - C2000 Integer part IQN x int32 模块

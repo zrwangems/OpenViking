@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: '2-D Autocorrelation'
-family: 'statistics'
+family: 'vision'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b
@@ -23,21 +23,21 @@ chinese_source: worker-translation
 输入数组，指定为向量或矩阵。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-**复数支持：** Yes
+**复数支持：** 是
 ### 输出
 
-### **Port\_1** — 输入向量 | 矩阵的自相关
+### **Port\_1** — 输入的自相关 向量 | 矩阵
 
 输入数组的自相关，以向量或矩阵形式返回。输出的数据类型与输入的数据类型相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-**复数支持：** Yes
+**复数支持：** 是
 
 ## 参数
 
 有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
 
-### **锁定数据类型设置以防止定点工具更改** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
+### **Lock data type settings against change by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
 
@@ -59,7 +59,7 @@ Computer Vision Toolbox / Statistics
 
 ## 版本历史
 
-**R2006a 之前引入**
+**在 R2006a 之前引入**
 
 ## 描述
 

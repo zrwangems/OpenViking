@@ -29,15 +29,15 @@ chinese_source: worker-translation
 
 ## 参数
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 所属库
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -47,16 +47,17 @@ chinese_source: worker-translation
 
 **在 R2016b 中引入**
 
-### R2023a: 将被删除
+### R2023a：将被移除
 
-未来版本中将移除 Hydraulic 库。请改用 Isothermal Liquid 库。Isothermal Liquid 库中的模块提供更高的精度、可用性和数值性能。
+Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。
+Isothermal Liquid 库中的模块提供更高的精度、可用性和数值性能。
 
-有关更新模型的详细信息，请参阅《升级 Hydraulic 模型以使用 Isothermal Liquid 模块》。
+有关更新模型的详细信息，请参阅 Upgrading Hydraulic Models to Use Isothermal Liquid Blocks。
 
 ## 描述
 
-（将被删除）液压网络中由质量流量表征的理想机械能源
+（将被移除）液压网络中理想的机械能源，以质量流量为特征
 
-Hydraulic Mass Flow Rate Source 模块表示液压网络中的一个理想机械能源，无论源两端的压差如何，都能保持指定的质量流量。该源不会产生任何因摩擦导致的损失。模块连接 T 和 P 分别对应液压入口端口和出口端口。通过该源的质量流量与控制端口 M 处的信号成正比。
+Hydraulic Mass Flow Rate Source 模块表示液压网络中的理想机械能源，无论源两端的压差如何，它都能维持指定的质量流量。该源不会因摩擦产生任何损失。模块连接 T 和 P 分别对应液压入口和出口端口。通过源的质量流量与控制端口 M 处的信号成正比。
 
 正质量流量使液体从端口 T 流向端口 P。

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Bit Rotate'
-family: 'logic-and-bit-operations'
+family: 'hdlcoder'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
@@ -18,9 +18,9 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **Port\_1** — 输入信号 scalar | vector
+### **Port\_1** — 输入信号 标量 | 向量
 
-对其进行位旋转的输入信号。
+执行位旋转的输入信号。
 
 - 最小位宽：2
 - 最大位宽：128
@@ -28,7 +28,7 @@ chinese_source: worker-translation
 **数据类型：** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 ### 输出
 
-### **Port\_1** — 输出信号 scalar | vector
+### **Port\_1** — 输出信号 标量 | 向量
 
 经过位旋转的输出信号。输出信号的数据类型与输入信号相同。
 
@@ -38,27 +38,27 @@ chinese_source: worker-translation
 
 指定旋转方向，向左或向右。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数：** `mode` |
 | **类型：** string scalar | character vector |
 | **值：** `"Rotate Left"` | `"Rotate Right"` |
-| **默认值：** `'Rotate Left'` |
+| **默认：** `'Rotate Left'` |
 
 ### **Rotate Length** — 指定要旋转的位数 `0`（默认）| 大于或等于零的整数
 
 指定要旋转的位数。
 
-#### 程序化使用
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数：** `N` |
 | **类型：** string scalar | character vector |
 | **值：** 大于或等于零的整数 |
-| **默认值：** `'0'` |
+| **默认：** `'0'` |
 
 ## 所属库
 
@@ -66,7 +66,7 @@ HDL Coder / Logic and Bit Operations
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -74,7 +74,7 @@ HDL Coder / Logic and Bit Operations
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 **HDL 架构**
 
@@ -82,11 +82,11 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
 **HDL 模块属性**
 
-| 常规 | |
+| 通用 | |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟，在输出处放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline。 |
-| **InputPipeline** | 在生成的代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline。 |
-| **OutputPipeline** | 在生成的代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出端的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline。 |
 
 ## 版本历史
 

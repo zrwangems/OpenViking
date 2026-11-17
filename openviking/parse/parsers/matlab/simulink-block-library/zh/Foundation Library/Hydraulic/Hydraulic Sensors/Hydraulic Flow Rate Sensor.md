@@ -32,15 +32,15 @@ chinese_source: worker-translation
 
 ## 参数
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 所属库
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -50,16 +50,17 @@ chinese_source: worker-translation
 
 **在 R2009b 中引入**
 
-### R2023a: 将删除
+### R2023a：将被移除
 
-Hydraulic 库将在未来版本中删除。请改用 Isothermal Liquid 库。Isothermal Liquid 库中的模块提供更高的精度、可用性和数值性能。
+Hydraulic 库将在未来版本中移除。请改用 Isothermal Liquid 库。
+Isothermal Liquid 库中的模块提供更高的精度、可用性和数值性能。
 
-有关更新模型的详细信息，请参阅升级 Hydraulic 模型以使用 Isothermal Liquid 模块。
+有关更新模型的详细信息，请参阅 Upgrading Hydraulic Models to Use Isothermal Liquid Blocks。
 
 ## 描述
 
-（将删除）理想流量计
+（将被移除）理想流量计
 
-Hydraulic Flow Rate Sensor 模块表示理想流量计，即一种将通过液压管路的体积流量转换为与该流量成比例的控制信号的设备。连接 Q 是物理信号端口，输出体积流量值。连接 M 是物理信号端口，输出质量流量值。该传感器是理想的，因为它不考虑惯性、摩擦、延迟、压力损失等。
+Hydraulic Flow Rate Sensor 模块表示一个理想流量计，即一种将通过液压管路的体积流量转换为与该流量成比例的控制信号的设备。连接 Q 是一个物理信号端口，输出体积流量值。连接 M 是一个物理信号端口，输出质量流量值。该传感器是理想的，因为它不考虑惯性、摩擦、延迟、压力损失等。
 
-连接 A 和 B 是将传感器连接到液压管路的守恒液压端口。传感器的正方向是从 A 到 B。这意味着如果流量从 A 流向 B，则流量为正。
+连接 A 和 B 是将传感器连接到液压管路的守恒液压端口。传感器的正方向为从 A 到 B。这意味着如果流量从 A 流向 B，则流量为正。

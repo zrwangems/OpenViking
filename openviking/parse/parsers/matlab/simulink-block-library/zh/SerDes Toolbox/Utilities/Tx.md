@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Tx'
-family: 'utilities'
+family: 'serdes'
 product_id: 'serdes'
 product_name: 'SerDes Toolbox'
 documentation_release: R2025b
@@ -27,7 +27,7 @@ chinese_source: worker-translation
 
 ### **WaveOut** — 修改后的输出数据 标量 | 向量
 
-修改后的输出数据，包含根据 [1] 中所述方法的有损印刷电路板传输线模型的影响。
+修改后的输出数据，包含有损印刷电路板传输线模型的影响，依据 [1] 中概述的方法。
 
 **数据类型：** `double`
 
@@ -55,4 +55,4 @@ R2025b 中未记录。
 
 具有默认设置的发射器模块
 
-将发射器组件恢复为 SerDes Designer app 设置的默认值。如果已将某个发射器组件替换为 AMI 模块，并且现在希望将其恢复为该 app 导出的原始发射器组件，则可以使用此模块。
+将发射器组件恢复为 SerDes Designer 应用设置的默认值。如果您用 AMI 模块替换了发射器组件，而现在希望将其恢复为该应用导出的原始发射器组件，则可以使用此模块。

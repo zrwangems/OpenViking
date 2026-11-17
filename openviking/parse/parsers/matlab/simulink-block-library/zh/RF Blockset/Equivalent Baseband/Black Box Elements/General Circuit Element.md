@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'General Circuit Element'
-family: 'equivalent-baseband'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -20,11 +20,11 @@ R2025b 中未记录。
 
 ## 参数
 
-### 主
+### 主要
 
 ### **RFCKT object** — 包含电路元件设备数据的 RFCKT 对象 `read(rfckt.passive, 'passive.s2p')`（默认）| 任意 `rfckt` 对象
 
-包含电路元件设备数据的 RFCKT 对象，指定为创建指定类型默认电路对象的任意 RF Toolbox rfckt 对象，或生成此类对象的 MATLAB® 表达式。有关电路对象的详细信息，请参阅 RF 电路对象。
+包含电路元件设备数据的 RFCKT 对象，指定为任意 RF Toolbox rfckt 对象（用于创建指定类型的默认电路对象），或生成此类对象的 MATLAB® 表达式。有关电路对象的更多信息，请参阅 RF Circuit Objects。
 
 ### 可视化
 
@@ -34,24 +34,24 @@ R2025b 中未记录。
 
 ### **Frequency data (Hz)** — 频率数据范围 `[1.9e9:1.0e6:2.2e9]`（默认）| 向量
 
-频率数据范围，指定为向量，其中每个元素的单位为 hertz。
+频率数据范围，指定为向量，每个元素单位为赫兹。
 
 ### **Reference impedance (ohms)** — 参考阻抗 `50`（默认）| 非负标量
 
-参考阻抗，指定为以 ohms 为单位的非负标量。
+参考阻抗，指定为以欧姆为单位的非负标量。
 
 ### **Plot type** — 数据绘图类型 `X-Y plane`（默认）| `Composite data` | `Polar plane` | `Z Smith chart` | `Y Smith chart` | `ZY Smith chart`
 
-用于使用给定数据可视化的数据绘图类型，指定为以下项之一：
+使用给定数据进行可视化的数据绘图类型，指定为以下之一：
 
 - `X-Y plane` — 生成数据随频率变化的笛卡尔图。要创建线性、半对数或双对数图，请相应地设置 **Y-axis scale** 和 **X-axis scale**。
-- `Composite data` — 绘制复合数据。有关详细信息，请参阅使用等效基带库模块创建绘图。
+- `Composite data` — 绘制复合数据。有关更多信息，请参阅 Create Plots Using Equivalent Baseband Library Blocks。
 - `Polar plane` — 生成数据的极坐标图。该模块仅绘制与指定频率对应的数据范围。
-- `Z smith chart`、`Y smith chart` 和 `ZY smith chart` — 生成 Smith® 图。该模块仅绘制与指定频率对应的数据范围。
+- `Z smith chart`、`Y smith chart` 和 `ZY smith chart` — 生成史密斯®圆图。该模块仅绘制与指定频率对应的数据范围。
 
 ### **Y parameter1** — 要绘制的参数类型 `S11`（默认）| `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `IIP3` | `NF` | ...
 
-要绘制的参数类型，指定为以下项之一：
+要绘制的参数类型，指定为以下之一：
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -65,11 +65,11 @@ R2025b 中未记录。
 
 **注意**
 
-当 **Plot type** 设为 `Composite data` 时，**Y parameter1** 被禁用。
+当 **Plot type** 选择为 `Composite data` 时，**Y parameter1** 被禁用。
 
 ### **Y parameter2** — 要绘制的参数类型 `S11`（默认）| `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `IIP3` | `NF` | ...
 
-要绘制的参数类型，指定为以下项之一：
+要绘制的参数类型，指定为以下之一：
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -83,11 +83,11 @@ R2025b 中未记录。
 
 **注意**
 
-当 **Plot type** 设为 `Composite data` 时，**Y parameter2** 被禁用。
+当 **Plot type** 选择为 `Composite data` 时，**Y parameter2** 被禁用。
 
 ### **Y format1** — 绘图格式 `Magnitude (decibels)`（默认）| `Mag` | `Magnitude (linear)` | `Angle` | `Real` | `Imaginary` | ...
 
-绘图格式，指定为以下项之一。
+绘图格式，指定为以下之一。
 
 | Y parameter1 | Y format1 |
 | --- | --- |
@@ -102,11 +102,12 @@ R2025b 中未记录。
 
 #### 依赖关系
 
-要启用 **Y format1**，请将 **Plot type** 设置为 `X-Y plane`。
+要启用 **Y format1**，请将 **Plot type** 设置为
+`X-Y plane`。
 
 ### **Y format2** — 绘图格式 `Magnitude (decibels)`（默认）| `Mag` | `Magnitude (linear)` | `Angle` | `Real` | `Imaginary` | ...
 
-绘图格式，指定为以下项之一。
+绘图格式，指定为以下之一。
 
 | Y parameter2 | Y format2 |
 | --- | --- |
@@ -121,7 +122,8 @@ R2025b 中未记录。
 
 #### 依赖关系
 
-要启用 **Y format2**，请将 **Plot type** 设置为 `X-Y plane`。
+要启用 **Y format2**，请将 **Plot type** 设置为
+`X-Y plane`。
 
 ### **X parameter** — 频率绘图 `Freq`（默认）
 
@@ -129,7 +131,7 @@ R2025b 中未记录。
 
 ### **X format** — 频率绘图格式 `Hz`（默认）| `Auto` | `kHz` | `MHz` | `GHz` | `THz`
 
-频率绘图格式，指定为以下项之一。
+频率绘图格式，指定为以下之一。
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -142,7 +144,8 @@ Y 轴刻度，指定为 `Linear` 或 `Log`。
 
 #### 依赖关系
 
-要启用此参数，请将 **Plot type** 设置为 `X-Y plane`。
+要启用此参数，请将 **Plot type** 设置为 `X-Y
+plane`。
 
 ### **X scale** — X 轴刻度 `Linear`（默认）| `Log`
 
@@ -150,7 +153,8 @@ X 轴刻度，指定为 `Linear` 或 `Log`。
 
 #### 依赖关系
 
-要启用此参数，请将 **Plot type** 设置为 `X-Y plane`。
+要启用此参数，请将 **Plot type** 设置为 `X-Y
+plane`。
 
 ### **Plot** — 绘制指定数据按钮
 
@@ -174,8 +178,9 @@ R2025b 中未记录。
 
 ## 描述
 
-对由 rfckt 对象描述的二端口网络进行建模
+对由 rfckt 对象描述的双端口网络进行建模
 
-General Circuit Element 模块对由 RF Toolbox™ 电路 (`rfckt`) 对象描述的二端口网络进行建模。该模块使用 `rfckt/analyze` 方法在建模频率处计算网络参数。
+General Circuit Element 模块对由 RF Toolbox™ 电路（`rfckt`）对象描述的双端口网络进行建模。该模块使用
+`rfckt/analyze` 方法在建模频率下计算网络参数。
 
-要了解如何使用 General Circuit Element 模块实现级联滤波器，请参阅级联滤波器的多种实现示例。
+要了解如何使用 General Circuit Element 模块实现级联滤波器，请参阅 Multiple Realizations of Cascaded Filters 示例。

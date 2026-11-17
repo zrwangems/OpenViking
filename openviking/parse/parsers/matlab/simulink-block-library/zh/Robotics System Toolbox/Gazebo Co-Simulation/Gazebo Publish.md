@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Gazebo Publish'
-family: 'gazebo-co-simulation'
+family: 'robotics'
 product_id: 'robotics'
 product_name: 'Robotics System Toolbox'
 documentation_release: R2025b
@@ -26,27 +26,27 @@ Gazebo 自定义消息，指定为总线信号，其元素与特定的 `Topic` �
 
 ## 参数
 
-### **Topic source** — 用于指定主题的源 `From Gazebo`（默认）| `Specify your own`
+### **Topic source** — 用于指定话题的来源 `From Gazebo`（默认）| `Specify your own`
 
-要从现有 Gazebo 仿真获取主题，请选择 `From Gazebo`。点击 **Select** 按钮查看可用主题列表。要连接到 Gazebo 仿真，请在模块掩码中点击 **Configure Gazebo network and simulation settings**。
+要从现有的 Gazebo 仿真中获取话题，请选择 `From Gazebo`。点击 **Select** 按钮查看可用话题列表。要连接到 Gazebo 仿真，请点击模块掩码中的 **Configure Gazebo network and simulation settings**。
 
-要在没有活动 Gazebo 连接的情况下输入自定义主题，请选择 `Specify your own`。使用 `Topic` 参数键入消息的名称。
+要在没有活动 Gazebo 连接的情况下输入自定义话题，请选择 `Specify your own`。使用 `Topic` 参数输入消息的名称。
 
-### **Topic** — 自定义消息的主题名称 `/my_topic`（默认）| string
+### **Topic** — 自定义消息的话题名称 `/my_topic`（默认）| 字符串
 
-自定义消息的主题名称，指定为字符串。
+自定义消息的话题名称，指定为字符串。
 
-要从现有 Gazebo 仿真获取主题，请选择 `From Gazebo`。点击 **Select** 按钮查看可用主题列表。要连接到 Gazebo 仿真，请在模块掩码中点击 **Configure Gazebo network and simulation settings**。
+要从现有的 Gazebo 仿真中获取话题，请选择 `From Gazebo`。点击 **Select** 按钮查看可用话题列表。要连接到 Gazebo 仿真，请点击模块掩码中的 **Configure Gazebo network and simulation settings**。
 
-要在不连接的情况下指定主题，请选择 `Specify your own`。
+要在不连接的情况下指定话题，请选择 `Specify your own`。
 
-### **Message type** — Gazebo 自定义消息类型 `gazebo_msgs/TestPose`（默认）| string
+### **Message type** — Gazebo 自定义消息类型 `gazebo_msgs/TestPose`（默认）| 字符串
 
 点击 **Select** 获取 Gazebo 中可用的消息类型列表。如果您从已连接的 Gazebo 仿真中选择 `Topic`，此参数将自动设置。
 
-### **Sample time** — 输入的采样时间 `0.001`（默认）| positive
+### **Sample time** — 输入的采样时间 `0.001`（默认）| 正数
 
-采样时间指示将消息发送到 Gazebo 模拟器的间隔。
+采样时间表示向 Gazebo 仿真器发送消息的时间间隔。
 
 ## 所属库
 
@@ -54,11 +54,11 @@ Robotics System Toolbox / Gazebo Co-Simulation
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -66,10 +66,10 @@ Robotics System Toolbox / Gazebo Co-Simulation
 
 ## 描述
 
-将自定义消息发送到 Gazebo 服务器
+向 Gazebo 服务器发送自定义消息
 
-Gazebo Publish 模块根据该模块指定的主题和消息类型，将自定义消息发送到 Gazebo 服务器。
+Gazebo Publish 模块根据该模块指定的话题和消息类型，向 Gazebo 服务器发送自定义消息。
 
-要发送自定义消息，请连接到 Gazebo 仿真。打开模块掩码，然后点击 **Configure Gazebo network and simulation settings**。有关详细信息，请参阅 Configure Gazebo Simulation。
+要发送自定义消息，请连接到 Gazebo 仿真。打开模块掩码并点击 **Configure Gazebo network and simulation settings**。有关更多信息，请参阅 Configure Gazebo Simulation。
 
-此模块是 MATLAB® 和 Gazebo 之间用于交换数据和发送命令的协同仿真接口的一部分。
+此模块是 MATLAB® 与 Gazebo 之间用于交换数据和发送命令的协同仿真接口的一部分。

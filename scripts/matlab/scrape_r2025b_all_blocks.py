@@ -72,6 +72,14 @@ def fetch(
     raise ValueError("fetch_failed: repeated HTTP 429")
 
 
+def has_chinese_documentation_body(markdown: str) -> bool:
+    """Exclude the localized site-selection footer on English fallback pages."""
+    body = re.split(
+        r"(?m)^(?:选择网站|Select a Web Site)\s*$", markdown, maxsplit=1
+    )[0]
+    return len(re.findall(r"[\u4e00-\u9fff]", body)) >= 2
+
+
 def render_page(html: bytes, entry: dict, product: dict, language: str) -> tuple[str, bool]:
     topic = entry.get("content_kind") == "official_topic"
     if topic:
@@ -82,9 +90,12 @@ def render_page(html: bytes, entry: dict, product: dict, language: str) -> tuple
     else:
         subtitle, sections = localized_content(html, entry, "zh-CN" if language == "zh" else "en")
         topic_markdown = ""
-    official_chinese = language == "en" or bool(
-        re.search(r"[\u4e00-\u9fff]", topic_markdown if topic else subtitle)
+    localized_body = topic_markdown if topic else "\n".join(
+        [subtitle, *(content for _title, content in sections)]
     )
+    # MathWorks serves an English fallback with a Chinese site-selection footer
+    # for some untranslated topics. Footer Chinese is not a Chinese block page.
+    official_chinese = language == "en" or has_chinese_documentation_body(localized_body)
     if language == "zh" and not official_chinese:
         raise ValueError("translation_required: MathWorks page has no official Chinese body")
     if not topic and not sections:

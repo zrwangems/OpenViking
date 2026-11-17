@@ -20,41 +20,40 @@ chinese_source: worker-translation
 
 ### **EnableIn** — 使能输入 off（默认）| on
 
-控制模块的执行。**EnableIn** 反映模块之前的梯级状态。如果模块之前的梯级状态为 false，则 **EnableIn** 为 false，模块不执行且输出不会更新。
+控制模块的执行。**EnableIn** 反映模块之前的梯级状态。如果模块之前的梯级状态为 false，则 **EnableIn** 为 false，模块不执行，输出也不会更新。
 
-### **src** — 输入信号标量
+### **src** — 输入信号 标量
 
-对其执行按位 NOT 运算的输入信号。如果数据类型为 `single`（`REAL` – 梯形逻辑等效项），则输入值转换为 `int32`（`DINT` – 梯形逻辑等效项）。`int8, int16`（`SINT,INT` – 梯形逻辑等效项）数据类型通过将高位填充为 0 转换为 `int32`（`DINT` – 梯形逻辑等效项）。
+要对其执行按位 NOT 运算的输入信号。如果数据类型为 `single`（`REAL`——梯形图逻辑等效类型），则输入值转换为 `int32`（`DINT`——梯形图逻辑等效类型）。`int8, int16`（`SINT,INT`——梯形图逻辑等效类型）数据类型通过在高位填充 0 转换为 `int32`（`DINT`——梯形图逻辑等效类型）。
 
 **数据类型：** `int8` | `int16` | `int32` | `single`
-
 ### 输出
 
 ### **EnableOut** — 使能输出 off（默认）| on
 
-默认情况下，**EnableOut** 跟随 **EnableIn** 的状态。如果模块的 **EnableIn** 输入为 false，则模块实现的逻辑不执行，且 **EnableOut** 信号设置为 false。
+默认情况下，**EnableOut** 跟随 **EnableIn** 的状态。如果模块的 **EnableIn** 输入为 false，则模块实现的逻辑不执行，**EnableOut** 信号设置为 false。
 
-### **dest** — 输出信号标量
+### **dest** — 输出信号 标量
 
-按位 NOT 运算得到的输出信号。如果数据类型为 `single`（`REAL` – 梯形逻辑等效项），则得到的 `int32`（`DINT` – 梯形逻辑等效项）转换为 `REAL`（`single` – 梯形逻辑等效项）。
+按位 NOT 运算产生的输出信号。如果数据类型为 `single`（`REAL`——梯形图逻辑等效类型），则结果 `int32`（`DINT`——梯形图逻辑等效类型）转换为 `REAL`（`single`——梯形图逻辑等效类型）。
 
 **数据类型：** `int8` | `int16` | `int32` | `single`
 
 ## 参数
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 所属库
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -64,4 +63,4 @@ chinese_source: worker-translation
 
 按位 NOT
 
-NOT 模块实现 `NOT` 梯形逻辑指令。当梯级条件为 true 时，模块对源处的值执行按位 NOT 运算。此运算的结果在目标端口（`dest`）可用。
+NOT 模块实现 `NOT` 梯形图逻辑指令。当梯级条件为 true 时，模块对源处的值执行按位 NOT 运算。此运算的结果可在目标端口（`dest`）处获得。

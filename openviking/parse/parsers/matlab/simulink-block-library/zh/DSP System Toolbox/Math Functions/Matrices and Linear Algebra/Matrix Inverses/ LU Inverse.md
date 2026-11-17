@@ -20,18 +20,18 @@ chinese_source: worker-translation
 
 ### **Input** — 输入方阵 方阵
 
-指定输入为 *M*-by-*M* 方阵。
+将输入指定为 *M*×*M* 方阵。
 
 **数据类型：** `single` | `double`
-**复数支持：** Yes
+**复数支持：** 是
 ### 输出
 
-### **Output** — 矩阵的逆 方阵
+### **Output** — 矩阵逆 方阵
 
-矩阵的逆，以 *M*-by-*M* 方阵形式返回。
+矩阵逆，以 *M*×*M* 方阵形式返回。
 
 **数据类型：** `single` | `double`
-**复数支持：** Yes
+**复数支持：** 是
 
 ## 参数
 
@@ -55,7 +55,7 @@ DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Inver
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-生成的代码在某些条件下依赖 `memcpy` 或 `memset` 函数（`string.h`）。
+生成的代码在某些条件下依赖于 `memcpy` 或 `memset` 函数（`string.h`）。
 
 ## 版本历史
 
@@ -65,8 +65,8 @@ DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Inver
 
 使用 LU 分解计算方阵的逆
 
-LU Inverse 模块通过对其行选主元变体 *A**p* 进行分解并求逆，计算方阵输入 *A* 的逆。
+LU Inverse 模块通过对其行主元变换后的变体 *A**p* 进行分解和求逆，计算方阵输入 *A* 的逆。
 
 Ap−1=(LU)−1
 
-*L* 是对角线元素为 1 的下三角方阵，*U* 是上三角方阵。该模块输出逆矩阵 *A*-1。
+*L* 是单位对角元素的下三角方阵，*U* 是上三角方阵。该模块输出逆矩阵 *A*-1。

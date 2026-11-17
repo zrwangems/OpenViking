@@ -9,7 +9,7 @@ official_category: 'Cluster Analysis'
 documentation_page: 'knnsearchblock'
 documentation_source_path: 'knnsearchblock.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # KNN Search
@@ -18,284 +18,284 @@ chinese_source: official
 
 ### 输入
 
-### **x** — 查询点 行向量
+### **x** — 查询点行向量
 
-查询点，指定为行向量。**x** 的列数必须与**选择最近邻搜索器**指定的 `searcher` 对象中的预测变量数相同。**x** 的列的顺序必须与 `searcher` 对象中列的顺序相同。
+查询点，指定为行向量。**x** 的列数必须与 **Select nearest neighbor searcher** 指定的 `searcher` 对象中预测变量的数量相同。**x** 的列顺序必须与 `searcher` 对象中的列顺序一致。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 ### 输出
 
 ### **Idx** — 最近邻的索引 数值行向量 | 1×1 元胞数组
 
 数据中最近邻的索引，以数值行向量或 1×1 元胞数组形式返回。
 
-- 如果您未在“模块参数”对话框的**主要**选项卡上选择**包括结值**，则模块返回一个 1×*k* 数值行向量，其中 *k* 是搜索的最近邻的数量。该行向量的每列都包含数据中一个最近邻点的索引，按到查询点 **x** 的距离升序排序。
-- 如果您在“模块参数”对话框的**主要**选项卡上选择**包括结值**，则模块返回一个 1×1 元胞数组作为可变大小信号，其中包含一个数值行向量，其元素是数据中到查询点 **x** 最近的观测值的至少 *k* 个索引。向量的列按到查询点的距离升序排序。
+- 如果未在“模块参数”对话框的 **Main** 选项卡中选中 **Include ties**，则模块返回一个 1×*k* 数值行向量，其中 *k* 是搜索的最近邻数量。行向量的每一列包含数据中一个最近邻点的索引，按到查询点 **x** 的距离递增排序。
+- 如果在“模块参数”对话框的 **Main** 选项卡中选中 **Include ties**，则模块返回一个 1×1 元胞数组，作为可变大小信号，其中包含数据中距离查询点 **x** 最近的至少 *k* 个观测值的索引组成的数值行向量。向量的各列按到查询点的距离递增排序。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ### **D** — 最近邻的距离 数值行向量 | 1×1 元胞数组
 
 最近邻到查询点的距离，以数值行向量或 1×1 元胞数组形式返回。
 
-- 如果您未在“模块参数”对话框的**主要**选项卡上选择**包括结值**，则模块返回一个 1×*k* 数值行向量，其中 *k* 是搜索的最近邻的数量。根据距离度量，行向量的每列都包含数据中的一个最近邻到查询点 **x** 的距离。行向量的列按到查询点的距离升序排序。
-- 如果您在“模块参数”对话框的**常设**选项卡上选择**包括结值**，则模块返回一个 1×1 元胞数组作为可变大小信号，其中包含一个数值行向量，其元素是数据中到查询点 **x** 最近的观测值的至少 *k* 个距离。向量的列按到查询点的距离升序排序。
+- 如果未在“模块参数”对话框的 **Main** 选项卡中选中 **Include ties**，则模块返回一个 1×*k* 数值行向量，其中 *k* 是搜索的最近邻数量。行向量的每一列包含数据中一个最近邻点到查询点 **x** 的距离，依据距离度量计算。行向量的各列按到查询点的距离递增排序。
+- 如果在“模块参数”对话框的 **Main** 选项卡中选中 **Include ties**，则模块返回一个 1×1 元胞数组，作为可变大小信号，其中包含数据中距离查询点 **x** 最近的至少 *k* 个观测值的距离组成的数值行向量。向量的各列按到查询点的距离递增排序。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请在 KNN Search 模块中选择**添加最近邻距离的输出端口**。
+要启用此端口，请在 KNN Search 模块中选中 **Add output port for nearest neighbor distances**。
 
-**数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
 ## 参数
 
-### 主要
+### 主要参数
 
-### **选择最近邻搜索器** — 最近邻搜索方法 `searcher` (默认) | `ExhaustiveSearcher` 对象 | `KDTreeSearcher` 对象
+### **Select nearest neighbor searcher** — 最近邻搜索方法 `searcher`（默认） | `ExhaustiveSearcher` 对象 | `KDTreeSearcher` 对象
 
-指定包含 `ExhaustiveSearcher` 或 `KDTreeSearcher` 对象的工作区变量的名称。
+指定包含 `ExhaustiveSearcher` 或 `KDTreeSearcher` 对象的工作区变量名称。
 
 **注意**
 
-软件对您可以在“模块参数”对话框中指定的所有参数使用默认设置。对话框中的参数会覆盖搜索器对象的参数。
+该软件对“模块参数”对话框中可指定的所有参数使用默认设置。对话框中的参数将覆盖 searcher 对象中的相应参数。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`NeighborhoodSearcher` |
-| **类型：**工作区变量 |
-| **值：**`ExhaustiveSearcher` 对象 | `KDTreeSearcher` 对象 |
-| **默认值**：`"searcher"` |
+| **模块参数：** `NeighborhoodSearcher` |
+| **类型：** 工作区变量 |
+| **值：** `ExhaustiveSearcher` 对象 | `KDTreeSearcher` 对象 |
+| **默认值：** `"searcher"` |
 
-### **添加最近邻距离的输出端口** — 为最邻距离添加第二个输出端口 `off` (默认) | `on`
+### **Add output port for nearest neighbor distances** — 添加用于最近邻距离的第二个输出端口 `off`（默认） | `on`
 
-选中该复选框可将第二个输出端口 **D** 包含在 KNN Search 模块中。
-
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**：`ShowOutputDistances` |
-| **类型：**字符向量 |
-| **值：**`"off" | "on"` |
-| **默认值**：`"off"` |
-
-### **最近邻的数量** — 最近邻的数量 `1` (默认) | 正整数
-
-指定要在数据中查找的查询点的最近邻的数量。
+选中此复选框可在 KNN Search 模块中包含第二个输出端口 **D**。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`NumNeighbors` |
-| **类型：**正整数 |
-| **值：**`single` | `double` |
-| **默认值**：`1` |
+| **模块参数：** `ShowOutputDistances` |
+| **类型：** 字符向量 |
+| **值：** `"off" | "on"` |
+| **默认值：** `"off"` |
 
-### **包括结值** — 包含所有最近邻的标志 `off` (默认) | `on`
+### **Number of nearest neighbors** — 最近邻数量 `1`（默认）| 正整数
 
-如果您未在“模块参数”对话框的**主要**选项卡上选择**包括结值**，则模块会在与查询点距离相同的观测值中选择具有最小索引的观测值。
-
-如果您选择**包括结值**，则：
-
-- 模块输出包括距离等于输出参量中第 *k* 个最小距离的所有最近邻。如果五个以上最近邻的距离与第 *k* 个最小距离相等，则模块输出仅包括前五个具有最小索引值的最近邻。
-- **Idx** 和 **D** 模块输出是 1×1 元胞数组，其中每个元胞分别包含一个由至少 *k* 个索引和距离组成的向量。向量中的列按照到查询点的距离升序排序。
+指定在数据中为查询点查找的最近邻数量。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`IncludeTies` |
-| **类型：**字符向量 |
-| **值：**`"off" | "on"` |
-| **默认值**：`"off"` |
+| **模块参数：** `NumNeighbors` |
+| **类型：** 正整数 |
+| **值：** `single` | `double` |
+| **默认：** `1` |
 
-### **距离度量** — 距离度量 **euclidean** (默认) | **chebychev** | **cityblock** | **minkowski** | **correlation** | **cosine** | **hamming** | **jaccard** | **mahalanobis** | **seuclidean** | **spearman**
+### **Include ties** — 包含所有最近邻的标志 `off`（默认）| `on`
 
-指定用于查找数据中查询点的最近邻的距离度量。
+如果未在“模块参数”对话框的**主**选项卡中选择 **Include ties**，则模块在距查询点距离相同的观测中选择索引最小的观测。
 
-对于 `ExhaustiveSearcher` 和 `KDTreeSearcher` 对象，该模块都支持以下距离度量。
+如果选择 **Include ties**：
+
+- 模块输出包含所有距离等于输出参数中第 *k* 个最小距离的最近邻。如果超过五个最近邻与第 *k* 个最小距离的距离相等，则模块输出仅包含索引值最小的前五个最近邻。
+- **Idx** 和 **D** 模块输出为 1×1 元胞数组，其中每个元胞分别包含至少 *k* 个索引和距离的向量。向量中的列按到查询点的距离递增排序。
+
+#### 编程用法
+
+|  |
+| --- |
+| **模块参数：** `IncludeTies` |
+| **类型：** 字符向量 |
+| **值：** `"off" | "on"` |
+| **默认：** `"off"` |
+
+### **Distance metric** — 距离度量 `euclidean`（默认）| `chebychev` | `cityblock` | `minkowski` | `correlation` | `cosine` | `hamming` | `jaccard` | `mahalanobis` | `seuclidean` | `spearman`
+
+指定用于在数据中查找查询点最近邻的距离度量。
+
+对于 `ExhaustiveSearcher` 和 `KDTreeSearcher` 对象，模块支持以下距离度量。
 
 | 值 | 描述 |
 | --- | --- |
-| `"chebychev"` | 切比雪夫距离（最大坐标差） |
-| `"cityblock"` | 城市街区距离 |
-| `"euclidean"` | 欧几里德距离 |
-| `"minkowski"` | 闵可夫斯基距离。默认指数是 2。您可以在“模块参数”对话框中指定不同指数。 |
+| `"chebychev"` | Chebychev 距离（最大坐标差） |
+| `"cityblock"` | City block 距离 |
+| `"euclidean"` | 欧几里得距离 |
+| `"minkowski"` | Minkowski 距离。默认指数为 2。您可以在“模块参数”对话框中指定不同的指数。 |
 
-对于 `ExhaustiveSearcher` 对象，该模块还支持以下距离度量。
+对于 `ExhaustiveSearcher` 对象，模块还支持以下距离度量。
 
 | 值 | 描述 |
 | --- | --- |
-| `"correlation"` | 1 减去观测值（视为值序列）之间的样本线性相关系数 |
-| `"cosine"` | 1 减去观测值（视为行向量）之间夹角的余弦值 |
-| `"hamming"` | 汉明距离，即相异坐标所占的百分比 |
-| `"jaccard"` | 1 减去杰卡德系数，即非零相异坐标所占的百分比 |
-| `"mahalanobis"` | 马氏距离，使用正定协方差矩阵计算。默认情况下，该模块基于 `searcher` 对象中的数据计算协方差矩阵。您可以在“模块参数”对话框中指定自定义的协方差矩阵。 |
-| `"seuclidean"` | 标准化的欧几里德距离。查询点 **x** 和数据之间的每个坐标差通过除以根据数据计算的标准差的对应元素来缩放。您可以在“模块参数”对话框中指定不同缩放方法。 |
-| `"spearman"` | 1 减去样本观测值（视为值序列）之间的斯皮尔曼秩相关 |
+| `"correlation"` | 1 减去观测之间的样本线性相关性（视为值序列） |
+| `"cosine"` | 1 减去观测之间夹角的余弦（视为行向量） |
+| `"hamming"` | Hamming 距离，即不同坐标的百分比 |
+| `"jaccard"` | 1 减去 Jaccard 系数，即不同的非零坐标的百分比 |
+| `"mahalanobis"` | Mahalanobis 距离，使用正定协方差矩阵计算。默认情况下，模块从 `searcher` 对象中的数据计算协方差矩阵。您可以在“模块参数”对话框中指定自定义协方差矩阵。 |
+| `"seuclidean"` | 标准化欧几里得距离。查询点 **x** 与数据之间的每个坐标差通过除以从数据计算的标准差的对应元素进行缩放。您可以在“模块参数”对话框中指定不同的缩放方法。 |
+| `"spearman"` | 1 减去观测之间的样本 Spearman 秩相关（视为值序列） |
 
 **注意**
 
-- 距离度量设置将覆盖指定的 `Distance` 对象的 `searcher` 属性。
-- KNN Search 模块不支持 `"fasteuclidean"` 或 `"fastseuclidean"` 距离度量（请参阅距离度量）。
+- 距离度量设置会覆盖指定 `searcher` 对象的 `Distance` 属性。
+- KNN Search 模块不支持 `"fasteuclidean"` 或 `"fastseuclidean"` 距离度量（请参阅 Distance Metrics）。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数**：`DistanceMetric` |
-| **类型：**字符向量 |
-| **值：**`"euclidean" | "chebychev" | "cityblock" | "minkowski" | "correlation" | "cosine" | "hamming" | "jaccard" | "mahalanobis" | "seuclidean" | "spearman"` |
-| **默认值**：`"euclidean"` |
+| **模块参数：** `DistanceMetric` |
+| **类型：** 字符向量 |
+| **值：** `"euclidean" | "chebychev" | "cityblock" | "minkowski" | "correlation" | "cosine" | "hamming" | "jaccard" | "mahalanobis" | "seuclidean" | "spearman"` |
+| **默认：** `"euclidean"` |
 
-### **协方差矩阵** — 马氏距离度量的协方差矩阵 **使用搜索器中的数据计算** (默认) | **自定义**
+### **Covariance matrix** — 马哈拉诺比斯距离度量的协方差矩阵 `Computed using data in searcher`（默认）| `Customized`
 
-默认情况下，该模块基于 `searcher` 对象中的数据计算协方差矩阵。您可以通过选择**自定义**并在**自定义矩阵**框中输入正定矩阵来指定自定义协方差矩阵。
+默认情况下，该模块从 `searcher` 对象中的数据计算协方差矩阵。您可以通过选择 `Customized` 并在 **Customized matrix** 框中输入正定矩阵来指定自定义协方差矩阵。
 
 **注意**
 
-此设置将覆盖指定的 `searcher` 对象的 `DistParameter` 属性。
+此设置会覆盖指定 `searcher` 对象的 `DistParameter` 属性。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`CovarianceMatrix` |
-| **类型：**正定矩阵 |
-| **值：**`"Computed using data in searcher"` | `"Customized"` |
+| **类型**：positive definite matrix |
+| **值**：`"Computed using data in searcher"` | `"Customized"` |
 | **默认值**：`"Computed using data in searcher"` |
 
 #### 依赖关系
 
-要启用此参数，请将**距离度量**设置为 `"mahalanobis"`。
+要启用此参数，请将 **Distance Metric** 设置为 `"mahalanobis"`。
 
-### **尺度** — 标准化的欧几里德距离度量的尺度参数值 **搜索器中数据的标准差** (默认) | **自定义**
+### **Scale** — 标准化欧几里得距离度量的尺度参数值 `Standard deviation of data in searcher`（默认）| `Customized`
 
-默认情况下，该模块基于 `searcher` 对象中的数据计算尺度参数值。您可以通过选择**自定义**并在**自定义尺度**文本框中输入非负数值行向量来指定自定义尺度参数值。行向量的列数必须与 `searcher` 对象中预测变量的列数相同。当模块计算标准化的欧几里德距离时，数据的每个坐标由 `Scale` 的对应元素缩放，查询点也是如此。
+默认情况下，该模块从 `searcher` 对象中的数据计算尺度参数值。您可以通过选择 `Customized` 并在 **Customized scale** 文本框中输入非负数值行向量来指定自定义尺度参数值。该行向量的列数必须与 `searcher` 对象中预测变量的数量相同。当模块计算标准化欧几里得距离时，数据的每个坐标以及查询点都会按 `Scale` 中对应元素进行缩放。
 
 **注意**
 
-此设置将覆盖指定的 `searcher` 对象的 `DistParameter` 属性。
+此设置会覆盖指定 `searcher` 对象的 `DistParameter` 属性。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`Scale` |
-| **类型：**非负数值行向量 |
-| **值：**`"Standard deviation of data in searcher"` | `"Customized"` |
+| **类型**：nonnegative numeric row vector |
+| **值**：`"Standard deviation of data in searcher"` | `"Customized"` |
 | **默认值**：`"Standard deviation of data in searcher"` |
 
 #### 依赖关系
 
-要启用此参数，请将**距离度量**设置为 `"seuclidean"`。
+要启用此参数，请将 **Distance Metric** 设置为 `"seuclidean"`。
 
-### **P** — 闵可夫斯基距离度量的指数 `2` (默认) | 正整数
+### **P** — 闵可夫斯基距离度量的指数 `2`（默认）| 正整数
 
-指定闵可夫斯基距离度量的指数。对于默认情形 *P* = 2，闵可夫斯基距离即欧几里德距离。对于特例 *P* = 1，闵可夫斯基距离即城市街区距离。对于特例 *P* = ∞，闵可夫斯基距离即切比雪夫距离。
+指定闵可夫斯基距离度量的指数。对于 *P* = 2 的默认情况，闵可夫斯基距离给出欧几里得距离。对于 *P* = 1 的特殊情况，闵可夫斯基距离给出城市街区距离。对于 *P* = ∞ 的特殊情况，闵可夫斯基距离给出切比雪夫距离。
 
 **注意**
 
-此设置将覆盖指定的 `searcher` 对象的 `DistParameter` 属性。
+此设置会覆盖指定 `searcher` 对象的 `DistParameter` 属性。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`MinkExp` |
-| **类型：**正整数 |
-| **值：**`positive integer` |
+| **类型**：positive integer |
+| **值**：`positive integer` |
 | **默认值**：`2` |
 
 #### 依赖关系
 
-要启用此参数，请将**距离度量**设置为 `"minkowski"`。
+要启用此参数，请将 **Distance Metric** 设置为 `"minkowski"`。
 
 ### 数据类型
 
-#### 定点运算参数
+#### Fixed-Point Operational Parameters
 
-### **整数舍入模式** — 定点运算的舍入模式 **向下** (默认) | **向上** | **收敛** | **最邻近值** | **舍入** | **最简** | **零**
+### **Integer rounding mode** — 定点运算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
-指定定点运算的舍入模式。有关详细信息，请参阅舍入模式 (Fixed-Point Designer)。
+指定定点运算的舍入模式。有关详细信息，请参阅 Rounding Modes (Fixed-Point Designer)。
 
-模块参数始终舍入到最邻近的可表示值。要控制模块参数的舍入方法，请使用 MATLAB® 舍入函数在封装字段中输入表达式。
+模块参数始终舍入到最接近的可表示值。要控制模块参数的舍入，请使用 MATLAB® 舍入函数在掩码字段中输入表达式。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`RndMeth` |
-| **类型：**字符向量 |
-| **值：**`"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"` |
+| **模块参数**：`RndMeth` |
+| **类型**：character vector |
+| **值**：`"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"` |
 | **默认值**：`"Floor"` |
 
-### **对整数溢出进行饱和处理** — 溢出操作的方法 `off` (默认) | `on`
+### **Saturate on integer overflow** — 溢出操作的方法 `off`（默认）| `on`
 
-指定对溢出是进行饱和处理还是绕回处理。
+指定溢出是饱和还是回绕。
 
-| 操作 | 基本原理 | 对溢出的影响 | 示例 |
+| 操作 | 理由 | 对溢出的影响 | 示例 |
 | --- | --- | --- | --- |
-| 选中此复选框 (`on`)。 | 您的模型可能有溢出，并且您希望在生成的代码中具有显式饱和保护。 | 将溢出饱和处理为数据类型能够表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。如果选中此复选框，模块输出将在达到 127 时饱和。类似地，模块输出将在达到最小输出值 -128 时饱和。 |
-| 清除此复选框 (`off`)。 | 您想优化所生成代码的效率。  您希望避免过度地指定信号超出范围时模块的处理方式。有关详细信息，请参阅信号范围错误故障排除 (Simulink)。 | 溢出将绕回到数据类型可以表示的合适值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。在该复选框处于清除状态时，软件会将导致溢出的值解释为 `int8`，这可能产生意外结果。例如，以 `int8` 表示的模块结果 130（二进制 1000 0010）为 -126。 |
+| 选中此复选框（`on`）。 | 您的模型可能存在溢出，并且您希望在生成的代码中显式添加饱和保护。 | 溢出饱和到数据类型所能表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型能表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。选中该复选框后，模块输出饱和于 127。类似地，模块输出饱和于最小值 –128。 |
+| 清除此复选框（`off`）。 | 您希望优化生成代码的效率。您希望避免过度指定模块如何处理超出范围的信号。有关详细信息，请参阅 Troubleshoot Signal Range Errors (Simulink)。 | 溢出回绕到数据类型所能表示的相应值。 | `int8`（有符号 8 位整数）数据类型能表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。清除该复选框后，软件将导致溢出的值解释为 `int8`，这可能会产生非预期的结果。例如，模块结果 130（二进制 1000 0010）表示为 `int8` 时为 –126。 |
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`SaturateOnIntegerOverflow` |
-| **类型：**字符向量 |
-| **值：**`"off" | "on"` |
+| **模块参数**：`SaturateOnIntegerOverflow` |
+| **类型**：character vector |
+| **值**：`"off" | "on"` |
 | **默认值**：`"off"` |
 
-### **锁定输出数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 `off` (默认) | `on`
+### **Lock output data type setting against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
-选择此参数可防止定点工具覆盖您对模块指定的数据类型。有关详细信息，请参阅Use Lock Output Data Type Setting (Fixed-Point Designer)。
+选中此参数可防止定点工具覆盖您为模块指定的数据类型。有关详细信息，请参阅 Use Lock Output Data Type Setting (Fixed-Point Designer)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：**`LockScale` |
-| **类型：**字符向量 |
-| **值：**`"off" | "on"` |
+| **模块参数**：`LockScale` |
+| **类型**：character vector |
+| **值**：`"off" | "on"` |
 | **默认值**：`"off"` |
 
 #### 数据类型
 
-### **索引数据类型** — 索引输出的数据类型 **Inherit: auto** (默认) | **双精度** | **单精度** | **半精度** | **int8** | **uint8** | **int16** | **uint16** | **int32** | **uint32** | **int64** | **uint64** | **fixdt(1,16,0)** | **fixdt(1,16,2^0,0)** | **<数据类型表达式>**
+### **Index data type** — 索引输出的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-为 **Idx** 输出指定数据类型。该类型可以继承、直接指定或表示为数据类型对象，如 `Simulink.NumericType`。
+指定 **Idx** 输出的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
-点击**显示数据类型助手**按钮  以显示**数据类型助手**，这有助于您设置数据类型属性。有关详细信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
+单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`IndicesDataTypeStr` |
-| **类型**：字符向量 |
+| **类型**：character vector |
 | **值**：`"Inherit: auto"` | `"double"` | `"single"` | `"half"` | `"int8"` | `"uint8"` | `"int16"` | `"uint16"` | `"int32"` | `"uint32"` | `"int64"` | `"uint64"` | `"fixdt(1,16,0)"` | `"fixdt(1,16,2^0,0)"` | `"<data type expression>"` |
 | **默认值**：`"Inherit: auto"` |
 
-### **索引数据类型最小值** — 索引输出的最小值 **[]** (默认) | 标量
+### **索引数据类型最小值** — 索引输出的最小值 `[]`（默认）| 标量
 
 指定 Simulink® 检查的 **Idx** 输出范围的最小值。
 
-Simulink 使用最小值执行下列操作：
+Simulink 使用最小值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink)和启用仿真范围检查 (Simulink)）。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如软件在环 (SIL) 模式或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 从模型生成的代码的优化。此优化可以移除算法代码并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**索引数据类型最小值**参数不会对实际 **Idx** 输出信号进行饱和处理或截断。为此，请改用 Saturation (Simulink) 模块。
+**索引数据类型最小值** 参数不会饱和或裁剪实际的 **Idx** 输出信号。要执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
@@ -304,21 +304,21 @@ Simulink 使用最小值执行下列操作：
 | **值**：`"[]"` | 标量 |
 | **默认值**：`"[]"` |
 
-### **索引数据类型最大值** — 索引输出的最大值 **[]** (默认) | 标量
+### **索引数据类型最大值** — 索引输出的最大值 `[]`（默认）| 标量
 
 指定 Simulink 检查的 **Idx** 输出范围的最大值。
 
-Simulink 使用最大值执行下列操作：
+Simulink 使用最大值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink)和启用仿真范围检查 (Simulink)）。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如软件在环 (SIL) 模式或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 从模型生成的代码的优化。此优化可以移除算法代码并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**索引数据类型最大值**参数不会对实际 **Idx** 输出信号进行饱和处理或截断。为此，请改用 Saturation (Simulink) 模块。
+**索引数据类型最大值** 参数不会饱和或裁剪实际的 **Idx** 输出信号。要执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
@@ -327,13 +327,13 @@ Simulink 使用最大值执行下列操作：
 | **值**：`"[]"` | 标量 |
 | **默认值**：`"[]"` |
 
-### **距离数据类型** — 距离输出的数据类型 **Inherit: auto** (默认) | **双精度** | **单精度** | **半精度** | **int8** | **uint8** | **int16** | **uint16** | **int32** | **uint32** | **int64** | **uint64** | **fixdt(1,16,0)** | **fixdt(1,16,2^0,0)** | **<数据类型表达式>**
+### **距离数据类型** — 距离输出的数据类型 `Inherit: auto`（默认）| `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-指定距离 (**D**) 输出的数据类型。该类型可以继承、直接指定或表示为数据类型对象，如 `Simulink.NumericType`。
+指定距离（**D**）输出的数据类型。该类型可以继承、直接指定，或表示为数据类型对象，例如 `Simulink.NumericType`。
 
-点击**显示数据类型助手**按钮  以显示**数据类型助手**，这有助于您设置数据类型属性。有关详细信息，请参阅使用数据类型助手指定数据类型 (Simulink)。
+单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
@@ -344,65 +344,65 @@ Simulink 使用最大值执行下列操作：
 
 **注意**
 
-斯皮尔曼距离度量不支持定点数据类型。
+Spearman 距离度量不支持定点数据类型。
 
 #### 依赖关系
 
-要启用此参数，请在“模块参数”对话框的**主要**选项卡上选择**添加最近邻距离的输出端口**。
+要启用此参数，请在“模块参数”对话框的 **Main** 选项卡上选择 **Add output port for nearest neighbor distances**。
 
-### **距离数据类型最小值** — 距离输出的最小值 **[]** (默认) | 标量
+### **Distance data type Minimum** — 距离输出的最小值 `[]`（默认）| 标量
 
-指定 Simulink 检查的距离 (**D**) 输出范围的最小值。
+指定 Simulink 检查的距离（**D**）输出范围的最小值。
 
-Simulink 使用最小值执行下列操作：
+Simulink 使用最小值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink)和启用仿真范围检查 (Simulink)）。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如软件在环 (SIL) 模式或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 从模型生成的代码的优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**距离数据类型最小值**参数不会对实际 **D** 输出信号进行饱和处理或截断。为此，请改用 Saturation (Simulink) 模块。
+**Distance data type Minimum** 参数不会饱和或裁剪实际的 **D** 输出信号。要执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`DistanceOutMin` |
-| **类型**：标量 |
-| **值**：`"[]"` | 标量 |
+| **类型**：scalar |
+| **值**：`"[]"` | scalar |
 | **默认值**：`"[]"` |
 
 #### 依赖关系
 
-要启用此参数，请在“模块参数”对话框的**主要**选项卡上选择**添加最近邻距离的输出端口**。
+要启用此参数，请在 Block Parameters 对话框的 **Main** 选项卡上选择 **Add output port for nearest neighbor distances**。
 
-### **距离数据类型最大值** — 距离输出的最大值 **[]** (默认) | 标量
+### **Distance data type Maximum** — 距离输出的最大值 `[]`（默认）| 标量
 
-指定 Simulink 检查的距离 (**D**) 输出范围的最大值。
+指定 Simulink 检查的距离（**D**）输出范围的最大值。
 
-Simulink 使用最大值执行下列操作：
+Simulink 使用最大值来执行：
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值 (Simulink)）。
-- 仿真范围检查（请参阅指定信号范围 (Simulink)和启用仿真范围检查 (Simulink)）。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如软件在环 (SIL) 模式或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+- 某些模块的参数范围检查（请参阅 Specify Minimum and Maximum Values for Block Parameters (Simulink)）。
+- 仿真范围检查（请参阅 Specify Signal Ranges (Simulink) 和 Enable Simulation Range Checking (Simulink)）。
+- 从模型生成的代码的优化。此优化可能会移除算法代码，并影响某些仿真模式的结果，例如软件在环（SIL）模式或外部模式。有关详细信息，请参阅 Optimize using the specified minimum and maximum values (Embedded Coder)。
 
 **注意**
 
-**距离数据类型最大值**参数不会对实际 **D** 输出信号进行饱和处理或截断。为此，请改用 Saturation (Simulink) 模块。
+**Distance data type Maximum** 参数不会饱和或裁剪实际的 **D** 输出信号。要执行此操作，请改用 Saturation (Simulink) 模块。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
 | **模块参数**：`DistanceOutMax` |
-| **类型**：标量 |
-| **值**：`"[]"` | 标量 |
+| **类型**：scalar |
+| **值**：`"[]"` | scalar |
 | **默认值**：`"[]"` |
 
 #### 依赖关系
 
-要启用此参数，请在“模块参数”对话框的**主要**选项卡上选择**添加最近邻距离的输出端口**。
+要启用此参数，请在 Block Parameters 对话框的 **Main** 选项卡上选择 **Add output port for nearest neighbor distances**。
 
 ## 所属库
 
@@ -412,26 +412,26 @@ Statistics and Machine Learning Toolbox / Neighborhood Searcher
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Boolean` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `否` |
-| **可变大小信号** | `是` |
-| **过零检测** | `否` |
+| **Data Types** | `Boolean` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `yes` |
+| **Zero-Crossing Detection** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2023b 中推出**
+**在 R2023b 中引入**
 
 ## 描述
 
 使用搜索器对象查找 k 最近邻
 
-KNN Search 模块使用最近邻搜索器对象（`ExhaustiveSearcher` 或 `KDTreeSearcher`）在数据中查找一个查询点的最近邻。
+KNN Search 模块使用最近邻搜索器对象（`ExhaustiveSearcher` 或 `KDTreeSearcher`）在数据中查找与查询点最近的邻居。
 
-通过指定包含某经过训练的搜索器对象的工作区变量的名称，将包含观测数据的该对象导入模块中。输入端口 **x** 接收一个查询点，输出端口 **Idx** 返回数据中 *k* 最近邻点的索引。可选输出端口 **D** 返回查询点和最近邻点之间的距离。
+通过指定包含已训练搜索器对象的工作区变量名称，将包含观测数据的已训练搜索器对象导入模块。输入端口 **x** 接收查询点，输出端口 **Idx** 返回数据中 *k* 最近邻点的索引。可选输出端口 **D** 返回查询点与最近邻点之间的距离。

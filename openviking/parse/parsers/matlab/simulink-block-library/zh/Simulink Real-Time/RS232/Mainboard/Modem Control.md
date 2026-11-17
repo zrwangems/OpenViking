@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Modem Control'
-family: 'rs232'
+family: 'slrealtime'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b
@@ -18,59 +18,63 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **RTS** — 用于设置请求发送线的电平敏感信号 `double`
+### **RTS** — 用于设置请求发送线路的电平敏感信号 `double`
 
-模块的行为如下：
+该模块的行为如下：
 
-- `RTS > 0.5` — 模块将 RTS 控制位置为 `true`。输出变为正电压。
-- `RTS ≤ 0.5` — 模块将 RTS 控制位置为 `false`。输出变为负电压。
-
-#### 依赖关系
-
-如果 **RTS** 参数为 `off`，则此输入不起作用。
-
-### **DTR** — 用于设置数据终端就绪线的电平敏感信号 `double`
-
-模块的行为如下：
-
-- `DTR > 0.5` — 模块将 DTR 控制位置为 `true`。输出变为正电压。
-- `DTR ≤ 0.5` — 模块将 DTR 控制位置为 `false`。输出变为负电压。
+- `RTS > 0.5` — 该模块将 RTS 控制位断言为 `true`。输出变为正电压。
+- `RTS ≤ 0.5` — 该模块将 RTS 控制位断言为 `false`。输出变为负电压。
 
 #### 依赖关系
 
-如果 **DTR** 参数为 `off`，则此输入不起作用。
+如果 **RTS** 参数为 `off`，则该输入无效。
+
+### **DTR** — 用于设置数据终端就绪线路的电平敏感信号 `double`
+
+该模块的行为如下：
+
+- `DTR > 0.5` — 该模块将 DTR 控制位断言为 `true`。输出变为正电压。
+- `DTR ≤ 0.5` — 该模块将 DTR 控制位断言为 `false`。输出变为负电压。
+
+#### 依赖关系
+
+如果 **DTR** 参数为 `off`，则该输入无效。
 
 ## 参数
 
-### **RTS** — 启用对串行设备 RTS 线的控制 `on`（默认）| `off`
+### **RTS** — 启用对串行设备 RTS 线路的控制 `on`（默认）| `off`
 
-选中此复选框以控制此板的 RTS 线。
+选中此复选框以控制此板的 RTS 线路。
 
-#### 程序化用法
+#### 编程使用
 
-`rts`
+```
+rts
+```
 
-### **DTR** — 启用对串行设备 DTR 线的控制 `on`（默认）| `off`
+### **DTR** — 启用对串行设备 DTR 线路的控制 `on`（默认）| `off`
 
-选中此复选框以控制此板的 DTR 线。
+选中此复选框以控制此板的 DTR 线路。
 
-#### 程序化用法
+#### 编程使用
 
-`dtr`
+```
+dtr
+```
 
-### **串行端口** — 正在访问的端口 `Legacy Serial Port 1`（默认）| .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
+### **Serial port** — 正在访问的端口 `Legacy Serial Port 1`（默认）| .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
 
 指定用于通信的串行端口。
 
-如果使用 USB 转串行适配器，目标计算机会按照适配器连接到串行设备的顺序，将这些适配器检测为 `serusb1`、`serusb2`，依此类推。
+如果使用 USB 转串行适配器，目标计算机会按照适配器连接到串行设备的顺序将这些适配器检测为 `serusb1`、`serusb2` 等。
 
-如果到端口的连接没有变化，则端口分配顺序在目标计算机或串行设备断电重启后仍会保留。
+如果端口连接没有变化，则端口分配的顺序在目标计算机或串行设备的电源循环期间保持不变。
 
-#### 程序化用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `port` |
+| **模块参数**：`port` |
 
 ## 所属库
 
@@ -78,7 +82,7 @@ Simulink Real-Time / RS232 / Mainboard
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -90,6 +94,6 @@ Simulink Real-Time / RS232 / Mainboard
 
 ## 描述
 
-控制串行端口上 RTS 和 DTR 输出线的状态
+控制串行端口上 RTS 和 DTR 输出线路的状态
 
-Modem Control 模块控制 Speedgoat® 目标计算机上串行端口的 Request To Send (RTS) 和 Data Terminal Ready (DTR) 输出线中的一者或两者的状态。要选择要控制哪些输出线，请选择 **RTS** 和 **DTR** 参数。
+Modem Control 模块控制 Speedgoat® 目标计算机上串行端口的请求发送（RTS）和数据终端就绪（DTR）输出线路中任一或两者的状态。要选择控制哪些输出线路，请选中 **RTS** 和 **DTR** 参数。

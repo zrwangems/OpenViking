@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Infinite Flow Resistance (IL)'
-family: 'isothermal-liquid'
+family: 'simscape'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b
@@ -28,7 +28,7 @@ chinese_source: worker-translation
 
 ## 参数
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -36,7 +36,7 @@ Simscape / Foundation Library / Isothermal Liquid / Elements
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -50,10 +50,10 @@ Simscape / Foundation Library / Isothermal Liquid / Elements
 
 用于设置两个节点之间初始压力差的等温液体元件
 
-Infinite Flow Resistance (IL) 模块表示等温液体网络中的一个断口。没有液体流过该断口。但是，由连接到回路的 Isothermal Liquid Properties (IL) 模块指定的液体属性在断口两侧相同。使用此模块可将优先级和初始目标值设置为端口 **A** 和端口 **B** 之间的压力差。
+Infinite Flow Resistance (IL) 模块表示等温液体网络中的一个断点。没有液体流过该断点。但是，由连接到回路的 Isothermal Liquid Properties (IL) 模块指定的液体属性在断点两侧是相同的。使用此模块可将优先级和初始目标值设置为端口 **A** 和端口 **B** 之间的压力差。
 
 ### 变量
 
-要在仿真前设置模块变量的优先级和初始目标值，请使用模块对话框或属性检查器中的 **初始目标** 部分。有关详细信息，请参阅为模块变量设置优先级和初始目标。
+要在仿真之前设置模块变量的优先级和初始目标值，请使用模块对话框或 Property Inspector 中的 **Initial Targets** 部分。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
 
-标称值提供了一种指定模型中变量预期量级的方法。使用基于标称值的系统缩放可提高仿真稳健性。标称值可以来自不同来源，其中之一是模块对话框或属性检查器中的 **标称值** 部分。有关详细信息，请参阅修改模块变量的标称值。
+标称值提供了一种指定模型中变量预期幅值的方法。使用基于标称值的系统缩放可提高仿真鲁棒性。标称值可以来自不同的来源，其中之一是模块对话框或 Property Inspector 中的 **Nominal Values** 部分。有关详细信息，请参阅 Modify Nominal Values for a Block Variable。

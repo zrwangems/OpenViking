@@ -46,10 +46,10 @@ IQ 数的小数部分
 
 IQ 数的小数部分
 
-此模块返回 IQ 数的小数部分。返回值是一个采用相同 IQ 格式的 IQ 数。
+此模块返回 IQ 数的小数部分。返回值是采用相同 IQ 格式的 IQ 数。
 
 **注意**
 
-此模块的实现不会在代码生成期间调用相应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关更多信息，请参阅 Using the IQmath Library。
+此模块的实现不会在代码生成期间调用相应的 Texas Instruments® 库函数。TI 函数使用全局 Q 设置，而此模块使用的 MathWorks® 代码会根据模块输入动态调整 Q 格式。有关详细信息，请参阅 Using the IQmath Library。
 
 - C2000 Fractional part IQN 模块

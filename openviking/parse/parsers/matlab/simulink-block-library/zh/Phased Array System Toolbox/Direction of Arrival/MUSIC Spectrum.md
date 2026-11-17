@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'MUSIC Spectrum'
-family: 'direction-of-arrival'
+family: 'phased'
 product_id: 'phased'
 product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b
@@ -18,29 +18,29 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **端口 1** — 接收信号，*M*-by-*N* 复值矩阵
+### **Port 1** — 接收信号 *M*×*N* 复值矩阵
 
-接收信号，指定为 *M*-by-*N* 复值矩阵。*M* 为信号长度，即信号中包含的采样值数量。*N* 为阵列中的传感器阵元数量。
+接收信号，指定为 *M*×*N* 复值矩阵。量 *M* 是信号的长度，即信号中包含的采样值数量。量 *N* 是阵列中传感器元件的数量。
 
-输入矩阵第一个维度的大小可以变化，以模拟不断变化的信号长度。例如，对于具有可变脉冲重复频率的脉冲波形，就可能发生大小变化。
+输入矩阵第一维的大小可以变化，以模拟变化的信号长度。例如，在具有可变脉冲重复频率的脉冲波形情况下，大小可能会发生变化。
 
 **数据类型：** `double`
 **复数支持：** 是
 ### 输出
 
-### **Y** — MUSIC 二维空间谱，非负实值 *P*-by-*Q* 矩阵
+### **Y** — MUSIC 二维空间谱 非负实值 *P*×*Q* 矩阵
 
-二维 MUSIC 空间谱，以非负实值 *P*-by-*Q* 矩阵返回。每个元素表示估计的 MUSIC 空间谱的幅值。每个元素对应于由 **方位扫描角 (deg)** 和 **仰角扫描角 (deg)** 参数指定的角度。*P* 等于 **方位扫描角 (deg)** 中指定向量的长度，*Q* 等于 **仰角扫描角 (deg)** 中指定向量的长度。
+二维 MUSIC 空间谱，返回为非负实值 *P*×*Q* 矩阵。每个条目表示估计的 MUSIC 空间谱的幅度。每个条目对应于由 **Azimuth scan angles (deg)** 和 **Elevation scan angles (deg)** 参数指定的角度。*P* 等于 **Azimuth scan angles (deg)** 中指定的向量长度，*Q* 等于 **Elevation scan angles (deg)** 中指定的向量长度。
 
 **数据类型：** `double`
 
-### **Ang** — 到达方向，非负实值 2-by-*L* 矩阵
+### **Ang** — 到达方向 非负实值 2×*L* 矩阵
 
-信号的到达方向，以实值 2-by-*L* 矩阵返回。*L* 是由 **信号数量** 参数指定的信号数量。到达方向角由源相对于阵列局部坐标系的方位角和仰角定义。矩阵第一行包含方位角，第二行包含仰角。如果对象无法识别空间谱中的峰值，将返回 `NaN`。角度单位为度。
+信号的到达方向，返回为实值 2×*L* 矩阵。*L* 是由 **Number of signals** 参数指定的信号数量。到达方向角由源相对于阵列局部坐标系的方位角和仰角定义。矩阵的第一行包含方位角，第二行包含仰角。如果对象无法识别频谱中的峰值，将返回 `NaN`。角度单位为度。
 
-#### 依赖关系
+#### 依赖
 
-选择 **启用 DOA 输出** 参数可启用此输出端口。
+选择 **Enable DOA output** 参数以启用此输出端口。
 
 **数据类型：** `double`
 
@@ -48,7 +48,7 @@ chinese_source: worker-translation
 
 #### 主选项卡
 
-### **信号传播速度 (m/s)** — 信号传播速度 `physconst('LightSpeed')`（默认）| 实值正标量
+### **Signal propagation speed (m/s)** — 信号传播速度 `physconst('LightSpeed')`（默认）| 实值正标量
 
 信号传播速度，指定为实值正标量。光速的默认值是 `physconst('LightSpeed')` 返回的值。单位为米每秒。
 
@@ -56,39 +56,51 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 
-### **工作频率 (Hz)** — 系统工作频率 `3e8`（默认）| 正实标量
+### **Operating frequency (Hz)** — 系统工作频率 `3e8`（默认）| 正实标量
 
 系统工作频率，指定为正标量。单位为 Hz。
 
-### **前向-后向平均** — 启用前向-后向平均 off（默认）| on
+### **Forward-backward averaging** — 启用前向-后向平均 off（默认）| on
 
-选择此参数，以使用前向-后向平均来估计具有共轭对称阵列流形结构的传感器阵列的协方差矩阵。
+选择此参数以使用前向-后向平均来估计具有共轭对称阵列流形结构的传感器阵列的协方差矩阵。
 
-### **方位扫描角 (deg)** — 方位扫描角 `-90:90`（默认）| 实值标量 | 实值行向量
+### **Azimuth scan angles (deg)** — 方位角扫描角度 `-90:90`（默认）| 实值标量 | 实值行向量
 
-方位扫描角，指定为实值行向量。角度值必须介于 –180° 和 180° 之间（含边界），并按升序指定。角度单位为度。
+方位角扫描角度，指定为实值行向量。角度值必须介于 –180° 和 180° 之间（含端点），并按升序指定。角度单位为度。
 
-### **仰角扫描角 (deg)** — 仰角扫描角 `0`（默认）| 实值标量 | 实值行向量
+### **Elevation scan angles (deg)** — 仰角扫描角度 `0`（默认）| 实值标量 | 实值行向量
 
-仰角扫描角，指定为标量或实值行向量。角度值必须介于 –90° 和 90° 之间（含边界），并按升序指定。角度单位为度。
+仰角扫描角度，指定为标量或实值行向量。角度值必须介于 –90° 和 90° 之间（含端点），并按升序指定。角度单位为度。
 
-### **启用 DOA 输出** — 通过输出端口输出到达方向 off（默认）| on
+### **Enable DOA output** — 通过输出端口输出到达方向 off（默认）| on
 
-选择此参数，以通过 **Ang** 输出端口输出信号的到达方向 (DOA)。
+选择此参数以通过 **Ang** 输出端口输出信号的到达方向（DOA）。
 
-### **信号数量** — 预期到达信号的数量 `1`（默认）| 正整数
+### **Number of signals** — 预期到达信号数量 `1`（默认）| 正整数
 
-将用于 DOA 估计的预期信号数量指定为正整数标量。
+将 DOA 估计的预期信号数量指定为正标量整数。
 
-### **仿真方式** — 模块仿真方法 `Interpreted Execution`（默认）| `Code Generation`
+### **Simulate using** — 模块仿真方法 `Interpreted Execution`（默认）| `Code Generation`
 
-模块仿真，指定为 `Interpreted Execution` 或 `Code Generation`。如果希望模块使用 MATLAB® 解释器，请选择 `Interpreted Execution`。如果希望模块作为编译代码运行，请选择 `Code Generation`。编译代码需要编译时间，但通常运行速度更快。
+模块仿真，指定为 `Interpreted Execution` 或
+`Code Generation`。如果希望模块使用
+MATLAB® 解释器，请选择 `Interpreted Execution`。如果
+希望模块作为编译代码运行，请选择 `Code
+Generation`。编译代码需要时间编译，但通常运行
+更快。
 
-解释执行在开发和调优模型时很有用。模块在 MATLAB 中运行底层 System object™。您可以快速更改并执行模型。对结果满意后，可以使用 `Code Generation` 运行模块。与解释执行相比，长时间仿真使用生成代码运行速度更快。无需重新编译即可重复执行，但如果更改任何模块参数，模块会在执行前自动重新编译。
+在开发和调整模型时，解释执行非常有用。模块
+在 MATLAB 中运行底层 System object™。您可以快速更改和执行模型。当您对
+结果满意时，可以使用 `Code
+Generation` 运行模块。长时间仿真使用生成的代码比在
+解释执行中运行更快。您可以重复执行而无需重新编译，但如果
+更改任何模块参数，模块将在执行前自动重新编译。
 
-下表显示 **仿真方式** 参数如何影响整体仿真行为。
+下表显示了 **Simulate using** 参数如何影响
+整体仿真行为。
 
-当 Simulink® 模型处于 `Accelerator` 模式时，使用 **仿真方式** 指定的模块模式会覆盖仿真模式。
+当 Simulink® 模型处于 `Accelerator` 模式时，使用 **Simulate using** 指定的模块模式
+将覆盖仿真模式。
 
 **加速模式**
 
@@ -96,44 +108,48 @@ chinese_source: worker-translation
 | --- | --- | --- | --- |
 | 模块仿真 | 仿真行为 | | |
 | `Normal` | `Accelerator` | `Rapid Accelerator` |
-| `Interpreted Execution` | 模块使用 MATLAB 解释器执行。 | 模块使用 MATLAB 解释器执行。 | 根据模型创建独立可执行文件。 |
-| `Code Generation` | 模块将被编译。 | 模型中的所有模块都将被编译。 |
+| `Interpreted Execution` | 模块使用 MATLAB 解释器执行。 | 模块使用 MATLAB 解释器执行。 | 从模型创建独立可执行文件。 |
+| `Code Generation` | 模块被编译。 | 模型中的所有模块被编译。 |
 
-有关详细信息，请参阅选择仿真模式 (Simulink)。
+有关详细信息，请参阅 Choosing a Simulation Mode (Simulink)。
 
 #### 编程使用
 
 |  |
 | --- |
-| **模块参数：** `SimulateUsing` |
-| **类型：** enum |
-| **值：** `Interpreted Execution`, `Code Generation` |
-| **默认值：** `Interpreted Execution` |
+| **模块参数**：`SimulateUsing` |
+| **类型**：enum |
+| **值**：`Interpreted Execution`, `Code Generation` |
+| **默认值**：`Interpreted Execution` |
 
-#### 传感器阵列选项卡
+#### Sensor Array Tab
 
-### **传感器阵列指定方式** — 指定阵列的方法 `Array (no subarrays)`（默认）| `MATLAB expression`
+### **Specify sensor array as** — 指定阵列的方法 `Array (no subarrays)`（默认）| `MATLAB expression`
 
-指定阵列的方法，指定为 `Array (no subarrays)` 或 `MATLAB expression`。
+指定阵列的方法，指定为 `Array (no subarrays)`
+或 `MATLAB expression`。
 
-- `Array (no subarrays)` — 使用模块参数指定阵列。
-- `MATLAB expression` — 使用 MATLAB 表达式创建阵列。
+- `Array (no subarrays)` — 使用模块
+  参数指定阵列。
+- `MATLAB expression` — 使用 MATLAB 表达式
+  创建阵列。
 
-### **表达式** — 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System object
+### **Expression** — 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System object
 
 用于创建阵列的 MATLAB 表达式，指定为有效的 Phased Array System Toolbox 阵列 System object。
 
-**示例：** `phased.URA('Size',[5,3])`
+**Example:** `phased.URA('Size',[5,3])`
 
 #### 依赖关系
 
-要启用此参数，请将 **传感器阵列指定方式** 设置为 `MATLAB expression`。
+要启用此参数，请将 **Specify sensor array as** 设置为
+`MATLAB expression`。
 
-#### 阵元参数
+#### Element Parameters
 
-### **阵元类型** — 阵列阵元类型 `Isotropic Antenna`（默认）| `Cosine Antenna` | `Custom Antenna` | `Omni Microphone` | `Custom Microphone`
+### **Element type** — 阵列单元类型 `Isotropic Antenna`（默认）| `Cosine Antenna` | `Custom Antenna` | `Omni Microphone` | `Custom Microphone`
 
-天线或麦克风类型，指定为以下值之一：
+天线或麦克风类型，指定为以下之一：
 
 - `Isotropic Antenna`
 - `Cosine Antenna`
@@ -141,270 +157,325 @@ chinese_source: worker-translation
 - `Omni Microphone`
 - `Custom Microphone`
 
-### **工作频率范围 (Hz)** — 天线或麦克风阵元的工作频率范围 `[0,1e20]`（默认）| 实值 1-by-2 行向量
+### **Operating frequency range (Hz)** — 天线或麦克风单元的工作频率范围 `[0,1e20]`（默认）| 实值 1×2 行向量
 
-将天线或麦克风阵元的工作频率范围指定为形如 `[LowerBound,UpperBound]` 的 1-by-2 行向量。阵元在此频率范围之外无响应。频率单位为 Hz。
-
-#### 依赖关系
-
-要启用此参数，请将 **阵元类型** 设置为 `Isotropic Antenna`、`Cosine Antenna` 或 `Omni Microphone`。
-
-### **工作频率向量 (Hz)** — 自定义天线或麦克风阵元的工作频率范围 `[0,1e20]`（默认）| 实值行向量
-
-将设置天线和麦克风频率响应的频率指定为由递增实值组成的 1-by-*L* 行向量。天线或麦克风阵元在此向量最小元素和最大元素所指定的频率范围之外无响应。频率单位为 Hz。
+将天线或麦克风单元的工作频率范围指定为 1×2
+行向量，形式为 `[LowerBound,UpperBound]`。该单元在此频率范围之外
+无响应。频率单位为 Hz。
 
 #### 依赖关系
 
-要启用此参数，请将 **阵元类型** 设置为 `Custom Antenna` 或 `Custom Microphone`。使用 **频率响应 (dB)** 设置这些频率下的响应。
+要启用此参数，请将 **Element type** 设置为
+`Isotropic Antenna`、`Cosine Antenna` 或
+`Omni Microphone`。
 
-### **对阵元背面加障板** — 将 `Isotropic Antenna` 阵元或 `Omni Microphone` 阵元的背面响应设置为零 off（默认）| on
+### **Operating frequency vector (Hz)** — 自定义天线或麦克风单元的工作频率范围 `[0,1e20]`（默认）| 实值行向量
 
-选中此复选框可对阵元背面响应加障板。采用背面障板时，正侧方向 ±90° 范围之外的所有方位角处的响应均设为零。正侧方向定义为 0° 方位角和 0° 仰角。
-
-#### 依赖关系
-
-要启用此复选框，请将 **阵元类型** 设置为 `Isotropic Antenna` 或 `Omni Microphone`。
-
-### **余弦方向图指数** — 方位和仰角余弦方向图的指数 `[1.5 1.5]`（默认）| 非负标量 | 由非负值组成的实值 1-by-2 矩阵
-
-将余弦方向图的指数指定为非负标量或由非负值组成的实值 1-by-2 矩阵。当 **余弦方向图指数** 为 1-by-2 向量时，第一个元素是方位方向上的指数，第二个元素是仰角方向上的指数。当将此参数设置为标量时，方位方向和仰角方向的余弦方向图均升至相同幂次。
+将设置天线和麦克风频率响应的频率指定为
+1×*L* 行向量，包含递增的实数值。天线或
+麦克风单元在此向量的最小和最大元素所指定的频率范围之外
+无响应。频率单位为 Hz。
 
 #### 依赖关系
 
-要启用此参数，请将 **阵元类型** 设置为 `Cosine Antenna`。
+要启用此参数，请将 **Element type** 设置为 `Custom
+Antenna` 或 `Custom Microphone`。使用
+**Frequency responses (dB)** 来设置这些频率下的响应。
 
-### **频率响应 (dB)** — 天线和麦克风的频率响应 `[0,0]`（默认）| 实值行向量
+### **Baffle the back of the element** — 将 `Isotropic Antenna` 元件或 `Omni Microphone` 元件的后向响应设置为零 off（默认）| on
 
-自定义天线或自定义麦克风在 **工作频率向量 (Hz)** 参数所定义频率下的频率响应。**频率响应 (dB)** 的维度必须与 **工作频率向量 (Hz)** 参数所指定向量的维度一致。
-
-#### 依赖关系
-
-要启用此参数，请将 **阵元类型** 设置为 `Custom Antenna` 或 `Custom Microphone`。
-
-### **输入方向图坐标系** — 自定义天线方向图的坐标系 `az-el`（默认）| `phi-theta`
-
-自定义天线方向图的坐标系，指定为 `az-el` 或 `phi-theta`。指定 `az-el` 时，使用 **方位角 (deg)** 和 **仰角 (deg)** 参数指定方向图点的坐标。指定 `phi-theta` 时，使用 **Phi 角 (deg)** 和 **Theta 角 (deg)** 参数指定方向图点的坐标。
+选中此复选框以对元件的后向响应进行障板处理。当后向被障板处理后，
+所有超出从正侧方向起 ±90° 范围的方位角处的响应均设置为零。
+正侧方向定义为 0° 方位角和 0° 仰角。
 
 #### 依赖关系
 
-要启用此参数，请将 **阵元类型** 设置为 `Custom Antenna`。
+要启用此复选框，请将
+**Element type** 设置为
+`Isotropic Antenna` 或
+`Omni Microphone`。
 
-### **方位角 (deg)** — 天线辐射方向图的方位角 `[-180:180]`（默认）| 实值行向量
+### **Exponent of cosine pattern** — 方位角和仰角余弦方向图的指数 `[1.5 1.5]`（默认）| 非负标量 | 非负实数值 1×2 矩阵
 
-将计算天线辐射方向图的方位角指定为 1-by-*P* 行向量。*P* 必须大于 2。方位角必须介于 –180° 和 180° 之间（含边界），并严格递增。
-
-#### 依赖关系
-
-要启用此参数，请将 **阵元类型** 参数设置为 `Custom Antenna`，并将 **输入方向图坐标系** 参数设置为 `az-el`。
-
-### **仰角 (deg)** — 天线辐射方向图的仰角 `[-90:90]`（默认）| 实值行向量
-
-将计算辐射方向图的仰角指定为 1-by-*Q* 向量。*Q* 必须大于 2。角度单位为度。仰角必须介于 –90° 和 90° 之间（含边界），并严格递增。
-
-#### 依赖关系
-
-要启用此参数，请将 **阵元类型** 参数设置为 `Custom Antenna`，并将 **输入方向图坐标系** 参数设置为 `az-el`。
-
-### **Phi 角 (deg)** — 自定义天线辐射方向图的 Phi 角坐标 `0:360` | 实值 1-by-*P* 行向量
-
-指定天线辐射方向图各点的 Phi 角，指定为实值 1-by-*P* 行向量。*P* 必须大于 2。角度单位为度。Phi 角必须介于 0° 和 360° 之间，并严格递增。
+将余弦方向图的指数指定为非负标量或
+非负实数值 1×2 矩阵。当
+**Exponent of cosine pattern** 为
+1×2 向量时，第一个元素是方位角
+方向上的指数，第二个元素是
+仰角方向上的指数。当您将此参数设置为标量时，
+方位角方向和仰角方向余弦
+方向图均被提升到相同的幂次。
 
 #### 依赖关系
 
-要启用此参数，请将 **阵元类型** 参数设置为 `Custom Antenna`，并将 **输入方向图坐标系** 参数设置为 `phi-theta`。
+要启用此参数，请将 **Element
+type** 设置为 `Cosine
+Antenna`。
 
-### **Theta 角 (deg)** — 自定义天线辐射方向图的 Theta 角坐标 `0:180` | 实值 1-by-*Q* 行向量
+### **Frequency responses (dB)** — 天线和麦克风频率响应 `[0,0]`（默认）| 实数值行向量
 
-指定天线辐射方向图各点的 Theta 角，指定为实值 1-by-*Q* 行向量。*Q* 必须大于 2。角度单位为度。Theta 角必须介于 0° 和 360° 之间，并严格递增。
-
-#### 依赖关系
-
-要启用此参数，请将 **阵元类型** 参数设置为 `Custom Antenna`，并将 **输入方向图坐标系** 参数设置为 `phi-theta`。
-
-### **幅度方向图 (dB)** — 组合天线辐射方向图的幅度 `zeros(181,361)`（默认）| 实值 *Q*-by-*P* 矩阵 | 实值 *Q*-by-*P*-by-*L* 数组
-
-组合天线辐射方向图的幅度，指定为 *Q*-by-*P* 矩阵或 *Q*-by-*P*-by-*L* 数组。
-
-- 当 **输入方向图坐标系** 参数设置为 `az-el` 时，*Q* 等于 **仰角 (deg)** 参数所指定向量的长度，*P* 等于 **方位角 (deg)** 参数所指定向量的长度。
-- 当 **输入方向图坐标系** 参数设置为 `phi-theta` 时，*Q* 等于 **Theta 角 (deg)** 参数所指定向量的长度，*P* 等于 **Phi 角 (deg)** 参数所指定向量的长度。
-
-*L* 等于 **工作频率向量 (Hz)** 的长度。
-
-- 如果此参数为 *Q*-by-*P* 矩阵，则同一方向图应用于 **工作频率向量 (Hz)** 参数中指定的*所有*频率。
-- 如果该值为 *Q*-by-*P*-by-*L* 数组，则数组的每个 *Q*-by-*P* 页为 **工作频率向量 (Hz)** 参数中指定的*相应*频率指定一个方向图。
+自定义天线或自定义
+麦克风在由
+**Operating frequency vector
+(Hz)** 参数定义的频率处的频率响应。
+**Frequency responses (dB)** 的维度必须
+与 **Operating frequency vector
+(Hz)** 参数指定的向量维度匹配。
 
 #### 依赖关系
 
-要启用此参数，请将 **阵元类型** 设置为 `Custom Antenna`。
+要启用此参数，请将
+**Element type** 设置为
+`Custom Antenna` 或
+`Custom
+Microphone`。
 
-### **相位方向图 (deg)** — 自定义天线辐射相位方向图 `zeros(181,361)`（默认）| 实值 *Q*-by-*P* 矩阵 | 实值 *Q*-by-*P*-by-*L* 数组
+### **Input Pattern Coordinate System** — 自定义天线方向图的坐标系 `az-el`（默认）| `phi-theta`
 
-组合天线辐射方向图的相位，指定为 *Q*-by-*P* 矩阵或 *Q*-by-*P*-by-*L* 数组。
-
-- 当 **输入方向图坐标系** 参数设置为 `az-el` 时，*Q* 等于 **仰角 (deg)** 参数所指定向量的长度，*P* 等于 **方位角 (deg)** 参数所指定向量的长度。
-- 当 **输入方向图坐标系** 参数设置为 `phi-theta` 时，*Q* 等于 **Theta 角 (deg)** 参数所指定向量的长度，*P* 等于 **Phi 角 (deg)** 参数所指定向量的长度。
-
-*L* 等于 **工作频率向量 (Hz)** 的长度。
-
-- 如果此参数为 *Q*-by-*P* 矩阵，则同一方向图应用于 **工作频率向量 (Hz)** 参数中指定的*所有*频率。
-- 如果该值为 *Q*-by-*P*-by-*L* 数组，则数组的每个 *Q*-by-*P* 页为 **工作频率向量 (** 中指定的*相应*频率指定方向图
+自定义天线方向图的坐标系，指定为
+`az-el` 或 `phi-theta`。当您
+指定 `az-el` 时，使用 **Azimuth angles
+(deg)** 和 **Elevations angles (deg)** 参数来
+指定方向图点的坐标。当您指定
+`phi-theta` 时，使用 **Phi angles (deg)**
+和 **Theta angles (deg)** 参数来指定
+方向图点的坐标。
 
 #### 依赖关系
 
-要启用此参数，请将 **阵元类型** 设置为 `Custom Antenna`。
+要启用此参数，请将 **Element type** 设置为
+`Custom Antenna`。
 
-### **MatchArrayNormal** — 旋转天线阵元以对准阵列法向 `on`（默认）| `off`
+### **Azimuth angles (deg)** — 天线辐射方向图的方位角 `[-180:180]`（默认）| 实数值行向量
 
-选中此复选框可旋转天线阵元方向图，使其与阵列法向对齐。未选中时，不旋转阵元方向图。
+将计算天线辐射方向图的方位角指定为
+1×*P* 行向量。*P* 必须
+大于 2。方位角必须介于 –180° 和 180° 之间（含端点），
+并且严格递增。
 
-当天线用于天线阵列且 **输入方向图坐标系** 参数为 `az-el` 时，选中此复选框会旋转方向图，使阵元坐标系的 *x* 轴指向阵列法向。未选中时，使用未经旋转的阵元方向图。
+#### 依赖关系
 
-当天线用于天线阵列且 **输入方向图坐标系** 设置为 `phi-theta` 时，选中此复选框会旋转方向图，使阵元坐标系的 *z* 轴指向阵列法向。
+要启用此参数，请将 **Element type**
+参数设置为 `Custom Antenna`，并将
+**Input Pattern Coordinate System**
+参数设置为 `az-el`。
 
-请将此参数与 `URA` 和 `UCA` 阵列的 **阵列法向** 参数结合使用。
+### **Elevation angles (deg)** — 天线辐射方向图的仰角 `[-90:90]`（默认）| 实数值行向量
+
+将计算辐射方向图的仰角指定为
+1×*Q* 向量。*Q* 必须
+大于 2。角度单位为度。仰角必须介于
+–90° 和 90° 之间（含端点），并且严格递增。
+
+#### 依赖关系
+
+要启用此参数，请将 **Element type**
+参数设置为 `Custom Antenna`，并将
+**Input Pattern Coordinate System**
+参数设置为 `az-el`。
+
+### **Phi Angles (deg)** — 自定义天线辐射方向图的 Phi 角坐标 `0:360` | 实数值 1×*P* 行向量
+
+指定天线辐射方向图的点的 Phi 角，指定为
+实数值 1×*P* 行向量。*P* 必须大于 2。角度单位为度。Phi 角必须介于 0° 和 360° 之间，并且
+严格递增。
+
+#### 依赖关系
+
+要启用此参数，请将 **Element type** 参数设置为 `Custom Antenna`，并将 **Input Pattern Coordinate System** 参数设置为 `phi-theta`。
+
+### **Theta Angles (deg)** — 自定义天线辐射方向图的 Theta 角度坐标 `0:180` | 实值 1×*Q* 行向量
+
+指定天线辐射方向图所在点的 Theta 角度，指定为实值 1×*Q* 行向量。*Q* 必须大于 2。角度单位为度。Theta 角度必须介于 0° 和 360° 之间，并且严格递增。
+
+#### 依赖关系
+
+要启用此参数，请将 **Element type** 参数设置为 `Custom Antenna`，并将 **Input Pattern Coordinate System** 参数设置为 `phi-theta`。
+
+### **Magnitude pattern (dB)** — 组合天线辐射方向图的幅度 `zeros(181,361)`（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+
+组合天线辐射方向图的幅度，指定为 *Q*×*P* 矩阵或 *Q*×*P*×*L* 数组。
+
+- 当 **Input Pattern Coordinate System** 参数设置为 `az-el` 时，*Q* 等于由 **Elevation angles (deg)** 参数指定的向量长度，*P* 等于由 **Azimuth angles (deg)** 参数指定的向量长度。
+- 当 **Input Pattern Coordinate System** 参数设置为 `phi-theta` 时，*Q* 等于由 **Theta Angles (deg)** 参数指定的向量长度，*P* 等于由 **Phi Angles (deg)** 参数指定的向量长度。
+
+量 *L* 等于 **Operating frequency vector (Hz)** 的长度。
+
+- 如果此参数是 *Q*×*P* 矩阵，则同一方向图应用于 **Operating frequency vector (Hz)** 参数中指定的*所有*频率。
+- 如果该值是 *Q*×*P*×*L* 数组，则该数组的每个 *Q*×*P* 页为 **Operating frequency vector (Hz)** 参数中指定的*对应*频率指定一个方向图。
 
 #### 依赖关系
 
 要启用此参数，请将 **Element type** 设置为 `Custom Antenna`。
 
-### **Polar pattern frequencies (Hz)** — 极坐标方向图麦克风响应频率 1e3（默认值）| 实数标量 | 实值 1-by-*L* 行向量
+### **Phase pattern (deg)** — 自定义天线辐射相位方向图 `zeros(181,361)`（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
 
-极坐标方向图麦克风响应频率，指定为实数标量或实值 1-by-*L* 向量。响应频率位于 **Operating frequency vector (Hz)** 向量指定的频率范围内。
+组合天线辐射方向图的相位，指定为 *Q*×*P* 矩阵或 *Q*×*P*×*L* 数组。
+
+- 当 **Input Pattern Coordinate System** 参数设置为 `az-el` 时，*Q* 等于由 **Elevation angles (deg)** 参数指定的向量长度，*P* 等于由 **Azimuth angles (deg)** 参数指定的向量长度。
+- 当 **Input Pattern Coordinate System** 参数设置为 `phi-theta` 时，*Q* 等于由 **Theta Angles (deg)** 参数指定的向量长度，*P* 等于由 **Phi Angles (deg)** 参数指定的向量长度。
+
+量 *L* 等于 **Operating frequency vector (Hz)** 的长度。
+
+- 如果此参数是 *Q*×*P* 矩阵，则同一方向图应用于 **Operating frequency vector (Hz)** 参数中指定的*所有*频率。
+- 如果该值是 *Q*×*P*×*L* 数组，则该数组的每个 *Q*×*P* 页为 **Operating frequency vector (**
+
+#### 依赖关系
+
+要启用此参数，请将 **Element type** 设置为 `Custom Antenna`。
+
+### **MatchArrayNormal** — 将天线阵子旋转到阵列法向 `on`（默认）| `off`
+
+选中此复选框可将天线阵子方向图旋转至与阵列法向对齐。未选中时，阵子方向图不旋转。
+
+当天线用于天线阵列且 **Input Pattern Coordinate System** 参数为 `az-el` 时，选中此复选框会旋转方向图，使阵子坐标系的 *x* 轴指向阵列法向。未选中时使用未旋转的阵子方向图。
+
+当天线用于天线阵列且 **Input Pattern Coordinate System** 设置为 `phi-theta` 时，选中此复选框会旋转方向图，使阵子坐标系的 *z* 轴指向阵列法向。
+
+将此参数与 `URA` 和 `UCA` 阵列的 **Array normal** 参数配合使用。
+
+#### 依赖关系
+
+要启用此参数，请将 **Element type** 设置为 `Custom Antenna`。
+
+### **Polar pattern frequencies (Hz)** — 极坐标方向图麦克风响应频率 1e3（默认）| 实标量 | 实值 1×*L* 行向量
+
+极坐标方向图麦克风响应频率，指定为实标量或实值 1×*L* 向量。响应频率位于 **Operating frequency vector (Hz)** 向量指定的频率范围内。
 
 #### 依赖关系
 
 要启用此参数，请将 **Element type** 设置为 `Custom Microphone`。
 
-### **Polar pattern angles (deg)** — 极坐标方向图响应角度 `[-180:180]`（默认值）| 实值 1-by-*P* 行向量
+### **Polar pattern angles (deg)** — 极坐标方向图响应角度 `[-180:180]`（默认）| 实值 1×*P* 行向量
 
-将极坐标方向图响应角度指定为 1-by-*P* 向量。角度相对于麦克风的中心拾音轴测量，且必须介于 –180° 和 180° 之间（含端点）。
-
-#### 依赖关系
-
-要启用此参数，请将 **Element type** 设置为 `Custom Microphone`。
-
-### **Polar pattern (dB)** — 自定义麦克风极坐标响应 `zeros(1,361)`（默认值）| 实值 *L*-by-*P* 矩阵
-
-将自定义麦克风阵元极坐标方向图的幅度指定为 *L*-by-*P* 矩阵。*L* 是 **Polar pattern frequencies (Hz)** 中指定的频率数量。*P* 是 **Polar pattern angles (deg)** 中指定的角度数量。矩阵的每一行表示在 **Polar pattern frequencies (Hz)** 中指定的对应频率以及 **Polar pattern angles (deg)** 中指定的所有角度处测得的极坐标方向图幅度。方向图在方位面内测量。在方位面内，仰角为 0°，中心拾音轴的方位角为 0°、仰角为 0°。极坐标方向图围绕中心轴对称。您可以根据极坐标方向图构建三维空间中的麦克风响应方向图。
+指定极坐标方向图响应角度，为 1×*P* 向量。角度从麦克风中心拾音轴测量，必须介于 –180° 和 180° 之间（含端点）。
 
 #### 依赖关系
 
 要启用此参数，请将 **Element type** 设置为 `Custom Microphone`。
 
-#### 数组参数
+### **Polar pattern (dB)** — 自定义麦克风极坐标响应 `zeros(1,361)`（默认）| 实值 *L*×*P* 矩阵
 
-### **Geometry** — 数组几何结构 `ULA`（默认值）| `URA` | `UCA` | `Conformal Array`
+将自定义麦克风阵子极坐标方向图的幅度指定为 *L*×*P* 矩阵。*L* 是 **Polar pattern frequencies (Hz)** 中指定的频率数量。*P* 是 **Polar pattern angles (deg)** 中指定的角度数量。矩阵的每一行表示在 **Polar pattern frequencies (Hz)** 中指定的对应频率以及 **Polar pattern angles (deg)** 中指定的所有角度下测得的极坐标方向图幅度。方向图在方位平面内测量。在方位平面中，仰角为 0°，中心拾音轴为 0° 方位角和 0° 仰角。极坐标方向图围绕中心轴对称。您可以根据极坐标方向图构建三维空间中的麦克风响应方向图。
 
-数组几何结构，指定为以下值之一：
+#### 依赖关系
+
+要启用此参数，请将 **Element type** 设置为 `Custom Microphone`。
+
+#### 阵列参数
+
+### **Geometry** — 阵列几何结构 `ULA`（默认）| `URA` | `UCA` | `Conformal Array`
+
+阵列几何结构，指定为以下之一
 
 - `ULA` — 均匀线性阵列
 - `URA` — 均匀矩形阵列
 - `UCA` — 均匀圆形阵列
-- `Conformal Array` — 任意阵元位置
+- `Conformal Array` — 任意阵子位置
 
-### **Number of elements** — 数组阵元数量，ULA 数组为 `2`，UCA 数组为 `5`（默认值）| 大于或等于 2 的整数
+### **Number of elements** — 阵列阵子数量 ULA 阵列为 `2`，UCA 阵列为 `5`（默认）| 大于或等于 2 的整数
 
-ULA 或 UCA 数组的阵元数量，指定为大于或等于 2 的整数。
+ULA 或 UCA 阵列的阵列阵子数量，指定为大于或等于 2 的整数。
 
 #### 依赖关系
 
 要启用此参数，请将 **Geometry** 设置为 `ULA` 或 `UCA`。
 
-### **Element spacing (m)** — 数组阵元之间的间距，ULA 数组为 `0.5`，URA 数组为 `[0.5,0.5]`（默认值）| ULA 或 URA 数组为正标量 | URA 数组为包含 2 个正值的向量
+### **Element spacing (m)** — 阵列单元之间的间距，对于 ULA 阵列为 `0.5`，对于 URA 阵列为 `[0.5,0.5]`（默认）| ULA 或 URA 阵列的正标量 | URA 阵列的 2 元正数值向量
 
-相邻数组阵元之间的间距：
+相邻阵列单元之间的间距：
 
-- ULA — 将数组中两个相邻阵元之间的间距指定为正标量。
-- URA — 将间距指定为正标量或由正值组成的 1-by-2 向量。如果 **Element spacing (m)** 为标量，则行间距和列间距相等。如果 **Element spacing (m)** 为向量，则该向量的形式为 `[SpacingBetweenArrayRows,SpacingBetweenArrayColumns]`。
+- ULA — 将阵列中两个相邻单元之间的间距指定为正标量。
+- URA — 将间距指定为正标量或 1×2 的正数值向量。如果 **Element spacing (m)** 是标量，则行间距和列间距相等。如果 **Element spacing (m)** 是向量，则该向量的形式为 `[SpacingBetweenArrayRows,SpacingBetweenArrayColumns]`。
 
 #### 依赖关系
 
 要启用此参数，请将 **Geometry** 设置为 `ULA` 或 `URA`。
 
-### **Array axis** — ULA 的线性轴方向 `y`（默认值）| `x` | `z`
+### **Array axis** — ULA 的线性轴方向 `y`（默认）| `x` | `z`
 
-ULA 的线性轴方向，指定为 `y`、`x` 或 `z`。在阵列局部坐标系中，所有 ULA 阵元沿此轴均匀间隔分布。
+ULA 的线性轴方向，指定为 `y`、`x` 或 `z`。所有 ULA 阵列单元在局部阵列坐标系中沿此轴均匀分布。
 
 #### 依赖关系
 
 - 要启用此参数，请将 **Geometry** 设置为 `ULA`。
-- 当模块仅支持 ULA 数组时，也会启用此参数。
+- 当模块仅支持 ULA 阵列时，此参数也会启用。
 
-### **Array size** — URA 数组的维度 `[2,2]`（默认值）| 正整数 | 由正整数组成的 1-by-2 向量
+### **Array size** — URA 阵列的维度 `[2,2]`（默认）| 正整数 | 1×2 正整数向量
 
-URA 数组的维度，指定为正整数或由正整数组成的 1-by-2 向量。
+URA 阵列的维度，指定为正整数或 1×2 正整数向量。
 
-- 如果 **Array size** 是 1-by-2 向量，则该向量的形式为 `[NumberOfArrayRows,NumberOfArrayColumns]`。
-- 如果 **Array size** 是整数，则数组的每行和每列具有相同数量的阵元。
+- 如果 **Array size** 是 1×2 向量，则该向量的形式为 `[NumberOfArrayRows,NumberOfArrayColumns]`。
+- 如果 **Array size** 是整数，则该阵列每一行和每一列具有相同数量的单元。
 
-对于 URA，阵元索引沿最左侧阵列列从上到下进行，并从左到右在后续各列中继续。在此图中，**Array size** 值 `[3,2]` 创建一个包含三行两列的数组。
-
-#### 依赖关系
-
-要启用此参数，请将 **Geometry** 设置为 `URA`。
-
-### **Element lattice** — URA 阵元位置的栅格 `Rectangular`（默认值）| `Triangular`
-
-URA 阵元位置的栅格，指定为 `Rectangular` 或 `Triangular`。
-
-- `Rectangular` — 使所有阵元在行和列方向上对齐。
-- `Triangular` — 将矩形栅格的偶数行阵元向行轴正方向移动。位移量为沿行维度的阵元间距的一半。
+对于 URA，阵列单元沿最左侧阵列列从上到下索引，并从左到右继续到下一列。在此图中，**Array size** 值 `[3,2]` 创建了一个具有三行两列的阵列。
 
 #### 依赖关系
 
 要启用此参数，请将 **Geometry** 设置为 `URA`。
 
-### **Array normal** — 阵列法线方向，URA 数组为 `x`，UCA 数组为 `z`（默认值）| `y`
+### **Element lattice** — URA 单元位置的晶格 `Rectangular`（默认）| `Triangular`
+
+URA 单元位置的晶格，指定为 `Rectangular` 或 `Triangular`。
+
+- `Rectangular` — 将所有单元沿行和列方向对齐。
+- `Triangular` — 将矩形晶格的偶数行单元向正行轴方向偏移。位移为沿行维度单元间距的一半。
+
+#### 依赖关系
+
+要启用此参数，请将 **Geometry** 设置为 `URA`。
+
+### **Array normal** — 阵列法线方向，对于 URA 阵列为 `x`，对于 UCA 阵列为 `z`（默认）| `y`
 
 阵列法线方向，指定为 `x`、`y` 或 `z`。
 
-平面阵列的阵元位于与所选阵列法线方向正交的平面内。阵元视轴方向沿阵列法线方向。
+平面阵列的单元位于与所选阵列法线方向正交的平面内。单元视轴方向沿阵列法线方向指向。
 
-| 阵列法向参数值 | 阵元位置和视轴方向 |
+| 阵列法向参数值 | 阵元位置和波束指向方向 |
 | --- | --- |
-| `x` | 阵列阵元位于 *yz* 平面内。所有阵元视轴向量均指向 *x* 轴方向。 |
-| `y` | 阵列阵元位于 *zx* 平面内。所有阵元视轴向量均指向 *y* 轴方向。 |
-| `z` | 阵列阵元位于 *xy* 平面内。所有阵元视轴向量均指向 *z* 轴方向。 |
+| `x` | 阵列单元位于 *yz* 平面内。所有单元视轴向量沿 *x* 轴指向。 |
+| `y` | 阵列单元位于 *zx* 平面内。所有单元视轴向量沿 *y* 轴指向。 |
+| `z` | 阵列单元位于 *xy* 平面内。所有单元视轴向量沿 *z* 轴指向。 |
 
 #### 依赖关系
 
 要启用此参数，请将 **Geometry** 设置为 `URA` 或 `UCA`。
 
-### **Radius of UCA (m)** — UCA 数组半径 0.5（默认值）| 正标量
+### **Radius of UCA (m)** — UCA 阵列半径 0.5（默认）| 正标量
 
-UCA 数组的半径，指定为正标量。
+UCA 阵列的半径，指定为正标量。
 
 #### 依赖关系
 
 要启用此参数，请将 **Geometry** 设置为 `UCA`。
 
-### **Element positions (m)** — 共形阵列阵元的位置 `[0;0;0]`（默认值）| 实值 3-by-*N* 矩阵
+### **Element positions (m)** — 共形阵列单元的位置 `[0;0;0]`（默认）| 3×*N* 实数值矩阵
 
-共形阵列中阵元的位置，指定为实值 3-by-*N* 矩阵，其中 *N* 是共形阵列中的阵元数量。此矩阵的每一列表示阵列局部坐标系中某个阵元的位置 `[x;y;z]`。局部坐标系的原点为 *(0,0,0)*。单位为米。
+共形阵列中单元的位置，指定为 3×*N* 实数值矩阵，其中 *N* 是共形阵列中的单元数。此矩阵的每一列表示阵列局部坐标系中一个阵列单元的位置 `[x;y;z]`。局部坐标系的原点为 *(0,0,0)*。单位为米。
 
 #### 依赖关系
 
 要启用此参数，请将 **Geometry** 设置为 `Conformal Array`。
 
-**数据类型：** `double`
+**Data Types:** `double`
 
-### **Element normals (deg)** — 共形阵列阵元法向量的方向 `[0;0]` | 2-by-1 列向量 | 2-by-*N* 矩阵
+### **Element normals (deg)** — 共形阵列单元法向量方向 `[0;0]` | 2×1 列向量 | 2×*N* 矩阵
 
-共形阵列中阵元法向量的方向，指定为 2-by-1 列向量或 2-by-*N* 矩阵。*N* 表示阵列中的阵元数量。如果参数值为矩阵，则每列以 `[azimuth;elevation]` 形式指定相应阵元相对于局部坐标系的法线方向。局部坐标系将正 *x* 轴与共形阵列的法线方向对齐。如果参数值为 2-by-1 列向量，则所有阵列阵元使用相同的指向。
+共形阵列中单元法向量的方向，指定为 2×1 列向量或 2×*N* 矩阵。*N* 表示阵列中的单元数量。如果参数值为矩阵，则每一列以 `[azimuth;elevation]` 的形式指定对应单元相对于局部坐标系的法向方向。局部坐标系将正 *x* 轴与共形阵列的法向方向对齐。如果参数值为 2×1 列向量，则所有阵列单元使用相同的指向方向。
 
-您可以使用 **Element positions (m)** 和 **Element normals (deg)** 参数表示任意阵元布置，其中任意一对阵元之间存在特定变换关系。这些变换可以组合平移、方位角旋转和仰角旋转。但是，不能使用需要绕法线方向旋转的变换。
+您可以使用 **Element positions (m)** 和 **Element normals (deg)** 参数来表示任意一种单元对之间通过特定变换产生差异的排列。这些变换可以组合平移、方位角旋转和俯仰角旋转。但是，不能使用需要绕法向方向旋转的变换。
 
 要启用此参数，请将 **Geometry** 设置为 `Conformal Array`。
 
 **数据类型：** `double`
 
-### **Taper** — 阵列阵元锥削 1（默认值）| 复数标量 | 复值行向量
+### **Taper** — 阵列单元加权 1（默认）| 复标量 | 复值行向量
 
-将阵元锥削指定为复值标量或复值 1-by-*N* 行向量。在此向量中，*N* 表示阵列中的阵元数量。
+将单元加权指定为复标量或复值 1×*N* 行向量。在此向量中，*N* 表示阵列中的单元数量。
 
-锥削也称为*阵元权重*，它与阵列阵元响应相乘。锥削会修改响应的幅度和相位，以降低旁瓣或控制主响应轴的指向。
+也称为*单元权重*，加权对阵列单元响应进行乘法运算。加权修改响应的幅度和相位，以降低旁瓣或对主响应轴进行波束扫描。
 
-如果 **Taper** 为标量，则对每个阵元应用相同的权重。如果 **Taper** 为向量，则将该向量中的权重应用于对应的传感器阵元。权重数量必须与阵列的阵元数量一致。
+如果 **Taper** 为标量，则对每个单元施加相同的权重。如果 **Taper** 为向量，则将向量中的权重施加到对应的传感器单元。权重的数量必须与阵列的单元数量匹配。
 
 **数据类型：** `double`
 
@@ -414,18 +485,18 @@ Phased Array System Toolbox / Direction of Arrival
 
 ## 模块特性
 
-R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 中未提供文档。
+R2025b 中未记录。
 
 ## 版本历史
 
-**在 R2016b 中推出**
+**在 R2016b 中引入**
 
 ## 描述
 
 MUSIC 二维空间谱估计器
 
-MUSIC Spectrum 模块使用多重信号分类（MUltiple SIgnal Classification，MUSIC）算法估计入射窄带信号的空间谱。该模块还可以根据需要通过查找空间谱的峰值，计算指定数量信号的波达方向。
+MUSIC Spectrum 模块使用多重信号分类（MUSIC）算法来估计入射窄带信号的空间谱。该模块可选地通过寻找频谱峰值来计算指定数量信号的方向。

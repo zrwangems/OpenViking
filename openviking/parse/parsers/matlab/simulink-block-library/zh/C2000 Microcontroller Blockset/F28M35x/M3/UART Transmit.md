@@ -28,21 +28,21 @@ DMA 将在内部用于将数据复制到 FIFO 中。
 
 ### **UART Port** — 选择用于数据传输的 UART 端口 `UART0`（默认）| `UART1` | `UART2` | `UART3` | `UART4`
 
-选择从 UART0 到 UART4 的端口号用于数据传输。
+从 UART0 到 UART4 中选择一个端口号用于数据传输。
 
-UART 端口选择允许访问处理器上存在的不同 UART 模块。
+UART Port 选择允许访问处理器上存在的不同 UART 模块。
 
-### **Additional package header** — 前缀报头 `S`（默认）
+### **Additional package header** — 前缀头 `S`（默认）
 
-指定附加包报头，将其用作数据包之前的前缀，以同步数据包。
+指定用作数据包前缀的附加包头部，以同步数据包。
 
 ### **Additional package terminator** — 后缀终止符 `E`（默认）
 
-指定附加包终止符，将其用作数据包之后的后缀，以同步数据包。
+指定用作数据包后缀的附加包终止符，以同步数据包。
 
-### **Enable blocking mode** — 为数据传输启用阻塞模式 `off`（默认）| on
+### **Enable blocking mode** — 启用数据传输的阻塞模式 `off`（默认）| on
 
-启用此选项可确保在发送数据之前检查 FIFO 缓冲区中的数据可用性。
+启用此选项可确保在发送数据之前检查 FIFO 缓冲区是否有可用数据。
 
 ## 所属库
 
@@ -50,11 +50,11 @@ C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F2
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -62,6 +62,6 @@ C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F2
 
 ## 描述
 
-将串行数据传输到通用异步收发器 (UART) 端口
+将串行数据发送到通用异步收发器（UART）端口
 
-通过通用异步接收器/发送器 (UART) 端口传输串行数据。您可以指定 ASCII 字符，以便使用附加包报头和终止符来打包数据。
+通过通用异步收发器（UART）端口发送串行数据。您可以使用附加包头部和终止符指定 ASCII 字符来封装数据。

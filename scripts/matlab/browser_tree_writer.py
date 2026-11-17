@@ -186,7 +186,7 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
         "- [中文块库](zh/index.md)\n"
         "- [English block library](en/index.md)\n\n"
         f"当前包含 {totals['products']} 个顶层库、{totals['block_occurrences']} 个块条目，"
-        "所有原树条目都有完整中英文官方正文或经结构校验的中文工作译本。"
+        "所有原树条目都有完整中英文官方正文或经逐段中文完整性校验的中文工作译本。"
         "示例、启动器和产品链接保留原路径并复用对应官方主题页；"
         "原树无删减，目录层级和叶子条目一一对应。"
         "预配置变体复用对应基础块官方页；少数支持包老块使用页面标注的实际旧版官方文档。\n\n"

@@ -9,250 +9,210 @@ official_category: 'Animation'
 documentation_page: 'matlabanimation'
 documentation_source_path: 'matlabanimation.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # MATLAB Animation
 
-Create six-degrees-of-freedom multibody custom geometry block
+创建六自由度多体自定义几何体模块
 
-Create six-degrees-of-freedom multibody custom geometry block
+创建六自由度多体自定义几何体模块
 
-- MATLAB Animation block
+- MATLAB Animation 模块
 
-**Libraries:**
+**所属库：**
 
 Aerospace Blockset /
 Animation /
 MATLAB-Based Animation
 
-## Description
+## 描述
 
-The MATLAB Animation block creates a six-degrees-of-freedom multibody custom
-geometry block based on the `Aero.Animation` object. This block
-animates one or more vehicle geometries with  *`x-y-z`* position
-and Euler angles through the specified bounding box, camera offset, and field of view.
-This block expects the rotation order *`z-y-x`* (psi, theta,
-phi).
+MATLAB Animation 模块基于 `Aero.Animation` 对象创建六自由度多体自定义几何体模块。该模块通过指定的边界框、相机偏移和视场，使用 *`x-y-z`* 位置和欧拉角对一个或多个飞行器几何体进行动画显示。该模块期望旋转顺序为 *`z-y-x`*（psi、theta、phi）。
 
-To update the camera parameters in the animation, first set
-the parameters then close and double-click the block to reopen the MATLAB® Animation window.
+要更新动画中的相机参数，请先设置参数，然后关闭并双击该模块以重新打开 MATLAB® Animation 窗口。
 
-To access the parameters for this block, do one of:
+要访问该模块的参数，请执行以下操作之一：
 
-- Right-click the block, then select **Mask** > **Mask Parameters**.
-- Double-click the block to display the MATLAB Animation window, then click the **Block
-  Parameters** icon.
+- 右键单击该模块，然后选择 **Mask** > **Mask Parameters**。
+- 双击该模块以显示 MATLAB Animation 窗口，然后单击 **Block Parameters** 图标。
 
-**Note**
+**注意**
 
-The underlying graphics system stores values in single precision. As a result, you
-might notice that motion at coordinate positions greater than approximately 1e6
-appear unstable. This is because a single-precision number has approximately six
-digits of precision. The instability is due to quantization at the local value of
-the `eps`
-MATLAB function. To visualize more stable motion for coordinates beyond 1e6,
-either offset the input data to a local zero, or scale down the coordinate values
-feeding the visualization.
+底层图形系统以单精度存储数值。因此，您可能会注意到在坐标位置大于约 1e6 时运动看起来不稳定。这是因为单精度数大约有六位有效数字的精度。这种不稳定性是由于在 `eps` MATLAB 函数的局部值处发生量化所致。要为超过 1e6 的坐标可视化更稳定的运动，可以将输入数据偏移到局部零点，或者缩小馈送到可视化的坐标值。
 
-## Ports
+## 端口
 
-### Input
+### 输入
 
-### **Port\_1** — Downrange position, crossrange position, and altitude of vehicle three-element vector
+### **Port\_1** — 飞行器下程位置、横程位置和高度 三元素向量
 
-Downrange position, crossrange position, and altitude of the vehicle
-in Earth coordinates, specified as a three-element vector. The number on
-the port indicates the vehicle number.
+飞行器在地球坐标系中的下程位置、横程位置和高度，指定为三元素向量。端口上的数字表示飞行器编号。
 
-**Data Types:** `double`
+**数据类型：** `double`
 
-### **1.Xe** — Downrange position, crossrange position, and altitude of vehicle three-element vector
+### **1.Xe** — 飞行器下程位置、横程位置和高度 三元素向量
 
-Downrange position, crossrange position, and altitude of the vehicle
-in Earth coordinates, specified as a three-element vector. The number on
-the port indicates the vehicle number.
+飞行器在地球坐标系中的下程位置、横程位置和高度，指定为三元素向量。端口上的数字表示飞行器编号。
 
-**Data Types:** `double`
+**数据类型：** `double`
 
-### **1.φ θ ψ** — Euler angles three-element vector
+### **1.φ θ ψ** — 欧拉角 三元素向量
 
-Euler angles (roll, pitch, and yaw) of the vehicle, specified as a
-three-element vector. The number on the port indicates the vehicle
-number.
+飞行器的欧拉角（滚转、俯仰和偏航），指定为三元素向量。端口上的数字表示飞行器编号。
 
-**Data Types:** `double`
+**数据类型：** `double`
 
-### **Port\_N** — Downrange position, crossrange position, and altitude (positive down) three-element vector
+### **Port\_N** — 下程位置、横程位置和高度（向下为正） 三元素向量
 
-Nth downrange position, crossrange position, and altitude (positive
-down) of the vehicle, specified as a three-element vector. The number on
-the port indicates the vehicle number.
+飞行器的第 N 个下程位置、横程位置和高度（向下为正），指定为三元素向量。端口上的数字表示飞行器编号。
 
-#### Dependencies
+#### 依赖
 
-To enable this port, select a **Vehicles** number
-from `2` to
-`10`.
+要启用此端口，请从 `2` 到 `10` 中选择一个 **Vehicles** 编号。
 
-**Data Types:** `double`
+**数据类型：** `double`
 
-### **Port\_N** — Euler angles three-element vector
+### **Port\_N** — 欧拉角 三元素向量
 
-Nth input Euler angles (roll, pitch, and yaw) of the vehicle,
-specified as a three-element vector. The number on the port indicates
-the vehicle number.
+飞行器的第 N 个输入欧拉角（滚转、俯仰和偏航），指定为三元素向量。端口上的数字表示飞行器编号。
 
-#### Dependencies
+#### 依赖
 
-To enable this port, select a **Vehicles** number
-from `2` to
-`10`.
+要启用此端口，请从 `2` 到 `10` 中选择一个 **Vehicles** 编号。
 
-**Data Types:** `double`
+**数据类型：** `double`
 
-## Parameters
+## 参数
 
-### **Vehicles** — Vehicle to animate `1` (default) | `2` | `3` | `4` | `5` | `6` | `7` | `8` | `9` | `10`
+### **Vehicles** — 要动画显示的飞行器 `1`（默认）| `2` | `3` | `4` | `5` | `6` | `7` | `8` | `9` | `10`
 
-Vehicle to animate, specified from `1` to
-`10`.
+要动画显示的飞行器，指定为 `1` 到 `10`。
 
-#### Dependencies
+#### 依赖
 
-Selecting a vehicle number from `2` to
-`10` adds corresponding input ports. Each
-vehicle has its own set of input ports, denoted by the number at the
-beginning of the input port label.
+选择从 `2` 到 `10` 的飞行器编号会添加相应的输入端口。每个飞行器都有自己的一组输入端口，由输入端口标签开头的数字表示。
 
-#### Programmatic Use
+#### 编程使用
 
 |  |
 | --- |
-| **Block Parameter**: `Vehicles` |
-| **Type**: character vector |
-| **Values**: `1` | `2` | `3` | `4` | `5` | `6` | `7` | `8` | `9` | `10` |
-| **Default**: `'1'` |
+| **模块参数**：`Vehicles` |
+| **类型**：character vector |
+| **值**：`1` | `2` | `3` | `4` | `5` | `6` | `7` | `8` | `9` | `10` |
+| **默认值**：`'1'` |
 
-### **Geometries (use 'quotes' on filenames)** — Vehicle geometries `'astredwedge.mat'` (default) | MAT-file
+### **Geometries (use 'quotes' on filenames)** — 飞行器几何体 `'astredwedge.mat'`（默认）| MAT-file
 
-Vehicle geometries, specified in a MAT-file. You can specify these
-geometries using:
+飞行器几何体，在 MAT-file 中指定。您可以使用以下方式指定这些几何体：
 
-- Variable name, for example `geomVar`
-- Cell array of variable names, for example `{geomVar,
+- 变量名，例如 `geomVar`
+- 变量名的元胞数组，例如 `{geomVar,
   AltGeomVar}`
-- Character vector with single quotes, for example,
+- 带单引号的字符向量，例如
   `'astredwedge.mat'`
-- Mixed cell array of variable names and character vectors, for
-  example `{'file1.mat', 'file2.mat', 'file3.ac',
+- 变量名和字符向量的混合元胞数组，例如
+  `{'file1.mat', 'file2.mat', 'file3.ac',
   geomVar}`
 
-**Note**
+**注意**
 
-All specified geometries specified must exist in the MATLAB workspace and file names must exist in the current folder
-or be on the MATLAB path.
+所有指定的几何体必须存在于 MATLAB 工作区中，并且文件名必须存在于当前文件夹中或在 MATLAB 路径上。
 
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter**: `Geometries` |
-| **Type**: character vector |
-| **Values**: MAT-file |
-| **Default**: `'astredwedge.mat'` |
-
-### **Bounding box coordinates** — Boundary coordinates `[-50,50,-50,50,-50,50]` (default) | six-element vector
-
-Boundary coordinates for the vehicle, specified as a six-element
-vector.
-
-This parameter is not tunable during simulation. A change to this
-parameter takes effect after simulation stops.
-
-#### Programmatic Use
+#### 编程使用
 
 |  |
 | --- |
-| **Block Parameter**: `BoundingBoxCoordinates` |
-| **Type**: character vector |
-| **Values**: six-element vector |
-| **Default**: `'[-50,50,-50,50,-50,50]'` |
+| **模块参数**：`Geometries` |
+| **类型**：character vector |
+| **值**：MAT-file |
+| **默认值**：`'astredwedge.mat'` |
 
-### **Camera offset** — Distance from camera aim point to camera `[-150,-50,0]` (default) | three-element vector
+### **Bounding box coordinates** — 边界坐标 `[-50,50,-50,50,-50,50]`（默认）| 六元素向量
 
-Distance from the camera aim point to the camera itself, specified as a
-three-element vector.
+飞行器的边界坐标，指定为六元素向量。
 
-This parameter is not tunable during simulation. A change to this
-parameter takes effect after simulation stops.
+此参数在仿真期间不可调。对此参数的更改在仿真停止后生效。
 
-#### Programmatic Use
+#### 编程使用
 
 |  |
 | --- |
-| **Block Parameter**: `CameraOffset` |
-| **Type**: character vector |
-| **Values**: three-element vector |
-| **Default**: `'[-150,-50,0]'` |
+| **模块参数**：`BoundingBoxCoordinates` |
+| **类型**：character vector |
+| **值**：six-element vector |
+| **默认值**：`'[-50,50,-50,50,-50,50]'` |
 
-### **Camera view angle** — Camera view angle `3` (default) | scalar
+### **Camera offset** — 从相机瞄准点到相机的距离 `[-150,-50,0]`（默认）| 三元素向量
 
-Camera view angle, specified as a double scalar. By default, the camera aim point is the
-position of the first body lagged dynamically to indicate motion.
+从相机瞄准点到相机本身的距离，指定为三元素向量。
 
-This parameter is not tunable during simulation. A change to this
-parameter takes effect after simulation stops.
+此参数在仿真期间不可调。对此参数的更改在仿真停止后生效。
 
-#### Programmatic Use
+#### 编程使用
 
 |  |
 | --- |
-| **Block Parameter**: `CameraViewAngle` |
-| **Type**: character vector |
-| **Values**: double scalar |
-| **Default**: `'3'` |
+| **模块参数**：`CameraOffset` |
+| **类型**：character vector |
+| **值**：three-element vector |
+| **默认值**：`'[-150,-50,0]'` |
 
-### **Sample time** — Sample time `0.2` (default) | scalar
+### **Camera view angle** — 相机视角 `3`（默认）| 标量
 
-Sample time (-1 for inherited), specified as a double scalar.
+相机视角，指定为双精度标量。默认情况下，相机瞄准点是第一个物体的位置，并动态滞后以指示运动。
 
-#### Programmatic Use
+此参数在仿真期间不可调。对此参数的更改在仿真停止后生效。
+
+#### 编程使用
 
 |  |
 | --- |
-| **Block Parameter**: `SampleTime` |
-| **Type**: character vector |
-| **Values**: double scalar |
-| **Default**: `'0.2'` |
+| **模块参数**：`CameraViewAngle` |
+| **类型**：character vector |
+| **值**：double scalar |
+| **默认值**：`'3'` |
 
-## Extended Capabilities
+### **Sample time** — 采样时间 `0.2`（默认）| 标量
 
-### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+采样时间（-1 表示继承），指定为双精度标量。
 
-## Version History
+#### 编程使用
 
-**Introduced in R2007a**
+|  |
+| --- |
+| **模块参数**：`SampleTime` |
+| **类型**：character vector |
+| **值**：double scalar |
+| **默认值**：`'0.2'` |
 
-## See Also
+## 扩展功能
+
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+
+## 版本历史
+
+**在 R2007a 中引入**
+
+## 另请参阅
 
 `Aero.Animation`
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个对应于以下 MATLAB 命令的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+在 MATLAB Command Window 中输入该命令来运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
-选择网站
+选择一个网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择网站以获取翻译内容（如有）并查看本地活动和优惠。根据您的位置，我们建议您选择：
 
 - (English)
 - (Deutsch)
@@ -261,11 +221,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择一个网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -296,7 +256,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

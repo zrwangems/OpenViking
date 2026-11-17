@@ -9,81 +9,87 @@ official_category: ''
 documentation_page: 'block-libraries'
 documentation_source_path: 'block-libraries.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Simulink Block Libraries
 
 模块库
 
-代表方程和建模组件的模块
+表示方程和建模组件的模块
 
-模块是 Simulink® 中用来构建模型的主要元素。可以使用库浏览器来浏览和搜索模块库。找到要使用的模块后，将其添加到您的模型中。
+模块是您在 Simulink® 中构建模型时使用的主要元素。使用库浏览器浏览和搜索模块库。
+当您找到想要使用的模块时，将其添加到您的模型中。
 
-## 模块库基础知识
+## 模块库基础
 
 - 库浏览器
-- Simulink 建模的键盘快捷方式和鼠标操作
-- 非虚拟和虚拟模块
+- Simulink 建模的键盘快捷键和鼠标操作
+- 非虚拟模块和虚拟模块
 
 ## 类别
 
-- Continuous
-  连续函数模块，例如 Derivative 和 Integrator
+- 连续
+  连续函数模块，如 Derivative 和 Integrator
 - Dashboard
-  可以在仿真期间控制参数值和显示信号值的模块
-- 可自定义的模块
-  具有可自定义外观的模块，用于在仿真期间控制参数值和显示信号值
+  可在仿真期间控制参数值和显示信号值的模块
+- 可自定义模块
+  具有可自定义外观的模块，可在仿真期间控制参数值和显示信号值
 - 不连续
-  不连续函数模块，例如 Saturation
+  不连续函数模块，如 Saturation
 - 离散
   离散时间模块，如 Unit Delay
-- Logic and Bit Operations
-  逻辑或位运算模块，例如 Logical Operator 和 Relational Operator
-- Lookup Tables
-  查找表模块，例如 Cosine 和 Sine
+- 逻辑和位运算
+  逻辑或位运算模块，如 Logical Operator 和 Relational
+  Operator
+- 查找表
+  查找表模块，如 Cosine 和 Sine
 - 数学运算
-  数学函数模块，例如 Gain、Product 和 Sum
+  数学函数模块，如 Gain、Product 和 Sum
 - 矩阵运算
-  用于矩阵运算建模的模块
-- Messages & Events
-  为基于消息的通信建模的模块
-- Model Verification
-  对模型进行自我验证的模块，例如 Check Input Resolution
-- Model-Wide Utilities
-  模型范围的运算模块，例如 Model Info 和 Block Support Table
+  用于建模矩阵运算的模块
+- 消息和事件
+  用于建模基于消息的通信的模块
+- 模型验证
+  用于自验证模型的模块，如 Check Input Resolution
+- 模型级实用工具
+  模型级操作模块，如 Model Info 和 Block Support
+  Table
 - 端口和子系统
-  与子系统有关的模块，例如 Inport、Outport、Subsystem 和 Model
+  与子系统相关的模块，如 Inport、Outport、Subsystem 和
+  Model
 - 信号属性
   用于修改信号属性的模块，如 Data Type Conversion
-- Signal Routing
-  传送信号的模块，例如 Bus Creator 和 Switch
-- Sinks
-  记录和可视化信号数据以及终止信号线
-- Sources
+- 信号路由
+  路由信号模块，如 Bus Creator 和 Switch
+- 接收器
+  记录和可视化信号数据并终止信号线
+- 源
   使用定义和生成信号或加载信号数据的模块为仿真提供输入
 - 字符串
   字符串操作模块
-- User-Defined Functions
-  自定义函数模块，如 MATLAB Function、MATLAB System、Simulink Function 和 Initialize Function
-- Additional Math and Discrete
-  数学和离散函数模块，例如 Decrement Stored Integer
+- 用户自定义函数
+  自定义函数模块，如 MATLAB Function、MATLAB System、Simulink
+  Function 和 Initialize Function
+- 附加数学和离散
+  数学和离散函数模块，如 Decrement Stored
+  Integer
 
-## MATLAB Command
+## MATLAB 命令
 
-You clicked a link that corresponds to this MATLAB command:
+您点击了一个对应于以下 MATLAB 命令的链接：
 
-Run the command by entering it in the MATLAB Command Window.
-Web browsers do not support MATLAB commands.
+通过在 MATLAB 命令窗口中输入命令来运行它。
+Web 浏览器不支持 MATLAB 命令。
 
-Close
+关闭
 
 MathWorks
 MathWorks
 
 选择网站
 
-选择网站以获取翻译的可用内容，以及查看当地活动和优惠。根据您的位置，我们建议您选择：。
+选择一个网站以获取可用的翻译内容并查看本地活动和优惠。根据您的位置，我们建议您选择：。
 
 - (English)
 - (Deutsch)
@@ -92,11 +98,11 @@ MathWorks
 - （简体中文）
 - (English)
 
-您也可以从以下列表中选择网站：
+您也可以从以下列表中选择网站
 
 **如何获得最佳网站性能**
 
-选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站并未针对您所在位置的访问进行优化。
+选择中国网站（中文或英文）以获得最佳网站性能。其他 MathWorks 国家/地区网站未针对您所在位置的访问进行优化。
 
 美洲
 
@@ -127,7 +133,7 @@ MathWorks
   - Français
 - United Kingdom (English)
 
-亚太
+亚太地区
 
 - Australia (English)
 - India (English)

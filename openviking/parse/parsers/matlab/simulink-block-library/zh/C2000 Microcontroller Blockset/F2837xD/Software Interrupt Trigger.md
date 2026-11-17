@@ -9,7 +9,7 @@ official_category: 'C2802x'
 documentation_page: 'c28xsoftwareinterrupttrigger'
 documentation_source_path: 'ref/c28xsoftwareinterrupttrigger.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # C28x Software Interrupt Trigger
@@ -18,25 +18,25 @@ chinese_source: official
 
 ### 输入
 
-### **PIEIFRx.INTy** — 触发软件中断 标量
+### **PIEIFRx.INTy** — 触发软件中断标量
 
-当输入值大于 **Trigger software interrupt when input value is greater than** 参数中的值时，Software Interrupt Trigger 模块会根据 **CUP interrupt number** 和 **PIE interrupt number** 参数触发软件中断。
+当输入值大于 **Trigger software interrupt when input value is greater than** 参数中的值时，Software Interrupt Trigger 模块根据 **CUP interrupt number** 和 **PIE interrupt number** 参数触发软件中断。
 
-**数据类型:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
+**数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
 
 ## 参数
 
-### **CPU 中断编号** — CPU 中断号与硬件中断相对应 `7` (默认) | 标量
+### **CPU interrupt number** — 硬件中断对应的 CPU 中断号 `7`（默认）| 标量
 
-输入一个整数值，设置与硬件中断对应的 CPU 中断号。有关 C2000 处理器的 CPU 编号的信息，请参阅 C28x Hardware Interrupt。
+输入一个整数值以设置硬件中断对应的 CPU 中断号。有关 C2000 处理器 CPU 编号的信息，请参阅 C28x Hardware Interrupt。
 
-### **PIE 中断编号** — 与硬件中断对应的 PIE 中断号 `8` (默认) | 标量
+### **PIE interrupt number** — 硬件中断对应的 PIE 中断号 `8`（默认）| 标量
 
-输入一个整数值来设置与硬件中断对应的 PIE 编号。有关 C2000 处理器的 PIE 编号的信息，请参阅 C28x Hardware Interrupt。
+输入一个整数值以设置硬件中断对应的 PIE 编号。有关 C2000 处理器 PIE 编号的信息，请参阅 C28x Hardware Interrupt。
 
-### **Trigger software interrupt when input value is greater than** — 设置高于该值时，模块会发出中断。 `0` (默认) | 标量
+### **Trigger software interrupt when input value is greater than** — 设置一个值，当输入值高于该值时模块发出中断 `0`（默认）| 标量
 
-输入指示中断是由请求例程发出的电平值。
+输入用于指示请求例程断言中断的电平值。
 
 ## 所属库
 
@@ -44,25 +44,25 @@ C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x 
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 描述
 
 生成软件触发的不可屏蔽中断
 
-当您将 Software Interrupt Trigger 模块添加到模型中时，该模块会轮询输入端口上的值。当输入值大于 **Trigger software interrupt when input value is greater than** 参数中的值时，该模块会将与所选 CPU 和外设中断扩展 (PIE) 编号对应的中断发布到模型中的 Hardware Interrupt 模块。
+当您将 Software Interrupt Trigger 模块添加到模型中时，该模块会轮询输入端口上的值。当输入值大于 **Trigger software interrupt when input value is greater than** 参数中的值时，该模块会将与所选 CPU 和外设中断扩展（PIE）编号对应的中断发送到模型中的 Hardware Interrupt 模块。
 
-要使用此模块，请将 Hardware Interrupt 模块添加到您的模型中。Hardware Interrupt 模块将此模块中由软件触发的中断处理成处理器上的中断服务例程。将 Hardware Interrupt 模块中的中断号设置为您在 Software Interrupt Trigger 模块中设置的值。
+要使用此模块，请将 Hardware Interrupt 模块添加到您的模型中。Hardware Interrupt 模块将此模块的软件触发中断处理为处理器上的中断服务例程。将 Hardware Interrupt 模块中的中断号设置为在 Software Interrupt Trigger 模块中设置的值。
 
-CPU 和 PIE 中断号共同指定单个外围模块的单个中断。有关 CPU 和 PIE 中断号到这些外围中断的映射信息，请参阅 C28x Hardware Interrupt。
+CPU 和 PIE 中断号共同指定单个外设模块的单个中断。有关 CPU 和 PIE 中断号到这些外设中断的映射信息，请参阅 C28x Hardware Interrupt。
 
 **注意**
 

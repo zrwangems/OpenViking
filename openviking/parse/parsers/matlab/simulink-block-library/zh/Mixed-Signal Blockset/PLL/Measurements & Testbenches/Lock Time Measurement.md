@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Lock Time Measurement'
-family: 'pll'
+family: 'msblks'
 product_id: 'msblks'
 product_name: 'Mixed-Signal Blockset'
 documentation_release: R2025b
@@ -18,39 +18,38 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **pll out** — 输入时钟信号 scalar
+### **pll out** — 输入时钟信号 标量
 
-Lock Time Measurement 模块的输入时钟信号，指定为 scalar。**pll out** 端口连接到 PLL 系统的输出。
+输入到 Lock Time Measurement 模块的输入时钟信号，指定为标量。**pll out** 端口连接到 PLL 系统的输出。
 
 **数据类型：** `double`
-
 ### 输出
 
-### **lock time** — 在 PLL 中实现锁定所需的时间，real positive scalar
+### **lock time** — PLL 实现锁定所需的时间 实正标量
 
-在 PLL 系统中发生锁定的时间，以 seconds 为单位作为 real positive scalar 返回。
+PLL 系统中实现锁定所需的时间，以秒为单位返回为实正标量。
 
 **数据类型：** `double`
 
 ## 参数
 
-### **目标频率 (Hz)** — 用于测量锁定时间的 PLL 目标工作频率 `2.1e9` (默认) | real positive scalar
+### **Target frequency (Hz)** — 用于测量锁定时间的 PLL 目标工作频率 `2.1e9`（默认值）| 实正标量
 
-被测 PLL 设备 (DUT) 的目标工作频率，用于测量 PLL 的锁定时间，指定为以 Hz 为单位的 real positive scalar。
+被测 PLL 器件（DUT）的目标工作频率，用于测量 PLL 的锁定时间，以 Hz 为单位指定为实正标量。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'TargetFreq')` 查看 **目标频率** 的当前值。
-- 使用 `set_param(gcb,'TargetFreq',value)` 将 **目标频率** 设置为特定值。
+- 使用 `get_param(gcb,'TargetFreq')` 查看 **Target frequency** 的当前值。
+- 使用 `set_param(gcb,'TargetFreq',value)` 将 **Target frequency** 设置为特定值。
 
-### **误差容限 (Hz)** — 锁定时间测量的误差容限 `1e5` (默认) | real positive scalar
+### **Error tolerance (Hz)** — 锁定时间测量的误差容限 `1e5`（默认值）| 实正标量
 
-用于锁定时间测量的误差容限，指定为以 Hz 为单位的 real positive scalar。
+锁定时间测量的误差容限，以 Hz 为单位指定为实正标量。
 
-#### 编程用法
+#### 程序化使用
 
-- 使用 `get_param(gcb,'FreqErrorTol')` 查看 **误差容限** 的当前值。
-- 使用 `set_param(gcb,'FreqErrorTol',value)` 将 **误差容限** 设置为特定值。
+- 使用 `get_param(gcb,'FreqErrorTol')` 查看 **Error tolerance** 的当前值。
+- 使用 `set_param(gcb,'FreqErrorTol',value)` 将 **Error tolerance** 设置为特定值。
 
 ## 所属库
 
@@ -72,4 +71,4 @@ R2025b 中未记录。
 
 测量 PLL 在给定容限内达到目标频率所需的时间
 
-Lock Time Measurement 模块测量锁相环 (PLL) 系统的锁定时间。锁定时间是 PLL 在给定误差容限内达到目标频率所需的时间。
+Lock Time Measurement 模块测量锁相环（PLL）系统的锁定时间。锁定时间是 PLL 在给定误差容限内达到目标频率所需的时间。

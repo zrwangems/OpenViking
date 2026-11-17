@@ -9,7 +9,7 @@ official_category: 'Electrical Systems / Motors'
 documentation_page: 'inductionmotorconfiguration'
 documentation_source_path: '../mcb/ref/inductionmotorconfiguration.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Induction Motor Configuration
@@ -18,79 +18,79 @@ chinese_source: official
 
 ### 输出
 
-### **Config** — 模块配置信号 矢量
+### **Config** — 模块配置信号向量
 
-感应电机或电机的配置信号，包括使用该模块配置的以下参数。
+感应电机或电动机的配置信号，包含您使用此模块配置的以下参数。
 
 | 配置元素 | | | 单位 |
 | --- | --- | --- | --- |
 | 极对数 | | | - |
-| 每相定子电阻 | | | 欧姆 |
-| 定子泄漏电感 | | | 亨 |
-| 转子电阻 | | | 欧姆 |
-| 转子泄漏电感 | | | 亨 |
-| 磁化电感 | | | 亨 |
+| 每相定子电阻 | | | ohm |
+| 定子漏电感 | | | Henries |
+| 转子电阻 | | | ohm |
+| 转子漏电感 | | | Henries |
+| 励磁电感 | | | Henries |
 | 惯量 | | | kgm^2 |
-| 反电动势、电动势 | | | Vpk\_LL/krpm  Vpk\_LL 是线电压峰值 |
-| 粘性阻尼 | | | N·m/（弧度/秒） |
-| 端口配置（转矩或转速） | | | - |
+| 反电动势，EMF | | | Vpk\_LL/krpm  Vpk\_LL 是峰值线电压测量值 |
+| 粘性阻尼 | | | N·m/(rad/s) |
+| 端口配置（Torque 或 Speed） | | | - |
 
-**数据类型:** `single`
+**数据类型：** `single`
 
 ## 参数
 
 ### 模块选项
 
-### **端口配置** — 选择端口配置 **转矩** (默认) | **转速**
+### **Port configuration** — 选择端口配置 `Torque`（默认）| `Speed`
 
-下表总结了每个配置中的输入端口和输出端口。
+下表总结了每种配置下的输入和输出端口。
 
 | 机械输入配置参数值 | | | LdTrq/Spd 端口配置 |
 | --- | --- | --- | --- |
-| 转矩 | | | **LdTrq** |
-| 转速 | | | **Spd** |
+| Torque | | | **LdTrq** |
+| Speed | | | **Spd** |
 
-### **采样时间(Ts)** — 采样时间，在此采样时间过后模块将再次执行 `1e-6` (默认) | 标量
+### **Sample Time (Ts)** — 模块再次执行前的采样时间 `1e-6`（默认）| 标量
 
-每两个连续的模块执行实例之间的固定时间间隔（以秒为单位）。
+每两次连续模块执行实例之间的固定时间间隔（以秒为单位）。
 
 ### 参数
 
-### **极对数** — 极对 `2` (默认) | 标量
+### **Number of pole pairs** — 极对数 `2`（默认）| 标量
 
-电机中的极对数 *P*。
+电动机中的极对数，*P*。
 
-### **定子电阻(欧姆)** — 定子电阻 `1.77` (默认) | 标量
+### **Stator resistance (Ohm)** — 定子电阻 `1.77`（默认）| 标量
 
-定子电阻 *Rs*，以 ohm 为单位。
+定子电阻，*Rs*，单位为 ohm。
 
-### **泄漏电感(H)** — 定子泄漏电感 `0.0139` (默认) | 标量
+### **Leakage inductance (H)** — 定子漏电感 `0.0139`（默认）| 标量
 
-定子泄漏电感 *Lls*，以 H 为单位。
+定子漏电感，*Lls*，单位为 H。
 
-### **转子电阻(Ohm)** — 转子电阻 `1.34` (默认) | 标量
+### **Rotor resistance (Ohm)** — 转子电阻 `1.34`（默认）| 标量
 
-转子电阻 *Rr*，以 ohm 为单位。
+转子电阻，*Rr*，单位为 ohm。
 
-### **泄漏电感(H)** — 转子泄漏电感 `0.0121` (默认) | 标量
+### **Leakage inductance (H)** — 转子漏电感 `0.0121`（默认）| 标量
 
-转子泄漏电感 *Llr*，以 H 为单位。
+转子漏电感，*Llr*，单位为 H。
 
-### **磁化电感(H)** — 电感 `0.3876` (默认) | 标量
+### **Magnetizing inductance (H)** — 电感 `0.3876`（默认）| 标量
 
-磁化电感 *Lm*，以 H 为单位。
+励磁电感，*Lm*，单位为 H。
 
-### **物理惯量(kg\*m^2)** — 物理惯量 `0.001` (默认) | 标量
+### **Physical Inertia (kg\*m^2)** — 物理惯量 `0.001`（默认）| 标量
 
-电机的物理惯量 *J*，以 kg.m^2 为单位。
+电动机的物理惯量，*J*，单位为 kg.m^2。
 
-### **粘性阻尼(N\*m/rad/s)** — 粘性阻尼 `0` (默认) | 标量
+### **Viscous damping (N\*m/rad/s)** — 粘性阻尼 `0`（默认）| 标量
 
-电机的粘性阻尼 *F*，以 N·m/（弧度/秒）为单位。
+电动机的粘性阻尼，*F*，单位为 N·m/(rad/s)。
 
-### **静态摩擦(N\*m)** — 静态摩擦 `0` (默认) | 标量
+### **Static friction (N\*m)** — 静摩擦 `0`（默认）| 标量
 
-电机中的静态摩擦 *Tf*，以 N·m 为单位。
+电动机中的静摩擦，*Tf*，单位为 N·m。
 
 ## 所属库
 
@@ -98,18 +98,18 @@ Motor Control Blockset HDL Support / Electrical Systems / Motors
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 版本历史
 
-**在 R2022b 中推出**
+**在 R2022b 中引入**
 
 ## 描述
 
-配置感应电机的系统参数
+配置感应电动机的系统参数
 
-Induction Motor Configuration 模块可生成感应电机或电机的配置信号。您可以使用该信号来更新支持 FPGA 部署的感应电机模块的参数，例如 Induction Motor HDL 模块。
+Induction Motor Configuration 模块生成感应电机或电动机的配置信号。您可以使用此信号更新支持 FPGA 部署的感应电动机模块的参数，例如 Induction Motor HDL 模块。

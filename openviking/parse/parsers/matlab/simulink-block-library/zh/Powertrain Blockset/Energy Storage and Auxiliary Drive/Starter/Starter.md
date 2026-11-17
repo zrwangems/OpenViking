@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Starter'
-family: 'energy-storage-and-auxiliary-drive'
+family: 'autoblks'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b
@@ -24,13 +24,19 @@ chinese_source: worker-translation
 
 ### **StartVolt** — 电枢和励磁电压 `scalar`
 
-- 电枢绕组电压 *Va* 和励磁绕组电压 *Vf*，单位为 V。
-- 在串励直流电机中，电枢和励磁绕组电压为 *Vaf*。
+- 电枢绕组电压
+  *Va* 和
+  励磁绕组电压
+  *Vf*，单位为
+  V。
+- 在串励直流电机中，为电枢和励磁绕组
+  电压
+  *Vaf*。
 ### 输出
 
 ### **Info** — 总线信号 bus
 
-包含这些模块计算的总线信号。
+包含这些模块计算结果的总线信号。
 
 | 信号 | | | 描述 | 单位 |
 | --- | --- | --- | --- | --- |
@@ -39,7 +45,7 @@ chinese_source: worker-translation
 | `PwrInfo` | `PwrTrnsfrd` | `PwrMtr` | 机械功率 | W |
 | `PwrBus` | 电功率 | W |
 | `PwrNotTrnsfrd` | `PwrLoss` | 电机功率损耗 | W |
-| `PwrStored` | `PwrInd` | 电气电感 | W |
+| `PwrStored` | `PwrInd` | 电感电能 | W |
 
 ### **LdCurr** — 起动机负载电流 `scalar`
 
@@ -53,328 +59,362 @@ chinese_source: worker-translation
 
 #### 配置
 
-### **电机类型** — 选择电机类型 `Separately Excited DC Motor`（默认） | `Permanent Magnet Excited DC Motor` | `Series Connection DC Motor`
+### **Motor Type** — 选择电机类型 `Separately Excited DC Motor`（默认）| `Permanent Magnet Excited DC Motor` | `Series Connection DC Motor`
 
-选择三种电机类型之一。
+从三种电机类型中选择一种。
 
 #### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `machine_type` |
-| **值：** | `Separately Excited DC Motor`（默认） | `Permanent Magnet Excited DC Motor` | `Series Connection DC Motor` |
+| **值：** | `Separately Excited DC Motor`（默认）| `Permanent Magnet Excited DC Motor` | `Series Connection DC Motor` |
 | **数据类型：** | `character vector` |
 
 #### 依赖关系
 
-下表总结了电机参数依赖关系。
+下表总结了电机参数的依赖关系。
 
 | 电机类型 | 启用的电机参数 |
 | --- | --- |
-| `Separately Excited DC Motor` | **电枢绕组电阻，Ra** |
-| **电枢绕组电感，La** |
-| **励磁绕组电阻 Rf** |
-| **励磁绕组电感，Lf** |
-| **互感，Laf** |
-| **初始电枢和励磁电流，Iaf** |
-| `Permanent Magnet Excited DC Motor` | **电枢绕组电阻，Rapm** |
-| **电枢绕组电感，Lapm** |
-| **转矩常数，Kt** |
-| **初始电枢电流，Ia** |
-| `Series Connection DC Motor` | **总电阻，Rser** |
-| **总电感，Lser** |
-| **初始电流，Iafser** |
-| **互感，Lafser** |
+| `Separately Excited DC Motor` | **Armature winding resistance, Ra** |
+| **Armature winding inductance, La** |
+| **Field winding resistance Rf** |
+| **Field winding inductance, Lf** |
+| **Mutual inductance, Laf** |
+| **Initial armature and field current, Iaf** |
+| `Permanent Magnet Excited DC Motor` | **Armature winding resistance, Rapm** |
+| **Armature winding inductance, Lapm** |
+| **Torque constant, Kt** |
+| **Initial armature current, Ia** |
+| `Series Connection DC Motor` | **Total resistance, Rser** |
+| **Total inductance, Lser** |
+| **Initial current, Iafser** |
+| **Mutual inductance, Lafser** |
 
-#### Separately Excited DC Motor
+#### 他励直流电机
 
-### **电枢绕组电阻，Ra** — 电阻 `1`（默认） | `scalar`
+### **Armature winding resistance, Ra** — 电阻 `1`（默认）| `scalar`
 
 电枢绕组电阻，单位为 ohm。
 
 #### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Ra` |
-| **值：** | `1`（默认） | `scalar` |
+| **值：** | `1`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Separately Excited DC Motor`。
+要启用此参数，请为 **Motor Type**
+参数选择 `Separately Excited DC
+Motor`。
 
-### **电枢绕组电感，La** — 电感 `.1`（默认） | `scalar`
+### **Armature winding inductance, La** — 电感 `.1`（默认）| `scalar`
 
 电枢绕组电感，单位为 H。
 
 #### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `La` |
-| **值：** | `.1`（默认） | `scalar` |
+| **值：** | `.1`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Separately Excited DC Motor`。
+要启用此参数，请为 **Motor Type**
+参数选择 `Separately Excited DC
+Motor`。
 
-### **励磁绕组电阻，Rf** — 电阻 `.3`（默认） | `scalar`
+### **Field winding resistance, Rf** — 电阻 `.3`（默认）| `scalar`
 
 励磁绕组电阻，单位为 ohm。
 
 #### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Rf` |
-| **值：** | `.3`（默认） | `scalar` |
+| **值：** | `.3`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Separately Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Separately Excited DC
+Motor`。
 
-### **励磁绕组电感，Lf** — 电感 `.2`（默认） | `scalar`
+### **Field winding inductance, Lf** — 电感 `.2`（默认）| `scalar`
 
 励磁绕组电感，单位为 H。
 
-#### 程序化使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用
+`get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `Lf` |
-| **值：** | `.2`（默认） | `scalar` |
-| **数据类型：** | `double` |
+| **Parameter:** | `Lf` |
+| **值**：| `.2`（默认）| `scalar` |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Separately Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Separately Excited DC
+Motor`。
 
-### **互感，Laf** — 电感 `.3`（默认） | `scalar`
+### **Mutual inductance, Laf** — 电感 `.3`（默认）| `scalar`
 
 互感，单位为 H。
 
-#### 程序化使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数：** | `Laf` |
-| **值：** | `.3`（默认） | `scalar` |
-| **数据类型：** | `double` |
-
-#### 依赖关系
-
-要启用此参数，请为 **电机类型** 参数选择 `Separately Excited DC Motor`。
-
-### **初始电枢电流和励磁电流，Iaf** — 电流 `[0 0]`（默认） | `vector`
-
-初始电枢和励磁电流，单位为 A。
-
-#### 程序化使用
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用
+`get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `Iaf` |
-| **值：** | `[0 0]`（默认） | `vector` |
-| **数据类型：** | `double` |
+| **Parameter:** | `Laf` |
+| **值**：| `.3`（默认）| `scalar` |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Separately Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Separately Excited DC
+Motor`。
 
-#### Permanent Magnet Excited DC Motor
+### **Initial armature current and field current, Iaf** — 电流 `[0 0]`（默认）| `vector`
 
-### **电枢绕组电阻，Rapm** — 电阻 `.5`（默认） | `scalar`
+初始电枢电流和励磁电流，单位为 A。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
+
+要以编程方式获取模块参数值，请使用
+`get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Iaf` |
+| **值**：| `[0 0]`（默认）| `vector` |
+| **Data Types:** | `double` |
+
+#### 依赖关系
+
+要启用此参数，请为 **Motor Type** 参数选择 `Separately Excited DC
+Motor`。
+
+#### 永磁励磁直流电机
+
+### **Armature winding resistance, Rapm** — 电阻 `.5`（默认）| `scalar`
 
 电枢绕组电阻，单位为 ohm。
 
-#### 程序化使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用
+`get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `Rapm` |
-| **值：** | `.5`（默认） | `scalar` |
-| **数据类型：** | `double` |
+| **Parameter:** | `Rapm` |
+| **值**：| `.5`（默认）| `scalar` |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Permanent Magnet Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Permanent Magnet Excited
+DC Motor`。
 
-### **电枢绕组电感，Lapm** — 电感 `.1`（默认） | `scalar`
+### **Armature winding inductance, Lapm** — 电感 `.1`（默认）| `scalar`
 
 电枢绕组电感，单位为 H。
 
-#### 程序化使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用
+`get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `Lapm` |
-| **值：** | `.1`（默认） | `scalar` |
-| **数据类型：** | `double` |
+| **Parameter:** | `Lapm` |
+| **值**：| `.1`（默认）| `scalar` |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Permanent Magnet Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Permanent Magnet Excited
+DC Motor`。
 
-### **转矩常数，Kt** — 电机转矩常数 `.1`（默认） | `scalar`
+### **Torque constant, Kt** — 电机转矩常数 `.1`（默认）| `scalar`
 
 电机转矩常数，单位为 N·m/A。
 
-#### 程序化使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用
+`get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `Kt` |
-| **值：** | `.1`（默认） | `scalar` |
-| **数据类型：** | `double` |
+| **Parameter:** | `Kt` |
+| **值**：| `.1`（默认）| `scalar` |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Permanent Magnet Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Permanent Magnet Excited
+DC Motor`。
 
-### **初始电枢电流，Ia** — 电流 `.1`（默认） | `scalar`
+### **Initial armature current, Ia** — 电流 `.1`（默认）| `scalar`
 
 初始电枢电流，单位为 A。
 
-#### 程序化使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用
+`get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `Ia` |
-| **值：** | `.1`（默认） | `scalar` |
-| **数据类型：** | `double` |
+| **Parameter:** | `Ia` |
+| **值**：| `.1`（默认）| `scalar` |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Permanent Magnet Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Permanent Magnet Excited
+DC Motor`。
 
 #### Series Connection DC Motor
 
-### **总电阻，Rser** — 电阻 `.1`（默认） | `scalar`
+### **总电阻，Rser** — 电阻 `.1`（默认）| `scalar`
 
-串联连接的励磁和电枢电阻，单位为 ohm。
+串联的励磁绕组和电枢电阻，单位为欧姆。
 
 #### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Rser` |
-| **值：** | `.1`（默认） | `scalar` |
+| **值：** | `.1`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Series Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Series Excited DC Motor`。
 
-### **总电感，Lser** — 电感 `.1`（默认） | `scalar`
+### **总电感，Lser** — 电感 `.1`（默认）| `scalar`
 
-串联连接的励磁和电枢电感，单位为 H。
+串联的励磁绕组和电枢电感，单位为 H。
 
 #### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Lser` |
-| **值：** | `.1`（默认） | `scalar` |
+| **值：** | `.1`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Series Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Series Excited DC Motor`。
 
-### **初始电流，Iafser** — 电流 `0`（默认） | `scalar`
+### **初始电流，Iafser** — 电流 `0`（默认）| `scalar`
 
 初始串联电流，单位为 A。
 
 #### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Iafser` |
-| **值：** | `0`（默认） | `scalar` |
+| **值：** | `0`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Series Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Series Excited DC Motor`。
 
-### **互感，Lafser** — 电感 `.3`（默认） | `scalar`
+### **互感，Lafser** — 电感 `.3`（默认）| `scalar`
 
-励磁和电枢互感，单位为 H。
+励磁绕组和电枢互感，单位为 H。
 
 #### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Lafser` |
-| **值：** | `.3`（默认） | `scalar` |
+| **值：** | `.3`（默认）| `scalar` |
 | **数据类型：** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请为 **电机类型** 参数选择 `Series Excited DC Motor`。
+要启用此参数，请为 **Motor Type** 参数选择 `Series Excited DC Motor`。
 
 ## 所属库
 
@@ -390,24 +430,24 @@ R2025b 中未记录。
 
 ## 版本历史
 
-**R2017a 中引入**
+**在 R2017a 中引入**
 
 ## 描述
 
-Starter 作为直流电机
+起动机作为直流电机
 
 Starter 模块将起动机总成实现为他励直流电机、永磁直流电机或串励直流电机。该电机作为内燃机的转矩源运行。
 
 使用 Starter 模块：
 
-- 在带有前端附件驱动 (FEAD) 的发动机模型中
-- 对发动机起动和停止场景进行建模
+- 在带有前端附件驱动（FEAD）的发动机模型中
+- 用于对发动机起动和停止场景进行建模
 
 Starter 模块仅支持直流电机的角速度输入。负载转矩输入需要发动机动力学。
 
-### Separately Excited DC Motor
+### 他励直流电机
 
-在他励直流电机中，励磁绕组连接到独立的直流电源。
+在他励直流电机中，励磁绕组连接到单独的直流电源。
 
 励磁绕组电压、励磁电阻和励磁电感之间的关系由下式给出：
 
@@ -419,15 +459,15 @@ EMF=LaifLafω
 
 电枢电压由下式给出：
 
-Va=Ladiadt+Raia+ EMF
+Va=Ladiadt+Raia+ EMF
 
 起动机电流负载是励磁绕组电流和电枢绕组电流之和：
 
-iload= if+ ia
+iload= if+ ia
 
 起动机轴转矩是电枢电流、励磁电流和互感的乘积：
 
-Tmech= iaifLaf
+Tmech= iaifLaf
 
 ### Permanent Magnet DC Motor
 
@@ -435,60 +475,60 @@ Tmech= iaifLaf
 
 反电动势与电机轴角速度成正比：
 
-EMF= Ktω
+EMF= Ktω
 
 电枢电压由下式给出：
 
-Va=Ladiadt+Raia+ EMF
+Va=Ladiadt+Raia+ EMF
 
 起动机电流负载等于电枢绕组电流：
 
-iload= ia
+iload= ia
 
 起动机轴转矩与电枢绕组电流成正比：
 
-Tmech= Ktia
+Tmech= Ktia
 
 ### Series Excited DC Motor
 
-串励直流电机将电枢绕组和励磁绕组串联连接到公共直流电源。
+串励直流电机将电枢绕组和励磁绕组与公共直流电源串联连接。
 
-反电动势是励磁和电枢初始串联电流、励磁和电枢互感以及电机轴角速度的乘积：
+反电动势是励磁与电枢初始串联电流、励磁与电枢互感以及电机轴角速度的乘积：
 
 EMF=iafLafω
 
-励磁和电枢绕组电压由下式给出：
+励磁与电枢绕组电压由下式给出：
 
-Vaf=Lserdiafdt+Rseriaf+ EMF
+Vaf=Lserdiafdt+Rseriaf+ EMF
 
-起动机电流负载等于励磁和电枢串联电流：
+起动机电流负载等于励磁与电枢串联电流：
 
-iload= iaf
+iload= iaf
 
-起动机轴转矩是励磁和电枢串联电流的平方与励磁和电枢互感的乘积：
+起动机轴转矩是励磁与电枢串联电流的平方与励磁和电枢互感的乘积：
 
-Tmech= iaf2Laf
+Tmech= iaf2Laf
 
-为保证电机稳定性，电机轴角速度必须大于串联连接的励磁和电枢电阻与互感之比：
+为保证电机稳定性，电机轴角速度必须大于串联连接的励磁与电枢电阻和互感之比：
 
 ω>−RserLaf
 
-### 功率核算
+### Power Accounting
 
-对于功率核算，模块实现以下方程。
+对于功率核算，该模块实现以下方程。
 
-| 总线信号 | | | 描述 | 变量 | 方程 |
+| Bus Signal | | | Description | Variable | Equations |
 | --- | --- | --- | --- | --- | --- |
-| `PwrInfo` | `PwrTrnsfrd` — 模块之间传输的功率  - 正信号表示流入模块 - 负信号表示流出模块 | `PwrMtr` | 机械功率 | *Pmot* | Pmot= −ωTmech |
-| `PwrBus` | 电功率 | *Pbus* | 他励直流电机  Pbus= vaia+vfif |
-| 永磁励磁直流电机  Pbus= vaia |
-| 串励直流电机  Pbus= vafiaf |
-| `PwrNotTrnsfrd` — 功率跨过模块边界，但未传输  - 正信号表示输入 - 负信号表示损耗 | `PwrLoss` | 电机损耗 | *Ploss* | Ploss= −(Pmot+Pbus−Pind) |
-| `PwrStored` — 存储能量的变化率  - 正信号表示增加 - 负信号表示减少 | `PwrInd` | 电气电感 | *Pind* | 他励直流电机  Pind= Lfifdifdt+Laiadiadt |
-| 永磁励磁直流电机  Pind= Laiadiadt |
+| `PwrInfo` | `PwrTrnsfrd` — 模块之间传输的功率  - 正信号表示流入模块 - 负信号表示流出模块 | `PwrMtr` | 机械功率 | *Pmot* | Pmot= −ωTmech |
+| `PwrBus` | 电功率 | *Pbus* | 他励直流电机  Pbus= vaia+vfif |
+| 永磁励磁直流电机  Pbus= vaia |
+| 串励直流电机  Pbus= vafiaf |
+| `PwrNotTrnsfrd` — 穿过模块边界但未传输的功率  - 正信号表示输入 - 负信号表示损耗 | `PwrLoss` | 电机损耗 | *Ploss* | Ploss= −(Pmot+Pbus−Pind) |
+| `PwrStored` — 存储能量的变化率  - 正信号表示增加 - 负信号表示减少 | `PwrInd` | 电感 | *Pind* | 他励直流电机  Pind= Lfifdifdt+Laiadiadt |
+| 永磁励磁直流电机  Pind= Laiadiadt |
 | 串励直流电机  Pind=Lseriafdiafdt |
 
-方程使用这些变量。
+这些方程使用以下变量。
 
 |  |  |
 | --- | --- |
@@ -497,16 +537,16 @@ Tmech= iaf2Laf
 | *EMF* | 反电动势 |
 | *Rf* | 励磁绕组电阻 |
 | *Lf* | 励磁绕组电感 |
-| *Laf* | 励磁和电枢互感 |
+| *Laf* | 励磁与电枢互感 |
 | *ia* | 电枢绕组电流 |
 | *if* | 励磁绕组电流 |
 | *Kt* | 电机转矩常数 |
 | *ω* | 电机轴角速度 |
 | *Va* | 电枢绕组电压 |
 | *Vf* | 励磁绕组电压 |
-| *Vaf* | 励磁和电枢绕组电压 |
-| *iaf* | 励磁和电枢串联电流 |
-| *Rser* | 串联连接的励磁和电枢电阻 |
-| *Lser* | 串联连接的励磁和电枢电感 |
+| *Vaf* | 励磁与电枢绕组电压 |
+| *iaf* | 励磁与电枢串联电流 |
+| *Rser* | 串联连接的励磁与电枢电阻 |
+| *Lser* | 串联连接的励磁与电枢电感 |
 | *iload* | 起动机电流负载 |
 | *Tmech* | 起动机轴转矩 |

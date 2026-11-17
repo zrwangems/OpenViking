@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simulation 3D Air Transport Pack'
-family: 'animation'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -28,9 +28,9 @@ chinese_source: worker-translation
 
 发动机 1 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **发动机 1 平移** 参数。
+要启用此端口，请选中 **Engine 1 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -38,9 +38,9 @@ chinese_source: worker-translation
 
 发动机 2 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **发动机 2 平移** 参数。
+要启用此端口，请选中 **Engine 2 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -48,9 +48,9 @@ chinese_source: worker-translation
 
 发动机 3 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **发动机 3 平移** 参数。
+要启用此端口，请选中 **Engine 3 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -58,9 +58,9 @@ chinese_source: worker-translation
 
 发动机 4 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **发动机 4 平移** 参数。
+要启用此端口，请选中 **Engine 4 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -68,9 +68,9 @@ chinese_source: worker-translation
 
 方向舵平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **方向舵平移** 参数。
+要启用此端口，请选中 **Rudder translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -78,9 +78,9 @@ chinese_source: worker-translation
 
 升降舵平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **升降舵平移** 参数。
+要启用此端口，请选中 **Elevator translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -88,9 +88,9 @@ chinese_source: worker-translation
 
 水平安定面平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **水平安定面平移** 参数。
+要启用此端口，请选中 **Horizontal stab translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -98,9 +98,9 @@ chinese_source: worker-translation
 
 左副翼平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左副翼平移** 参数。
+要启用此端口，请选中 **Left aileron translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -108,9 +108,9 @@ chinese_source: worker-translation
 
 右副翼平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右副翼平移** 参数。
+要启用此端口，请选中 **Right aileron translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -118,9 +118,9 @@ chinese_source: worker-translation
 
 襟翼组 1 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **襟翼组 1 平移** 参数。
+要启用此端口，请选中 **Flaps set 1 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -128,9 +128,9 @@ chinese_source: worker-translation
 
 襟翼组 2 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **襟翼组 2 平移** 参数。
+要启用此端口，请选中 **Flaps set 2 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -138,9 +138,9 @@ chinese_source: worker-translation
 
 左扰流板平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左扰流板平移** 参数。
+要启用此端口，请选中 **Left spoiler translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -148,9 +148,9 @@ chinese_source: worker-translation
 
 右扰流板平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右扰流板平移** 参数。
+要启用此端口，请选中 **Right spoiler translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -158,9 +158,9 @@ chinese_source: worker-translation
 
 前起落架平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **前起落架平移** 参数。
+要启用此端口，请选中 **Nose gear translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -168,9 +168,9 @@ chinese_source: worker-translation
 
 前轮平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **前轮平移** 参数。
+要启用此端口，请选中 **Nose wheel translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -178,9 +178,9 @@ chinese_source: worker-translation
 
 前起落架舱门 1 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **前起落架舱门 1 平移** 参数。
+要启用此端口，请选中 **Nose gear door 1 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -188,9 +188,9 @@ chinese_source: worker-translation
 
 前起落架舱门 2 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **前起落架舱门 2 平移** 参数。
+要启用此端口，请选中 **Nose gear door 2 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -198,9 +198,9 @@ chinese_source: worker-translation
 
 左起落架平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架平移** 参数。
+要启用此端口，请选中 **Left gear translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -208,9 +208,9 @@ chinese_source: worker-translation
 
 左轮平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左轮平移** 参数。
+要启用此端口，请选中 **Left wheel translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -218,9 +218,9 @@ chinese_source: worker-translation
 
 左起落架连杆平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架连杆平移** 参数。
+要启用此端口，请选中 **Left gear link translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -228,9 +228,9 @@ chinese_source: worker-translation
 
 左起落架舱门 1 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架舱门 1 平移** 参数。
+要启用此端口，请选中 **Left gear door 1 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -238,9 +238,9 @@ chinese_source: worker-translation
 
 左起落架舱门 2 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架舱门 2 平移** 参数。
+要启用此端口，请选中 **Left gear door 2 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -248,9 +248,9 @@ chinese_source: worker-translation
 
 左起落架舱门 2.2 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架舱门 2.2 平移** 参数。
+要启用此端口，请选中 **Left gear door 2.2 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -258,9 +258,9 @@ chinese_source: worker-translation
 
 右起落架平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架平移** 参数。
+要启用此端口，请选中 **Right gear translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -268,9 +268,9 @@ chinese_source: worker-translation
 
 右轮平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右轮平移** 参数。
+要启用此端口，请选中 **Right wheel translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -278,9 +278,9 @@ chinese_source: worker-translation
 
 右起落架连杆平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架连杆平移** 参数。
+要启用此端口，请选中 **Right gear link translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -288,9 +288,9 @@ chinese_source: worker-translation
 
 右起落架舱门 1 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架舱门 1 平移** 参数。
+要启用此端口，请选中 **Right gear door 1 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -298,9 +298,9 @@ chinese_source: worker-translation
 
 右起落架舱门 2 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架舱门 2 平移** 参数。
+要启用此端口，请选中 **Right gear door 2 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -308,9 +308,9 @@ chinese_source: worker-translation
 
 右起落架舱门 2.2 平移，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架舱门 2.2 平移** 参数。
+要启用此端口，请选中 **Right gear door 2.2 translation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -324,9 +324,9 @@ chinese_source: worker-translation
 
 发动机 1 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **发动机 1 旋转** 参数。
+要启用此端口，请选中 **Engine 1 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -334,9 +334,9 @@ chinese_source: worker-translation
 
 发动机 2 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **发动机 2 旋转** 参数。
+要启用此端口，请选中 **Engine 2 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -344,9 +344,9 @@ chinese_source: worker-translation
 
 发动机 3 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **发动机 3 旋转** 参数。
+要启用此端口，请选中 **Engine 3 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -354,9 +354,9 @@ chinese_source: worker-translation
 
 发动机 4 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **发动机 4 旋转** 参数。
+要启用此端口，请选中 **Engine 4 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -364,9 +364,9 @@ chinese_source: worker-translation
 
 方向舵旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **方向舵旋转** 参数。
+要启用此端口，请选中 **Rudder rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -374,9 +374,9 @@ chinese_source: worker-translation
 
 升降舵旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **升降舵旋转** 参数。
+要启用此端口，请选中 **Elevator rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -384,9 +384,9 @@ chinese_source: worker-translation
 
 水平安定面旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **水平安定面旋转** 参数。
+要启用此端口，请选中 **Horizontal stab rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -394,9 +394,9 @@ chinese_source: worker-translation
 
 左副翼旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左副翼旋转** 参数。
+要启用此端口，请选中 **Left aileron rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -404,9 +404,9 @@ chinese_source: worker-translation
 
 右副翼旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右副翼旋转** 参数。
+要启用此端口，请选中 **Right aileron rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -414,9 +414,9 @@ chinese_source: worker-translation
 
 襟翼组 1 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **襟翼组 1 旋转** 参数。
+要启用此端口，请选中 **Flaps set 1 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -424,9 +424,9 @@ chinese_source: worker-translation
 
 襟翼组 2 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **襟翼组 2 旋转** 参数。
+要启用此端口，请选中 **Flaps set 2 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -434,9 +434,9 @@ chinese_source: worker-translation
 
 左扰流板旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左扰流板旋转** 参数。
+要启用此端口，请选中 **Left spoiler rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -444,9 +444,9 @@ chinese_source: worker-translation
 
 右扰流板旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右扰流板旋转** 参数。
+要启用此端口，请选中 **Right spoiler rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -454,9 +454,9 @@ chinese_source: worker-translation
 
 前起落架旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **前起落架旋转** 参数。
+要启用此端口，请选中 **Nose gear rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -464,9 +464,9 @@ chinese_source: worker-translation
 
 前轮旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **前轮旋转** 参数。
+要启用此端口，请选中 **Nose wheel rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -474,9 +474,9 @@ chinese_source: worker-translation
 
 前起落架舱门 1 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **前起落架舱门 1 旋转** 参数。
+要启用此端口，请选中 **Nose gear door 1 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -484,9 +484,9 @@ chinese_source: worker-translation
 
 前起落架舱门 2 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **前起落架舱门 2 旋转** 参数。
+要启用此端口，请选中 **Nose gear door 2 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -494,9 +494,9 @@ chinese_source: worker-translation
 
 左起落架旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架旋转** 参数。
+要启用此端口，请选中 **Left gear rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -504,9 +504,9 @@ chinese_source: worker-translation
 
 左轮旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左轮旋转** 参数。
+要启用此端口，请选中 **Left wheel rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -514,9 +514,9 @@ chinese_source: worker-translation
 
 左起落架连杆旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架连杆旋转** 参数。
+要启用此端口，请选中 **Left gear link rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -524,9 +524,9 @@ chinese_source: worker-translation
 
 左起落架舱门 1 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架舱门 1 旋转** 参数。
+要启用此端口，请选中 **Left gear door 1 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -534,9 +534,9 @@ chinese_source: worker-translation
 
 左起落架舱门 2 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架舱门 2 旋转** 参数。
+要启用此端口，请选中 **Left gear door 2 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -544,9 +544,9 @@ chinese_source: worker-translation
 
 左起落架舱门 2.2 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **左起落架舱门 2.2 旋转** 参数。
+要启用此端口，请选中 **Left gear door 2.2 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -554,9 +554,9 @@ chinese_source: worker-translation
 
 右起落架旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架旋转** 参数。
+要启用此端口，请选中 **Right gear rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -564,9 +564,9 @@ chinese_source: worker-translation
 
 右轮旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右轮旋转** 参数。
+要启用此端口，请选中 **Right wheel rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -574,9 +574,9 @@ chinese_source: worker-translation
 
 右起落架连杆旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架连杆旋转** 参数。
+要启用此端口，请选中 **Right gear link rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -584,9 +584,9 @@ chinese_source: worker-translation
 
 右起落架舱门 1 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架舱门 1 旋转** 参数。
+要启用此端口，请选中 **Right gear door 1 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -594,9 +594,9 @@ chinese_source: worker-translation
 
 右起落架舱门 2 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架舱门 2 旋转** 参数。
+要启用此端口，请选中 **Right gear door 2 rotation** 参数。
 
 **数据类型：** `single` | `double`
 
@@ -604,19 +604,18 @@ chinese_source: worker-translation
 
 右起落架舱门 2.2 旋转，指定为 1×3 矩阵。
 
-#### 依赖项
+#### 依赖关系
 
-要启用此端口，请选择 **右起落架舱门 2.2 旋转** 参数。
+要启用此端口，请选中 **Right gear door 2.2 rotation** 参数。
 
 **数据类型：** `single` | `double`
-
 ### 输出
 
-### **Translation** — 飞机平移 `30`-by-`3` 数组
+### **Translation** — 飞机平移 `30`×`3` 数组
 
-运输机的飞机平移，返回为 `30`-by-`3` 数组。信号包含平移 [*X*, *Y*, *Z*]，以 meters 为单位，数组的每一行对应飞机的一个骨骼。
+空中运输飞机的飞机平移，以 `30`×`3` 数组形式返回。该信号包含平移 [*X*，*Y*，*Z*]，单位为米，数组的每一行对应飞机的一个骨骼。
 
-平移应用于 `Air transport` 类型的以下骨骼。
+该平移适用于 `Air transport` 类型的以下骨骼。
 
 | 骨骼 | 索引 |
 | --- | --- |
@@ -651,794 +650,808 @@ chinese_source: worker-translation
 | RIGHT\_GEAR\_DOOR2 | 29 |
 | RIGHT\_GEAR\_DOOR2\_2 | 30 |
 
-### **Rotation** — 飞机旋转 `30`-by-`3` 数组
+### **Rotation** — Aircraft rotation `30`×`3` 数组
 
-运输机的飞机旋转，返回为 `30`-by-`3` 数组。
+用于 air transport aircraft 的 Aircraft rotation，返回为
+`30`×`3` 数组。
 
-旋转应用于与 Translation 端口所列相同的骨骼。
+该 rotation 应用于与 Translation 端口所列相同的 bones。
 
-信号包含旋转 [roll, pitch, yaw]，以 radians 为单位，数组的每一行对应飞机的一个骨骼。
+该信号包含 rotation [roll, pitch, yaw]，单位为弧度，数组的每一行
+对应 aircraft 的一个 bone。
 
 ## 参数
 
-### 推进
+### Propulsion
 
-### **发动机 1 平移** — 启用 Engine1\_T 输入端口的选项 `off`（默认） | `on`
+### **Engine 1 translation** — 用于启用 Engine1\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Engine1\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Engine1_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Engine1_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **发动机 2 平移** — 启用 Engine2\_T 输入端口的选项 `off`（默认） | `on`
+### **Engine 2 translation** — 用于启用 Engine2\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Engine2\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Engine2_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Engine2_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **发动机 3 平移** — 启用 Engine3\_T 输入端口的选项 `off`（默认） | `on`
+### **Engine 3 translation** — 用于启用 Engine3\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Engine3\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Engine3_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Engine3_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **发动机 4 平移** — 启用 Engine4\_T 输入端口的选项 `off`（默认） | `on`
+### **Engine 4 translation** — 用于启用 Engine4\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Engine4\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Engine4_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Engine4_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **发动机 1 旋转** — 启用 Engine1\_R 输入端口的选项 `off`（默认） | `on`
+### **Engine 1 rotation** — 用于启用 Engine1\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Engine1\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Engine1_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Engine1_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **发动机 2 旋转** — 启用 Engine2\_R 输入端口的选项 `off`（默认） | `on`
+### **Engine 2 rotation** — 用于启用 Engine2\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Engine2\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Engine2_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Engine2_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **发动机 3 旋转** — 启用 Engine3\_R 输入端口的选项 `off`（默认） | `on`
+### **Engine 3 rotation** — 用于启用 Engine3\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Engine3\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Engine3_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Engine3_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **发动机 4 旋转** — 启用 Engine4\_R 输入端口的选项 `off`（默认） | `on`
+### **Engine 4 rotation** — 用于启用 Engine4\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Engine4\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Engine4_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Engine4_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### 控制
+### Controls
 
-### **方向舵平移** — 启用 Rudder\_T 输入端口的选项 `off`（默认） | `on`
+### **Rudder translation** — 用于启用 Rudder\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Rudder\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Rudder_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Rudder_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **升降舵平移** — 启用 Elevator\_T 输入端口的选项 `off`（默认） | `on`
+### **Elevator translation** — 用于启用 Elevator\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Elevator\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Elevator_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Elevator_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **水平安定面平移** — 启用 Horizontal\_Stab\_T 输入端口的选项 `off`（默认） | `on`
+### **Horizontal stab translation** — 用于启用 Horizontal\_Stab\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Horizontal\_Stab\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Horizontal_Stab_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Horizontal_Stab_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左副翼平移** — 启用 Left\_Aileron\_T 输入端口的选项 `off`（默认） | `on`
+### **Left aileron translation** — 用于启用 Left\_Aileron\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Aileron\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Aileron_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Aileron_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右副翼平移** — 启用 Right\_Aileron\_T 输入端口的选项 `off`（默认） | `on`
+### **Right aileron translation** — 用于启用 Right\_Aileron\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Aileron\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Aileron_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Aileron_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **襟翼组 1 平移** — 启用 Flaps1\_T 输入端口的选项 `off`（默认） | `on`
+### **Flaps set 1 translation** — 用于启用 Flaps1\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Flaps1\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Flaps1_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Flaps1_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **襟翼组 2 平移** — 启用 Flaps2\_T 输入端口的选项 `off`（默认） | `on`
+### **Flaps set 2 translation** — 用于启用 Flaps2\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Flaps2\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Flaps2_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Flaps2_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左扰流板平移** — 启用 Left\_Spoiler\_T 输入端口的选项 `off`（默认） | `on`
+### **Left spoiler translation** — 用于启用 Left\_Spoiler\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Spoiler\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Spoiler_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Spoiler_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右扰流板平移** — 启用 Right\_Spoiler\_T 输入端口的选项 `off`（默认） | `on`
+### **Right spoiler translation** — 用于启用 Right\_Spoiler\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Spoiler\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Spoiler_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Spoiler_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **方向舵旋转** — 启用 Rudder\_R 输入端口的选项 `off`（默认） | `on`
+### **Rudder rotation** — 用于启用 Rudder\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Rudder\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Rudder_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Rudder_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **升降舵旋转** — 启用 Elevator\_R 输入端口的选项 `off`（默认） | `on`
+### **Elevator rotation** — 用于启用 Elevator\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Elevator\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Elevator_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Elevator_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **水平安定面旋转** — 启用 Horizontal\_Stab\_R 输入端口的选项 `off`（默认） | `on`
+### **Horizontal stab rotation** — 用于启用 Horizontal\_Stab\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Horizontal\_Stab\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Horizontal_Stab_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Horizontal_Stab_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左副翼旋转** — 启用 Left\_Aileron\_R 输入端口的选项 `off`（默认） | `on`
+### **Left aileron rotation** — 用于启用 Left\_Aileron\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Aileron\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Aileron_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Aileron_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右副翼旋转** — 启用 Right\_Aileron\_R 输入端口的选项 `off`（默认） | `on`
+### **Right aileron rotation** — 用于启用 Right\_Aileron\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Aileron\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Aileron_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Aileron_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **襟翼组 1 旋转** — 启用 Flaps1\_R 输入端口的选项 `off`（默认） | `on`
+### **Flaps set 1 rotation** — 用于启用 Flaps1\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Flaps1\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Flaps1_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Flaps1_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **襟翼组 2 旋转** — 启用 Flaps2\_R 输入端口的选项 `off`（默认） | `on`
+### **Flaps set 2 rotation** — 用于启用 Flaps2\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Flaps2\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Flaps2_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Flaps2_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左扰流板旋转** — 启用 Left\_Spoiler\_R 输入端口的选项 `off`（默认） | `on`
+### **Left spoiler rotation** — 用于启用 Left\_Spoiler\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Spoiler\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Spoiler_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Spoiler_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右扰流板旋转** — 启用 Right\_Spoiler\_R 输入端口的选项 `off`（默认） | `on`
+### **Right spoiler rotation** — 用于启用 Right\_Spoiler\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Spoiler\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Spoiler_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Spoiler_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### 起落架
+### Gear
 
-### **前起落架平移** — 启用 Nose\_Gear\_T 输入端口的选项 `off`（默认） | `on`
+### **Nose gear translation** — 用于启用 Nose\_Gear\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Nose\_Gear\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Nose_Gear_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Nose_Gear_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **前轮平移** — 启用 Nose\_Wheel\_T 输入端口的选项 `off`（默认） | `on`
+### **Nose wheel translation** — 用于启用 Nose\_Wheel\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Nose\_Wheel\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Nose_Wheel_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Nose_Wheel_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **前起落架舱门 1 平移** — 启用 Nose\_Gear\_Door1\_T 输入端口的选项 `off`（默认） | `on`
+### **Nose gear door 1 translation** — 用于启用 Nose\_Gear\_Door1\_T 输入端口的选项 `off`（默认）| `on`
 
-选择此参数以启用 **Nose\_Gear\_Door1\_T** 输入端口。
+选择此参数以启用 **Nose\_Gear\_Door1\_T** 输入
+端口。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**: `Nose_Gear_Door1_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
-
-### **前起落架舱门 2 平移** — 启用 Nose\_Gear\_Door2\_T 输入端口的选项 `off`（默认） | `on`
-
-选择此参数以启用 **Nose\_Gear\_Door2\_T** 输入端口。
-
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Nose_Gear_Door2_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Nose_Gear_Door1_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左起落架平移** — 启用 Left\_Gear\_T 输入端口的选项 `off`（默认） | `on`
+### **Nose gear door 2 translation** — 用于启用 Nose\_Gear\_Door2\_T 输入端口的选项 `off`（默认）| `on`
+
+选择此参数以启用 **Nose\_Gear\_Door2\_T** 输入
+端口。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`Nose_Gear_Door2_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
+
+### **Left gear translation** — 用于启用 Left\_Gear\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Gear\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Gear_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Gear_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左轮平移** — 启用 Left\_Wheel\_T 输入端口的选项 `off`（默认） | `on`
+### **Left wheel translation** — 用于启用 Left\_Wheel\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Wheel\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Wheel_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Wheel_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左起落架连杆平移** — 启用 Left\_Gear\_Link\_T 输入端口的选项 `off`（默认） | `on`
+### **Left gear link translation** — 用于启用 Left\_Gear\_Link\_T 输入端口的选项 `off`（默认）| `on`
 
-选择此参数以启用 **Left\_Gear\_Link\_T** 输入端口。
+选择此参数以启用 **Left\_Gear\_Link\_T** 输入
+端口。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**: `Left_Gear_Link_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
-
-### **左起落架舱门 1 平移** — 启用 Left\_Gear\_Door1\_T 输入端口的选项 `off`（默认） | `on`
-
-选择此参数以启用 **Left\_Gear\_Door1\_T** 输入端口。
-
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Gear_Door1_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Gear_Link_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左起落架舱门 2 平移** — 启用 Left\_Gear\_Door2\_T 输入端口的选项 `off`（默认） | `on`
+### **Left gear door 1 translation** — 用于启用 Left\_Gear\_Door1\_T 输入端口的选项 `off`（默认）| `on`
 
-选择此参数以启用 **Left\_Gear\_Door2\_T** 输入端口。
+选择此参数以启用 **Left\_Gear\_Door1\_T** 输入
+端口。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**: `Left_Gear_Door2_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
-
-### **左起落架舱门 2.2 平移** — 启用 Left\_Gear\_Door2\_2\_T 输入端口的选项 `off`（默认） | `on`
-
-选择此参数以启用 **Left\_Gear\_Door2\_2\_T** 输入端口。
-
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Gear_Door2_2_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Gear_Door1_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右起落架平移** — 启用 Right\_Gear\_T 输入端口的选项 `off`（默认） | `on`
+### **Left gear door 2 translation** — 用于启用 Left\_Gear\_Door2\_T 输入端口的选项 `off`（默认）| `on`
+
+选择此参数以启用 **Left\_Gear\_Door2\_T** 输入
+端口。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`Left_Gear_Door2_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
+
+### **Left gear door 2.2 translation** — 用于启用 Left\_Gear\_Door2\_2\_T 输入端口的选项 `off`（默认）| `on`
+
+选择此参数以启用 **Left\_Gear\_Door2\_2\_T** 输入
+端口。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`Left_Gear_Door2_2_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
+
+### **Right gear translation** — 用于启用 Right\_Gear\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Gear\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Gear_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Gear_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右轮平移** — 启用 Right\_Wheel\_T 输入端口的选项 `off`（默认） | `on`
+### **Right wheel translation** — 用于启用 Right\_Wheel\_T 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Wheel\_T** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Wheel_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Wheel_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右起落架连杆平移** — 启用 Right\_Gear\_Link\_T 输入端口的选项 `off`（默认） | `on`
+### **Right gear link translation** — 用于启用 Right\_Gear\_Link\_T 输入端口的选项 `off`（默认）| `on`
 
-选择此参数以启用 **Right\_Gear\_Link\_T** 输入端口。
+选择此参数以启用 **Right\_Gear\_Link\_T** 输入
+端口。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**: `Right_Gear_Link_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
-
-### **右起落架舱门 1 平移** — 启用 Right\_Gear\_Door1\_T 输入端口的选项 `off`（默认） | `on`
-
-选择此参数以启用 **Right\_Gear\_Door1\_T** 输入端口。
-
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Gear_Door1_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Gear_Link_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右起落架舱门 2 平移** — 启用 Right\_Gear\_Door2\_T 输入端口的选项 `off`（默认） | `on`
+### **Right gear door 1 translation** — 用于启用 Right\_Gear\_Door1\_T 输入端口的选项 `off`（默认）| `on`
 
-选择此参数以启用 **Right\_Gear\_Door2\_T** 输入端口。
+选择此参数以启用 **Right\_Gear\_Door1\_T** 输入
+端口。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**: `Right_Gear_Door2_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
-
-### **右起落架舱门 2.2 平移** — 启用 Right\_Gear\_Door2\_2\_T 输入端口的选项 `off`（默认） | `on`
-
-选择此参数以启用 **Right\_Gear\_Door2\_2\_T** 输入端口。
-
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Gear_Door2_2_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Gear_Door1_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **前起落架旋转** — 启用 Nose\_Gear\_R 输入端口的选项 `off`（默认） | `on`
+### **Right gear door 2 translation** — 用于启用 Right\_Gear\_Door2\_T 输入端口的选项 `off`（默认）| `on`
+
+选择此参数以启用 **Right\_Gear\_Door2\_T** 输入
+端口。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`Right_Gear_Door2_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
+
+### **Right gear door 2.2 translation** — 用于启用 Right\_Gear\_Door2\_2\_T 输入端口的选项 `off`（默认）| `on`
+
+选择此参数以启用 **Right\_Gear\_Door2\_2\_T**
+输入端口。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`Right_Gear_Door2_2_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
+
+### **Nose gear rotation** — 用于启用 Nose\_Gear\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Nose\_Gear\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Nose_Gear_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Nose_Gear_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **前轮旋转** — 启用 Nose\_Wheel\_R 输入端口的选项 `off`（默认） | `on`
+### **Nose wheel rotation** — 用于启用 Nose\_Wheel\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Nose\_Wheel\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Nose_Wheel_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Nose_Wheel_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **前起落架舱门 1 旋转** — 启用 Nose\_Gear\_Door1\_R 输入端口的选项 `off`（默认） | `on`
+### **Nose gear door 1 rotation** — 用于启用 Nose\_Gear\_Door1\_R 输入端口的选项 `off`（默认）| `on`
 
-选择此参数以启用 **Nose\_Gear\_Door1\_R** 输入端口。
+选择此参数以启用 **Nose\_Gear\_Door1\_R** 输入
+端口。
 
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**: `Nose_Gear_Door1_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
-
-### **前起落架舱门 2 旋转** — 启用 Nose\_Gear\_Door2\_T 输入端口的选项 `off`（默认） | `on`
-
-选择此参数以启用 **Nose\_Gear\_Door2\_T** 输入端口。
-
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Nose_Gear_Door2_T` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Nose_Gear_Door1_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左起落架旋转** — 启用 Left\_Gear\_R 输入端口的选项 `off`（默认） | `on`
+### **Nose gear door 2 rotation** — 用于启用 Nose\_Gear\_Door2\_T 输入端口的选项 `off`（默认）| `on`
+
+选择此参数以启用 **Nose\_Gear\_Door2\_T** 输入
+端口。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**：`Nose_Gear_Door2_T` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
+
+### **Left gear rotation** — 启用 Left\_Gear\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Gear\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Gear_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Gear_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左轮旋转** — 启用 Left\_Wheel\_R 输入端口的选项 `off`（默认） | `on`
+### **Left wheel rotation** — 启用 Left\_Wheel\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Wheel\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Wheel_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Wheel_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左起落架连杆旋转** — 启用 Left\_Gear\_Link\_R 输入端口的选项 `off`（默认） | `on`
+### **Left gear link rotation** — 启用 Left\_Gear\_Link\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Gear\_Link\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Gear_Link_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Gear_Link_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左起落架舱门 1 旋转** — 启用 Left\_Gear\_Door1\_R 输入端口的选项 `off`（默认） | `on`
+### **Left gear door 1 rotation** — 启用 Left\_Gear\_Door1\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Gear\_Door1\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Gear_Door1_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Gear_Door1_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左起落架舱门 2 旋转** — 启用 Left\_Gear\_Door2\_R 输入端口的选项 `off`（默认） | `on`
+### **Left gear door 2 rotation** — 启用 Left\_Gear\_Door2\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Gear\_Door2\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Gear_Door2_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Gear_Door2_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **左起落架舱门 2.2 旋转** — 启用 Left\_Gear\_Door2\_2\_R 输入端口的选项 `off`（默认） | `on`
+### **Left gear door 2.2 rotation** — 启用 Left\_Gear\_Door2\_2\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Left\_Gear\_Door2\_2\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Left_Gear_Door2_2_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Left_Gear_Door2_2_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右起落架旋转** — 启用 Right\_Gear\_R 输入端口的选项 `off`（默认） | `on`
+### **Right gear rotation** — 启用 Right\_Gear\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Gear\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Gear_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Gear_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右轮旋转** — 启用 Right\_Wheel\_R 输入端口的选项 `off`（默认） | `on`
+### **Right wheel rotation** — 启用 Right\_Wheel\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Wheel\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Wheel_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Wheel_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右起落架连杆旋转** — 启用 Right\_Gear\_Link\_R 输入端口的选项 `off`（默认） | `on`
+### **Right gear link rotation** — 启用 Right\_Gear\_Link\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Gear\_Link\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Gear_Link_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Gear_Link_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右起落架舱门 1 旋转** — 启用 Right\_Gear\_Door1\_R 输入端口的选项 `off`（默认） | `on`
+### **Right gear door 1 rotation** — 启用 Right\_Gear\_Door1\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Gear\_Door1\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Gear_Door1_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Gear_Door1_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右起落架舱门 2 旋转** — 启用 Right\_Gear\_Door2\_R 输入端口的选项 `off`（默认） | `on`
+### **Right gear door 2 rotation** — 启用 Right\_Gear\_Door2\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Gear\_Door2\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Gear_Door2_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Gear_Door2_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
-### **右起落架舱门 2.2 旋转** — 启用 Right\_Gear\_Door2\_2\_R 输入端口的选项 `off`（默认） | `on`
+### **Right gear door 2.2 rotation** — 启用 Right\_Gear\_Door2\_2\_R 输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **Right\_Gear\_Door2\_2\_R** 输入端口。
 
-#### 编程用法
+#### 编程使用
 
 |  |
 | --- |
-| **模块参数**: `Right_Gear_Door2_2_R` |
-| **类型**: character vector |
-| **值**: `'on'` | `'off'` |
-| **默认值**: `'off'` |
+| **模块参数**：`Right_Gear_Door2_2_R` |
+| **类型**：character vector |
+| **值**：`'on'` | `'off'` |
+| **默认值**：`'off'` |
 
 ### 输入
 
-### **选择输入坐标框架** — 输入坐标框架 `NED`（默认） | `Fixed-frame` | `ICRF`
+### **Select input coordinate frame** — 输入坐标系 `NED`（默认）| `Fixed-frame` | `ICRF`
 
-选择输入坐标框架，以相对于 north-east-down (NED)、fixed-frame (Fixed-frame) 或 International Celestial Reference Frame (ICRF) 定位航空航天飞行器。
+选择输入坐标系，以相对于北-东-地（NED）、固定坐标系（Fixed-frame）或国际天球参考系（ICRF）来定位航空航天器。
 
-如果模型包含关联的 Simulation 3D Scene Configuration 模块，Simulation 3D Air Transport Pack 模块使用 Simulation 3D Scene Configuration 的坐标框架。在这种情况下，**选择输入坐标框架** 可能被禁用。有关 Simulation 3D Air Transport Pack 模块坐标框架的详细信息，请参阅 Algorithms。
+如果模型中包含关联的 Simulation 3D Scene Configuration 模块，则 Simulation 3D Air Transport Pack 模块使用 Simulation 3D Scene Configuration 的坐标系。在这种情况下，**Select input coordinate frame** 可能被禁用。有关 Simulation 3D Air Transport Pack 模块坐标系的详细信息，请参阅 Algorithms。
 
-#### 编程用法
+#### 编程使用
 
-要编程设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要编程获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `GeoRadioButton` |
-| **值：** | `'NED'`（默认） | `'Fixed-frame'` | `'ICRF'` |
+| **Parameter：** | `GeoRadioButton` |
+| **值**：| `'NED'`（默认）| `'Fixed-frame'` | `'ICRF'` |
 
 ## 所属库
 
@@ -1456,33 +1469,33 @@ R2025b 中未记录。
 
 **在 R2023b 中引入**
 
-### R2025a: Simulation 3D Air Transport Pack 模块现在与 Simulation 3D Scene Configuration 模块同步坐标框架
+### R2025a：Simulation 3D Air Transport Pack 模块现在与 Simulation 3D Scene Configuration 模块同步坐标系
 
-Simulation 3D Air Transport Pack 模块有以下更改：
+Simulation 3D Air Transport Pack 模块有以下变更：
 
 - **Geospatial** 选项卡已重命名为 **Input** 选项卡。
-- 在 **Input** 选项卡上，**Select input coordinate frame** 窗格现在包含以下坐标框架按钮：
+- 在 **Input** 选项卡上，**Select input coordinate frame** 窗格现在包含以下坐标系按钮：
 
-  - **Fixed-frame** — Fixed-frame 坐标框架。选择此坐标框架时，标注 `Fixed-frame` 会出现在 pack 模块图标下方。
-  - **ICRF** — International Celestial Reference Frame 坐标框架。选择此坐标框架时，标注 `ICRF` 会出现在 pack 模块图标下方。
-  - **NED** — North-east-down 坐标框架。选择此坐标框架时，标注 `NED` 会出现在 pack 模块图标下方。
+  - **Fixed-frame** — 固定坐标系。当您选择此坐标系时，注释 `Fixed-frame` 会显示在载具模块图标下方。
+  - **ICRF** — 国际天球参考系坐标系。当您选择此坐标系时，注释 `ICRF` 会显示在载具模块图标下方。
+  - **NED** — 北-东-地坐标系。当您选择此坐标系时，注释 `NED` 会显示在载具模块图标下方。
 
-  如果模型包含 Simulation 3D pack 模块和关联的 Simulation 3D Scene Configuration 模块，则 Simulation 3D Air Transport Pack 的 **Input** 选项卡选项可能被禁用。在这种情况下，Simulation 3D Air Transport Pack 会与 Simulation 3D Scene Configuration 模块同步坐标系。
-- 坐标系会作为标注显示在模块下方。
+  如果模型中包含 Simulation 3D 载具模块以及关联的 Simulation 3D Scene Configuration 模块，则 Simulation 3D Air Transport Pack 的 **Input** 选项卡选项可能被禁用。在这种情况下，Simulation 3D Air Transport Pack 会与 Simulation 3D Scene Configuration 模块同步坐标系。
+- 坐标系显示为模块下方的注释。
 - **Enable geospatial correction** 和 **Direction of x-axis (degrees clockwise from north)** 参数已被移除。
 
-### R2024a: Simulation 3D Air Transport Pack 模块现在支持 Earth-centered Earth-fixed (ECEF) 输入坐标框架
+### R2024a：Simulation 3D Air Transport Pack 模块现在支持地心地球固定（ECEF）输入坐标系
 
-要为平移输入启用 ECEF 坐标系，Simulation 3D Air Transport Pack 模块已更新。将这些参数与 Simulation 3D Scene Configuration 模块中的 **Use Earth center as origin (ECEF)** 参数一起使用。
+为支持用于平移输入的 ECEF 坐标系，Simulation 3D Air Transport Pack 模块已更新。请将这些参数与 Simulation 3D Scene Configuration 模块中的 **Use Earth center as origin (ECEF)** 参数一起使用。
 
-- **Select input coordinate frame**
+- **选择输入坐标系**
 
-  - **ECEF** — ECEF 输入坐标框架。选择此坐标框架时，标注 `Origin: Earth center (ECEF)` 会出现在 pack 模块图标下方。
-  - **NED** — NED 坐标框架。在 R2024a 之前，NED 是唯一支持的坐标框架。
-- **Direction of x-axis (degrees clockwise from north)** — *x* 轴的方向。选择 **Enable geospatial correction** 复选框时，此参数启用。
+  - **ECEF** — ECEF 输入坐标系。当您选择此坐标系时，注释 `Origin: Earth center (ECEF)` 会显示在载具模块图标下方。
+  - **NED** — NED 坐标系。在 R2024a 之前，NED 是唯一受支持的坐标系。
+- **Direction of x-axis (degrees clockwise from north)** — *x* 轴方向。当您选中 **Enable geospatial correction** 复选框时，此参数启用。
 
 ## 描述
 
-生成运输机的平移和旋转信息
+为空中运输航空器生成平移和旋转信息
 
 Simulation 3D Air Transport Pack 模块为 **Type** 设置为 `Air transport` 的 Simulation 3D Aircraft 模块创建平移和旋转信息。使用 Simulation 3D Air Transport Pack 模块向 Simulation 3D Aircraft 模块的 **Translation** 和 **Rotation** 输入端口提供平移和旋转信息。

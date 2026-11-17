@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'FM Demodulator Passband'
-family: 'modulation'
+family: 'comm'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b
@@ -18,46 +18,46 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **In** — 输入信号标量
+### **In** — 输入信号 标量
 
-输入信号，指定为标量。输入是已调信号的通带表示。
+输入信号，指定为标量。输入是调制信号的通带表示。
 
-此端口在模块上未命名。
+该端口在模块上未命名。
 
 **数据类型：** `double`
 ### 输出
 
-### **Out** — 解调输出信号标量
+### **Out** — 解调输出信号 标量
 
 解调输出信号，以标量形式返回。
 
-此端口在模块上未命名。
+该端口在模块上未命名。
 
 **数据类型：** `double`
 
 ## 参数
 
-要交互式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
+要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
 ### **Carrier frequency (Hz)** — 载波频率，单位为 Hz `300`（默认）| 正标量
 
 载波频率，单位为 Hz，指定为正标量。
 
-由于 Hilbert 变换是通过滤波器实现的，为获得最佳结果，请选择比输入信号采样率至少高 10% 的载波频率 *f*c。
+由于希尔伯特变换是通过滤波器实现的，为获得最佳结果，请选择载波频率 *f*c，使其至少比输入信号的采样率高出 10%。
 
-通常，合适的载波频率远高于输入信号的最高频率。根据 Nyquist 采样定理，1 / *T*s > (2 × *f*c)，其中 *T*s 表示输入信号的采样时间。有关详细信息，请参阅基带与通带仿真。
+通常，合适的载波频率远高于输入信号的最高频率。根据奈奎斯特采样定理，1 / *T*s > (2 × *f*c)，其中 *T*s 表示输入信号的采样时间。有关详细信息，请参阅基带与通带仿真。
 
-### **Initial phase (rad)** — 以弧度表示的初始相位偏移 `0`（默认）| 标量
+### **Initial phase (rad)** — 初始相位偏移，单位为弧度 `0`（默认）| 标量
 
-载波的初始相位偏移，以弧度表示，指定为标量。
+载波的初始相位偏移，单位为弧度，指定为标量。
 
-### **Frequency deviation (Hz)** — 载波频率的频率偏差，单位为 Hz `50`（默认）| 标量
+### **Frequency deviation (Hz)** — 载波频率的频率偏移，单位为 Hz `50`（默认）| 标量
 
-载波频率的频率偏差，单位为 Hz，指定为标量。也称为频率的*变化*。
+载波频率的频率偏移，单位为 Hz，指定为标量。也称为频率的*变化量*。
 
-### **Hilbert transform filter order (must be even)** — Hilbert 变换滤波器阶数 `100`（默认）| 正标量
+### **Hilbert transform filter order (must be even)** — 希尔伯特变换滤波器阶数 `100`（默认）| 正标量
 
-Hilbert 变换滤波器阶数，指定为大于 `2` 的偶数正标量。此参数值定义用于计算 Hilbert 变换的 FIR 滤波器的长度。
+希尔伯特变换滤波器阶数，指定为大于 `2` 的偶数正标量。该参数值定义了用于计算希尔伯特变换的 FIR 滤波器的长度。
 
 ## 所属库
 
@@ -77,7 +77,7 @@ Communications Toolbox / Modulation / Analog Baseband Modulation
 
 ## 版本历史
 
-**在 R2006a 之前引入**
+**在 R2006a 之前推出**
 
 ## 描述
 

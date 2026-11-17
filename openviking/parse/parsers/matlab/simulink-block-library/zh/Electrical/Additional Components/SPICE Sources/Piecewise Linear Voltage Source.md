@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Piecewise Linear Voltage Source'
-family: 'additional-components'
+family: 'sps'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b
@@ -16,38 +16,38 @@ chinese_source: worker-translation
 
 ## 端口
 
-### 守恒
+### 守恒端口
 
-### **+** — 正电压电气
+### **+** — 正电压电气端口
 
-与 Piecewise Linear Voltage Source 正电压相关联的电气守恒端口
+与分段线性电压源正电压相关联的电气守恒端口
 
-### **-** — 负电压电气
+### **-** — 负电压电气端口
 
-与 Piecewise Linear Voltage Source 负电压相关联的电气守恒端口
+与分段线性电压源负电压相关联的电气守恒端口
 
 ## 参数
 
-### **时间规范** — 时间值向量 `[0, 1, 2, 3, 4]` `s` (默认)
+### **Time specification** — 时间值向量 `[0, 1, 2, 3, 4]` `s`（默认）
 
-时间值向量为表格形式的 1-by-*n* 数组。时间值向量必须严格单调递增。
+以表格形式表示的 1×*n* 数组的时间值向量。时间值向量必须严格单调递增。
 
-### **指定时间的电流** — 电流值向量 `[0, 0, 0, 0, 0]` `V` (默认)
+### **Current at specified time** — 电流值向量 `[0, 0, 0, 0, 0]` `V`（默认）
 
-电压值向量为表格形式的 1-by-*n* 数组。电压值向量必须与时间值向量大小相同。
+以表格形式表示的 1×*n* 数组的电压值向量。电压值向量的大小必须与时间值向量相同。
 
-### **插值方法** — 插值方法 `Linear` (默认) | `Smooth`
+### **Interpolation method** — 插值方法 `Linear`（默认）| `Smooth`
 
-选择模块用于确定在未在前述向量中指定的中间时间点处输出电流值的方法：
+选择模块用于确定未在前述向量中指定的中间时间点处输出电压值的方法：
 
 - `Linear` — 通过使用线性函数优先考虑性能。
 - `Smooth` — 通过生成具有连续一阶导数的连续曲线优先考虑精度。
 
-### **外推方法** — 外推方法 `Nearest` (默认) | `Linear`
+### **Extrapolation method** — 外插方法 `Nearest`（默认）| `Linear`
 
-选择模块用于确定在前述向量中指定的时间范围之外的时间点处输出电流值的方法：
+选择模块用于确定在前述向量中指定的时间范围之外的时间点处输出电压值的方法：
 
-- `Nearest` — 选择此选项以使用最近的输入值进行外推。
+- `Nearest` — 选择此选项以使用最近的输入值进行外插。
 - `Linear` — 选择此选项以使用线性函数。
 
 ## 所属库
@@ -56,7 +56,7 @@ Simscape / Electrical / Sources Simscape / Electrical / Additional Components / 
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -70,4 +70,4 @@ Simscape / Electrical / Sources Simscape / Electrical / Additional Components / 
 
 使用查找表的时变电压源
 
-Piecewise Linear Voltage Source 模块表示一个电压源，您使用时间值向量和对应电压值向量以查找表形式指定该电压源。您必须至少指定两对时间-电流值对。该模块基于这些时间-电压值，使用选定的插值方法和外推方法生成随时间变化的电压。您可以选择两种插值方法和外推方法。输出电压与流过该源的电流无关。
+Piecewise Linear Voltage Source 模块表示一个电压源，您可以通过时间值向量和相应的电压值向量以查找表形式指定该电压源。您必须至少指定两对时间-电流值。该模块使用选定的插值方法和外插方法，基于这些时间-电压值生成时变电压。您可以选择两种插值方法和外插方法。输出电压与流过电源的电流无关。

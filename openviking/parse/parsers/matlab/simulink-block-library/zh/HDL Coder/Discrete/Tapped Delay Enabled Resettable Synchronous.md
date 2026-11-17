@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Tapped Delay Enabled Resettable Synchronous'
-family: 'discrete'
+family: 'hdlcoder'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
@@ -23,103 +23,103 @@ chinese_source: worker-translation
 要延迟的输入信号。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-**复数支持：** Yes
+**复数支持：** 是
 
 ### **E** — 使能信号 `Scalar`
 
-该模块接受下列数据类型的使能信号。有关详细信息，请参阅 Simulink 支持的数据类型。
+该模块接受下列数据类型的使能信号。有关详细信息，请参阅 Data Types Supported by Simulink。
 
-当使能信号为 false 且复位信号为 false 时，状态和输出信号保持上一个值。当 `E` 输入不为零时，使能信号为 true；当 `E` 输入为零时，使能信号为 false。
+当使能信号为 false 且复位信号为 false 时，状态和输出信号保持先前的值。当 `E` 输入不为零时，使能信号为 true；当 `E` 输入为零时，使能信号为 false。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 
 ### **R** — 复位信号 `Scalar`
 
-该模块接受下列数据类型的复位信号。有关详细信息，请参阅 Simulink 支持的数据类型。
+该模块接受下列数据类型的复位信号。有关详细信息，请参阅 Data Types Supported by Simulink。
 
-当复位信号为 true 时，状态和输出信号采用 **初始条件** 参数的值。当 R 不为零时，复位信号为 true；当 R 为零时，复位信号为 false。
+当复位信号为 true 时，状态和输出信号取 **Initial condition** 参数的值。当 R 不为零时，复位信号为 true；当 R 为零时，复位信号为 false。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 ### 输出
 
 ### **y** — 输入信号的延迟版本 标量 | 向量
 
-延迟输入信号的所有版本。使用 **输出向量排序起始项** 参数指定输出向量中延迟信号的顺序。
+延迟输入信号的所有版本。使用 **Order output vector starting with** 参数指定输出向量中延迟信号的顺序。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 
 ## 参数
 
-### **初始条件** — 初始输出 `0.0`（默认）| 标量
+### **Initial condition** — 初始输出 `0.0`（默认）| 标量
 
-指定仿真的初始输出。**初始条件** 参数会使用最近舍入和饱和从 double 离线转换为输入数据类型。
+指定仿真的初始输出。**Initial condition** 参数在离线状态下使用舍入到最近值和饱和从 double 转换为输入数据类型。
 
 #### 限制
 
-此模块的初始条件不能为 `inf` 或 `NaN`。
+该模块的初始条件不能为 `inf` 或 `NaN`。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `vinit` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** 标量 |
-| **默认值：** `'0.0'` |
+| **默认：** `'0.0'` |
 
-### **采样时间** — 采样之间的时间 `-1`（默认）| 标量 | 向量
+### **Sample time** — 采样之间的时间 `-1`（默认）| 标量 | 向量
 
-指定采样之间的时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅指定采样时间。
+指定采样之间的时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅 Specify Sample Time。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `samptime` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** 标量 | 向量 |
-| **默认值：** `'-1'` |
+| **默认：** `'-1'` |
 
-### **延迟数** — 离散时间算子数 `4`（默认）| 正标量 | `-1`（表示继承）
+### **Number of delays** — 离散时间算子数量 `4`（默认）| 正标量 | `-1`（用于继承）
 
-将离散时间算子数指定为正标量，或指定为 `-1` 表示继承。
+将离散时间算子的数量指定为正标量，或指定为 `-1` 以继承。
 
-`-1` 值指示模块通过反向传播继承延迟数。每个延迟等效于 z-1 离散时间算子，该算子由 Unit Delay 模块表示。
+值为 `-1` 时，指示该模块通过反向传播继承延迟数量。每个延迟等效于 z-1 离散时间算子，由 Unit Delay 模块表示。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `NumDelays` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** 正标量 | `-1`（继承） |
-| **默认值：** `'4'` |
+| **默认：** `'4'` |
 
-### **输出向量排序起始项** — 输出顺序 `Oldest`（默认）| `Newest`
+### **Order output vector starting with** — 输出顺序 `Oldest`（默认）| `Newest`
 
-指定先输出最旧的延迟版本，还是先输出最新的延迟版本。
+指定是先输出最旧的延迟版本，还是先输出最新的延迟版本。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `DelayOrder` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'Oldest' | 'Newest'` |
-| **默认值：** `'Oldest'` |
+| **默认：** `'Oldest'` |
 
-### **在输出向量中包含当前输入** — 在输出向量中包含当前输入 `off`（默认）| `on`
+### **Include current input in output vector** — 在输出向量中包含当前输入 `off`（默认）| `on`
 
 选中此复选框可在输出向量中包含当前输入。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
 | **模块参数：** `includeCurrent` |
-| **类型：** character vector |
+| **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
-| **默认值：** `'off'` |
+| **默认：** `'off'` |
 
 ## 所属库
 
@@ -131,7 +131,7 @@ R2025b 中未记录。
 
 ## 扩展功能
 
-### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
+### 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
 HDL Coder 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
@@ -143,10 +143,10 @@ HDL Coder 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
 |  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出处的寄存器数。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关详细信息，请参阅 ConstrainedOutputPipeline。 |
-| **InputPipeline** | 要在生成代码中插入的输入流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 InputPipeline。 |
-| **OutputPipeline** | 要在生成代码中插入的输出流水线级数。分布式流水线和受约束输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅 OutputPipeline。 |
-| **ResetType** | 抑制复位逻辑生成。默认值为 `default`，这会生成复位逻辑。另请参阅 ResetType。 |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟，在输出端放置的寄存器数量。分布式流水线不会重新分配这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline。 |
+| **InputPipeline** | 在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline。 |
+| **OutputPipeline** | 在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline。 |
+| **ResetType** | 抑制复位逻辑生成。默认值为 `default`，即生成复位逻辑。另请参阅 ResetType。 |
 
 **复数数据支持**
 
@@ -162,17 +162,17 @@ HDL Coder 提供影响 HDL 实现和综合逻辑的附加配置选项。
 
 Tapped Delay Enabled Resettable Synchronous 模块将输入延迟指定的采样周期数。当外部使能信号 **E** 为 true 且外部复位信号 **R** 为 false 时，该模块为每个延迟返回一个输出信号。
 
-例如，当您将 **延迟数** 指定为 `4`，并将 **输出排序起始项** 指定为 `Oldest` 时，该模块返回四个信号，第一个延迟四个采样周期，第二个延迟三个采样周期，依此类推。使用此模块可在时域中离散化信号或对信号进行重采样。
+例如，当您将 **Number of delays** 指定为 `4`，并将 **Order output starting with** 指定为 `Oldest` 时，该模块返回四个信号，第一个延迟四个采样周期，第二个延迟三个，依此类推。使用此模块可以在时域中离散化信号或对信号进行重采样。
 
 **输出向量顺序**
 
-该模块接受一个标量输入，并生成一个输出向量，其中包含每个增量延迟的数据。使用 **输出向量排序起始项** 参数指定输出向量中延迟信号的顺序：
+该模块接受一个标量输入，并生成一个输出向量，其中包含每个增量延迟的数据。使用 **Order output vector starting with** 参数指定输出向量中延迟信号的顺序：
 
-- `Oldest` 将输出向量排序为从最旧的延迟版本开始，到最新的延迟版本结束。
-- `Newest` 将输出向量排序为从最新的延迟版本开始，到最旧的延迟版本结束。
+- `Oldest` 将输出向量从最旧的延迟版本开始排序，到最新的延迟版本结束。
+- `Newest` 将输出向量从最新的延迟版本开始排序，到最旧的延迟版本结束。
 
-使用 **初始条件** 参数指定第一个采样周期的输出向量。仔细选择此参数可以减轻不需要的输出行为。
+使用 **Initial condition** 参数指定第一个采样周期的输出向量。仔细选择此参数可以减轻不需要的输出行为。
 
 **同步状态控制**
 
-该模块使用同步状态控制语义。当您在模型中使用此模块，并通过 HDL Coder™ 生成 HDL 代码时，由于该模块的 `Synchronous` 行为，您的模型会生成更简洁的 HDL 代码并使用更少的硬件资源。
+该模块使用同步状态控制语义。当您在模型中使用此模块并通过 HDL Coder™ 生成 HDL 代码时，由于该模块的 `Synchronous` 行为，您的模型会生成更简洁的 HDL 代码并使用更少的硬件资源。

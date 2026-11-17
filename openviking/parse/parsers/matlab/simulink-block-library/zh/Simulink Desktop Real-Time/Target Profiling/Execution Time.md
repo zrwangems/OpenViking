@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Execution Time'
-family: 'target-profiling'
+family: 'sldrt'
 product_id: 'sldrt'
 product_name: 'Simulink Desktop Real-Time'
 documentation_release: R2025b
@@ -20,21 +20,21 @@ chinese_source: worker-translation
 
 ### **Total Exec Time** — 上一个基础速率节拍的总执行时间 double
 
-提供截至上一个采样时间的总执行时间。
+给出截至上一个采样时间的总执行时间。
 
-### **Task Exec Time** — 各个采样率的任务执行时间（可选）vector of double
+### **Task Exec Time** — 各个采样速率的任务执行时间（可选）double 向量
 
-提供多任务模型中各个采样率截至上一个采样时间的任务执行时间。
+给出多任务模型中截至上一个采样时间的各个采样速率的任务执行时间。
 
 #### 依赖关系
 
-当选择 **测量任务执行时间** 时，此端口可见。
+当您选择 **Measure task execution times** 时，此端口可见。
 
 ## 参数
 
-### **测量任务执行时间** — 显示各个任务的执行时间 `‘off’` (默认) | `‘on’`
+### **Measure task execution times** — 显示各个任务的任务执行时间 `‘off’`（默认）| `‘on’`
 
-使端口 `Task Exec Time` 可见，该端口提供多任务模型中各个采样率截至上一个采样时间的任务执行时间。
+使端口 `Task Exec Time` 可见，该端口给出多任务模型中截至上一个采样时间的各个采样速率的任务执行时间。
 
 #### 编程用法
 
@@ -58,9 +58,9 @@ R2025b 中未记录。
 
 **在 R2017a 中引入**
 
-### R2024b: 对具有端口名称的模块的更新
+### R2024b：对具有端口名称的模块的更新
 
-在 R2024b 中，当启用可选端口（例如 **显示 "Missed Ticks" 端口**）时，这些 Simulink® Desktop Real-Time™ 模块端口会带标签显示。
+在 R2024b 中，当您启用可选端口（例如 **Show "Missed Ticks" port**）时，这些 Simulink® Desktop Real-Time™ 模块端口会带有标签显示。
 
 ## 描述
 

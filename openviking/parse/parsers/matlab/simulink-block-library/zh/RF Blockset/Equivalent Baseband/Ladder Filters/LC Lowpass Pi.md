@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'LC Lowpass Pi'
-family: 'equivalent-baseband'
+family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
@@ -20,68 +20,68 @@ R2025b 中未记录。
 
 ## 参数
 
-### 主要
+### 主
 
-### **Inductance (H)** — LC Lowpass Pi 的电感 `2.8318e-6` （默认） | vector
+### **Inductance (H)** — LC Lowpass Pi 的电感 `2.8318e-6`（默认）| 向量
 
-向量，包含网络中所有电感器的电感值，按从源到负载的顺序排列。电感向量必须至少包含三个元素。所有值必须严格为正。
+包含网络中所有电感器电感值的向量，按从源到负载的顺序排列。电感向量必须至少包含三个元素。所有值必须严格为正。
 
-### **Capacitance (F)** — LC Lowpass Pi 的电容 `[5.3296e-9 5.3296e-9]` （默认） | vector
+### **Capacitance (F)** — LC Lowpass Pi 的电容 `[5.3296e-9 5.3296e-9]`（默认）| 向量
 
-向量，包含网络中所有电容器的电容值，按从源到负载的顺序排列。其长度必须等于您在 **Inductance** 参数中提供的向量长度。所有值必须严格为正。
+包含网络中所有电容器电容值的向量，按从源到负载的顺序排列。其长度必须等于您在 **Inductance** 参数中提供的向量长度。所有值必须严格为正。
 
 ### 可视化
 
-### **Source of frequency data** — 频率数据源 `User-specified` （默认）
+### **Source of frequency data** — 频率数据源 `User-specified`（默认）
 
 频率数据源，指定为 `User-specified`。
 
-### **Frequency data (Hz)** — 频率数据范围 `[1:1.0e5:4e6]` （默认） | vector
+### **Frequency data (Hz)** — 频率数据范围 `[1:1.0e5:4e6]`（默认）| 向量
 
 频率数据范围，指定为以赫兹为单位的向量。
 
-### **Reference impedance (ohms)** — 参考阻抗 `50` （默认） | nonnegative scalar
+### **Reference impedance (ohms)** — 参考阻抗 `50`（默认）| 非负标量
 
 参考阻抗，指定为以欧姆为单位的非负标量。
 
-### **Plot type** — 数据绘图类型 `X-Y plane` （默认） | `Composite data` | `Polar plane` | `Z Smith chart` | `Y Smith chart` | `ZY Smith chart`
+### **Plot type** — 数据绘图类型 `X-Y plane`（默认）| `Composite data` | `Polar plane` | `Z Smith chart` | `Y Smith chart` | `ZY Smith chart`
 
-要使用给定数据可视化的数据绘图类型，指定为以下值之一：
+使用给定数据可视化的数据绘图类型，指定为以下之一：
 
-- `X-Y plane` — 生成数据随频率变化的笛卡尔图。要创建线性图、半对数图或双对数图，请相应地设置 **Y-axis scale** 和 **X-axis scale**。
-- `Composite data` — 绘制复合数据。有关详细信息，请参阅使用 Equivalent Baseband Library 模块创建绘图。
+- `X-Y plane` — 生成数据随频率变化的笛卡尔图。要创建线性、半对数或双对数图，请相应地设置 **Y-axis scale** 和 **X-axis scale**。
+- `Composite data` — 绘制复合数据。有关详细信息，请参阅 Create Plots Using Equivalent Baseband Library Blocks。
 - `Polar plane` — 生成数据的极坐标图。该模块仅绘制与指定频率对应的数据范围。
-- `Z smith chart`、`Y smith chart` 和 `ZY smith chart` — 生成 Smith® 图。该模块仅绘制与指定频率对应的数据范围。
+- `Z smith chart`、`Y smith chart` 和 `ZY smith chart` — 生成史密斯®图。该模块仅绘制与指定频率对应的数据范围。
 
-### **Y parameter1** — 要绘制的参数类型 `S11` （默认） | `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | ...
+### **Y parameter1** — 要绘制的参数类型 `S11`（默认）| `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | ...
 
-要根据所设置的 **Plot type** 绘制的参数类型，指定为以下值之一。
+基于您设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
 
 | Plot type | Y parameter1 |
 | --- | --- |
 | `X-Y plane` | `S11`、`S12`、`S21`、`S22`、`GroupDelay`、`OIP3`、`NF`、`NFactor` 和 `NTemp`。 |
-| `Composite data` | 没有要设置的 **Y parameter1**。 |
+| `Composite data` | 无需设置 **Y parameter1**。 |
 | `Polar plane` | `S11`、`S12`、`S21` 和 `S22` |
 | `Z Smith chart` | `S11` 和 `S22`。 |
 | `Y Smith chart` | `S11` 和 `S22`。 |
 | `ZY smith chart` | `S11` 和 `S22`。 |
 
-### **Y parameter2** — 要绘制的参数类型 `S11` （默认） | `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | ...
+### **Y parameter2** — 要绘制的参数类型 `S11`（默认）| `S12` | `S21` | `S22` | `GroupDelay` | `OIP3` | `NF` | ...
 
-要根据所设置的 **Plot type** 绘制的参数类型，指定为以下值之一。
+基于您设置的 **Plot type** 要绘制的参数类型，指定为以下之一。
 
 | Plot type | Y parameter2 |
 | --- | --- |
 | `X-Y plane` | `S11`、`S12`、`S21`、`S22`、`GroupDelay`、`OIP3`、`NF`、`NFactor` 和 `NTemp`。 |
-| `Composite data` | 没有要设置的 **Y parameter2**。 |
+| `Composite data` | 无需设置 **Y parameter2**。 |
 | `Polar plane` | `S11`、`S12`、`S21` 和 `S22` |
 | `Z Smith chart` | `S11` 和 `S22`。 |
 | `Y Smith chart` | `S11` 和 `S22`。 |
 | `ZY smith chart` | `S11` 和 `S22`。 |
 
-### **Y format1** — 绘图格式 `Magnitude (decibels)` （默认） | `Mag` | `Magnitude (linear)` | `Angle` | `Real` | `Imaginary` | ...
+### **Y format1** — 绘图格式 `Magnitude (decibels)`（默认）| `Mag` | `Magnitude (linear)` | `Angle` | `Real` | `Imaginary` | ...
 
-绘图格式，指定为以下值之一。
+绘图格式，指定为以下之一。
 
 | Y parameter1 | Y format1 |
 | --- | --- |
@@ -96,9 +96,9 @@ R2025b 中未记录。
 
 要启用 **Y format1**，请将 **Plot type** 设置为 `X-Y plane`。
 
-### **Y format2** — 绘图格式 `Magnitude (decibels)` （默认） | `Mag` | `Magnitude (linear)` | `Angle` | `Real` | `Imaginary` | ...
+### **Y format2** — 绘图格式 `Magnitude (decibels)`（默认）| `Mag` | `Magnitude (linear)` | `Angle` | `Real` | `Imaginary` | ...
 
-绘图格式，指定为以下值之一。
+绘图格式，指定为以下之一。
 
 | Y parameter2 | Y format2 |
 | --- | --- |
@@ -113,20 +113,20 @@ R2025b 中未记录。
 
 要启用 **Y format2**，请将 **Plot type** 设置为 `X-Y plane`。
 
-### **X parameter** — 频率绘图 `Freq` （默认）
+### **X parameter** — 频率绘图 `Freq`（默认）
 
 频率绘图，指定为 `Freq`。
 
-### **X format** — 频率绘图格式 `Hz` （默认） | `Auto` | `kHz` | `MHz` | `GHz` | `THz`
+### **X format** — 频率绘图格式 `Hz`（默认）| `Auto` | `kHz` | `MHz` | `GHz` | `THz`
 
-频率绘图格式，指定为以下值之一。
+频率绘图格式，指定为以下之一。
 
 |  |  |  |  |
 | --- | --- | --- | --- |
 | `Auto` | `Hz` | `kHz` | `MHz` |
 | `GHz` | `THz` |  |  |
 
-### **Y scale** — Y 轴刻度 `Linear` （默认） | `Log`
+### **Y scale** — Y 轴刻度 `Linear`（默认）| `Log`
 
 Y 轴刻度，指定为 `Linear` 或 `Log`。
 
@@ -134,7 +134,7 @@ Y 轴刻度，指定为 `Linear` 或 `Log`。
 
 要启用此参数，请将 **Plot type** 设置为 `X-Y plane`。
 
-### **X scale** — X 轴刻度 `Linear` （默认） | `Log`
+### **X scale** — X 轴刻度 `Linear`（默认）| `Log`
 
 X 轴刻度，指定为 `Linear` 或 `Log`。
 
@@ -144,7 +144,7 @@ X 轴刻度，指定为 `Linear` 或 `Log`。
 
 ### **Plot** — 绘制指定数据按钮
 
-使用 Plot 按钮绘制指定的数据。
+使用绘图按钮绘制指定数据。
 
 ## 所属库
 
@@ -166,15 +166,15 @@ R2025b 中未记录。
 
 对 LC 低通 pi 网络进行建模
 
-LC Lowpass Pi 模块根据其随频率变化的 S 参数，对模块对话框中描述的 LC 低通 pi 网络进行建模。
+LC Lowpass Pi 模块根据其频率相关 S 参数，对模块对话框中描述的 LC 低通 pi 网络进行建模。
 
-对于网络中的每个电感器和电容器，该模块首先计算建模频率向量中包含的每个频率处的 ABCD 参数。对于每个串联电路，A = 1、B = *Z*、C = 0、D = 1，其中 *Z* 是串联电路的阻抗。对于每个并联支路，A = 1、B = 0、C = *Y*、D = 1，其中 *Y* 是并联支路的导纳。
+对于网络中的每个电感和电容，该模块首先在建模频率向量中包含的每个频率处计算 ABCD 参数。对于每个串联电路，A = 1，B = *Z*，C = 0，D = 1，其中 *Z* 是串联电路的阻抗。对于每个并联支路，A = 1，B = 0，C = *Y*，D = 1，其中 *Y* 是并联支路电路的导纳。
 
-然后，LC Lowpass Pi 模块在每个建模频率处级联每个电路元件的 ABCD 参数，并使用 RF Toolbox™ `abcd2s` 函数将级联后的参数转换为 S 参数。
+然后，LC Lowpass Pi 模块在每个建模频率处级联每个电路元件的 ABCD 参数，并使用 RF Toolbox™ 的 `abcd2s` 函数将级联参数转换为 S 参数。
 
 有关确定建模频率的信息，请参阅 Output Port 模块参考页。
 
-LC 低通 pi 网络对象是一种二端口网络，如下图所示。
+LC 低通 pi 网络对象是一个二端口网络，如下图所示。
 
 二端口 LC 低通 pi 网络
 

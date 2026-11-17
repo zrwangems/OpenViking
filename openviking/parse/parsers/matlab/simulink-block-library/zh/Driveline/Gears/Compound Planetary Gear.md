@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Compound Planetary Gear'
-family: 'gears'
+family: 'sdl'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b
@@ -32,159 +32,159 @@ chinese_source: worker-translation
 
 ### **H** — 热流热
 
-与热流关联的热守恒端口。热流通过改变齿轮温度来影响动力传输效率。
+与热流关联的热守恒端口。热流通过改变齿轮温度影响动力传输效率。
 
 #### 依赖关系
 
-要启用此端口，请将 **摩擦模型** 设置为 `Temperature-dependent efficiency`。
+要启用此端口，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
 
 ## 参数
 
 ### 主要
 
-### **齿圈 (R) 到行星轮 (P) 齿数比 (NR/NP)** — 齿圈到行星轮旋转比 `2` （默认） | 大于 `1` 的标量
+### **Ring (R) to planet (P) teeth ratio (NR/NP)** — 齿圈与行星轮旋转比 `2`（默认）| 大于 `1` 的标量
 
-固定比值，*gRP*，齿圈旋转与行星轮旋转之比，定义为齿圈齿数除以行星轮齿数。此齿轮比必须严格大于 `1`。
+齿圈与行星轮旋转的固定比值 *gRP*，定义为齿圈齿数除以行星轮齿数。此齿轮比必须严格大于 `1`。
 
-### **行星轮 (P) 到太阳轮 (S) 齿数比 (NP/NS)** — 行星轮到太阳轮旋转比 `1` （默认） | 正标量
+### **Planet (P) to sun (S) teeth ratio (NP/NS)** — 行星轮与太阳轮旋转比 `1`（默认）| 正标量
 
-固定比值，*gPS*，行星轮旋转与太阳轮旋转之比，定义为行星轮齿数除以太阳轮齿数。此齿轮比必须严格大于 `0`。
+行星轮与太阳轮旋转的固定比值 *gPS*，定义为行星轮齿数除以太阳轮齿数。此齿轮比必须严格大于 `0`。
 
 ### 啮合损失
 
-### **摩擦模型** — 摩擦模型 `No meshing losses - Suitable for HIL simulation` （默认） | `Constant efficiency` | `Temperature-dependent efficiency`
+### **Friction model** — 摩擦模型 `No meshing losses - Suitable for HIL simulation`（默认）| `Constant efficiency` | `Temperature-dependent efficiency`
 
-该模块的摩擦模型：
+模块的摩擦模型：
 
-- `No meshing losses - Suitable for HIL simulation` — 齿轮啮合是理想的。
-- `Constant efficiency` — 齿轮轮对之间的扭矩传递按恒定效率 *η* 降低，其中 0 < *η* ≤ 1。
-- `Temperature-dependent efficiency` — 齿轮轮对之间的扭矩传递由基于温度的查表定义。
+- `No meshing losses - Suitable for HIL simulation` — 齿轮啮合为理想状态。
+- `Constant efficiency` — 齿轮对之间的扭矩传递按恒定效率 *η* 降低，其中 0 < *η* ≤ 1。
+- `Temperature-dependent efficiency` — 齿轮对之间的扭矩传递由基于温度的查表定义。
 
-### **太阳轮-行星轮和齿圈-行星轮普通效率** — 扭矩传递效率 `[.96 .98]` （默认） | 向量
+### **Sun-planet and ring-planet ordinary efficiencies** — 扭矩传递效率 `[.96 .98]`（默认）| 向量
 
-扭矩传递效率向量，[*ηSP* *ηRP*]，分别用于太阳轮-行星轮和齿圈-行星架齿轮轮对啮合。向量元素必须位于区间 (0,1] 内。
-
-#### 依赖关系
-
-要启用此参数，请将 **摩擦模型** 设置为 `Constant efficiency`。
-
-### **Temperature** — 温度 `[280, 300, 320]` `K` （默认） | 向量
-
-用于构造一维温度-效率查找表的温度向量。向量元素必须从左到右递增。
+太阳轮-行星轮和齿圈-行星架齿轮对啮合的扭矩传递效率向量 [*ηSP* *ηRP*]。向量元素必须在区间 (0,1] 内。
 
 #### 依赖关系
 
-要启用此参数，请将 **摩擦模型** 设置为 `Temperature-dependent efficiency`。
+要启用此参数，请将 **Friction model** 设置为 `Constant efficiency`。
 
-### **太阳轮-行星轮效率** — 太阳轮-行星轮效率 `[.95, .9, .85]` （默认） | 向量 | rot
+### **Temperature** — 温度 `[280, 300, 320]` `K`（默认）| 向量
 
-描述从太阳轮到行星轮功率流的输出功率与输入功率比向量，*ηSP*。该模块使用这些值构造一维温度-效率查找表。
-
-每个元素是与 **Temperature** 向量中某个温度对应的效率。该向量的长度必须等于 **Temperature** 向量的长度。向量中的每个元素必须位于范围 (0,1] 内。
+用于构建一维温度-效率查找表的温度向量。向量元素必须从左到右递增。
 
 #### 依赖关系
 
-要启用此参数，请将 **摩擦模型** 设置为 `Temperature-dependent efficiency`。
+要启用此参数，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
 
-### **齿圈-行星轮效率** — 齿圈-行星轮效率 `[.95 .9 .85]` （默认） | 向量
+### **Sun-planet efficiency** — 太阳轮-行星轮效率 `[.95, .9, .85]`（默认）| 向量 | rot
 
-组件效率向量，*ηRP*—输出功率与输入功率之比，该模块使用它构造一维温度-效率查找表。
+描述从太阳轮到行星轮功率流的输出-输入功率比向量 *ηSP*。模块使用这些值构建一维温度-效率查找表。
 
-每个元素是与 **Temperature** 向量中某个温度对应的效率。该向量的长度必须等于 **Temperature** 向量的长度。向量中的每个元素必须位于范围 (0,1] 内。
-
-#### 依赖关系
-
-要启用此参数，请将 **摩擦模型** 设置为 `Temperature-dependent efficiency`。
-
-### **太阳轮-行星架和行星轮-行星架功率阈值** — 太阳轮-行星架和行星轮-行星架齿轮联轴器的最小效率功率阈值 `[.001, .001]` `W` （默认） | 向量
-
-功率阈值向量，高于该阈值时应用完整效率因子。按太阳轮-行星架、行星轮-行星架的顺序输入阈值。低于这些值时，双曲正切函数会对效率因子进行平滑处理。
-
-当您将 **摩擦模型** 设置为 `Constant efficiency` 时，该模块在没有功率传输时将效率损失降为零。当您将 **摩擦模型** 设置为 `Temperature-dependent efficiency` 时，该模块在静止时为零与功率阈值处由温度-效率查找表提供的值之间对效率因子进行平滑处理。
+每个元素是与 **Temperature** 向量中某个温度对应的效率。向量长度必须等于 **Temperature** 向量的长度。向量中每个元素必须在范围 (0,1] 内。
 
 #### 依赖关系
 
-要启用此参数，请将 **摩擦模型** 设置为 `Constant efficiency` 或 `Temperature-dependent efficiency`。
+要启用此参数，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
+
+### **Ring-planet efficiency** — 齿圈-行星轮效率 `[.95 .9 .85]`（默认）| 向量
+
+组件效率向量 *ηRP*——输出功率与输入功率之比，模块使用这些值构建一维温度-效率查找表。
+
+每个元素是与 **Temperature** 向量中某个温度对应的效率。向量长度必须等于 **Temperature** 向量的长度。向量中每个元素必须在范围 (0,1] 内。
+
+#### 依赖关系
+
+要启用此参数，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
+
+### **Sun-carrier and planet-carrier power thresholds** — 太阳轮-行星架和行星轮-行星架齿轮联轴器的最低效率功率阈值 `[.001, .001]` `W`（默认）| 向量
+
+功率阈值向量，超过该阈值时应用完整效率因子。按太阳轮-行星架、行星轮-行星架的顺序输入阈值。低于这些值时，双曲正切函数对效率因子进行平滑处理。
+
+当您将 **Friction model** 设置为 `Constant efficiency` 时，模块在无功率传输时将效率损失降至零。当您将 **Friction model** 设置为 `Temperature-dependent efficiency` 时，模块在功率阈值处对静止时为零与温度-效率查找表提供的值之间的效率因子进行平滑处理。
+
+#### 依赖关系
+
+要启用此参数，请将 **Friction model** 设置为 `Constant efficiency` 或 `Temperature-dependent efficiency`。
 
 ### 粘性损失
 
-### **太阳轮-行星架和行星轮-行星架粘性摩擦系数** — 齿轮粘性摩擦 `[0 0]` `N*m/(rad/s)` （默认） | 向量
+### **Sun-carrier and planet-carrier viscous friction coefficients** — 齿轮粘性摩擦 `[0 0]` `N*m/(rad/s)`（默认）| 向量
 
-粘性摩擦系数向量，[*μS* *μP*]，分别用于太阳轮-行星架和行星轮-行星架齿轮运动。
+太阳轮-行星架和行星轮-行星架齿轮运动的粘性摩擦系数向量 [*μS* *μP*]。
 
-### 惯性
+### 惯量
 
-### **Inertia** — 惯性选项 `off` （默认） | `on`
+### **Inertia** — 惯量选项 `off`（默认）| `on`
 
-是否在模块中包括惯性效应。
+是否在模块中包含惯量效应。
 
-### **太阳轮惯性** — 太阳轮惯性 `0.001` `kg*m^2` （默认） | 正标量
+### **Sun gear inertia** — 太阳轮惯量 `0.001` `kg*m^2`（默认）| 正标量
 
-太阳轮惯性。
-
-#### 依赖关系
-
-要启用此参数，请选择 **Inertia**。
-
-### **齿圈惯性** — 齿圈惯性 `0.001` `kg*m^2` （默认） | 正标量
-
-齿圈惯性。
+太阳轮惯量。
 
 #### 依赖关系
 
-要启用此参数，请选择 **Inertia**。
+要启用此参数，请选中 **Inertia**。
 
-### **行星架齿轮惯性** — 行星架齿轮惯性 `0.001` `kg*m^2` （默认） | 正标量
+### **Ring gear inertia** — 齿圈惯量 `0.001` `kg*m^2`（默认）| 正标量
 
-行星架齿轮惯性。
-
-#### 依赖关系
-
-要启用此参数，请选择 **Inertia**。
-
-### **行星架齿轮半径** — 行星架齿轮半径 `0.01` `m` （默认） | 正标量
-
-行星架齿轮半径。
+齿圈惯量。
 
 #### 依赖关系
 
-要启用此参数，请选择 **Inertia**。
+要启用此参数，请选中 **Inertia**。
 
-### **行星轮自旋惯性** — 行星轮自旋惯性 `0.001` `kg*m^2` （默认） | 正标量
+### **Carrier gear inertia** — 行星架惯量 `0.001` `kg*m^2`（默认）| 正标量
 
-行星轮绕自身轴线的惯性。
+行星架惯量。
 
 #### 依赖关系
 
-要启用此参数，请选择 **Inertia**。
+要启用此参数，请选中 **Inertia**。
 
-### **行星轮质量** — 行星轮质量 `0.001` `kg*m^2` （默认） | 正标量
+### **Carrier gear radius** — 行星架半径 `0.01` `m`（默认）| 正标量
+
+行星架半径。
+
+#### 依赖关系
+
+要启用此参数，请选中 **Inertia**。
+
+### **Planet gear spin inertia** — 行星轮自旋惯量 `0.001` `kg*m^2`（默认）| 正标量
+
+行星轮绕自身轴线的惯量。
+
+#### 依赖关系
+
+要启用此参数，请选中 **Inertia**。
+
+### **Planet gear mass** — 行星轮质量 `0.001` `kg*m^2`（默认）| 正标量
 
 行星轮质量。
 
 #### 依赖关系
 
-要启用此参数，请选择 **Inertia**。
+要启用此参数，请选中 **Inertia**。
 
 ### 热端口
 
-要启用此参数，请将 **摩擦模型** 设置为 `Temperature-dependent efficiency`。
+要启用此参数，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
 
-### **热质量** — 热质量 `50` `J/K` （默认） | 标量
+### **Thermal mass** — 热质量 `50` `J/K`（默认）| 标量
 
-将组件温度改变一个温度单位所需的热能。热质量越大，组件越不易发生温度变化。
-
-#### 依赖关系
-
-要启用此参数，请将 **摩擦模型** 设置为 `Temperature-dependent efficiency`。
-
-### **初始温度** — 初始温度 `300` `K` （默认） | 标量
-
-仿真开始时的模块温度。初始温度根据各组件各自的效率向量设置初始组件效率。
+将组件温度改变一个温度单位所需的热能。热质量越大，组件对温度变化的抵抗能力越强。
 
 #### 依赖关系
 
-要启用此参数，请将 **摩擦模型** 设置为 `Temperature-dependent efficiency`。
+要启用此参数，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
+
+### **Initial temperature** — 初始温度 `300` `K`（默认）| 标量
+
+仿真开始时模块的温度。初始温度根据各自的效率向量设置初始组件效率。
+
+#### 依赖关系
+
+要启用此参数，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
 
 ## 所属库
 
@@ -204,27 +204,27 @@ R2025b 中未记录。
 
 ### R2025a：枚举更新
 
-**Inertia** 参数现在使用复选框。在以前的版本中，此参数使用下拉列表。
+**Inertia** 参数现在使用复选框。此参数在之前的版本中使用下拉菜单。
 
-### R2024b：惯性更新
+### R2024b：惯量更新
 
-现在可以指定所有齿轮子组件的惯性，包括太阳轮、齿圈和行星架齿轮。现在还可以在行星轮惯性行为中包括行星轮进动的影响。
+您现在可以指定所有齿轮子组件的惯量，包括太阳轮、齿圈和行星架齿轮。您现在还可以在行星轮惯量行为中包含行星轮进动的影响。
 
 ## 描述
 
 带阶梯行星轮组的行星齿轮系
 
-Compound Planetary Gear 模块表示具有复合行星轮的行星齿轮系。每个复合行星轮是一对不同半径、刚性连接并沿纵向排列的齿轮。两个齿轮中的一个与位于中心的太阳轮啮合，而另一个与外齿圈啮合。
+Compound Planetary Gear 模块表示具有复合行星轮的行星齿轮系。每个复合行星轮是一对刚性连接且纵向排列的不同半径的齿轮。两个齿轮中的一个与中心位置的太阳轮啮合，另一个与外齿圈啮合。
 
 **Compound Planetary Gear**
 
-该模块基于 Simscape™ Driveline™ Sun-Planet 和 Ring-Planet 模块，将复合行星齿轮建模为结构组件。该图展示了 Compound planetary gear 模块的等效框图。
+该模块基于 Simscape™ Driveline™ 的 Sun-Planet 和 Ring-Planet 模块，将复合行星齿轮建模为结构组件。图中展示了 Compound planetary gear 模块的等效框图。
 
-要提高齿轮模型的保真度，请指定诸如齿轮惯性、啮合损失和粘性损失等属性。默认情况下，齿轮惯性和粘性损失假定可忽略不计。该模块允许您指定内部行星轮的惯性。要对行星架、太阳轮和齿圈建模惯性，请将 Simscape Inertia 模块连接到端口 **C**、**S** 和 **R**。
+为提高齿轮模型的保真度，可指定齿轮惯量、啮合损失和粘性损失等属性。默认情况下，假设齿轮惯量和粘性损失可忽略不计。该模块允许您指定内部行星轮的惯量。要对行星架、太阳轮和齿圈的惯量建模，请将 Simscape Inertia 模块连接到端口 **C**、**S** 和 **R**。
 
 ### 热模型
 
-您可以通过启用可选热端口来对热流和温度变化的影响进行建模。要启用该端口，请将 **摩擦模型** 设置为 `Temperature-dependent efficiency`。
+您可以通过启用可选热端口来对热流和温度变化的影响进行建模。要启用该端口，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
 
 ### 方程
 
@@ -232,18 +232,18 @@ Compound Planetary Gear 模块表示具有复合行星轮的行星齿轮系。�
 
 Compound Planetary Gear 模块施加两个运动学约束和两个几何约束。
 
-rCωC=rSωS+rP1ωP,
+rCωC=rSωS+rP1ωP，
 
-rRωR=rCωC+rP2ωP,
+rRωR=rCωC+rP2ωP，
 
-rC=rS+rP1,
+rC=rS+rP1，
 
-rR=rC+rP2,
+rR=rC+rP2，
 
 其中：
 
-- *rC* 是行星架齿轮的半径。
-- *ωC* 是行星架齿轮的角速度。
+- *rC* 是行星架的半径。
+- *ωC* 是行星架的角速度。
 - *rS* 是太阳轮的半径。
 - *ωS* 是太阳轮的角速度。
 - *rP1* 是行星轮 1 的半径。
@@ -255,9 +255,9 @@ rR=rC+rP2,
 
 gRP=rR/rP2=NR/NP2
 
-以及
+和
 
-gPS=rP1/rS=NP1/NS,
+gPS=rP1/rS=NP1/NS，
 
 其中：
 
@@ -270,9 +270,9 @@ gPS=rP1/rS=NP1/NS,
 
 就齿轮比而言，关键运动学约束为：
 
-(1 + gRPgPS)ωC = ωS + gRPgPSωR.
+(1 + gRPgPS)ωC = ωS + gRPgPSωR。
 
-四个自由度减少为两个独立自由度。齿轮对为 (1, 2) = (*P2*, *R*) 和 (*S*, *P1*)。
+四个自由度简化为两个独立自由度。齿轮对为 (1, 2) = (*P2*, *R*) 和 (*S*, *P1*)。
 
 **警告**
 
@@ -282,9 +282,9 @@ gPS=rP1/rS=NP1/NS,
 
 gRPτP2 + τR– τloss(P2,R) = 0
 
-以及
+和
 
-gPSτS + τP1 – τloss(S,P1)=0,
+gPSτS + τP1 – τloss(S,P1)=0，
 
 其中：
 
@@ -294,14 +294,14 @@ gPSτS + τP1 – τloss(S,P1)=0,
 - *τS* 是太阳轮的扭矩传递。
 - *τP1* 是行星轮 1 的扭矩传递。
 
-在没有扭矩损失的理想情况下，*τloss* = 0。
+在无扭矩损失的理想情况下，*τloss* = 0。
 
 **非理想齿轮约束和损失**
 
-在非理想情况下，*τloss* ≠ 0。有关详细信息，请参阅对带损失的齿轮建模。
+在非理想情况下，*τloss* ≠ 0。有关详细信息，请参阅 Model Gears with Losses。
 
 ### 假设和限制
 
-- 假定齿轮惯性可忽略不计。
+- 假设齿轮惯量可忽略不计。
 - 齿轮被视为刚性组件。
-- 库仑摩擦会减慢仿真速度。有关详细信息，请参阅调整模型保真度。
+- 库仑摩擦会减慢仿真速度。有关详细信息，请参阅 Adjust Model Fidelity。

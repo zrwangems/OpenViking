@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simulation 3D Actor Transform Get'
-family: 'simulation-3d'
+family: 'sl3d'
 product_id: 'sl3d'
 product_name: 'Simulink 3D Animation'
 documentation_release: R2025b
@@ -22,8 +22,10 @@ chinese_source: worker-translation
 
 角色平移，单位为 m。数组维度为每个角色的部件数乘以 `3`。
 
-- `Translation(1,1)`、`Translation(1,2)` 和 `Translation(1,3)` — 车辆分别沿世界 *X*、*Y* 和 *Z* 轴的位移。
-- `Translation(...,1)`、`Translation(...,2)` 和 `Translation(...,3)` — 角色相对于车辆的位移，分别位于最初与世界 *X*、*Y* 和 *Z* 轴对齐的车辆固定坐标系中。
+- `Translation(1,1)`、`Translation(1,2)` 和
+  `Translation(1,3)` — 车辆分别沿世界 *X*、*Y* 和 *Z* 轴的位移。
+- `Translation(...,1)`、`Translation(...,2)` 和
+  `Translation(...,3)` — 角色相对于车辆的位移，位于最初与世界 *X*、*Y* 和 *Z* 轴对齐的车辆固定坐标系中。
 
 例如，考虑一个具有车身和四个车轮的车辆角色。`Translation` 信号：
 
@@ -54,8 +56,10 @@ chinese_source: worker-translation
 
 角色旋转，单位为 rad。数组维度为每个角色的部件数乘以 `3`。
 
-- `Rotation(1,1)`、`Rotation(1,2)` 和 `Rotation(1,3)` — 车辆围绕车辆固定 pitch、roll 和 yaw *Y*、*Z* 和 *X* 轴的旋转，分别对应。
-- `Rotation(...,1)`、`Rotation(...,2)` 和 `Rotation(...,3)` — 角色围绕车辆固定 pitch、roll 和 yaw *Y*、*X* 和 *Z* 轴的旋转，分别对应。
+- `Rotation(1,1)`、`Rotation(1,2)` 和
+  `Rotation(1,3)` — 车辆分别绕车辆固定俯仰、横滚和偏航 *Y*、*Z* 和 *X* 轴的旋转。
+- `Rotation(...,1)`、`Rotation(...,2)` 和
+  `Rotation(...,3)` — 角色分别绕车辆固定俯仰、横滚和偏航 *Y*、*X* 和 *Z* 轴的旋转。
 
 例如，考虑一个具有车身和四个车轮的车辆角色。`Rotation` 信号：
 
@@ -84,15 +88,19 @@ chinese_source: worker-translation
 
 ### **Scale** — 角色缩放 `array`
 
-角色缩放。数组维度为每个角色的部件数乘以 `3`。
+角色缩放。数组维度为每个角色的部件数乘 `3`。
 
-- `Scale(1,1)`、`Scale(1,2)` 和 `Scale(1,3)` — 车辆分别沿世界 *X*、*Y* 和 *Z* 轴的缩放。
-- `Scale(...,1)`、`Scale(...,2)` 和 `Scale(...,3)` — 角色分别沿世界 *X*、*Y* 和 *Z* 轴的缩放。
+- `Scale(1,1)`、`Scale(1,2)` 和
+  `Scale(1,3)` — 车辆分别沿世界 *X*、
+  *Y* 和 *Z* 轴的缩放。
+- `Scale(...,1)`、`Scale(...,2)` 和
+  `Scale(...,3)` — 角色分别沿世界 *X*、
+  *Y* 和 *Z* 轴的缩放。
 
 例如，考虑一个具有车身和四个车轮的车辆角色。`Scale` 信号：
 
 - 维度为 `[5x3]`。
-- 包含根据车轴和车轮位置的缩放信息。
+- 根据车轴和车轮位置包含缩放信息。
 
   Scale=[XVscaleYVscaleZVscaleXFLscaleYFLscaleZFLscaleXFRscaleYFRscaleZFRscaleXRLscaleYRLscaleZRLscaleXRRscaleYRRscaleZRRscale]
 
@@ -116,25 +124,36 @@ chinese_source: worker-translation
 
 ## 参数
 
-### **3D 场景中角色的标签，ActorTag** — 名称 `SimulinkActor1` (默认) | character vector
+### **Tag for actor in 3D scene, ActorTag** — 名称 `SimulinkActor1`（默认）| 字符向量
 
 角色名称。
 
-角色是支持 3D 平移、旋转和缩放的场景对象。部件是角色的组件。组件本身不存在；它们与角色关联。
+角色是支持 3D
+平移、旋转和缩放的场景对象。部件是角色组件。组件不能独立存在；它们与角色关联。
 
-此模块不支持同一角色标签的多个实例。当你使用 3D 模块对（例如 Simulation 3D Actor Transform Get 和 Simulation 3D Actor Transform Set）引用同一场景角色时，请指定相同的 **3D 场景中角色的标签，ActorTag** 参数。
+该模块不支持同一角色标签的多个实例。当您使用 3D 模块对（例如 Simulation 3D Actor
+Transform Get 和 Simulation 3D Actor Transform Set）引用同一场景角色时，请指定
+相同的 **Tag for actor in 3D scene, ActorTag**
+参数。
 
-### **要获取的每个角色的部件数，NumberOfParts** — 名称 `1` (默认) | `scalar`
+### **Number of parts per actor to get, NumberOfParts** — 名称 `1`（默认）| `scalar`
 
-每个角色的部件数。角色是支持 3D 平移、旋转和缩放的场景对象。部件是角色的组件。组件本身不存在；它们与角色关联。通常，一个具有车身和四个车轮的车辆角色有 5 个部件。
+每个角色的部件数。角色是场景对象，
+支持 3D 平移、旋转和缩放。部件是角色组件。组件
+不能独立存在；它们与角色关联。通常，一个具有车身和四个车轮的车辆
+角色有 5 个部件。
 
-此模块不支持同一角色标签的多个实例。当你使用 3D 模块对（例如 Simulation 3D Actor Transform Get 和 Simulation 3D Actor Transform Set）引用同一场景角色时，请指定相同的 **3D 场景中角色的标签，ActorTag** 参数。
+该模块不支持同一角色标签的多个实例。当您使用 3D 模块对（例如 Simulation 3D Actor
+Transform Get 和 Simulation 3D Actor Transform Set）引用同一场景角色时，请指定
+相同的 **Tag for actor in 3D scene, ActorTag**
+参数。
 
-### **坐标系** — 角色变换的坐标系 `Default` (默认) | `MATLAB` | `ISO8855` | `AERO` | `VRML` | `SAE`
+### **Coordinate system** — 角色变换的坐标系 `Default`（默认）| `MATLAB` | `ISO8855` | `AERO` | `VRML` | `SAE`
 
 *自 R2025a 起*
 
-指定角色在 3D 环境中用于平移和旋转的坐标系。
+指定角色在 3D 环境中用于
+平移和旋转的坐标系。
 
 - `Default` – 世界坐标系
 - `MATLAB` – MATLAB® 坐标系
@@ -143,13 +162,14 @@ chinese_source: worker-translation
 - `VRML` – X3D ISO 标准坐标系
 - `SAE` – SAE 坐标系
 
-有关不同坐标系的更多详细信息，请参阅 Simulink 3D Animation 中的坐标系。
+有关不同坐标系的更多详细信息，请参阅 Coordinate Systems in Simulink 3D Animation。
 
 **示例：** `MATLAB`
 
-### **采样时间** — 采样时间 `-1` (默认) | `scalar`
+### **Sample time** — 采样时间 `-1`（默认）| `scalar`
 
-采样时间，*Ts*。图形帧率是采样时间的倒数。
+采样时间，*Ts*。图形帧率
+是采样时间的倒数。
 
 ## 所属库
 
@@ -157,11 +177,11 @@ Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blo
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -169,23 +189,24 @@ Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blo
 
 ### R2025a：设置坐标系参数
 
-设置 Simulation 3D Actor Transform Get 模块中的 **坐标系** 参数，以表示 3D 环境中角色变换的坐标系。
+在 Simulation 3D Actor Transform Get 模块中设置 **Coordinate system** 参数，
+以表示 3D 环境中角色变换的坐标系。
 
 ## 描述
 
-获取角色平移、旋转、缩放
+获取 actor 的平移、旋转、缩放
 
-Simulation 3D Actor Transform Get 模块为 Simulink® 仿真环境提供角色平移、旋转和缩放。
+Simulation 3D Actor Transform Get 模块为 Simulink® 仿真环境提供 actor 的平移、旋转和缩放。
 
-该模块的 **坐标系** 参数指定角色变换在 3D 环境中的应用方式。该模块的输出也遵循指定的坐标系。
+模块的 **Coordinate system** 参数指定 actor 变换在 3D 环境中的应用方式。模块的输出也遵循指定的坐标系。
 
-角色是支持 3D 平移、旋转和缩放的场景对象。部件是角色的组件。组件本身不存在；它们与角色关联。
+Actor 是支持 3D 平移、旋转和缩放的情景对象。Part 是 actor 的组件。组件不能独立存在；它们与 actor 相关联。
 
 **提示**
 
-验证 Simulation 3D Scene Configuration 模块在 Simulation 3D Actor Transform Get 模块之前执行。这样，Unreal Engine® 3D 可视化环境会在 Simulation 3D Actor Transform Get 模块接收数据之前准备好数据。要检查模块执行顺序，右键点击这些模块并选择 **属性**。在 **常规** 选项卡上，确认以下 **优先级** 设置：
+确认 Simulation 3D Scene Configuration 模块在 Simulation 3D Actor Transform Get 模块之前执行。这样，Unreal Engine® 3D 可视化环境会在 Simulation 3D Actor Transform Get 模块接收数据之前准备好数据。要检查模块执行顺序，请右键点击模块并选择 **Properties**。在 **General** 选项卡上，确认以下 **Priority** 设置：
 
 - Simulation 3D Scene Configuration — `0`
 - Simulation 3D Actor Transform Get — `1`
 
-有关执行顺序的更多信息，请参阅控制和显示执行顺序 (Simulink)。
+有关执行顺序的更多信息，请参阅 Control and Display Execution Order (Simulink)。

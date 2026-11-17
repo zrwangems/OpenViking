@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Fault Data Inport'
-family: 'fault-port-blocks'
+family: 'fault-analyzer'
 product_id: 'fault-analyzer'
 product_name: 'Simulink Fault Analyzer'
 documentation_release: R2025b
@@ -20,13 +20,13 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 来自模型信号的数据 标量 | 向量 | 矩阵
 
-Fault Data Inport 模块输出实数值标量、向量或矩阵数据。将该模块映射到模型中的模块或组件输出信号。模型必须包含分配给该行为的故障。映射到该模块的信号决定输出数据类型。
+Fault Data Inport 模块输出实值标量、向量或矩阵数据。将该模块映射到模型中的模块或组件输出信号。模型必须包含分配给该行为的故障。映射到该模块的信号决定输出数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumeration` | `bus`
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -44,7 +44,7 @@ Simulink Fault Analyzer / Fault Port Blocks
 
 ## 扩展功能
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 版本历史
 
@@ -54,8 +54,8 @@ Simulink Fault Analyzer / Fault Port Blocks
 
 将 Simulink 模型数据导入故障行为
 
-Fault Data Inport 模块从模型检索信号数据，并将数据提供给分配给故障的行为。可以使用这些模块从 Simulink® 和 System Composer™ 模型捕获信号数据。
+Fault Data Inport 模块从模型中检索信号数据，并将数据馈送到分配给故障的行为。您可以使用这些模块从 Simulink® 和 System Composer™ 模型中捕获信号数据。
 
-仅可在 Fault Subsystem 模块的顶层使用这些模块。
+仅在 Fault Subsystem 模块的顶层使用这些模块。
 
 有关详细信息，请参阅 Access Data from Model Outputs in Fault Behaviors。

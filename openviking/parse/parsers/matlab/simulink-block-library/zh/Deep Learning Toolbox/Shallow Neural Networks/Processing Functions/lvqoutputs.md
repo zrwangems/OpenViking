@@ -42,10 +42,10 @@ R2025b 中未记录。
 
 LVQ 输出处理函数
 
-`[X,settings] = lvqoutputs(X)` 原样返回其参数，但会将目标类别的比例存储在 `settings` 中，供 `initlvq` 用来初始化权重。
+`[X,settings] = lvqoutputs(X)` 原样返回其参数，但会将目标类别的比例存储在 settings 中，供 `initlvq` 用于初始化权重。
 
 `X = lvqoutputs('apply',X,PS)` 返回 `X`。
 
 `X = lvqoutputs('reverse',X,PS)` 返回 `X`。
 
-`dx_dy = lvqoutputs('dx_dy',X,X,PS)` 返回恒等导数。
+`dx_dy = lvqoutputs('dx_dy',X,X,PS)` 返回单位导数。

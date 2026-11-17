@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Temperature Conversion'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -20,75 +20,74 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 温度标量 | 数组
 
-温度，指定为初始温度单位下的标量或数组。
+温度，指定为标量或数组，采用初始温度单位。
 
-#### 依赖项
+#### 依赖关系
 
-输入端口标签取决于 **初始单位** 设置。
+输入端口标签取决于 **Initial unit** 设置。
 
 **数据类型：** `double`
-
 ### 输出
 
 ### **Port\_1** — 温度标量 | 数组
 
-温度，返回为最终温度单位下的标量或数组。
+温度，以标量或数组形式返回，采用最终温度单位。
 
-#### 依赖项
+#### 依赖关系
 
-输出端口标签取决于 **最终单位** 设置。
+输出端口标签取决于 **Final unit** 设置。
 
 **数据类型：** `double`
 
 ## 参数
 
-### **初始单位** — 输入单位 `R`（默认）| `F` | `C` | `K`
+### **Initial unit** — 输入单位 `R`（默认）| `F` | `C` | `K`
 
 输入单位，指定为：
 
 |  |  |
 | --- | --- |
-| `K` | Kelvin |
-| `F` | Degrees Fahrenheit |
-| `C` | Degrees Celsius |
-| `R` | Degrees Rankine |
+| `K` | 开尔文 |
+| `F` | 华氏度 |
+| `C` | 摄氏度 |
+| `R` | 兰氏度 |
 
-#### 依赖项
+#### 依赖关系
 
-输入端口标签取决于 **初始单位** 设置。
+输入端口标签取决于 **Initial unit** 设置。
 
-#### 程序化使用
+#### 编程用法
 
 |  |
 | --- |
-| **模块参数**: `IU` |
-| **类型**: character vector |
-| **值**: `'K'` | `'F'` | `'C'` | `'R'` |
-| **默认值**: `'R'` |
+| **模块参数**：`IU` |
+| **类型**：字符向量 |
+| **值**：`'K'` | `'F'` | `'C'` | `'R'` |
+| **默认值**：`'R'` |
 
-### **最终单位** — 输出单位 `K`（默认）| `F` | `C` | `R`
+### **Final unit** — 输出单位 `K`（默认）| `F` | `C` | `R`
 
 输出单位，指定为：
 
 |  |  |
 | --- | --- |
-| `K` | Kelvin |
-| `F` | Degrees Fahrenheit |
-| `C` | Degrees Celsius |
-| `R` | Degrees Rankine |
+| `K` | 开尔文 |
+| `F` | 华氏度 |
+| `C` | 摄氏度 |
+| `R` | 兰氏度 |
 
-#### 依赖项
+#### 依赖关系
 
-输出端口标签取决于 **最终单位** 设置。
+输出端口标签取决于 **Final unit** 设置。
 
-#### 程序化使用
+#### 编程用法
 
 |  |
 | --- |
-| **模块参数**: `OU` |
-| **类型**: character vector |
-| **值**: `'K'` | `'F'` | `'C'` | `'R'` |
-| **默认值**: `'K'` |
+| **模块参数**：`OU` |
+| **类型**：字符向量 |
+| **值**：`'K'` | `'F'` | `'C'` | `'R'` |
+| **默认值**：`'K'` |
 
 ## 所属库
 
@@ -96,7 +95,7 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -104,12 +103,12 @@ Aerospace Blockset / Utilities / Unit Conversions
 
 ## 版本历史
 
-**在 R2006a 之前引入**
+**在 R2006a 之前推出**
 
 ## 描述
 
-从温度单位转换为所需温度单位
+将温度单位转换为所需的温度单位
 
-Temperature Conversion 模块计算从指定输入温度单位到指定输出温度单位的转换因子，并将该转换因子应用于输入信号。
+Temperature Conversion 模块计算从指定的输入温度单位到指定的输出温度单位的转换因子，并将该转换因子应用于输入信号。
 
-Temperature Conversion 模块的端口标签会根据从 **初始单位** 和 **最终单位** 列表中选择的输入和输出单位而变化。
+Temperature Conversion 模块的端口标签根据从 **Initial unit** 和 **Final unit** 列表中选择的输入和输出单位而变化。

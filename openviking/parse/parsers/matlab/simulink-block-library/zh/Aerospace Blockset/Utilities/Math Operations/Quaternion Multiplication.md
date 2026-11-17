@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Quaternion Multiplication'
-family: 'utilities'
+family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
@@ -20,7 +20,7 @@ chinese_source: worker-translation
 
 ### **q** — 第一个四元数 四元数 | 四元数向量
 
-第一个四元数，指定为向量或四元数向量。四元数向量采用以下形式，其中 *q* 和
+第一个四元数，指定为向量或四元数向量。四元数向量具有以下形式，其中 *q* 和
 *p* 是四元数：
 
 `[ q
@@ -28,8 +28,7 @@ chinese_source: worker-translation
 0 , ..., q
 1 , p
 1 , ... , q
-2 ,
-p
+2 , p
 2 , ... , q
 3 , p
 3 , ...]`
@@ -38,7 +37,7 @@ p
 
 ### **r** — 第二个四元数 四元数 | 四元数向量
 
-第二个四元数，指定为向量或四元数向量。四元数向量采用以下形式，其中 *s* 和
+第二个四元数，指定为向量或四元数向量。四元数向量具有以下形式，其中 *s* 和
 *r* 是四元数：
 
 `[ s
@@ -54,15 +53,15 @@ p
 **数据类型：** `double`
 ### 输出
 
-### **q\*r** — 乘积向量 | 四元数乘积的向量
+### **q\*r** — 乘积 向量 | 四元数乘积向量
 
-两个四元数的乘积，输出为向量或四元数乘积的向量。
+两个四元数的乘积，输出为向量或四元数乘积向量。
 
 **数据类型：** `double`
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 所属库
 
@@ -70,7 +69,7 @@ Aerospace Blockset / Utilities / Math Operations
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -84,4 +83,4 @@ Aerospace Blockset / Utilities / Math Operations
 
 计算两个四元数的乘积
 
-Quaternion Multiplication 模块计算两个给定四元数的乘积。Aerospace Blockset™ 使用按标量优先约定定义的四元数。有关四元数形式的详细信息，请参阅算法。
+Quaternion Multiplication 模块计算两个给定四元数的乘积。Aerospace Blockset™ 使用按标量优先约定定义的四元数。有关四元数形式的更多信息，请参阅算法。

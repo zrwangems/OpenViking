@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Linear Sliding Mode Controller (State Feedback)'
-family: 'sliding-mode'
+family: 'slcontrol'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b
@@ -20,15 +20,15 @@ chinese_source: worker-translation
 
 ### **x** — 系统状态 标量 | 向量
 
-系统状态，指定为 *nx*×1 信号，其中 *nx* 是状态数。
+系统状态，指定为 *nx*×1 的信号，其中 *nx* 是状态的数量。
 
 **数据类型：** `single` | `double`
 
 ### **r** — 参考信号 标量 | 向量
 
-在跟踪模式下要跟随的参考轨迹，指定为 *ny*×1 信号，其中 *ny* 是输出数。
+跟踪模式下要跟随的参考轨迹，指定为 *ny*×1 的信号，其中 *ny* 是输出的数量。
 
-参考信号必须可微。
+参考信号必须是可微的。
 
 #### 依赖关系
 
@@ -38,9 +38,9 @@ chinese_source: worker-translation
 
 ### **r.dot** — 参考信号的导数 标量 | 向量
 
-参考信号的导数，指定为 *ny*×1 信号，其中 *ny* 是输出数。
+参考信号的导数，指定为 *ny*×1 的信号，其中 *ny* 是输出的数量。
 
-当您希望从外部输入提供参考信号的导数时，请使用此端口。否则，模块在仿真期间计算该导数。
+当您希望从外部输入提供参考信号的导数时，请使用此端口。否则，模块将在仿真期间计算导数。
 
 #### 依赖关系
 
@@ -50,18 +50,17 @@ chinese_source: worker-translation
 - 启用 **Include derivative reference signal**。
 
 **数据类型：** `single` | `double`
-
 ### 输出
 
-### **u** — 控制动作 标量 | 向量
+### **u** — 控制作用 标量 | 向量
 
-计算得到的控制动作，返回为 *nu*×1 信号，其中 *nu* 是输入数。
+计算得到的控制作用，返回为 *nu*×1 的信号，其中 *nu* 是输入的数量。
 
 **数据类型：** `single` | `double`
 
 ### **s(x)** — 切换函数值 标量 | 向量
 
-切换函数值，返回为 *nu*×1 信号，其中 *nu* 是输入数。
+切换函数值，返回为 *nu*×1 的信号，其中 *nu* 是输入的数量。
 
 #### 依赖关系
 
@@ -71,19 +70,19 @@ chinese_source: worker-translation
 
 ## 参数
 
-要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上的 **Prepare** 库中，选择 **Property Inspector**。
+要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
 ### 模型参数
 
 ### **A** — 状态矩阵 `[0 1; 0 0]`（默认）| 方阵
 
-系统的状态矩阵，指定为大小为 *nx*×*nx* 的方阵，其中 *nx* 是状态数。这里，系统是一类不确定线性系统，其标称模型由下式定义：
+系统的状态矩阵，指定为大小为 *nx*×*nx* 的方阵，其中 *nx* 是状态的数量。此处，系统是一类不确定线性系统，其标称模型定义为：
 
 x˙(t)=Ax(t)+Bu(t)
 
-对 (*A*,*B*) 必须是可控的。
+对 (*A*，*B*) 必须是可控的。
 
-#### 编程使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -96,13 +95,13 @@ x˙(t)=Ax(t)+Bu(t)
 
 ### **B** — 输入矩阵 `[0; 1]`（默认）| 矩阵
 
-系统的输入矩阵，指定为大小为 *nx*×*nu* 的矩阵，其中 *nx* 是状态数，*nu* 是输入数。这里，系统是一类不确定线性系统，其标称模型由下式定义：
+系统的输入矩阵，指定为大小为 *nx*×*nu* 的矩阵，其中 *nx* 是状态的数量，*nu* 是输入的数量。此处，系统是一类不确定线性系统，其标称模型定义为：
 
 x˙(t)=Ax(t)+Bu(t)
 
-对 (*A*,*B*) 必须是可控的。
+对 (*A*，*B*) 必须是可控的。
 
-#### 编程使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -115,17 +114,17 @@ x˙(t)=Ax(t)+Bu(t)
 
 ### **C** — 输出矩阵 `[1 0]`（默认）| 矩阵
 
-系统的输出矩阵，指定为大小为 *ny*×*nx* 的矩阵，其中 *nx* 是状态数，*ny* 是输出数。这里，系统是一类不确定线性系统，其标称模型由下式定义：
+系统的输出矩阵，指定为大小为 *ny*×*nx* 的矩阵，其中 *nx* 是状态的数量，*ny* 是输出的数量。此处，系统是一类不确定线性系统，其标称模型定义为：
 
 x˙(t)=Ax(t)+Bu(t)y(t)=Cx(t)
 
-系统 (*A*,*B*,*C*) 必须完全可控，并且在原点处没有不变零点。
+系统 (*A*，*B*，*C*) 必须完全可控，并且在原点处没有不变零点。
 
 #### 依赖关系
 
 要启用此参数，请将 **Task Mode** 设置为 **Reference Tracking**。
 
-#### 编程使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -140,82 +139,118 @@ x˙(t)=Ax(t)+Bu(t)y(t)=Cx(t)
 
 ### **Am** — 参考模型状态矩阵 `[0 1; 0 0]`（默认）| 矩阵
 
-参考模型的状态矩阵，指定为大小为 *nx*×*nx* 的方阵，其中 *nx* 是状态数。在模型参考跟踪模式下，指定的系统状态 *x*(*t*) 跟踪参考模型状态 *xm*(*t*)。
+参考模型的状态矩阵，指定为大小为
+*nx*×*nx* 的方阵，
+其中 *nx* 是状态数。在模型参考跟踪模式下，指定的系统
+状态 *x*(*t*) 跟踪参考
+模型状态
+*xm*(*t*)。
 
 x˙(t)=Ax(t)+Bu(t)x˙m(t)=Amxm(t)+Bmr(t)
 
-对 (*Am*,*Bm*) 必须是可控的，并且参考模型必须稳定，即 *Am* 的特征值具有负实部。
+对
+(*Am*,*Bm*)
+必须可控，且参考模型必须稳定，即
+*Am* 的特征值具有
+负实部。
 
 #### 依赖关系
 
-要启用此参数，请将 **Task Mode** 设置为 **Model-Reference Tracking**。
+要启用此参数，请将 **Task Mode** 设置为
+**Model-Reference Tracking**。
 
-#### 编程使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Am` |
 | **值：** | `"[0 1; 0 0]"`（默认）| 方阵 |
 
-**示例：** `set_param(gcb,"Am","[1 2; 3 1]")`
+**示例：** `set_param(gcb,"Am","[1 2; 3
+1]")`
 
 ### **Bm** — 参考模型输入矩阵 `[0; 1]`（默认）| 矩阵
 
-参考模型的输入矩阵，指定为大小为 *nx*×*nu* 的方阵，其中 *nx* 是状态数，*nu* 是输入数。在模型参考跟踪模式下，指定的系统状态 *x*(*t*) 跟踪参考模型状态 *xm*(*t*)。
+参考模型的输入矩阵，指定为大小为
+*nx*×*nu* 的方阵，
+其中 *nx* 是状态数，*nu* 是
+输入数。在模型参考跟踪模式下，指定的系统
+状态 *x*(*t*) 跟踪参考
+模型状态
+*xm*(*t*)。
 
 x˙(t)=Ax(t)+Bu(t)x˙m(t)=Amxm(t)+Bmr(t)
 
 #### 依赖关系
 
-要启用此参数，请将 **Task Mode** 设置为 **Model-Reference Tracking**。
+要启用此参数，请将 **Task Mode** 设置为
+**Model-Reference Tracking**。
 
-#### 编程使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Bm` |
 | **值：** | `"[0; 1]"`（默认）| 矩阵 |
 
-**示例：** `set_param(gcb,"Bm","[2; 3]")`
+**示例：** `set_param(gcb,"Bm","[2;
+3]")`
 
-### 滑动表面选项卡
+### Sliding Surface Tab
 
 ### **Task Mode** — 运行模式 **Regulation**（默认）| **Reference Tracking** | **Model-Reference Tracking**
 
 模块运行模式，指定为以下之一：
 
-- **Regulation** — 当您希望将系统状态 *x*(*t*) 驱动到零时，使用此模式。
+- **Regulation** — 当您
+  希望将系统状态
+  *x*(*t*) 驱动到零时，使用此模式。
 
   x˙(t)=Ax(t)+Bu(t)
-- **Reference Tracking** — 当您希望系统输出 *y*(*t*) 跟随指定的参考信号 *r*(*t*) 时，使用此模式。
+- **Reference Tracking** — 当您
+  希望系统输出
+  *y*(*t*) 跟随
+  指定的参考信号
+  *r*(*t*) 时，使用此模式。
 
   x˙(t)=Ax(t)+Bu(t)y(t)=Cx(t)
-- **Model-Reference Tracking** — 当您希望系统状态 *x*(*t*) 跟踪预定义的参考模型状态 *xm*(*t*) 时，使用此模式。
+- **Model-Reference Tracking** — 当您
+  希望系统状态
+  *x*(*t*) 跟踪
+  预定义的参考模型状态
+  *xm*(*t*) 时，使用此
+  模式。
 
   x˙(t)=Ax(t)+Bu(t)x˙m(t)=Amxm(t)+Bmr(t)
 
-#### 编程使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `TaskMode` |
 | **值：** | `"Regulation"`（默认）| `"Reference Tracking"` | `"Model-Reference Tracking"` |
 
-**示例：** `set_param(gcb,"TaskMode","Reference Tracking")`
+**示例：** `set_param(gcb,"TaskMode","Reference
+Tracking")`
 
 ### **Output Switching Function** — 输出切换函数 `off`（默认）| `on`
 
-选择此项可返回输出端口 **s(x)** 处的滑动表面值。
+选择以在输出端口
+**s(x)** 返回滑模面值。
 
-#### 编程使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -224,17 +259,20 @@ x˙(t)=Ax(t)+Bu(t)x˙m(t)=Amxm(t)+Bmr(t)
 
 **示例：** `set_param(gcb,"EnableSwitchingFunction","on")`
 
-### **Include derivative reference signal** — 从外部指定参考信号的导数 `off`（默认）| `on`
+### **Include derivative reference signal** — 在外部指定参考信号的导数 `off`（默认）| `on`
 
-选择此项可在输入端口 **r.dot** 处从外部指定状态参考信号的导数。
+选择以在输入端口 **r.dot** 外部指定状态参考信号的
+导数。
 
 #### 依赖关系
 
-要启用此参数，请将 **Task Mode** 设置为 **Reference Tracking**。
+要启用此参数，请将 **Task Mode** 设置为
+**Reference Tracking**。
 
-#### 编程使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -245,99 +283,139 @@ x˙(t)=Ax(t)+Bu(t)x˙m(t)=Amxm(t)+Bmr(t)
 
 ### **Sr** — 参考跟踪的设计矩阵 `0.1`（默认）| 标量 | 矩阵
 
-用于在参考跟踪模式下控制降阶运动的设计矩阵，指定为标量或大小为 *ny*×*ny* 的矩阵，其中 *ny* 是输出数。
+用于在参考跟踪模式下控制降阶运动的设计矩阵，指定为大小为
+*ny*×*ny* 的标量或矩阵，
+其中 *ny* 是输出数量。
 
-在参考跟踪模式下，切换函数由下式定义：
+在参考跟踪模式下，切换函数定义为：
 
 s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 
 #### 依赖关系
 
-要启用此参数，请设置：将 **Task Mode** 设置为 **Reference Tracking**，并启用 **Include derivative reference signal**。
+要启用此参数，请设置：**Task Mode** 为
+**Reference Tracking**，并启用
+**Include derivative reference signal**。
 
-#### 编程使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Sr` |
-| **值：** | `"0.1"`（默认）| 引号中的标量或矩阵 |
+| **值：** | `"0.1"`（默认）| 带引号的标量或矩阵 |
 
 **示例：** `set_param(gcb,"Sr","eye(2)")`
 
-### **Tuning Method** — 滑动表面设计方法 **Pole Placement**（默认）| **Quadratic Minimization** | **User-Defined Matrix (S)**
+### **Tuning Method** — 滑模面设计方法 **Pole Placement**（默认）| **Quadratic Minimization** | **User-Defined Matrix (S)**
 
-用于设计滑动表面 *S* 的整定方法，指定为以下之一：
+用于设计滑模面 *S* 的整定方法，
+指定为以下之一：
 
-- **Pole Placement** — 此方法分配滑动模式期间闭环系统的特征值，以实现所需的动态特性。要指定极点位置，请使用 **Pole Location** 参数。
-- **Quadratic Minimization** — 此方法设计矩阵 *S*，使得系统最小化二次性能指标，表示为：
+- **Pole Placement** — 此方法将
+  滑模阶段闭环系统的特征值配置到期望的动态特性。要指定
+  极点位置，请使用 **Pole Location**
+  参数。
+- **Quadratic Minimization** — 此方法
+  设计矩阵 *S*，使系统
+  最小化二次性能指标，表示为：
 
   J=12∫ts∞x(t)TQx(t)dt
 
-  要指定矩阵 *Q*，请使用 **Weighted Matrix** 参数。
-- **User-Defined Matrix (S)** — 显式定义滑动表面矩阵。要指定该矩阵，请使用模块参数 **S**。
+  要指定矩阵 *Q*，请使用
+  **Weighted Matrix** 参数。
+- **User-Defined Matrix (S)** — 显式
+  定义滑模面矩阵。要指定该矩阵，请使用
+  模块参数 **S**。
 
-#### 编程使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Tuning` |
 | **值：** | `"Pole Placement"`（默认）| `"Quadratic Minimization"` | `"User-defined Matrix (S)"` |
 
-**示例：** `set_param(gcb,"Tuning","Quadratic Minimization")`
+**示例：** `set_param(gcb,"Tuning","Quadratic
+Minimization")`
 
 ### **Pole Location** — 极点配置方法的极点位置 `-1`（默认）| 列向量
 
-使用极点配置方法设计滑动表面 *S* 时的极点位置，指定为以下大小之一的列向量：
+使用极点配置方法设计滑模面 *S* 时的
+极点位置，指定为以下大小之一的列向量：
 
-- 当 **Task Mode** 设置为 **Regulation** 或 **Model-Reference Tracking** 时，为 (*nx* – *nu*)×1。
-- 当 **Task Mode** 设置为 **Reference Tracking** 时，为 (*nx* – *nu* + *ny*)×1。
+- (*nx* –
+  *nu*)×1，当
+  **Task Mode** 设置为
+  **Regulation** 或
+  **Model-Reference Tracking** 时。
+- (*nx* –
+  *nu* +
+  *ny*)×1，当
+  **Task Mode** 设置为
+  **Reference Tracking** 时。
 
 #### 依赖关系
 
-要启用此参数，请将 **Tuning Method** 设置为 **Pole Placement**。
+要启用此参数，请将 **Tuning Method**
+设置为 **Pole Placement**。
 
-#### 编程使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `PoleLocation` |
-| **值：** | `"-1"`（默认）| 引号中的列向量 |
+| **值：** | `"-1"`（默认）| 带引号的列向量 |
 
 **示例：** `set_param(gcb,"PoleLocation","[-2;-3]")`
 
 ### **Weighted Matrix** — 二次性能指标的加权矩阵 `eye(2)`（默认）| 方阵
 
-使用二次最小化方法设计滑动表面 *S* 时用于二次性能指标的加权矩阵，指定为以下大小之一的方阵：
+使用二次最小化方法设计滑模面 *S* 时
+二次性能指标的加权矩阵，
+指定为以下大小之一的方阵：
 
-- 当 **Task Mode** 设置为 **Regulation** 或 **Model-Reference Tracking** 时，为 *nx*×*nx*。
-- 当 **Task Mode** 设置为 **Reference Tracking** 时，为 (*nx* + *ny*)×(*nx* + *ny*)。
+- *nx*×*nx*，
+  当 **Task Mode** 设置为
+  **Regulation** 或
+  **Model-Reference Tracking** 时。
+- (*nx* +
+  *ny*)×(*nx*
+  + *ny*)，当
+  **Task Mode** 设置为
+  **Reference Tracking** 时。
 
-使用加权矩阵根据分配的权重惩罚状态偏差。这与 LQR 设计中的 *Q* 矩阵概念相同。
+使用加权矩阵根据指定的权重惩罚状态偏差。这与 LQR 设计中的
+*Q* 矩阵概念相同。
 
 #### 依赖关系
 
-要启用此参数，请将 **Tuning Method** 设置为 **Quadratic Minimization**。
+要启用此参数，请将 **Tuning Method**
+设置为 **Quadratic Minimization**。
 
-#### 编程使用
+#### 编程用法
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `WeightedMatrix` |
-| **值：** | `"eye(2)"`（默认）| 引号中的矩阵 |
+| **值：** | `"eye(2)"`（默认）| 带引号的矩阵 |
 
-**示例：** `set_param(gcb,"WeightedMatrix","[3 0; 0 1]")`
+**示例：** `set_param(gcb,"WeightedMatrix","[3 0; 0
+1]")`
 
-### **Export Hyperplane Matrix S** — 将设计好的超平面矩阵发送到 MATLAB® 工作区 按钮
+### **Export Hyperplane Matrix S** — 将设计好的超平面矩阵发送到 MATLAB® 工作区按钮
 
-当您点击此按钮时，模块会在 MATLAB 工作区中创建一个变量，其中包含设计好的超平面矩阵 *S*。
+当您点击此按钮时，该模块会在 MATLAB 工作区中创建一个变量，其中包含设计好的超平面矩阵 *S*。
 
 #### 依赖关系
 
@@ -345,20 +423,20 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 
 ### **S** — 用户定义的超平面矩阵 `[1 1]`（默认）| 矩阵
 
-用户定义的超平面矩阵 (*S*)，指定为以下大小之一的矩阵：
+用户定义的超平面矩阵（*S*），指定为具有以下尺寸之一的矩阵：
 
 - 当 **Task Mode** 设置为 **Regulation** 或 **Model-Reference Tracking** 时，为 *nu*×*nx* 矩阵。
-- 当 **Task Mode** 设置为 **Reference Tracking** 时，为 *nu*×(*nx* + *ny*)。
+- 当 **Task Mode** 设置为 **Reference Tracking** 时，为 *nu*×(*nx* + *ny*) 矩阵。
 
-矩阵 *S* 确定滑模控制将系统状态驱动到的超平面。
+矩阵 *S* 决定了滑模控制将系统状态驱动到的超平面。
 
 #### 依赖关系
 
 要启用此参数，请将 **Tuning Method** 设置为 **User-defined Matrix (S)**。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -367,28 +445,28 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 
 **示例：** `set_param(gcb,"Bm","[2; 3]")`
 
-### 趋近律选项卡
+### Reaching Law Tab
 
 ### **Reaching Law** — 趋近律 `Constant Rate`（默认）| `Exponential` | `Power Rate` | `Unit Vector`
 
-滑动表面的趋近律 *h*(*s*(*x*))，指定为以下之一。
+滑动面的趋近律 *h*(*s*(*x*))，指定为以下之一。
 
 - `Constant Rate` — h(s(x))=−ηiθ(si)
 
-  此律提供到达滑动表面的恒定速率。这里，*θ*(*si*) 是边界层，*ηi* 是第 *i* 个控制输入的到达速率。
+  该律提供到达滑动面的恒定速率。此处，*θ*(*si*) 是边界层，*ηi* 是第 *i* 个控制输入的趋近速率。
 - `Exponential` — h(s(x))=−ηiθ(si)−Kisi
 
-  此律添加一个与滑动变量成比例的项，并在状态偏差显著时提供更激进的收敛。这里，*Ki* 是控制增益项，用于缩放与第 *i* 个滑动变量相关的控制作用。
+  该律添加了一个与滑动变量成比例的项，并在状态偏差显著时提供更激进的收敛。此处，*Ki* 是控制增益项，用于缩放与第 *i* 个滑动变量相关的控制作用。
 - `Power Rate` — h(s(x))i=−ηi|si|αθ(si)
 
-  当状态远离滑动表面时，此律提供快速到达速度，但当状态接近时降低速度。这确保减少抖振并提供快速收敛。
+  该律在状态远离滑动面时提供快速趋近速度，但在状态接近时降低速度。这确保了减少抖振并提供快速收敛。
 - `Unit Vector` — h(s(x))=−ηθ(P2s)−Ks
 
-  这里，*P2* 是 Lyapunov 方程 P2K+KTP2=−I 的解。
+  此处，*P2* 是 Lyapunov 方程 P2K+KTP2=−I 的解。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -397,47 +475,47 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 
 **示例：** `set_param(gcb,"ReachingLaw","Power Rate")`
 
-### **Reaching Rate (η)** — 到达速率 `0.01`（默认）| 正标量 | 列向量
+### **Reaching Rate (η)** — 趋近速率 `0.01`（默认）| 正标量 | 列向量
 
-到达速率 (*η*)，指定为正标量或长度等于控制输入数的正值列向量。
+趋近速率（*η*），指定为正标量或长度等于控制输入数量的正数值列向量。
 
-到达速率确定系统轨迹接近滑动表面的速率。*η* 值越大，收敛到滑动表面越快，但也可能导致更高的控制作用；由于执行器饱和或抖振增加等潜在问题，这在所有情况下并非都理想。
+趋近速率决定了系统轨迹接近滑动面的速率。较大的 *η* 值会导致更快的滑动面收敛，但也可能导致更高的控制作用，这在所有情况下都不理想，因为可能存在执行器饱和或抖振增加等问题。
 
-#### 编程使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `ReachingRate` |
-| **值：** | `"0.01"`（默认）| 引号中的正标量 | 引号中的列向量 |
+| **值：** | `"0.01"`（默认）| 带引号的正标量 | 带引号的列向量 |
 
 **示例：** `set_param(gcb,"ReachingRate","0.05")`
 
 ### **Control Gain (K)** — 控制增益 `0.01`（默认）| 正标量 | 列向量
 
-指数趋近律中比例项的控制增益，指定为正标量或长度等于控制输入数的列向量。在指数趋近律中，此项按与滑动表面偏差成比例的方式增加控制作用。
+指数趋近律中比例项的控制增益，指定为正标量或长度等于控制输入数量的列向量。在指数趋近律中，该项根据与滑动面的偏差成比例地增加控制作用。
 
 #### 依赖关系
 
 要启用此参数，请将 **Reaching Law** 设置为 `Exponential` 或 `Unit Vector`。
 
-#### 编程使用
+#### 编程用法
 
 要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `ControlGain` |
-| **值：** | `"0.01"`（默认）| 引号中的正标量 | 引号中的列向量 |
+| **值：** | `"0.01"`（默认） | 带引号的正标量 | 带引号的列向量 |
 
 **示例：** `set_param(gcb,"ControlGain","2")`
 
-### **Power Rate Exponent (α)** — 幂次趋近律指数 `0.01`（默认）| 介于 0 和 1 之间的正标量 | 介于 0 和 1 之间的正值列向量
+### **Power Rate Exponent (α)** — 幂次趋近律指数 `0.01`（默认） | 0 到 1 之间的正标量 | 0 到 1 之间的正数值列向量
 
-幂次趋近律中的指数值，指定为介于 0 和 1 之间的正标量，或长度等于控制输入数量的列向量。此参数确定控制作用相对于距滑模面距离的非线性。具体而言，它调整控制作用如何随滑模变量的大小进行缩放。*α* 的值影响接近滑模面的平滑度。较低的值会导致更柔和的接近，并可能减少抖振。
+幂次趋近律中的指数值，指定为 0 到 1 之间的正标量或长度等于控制输入数量的列向量。该参数决定了控制作用相对于距滑模面距离的非线性程度。具体而言，它调整控制努力随滑模变量幅值的缩放方式。*α* 的值影响趋近滑模面的平滑度。较低的值导致更柔和的趋近，并可能减少抖振。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Reaching Law** 设置为 `Power Rate`。
 
@@ -448,17 +526,17 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 |  |  |
 | --- | --- |
 | **参数：** | `PowerRate` |
-| **值：** | `"0.01"`（默认）| 带引号的介于 0 和 1 之间的正标量 | 带引号的介于 0 和 1 之间的正值列向量 |
+| **值：** | `"0.01"`（默认） | 带引号的 0 到 1 之间的正标量 | 带引号的 0 到 1 之间的正数值列向量 |
 
 **示例：** `set_param(gcb,"PowerRate","0.02")`
 
-### **Select Boundary Layer** — 边界层函数 `Sign`（默认）| `Relay` | `Hyperbolic Tangent` | `Saturation`
+### **Select Boundary Layer** — 边界层函数 `Sign`（默认） | `Relay` | `Hyperbolic Tangent` | `Saturation`
 
 边界层函数，指定为以下之一：
 
 - `Sign` — θ(s)=sgn(s(x))
 
-  此选项使用默认 signum 函数，并在 –1 和 1 之间不连续地切换。
+  此选项使用默认符号函数，并在 –1 和 1 之间不连续切换。
 - `Relay` — θ(s)=s|s|+ϕ
 
   此选项使用继电器函数来定义滑模面周围的切换边界。
@@ -467,7 +545,7 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
   此选项使用双曲正切函数来定义滑模面周围的切换边界。
 - `Saturation` — θ(s)={1s>ϕkss≤ϕ−1s<−ϕk=1ϕ
 
-  此选项使用饱和函数，在滑模变量位于边界层 [*–ϕ*,*ϕ*] 内时，在 –1 和 1 之间平滑插值，从而减少高频切换。
+  此选项使用饱和函数，当滑模变量在边界层 [*–ϕ*,*ϕ*] 内时，在 –1 和 1 之间平滑插值，从而减少高频切换。
 
 #### 编程用法
 
@@ -476,17 +554,17 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 |  |  |
 | --- | --- |
 | **参数：** | `BoundaryLayer` |
-| **值：** | `"Sign"`（默认）| `"Relay"` | `"Hyperbolic Tangent"` | `"Saturation"` |
+| **值：** | `"Sign"`（默认） | `"Relay"` | `"Hyperbolic Tangent"` | `"Saturation"` |
 
 **示例：** `set_param(gcb,""BoundaryLayer,"Saturation")`
 
-### **Phi** — 边界层厚度 `0.01`（默认）| 正标量 | 列向量
+### **Phi** — 边界层厚度 `0.01`（默认） | 正标量 | 列向量
 
-边界层厚度参数，指定为正标量，或长度等于控制输入数量的列向量。
+边界层厚度参数，指定为正标量或长度等于控制输入数量的列向量。
 
-此参数定义滑模面周围的边界层厚度。较大的 **Phi** 值会导致较少的抖振，但可能增加稳态误差。相反，较小的 **Phi** 值可以减少稳态误差，但会增加抖振。
+该参数定义滑模面周围的边界层厚度。较大的 **Phi** 值导致较少的抖振，但可能增加稳态误差。相反，较小的 **Phi** 值可以减少稳态误差，但会增加抖振。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Select Boundary Layer** 设置为以下任一值：
 
@@ -501,13 +579,13 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 |  |  |
 | --- | --- |
 | **参数：** | `Phi` |
-| **值：** | `"0.01"`（默认）| 带引号的正标量 | 带引号的列向量 |
+| **值：** | `"0.01"`（默认） | 带引号的正标量 | 带引号的列向量 |
 
 **示例：** `set_param(gcb,"Phi","0.05")`
 
-### **Enable zero-crossing detection** — 启用零交叉检测 `off`（默认）| `on`
+### **Enable zero-crossing detection** — 启用过零检测 `off`（默认） | `on`
 
-选择以启用零交叉检测。有关详细信息，请参阅 Zero-Crossing Detection。
+选择以启用过零检测。有关详细信息，请参阅过零检测。
 
 #### 编程用法
 
@@ -516,7 +594,7 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 |  |  |
 | --- | --- |
 | **参数：** | `ZeroCross` |
-| **值：** | `"off"`（默认）| `"on"` |
+| **值：** | `"off"`（默认） | `"on"` |
 
 **示例：** `set_param(gcb,"ZeroCross","on")`
 
@@ -526,49 +604,49 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 
 指定控制器时域。
 
-当您选择 **Discrete-Time** 时，请使用 **Sample time** 参数指定采样时间。
+当您选择 **Discrete-Time** 时，使用 **Sample time** 参数指定采样时间。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `TimeDomain` |
-| **值：** | `"Continuous-Time"`（默认）| `"Discrete-Time"` |
+| **Parameter:** | `TimeDomain` |
+| **值**：| `"Continuous-Time"`（默认）| `"Discrete-Time"` |
 
-**示例：** `set_param(gcb,""TimeDomain,"Discrete-Time")`
+**Example:** `set_param(gcb,""TimeDomain,"Discrete-Time")`
 
 ### **Sample time** — 采样时间 `-1`（默认）| 有限正标量
 
-模块的采样时间，指定为正标量。模块使用此值对输入-输出数据进行采样。
+模块的采样时间，指定为正标量。模块使用此值对输入输出数据进行采样。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Time domain** 属性设置为 **Discrete-Time**。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `SampleTime` |
-| **值：** | `"-1"`（默认）| 带引号的正标量 |
+| **Parameter:** | `SampleTime` |
+| **值**：| `"-1"`（默认）| 带引号的正标量 |
 
-**示例：** `set_param(gcb,"DiscreteTs","0.5")`
+**Example:** `set_param(gcb,"DiscreteTs","0.5")`
 
 ### **Integrator method** — 离散时间积分方法 `Forward Euler`（默认）| `Backward Euler` | `Trapezoidal`
 
 您可以为离散时间积分器选择以下积分方法之一。
 
-- `Forward Euler`:
+- `Forward Euler`：
 
   y(n)=y(n−1)+Ts⋅u(n−1)
-- `Backward Euler`:
+- `Backward Euler`：
 
   y(n)=y(n−1)+Ts⋅u(n)
-- `Trapezoidal`:
+- `Trapezoidal`：
 
   y(n)=y(n−1)+Ts⋅[u(n)+u(n−1)]/2
 
@@ -581,20 +659,20 @@ s(x)=Sx˜(t)−Srr(t)x˜(t)=[xr(t)x(t)],x˙r(t)=r(t)−y(t)
 
 有关离散时间积分的详细信息，请参阅 Discrete-Time Integrator。
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Time domain** 设置为 **Discrete-Time**。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `IntegratorMethod` |
-| **值：** | `"Forward Euler"`（默认）| `"Backward Euler"` | `"Trapezoidal"` |
+| **Parameter:** | `IntegratorMethod` |
+| **值**：| `"Forward Euler"`（默认）| `"Backward Euler"` | `"Trapezoidal"` |
 
-**示例：** `set_param(gcb,"IntegratorMethod","Trapezoidal")`
+**Example:** `set_param(gcb,"IntegratorMethod","Trapezoidal")`
 
 ## 所属库
 
@@ -602,7 +680,7 @@ Simulink Control Design / Sliding Mode
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -614,27 +692,27 @@ Simulink Control Design / Sliding Mode
 
 ## 描述
 
-利用线性系统知识使用状态反馈设计滑模控制
+使用状态反馈，基于已知线性系统设计滑模控制
 
-使用 Linear Sliding Mode Controller (State Feedback) 模块，基于一类不确定线性系统，使用状态反馈方法实现滑模控制（SMC）。此模块的主要优势在于提供两种基于线性被控对象模型自动设计滑模面的方法。您可以使用 Sliding Mode Controller (Reaching Law) 模块来支持通用非线性被控对象模型（x˙=f(x)+g(x)u），不过您需要自行设计滑模面 *C*。相比之下，对于基于标称线性被控对象模型的 Linear Sliding Mode Controller (State Feedback) 模块，您可以使用提供的方法自动设计滑模面。
+使用 Linear Sliding Mode Controller (State Feedback) 模块，基于一类不确定线性系统，使用状态反馈方法实现滑模控制 (SMC)。该模块的主要优势在于，它提供了两种基于线性被控对象模型自动设计滑模面的方法。你可以使用 Sliding Mode Controller (Reaching Law) 模块来支持通用的非线性被控对象模型 (x˙=f(x)+g(x)u)，不过你需要自行设计滑模面 *C*。相比之下，对于基于标称线性被控对象模型的 Linear Sliding Mode Controller (State Feedback) 模块，你可以使用所提供的方法自动设计滑模面。
 
-使用此模块，您可以在以下操作模式下实现 SMC：
+使用该模块，你可以在以下运行模式下实现 SMC：
 
-- Regulation mode — 当您想要将系统状态 *x*(*t*) 驱动到零时，使用此模式。
+- 调节模式 — 当你希望将系统状态 *x*(*t*) 驱动到零时，使用此模式。
 
   x˙(t)=Ax(t)+Bu(t)
-- Reference tracking mode — 当您希望系统输出 *y*(*t*) 跟随指定参考信号 *r*(*t*) 时，使用此模式。
+- 参考跟踪模式 — 当你希望系统输出 *y*(*t*) 跟随指定参考信号 *r*(*t*) 时，使用此模式。
 
   x˙(t)=Ax(t)+Bu(t)y(t)=Cx(t)
-- Model reference tracking mode — 当您希望系统状态 *x*(*t*) 跟踪预定义的参考模型状态 *xm*(*t*) 时，使用此模式。
+- 模型参考跟踪模式 — 当你希望系统状态 *x*(*t*) 跟踪预定义的参考模型状态 *xm*(*t*) 时，使用此模式。
 
   x˙(t)=Ax(t)+Bu(t)x˙m(t)=Amxm(t)+Bmr(t)
 
-对于每种模式，您可以显式指定滑模矩阵 *S*，或使用以下两种方法之一设计该矩阵：
+对于每种模式，你都可以显式指定滑模矩阵 *S*，或者使用以下两种方法之一设计该矩阵：
 
-- Pole Placement — 此方法在滑模期间分配闭环系统的特征值，以实现所需的动态特性。
-- Quadratic Minimization — 此方法设计矩阵 *S*，使系统最小化二次性能指标，其表达式为：
+- 极点配置 — 该方法配置滑模期间闭环系统的特征值，以实现期望的动态特性。
+- 二次最小化 — 该方法设计矩阵 *S*，使系统最小化一个二次性能指标，表示为：
 
   J=12∫ts∞x(t)TQx(t)dt
 
-此外，您可以选择趋近律来控制收敛到滑模面的速率，并选择边界层来最小化抖振影响。有关 SMC 的详细信息，请参阅 Sliding Mode Control。
+此外，你可以选择一种趋近律来控制到达滑模面的收敛速率，并选择一个边界层来最小化抖振效应。有关 SMC 的更多信息，请参阅 Sliding Mode Control。

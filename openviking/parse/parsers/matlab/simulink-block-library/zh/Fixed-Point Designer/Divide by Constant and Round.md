@@ -9,7 +9,7 @@ official_category: ''
 documentation_page: 'dividebyconstantandround'
 documentation_source_path: 'ref/dividebyconstantandround.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
 # Divide by Constant and Round
@@ -22,52 +22,52 @@ chinese_source: official
 
 被除数，指定为标量、向量、矩阵或 N 维数组。
 
-Divide by Constant and Round 不支持字长大于 65,535 的数据类型。定点数据类型不支持斜率偏置表示。
+Divide by Constant and Round 不支持字长大于 65,535 的数据类型。定点数据类型不支持斜率-偏置表示。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-**复数支持:** 是
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
+**复数支持：** 是
 ### 输出
 
-### **Y** — 除法和舍入运算的结果 标量 | 向量 | 矩阵 | N 维数组
+### **Y** — 除法与舍入运算的结果 标量 | 向量 | 矩阵 | N 维数组
 
-除法和舍入运算的结果，以标量、向量、矩阵或 N 维数组形式返回。
+除法与舍入运算的结果，以标量、向量、矩阵或 N 维数组形式返回。
 
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
+**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 
 ## 参数
 
-### **分母** — 除数 10 (默认) | 标量
+### **Denominator** — 除数 10 （默认） | 标量
 
-除数，指定为正实数值有限标量。
+除数，指定为正的、实值、有限标量。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**：`Denominator` |
-| **类型：**字符向量 |
-| **值：**计算结果为正实数值有限定点或数值的 MATLAB® 表达式 |
-| **数据类型：**`single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` |
-| **默认值：**`'10'` |
+| **模块参数：** `Denominator` |
+| **类型：** 字符向量 |
+| **值：** 求值为正的、实值、有限定点或数值的 MATLAB® 表达式 |
+| **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` |
+| **默认：** `'10'` |
 
-### **舍入方法** — 要使用的舍入方法 **向下** (默认) | **向上** | **最邻近值** | **零** | **收敛**
+### **Rounding Method** — 要使用的舍入方法 `Floor` （默认） | `Ceiling` | `Nearest` | `Zero` | `Convergent`
 
 要使用的舍入方法，指定为以下值之一：
 
-- **向下** - 朝负无穷方向舍入到最接近的整数。
-- **向上** - 向正无穷方向舍入到最接近的整数。
-- **最邻近值** - 舍入到最接近的整数。结值向正无穷方向舍入到最接近的整数。
-- **零** - 向零方向舍入到最接近的整数。
-- **收敛** - 舍入到最接近的整数。结值舍入到最接近的偶数。
+- `Floor` — 向负无穷方向舍入到最接近的整数。
+- `Ceiling` — 向正无穷方向舍入到最接近的整数。
+- `Nearest` — 舍入到最接近的整数。遇到平局时向正无穷方向舍入到最接近的整数。
+- `Zero` — 向零方向舍入到最接近的整数。
+- `Convergent` — 舍入到最接近的整数。遇到平局时舍入到最接近的偶数整数。
 
-#### 编程用法
+#### 程序化使用
 
 |  |
 | --- |
-| **模块参数**：`RndMeth` |
-| **类型：**字符向量 |
+| **模块参数：** `RndMeth` |
+| **类型：** 字符向量 |
 | **值：** `'Floor'` | `'Ceiling'` | `'Nearest'` | `'Zero'` | `'Convergent'` |
-| **默认值：**`'Floor'` |
+| **默认：** `'Floor'` |
 
 ## 所属库
 
@@ -75,22 +75,22 @@ Fixed-Point Designer
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
-定点数据类型不支持斜率偏置表示。
+定点数据类型不支持斜率-偏置表示。
 
 ## 版本历史
 
-**在 R2021a 中推出**
+**在 R2021a 中引入**
 
 ## 描述
 
-将输入除以常量并舍入到整数
+将输入除以常量并舍入为整数
 
-Divide by Constant and Round 模块输出输入除以某个常量的结果，并使用指定的舍入方法将结果舍入为整数。
+Divide by Constant and Round 模块输出将输入除以常量后的结果，并使用指定的舍入方法将结果舍入为整数。
 
-Divide by Constant and Round 模块使用的算法在功能上类似于 Granlund-Montgomery-Warren 方法。除法运算是通过与倒数相乘计算的，这通常有助于在嵌入式系统上实现更好的性能。
+Divide by Constant and Round 模块使用的算法在功能上类似于 Granlund-Montgomery-Warren 方法。除法运算通过乘以倒数来计算，这通常可在嵌入式系统上获得更好的性能。

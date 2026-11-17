@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Wind Turbine'
-family: 'engines-motors'
+family: 'sdl'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b
@@ -18,63 +18,76 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **V** — 入射风速，m/s 物理信号
+### **V** — 入射风速，m/s，物理信号
 
-与入射风速相关联的物理信号输入，单位为
+与入射风速关联的物理信号输入，单位为
 m/s。
 
-### **β** — 桨距角，deg 物理信号
+### **β** — 桨距角，deg，物理信号
 
-与涡轮机叶片桨距角相关联的物理信号输入，单位为
-deg。
+与涡轮叶片桨距角关联的物理信号输入，单位为 deg。
 ### 输出
 
-### **T** — 推力，N 物理信号
+### **T** — 推力，N，物理信号
 
-与风施加到涡轮机叶片上的轴向力相关联的物理信号输出端口，单位为 N。
+与风施加在涡轮叶片上的轴向力关联的物理信号输出端口，单位为 N。
 
-#### 依赖关系
+#### 依赖
 
-要启用此端口，请选择 **Output thrust**。
-### 守恒端口
+要启用此端口，请选中 **Output thrust**。
+### 守恒
 
-### **R** — 涡轮机轴机械旋转
+### **R** — 涡轮轴机械旋转
 
-与风力涡轮机轴相关联的机械旋转守恒端口。
+与风力涡轮轴关联的机械旋转守恒端口。
 
 ## 参数
 
 ### Wind Turbine
 
-### **Parameterization** — 风力涡轮机参数化选项 `Tabulated data for power and thrust coefficients`（默认）| `Tabulated data for airfoil lift and drag coefficients`
+### **Parameterization** — 风力涡轮参数化选项 `功率和推力的表格数据 coefficients`（默认）| `翼型升力和阻力的表格数据 coefficients`
 
-是否通过推力系数和功率系数或翼型升力系数和阻力系数来参数化风力涡轮机。
+是通过推力和功率系数还是通过翼型升力和阻力系数来参数化风力涡轮。
 
-#### 依赖关系
+#### 依赖
 
 ### **Turbine radius** — 叶尖半径 `80` `m`（默认）| 正标量
 
-从涡轮机轮毂中心到叶尖的距离。
+从涡轮轮毂中心到叶尖的距离。
 
 ### **Pitch angle vector, β** — 参考桨距角 `[0, 3, 5, 10, 20, 90]` `deg`（默认）| 长度为 *M* 的向量
 
-参考叶片集体桨距角。此向量的长度定义了 **Power coefficient table, Cp(β, λ)** 和 **Thrust coefficient table, Ct(β, λ)** 参数中的行数。
+参考集合叶片桨距角。此向量的长度定义了 **Power coefficient table,
+Cp(β, λ)** 和 **Thrust coefficient table, Ct(β,
+λ)** 参数的行数。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for power and thrust coefficients`。
+要启用此参数，请将
+**Parameterization** 设置为
+`功率和推力的表格数据
+coefficients`。
 
 ### **Tip speed ratio vector, λ** — 参考叶尖速比 `[0, 2, 4, 6, 8, 10, 12, 14, 15]`（默认）| 长度为 *N* 的向量
 
-参考叶尖速比 (λ)。λ 是叶尖速度与风速之比。此向量的长度定义了 **Power coefficient table, Cp(β, λ)** 和 **Thrust coefficient table, Ct(β, λ)** 参数中的列数。该模块支持负 λ 值。这些值必须严格单调递增。
+参考叶尖速比（λ）。λ 是叶尖速度与风速之比。此向量的长度定义了
+**Power coefficient table, Cp(β, λ)** 和
+**Thrust coefficient table, Ct(β, λ)** 参数的列数。
+该模块支持负 λ 值。这些值必须严格单调递增。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for power and thrust coefficients`。
+要启用此参数，请将
+**Parameterization** 设置为
+`功率和推力的表格数据
+coefficients`。
 
 ### **Power coefficient table, Cp(β,λ)** — 功率系数表 *M*×*N* 矩阵
 
-给定桨距角和叶尖速比下的功率系数。每一行对应 **Pitch angle vector, β** 参数中的一个元素，每一列对应 **Tip speed ratio vector, λ** 参数中的一个元素。默认参数值为 `[0.0010, 0.0161, 0.1446, 0.3865,
+给定桨距角和叶尖速比下的功率系数。每一行对应于 **Pitch angle vector,
+β** 参数中的一个元素，每一列对应于
+**Tip speed ratio vector, λ** 参数中的一个元素。
+默认参数值为 `[0.0010, 0.0161, 0.1446, 0.3865,
 0.5009, 0.4404, 0.2545, 0.0002, -0.1384; 0.0016, 0.0173, 0.1079,
 0.2676, 0.3779, 0.4111, 0.3838, 0.3176, 0.2753; 0.0027, 0.0197,
 0.1151, 0.2606, 0.3469, 0.3558, 0.3069, 0.2222, 0.1718; 0.0054,
@@ -83,13 +96,19 @@ deg。
 -0.7655; -0.01 * ones(1, 9)]`。该模块断言 *Cp*(λ=0)≅
 0。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for power and thrust coefficients`。
+要启用此参数，请将
+**Parameterization** 设置为
+`功率和推力的表格数据
+coefficients`。
 
 ### **Thrust coefficient table, Ct(β,λ)** — 推力系数表 *M*×*N* 矩阵
 
-给定桨距角和叶尖速比下的推力系数。每一行对应 **Pitch angle vector, β** 参数中的一个元素，每一列对应 **Tip speed ratio vector, λ** 参数中的一个元素。默认参数值为 `[0.0000, 0.2451, 0.6740, 0.9616,
+给定桨距角和叶尖速比下的推力系数。每一行对应于 **Pitch angle vector,
+β** 参数中的一个元素，每一列对应于
+**Tip speed ratio vector, λ** 参数中的一个元素。
+默认参数值为 `[0.0000, 0.2451, 0.6740, 0.9616,
 1.0000, 0.9882, 0.8430, 0.0002, -0.1341; 0.0016, 0.2541, 0.5942,
 0.8582, 0.9561, 0.9754, 0.9599, 0.9092, 0.8669; 0.0027, 0.2705,
 0.6113, 0.8503, 0.9339, 0.9407, 0.8993, 0.8016, 0.7239; 0.0054,
@@ -97,53 +116,84 @@ deg。
 0.2035, 0.4335, 0.6485, 0.6348, 0.2129, -0.1684, -0.3701, -0.5712,
 -0.6681; -0.05 * ones(1, 9)]` 。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for power and thrust coefficients` 并选择 **Output thrust**。
+要启用此参数，请将
+**Parameterization** 设置为
+`功率和推力的表格数据
+coefficients` 并选中 **Output
+thrust**。
 
 ### **Number of blades** — 叶片数量 `3`（默认）| 正整数
 
-风力涡轮机叶片数量。
+风力涡轮叶片数量。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients`。
+要启用此参数，请将
+**Parameterization** 设置为
+`翼型升力和阻力的表格数据
+coefficients`。
 
 ### **Nondimensional radial location vector, r** — 径向位置 `[.1, .17, .23, .36, .5, .63, 1]`（默认）| 向量
 
-给定叶片尺寸集下的径向位置。`1` 相当于叶片的半径。此向量的第一个元素定义 *e*，即叶根切除。
+给定一组叶片尺寸的径向位置。
+`1` 等效于叶片半径。此向量的第一个元素定义了 *e*，即
+叶根切除。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients`。
+要启用此参数，请将
+**Parameterization** 设置为
+`翼型升力和阻力的表格数据
+coefficients`。
 
 ### **Blade twist vector, θ\_tw(r)** — 叶片单元扭转 `[13.31, 13.31, 11.48, 9.01, 6.54, 4.19, .11]` `deg`（默认）| 向量
 
-给定径向位置下的叶片扭转角 *θ*。此向量的元素与 **Nondimensional radial location vector, r** 参数一一对应。
+给定径向位置下的叶片扭转角 *θ*。
+此向量的元素与
+**Nondimensional radial location vector, r**
+参数一一对应。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients`。
+要启用此参数，请将
+**Parameterization** 设置为
+`翼型升力和阻力的表格数据
+coefficients`。
 
 ### **Normalized chord length vector, c(r)/R** — 叶片单元弦长 `[.068, .074, .076, .069, .061, .053, .023]`（默认）| 向量
 
-沿叶片给定径向位置处按半径归一化的弦长。此向量的元素与 **Nondimensional radial location vector, r** 参数以及 **Airfoil lift coefficient table, Cl(α,r)** 和 **Airfoil drag coefficient table, Cd(α,r)** 参数的列一一对应。
+沿叶片给定径向位置处按半径归一化的弦长。此向量的
+元素与
+**Nondimensional radial location vector, r**
+参数以及 **Airfoil lift coefficient
+table, Cl(α,r)** 和 **Airfoil drag coefficient
+table, Cd(α,r)** 参数的列一一对应。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients`。
+要启用此参数，请将
+**Parameterization** 设置为
+`翼型升力和阻力的表格数据
+coefficients`。
 
 ### **Airfoil angle of attack vector, α** — 攻角 `[-180 : 10 : 180]` `deg`（默认）| 长度为 *M* 的向量
 
-攻角范围。此向量的元素与 **Airfoil lift coefficient table, Cl(α,r)** 和 **Airfoil drag coefficient table, Cd(α,r)** 参数的行一一对应。
+攻角范围。此向量的元素与 **Airfoil lift coefficient
+table, Cl(α,r)** 和 **Airfoil drag coefficient
+table, Cd(α,r)** 参数的行一一对应。
 
-#### 依赖关系
+#### 依赖
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients`。
+要启用此参数，请将
+**Parameterization** 设置为
+`翼型升力和阻力的表格数据
+coefficients`。
 
-### **Airfoil lift coefficient table, Cl(α,r)** — 翼型升力系数 *M*×*N* 矩阵
+### **Airfoil lift coefficient table, Cl(α,r)** — Airfoil lift coefficients *M* x *N* matrix
 
-给定攻角和沿叶片径向位置下的翼型升力系数。此矩阵中的行与 **Airfoil angle of attack vector, α** 参数一一对应。此矩阵中的列与 **Nondimensional radial location vector, r** 参数一一对应。
+给定攻角和沿叶片径向位置的翼型升力系数。此矩阵中的行与 **Airfoil angle of attack vector, α** 参数一一对应。此矩阵中的列与 **Nondimensional radial location vector, r** 参数一一对应。
 
 默认值为 `[0, 0, 0, 0, 0, 0, 0; 0, .397, .547,
 .547, .735, .788, .749; 0, .642, .685, .685, .695, .67, .659; 0,
@@ -172,11 +222,12 @@ deg。
 
 #### 依赖关系
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients`。
+要启用此参数，请将 **Parameterization** 设置为 `翼型升力和阻力的表格数据
+coefficients`。
 
-### **Airfoil drag coefficient table, Cd(α,r)** — 翼型阻力系数 *M*×*N* 矩阵
+### **Airfoil drag coefficient table, Cd(α,r)** — Airfoil drag coefficients *M* x *N* matrix
 
-给定攻角和沿叶片径向位置下的翼型阻力系数。此矩阵中的行与 **Airfoil angle of attack vector, α** 参数一一对应。此矩阵中的列与 **Nondimensional radial location vector, r** 参数一一对应。
+给定攻角和沿叶片径向位置的翼型阻力系数。此矩阵中的行与 **Airfoil angle of attack vector, α** 参数一一对应。此矩阵中的列与 **Nondimensional radial location vector, r** 参数一一对应。
 
 默认值为 `[.35, .0602, .0267, .0267, .0202, .0185,
 .0198; .35, .1107, .0968, .0968, .0943, .0945, .0955; .35, .3045,
@@ -209,35 +260,37 @@ deg。
 
 #### 依赖关系
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients`。
+要启用此参数，请将 **Parameterization** 设置为 `翼型升力和阻力的表格数据
+coefficients`。
 
-### **Number of blade elements** — 叶片单元数量 `20`（默认）| 正整数
+### **Number of blade elements** — Number of blade elements `20` (default) | positive integer
 
-单个叶片的叶片单元数量。
+单个叶片的叶素数量。
 
 #### 依赖关系
 
-要启用此参数，请将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients`。
+要启用此参数，请将 **Parameterization** 设置为 `翼型升力和阻力的表格数据
+coefficients`。
 
-### 环境和动力学
+### Environment and Dynamics
 
-### **Output thrust** — 用于对涡轮机推力输出建模的选项 `off`（默认）| `on`
+### **Output thrust** — 用于对涡轮推力输出建模的选项 `off`（默认）| `on`
 
-是否对涡轮机所受的推力进行建模。选择此参数会启用端口 **T**。
+是否对涡轮机所承受的推力进行建模。选择此参数将启用端口 **T**。
 
 ### **Model inertia** — 惯性选项 `off`（默认）| `on`
 
-是否模拟由转子运动引起的惯性。该模块在端口 **R** 处应用惯性。
+是否模拟转子运动引起的惯性。该模块在端口 **R** 处施加惯性。
 
-### **Rotor inertia** — 风车转子惯性 `3.5e7` `kg*m^2`（默认）
+### **Rotor inertia** — Windmill rotor inertia `3.5e7` `kg*m^2` (default)
 
-风车转子的惯性。
+风力机转子的惯性。
 
 #### 依赖关系
 
 要启用此参数，请选择 **Model inertia**。
 
-### **Initial rotor rotational velocity** — 转子初始角速度 `0` `rad/s`（默认）
+### **Initial rotor rotational velocity** — Rotor initial angular velocity `0` `rad/s` (default)
 
 端口 **R** 处的初始旋转速度。
 
@@ -245,19 +298,19 @@ deg。
 
 要启用此参数，请选择 **Model inertia**。
 
-### **Air density** — 空气密度 `1.225` `kg/m^3`（默认）| 正标量
+### **Air density** — Air density `1.225` `kg/m^3` (default) | positive scalar
 
 空气的恒定密度。
 
 ### 高级
 
-### **Wind velocity threshold** — 风速平滑阈值 `0.01` `m/s`（默认）| 正标量
+### **Wind velocity threshold** — Wind velocity smoothing threshold `0.01` `m/s` (default) | positive scalar
 
-该模块应用平滑处理时的风速。
+该模块施加平滑处理的风速。
 
-### **Rotational velocity threshold** — 角速度平滑阈值 `0.01` `rad/s`（默认）| 正标量
+### **Rotational velocity threshold** — Angular velocity smoothing threshold `0.01` `rad/s` (default) | positive scalar
 
-该模块应用平滑处理时的旋转速度。当旋转速度接近或穿过 0 时，此参数会对转矩和功率进行平滑处理。增大此参数的值时，该模块会在更大的速度范围内应用更多平滑处理。
+该模块施加平滑处理的旋转速度。当转速接近或越过 0 时，此参数会对转矩和功率进行平滑处理。随着此参数值的增大，该模块会在更大的速度范围内施加更多平滑处理。
 
 ## 所属库
 
@@ -265,43 +318,43 @@ Simscape / Driveline / Engines & Motors
 
 ## 模块特性
 
-未在 R2025b 中记录。
+Not documented in R2025b.
 
 ## 扩展功能
 
-### C/C++ 代码生成
-
-使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
 **在 R2022b 中引入**
 
-### R2024a: 使用翼型升力和阻力系数参数化模块
+### R2024a：使用翼型升力和阻力系数对模块进行参数化
 
-要使用翼型升力和阻力系数参数化模块，请将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients`。
+要使用翼型升力和阻力系数对该模块进行参数化，请将 **Parameterization** 设置为 `Tabulated data for
+airfoil lift and drag coefficients`。
 
-### R2023a: 性能更新
+### R2023a: Performance Updates
 
-端口 **C** 不再需要，并已被移除。
+端口 **C** 不再必需，已被移除。
 
 **Power coefficient table, Cp(β, λ)** 的默认值已更新。该模块断言 *Cp*(λ=0)≅ 0。
 
-### R2023a: 新增惯性选项
+### R2023a: New Inertia Option
 
-通过选择 **Model inertia** 在 Wind Turbine 模块中包含惯性。
+通过选择 **Model inertia**，在 Wind Turbine 模块中包含惯性。
 
 ## 描述
 
 将风动能转换为旋转运动的涡轮机
 
-Wind Turbine 模块表示一个将风运动转换为机械旋转能的风力涡轮机。风力涡轮机收集风能用于发电。风力涡轮机开发的重点是提高单个涡轮机的效率、可靠性和成本效益，而风电场开发则涉及多台涡轮机的战略性布置，以优化能量捕获。您可以使用该模块来模拟单个风力涡轮机和整个风电场。您可以分析涡轮机性能、发电量以及风电场中的相互作用，或者不同涡轮机几何形状、配置、控制算法和布局设计对风电场性能和能量输出的影响。
+Wind Turbine 模块表示将风运动转换为机械旋转能量的风力涡轮机。风力涡轮机利用风能发电。风力涡轮机开发的重点是提高单个涡轮机的效率、可靠性和成本效益，而风电场开发则涉及多个涡轮机的战略布局以优化能量捕获。您可以使用该模块来模拟单个风力涡轮机和整个风电场。您可以分析涡轮机性能、发电量以及风电场中的相互作用，或者不同涡轮机几何形状、配置、控制算法和布局设计对风电场性能和能量输出的影响。
 
-您将入射风速和叶片集体桨距指定为输入，并可以选择输出作用在涡轮机上的推力。您可以包含推力和惯性的影响。使用表格化的功率和推力系数或翼型升力和阻力系数来参数化该模块。
+您指定入射风速和集体叶片桨距作为输入，并且可以选择输出作用在涡轮机上的推力。您可以包含推力和惯性的影响。使用表格化的功率和推力系数或翼型升力和阻力系数来参数化该模块。
 
-### 按功率和推力系数参数化
+### 通过功率和推力系数进行参数化
 
-当您将 **Parameterization** 设置为 `Tabulated data for power and thrust coefficients` 时，模块使用查表计算功率和转矩系数，使得
+当您将 **Parameterization** 设置为 `Tabulated
+data for power and thrust coefficients` 时，该模块使用查表计算功率和转矩系数，使得
 
 CP=tablelookup(βRef,λRef,CP,Ref,β,λSmooth,interpolation = linear,extrapolation = nearest)CT=tablelookup(βRef,λRef,CT,Ref,β,λSmooth,interpolation = linear,extrapolation = nearest)
 
@@ -312,54 +365,55 @@ CP=tablelookup(βRef,λRef,CP,Ref,β,λSmooth,interpolation = linear,extrapolati
 - *CP,Ref* 和 *CT,Ref* 分别是 **Power coefficient table** 和 **Thrust coefficient table** 参数。
 - *λSmooth* 是平滑后的叶尖速比。
 
-模块使用此方程作为瞬时叶尖速比的基础
+该模块使用此方程作为瞬时叶尖速比的基础
 
-λ=Rωv,
+λ=Rωv，
 
 其中：
 
 - *R* 是 **Turbine radius** 参数。
-- *ɷ* 是轴与壳体之间的差动角速度。
-- *v* 是转子上的入射空气速度。此值是物理信号输入端口 **V**。
+- *ɷ* 是轴与壳体之间的微分角速度。
+- *v* 是作用在转子上的入射空气速度。该值是物理信号输入端口 **V**。
 
-模块使用此方程描述瞬时叶尖速比方程的平滑版本
+该模块使用此方程来描述瞬时叶尖速比方程的平滑版本
 
-λSmooth=Rωv(v2+vThr2)2,
+λSmooth=Rωv(v2+vThr2)2，
 
-其中 *vThr* 是 **Wind velocity threshold** 参数。模块使用这些方程作为功率和推力的基础
+其中 *vThr* 是 **Wind velocity threshold** 参数。该模块使用这些方程作为功率和推力的基础
 
 Power=12CPρAv3=Torque⋅ωThrust=12CTρAv2
 
 其中：
 
 - *ρ* 是 **Air density** 参数。
-- *A* 是由风力涡轮机叶片扫掠的圆的面积，且 *A* = *πr2*
+- *A* 是涡轮机叶片扫掠圆的面积，*A* = *πr2*
 
-为了将模块参数与风力涡轮机机械功率额定值关联，需确定在峰值功率系数和额定风速下的风力涡轮机功率。额定功率通过以下方程与模块参数对应
+为了将模块参数与风力涡轮机机械额定功率相关联，确定在峰值功率系数和额定风速下的风力涡轮机功率。额定功率通过此方程对应模块参数
 
-Powerrated=0.5CP,maxρAvrated3,
+Powerrated=0.5CP,maxρAvrated3，
 
 其中：
 
 - *CP,max* 是峰值功率系数。这是 **Power coefficient table, Cp(β,λ)** 参数中的最大值。
-- *Vrated* 是额定风速。额定风速通常为 10 到 15 m/s。风力涡轮机控制器设计可能在此风速下改变策略，以维持额定功率。
+- *Vrated* 是额定风速。额定风速通常为 10 至 15 m/s。风力涡轮机控制器设计可能会在此风速下改变策略以维持额定功率。
 - *A* 是转子扫掠面积，其中 *A = πr2*。
 
-模块对推力、功率和转矩使用数值平滑后的方程，使得
+该模块使用数值平滑方程来计算推力、功率和转矩，使得
 
 Power=ρACP|v|32TorqueSmooth={0if ω<−ωThrPowerω2+ωThr2if ω>0PowerSmooth=TorqueSmoothωThrustSmooth=12CTρA(v2+vThr2)
 
-其中 *ωThr* 是 **Rotational velocity threshold** 参数。当 *ɷ* < *-ɷThr* 时，模块将功率平滑饱和至零。
+其中 *ωThr* 是 **Rotational velocity threshold** 参数。当 *ɷ* < *-ɷThr* 时，该模块将功率平滑地饱和至零。
 
-模块断言 *Cp*(λ=0)≅ 0。当转子角速度为零时，产生的功率等于零，而 *Cp*(λ=0) 的非零值会影响启动转矩。启动转矩与 *Cp*(λ=0) 的关系如下
+该模块断言 *Cp*(λ=0)≅ 0。当转子角速度为零时，发电功率等于零，而 *Cp*(λ=0) 的非零值会影响启动转矩。启动转矩与 *Cp*(λ=0) 的关系为
 
-TorqueStartup=ρACP(λ=0)|v|32ωThr.
+TorqueStartup=ρACP(λ=0)|v|32ωThr。
 
-如果在强风中模拟制动转子，您的模型可能对此启动转矩行为敏感。
+如果您模拟在强风中制动转子，您的模型可能会对此启动转矩行为敏感。
 
-### 按翼型升力和阻力系数参数化
+### 通过翼型升力和阻力系数进行参数化
 
-当您将 **Parameterization** 设置为 `Tabulated data for airfoil lift and drag coefficients` 时，可以针对给定的叶素参数化升力和阻力系数以及翼型几何。默认值表示 NREL 5 MW 参考风力涡轮机。模块将螺旋桨视为连续圆盘。当模块计算诱导速度 *vi* 时，动量守恒应用于穿过圆盘的空气。模块使用诱导速度来求沿叶片径向位置向量处总流速的大小和方向，然后基于升力和阻力系数查找表使用该速度求升力和阻力。这些量特定于此参数化：
+当您将 **Parameterization** 设置为 `Tabulated data for
+airfoil lift and drag coefficients` 时，您可以为给定叶片元素参数化升力和阻力系数以及翼型几何形状。默认值表示 NREL 5 MW 参考风力涡轮机。该模块将螺旋桨视为连续圆盘。当模块计算诱导速度 *vi* 时，动量守恒适用于穿过圆盘的空气。该模块使用诱导速度来找到沿叶片径向位置向量处的总流速的大小和方向，然后使用该速度基于升力和阻力系数查找表找到升力和阻力。这些量特定于此参数化：
 
 - *TMT* — 由动量理论计算的推力
 - *vi* — 由风力涡轮机叶片运动诱导的轴向流速
@@ -368,28 +422,28 @@ TorqueStartup=ρACP(λ=0)|v|32ωThr.
 - *TBET* — 由叶素理论计算的推力
 - *QBET* — 由叶素理论计算的转矩
 - *Nblades* — 螺旋桨叶片数量
-- *e* — 叶根切除的无量纲位置，由 **Nondimensional radial location vector, r** 参数的第一个元素给出
+- *e* — 根部切除的无量纲位置，由 **Nondimensional radial location vector, r** 参数的第一个元素给出
 - *Ω* — 风力涡轮机角速度
 - *R* — 风力涡轮机叶片半径
-- *Cl,Cd* — 分别为逐元素的升力和阻力系数
+- *Cl,Cd* — 分别为升力和阻力的逐元素系数
 - *ϕ(y)* — 沿叶片给定点处的流动角
 - *a* = -*vi/v* — 轴向诱导因子
-- *a'=ω/2R* — 角向诱导因子
-- λr=RyΩv2+vThr2 — 每个叶素处平滑后的局部叶尖速比
+- *a'=ω/2R* — 角诱导因子
+- λr=RyΩv2+vThr2 — 每个叶片元素处的平滑局部叶尖速比
 
-模块使用动量理论定义平滑后的推力方程，使得
+该模块使用动量理论定义平滑推力方程，使得
 
-TMT=CTρπR2(v2+vThr2)22,
+TMT=CTρπR2(v2+vThr2)22，
 
-其中当 *a > 0.4* 时，模块在湍流尾流状态下使用 Glauert 修正，使得
+其中当 *a > 0.4* 时，该模块在湍流尾流状态下使用 Glauert 修正，使得
 
 CT={4a(1−a)⋅sign(v)a≤0.4(89±49a+149a2)⋅sign(v)a>0.4
 
-模块使用轴向诱导因子求解 *vi*，使得
+该模块使用轴向诱导因子求解 *vi*，使得
 
-vi=−av.
+vi=−av。
 
-模块对 **Nondimensional radial location vector, r** 参数中的值进行插值以求得 *y*。然后模块基于制表攻角以及升力和阻力系数，对升力和阻力系数进行插值以求得 *Cl(y)* 和 *Cd(y)*。模块使用叶素理论计算推力和转矩，使得
+该模块从 **Nondimensional radial location vector, r** 参数插值以找到 *y*。然后该模块基于表格化的攻角以及升力和阻力系数插值升力和阻力系数以找到 *Cl(y)* 和 *Cd(y)*。该模块使用叶素理论计算推力和转矩，使得
 
 TBET=NbladesρD24∫e1(vr2+vax2)⋅(Clcosϕ(y)+Cdsinϕ(y))⋅cdyQBET=NbladesρD38∫e1(vr2+vax2)⋅(Clsinϕ(y)+Cdcosϕ(y))⋅cydy
 
@@ -397,10 +451,10 @@ TBET=NbladesρD24∫e1(vr2+vax2)⋅(Clcosϕ(y)+Cdsinϕ(y))⋅cdyQBET=NbladesρD3
 
 vr=RyΩ(1+a')vax=v(1−a)
 
-模块在每个离散叶素上执行此积分。模块根据 **Number of blade elements** 参数中的指定值离散化 *y*，并按下式计算每个叶素处的角向诱导因子
+该模块对每个离散叶片元素执行此积分。该模块根据 **Number of blade elements** 参数中的指定对 *y* 进行离散化，并计算每个叶片元素处的角诱导因子为
 
-a'=−12+121+4λr2a(1−a).
+a'=−12+121+4λr2a(1−a)。
 
-### 假设与限制
+### 假设和限制
 
-模块仅对正角速度生成转矩和功率。
+该模块仅对正角速度生成转矩和功率。

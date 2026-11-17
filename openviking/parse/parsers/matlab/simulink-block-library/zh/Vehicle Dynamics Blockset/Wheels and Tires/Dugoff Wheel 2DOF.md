@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Dugoff Wheel 2DOF'
-family: 'wheels-and-tires'
+family: 'vdynblks'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b
@@ -18,11 +18,11 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **BrkPrs** — 制动压力标量 | *N*-by-`1` 向量
+### **BrkPrs** — 制动压力标量 | *N*×`1` 向量
 
 制动压力，单位为 Pa。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
 #### 依赖关系
 
@@ -32,176 +32,177 @@ chinese_source: worker-translation
 - `Drum`
 - `Mapped`
 
-### **AxlTrq** — 车轴扭矩标量 | *N*-by-`1` 向量
+### **AxlTrq** — 车轴扭矩标量 | *N*×`1` 向量
 
-车轴扭矩，*Ta*，绕车轮旋转轴，单位为 N·m。
+车轴扭矩 *Ta*，绕车轮旋转轴，单位为 N·m。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Vx** — 纵向速度标量 | *N*-by-`1` 向量
+### **Vx** — 纵向速度标量 | *N*×`1` 向量
 
-车轴纵向速度，*Vx*，沿轮胎固定 *x* 轴，单位为 m/s。
+车轴纵向速度 *Vx*，沿轮胎固定 *x* 轴，单位为 m/s。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Vy** — 侧向速度标量 | *N*-by-`1` 向量
+### **Vy** — 侧向速度标量 | *N*×`1` 向量
 
-车轴侧向速度，*Vy*，沿轮胎固定 *y* 轴，单位为 m/s。
+车轴侧向速度 *Vy*，沿轮胎固定 *y* 轴，单位为 m/s。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Camber** — 倾角标量 | *N*-by-`1` 向量
+### **Camber** — 倾角标量 | *N*×`1` 向量
 
-外倾角，*ɣ*，或倾角，*ε*，单位为 rad。
+外倾角 *ɣ*，或倾角 *ε*，单位为 rad。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
-### **YawRate** — 轮胎角速度标量 | *N*-by-`1` 向量
+### **YawRate** — 轮胎角速度标量 | *N*×`1` 向量
 
-轮胎角速度，*r*，绕轮胎固定 *z* 轴（横摆角速度），单位为 rad/s。
+轮胎角速度 *r*，绕轮胎固定 *z* 轴（横摆角速度），单位为 rad/s。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Prs** — 轮胎充气压力标量 | *N*-by-`1` 向量
+### **Prs** — 轮胎充气压力标量 | *N*×`1` 向量
 
-轮胎充气压力，*pi*，单位为 Pa。
+轮胎充气压力 *pi*，单位为 Pa。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Gnd** — 地面位移标量 | *N*-by-`1` 向量
+### **Gnd** — 地面位移标量 | *N*×`1` 向量
 
-沿轮胎固定 *z* 轴的地面位移，单位为 m。正输入产生车轮抬升。
+地面位移，沿轮胎固定 *z* 轴，单位为 m。正输入产生车轮抬升。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Fext** — 施加到轮胎上的车轴力标量 | *N*-by-`1` 向量
+### **Fext** — 施加到轮胎的车轴力标量 | *N*×`1` 向量
 
-施加到轮胎上的车轴力，*Fext*，沿车辆固定 *z* 轴（正输入压缩轮胎），单位为 N。
+施加到轮胎的车轴力 *Fext*，沿车辆固定 *z* 轴（正输入压缩轮胎），单位为 N。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
 #### 依赖关系
 
 要启用此参数，请将 **Vertical Motion** 设置为 `None` 或 `Mapped stiffness and damping`。
 
-### **RadialDeflct** — 轮胎径向变形标量 | *N*-by-`1` 向量
+### **RadialDeflct** — 轮胎径向变形标量 | *N*×`1` 向量
 
-轮胎径向变形，*RadialDeflct*。此值直接用于有效半径计算。
+轮胎径向变形 *RadialDeflct*。此值直接用于有效半径计算。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 
 #### 依赖关系
 
 要启用此端口，请将 **Vertical Motion** 设置为 `External Deflection`。
 
-### **ScaleFctrs** — 缩放因子标量 | *N*-by-`1` 向量
+### **ScaleFctrs** — 比例因子标量 | *N*×`1` 向量
 
-用于考虑摩擦系数变化的缩放因子。
+用于考虑摩擦系数变化的比例因子。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
-
+向量为车轮数量 *N*×`1`。如果提供标量值，模块假定车轮数量为一。
 ### 输出
 
 ### **Info** — 模块数据总线
 
-模块数据，以总线信号形式返回，包含以下模块值。
+模块数据，以包含这些模块值的总线信号形式返回。
 
 | 信号 | 描述 | 单位 |
 | --- | --- | --- |
-| `AxlTrq` | 绕车轮固定 *y* 轴的车轴扭矩 | N·m |
+| `AxlTrq` | 绕车轮固定 *y* 轴的轴扭矩 | N·m |
 | `Omega` | 绕车轮固定 *y* 轴的车轮角速度 | rad/s |
-| `Fx` | 沿轮胎固定 *x* 轴的纵向车辆力 | N |
-| `Fy` | 沿轮胎固定 *y* 轴的侧向车辆力 | N |
-| `Fz` | 沿轮胎固定 *z* 轴的垂向车辆力 | N |
-| `Mx` | 绕轮胎固定 *x* 轴的侧翻力矩 | N·m |
+| `Fx` | 沿轮胎固定 *x* 轴的车辆纵向力 | N |
+| `Fy` | 沿轮胎固定 *y* 轴的车辆侧向力 | N |
+| `Fz` | 沿轮胎固定 *z* 轴的车辆垂向力 | N |
+| `Mx` | 绕轮胎固定 *x* 轴的侧倾力矩 | N·m |
 | `My` | 绕轮胎固定 *y* 轴的滚动阻力扭矩 | N·m |
 | `Mz` | 绕轮胎固定 *z* 轴的回正力矩 | N·m |
 | `Vx` | 沿轮胎固定 *x* 轴的车辆纵向速度 | m/s |
 | `Vy` | 沿轮胎固定 *y* 轴的车辆侧向速度 | m/s |
-| `Re` | 承载有效半径 | m |
+| `Re` | 加载有效半径 | m |
 | `Kappa` | 纵向滑移率 | NA |
-| `Alpha` | 侧滑角 | rad |
-| `a` | 接地印迹半长 | m |
-| `b` | 接地印迹半宽 | m |
+| `Alpha` | 侧偏角 | rad |
+| `a` | 接地点半长 | m |
+| `b` | 接地点半宽 | m |
 | `Gamma` | 外倾角 | rad |
 | `psidot` | 绕轮胎固定 *z* 轴的轮胎角速度（横摆角速度） | rad/s |
-| `BrkTrq` | 绕车辆固定 *y* 轴的制动力矩 | N·m |
+| `BrkTrq` | 绕车辆固定 *y* 轴的制动扭矩 | N·m |
 | `BrkPrs` | 制动压力 | Pa |
-| `z` | 沿轮胎固定 *z* 轴的车轴垂向位移 | m |
-| `zdot` | 沿轮胎固定 *z* 轴的车轴垂向速度 | m/s |
+| `z` | 沿轮胎固定 *z* 轴的轴垂向位移 | m |
+| `zdot` | 沿轮胎固定 *z* 轴的轴垂向速度 | m/s |
 | `Gnd` | 沿轮胎固定 *z* 轴的地面位移（正输入产生车轮抬升） | m |
 | `GndFz` | 沿轮胎固定 *z* 轴作用在地面上的垂向胎侧力 | N |
 | `Prs` | 轮胎充气压力 | Pa |
 | `WhlTrq` | 车轮扭矩 | N·m |
-| `RL` | 承载半径 | m |
+| `RL` | 加载半径 | m |
 | `RadialDeflct` | 轮胎径向变形 | m |
 
-### **Omega** — 车轮角速度标量 | *N*-by-`1` 向量
+### **Omega** — 车轮角速度 标量 | *N*×`1` 向量
 
-车轮角速度，*ω*，绕车轮固定 *y* 轴，单位为 rad/s。
+绕车轮固定 *y* 轴的车轮角速度，*ω*，单位为 rad/s。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量，*N*，× `1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Fx** — 纵向车轴力标量 | *N*-by-`1` 向量
+### **Fx** — 纵向轴力 标量 | *N*×`1` 向量
 
-作用在车轴上的纵向力，*Fx*，沿轮胎固定 *x* 轴，单位为 N。正力使车辆向前移动。
+沿轮胎固定 *x* 轴作用在轴上的纵向力，*Fx*，单位为 N。正力作用使车辆向前运动。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量，*N*，× `1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Fy** — 侧向车轴力标量 | *N*-by-`1` 向量
+### **Fy** — 侧向轴力 标量 | *N*×`1` 向量
 
-作用在车轴上的侧向力，*Fy*，沿轮胎固定 *y* 轴，单位为 N。
+沿轮胎固定 *y* 轴作用在轴上的侧向力，*Fy*，单位为 N。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量，*N*，× `1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Fz** — 垂向车轴力标量 | *N*-by-`1` 向量
+### **Fz** — 垂向轴力 标量 | *N*×`1` 向量
 
-作用在车轴上的垂向力，*Fz*，沿轮胎固定 *z* 轴，单位为 N。
+沿轮胎固定 *z* 轴作用在轴上的垂向力，*Fz*，单位为 N。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量，*N*，× `1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Mx** — 侧翻力矩标量 | *N*-by-`1` 向量
+### **Mx** — 侧倾力矩 标量 | *N*×`1` 向量
 
-作用在车轴上的纵向力矩，*Mx*，绕轮胎固定 *x* 轴，单位为 N·m。
+绕轮胎固定 *x* 轴作用在轴上的纵向力矩，*Mx*，单位为 N·m。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量，*N*，× `1`。如果提供标量值，模块假定车轮数量为一。
 
-### **My** — 滚动阻力力矩标量 | *N*-by-`1` 向量
+### **My** — 滚动阻力矩 标量 | *N*×`1` 向量
 
-作用在车轴上的侧向力矩，*My*，绕轮胎固定 *y* 轴，单位为 N·m。
+绕轮胎固定 *y* 轴作用在轴上的侧向力矩，*My*，单位为 N·m。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量，*N*，× `1`。如果提供标量值，模块假定车轮数量为一。
 
-### **Mz** — 回正力矩标量 | *N*-by-`1` 向量
+### **Mz** — 回正力矩 标量 | *N*×`1` 向量
 
-作用在车轴上的垂向力矩，*Mz*，绕轮胎固定 *z* 轴，单位为 N·m。
+绕轮胎固定 *z* 轴作用在轴上的垂向力矩，*Mz*，单位为 N·m。
 
-向量为车轮数 *N* by `1`。如果提供标量值，模块假定车轮数为 1。
+向量为车轮数量，*N*，× `1`。如果提供标量值，模块假定车轮数量为一。
 
 ## 参数
 
 ### 模块选项
 
-### **Tire type** — 选择类型 `User defined` (default) | `Light passenger car 205/60R15` | `Light passenger car 245/60R16` | `Mid-size passenger car 235/45R18` | `Performance car 225/40R19` | `SUV 265/50R20` | `Light truck 275/65R18` | `Commercial truck 295/75R22.5`
+### **Tire type** — 选择类型 `User defined`（默认）| `Light passenger car 205/60R15` | `Light passenger car 245/60R16` | `Mid-size passenger car 235/45R18` | `Performance car 225/40R19` | `SUV 265/50R20` | `Light truck 275/65R18` | `Commercial truck 295/75R22.5`
 
-使用 **Tire type** 参数可以输入轮胎参数值，或选择拟合轮胎参数集。
+使用 **Tire type** 参数可以输入轮胎参数值或选择拟合的轮胎参数集。
 
 | 目标 | 操作 |
 | --- | --- |
-| 输入用户定义的轮胎参数值。 | 使用用户定义的参数值更新模块参数：<br>1. 将 **Tire type** 设置为 `User    defined`。<br>2. 在 **Wheel and Tire Parameters** 部分中，输入用户定义的值。<br>3. 单击 **Apply**。 |
-| 选择一个内置 Dugoff 轮胎模型以驱动侧向和纵向计算。[Link]。 | 使用内置轮胎模型中的值更新适用的模块参数：<br>1. 将 **Tire type** 设置为要实现的轮胎。选项包括：<br>  - `Light passenger car      205/60R15`<br>  - `Light passenger car      245/60R16`<br>  - `Mid-size passenger car      235/45R18`<br>  - `Performance car      225/40R19`<br>  - `SUV      265/50R20`<br>  - `Light truck      275/65R18`<br>  - `Commercial truck      295/75R22.5`<br>2. 单击 **Update block with applicable tire    values**。在 **Wheel and Tire    Parameters** 部分中，模块更新适用的 **Longitudinal and Lateral** 参数。<br>3. 单击 **Apply**。 |
+| 输入用户定义的轮胎参数值。 | 使用用户定义的参数值更新模块参数：1. 将 **Tire type** 设置为 `User    defined`。2. 在 **Wheel and Tire Parameters** 部分中，输入用户定义的值。3. 点击 **Apply**。 |
+| 选择内置的 Dugoff 轮胎模型之一来驱动横向和纵向计算。[Link]。 | 使用内置轮胎模型的值更新适用的模块参数：1. 将 **Tire type** 设置为您要实现的轮胎。选项包括：- `Light passenger car      205/60R15`    - `Light passenger car      245/60R16`    - `Mid-size passenger car      235/45R18`    - `Performance car      225/40R19`    - `SUV      265/50R20`    - `Light truck      275/65R18`    - `Commercial truck      295/75R22.5` 2. 点击 **Update block with applicable tire    values**。在 **Wheel and Tire    Parameters** 部分中，模块会更新适用的 **Longitudinal and Lateral**    参数。3. 点击 **Apply**。 |
 
-#### 编程用法
+#### 编程使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param`
+函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param`
+函数。
 
 |  |  |
 | --- | --- |
-| **参数：** | `tireType` |
-| **值：** | `External file` (default) | `Light passenger car 205/60R15` | `Light passenger car 245/60R16` | `Mid-size passenger car 235/45R18` | `Performance car 225/40R19` | `SUV 265/50R20` | `Light truck 275/65R18` | `Commercial truck 295/75R22.5` |
-| **数据类型：** | `character vector` |
+| **Parameter:** | `tireType` |
+| **值**：| `External file`（默认）| `Light passenger car 205/60R15` | `Light passenger car 245/60R16` | `Mid-size passenger car 235/45R18` | `Performance car 225/40R19` | `SUV 265/50R20` | `Light truck 275/65R18` | `Commercial truck 295/75R22.5` |
+| **Data Types:** | `character vector` |
 
 ### **Model slip type** — 模型滑移类型 `Nominal slip` | `Extended slip`
 
@@ -209,18 +210,19 @@ chinese_source: worker-translation
 
 | 操作 | 模型滑移类型设置 |
 | --- | --- |
-| 在名义滑移条件下计算纵向力和侧向力 | `Nominal slip` |
-| 使用附加修正因子计算纵向力和侧向力，以在较高滑移值下获得更准确的响应 | `Extended slip` |
+| 在标称滑移条件下计算纵向力和横向力 | `Nominal slip` |
+| 使用附加修正因子计算纵向力和横向力，以便在较高滑移值下获得更准确的响应 | `Extended slip` |
 
 #### 依赖关系
 
-将 **Model slip type** 设置为 `Extended slip` 会启用以下参数：
+将 **Model slip type** 设置为 `Extended
+slip` 会启用以下参数：
 
 | 设置 | 启用的参数 |
 | --- | --- |
-| `Extended slip` | - **Longitudinal squared slip correction factor,   gx1**<br> - **Longitudinal squared slip friction   correction factor, gx2**<br> - **Longitudinal linear slip correction factor,   gx3**<br> - **Longitudinal linear slip friction correction   factor, gx4**<br> - **Longitudinal offset correction factor,   gx5**<br> - **Lateral maximum friction correction factor,   gy1**<br> - **Lateral offset correction factor,   gy2** |
+| `Extended slip` | - **Longitudinal squared slip correction factor,   gx1** - **Longitudinal squared slip friction   correction factor, gx2** - **Longitudinal linear slip correction factor,   gx3** - **Longitudinal linear slip friction correction   factor, gx4** - **Longitudinal offset correction factor,   gx5** - **Lateral maximum friction correction factor,   gy1** - **Lateral offset correction factor,   gy2** |
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -228,9 +230,9 @@ chinese_source: worker-translation
 
 |  |  |
 | --- | --- |
-| **参数：** | `slipType` |
-| **值：** | `Nominal slip` | `Extended slip` |
-| **数据类型：** | `character vector` |
+| **Parameter:** | `slipType` |
+| **值**：| `Nominal slip` | `Extended slip` |
+| **Data Types:** | `character vector` |
 
 ### **Brake type** — 制动器类型 `None` | `Disc` | `Drum` | `Mapped`
 
@@ -240,10 +242,10 @@ chinese_source: worker-translation
 | --- | --- |
 | 无制动 | `None` |
 | 实现将制动缸压力转换为制动力的制动器 | `Disc` |
-| 实现将施加力和制动器几何参数转换为净制动力矩的简单鼓式制动器 | `Drum` |
+| 实现将施加力和制动器几何参数转换为净制动扭矩的单工鼓式制动器 | `Drum` |
 | 实现作为车轮速度和施加制动压力函数的查找表 | `Mapped` |
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -255,19 +257,19 @@ chinese_source: worker-translation
 | **值：** | `None` | `Disc` | `Drum` | `Mapped` |
 | **数据类型：** | `character vector` |
 
-### **Rolling Resistance** — 滚动阻力扭矩 `None` (default) | `Pressure and velocity` | `ISO 28580` | `Magic Formula` | `Mapped torque`
+### **滚动阻力** — 滚动阻力扭矩 `None`（默认）| `Pressure and velocity` | `ISO 28580` | `Magic Formula` | `Mapped torque`
 
-要计算滚动阻力扭矩，请指定以下 **Rolling Resistance** 参数之一。
+要计算滚动阻力扭矩，请指定以下 **滚动阻力** 参数之一。
 
 | 设置 | 模块实现 |
 | --- | --- |
 | `None` | 无 |
 | `Pressure and velocity` | *Stepwise Coastdown Methodology for Measuring Tire Rolling Resistance* 中的方法。滚动阻力是轮胎压力、法向力和速度的函数。 |
 | `ISO 28580` | ISO 28580:2018, *Passenger car, truck and bus tyre rolling resistance measurement method — Single point test and correlation of measurement results* 中规定的方法。 |
-| `Magic Formula` | 来自 *Tire and Vehicle Dynamics* 中 4.E70 的 Magic formula 方程。Magic formula 是基于拟合系数的经验方程。 |
-| `Mapped torque` | 作为法向力和旋转轴纵向速度函数的查找表。 |
+| `Magic Formula` | *Tire and Vehicle Dynamics* 中 4.E70 的魔术公式方程。魔术公式是基于拟合系数的经验方程。 |
+| `Mapped torque` | 作为法向力和自旋轴纵向速度函数的查找表。 |
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -276,113 +278,151 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `rollingType` |
-| **值：** | `None` (default) | `Pressure and velocity` | `ISO 28580` | `Magic Formula` | `Mapped torque` |
+| **值：** | `None`（默认）| `Pressure and velocity` | `ISO 28580` | `Magic Formula` | `Mapped torque` |
 | **数据类型：** | `character vector` |
 
 #### 依赖关系
 
-每个 **Rolling Resistance** 设置都会启用附加参数。
+每个 **滚动阻力** 设置会启用额外的参数。
 
 | 设置 | 启用的参数 |
 | --- | --- |
-| `Pressure and velocity` | - **Velocity independent force coefficient,   aMy**<br> - **Linear velocity force component,   bMy**<br> - **Quadratic velocity force component,   cMy**<br> - **Tire pressure exponent,   alphaMy**<br> - **Normal force exponent,   betaMy** |
-| `ISO 28580` | - **Parasitic losses force,   Fpl**<br> - **Rolling resistance constant,   Cr**<br> - **Thermal correction factor,   Kt**<br> - **Measured temperature,   Tmeas**<br> - **Parasitic losses force,   Fpl**<br> - **Ambient temperature, Tamb** |
-| `Magic Formula` | **Rolling resistance torque coefficient, QSY**<br>  **Longitudinal force rolling resistance coefficient, QSY2**<br>  **Linear rotational speed rolling resistance coefficient, QSY3**<br>  **Quartic rotational speed rolling resistance coefficient, QSY4**<br>  **Camber squared rolling resistance torque, QSY5**<br>  **Load based camber squared rolling resistance torque, QSY6**<br>  **Normal load rolling resistance coefficient, QSY7**<br>  **Pressure load rolling resistance coefficient, QSY8**<br>  **Rolling resistance scaling factor, lam\_My** |
-| `Mapped torque` | **Spin axis velocity breakpoints, VxMy**<br>  **Normal force breakpoints, FzMy**<br>  **Rolling resistance torque map, MyMap** |
+| `Pressure and velocity` | - **速度无关力系数，aMy** - **线性速度力分量，bMy** - **二次速度力分量，cMy** - **轮胎压力指数，alphaMy** - **法向力指数，betaMy** |
+| `ISO 28580` | - **寄生损耗力，Fpl** - **滚动阻力常数，Cr** - **热修正因子，Kt** - **测量温度，Tmeas** - **寄生损耗力，Fpl** - **环境温度，Tamb** |
+| `Magic Formula` | **滚动阻力扭矩系数，QSY**  **纵向力滚动阻力系数，QSY2**  **线性转速滚动阻力系数，QSY3**  **四次转速滚动阻力系数，QSY4**  **外倾角平方滚动阻力扭矩，QSY5**  **基于载荷的外倾角平方滚动阻力扭矩，QSY6**  **法向载荷滚动阻力系数，QSY7**  **压力载荷滚动阻力系数，QSY8**  **滚动阻力缩放因子，lam\_My** |
+| `Mapped torque` | **自旋轴速度断点，VxMy**  **法向力断点，FzMy**  **滚动阻力扭矩映射，MyMap** |
 
-### **Vertical Motion** — 垂向运动模型 `None` (default) | `Mapped stiffness and damping` | `External deflection`
+### **垂向运动** — 垂向运动模型 `None`（默认）| `Mapped stiffness and damping` | `External deflection`
 
-要计算垂向运动，请指定以下 **Vertical Motion** 参数之一。
+要计算垂向运动，请指定以下 **垂向运动** 参数之一。
 
 | 设置 | 模块实现 |
 | --- | --- |
 | `None` | 模块将施加的底盘力直接传递到滚动阻力和纵向力计算。 |
-| `Mapped stiffness and damping` | 垂向运动取决于车轮刚度和阻尼。刚度是轮胎胎侧位移和压力的函数。阻尼是轮胎胎侧速度和压力的函数。 |
-| `External deflection` | 模块在有效半径计算中直接使用定义的胎侧变形。 |
+| `Mapped stiffness and damping` | 垂向运动取决于车轮刚度和阻尼。刚度是轮胎侧壁位移和压力的函数。阻尼是轮胎侧壁速度和压力的函数。 |
+| `External deflection` | 模块在有效半径计算中直接使用定义的侧壁变形。 |
 
 #### 依赖关系
 
-将 **Vertical Motion** 设置为 `Mapped stiffness and damping` 会启用以下参数：
+将 **Vertical Motion** 设置为
+`Mapped stiffness and damping` 会启用
+以下参数：
 
 | 设置 | 启用的参数 |
 | --- | --- |
-| `Mapped stiffness and damping` | - **Wheel mass, MASS**<br> - **Initial tire displacement,   zo**<br> - **Initial velocity,   zdoto**<br> - **Initial wheel vertical velocity   (wheel fixed frame), zdoto**<br> - **Vertical deflection breakpoints,   zFz**<br> - **Pressure breakpoints,   pFz**<br> - **Force due to deflection,   Fzz**<br> - **Vertical velocity breakpoints,   zdotFz**<br> - **Force due to velocity,   Fzzdot** |
+| `Mapped stiffness and damping` | - **Wheel mass, MASS** - **Initial tire displacement,   zo** - **Initial velocity,   zdoto** - **Initial wheel vertical velocity   (wheel fixed frame), zdoto** - **Vertical deflection breakpoints,   zFz** - **Pressure breakpoints,   pFz** - **Force due to deflection,   Fzz** - **Vertical velocity breakpoints,   zdotFz** - **Force due to velocity,   Fzzdot** |
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块
+参数值，请使用 `set_param`
+函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块
+参数值，请使用 `get_param`
+函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `vertType` |
-| **值：** | `None` (default) | `Mapped stiffness and damping` | `External deflection` |
+| **值：** | `None`（默认） | `Mapped stiffness and damping` | `External deflection` |
 | **数据类型：** | `character vector` |
 
-### 纵向与侧向
+### 纵向和横向
 
-### **Longitudinal stiffness, Ckappa** — 纵向刚度 `1e7` (default) | 标量 | *N*-by-`1` 向量
+### **Longitudinal stiffness, Ckappa** — 纵向刚度 `1e7`（默认） | 标量 | *N*×`1` 向量
 
-纵向刚度，*Cκ*，指定为标量或 *N*-by-`1` 向量，单位为 N。如果指定标量，模块将该值用于所有车轮。如果指定向量，则必须为其他纵向和侧向参数指定向量。
+纵向刚度，
+*Cκ*，指定为
+标量或 *N*×`1` 向量，单位为 N。如果
+指定标量，模块将对所有车轮使用该值。如果
+指定向量，则必须为其他纵向
+和横向参数指定向量。
 
-*N* 是车轮数，并且必须与输入信号维度匹配。
+*N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块
+参数值，请使用 `set_param`
+函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块
+参数值，请使用 `get_param`
+函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Ckappa` |
-| **值：** | `1e7`（默认）| 标量 | *N*×`1` 向量 |
+| **值：** | `1e7`（默认） | 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **每侧偏角的侧向刚度，Calpha** — 侧向刚度 `4.5e4`（默认）| 标量 | *N*×`1` 向量
+### **Lateral stiffness per slip angle, Calpha** — 每侧偏角的横向刚度 `4.5e4`（默认） | 标量 | *N*×`1` 向量
 
-每侧偏角的侧向刚度，*Cα*，指定为标量或 *N*×`1` 向量，单位为 N/rad。如果指定标量，模块会将该值用于所有车轮。如果指定向量，则必须为其他纵向和侧向参数指定向量。
+每侧偏角的横向刚度，
+*Cα*，指定为
+标量或 *N*×`1` 向量，单位为 N/rad。
+如果指定标量，模块将对所有车轮使用该值。如果
+指定向量，则必须为其他
+纵向和横向参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块
+参数值，请使用 `set_param`
+函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块
+参数值，请使用 `get_param`
+函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Calpha` |
-| **值：** | `4.5e4`（默认）| 标量 | *N*×`1` 向量 |
+| **值：** | `4.5e4`（默认） | 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **外倾刚度，Cgamma** — 外倾刚度 `1e3`（默认）| 标量 | *N*×`1` 向量
+### **Camber stiffness, Cgamma** — 外倾刚度 `1e3`（默认） | 标量 | *N*×`1` 向量
 
-外倾刚度，*Cɣ*，指定为标量或 *N*×`1` 向量，单位为 N/rad。如果指定标量，模块会将该值用于所有车轮。如果指定向量，则必须为其他纵向和侧向参数指定向量。
+外倾刚度，
+*Cɣ*，指定为
+标量或 *N*×`1` 向量，单位为 N/rad。
+如果指定标量，模块将对所有车轮使用该值。如果
+指定向量，则必须为其他
+纵向和横向参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块
+参数值，请使用 `set_param`
+函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块
+参数值，请使用 `get_param`
+函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `Cgamma` |
-| **值：** | `1e3`（默认）| 标量 | *N*×`1` 向量 |
+| **值：** | `1e3`（默认） | 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **最大摩擦缩放系数，mu0** — 最大摩擦缩放系数 `0.8`（默认）| 标量 | *N*×`1` 向量
+### **Maximum friction scaling coefficient, mu0** — 最大摩擦缩放系数 `0.8`（默认） | 标量 | *N*×`1` 向量
 
-最大摩擦缩放系数，*μ0*，指定为标量或 *N*×`1` 向量，无量纲。如果指定标量，模块会将该值用于所有车轮。如果指定向量，则必须为其他纵向和侧向参数指定向量。
+最大摩擦缩放系数，
+*μ0*，指定为
+标量或 *N*×`1` 向量，
+无量纲。如果指定标量，模块将对
+所有车轮使用该值。如果指定向量，则必须为
+其他纵向和横向参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -394,13 +434,13 @@ chinese_source: worker-translation
 | **值：** | `0.8`（默认）| 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **摩擦减小因子，As** — 摩擦减小因子 `0.01`（默认）| 标量 | *N*×`1` 向量
+### **摩擦力减小因子，As** — 摩擦力减小因子 `0.01`（默认）| 标量 | *N*×`1` 向量
 
-摩擦减小因子，*As*，指定为标量或 *N*×`1` 向量，无量纲。如果指定标量，模块会将该值用于所有车轮。如果指定向量，则必须为其他纵向和侧向参数指定向量。
+摩擦力减小因子 *As*，指定为标量或 *N*×`1` 向量，无量纲。如果指定为标量，模块将对所有车轮使用该值。如果指定为向量，则必须为其他纵向和侧向参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -414,11 +454,11 @@ chinese_source: worker-translation
 
 ### **纵向松弛长度，Lrelx** — 纵向松弛长度 `0.05`（默认）| 标量 | *N*×`1` 向量
 
-纵向松弛长度，*Lrelx*，指定为标量或 *N*×`1` 向量，单位为 m。如果指定标量，模块会将该值用于所有车轮。如果指定向量，则必须为其他纵向和侧向参数指定向量。
+纵向松弛长度 *Lrelx*，指定为标量或 *N*×`1` 向量，单位为 m。如果指定为标量，模块将对所有车轮使用该值。如果指定为向量，则必须为其他纵向和侧向参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -432,11 +472,11 @@ chinese_source: worker-translation
 
 ### **侧向松弛长度，Lrely** — 侧向松弛长度 `0.15`（默认）| 标量 | *N*×`1` 向量
 
-侧向松弛长度，*Lrely*，指定为标量或 *N*×`1` 向量，单位为 m/rad。如果指定标量，模块会将该值用于所有车轮。如果指定向量，则必须为其他纵向和侧向参数指定向量。
+侧向松弛长度 *Lrely*，指定为标量或 *N*×`1` 向量，单位为 m/rad。如果指定为标量，模块将对所有车轮使用该值。如果指定为向量，则必须为其他纵向和侧向参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -452,13 +492,13 @@ chinese_source: worker-translation
 
 ### **纵向平方滑移修正因子，gx1** — 纵向平方滑移修正因子 `1.14`（默认）| 标量
 
-纵向平方滑移修正因子，*gx1*，无量纲。
+纵向平方滑移修正因子 *gx1*，无量纲。
 
 #### 依赖关系
 
 要启用此参数，请将 **轮胎类型** 设置为 `User defined`，并将 **模型滑移类型** 设置为 `Extended slip`。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -472,13 +512,13 @@ chinese_source: worker-translation
 
 ### **纵向平方滑移摩擦修正因子，gx2** — 纵向平方滑移摩擦修正因子 `-0.75`（默认）| 标量
 
-纵向平方滑移摩擦修正因子，*gx2*，无量纲。
+纵向平方滑移摩擦修正因子 *gx2*，无量纲。
 
 #### 依赖关系
 
 要启用此参数，请将 **轮胎类型** 设置为 `User defined`，并将 **模型滑移类型** 设置为 `Extended slip`。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -487,10 +527,10 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `gx2` |
-| **值：** | `-0.75`（默认）| 标量 |
+| **值：** | `-0.75`（默认） | 标量 |
 | **数据类型：** | `double` |
 
-### **纵向线性滑移修正因子，gx3** — 纵向线性滑移修正因子 `1.63`（默认）| 标量
+### **纵向线性滑移修正因子，gx3** — 纵向线性滑移修正因子 `1.63`（默认） | 标量
 
 纵向线性滑移修正因子，*gx3*，无量纲。
 
@@ -498,7 +538,7 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **轮胎类型** 设置为 `User defined`，并将 **模型滑移类型** 设置为 `Extended slip`。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -507,10 +547,10 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `gx3` |
-| **值：** | `1.63`（默认）| 标量 |
+| **值：** | `1.63`（默认） | 标量 |
 | **数据类型：** | `double` |
 
-### **纵向线性滑移摩擦修正因子，gx4** — 纵向线性滑移摩擦修正因子 `-0.75`（默认）| 标量
+### **纵向线性滑移摩擦修正因子，gx4** — 纵向线性滑移摩擦修正因子 `-0.75`（默认） | 标量
 
 纵向线性滑移摩擦修正因子，*gx4*，无量纲。
 
@@ -518,7 +558,7 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **轮胎类型** 设置为 `User defined`，并将 **模型滑移类型** 设置为 `Extended slip`。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -527,10 +567,10 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `gx4` |
-| **值：** | `-0.75`（默认）| 标量 |
+| **值：** | `-0.75`（默认） | 标量 |
 | **数据类型：** | `double` |
 
-### **纵向偏移修正因子，gx5** — 纵向偏移修正因子 `1.5`（默认）| 标量
+### **纵向偏移修正因子，gx5** — 纵向偏移修正因子 `1.5`（默认） | 标量
 
 纵向偏移修正因子，*gx5*，无量纲。
 
@@ -538,7 +578,7 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **轮胎类型** 设置为 `User defined`，并将 **模型滑移类型** 设置为 `Extended slip`。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -547,10 +587,10 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `gx5` |
-| **值：** | `1.5`（默认）| 标量 |
+| **值：** | `1.5`（默认） | 标量 |
 | **数据类型：** | `double` |
 
-### **侧向最大摩擦修正因子，gy1** — 侧向最大摩擦修正因子 `-1.6`（默认）| 标量
+### **侧向最大摩擦修正因子，gy1** — 侧向最大摩擦修正因子 `-1.6`（默认） | 标量
 
 侧向最大摩擦修正因子，*gy1*，无量纲。
 
@@ -558,7 +598,7 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **轮胎类型** 设置为 `User defined`，并将 **模型滑移类型** 设置为 `Extended slip`。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -567,10 +607,10 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `gy1` |
-| **值：** | `-1.6`（默认）| 标量 |
+| **值：** | `-1.6`（默认） | 标量 |
 | **数据类型：** | `double` |
 
-### **侧向偏移修正因子，gy2** — 侧向偏移修正因子 `1.5`（默认）| 标量
+### **侧向偏移修正因子，gy2** — 侧向偏移修正因子 `1.5`（默认） | 标量
 
 侧向偏移修正因子，*gy2*，无量纲。
 
@@ -578,7 +618,7 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **轮胎类型** 设置为 `User defined`，并将 **模型滑移类型** 设置为 `Extended slip`。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -587,16 +627,16 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `gy2` |
-| **值：** | `1.5`（默认）| 标量 |
+| **值：** | `1.5`（默认） | 标量 |
 | **数据类型：** | `double` |
 
 ### 滚动阻力
 
 #### 压力和速度
 
-### **与速度无关的力系数，aMy** — 与速度无关的力系数 `84e-4`（默认）| 标量
+### **速度无关力系数，aMy** — 速度无关力系数 `84e-4`（默认） | 标量
 
-与速度无关的力系数，*a*，无量纲。
+速度无关力系数，*a*，无量纲。
 
 #### 编程用法
 
@@ -612,11 +652,12 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `Pressure and velocity`。
+要启用此参数，请将 **滚动阻力** 设置为 `Pressure
+and velocity`。
 
-### **线性速度力分量，bMy** — 线性速度力分量 `6.2e-4`（默认）| 标量
+### **线速度力分量，bMy** — 线速度力分量 `6.2e-4`（默认）| 标量
 
-线性速度力分量，*b*，单位为 s/m。
+线速度力分量，*b*，单位为 s/m。
 
 #### 编程用法
 
@@ -632,7 +673,8 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `Pressure and velocity`。
+要启用此参数，请将 **滚动阻力** 设置为 `Pressure
+and velocity`。
 
 ### **二次速度力分量，cMy** — 二次速度力分量 `1.6e-4`（默认）| 标量
 
@@ -652,7 +694,8 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `Pressure and velocity`。
+要启用此参数，请将 **滚动阻力** 设置为 `Pressure
+and velocity`。
 
 ### **轮胎压力指数，alphaMy** — 轮胎压力指数 `-0.003`（默认）| 标量
 
@@ -672,7 +715,8 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `Pressure and velocity`。
+要启用此参数，请将 **滚动阻力** 设置为 `Pressure
+and velocity`。
 
 ### **法向力指数，betaMy** — 法向力指数 `0.97`（默认）| 标量
 
@@ -692,13 +736,14 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `Pressure and velocity`。
+要启用此参数，请将 **滚动阻力** 设置为 `Pressure
+and velocity`。
 
 #### ISO 28580
 
-### **寄生损失力，Fpl** — 寄生力损失 `10`（默认）| 标量
+### **寄生损耗力，Fpl** — 寄生力损耗 `10`（默认）| 标量
 
-寄生力损失，*Fpl*，单位为 N。
+寄生力损耗，*Fpl*，单位为 N。
 
 #### 编程用法
 
@@ -714,11 +759,13 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `ISO 28580`。
+要启用此参数，请将 **滚动阻力** 设置为 `ISO
+28580`。
 
 ### **滚动阻力常数，Cr** — 滚动阻力常数 `1e-3`（默认）| 标量
 
-滚动阻力常数，*Cr*，单位为 N/kN。ISO 28580 规定滚动阻力单位为每千牛顿法向载荷对应 1 牛顿牵引阻力。
+滚动阻力常数，*Cr*，单位为 N/kN。ISO
+28580 规定滚动阻力单位为每千牛顿法向载荷对应一牛顿牵引阻力。
 
 #### 编程用法
 
@@ -734,33 +781,14 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `ISO 28580`。
+要启用此参数，请将 **滚动阻力** 设置为 `ISO
+28580`。
 
-### **热修正因子，Kt** — 热修正因子 `0.008`（默认）| 标量
+### **Thermal correction factor, Kt** — 热修正系数 `0.008`（默认）| 标量
 
-热修正因子，*Kt*，单位为 1/degC。
+热修正系数 *Kt*，单位为 1/degC。
 
-#### 编程用法
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数：** | `Kt` |
-| **值：** | `0.008`（默认）| 标量 |
-| **数据类型：** | `double` |
-
-#### 依赖关系
-
-要启用此参数，请将 **滚动阻力** 设置为 `ISO 28580`。
-
-### **测量温度，Tmeas** — 测试期间温度 `298.15`（默认）| 标量
-
-轮胎测试期间轮胎附近的测量环境温度，*Tmeas*，单位为 K。
-
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -768,19 +796,20 @@ chinese_source: worker-translation
 
 |  |  |
 | --- | --- |
-| **参数：** | `Tmeas` |
-| **值：** | `298.15`（默认）| 标量 |
-| **数据类型：** | `double` |
+| **Parameter:** | `Kt` |
+| **值**：| `0.008`（默认）| 标量 |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `ISO 28580`。
+要启用此参数，请将 **Rolling Resistance** 设置为 `ISO
+28580`。
 
-### **环境温度，Tamb** — 应用环境中的温度 `298.15`（默认）| 标量
+### **Measured temperature, Tmeas** — 测试期间的温度 `298.15`（默认）| 标量
 
-应用环境中轮胎附近的测量环境温度，*Tamb*，单位为 K。例如，测量环境温度是车辆在道路上时轮胎附近的环境温度。
+轮胎测试期间轮胎附近的实测环境温度 *Tmeas*，单位为 K。
 
-#### 编程用法
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -788,564 +817,629 @@ chinese_source: worker-translation
 
 |  |  |
 | --- | --- |
-| **参数：** | `Tamb` |
-| **值：** | `298.15`（默认）| 标量 |
-| **数据类型：** | `double` |
+| **Parameter:** | `Tmeas` |
+| **值**：| `298.15`（默认）| 标量 |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `ISO 28580`。
+要启用此参数，请将 **Rolling Resistance** 设置为 `ISO
+28580`。
 
-### **输入环境温度** — 用于输入环境温度的选项 `off`（默认）| on
+### **Ambient temperature, Tamb** — 应用环境中的温度 `298.15`（默认）| 标量
 
-选择以创建输入端口 **Tamb**，用于输入测量环境温度。
+应用环境中轮胎附近的实测环境温度 *Tamb*，单位为 K。例如，实测环境温度是车辆在道路上行驶时轮胎附近的环境温度。
 
-测量环境温度 *Tamb* 是应用环境中轮胎附近的温度，单位为 K。例如，测量环境温度是车辆在道路上时轮胎附近的环境温度。
+#### 编程使用
 
-#### 程序化使用
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `Tamb` |
-| **值:** | `off`（默认） | on |
-| **数据类型:** | `character vector` |
+| **Parameter:** | `Tamb` |
+| **值**：| `298.15`（默认）| 标量 |
+| **Data Types:** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **Rolling Resistance** 设置为 `ISO 28580`。
+要启用此参数，请将 **Rolling Resistance** 设置为 `ISO
+28580`。
+
+### **Input ambient temperature** — 输入环境温度的选项 `off`（默认）| on
+
+选择以创建输入端口 **Tamb**，用于输入实测环境温度。
+
+实测环境温度 *Tamb* 是应用环境中轮胎附近的温度，单位为 K。例如，实测环境温度是车辆在道路上行驶时轮胎附近的环境温度。
+
+#### 编程使用
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Tamb` |
+| **值**：| `off`（默认）| on |
+| **Data Types:** | `character vector` |
+
+#### 依赖关系
+
+要启用此参数，请将 **Rolling Resistance** 设置为 `ISO
+28580`。
 
 #### Magic Formula
 
-### **滚动阻力矩系数, QSY1** — 扭矩系数 `0.007`（默认） | 标量
+### **Rolling resistance torque coefficient, QSY1** — 力矩系数 `0.007`（默认）| 标量
 
-滚动阻力矩系数，无量纲。
+滚动阻力力矩系数，无量纲。
 
-#### 程序化使用
+#### 编程使用
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `QSY1` |
-| **值:** | `0.007`（默认） | 标量 |
-| **数据类型:** | `double` |
+| **Parameter:** | `QSY1` |
+| **值**：| `0.007`（默认）| 标量 |
+| **Data Types:** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **Rolling Resistance** 设置为 `Magic Formula`。
+要启用此参数，请将 **Rolling Resistance** 设置为 `Magic
+Formula`。
 
-### **纵向力滚动阻力系数, QSY2** — 力阻力系数 `0`（默认） | 标量
+### **Longitudinal force rolling resistance coefficient, QSY2** — 力阻力系数 `0`（默认）| 标量
 
 纵向力滚动阻力系数，无量纲。
 
-#### 程序化使用
+#### 编程使用
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `QSY2` |
-| **值:** | `0`（默认） | 标量 |
-| **数据类型:** | `double` |
+| **Parameter:** | `QSY2` |
+| **值**：| `0`（默认）| 标量 |
+| **Data Types:** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **Rolling Resistance** 设置为 `Magic Formula`。
+要启用此参数，请将 **Rolling Resistance** 设置为 `Magic
+Formula`。
 
-### **线性转速滚动阻力系数, QSY3** — 线速度系数 `0.0015`（默认） | 标量
+### **Linear rotational speed rolling resistance coefficient, QSY3** — 线性速度系数 `0.0015`（默认）| 标量
 
 线性转速滚动阻力系数，无量纲。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `QSY3` |
-| **值:** | `0.0015`（默认） | 标量 |
-| **数据类型:** | `double` |
+| **参数：** | `QSY3` |
+| **值：** | `0.0015`（默认）| 标量 |
+| **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Rolling Resistance** 设置为 `Magic Formula`。
 
-### **四次转速滚动阻力系数, QSY4** — 四次速度系数 `8.5e-05`（默认） | 标量
+### **Quartic rotational speed rolling resistance coefficient, QSY4** — 四次速度系数 `8.5e-05`（默认）| 标量
 
 四次转速滚动阻力系数，无量纲。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `QSY4` |
-| **值:** | `8.5e-05`（默认） | 标量 |
-| **数据类型:** | `double` |
+| **参数：** | `QSY4` |
+| **值：** | `8.5e-05`（默认）| 标量 |
+| **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Rolling Resistance** 设置为 `Magic Formula`。
 
-### **外倾角平方滚动阻力矩, QSY5** — 外倾阻力矩 `0`（默认） | 标量
+### **Camber squared rolling resistance torque, QSY5** — 外倾阻力矩 `0`（默认）| 标量
 
 外倾角平方滚动阻力矩，单位为 1/rad^2。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `QSY5` |
-| **值:** | `0`（默认） | 标量 |
-| **数据类型:** | `double` |
+| **参数：** | `QSY5` |
+| **值：** | `0`（默认）| 标量 |
+| **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Rolling Resistance** 设置为 `Magic Formula`。
 
-### **基于载荷的外倾角平方滚动阻力矩, QSY6** — 载荷阻力矩 `0`（默认） | 标量
+### **Load based camber squared rolling resistance torque, QSY6** — 载荷阻力矩 `0`（默认）| 标量
 
 基于载荷的外倾角平方滚动阻力矩，单位为 1/rad^2。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `QSY6` |
-| **值:** | `0`（默认） | 标量 |
-| **数据类型:** | `double` |
+| **参数：** | `QSY6` |
+| **值：** | `0`（默认）| 标量 |
+| **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Rolling Resistance** 设置为 `Magic Formula`。
 
-### **法向载荷滚动阻力系数, QSY8** — 法向阻力系数 `0.9`（默认） | 标量
+### **Normal load rolling resistance coefficient, QSY8** — 法向阻力系数 `0.9`（默认）| 标量
 
 法向载荷滚动阻力系数，无量纲。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `QSY8` |
-| **值:** | `0.9`（默认） | 标量 |
-| **数据类型:** | `double` |
+| **参数：** | `QSY8` |
+| **值：** | `0.9`（默认）| 标量 |
+| **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Rolling Resistance** 设置为 `Magic Formula`。
 
-### **压力载荷滚动阻力系数, QSY8** — 压力阻力系数 `-0.4`（默认） | 标量
+### **Pressure load rolling resistance coefficient, QSY8** — 压力阻力系数 `-0.4`（默认）| 标量
 
 压力载荷滚动阻力系数，无量纲。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `QSY8` |
-| **值:** | `-0.4`（默认） | 标量 |
-| **数据类型:** | `double` |
+| **参数：** | `QSY8` |
+| **值：** | `-0.4`（默认）| 标量 |
+| **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
 要启用此参数，请将 **Rolling Resistance** 设置为 `Magic Formula`。
 
-### **滚动阻力比例因子, lam\_My** — 比例因子 `1`（默认） | 标量
+### **Rolling resistance scaling factor, lam\_My** — 缩放因子 `1`（默认）| 标量
 
-滚动阻力比例因子，无量纲。
+滚动阻力缩放因子，无量纲。
 
-#### 程序化使用
+#### 编程用法
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `lam_My` |
-| **值:** | `1`（默认） | 标量 |
-| **数据类型:** | `double` |
-
-#### 依赖项
-
-要启用此参数，请将 **Rolling Resistance** 设置为 `Magic Formula`。
-
-#### Mapped
-
-### **旋转轴速度断点, VxMy** — 旋转轴速度断点 `-20:1:20`（默认） | 向量
-
-旋转轴速度断点，单位为 m/s。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `VxMy` |
-| **值:** | `-20:1:20`（默认） | 向量 |
-| **数据类型:** | `double` |
+| **参数：** | `lam_My` |
+| **值：** | `1`（默认）| 标量 |
+| **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **Rolling Resistance** 设置为 `Mapped torque`。
+要启用此参数，请将 **Rolling Resistance** 设置为 `Magic
+Formula`。
 
-### **法向力断点, FzMy** — 法向力断点 `0:200:1e4`（默认） | 向量
+#### 映射
+
+### **自旋轴速度断点，VxMy** — 自旋轴速度断点 `-20:1:20`（默认）| 向量
+
+自旋轴速度断点，单位为 m/s。
+
+#### 编程使用
+
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
+
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `VxMy` |
+| **值：** | `-20:1:20`（默认）| 向量 |
+| **数据类型：** | `double` |
+
+#### 依赖关系
+
+要启用此参数，请将 **Rolling Resistance** 设置为 `Mapped
+torque`。
+
+### **法向力断点，FzMy** — 法向力断点 `0:200:1e4`（默认）| 向量
 
 法向力断点，单位为 N。
 
-#### 程序化使用
+#### 编程使用
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `FzMy` |
-| **值:** | `0:200:1e4`（默认） | 向量 |
-| **数据类型:** | `double` |
-
-#### 依赖项
-
-要启用此参数，请将 **Rolling Resistance** 设置为 `Mapped torque`。
-
-### **滚动阻力矩映射, MyMap** — 滚动阻力矩映射数组
-
-滚动阻力矩随车轴速度和法向力变化，单位为 N·m。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `MyMap` |
-| **值:** | 数组 |
-| **数据类型:** | `double` |
+| **参数：** | `FzMy` |
+| **值：** | `0:200:1e4`（默认）| 向量 |
+| **数据类型：** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **Rolling Resistance** 设置为 `Mapped torque`。
+要启用此参数，请将 **Rolling Resistance** 设置为 `Mapped
+torque`。
 
-### 对准
+### **滚动阻力矩映射，MyMap** — 滚动阻力矩映射数组
 
-### **轮胎公称断面宽度, WIDTH** — 轮胎公称断面宽度 标量
+滚动阻力矩与车轴速度和法向力的关系，单位为 N·m。
 
-轮胎公称断面宽度，*WIDTH*，单位为 m。
+#### 编程使用
 
-#### 程序化使用
+要以编程方式设置模块参数值，请使用
+`set_param` 函数。
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `WIDTH` |
-| **值:** | 标量 |
-| **数据类型:** | `double` |
+| **参数：** | `MyMap` |
+| **值：** | 数组 |
+| **数据类型：** | `double` |
 
-### **线性横摆角速度阻力, bMz** — 线性横摆角速度阻力 `0` | 标量
+#### 依赖关系
+
+要启用此参数，请将 **Rolling Resistance** 设置为 `Mapped
+torque`。
+
+### 回正
+
+### **轮胎名义断面宽度，WIDTH** — 轮胎名义断面宽度 标量
+
+轮胎名义断面宽度，*WIDTH*，单位为 m。
+
+#### 编程使用
+
+要以编程方式设置模块参数值，
+请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，
+请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `WIDTH` |
+| **值：** | 标量 |
+| **数据类型：** | `double` |
+
+### **线性横摆角速度阻力，bMz** — 线性横摆角速度阻力 `0` | 标量
 
 线性横摆角速度阻力，
 *bMz*，单位为 N·m·s/rad。
 
-#### 程序化使用
+#### 编程使用
 
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
+要以编程方式设置模块
+参数值，请使用 `set_param`
+函数。
 
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
+要以编程方式获取模块
+参数值，请使用 `get_param`
+函数。
 
 |  |  |
 | --- | --- |
-| **参数:** | `bMz` |
-| **值:** | `0` | 标量 |
-| **数据类型:** | `double` |
+| **参数：** | `bMz` |
+| **值：** | `0` | 标量 |
+| **数据类型：** | `double` |
 
 ### 制动
 
-### **静摩擦系数, mu\_static** — 静摩擦系数 `0.3`（默认） | 标量 | *N*×`1` 向量
+### **静摩擦系数，mu\_static** — 静摩擦系数 `0.3`（默认）| 标量 | *N*×`1` 向量
 
-静摩擦系数，指定为标量或 *N*×`1` 向量，无量纲。如果指定标量，模块将该值用于所有车轮。如果指定向量，则必须为其他制动参数指定向量。
+静摩擦系数，指定为
+标量或 *N*×`1` 向量，无量纲。如果
+指定标量，模块将对所有车轮使用该值。如果指定
+向量，则必须为其他制动参数指定向量。
 
-*N* 是车轮数量，并且必须与输入信号维度匹配。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Disc`、`Drum` 或 `Mapped`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `mu_static` |
-| **值:** | `0.3`（默认） | 标量 | *N*×`1` 向量 |
-| **数据类型:** | `double` |
-
-### **动摩擦系数, mu\_kinetic** — 动摩擦 `0.2`（默认） | 标量 | *N*×`1` 向量
-
-动摩擦系数，指定为标量或 *N*×`1` 向量，无量纲。如果指定标量，模块将该值用于所有车轮。如果指定向量，则必须为其他制动参数指定向量。
-
-*N* 是车轮数量，并且必须与输入信号维度匹配。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Disc`、`Drum` 或 `Mapped`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `mu_kinetic` |
-| **值:** | `0.2`（默认） | 标量 | *N*×`1` 向量 |
-| **数据类型:** | `double` |
-
-#### Disc
-
-### **盘式制动器执行器缸径, disc\_abore** — 缸径距离 `0.05`（默认） | 标量 | *N*×`1` 向量
-
-盘式制动器执行器缸径，指定为标量或 *N*×`1` 向量，单位为 m。如果指定标量，模块将该值用于所有车轮。如果指定向量，则必须为其他制动参数指定向量。
-
-*N* 是车轮数量，并且必须与输入信号维度匹配。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Disc`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `disc_abore` |
-| **值:** | `0.05`（默认） | 标量 | *N*×`1` 向量 |
-| **数据类型:** | `double` |
-
-### **制动衬块平均半径, Rm** — 半径 `0.177`（默认） | 标量 | *N*×`1` 向量
-
-制动衬块平均半径，指定为标量或 *N*×`1` 向量，单位为 m。如果指定标量，模块将该值用于所有车轮。如果指定向量，则必须为其他制动参数指定向量。
-
-*N* 是车轮数量，并且必须与输入信号维度匹配。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Disc`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `Rm` |
-| **值:** | `0.177`（默认） | 标量 | *N*×`1` 向量 |
-| **数据类型:** | `double` |
-
-### **制动衬块数量, num\_pads** — 制动衬块数量 `2`（默认） | 标量 | *N*×`1` 向量
-
-制动衬块数量，指定为标量或 *N*×`1` 向量，无量纲。如果指定标量，模块将该值用于所有车轮。如果指定向量，则必须为其他制动参数指定向量。
-
-*N* 是车轮数量，并且必须与输入信号维度匹配。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Disc`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `num_pads` |
-| **值:** | `2`（默认） | 标量 | *N*×`1` 向量 |
-| **数据类型:** | `double` |
-
-#### Drum
-
-### **鼓式制动器执行器缸径, drum\_abore** — 缸径距离 `0.0508`（默认） | 标量 | *N*×`1` 向量
-
-鼓式制动器执行器缸径，指定为标量或 *N*×`1` 向量，单位为 m。如果指定标量，模块将该值用于所有车轮。如果指定向量，则必须为其他制动参数指定向量。
-
-*N* 是车轮数量，并且必须与输入信号维度匹配。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Drum`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `drum_abore` |
-| **值:** | `0.0508`（默认） | 标量 | *N*×`1` 向量 |
-| **数据类型:** | `double` |
-
-### **制动蹄销到制动鼓中心距离, drum\_a** — 制动蹄销到制动鼓中心距离 `0.123`（默认） | 标量
-
-制动蹄销到制动鼓中心距离，单位为 m。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Drum`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `drum_a` |
-| **值:** | `0.123`（默认） | 标量 |
-| **数据类型:** | `double` |
-
-### **制动蹄销中心到力作用点距离, drum\_c** — 制动蹄销中心到力作用点距离 `0.212`（默认） | 标量
-
-制动蹄销中心到力作用点距离，单位为 m。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Drum`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `drum_c` |
-| **值:** | `0.212`（默认） | 标量 |
-| **数据类型:** | `double` |
-
-### **制动鼓内半径, drum\_r** — 制动鼓内半径 `0.15`（默认） | 标量
-
-制动鼓内半径，单位为 m。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Drum`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `drum_r` |
-| **值:** | `0.15`（默认） | 标量 |
-| **数据类型:** | `double` |
-
-### **制动蹄销到衬片起始角度, drum\_theta1** — 制动蹄销到衬片起始角度 `0`（默认） | 标量
-
-制动蹄销到衬片起始角度，单位为 deg。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Drum`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `drum_theta1` |
-| **值:** | `0`（默认） | 标量 |
-| **数据类型:** | `double` |
-
-### **制动蹄销到衬片终止角度, drum\_theta2** — 制动蹄销到衬片终止角度 `126`（默认） | 标量
-
-制动蹄销到衬片终止角度，单位为 deg。
-
-#### 依赖项
-
-要启用此参数，请将 **Brake Type** 设置为 `Drum`。
-
-#### 程序化使用
-
-要以程序化方式设置模块参数值，请使用 `set_param` 函数。
-
-要以程序化方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `drum_theta2` |
-| **值:** | `126`（默认） | 标量 |
-| **数据类型:** | `double` |
-
-#### Mapped
-
-### **制动执行器压力断点, brake\_p\_bpt** — 制动执行器压力断点向量
-
-制动执行器压力断点，以 bar 为单位。
+*N* 是车轮数量，必须与输入信号维度匹配。
 
 #### 依赖关系
 
-要启用此参数，请将 **制动类型** 设置为 `Mapped`。
+要启用此参数，请将 **Brake Type** 设置为
+`Disc`、`Drum` 或
+`Mapped`。
 
-#### 以编程方式使用
+#### 编程使用
+
+要以编程方式设置模块参数
+值，请使用 `set_param`
+函数。
+
+要以编程方式获取模块参数
+值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `mu_static` |
+| **值：** | `0.3`（默认）| 标量 | *N*×`1` 向量 |
+| **数据类型：** | `double` |
+
+### **动摩擦系数，mu\_kinetic** — 动摩擦 `0.2`（默认）| 标量 | *N*×`1` 向量
+
+动摩擦系数，指定为
+标量或 *N*×`1` 向量，无量纲。
+如果指定标量，模块将对所有车轮使用该值。如果
+指定向量，则必须为其他制动
+参数指定向量。
+
+*N* 是车轮数量，必须与输入信号维度匹配。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为
+`Disc`、`Drum` 或
+`Mapped`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param`
+函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `mu_kinetic` |
+| **值：** | `0.2`（默认） | 标量 | *N*×`1` 向量 |
+| **数据类型：** | `double` |
+
+#### Disc
+
+### **Disc brake actuator bore, disc\_abore** — 孔径距离 `0.05`（默认） | 标量 | *N*×`1` 向量
+
+盘式制动器执行器孔径，指定为标量或 *N*×`1` 向量，单位为 m。如果指定为标量，模块将该值用于所有车轮。如果指定为向量，则必须为其他制动参数指定向量。
+
+*N* 是车轮数量，必须与输入信号维度匹配。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为
+`Disc`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param`
+函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `disc_abore` |
+| **值：** | `0.05`（默认） | 标量 | *N*×`1` 向量 |
+| **数据类型：** | `double` |
+
+### **Brake pad mean radius, Rm** — 半径 `0.177`（默认） | 标量 | *N*×`1` 向量
+
+制动衬块平均半径，指定为标量或 *N*×`1` 向量，单位为 m。如果指定为标量，模块将该值用于所有车轮。如果指定为向量，则必须为其他制动参数指定向量。
+
+*N* 是车轮数量，必须与输入信号维度匹配。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为
+`Disc`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param`
+函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `Rm` |
+| **值：** | `0.177`（默认） | 标量 | *N*×`1` 向量 |
+| **数据类型：** | `double` |
+
+### **Number of brake pads, num\_pads** — 制动衬块数量 `2`（默认） | 标量 | *N*×`1` 向量
+
+制动衬块数量，指定为标量或 *N*×`1` 向量，无量纲。如果指定为标量，模块将该值用于所有车轮。如果指定为向量，则必须为其他制动参数指定向量。
+
+*N* 是车轮数量，必须与输入信号维度匹配。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为
+`Disc`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param`
+函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `num_pads` |
+| **值：** | `2`（默认） | 标量 | *N*×`1` 向量 |
+| **数据类型：** | `double` |
+
+#### Drum
+
+### **Drum brake actuator bore, drum\_abore** — 孔径距离 `0.0508`（默认） | 标量 | *N*×`1` 向量
+
+鼓式制动器执行器孔径，指定为标量或 *N*×`1` 向量，单位为 m。如果指定为标量，模块将该值用于所有车轮。如果指定为向量，则必须为其他制动参数指定向量。
+
+*N* 是车轮数量，必须与输入信号维度匹配。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为
+`Drum`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param`
+函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `drum_abore` |
+| **值：** | `0.0508`（默认） | 标量 | *N*×`1` 向量 |
+| **数据类型：** | `double` |
+
+### **Shoe pin to drum center distance, drum\_a** — 制动蹄销到制动鼓中心的距离 `0.123`（默认） | 标量
+
+制动蹄销到制动鼓中心的距离，单位为 m。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为
+`Drum`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `drum_a` |
+| **值：** | `0.123`（默认）| 标量 |
+| **数据类型：** | `double` |
+
+### **制动蹄销中心到力作用点距离，drum\_c** — 制动蹄销中心到力作用点距离 `0.212`（默认）| 标量
+
+制动蹄销中心到力作用点距离，单位为 m。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为 `Drum`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `drum_c` |
+| **值：** | `0.212`（默认）| 标量 |
+| **数据类型：** | `double` |
+
+### **制动鼓内半径，drum\_r** — 制动鼓内半径 `0.15`（默认）| 标量
+
+制动鼓内半径，单位为 m。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为 `Drum`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `drum_r` |
+| **值：** | `0.15`（默认）| 标量 |
+| **数据类型：** | `double` |
+
+### **制动蹄销到衬片起始角度，drum\_theta1** — 制动蹄销到衬片起始角度 `0`（默认）| 标量
+
+制动蹄销到衬片起始角度，单位为 deg。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为 `Drum`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `drum_theta1` |
+| **值：** | `0`（默认）| 标量 |
+| **数据类型：** | `double` |
+
+### **制动蹄销到衬片终止角度，drum\_theta2** — 制动蹄销到衬片终止角度 `126`（默认）| 标量
+
+制动蹄销到衬片终止角度，单位为 deg。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为 `Drum`。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `drum_theta2` |
+| **值：** | `126`（默认）| 标量 |
+| **数据类型：** | `double` |
+
+#### 映射
+
+### **制动执行器压力断点，brake\_p\_bpt** — 制动执行器压力断点向量
+
+制动执行器压力断点，单位为 bar。
+
+#### 依赖关系
+
+要启用此参数，请将 **Brake Type** 设置为 `Mapped`。
+
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1357,15 +1451,15 @@ chinese_source: worker-translation
 | **值：** | 向量 |
 | **数据类型：** | `double` |
 
-### **车轮速度断点, brake\_n\_bpt** — 车轮速度断点向量
+### **车轮速度断点，brake\_n\_bpt** — 车轮速度断点向量
 
-车轮速度断点，以 rpm 为单位。
+车轮速度断点，单位为 rpm。
 
 #### 依赖关系
 
-要启用此参数，请将 **制动类型** 设置为 `Mapped`。
+要启用此参数，请将 **Brake Type** 设置为 `Mapped`。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1377,21 +1471,21 @@ chinese_source: worker-translation
 | **值：** | 向量 |
 | **数据类型：** | `double` |
 
-### **制动扭矩映射, f\_brake\_t** — 制动扭矩数组的查找表
+### **制动力矩映射，f\_brake\_t** — 制动力矩查找表数组
 
-制动扭矩的查找表 fbrake(P,N) 是施加制动压力和车轮速度的函数，其中：
+制动力矩查找表 fbrake(P,N) 是所施加制动压力和车轮速度的函数，其中：
 
-- *T* 是制动扭矩，以 N·m 为单位。
-- *P* 是施加的制动压力，以 bar 为单位。
-- *N* 是车轮速度，以 rpm 为单位。
+- *T* 为制动力矩，单位为 N·m。
+- *P* 为所施加制动压力，单位为 bar。
+- *N* 为车轮速度，单位为 rpm。
 
-显示制动扭矩随车轮速度和施加制动压力变化的图
+显示制动力矩随车轮速度和所施加制动压力变化的图
 
 #### 依赖关系
 
-要启用此参数，请将 **制动类型** 设置为 `Mapped`。
+要启用此参数，请将 **Brake Type** 设置为 `Mapped`。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1403,15 +1497,15 @@ chinese_source: worker-translation
 | **值：** | 向量 |
 | **数据类型：** | `double` |
 
-### 车轮
+### Wheel
 
-### **旋转阻尼, br** — 旋转阻尼标量 | *N*-by-`1` 向量
+### **Rotational damping, br** — 旋转阻尼标量 | *N*×`1` 向量
 
-旋转阻尼，指定为标量或 *N*-by-`1` 向量，以 N·m·s/rad 为单位。如果指定标量，模块会对所有车轮使用该值。如果指定向量，则必须为其他旋转参数指定向量。
+旋转阻尼，指定为标量或 *N*×`1` 向量，单位为 N·m·s/rad。如果指定标量，模块将对所有车轮使用该值。如果指定向量，则必须为其他旋转参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1420,16 +1514,16 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `br` |
-| **值：** | 标量 | *N*-by-`1` 向量 |
+| **值：** | 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **轮胎转动惯量（滚动轴）, IYY** — 轮胎转动惯量标量 | *N*-by-`1` 向量
+### **Tire rotational inertia (rolling axis), IYY** — 轮胎转动惯量标量 | *N*×`1` 向量
 
-轮胎转动惯量（滚动轴），指定为标量或 *N*-by-`1` 向量，以 kg·m2 为单位。如果指定标量，模块会对所有车轮使用该值。如果指定向量，则必须为其他旋转参数指定向量。
+轮胎转动惯量（滚动轴），指定为标量或 *N*×`1` 向量，单位为 kg·m2。如果指定标量，模块将对所有车轮使用该值。如果指定向量，则必须为其他旋转参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1438,16 +1532,16 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `IYY` |
-| **值：** | 标量 | *N*-by-`1` 向量 |
+| **值：** | 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **初始车轮旋转速度, omegao** — 初始车轮旋转速度标量 | *N*-by-`1` 向量
+### **Initial wheel rotational velocity, omegao** — 初始车轮旋转速度标量 | *N*×`1` 向量
 
-初始车轮旋转速度，指定为标量或 *N*-by-`1` 向量，以 rad/s 为单位。如果指定标量，模块会对所有车轮使用该值。如果指定向量，则必须为其他旋转参数指定向量。
+初始车轮旋转速度，指定为标量或 *N*×`1` 向量，单位为 rad/s。如果指定标量，模块将对所有车轮使用该值。如果指定向量，则必须为其他旋转参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1456,14 +1550,14 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `omegao` |
-| **值：** | 标量 | *N*-by-`1` 向量 |
+| **值：** | 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **轮胎无载半径, UNLOADED\_RADIUS** — 轮胎无载半径 `0.309384029954441`（默认）| 标量
+### **Tire unloaded radius, UNLOADED\_RADIUS** — 轮胎无载半径 `0.309384029954441`（默认）| 标量
 
-轮胎无载半径，以 m 为单位。
+轮胎无载半径，单位为 m。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1475,19 +1569,20 @@ chinese_source: worker-translation
 | **值：** | `0.309384029954441`（默认）| 标量 |
 | **数据类型：** | `double` |
 
-### 垂向
+### Vertical
 
-### **轮胎质量, MASS** — 轮胎质量 `9.46491996974568`（默认）| 标量 | *N*-by-`1` 向量
+### **Tire mass, MASS** — 轮胎质量 `9.46491996974568`（默认）| 标量 | *N*×`1` 向量
 
-轮胎质量，指定为标量或 *N*-by-`1` 向量，以 kg 为单位。如果指定标量，模块会对所有车轮使用该值。如果指定向量，则必须为其他垂向参数指定向量。
+轮胎质量，指定为标量或 *N*×`1` 向量，单位为 kg。如果指定标量，模块将对所有车轮使用该值。如果指定向量，则必须为其他垂直参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
 #### 依赖关系
 
-要启用此参数，请将 **垂向运动** 设置为 `Mapped stiffness and damping`。
+要启用此参数，请将 **Vertical Motion** 设置为 `Mapped
+stiffness and damping`。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1496,66 +1591,69 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `MASS` |
-| **值：** | `9.46491996974568`（默认）| 标量 | *N*-by-`1` 向量 |
+| **值：** | `9.46491996974568`（默认）| 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **初始轮胎位移, zo** — 初始轮胎位移 `0`（默认）| 标量 | *N*-by-`1` 向量
+### **初始轮胎位移，zo** — 初始轮胎位移 `0`（默认）| 标量 | *N*×`1` 向量
 
-初始轮胎位移，指定为标量或 *N*-by-`1` 向量，以 m 为单位。如果指定标量，模块会对所有车轮使用该值。如果指定向量，则必须为其他垂向参数指定向量。
+初始轮胎位移，指定为标量或 *N*×`1` 向量，单位为 m。如果指定标量，模块将对所有车轮使用该值。如果指定向量，则必须为其他垂向参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
 #### 依赖关系
 
-要启用此参数，请将 **垂向运动** 设置为 `Mapped stiffness and damping`。
+要启用此参数，请将 **Vertical Motion** 设置为 `Mapped
+stiffness and damping`。
 
-#### 以编程方式使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `zo` |
-| **值：** | `0`（默认）| 标量 | *N*-by-`1` 向量 |
+| **值：** | `0`（默认）| 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **初始车轮垂向速度（车轮固定坐标系）, zdoto** — 初始车轮垂向速度 `0`（默认）| 标量 | *N*-by-`1` 向量
+### **初始车轮垂向速度（车轮固定坐标系），zdoto** — 初始车轮垂向速度 `0`（默认）| 标量 | *N*×`1` 向量
 
-初始车轮垂向速度，指定为标量或 *N*-by-`1` 向量，以 m/s 为单位。如果指定标量，模块会对所有车轮使用该值。如果指定向量，则必须为其他垂向参数指定向量。
+初始车轮垂向速度，指定为标量或 *N*×`1` 向量，单位为 m/s。如果指定标量，模块将对所有车轮使用该值。如果指定向量，则必须为其他垂向参数指定向量。
 
 *N* 是车轮数量，必须与输入信号维度匹配。
 
 #### 依赖关系
 
-要启用此参数，请将 **垂向运动** 设置为 `Mapped stiffness and damping`。
+要启用此参数，请将 **Vertical Motion** 设置为 `Mapped
+stiffness and damping`。
 
-#### 以编程方式使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `zdoto` |
-| **值：** | `0`（默认）| 标量 | *N*-by-`1` 向量 |
+| **值：** | `0`（默认）| 标量 | *N*×`1` 向量 |
 | **数据类型：** | `double` |
 
-### **重力加速度, GRAVITY** — 重力加速度 `-9.81`（默认）| 标量
+### **重力加速度，GRAVITY** — 重力加速度 `-9.81`（默认）| 标量
 
-重力加速度，以 m/s^2 为单位。
+重力加速度，单位为 m/s^2。
 
 #### 依赖关系
 
-要启用此参数，请将 **垂向运动** 设置为 `Mapped stiffness and damping`。
+要启用此参数，请将 **Vertical Motion** 设置为 `Mapped
+stiffness and damping`。
 
-#### 以编程方式使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -1565,19 +1663,20 @@ chinese_source: worker-translation
 
 #### 映射刚度和阻尼
 
-### **垂向变形断点, zFz** — 垂向变形断点 `[0 .01 .1]`（默认）| 向量
+### **垂向变形断点，zFz** — 垂向变形断点 `[0 .01 .1]`（默认）| 向量
 
-与力表对应的侧壁变形断点向量，以 m 为单位。
+与力表对应的胎侧变形断点向量，单位为 m。
 
 #### 依赖关系
 
-要启用此参数，请将 **垂向运动** 设置为 `Mapped stiffness and damping`。
+要启用此参数，请将 **Vertical Motion** 设置为 `Mapped
+stiffness and damping`。
 
-#### 以编程方式使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -1585,19 +1684,20 @@ chinese_source: worker-translation
 | **值：** | `[0 .01 .1]`（默认）| 向量 |
 | **数据类型：** | `double` |
 
-### **压力断点, pFz** — 压力断点 `[10000 1000000]`（默认）| 向量
+### **压力断点，pFz** — 压力断点 `[10000 1000000]`（默认）| 向量
 
-与力表对应的压力数据点向量，以 Pa 为单位。
+与力表对应的压力数据点向量，单位为 Pa。
 
 #### 依赖关系
 
-要启用此参数，请将 **垂向运动** 设置为 `Mapped stiffness and damping`。
+要启用此参数，请将 **Vertical Motion** 设置为 `Mapped
+stiffness and damping`。
 
-#### 以编程方式使用
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -1605,15 +1705,16 @@ chinese_source: worker-translation
 | **值：** | `[10000 1000000]`（默认）| 向量 |
 | **数据类型：** | `double` |
 
-### **因变形产生的力, Fzz** — 因变形产生的力 `[0 1e3 1e4; 0 1e4 1e5]`（默认）| 向量
+### **由变形引起的力，Fzz** — 由变形引起的力 `[0 1e3 1e4; 0 1e4 1e5]`（默认）| 向量
 
-因侧壁变形和压力引起的沿车轮固定 *z* 轴的力，以 N 为单位。
+由胎侧变形和压力沿车轮固定 *z* 轴引起的力，单位为 N。
 
 #### 依赖关系
 
-要启用此参数，请将 **垂向运动** 设置为 `Mapped stiffness and damping`。
+要启用此参数，请将 **Vertical Motion** 设置为 `Mapped
+stiffness and damping`。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1625,15 +1726,16 @@ chinese_source: worker-translation
 | **值：** | `[0 1e3 1e4; 0 1e4 1e5]`（默认）| 向量 |
 | **数据类型：** | `double` |
 
-### **垂向速度断点, zdotFz** — 垂向速度断点 `[-20 0 20]`（默认）| 向量
+### **垂直速度断点，zdotFz** — 垂直速度断点 `[-20 0 20]`（默认）| 向量
 
-与因速度产生的力表对应的侧壁速度断点向量，以 m 为单位。
+对应于速度力表的侧壁速度断点向量，单位为 m。
 
 #### 依赖关系
 
-要启用此参数，请将 **垂向运动** 设置为 `Mapped stiffness and damping`。
+要启用此参数，请将 **Vertical Motion** 设置为 `Mapped
+stiffness and damping`。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1645,15 +1747,16 @@ chinese_source: worker-translation
 | **值：** | `[-20 0 20]`（默认）| 向量 |
 | **数据类型：** | `double` |
 
-### **因速度产生的力, Fzzdot** — 因速度产生的力 `[500 0 -500;250 0 -250]`（默认）| 数组
+### **速度力，Fzzdot** — 速度力 `[500 0 -500;250 0 -250]`（默认）| 数组
 
-因侧壁速度和压力引起的沿车轮固定 *z* 轴的力，以 N 为单位。
+沿车轮固定 *z* 轴的侧壁速度和压力产生的力，单位为 N。
 
 #### 依赖关系
 
-要启用此参数，请将 **垂向运动** 设置为 `Mapped stiffness and damping`。
+要启用此参数，请将 **Vertical Motion** 设置为 `Mapped
+stiffness and damping`。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1667,11 +1770,11 @@ chinese_source: worker-translation
 
 ### 仿真设置
 
-### **最大法向力, FZMAX** — 最大法向力 `10000`（默认）| 标量
+### **最大法向力，FZMAX** — 最大法向力 `10000`（默认）| 标量
 
-最大法向力，以 N 为单位。用于所有垂向力计算。
+最大法向力，单位为 N。用于所有垂直力计算。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1683,11 +1786,11 @@ chinese_source: worker-translation
 | **值：** | `10000`（默认）| 标量 |
 | **数据类型：** | `double` |
 
-### **最小法向力, FZMIN** — 最小法向力 `0`（默认）| 标量
+### **最小法向力，FZMIN** — 最小法向力 `0`（默认）| 标量
 
-最小法向力，以 N 为单位。用于所有垂向力计算。
+最小法向力，单位为 N。用于所有垂直力计算。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1699,11 +1802,11 @@ chinese_source: worker-translation
 | **值：** | `0`（默认）| 标量 |
 | **数据类型：** | `double` |
 
-### **最大压力, PRESMAX** — 最大压力 `1003118`（默认）| 标量
+### **最大压力，PRESMAX** — 最大压力 `1003118`（默认）| 标量
 
-最大压力，*PRESMAX*，以 Pa 为单位。
+最大压力，*PRESMAX*，单位为 Pa。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1715,11 +1818,11 @@ chinese_source: worker-translation
 | **值：** | `1003118`（默认）| 标量 |
 | **数据类型：** | `double` |
 
-### **最小压力, PRESMIN** — 最小压力 `9982`（默认）| 标量
+### **最小压力，PRESMIN** — 最小压力 `9982`（默认）| 标量
 
-最小压力，*PRESMIN*，以 Pa 为单位。
+最小压力，*PRESMIN*，单位为 Pa。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1731,11 +1834,11 @@ chinese_source: worker-translation
 | **值：** | `9982`（默认）| 标量 |
 | **数据类型：** | `double` |
 
-### **最大允许滑移率（绝对值）, KPUMAX** — 最大允许滑移率 `0.999`（默认）| 标量
+### **最大允许滑移率（绝对值），KPUMAX** — 最大允许滑移率 `0.999`（默认）| 标量
 
 最大允许滑移率（绝对值），*KPUMAX*，无量纲。
 
-#### 以编程方式使用
+#### 编程用法
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1747,11 +1850,11 @@ chinese_source: worker-translation
 | **值：** | `0.999`（默认）| 标量 |
 | **数据类型：** | `double` |
 
-### **最小允许滑移率（绝对值）, KPUMIN** — 最小允许滑移率 `-0.999`（默认）| 标量
+### **Minimum allowable slip ratio (absolute), KPUMIN** — 最小允许滑移率 `-0.999`（默认）| 标量
 
 最小允许滑移率（绝对值），*KPUMIN*，无量纲。
 
-#### 以编程方式使用
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1759,31 +1862,15 @@ chinese_source: worker-translation
 
 |  |  |
 | --- | --- |
-| **参数：** | `KPUMIN` |
-| **值：** | `-0.999`（默认）| 标量 |
-| **数据类型：** | `double` |
+| **Parameter:** | `KPUMIN` |
+| **值**：| `-0.999`（默认）| 标量 |
+| **Data Types:** | `double` |
 
-### **最大允许侧偏角（绝对值）, ALPMAX** — 最大允许侧偏角 `1.5708`（默认）| 标量
+### **Max allowable slip angle (absolute), ALPMAX** — 最大允许滑移角 `1.5708`（默认）| 标量
 
-最大允许侧偏角（绝对值），*ALPMAX*，以 rad 为单位。
+最大允许滑移角（绝对值），*ALPMAX*，单位为 rad。
 
-#### 以编程方式使用
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数：** | `ALPMAX` |
-| **值：** | `1.5708`（默认）| 标量 |
-| **数据类型：** | `double` |
-
-### **最小允许侧偏角（绝对值）, ALPMIN** — 最小允许侧偏角 `-1.5708`（默认）| 标量
-
-最小允许侧偏角（绝对值），*ALPMIN*，以 rad 为单位。
-
-#### 以编程方式使用
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1791,31 +1878,15 @@ chinese_source: worker-translation
 
 |  |  |
 | --- | --- |
-| **参数：** | `ALPMIN` |
-| **值：** | `-1.5708`（默认）| 标量 |
-| **数据类型：** | `double` |
+| **Parameter:** | `ALPMAX` |
+| **值**：| `1.5708`（默认）| 标量 |
+| **Data Types:** | `double` |
 
-### **最大允许外倾角, CAMMAX** — 最大允许外倾角 `0.173` | 标量
+### **Minimum allowable slip angle (absolute), ALPMIN** — 最小允许滑移角 `-1.5708`（默认）| 标量
 
-最大允许外倾角 *CAMMAX*，以 rad 为单位。
+最小允许滑移角（绝对值），*ALPMIN*，单位为 rad。
 
-#### 以编程方式使用
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数：** | `CAMMAX` |
-| **值：** | `0.173` | 标量 |
-| **数据类型：** | `double` |
-
-### **最小允许外倾角, CAMMIN** — 最小允许外倾角 `-0.173` | 标量
-
-最小允许外倾角，*CAMMIN*，以 rad 为单位。
-
-#### 以编程方式使用
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1823,15 +1894,15 @@ chinese_source: worker-translation
 
 |  |  |
 | --- | --- |
-| **参数：** | `CAMMIN` |
-| **值：** | `-0.173` | 标量 |
-| **数据类型：** | `double` |
+| **Parameter:** | `ALPMIN` |
+| **值**：| `-1.5708`（默认）| 标量 |
+| **Data Types:** | `double` |
 
-### **最低环境温度, TMIN** — 最低环境温度 `0`（默认）| 标量
+### **Maximum allowable camber angle, CAMMAX** — 最大允许外倾角 `0.173` | 标量
 
-最低环境温度，*TMIN*，以 K 为单位。
+最大允许外倾角 *CAMMAX*，单位为 rad。
 
-#### 以编程方式使用
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1839,19 +1910,51 @@ chinese_source: worker-translation
 
 |  |  |
 | --- | --- |
-| **参数：** | `TMIN` |
-| **值：** | `0`（默认）| 标量 |
-| **数据类型：** | `double` |
+| **Parameter:** | `CAMMAX` |
+| **值**：| `0.173` | 标量 |
+| **Data Types:** | `double` |
+
+### **Minimum allowable camber angle, CAMMIN** — 最小允许外倾角 `-0.173` | 标量
+
+最小允许外倾角，*CAMMIN*，单位为 rad。
+
+#### 编程使用
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `CAMMIN` |
+| **值**：| `-0.173` | 标量 |
+| **Data Types:** | `double` |
+
+### **Minimum ambient temperature, TMIN** — 最低环境温度 `0`（默认）| 标量
+
+最低环境温度，*TMIN*，单位为 K。
+
+#### 编程使用
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+要以编程方式获取模块参数值，请使用 `get_param` 函数。
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `TMIN` |
+| **值**：| `0`（默认）| 标量 |
+| **Data Types:** | `double` |
 
 #### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `ISO 28580`。
+要启用此参数，请将 **Rolling Resistance** 设置为 `ISO 28580`。
 
-### **最高环境温度，TMAX** — 最高环境温度 `400`（默认）| 标量
+### **Maximum ambient temperature, TMAX** — 最高环境温度 `400`（默认）| 标量
 
-最高环境温度 *TMAX*，单位为 K。
+最高环境温度，*TMAX*，单位为 K。
 
-#### 以编程方式使用
+#### 编程使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -1859,32 +1962,32 @@ chinese_source: worker-translation
 
 |  |  |
 | --- | --- |
-| **参数：** | `TMAX` |
-| **值：** | `400`（默认）| 标量 |
-| **数据类型：** | `double` |
+| **Parameter:** | `TMAX` |
+| **值**：| `400`（默认）| 标量 |
+| **Data Types:** | `double` |
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请将 **滚动阻力** 设置为 `ISO 28580`。
+要启用此参数，请将 **Rolling Resistance** 设置为 `ISO 28580`。
 
-### 绘图
+### Plotting
 
-### **安装 Extended Tire Features** — 用于安装 Extended Tire Features for Vehicle Dynamics Blockset™ 支持包的选项按钮
+### **Install Extended Tire Features** — 用于安装 Extended Tire Features for Vehicle Dynamics Blockset™ 支持包的选项 按钮
 
-点击 **安装 Extended Tire Features** 以安装 Extended Tire Features for Vehicle Dynamics Blockset 支持包。使用该支持包，您可以从 Dugoff Wheel 2DOF 模块参数对话框中绘制稳态力和力矩轮胎响应。
+点击 **Install Extended Tire Features** 以安装 Extended Tire Features for Vehicle Dynamics Blockset 支持包。借助该支持包，您可以从 Dugoff Wheel 2DOF Block Parameters 对话框中绘制稳态力和力矩轮胎响应。
 
 ### **绘制稳态力、力矩响应** — 用于绘制稳态力和力矩轮胎响应的选项按钮
 
 点击 **绘制稳态力、力矩响应** 以生成以下绘图：
 
-- **横向力 [N] vs 侧偏角 [rad]**
-- **回正力矩 [Nm] vs 侧偏角 [rad]**
-- **纵向力 [N] vs 纵向滑移 []**
-- **纵向力 [N] vs 横向力 [N]**
+- **侧向力 [N] 与 侧偏角 [rad]**
+- **回正力矩 [Nm] 与 侧偏角 [rad]**
+- **纵向力 [N] 与 纵向滑移 []**
+- **纵向力 [N] 与 侧向力 [N]**
 
-#### 依赖项
+#### 依赖关系
 
-要启用此参数，请点击 **安装 Extended Tire Features**。
+要启用此参数，请点击 **安装扩展轮胎功能**。
 
 ## 所属库
 
@@ -1892,7 +1995,7 @@ Vehicle Dynamics Blockset / Wheels and Tires
 
 ## 模块特性
 
-未在 R2025b 中记录。
+在 R2025b 中未记录。
 
 ## 扩展功能
 
@@ -1902,41 +2005,41 @@ Vehicle Dynamics Blockset / Wheels and Tires
 
 **在 R2023a 中引入**
 
-### R2024b：新的 **轮胎类型** 选项
+### R2024b：新增 **轮胎类型** 选项
 
 从 R2024b 开始，您可以指定 **轮胎类型** 以使用新的内置轮胎模型 `Light passenger car 245/60R16`。
 
-### R2024b：新的 **垂直运动** 选项
+### R2024b：新增 **垂直运动** 选项
 
-从 R2024b 开始，将 **垂直运动** 指定为 `External Deflection` 会启用 **RadialDeflct** 端口。在未提供力的情况下与轮胎交互时，使用此端口定义胎侧变形。
+从 R2024b 开始，将 **垂直运动** 指定为 `External Deflection` 会启用 **RadialDeflct** 端口。在与轮胎交互且未提供力的情况下，使用此端口定义胎侧变形。
 
 ### R2024b：新增信号添加到 **Info** 端口总线
 
-从 R2024b 开始，**Info** 端口总线包含这些新信号。
+从 R2024b 开始，**Info** 端口总线包含以下新信号。
 
 | 信号 | 描述 |
 | --- | --- |
 | `RadialDeflct` | 轮胎径向变形 |
-| `RL` | 负载半径 |
+| `RL` | 承载半径 |
 | `WhlTrq` | 车轮扭矩 |
 
 ### R2024b：重命名的模块参数
 
-从 R2024b 开始，这些参数已重命名。
+从 R2024b 开始，以下参数已被重命名。
 
 | 旧名称 | 新名称 |
 | --- | --- |
 | **车轮宽度** | **轮胎公称断面宽度** |
-| **空载半径** | **轮胎空载半径** |
+| **无载半径** | **轮胎无载半径** |
 | **初始旋转速度** | **初始车轮旋转速度** |
 | **车轮质量** | **轮胎质量** |
 | **转动惯量** | **轮胎转动惯量** |
 
 ### R2024a：模块参数更新
 
-从 R2024a 开始，选项 `Nominal slip` 和 `Extended slip` 可用于新参数 **模型滑移类型**，而不是 **轮胎类型**。
+从 R2024a 开始，选项 `Nominal slip` 和 `Extended slip` 可用于新参数 **模型滑移类型**，而非 **轮胎类型**。
 
-这些选项现在可用于 **轮胎类型**：
+以下选项现在可用于 **轮胎类型**：
 
 - `User defined`
 - `Light passenger car 205/60R15`
@@ -1948,116 +2051,121 @@ Vehicle Dynamics Blockset / Wheels and Tires
 
 ### R2024a：绘制稳态力和力矩响应
 
-如果已安装 Extended Tire Features for Vehicle Dynamics Blockset 支持包，您可以使用新的 **绘制稳态力、力矩响应** 按钮生成绘图。
+如果您已安装 Vehicle Dynamics Blockset 的扩展轮胎功能支持包，则可以使用新的 **绘制稳态力、力矩响应** 按钮来生成绘图。
 
 ## 描述
 
-Dugoff Wheel 2DOF wheel with disc, drum, or mapped brake
+Dugoff Wheel 2DOF 带盘式、鼓式或映射制动的车轮
 
-Dugoff Wheel 2DOF 模块基于 H. Dugoff model[1] 实现具有横向和纵向滑移能力的简化轮胎。该模块使用平移摩擦模型计算纵向和横向联合滑移期间的力和力矩，所需参数比 Combined Slip Wheel 2DOF 模块少。如果您没有 Magic Formula 所需的轮胎系数，请考虑将此模块用于不涉及大量非线性联合横向滑移或横向动力学的研究。如果您的研究确实需要非线性联合滑移或横向动力学，请考虑使用 Combined Slip Wheel 2DOF 模块。
+Dugoff Wheel 2DOF 模块基于 H. Dugoff 模型[1]实现了一个具有侧向和纵向滑移能力的简化轮胎。该模块使用平移摩擦模型来计算纵向和侧向联合滑移期间的力和力矩，所需参数比 Combined Slip Wheel 2DOF 模块更少。如果您没有 Magic Formula 所需的轮胎系数，对于不涉及大量非线性联合侧向滑移或侧向动力学的分析，可以考虑使用此模块。如果您的分析确实需要非线性联合滑移或侧向动力学，请考虑使用 Combined Slip Wheel 2DOF 模块。
 
-该模块基于传动系统扭矩、制动压力、道路高度、车轮外倾角和充气压力，确定车轮转速、垂直运动以及全部六个自由度 (DOF) 中的力和力矩。您可以将此模块用于以下类型的分析：
+该模块根据传动系统扭矩、制动压力、路面高度、车轮外倾角和充气压力，确定车轮转速、垂向运动以及所有六个自由度（DOF）的力和力矩。您可以将此模块用于以下类型的分析：
 
-- 传动系统和车辆仿真，需要低频轮胎-道路力和制动力，用于车辆加速、制动和车轮滚动阻力计算，且轮胎参数最少。
-- 车轮与理想化路面的相互作用。
-- 经历轻微联合滑移的车辆的平顺性和操纵性工况。对于此分析，您可以将模块连接到传动系统和底盘组件，例如差速器、悬架和车身系统。
-- 横摆稳定性。对于此分析，您可以将此模块连接到更详细的制动系统模型。
-- 使用模块垂直 DOF 的轮胎刚度与非簧载质量同地面变化、载荷转移或底盘运动的相互作用。
+- 传动系统和车辆仿真，需要低频轮胎-路面和制动力，以最少的轮胎参数进行车辆加速、制动和车轮滚动阻力计算。
+- 车轮与理想化路面的交互。
+- 经历轻微联合滑移的车辆的乘坐和操纵工况。对于此分析，您可以将该模块连接到传动系统和底盘组件，如差速器、悬架和车身系统。
+- 横摆稳定性。对于此分析，您可以将该模块连接到更详细的制动系统模型。
+- 使用该模块垂向自由度的轮胎刚度和非簧载质量与地面变化、载荷转移或底盘运动的交互。
 
-该模块集成了旋转车轮、垂直质量和制动动力学模型。
+该模块集成了车轮旋转、垂向质量和制动动力学模型。
 
 您可以设置自己的用户定义模型参数值，或使用内置轮胎模型。
 
-如果您安装 Extended Tire Features for Vehicle Dynamics Blockset 支持包，则可以使用以下附加功能：
+如果您安装了 Extended Tire Features for Vehicle Dynamics Blockset 支持包，则可以使用以下附加功能：
 
-- 绘图生成 — 点击 **绘制稳态力、力矩响应** 按钮生成以下绘图：
+- 绘图生成 — 点击 **Plot steady state force, moment response** 按钮生成以下绘图：
 
-  - **横向力 [N] vs 侧偏角 [rad]**
-  - **回正力矩 [Nm] vs 侧偏角 [rad]**
-  - **纵向力 [N] vs 纵向滑移 []**
-  - **纵向力 [N] vs 横向力 [N]**
+  - **Lateral force [N] vs Slip angle [rad]**
+  - **Self-aligning moment [Nm] vs Slip angle [rad]**
+  - **Longitudinal force [N] vs Longitudinal slip []**
+  - **Longitudinal force [N] vs Lateral force [N]**
 - 导入轮胎参数 — 使用 `tireModel.get` 方法将 Dugoff Wheel 2DOF 模块中定义的轮胎参数值导入到 `tireModel` 对象。
-- 导出轮胎参数 — 使用 `set` 方法将轮胎参数值从 `tireModel` 对象导出到 Dugoff Wheel 2DOF 模块。
+- 导出轮胎参数 — 使用 `set` 方法将 `tireModel` 对象中的轮胎参数值导出到 Dugoff Wheel 2DOF 模块。
 - 轮胎模型转换 — 使用 `convert` 方法将以下类型之一的轮胎模型转换为可导入 Dugoff Wheel 2DOF 模块的 Dugoff 轮胎模型：
 
   - Magic Formula 5.2
   - Magic Formula 6.2
   - Fiala
 
-使用 **轮胎类型** 参数输入轮胎参数值或选择拟合的轮胎参数集。
+使用 **Tire type** 参数来输入轮胎参数值或选择拟合的轮胎参数集。
 
 | 目标 | 操作 |
 | --- | --- |
-| 输入用户定义的轮胎参数值。 | 使用用户定义参数值更新模块参数：  1. 将 **轮胎类型** 设置为 `User defined`。 2. 在 **车轮和轮胎参数** 部分，输入用户定义值。 3. 点击 **应用**。 |
-| 选择一个内置 Dugoff 轮胎模型来驱动横向和纵向计算。[Link]。 | 使用内置轮胎模型的值更新适用的模块参数： 1. 将 **轮胎类型** 设置为您要实现的轮胎。选项包括： - `Light passenger car 205/60R15` - `Light passenger car 245/60R16` - `Mid-size passenger car 235/45R18` - `Performance car 225/40R19` - `SUV 265/50R20` - `Light truck 275/65R18` - `Commercial truck 295/75R22.5` 2. 点击 **使用适用的轮胎值更新模块**。在 **车轮和轮胎参数** 部分，模块更新适用的 **纵向和横向** 参数。 3. 点击 **应用**。 |
+| 输入用户定义的轮胎参数值。 | 使用用户定义的参数值更新模块参数： 1. 将 **Tire type** 设置为 `User    defined`。 2. 在 **Wheel and Tire Parameters**    部分中，输入用户定义的值。 3. 点击 **Apply**。 |
+| 选择一个内置的 Dugoff 轮胎模型来驱动纵向和侧向计算。[Link]。 | 使用内置轮胎模型的值更新适用的模块参数： 1. 将 **Tire type** 设置为您    要实现的轮胎。选项包括： - `Light passenger car      205/60R15`    - `Light passenger car      245/60R16`    - `Mid-size passenger car      235/45R18`    - `Performance car      225/40R19`    - `SUV      265/50R20`    - `Light truck      275/65R18`    - `Commercial truck      295/75R22.5` 2. 点击 **Update block with applicable tire    values**。在 **Wheel and Tire    Parameters** 部分中，模块会更新    适用的 **Longitudinal and Lateral**    参数。 3. 点击 **Apply**。 |
 
-使用 **模型滑移类型** 参数选择滑移类型。
+使用 **Model slip type** 参数来选择
+滑移类型。
 
-| 操作 | 模型滑移类型设置 |
+| 操作 | Model Slip Type 设置 |
 | --- | --- |
-| 在标称滑移条件下计算纵向力和横向力 | `Nominal slip` |
-| 使用附加修正因子计算纵向力和横向力，以便在较高滑移值下获得更准确的响应 | `Extended slip` |
+| 在标称滑移条件下计算纵向力和侧向力 | `Nominal slip` |
+| 使用附加修正因子计算纵向力和侧向力，以便在较高滑移值下获得更准确的响应 | `Extended slip` |
 
-使用 **制动器类型** 参数选择制动器。
+使用 **Brake Type** 参数来选择
+制动器。
 
-| 操作 | 制动器类型设置 |
+| 操作 | Brake Type 设置 |
 | --- | --- |
 | 无制动 | `None` |
 | 实现将制动缸压力转换为制动力的制动器 | `Disc` |
-| 实现简单鼓式制动器，将施加的力和制动几何参数转换为净制动扭矩 | `Drum` |
-| 实现作为车轮速度和施加制动压力函数的查找表 | `Mapped` |
+| 实现将施加力和制动器几何结构转换为净制动扭矩的单工鼓式制动器 | `Drum` |
+| 实现作为车轮转速和施加制动压力函数的查找表 | `Mapped` |
 
-要计算滚动阻力扭矩，请指定以下 **滚动阻力** 参数之一。
+要计算滚动阻力扭矩，请指定以下 **Rolling
+Resistance** 参数之一。
 
 | 设置 | 模块实现 |
 | --- | --- |
 | `None` | 无 |
 | `Pressure and velocity` | *Stepwise Coastdown Methodology for Measuring Tire Rolling Resistance* 中的方法。滚动阻力是轮胎压力、法向力和速度的函数。 |
-| `ISO 28580` | ISO 28580:2018, *Passenger car, truck and bus tyre rolling resistance measurement method — Single point test and correlation of measurement results* 中指定的方法。 |
-| `Magic Formula` | 来自 *Tire and Vehicle Dynamics* 中 4.E70 的 Magic formula 方程。Magic formula 是基于拟合系数的经验方程。 |
-| `Mapped torque` | 作为法向力和旋转轴纵向速度函数的查找表。 |
+| `ISO 28580` | ISO 28580:2018，*Passenger car, truck and bus tyre rolling resistance measurement method — Single point test and correlation of measurement results* 中规定的方法。 |
+| `Magic Formula` | *Tire and Vehicle Dynamics* 中 4.E70 的魔术公式方程。魔术公式是基于拟合系数的经验方程。 |
+| `Mapped torque` | 作为法向力和自旋轴纵向速度函数的查找表。 |
 
-要计算垂直运动，请指定以下 **垂直运动** 参数之一。
+要计算垂直
+运动，请指定以下 **Vertical Motion**
+参数之一。
 
 | 设置 | 模块实现 |
 | --- | --- |
 | `None` | 模块将施加的底盘力直接传递到滚动阻力和纵向力计算。 |
-| `Mapped stiffness and damping` | 垂直运动取决于车轮刚度和阻尼。刚度是轮胎胎侧位移和压力的函数。阻尼是轮胎胎侧速度和压力的函数。 |
-| `External deflection` | 模块在有效半径计算中直接使用定义的胎侧变形。 |
+| `Mapped stiffness and damping` | 垂直运动取决于车轮刚度和阻尼。刚度是轮胎侧壁位移和压力的函数。阻尼是轮胎侧壁速度和压力的函数。 |
+| `External deflection` | 模块在有效半径计算中直接使用定义的侧壁变形。 |
 
-### 旋转车轮动力学
+### Rotational Wheel Dynamics
 
-该模块计算车轮在以下作用下的惯性响应：
+该模块计算车轮在以下因素作用下的惯性响应：
 
-- 车轴损失
+- 车轴损耗
 - 制动和驱动力矩
 - 轮胎滚动阻力
 - 通过轮胎-道路界面的地面接触
 
-输入扭矩是施加的车轴扭矩、制动扭矩以及由联合轮胎扭矩产生的力矩之和。
+输入力矩是施加的车轴力矩、制动力矩以及由组合轮胎力矩产生的力矩之和。
 
 Ti=Ta−Tb+Td
 
-对于由联合轮胎扭矩产生的力矩，模块使用一阶动力学实现牵引车轮力和滚动阻力。滚动阻力具有以松弛长度参数化的时间常数。
+对于由组合轮胎力矩产生的力矩，该模块使用一阶动力学实现牵引车轮力和滚动阻力。滚动阻力具有以松弛长度参数化的时间常数。
 
 Td(s)=1Le|ω|Res+1(FxRe+My)
 
-要计算滚动阻力扭矩，您可以指定以下 **滚动阻力** 参数之一。
+要计算滚动阻力矩，您可以指定以下 **Rolling Resistance** 参数之一。
 
 | 设置 | 模块实现 |
 | --- | --- |
 | `None` | 模块将滚动阻力 `My` 设置为零。 |
-| `Pressure and velocity` | 模块使用 SAE *Stepwise Coastdown Methodology for Measuring Tire Rolling Resistance* 中的方法。滚动阻力是轮胎压力、法向力和速度的函数，具体为：  My=Re{a+b|Vx|+cVx2}{Fzβpiα}tanh(4Vx) |
-| `ISO 28580` | 模块使用 ISO 28580:2018, *Passenger car, truck and bus tyre rolling resistance measurement method — Single point test and correlation of measurement results* 中指定的方法。该方法考虑法向载荷、寄生损失以及测试条件的热修正，具体为：  My=Re(FzCr1+Kt(Tamb−Tmeas)−Fpl)tanh(ω) |
-| `Magic Formula` | 模块使用 *Tire and Vehicle Dynamics* 中 4.E70 的 Magic Formula 方程计算滚动阻力 `My`。magic formula 是基于拟合系数的经验方程。 |
-| `Mapped torque` | 对于滚动阻力 `My`，模块使用作为法向力和旋转轴纵向速度函数的查找表。 |
+| `Pressure and velocity` | 模块使用 SAE *Stepwise Coastdown Methodology for Measuring Tire Rolling Resistance* 中的方法。滚动阻力是轮胎压力、法向力和速度的函数，具体为： My=Re{a+b|Vx|+cVx2}{Fzβpiα}tanh(4Vx) |
+| `ISO 28580` | 模块使用 ISO 28580:2018 *Passenger car, truck and bus tyre rolling resistance measurement method — Single point test and correlation of measurement results* 中指定的方法。该方法考虑了法向载荷、寄生损耗以及测试条件下的热修正，具体为： My=Re(FzCr1+Kt(Tamb−Tmeas)−Fpl)tanh(ω) |
+| `Magic Formula` | 模块使用 *Tire and Vehicle Dynamics* 中 4.E70 的 Magic Formula 方程计算滚动阻力 `My`。Magic Formula 是基于拟合系数的经验方程。 |
+| `Mapped torque` | 对于滚动阻力 `My`，模块使用以法向力和自旋轴纵向速度为函数的查找表。 |
 
-如果启用制动器，模块基于理想化干式离合器摩擦模型确定制动锁止或未锁止状态。根据锁止条件，模块实现以下摩擦和动力学模型。
+如果启用了制动器，模块基于理想干式离合器摩擦模型确定制动锁定或未锁定状态。基于锁定状态，模块实现以下摩擦和动力学模型。
 
-| 方程 | 锁止条件 | 摩擦模型 | 动力学模型 |
+| 方程 | 锁定状态 | 摩擦模型 | 动力学模型 |
 | --- | --- | --- | --- |
-| ω≠0orTS<|Ti+Tf−ωb| | 未锁止 | Tf=Tk,whereTk=FcReffμktanh[4(−ωd)]Ts=FcReffμsReff=2(Ro3−Ri3)3(Ro2−Ri2) | ω˙J=−ωb+Ti+To |
-| ω=0andTS≥|Ti+Tf−ωb| | 锁止 | Tf=Ts | ω=0 |
+| ω≠0orTS<|Ti+Tf−ωb| | 未锁定 | Tf=Tk,whereTk=FcReffμktanh[4(−ωd)]Ts=FcReffμsReff=2(Ro3−Ri3)3(Ro2−Ri2) | ω˙J=−ωb+Ti+To |
+| ω=0andTS≥|Ti+Tf−ωb| | 锁定 | Tf=Ts | ω=0 |
 
 这些方程使用以下变量。
 
@@ -2068,15 +2176,15 @@ Td(s)=1Le|ω|Res+1(FxRe+My)
 | *b* | 线性速度力分量 |
 | *c* | 二次速度力分量 |
 | *Le* | 轮胎松弛长度 |
-| *J* | 惯性矩 |
-| *My* | 滚动阻力扭矩 |
-| *Ta* | 施加的车轴扭矩 |
-| *Tb* | 制动扭矩 |
-| *Td* | 联合轮胎扭矩 |
+| *J* | 转动惯量 |
+| *My* | 滚动阻力矩 |
+| *Ta* | 施加的车轴力矩 |
+| *Tb* | 制动力矩 |
+| *Td* | 组合轮胎力矩 |
 | *Tf* | 摩擦力矩 |
-| *Ti* | 净输入扭矩 |
+| *Ti* | 净输入力矩 |
 | *Tk* | 动摩擦力矩 |
-| *To* | 净输出扭矩 |
+| *To* | 净输出力矩 |
 | *Ts* | 静摩擦力矩 |
 | *Fc* | 施加的离合器力 |
 | *Fx* | 由于滑移由轮胎-道路界面产生的纵向力 |
@@ -2088,8 +2196,8 @@ Td(s)=1Le|ω|Res+1(FxRe+My)
 | *Fz* | 车辆法向力 |
 | *Cr* | 滚动阻力常数 |
 | *Tamb* | 环境温度 |
-| *Tmeas* | 用于滚动阻力常数的测量温度 |
-| *Fpl* | 寄生力损失 |
+| *Tmeas* | 滚动阻力常数的测量温度 |
+| *Fpl* | 寄生力损耗 |
 | *Kt* | 热修正因子 |
 | *ɑ* | 轮胎压力指数 |
 | *β* | 法向力指数 |
@@ -2097,58 +2205,58 @@ Td(s)=1Le|ω|Res+1(FxRe+My)
 | *μs* | 静摩擦系数 |
 | *μk* | 动摩擦系数 |
 
-### 纵向力
+### Longitudinal Force
 
-该模块使用以下方程实现作为车轮相对路面滑移函数的纵向力。
+该模块使用以下方程将纵向力实现为车轮相对路面的滑移的函数。
 
-| 计算 | 方程 |
+| Calculation | Equation |
 | --- | --- |
-| 标称滑移 | Fx=Ckκ1−κf(z),wheref(z)={z(2−z)                when z<11                           when z≥1z=μFz(1−κ)2(Ckκ)2+(Cαtan(α))2 |
-| 扩展 | Fx=Ckκ1−κf(z)gx,wheref(z)={z(2−z)                when z<11                           when z≥1z=μFz(1−κ)2(Ckκ)2+(Cαtan(α))2gx=(gx1+gx2μ)κ2−(gx3+gx4μ)κ+gx5 |
-| 摩擦系数 | μ=μ0(1−AsVs),whereVs=uκ2+tan2(α) |
+| Nominal Slip | Fx=Ckκ1−κf(z),wheref(z)={z(2−z)                when z<11                           when z≥1z=μFz(1−κ)2(Ckκ)2+(Cαtan(α))2 |
+| Extended | Fx=Ckκ1−κf(z)gx,wheref(z)={z(2−z)                when z<11                           when z≥1z=μFz(1−κ)2(Ckκ)2+(Cαtan(α))2gx=(gx1+gx2μ)κ2−(gx3+gx4μ)κ+gx5 |
+| Friction coefficient | μ=μ0(1−AsVs),whereVs=uκ2+tan2(α) |
 
 这些方程使用以下变量。
 
-| 变量 | 值 |
+| Variable | Value |
 | --- | --- |
 | *Fx* | 沿轮胎固定 *x* 轴作用在车轴上的纵向力 |
 | *Cκ* | 纵向刚度 |
-| *Cα* | 每侧偏角的横向刚度 |
+| *Cα* | 每侧偏角的侧向刚度 |
 | *k* | 轮胎纵向滑移率 |
-| *Fz* | 沿轮胎固定 *z* 轴的接触斑垂直法向力 |
+| *Fz* | 沿轮胎固定 *z* 轴的垂直接触斑块法向力 |
 | *u* | 车轮平面内的速度分量 |
 | *μ* | 最大摩擦系数 |
 | *μ0* | 最大摩擦缩放系数 |
-| *As* | 摩擦降低因子 |
-| *Vs* | 摩擦降低幅度 |
+| *As* | 摩擦减小因子 |
+| *Vs* | 摩擦减小幅度 |
 | *α* | 轮胎侧偏角 |
 | *gx* | 纵向修正因子 |
-| *gx1* | 纵向滑移平方修正因子 |
-| *gx2* | 纵向滑移平方摩擦修正因子 |
+| *gx1* | 纵向平方滑移修正因子 |
+| *gx2* | 纵向平方滑移摩擦修正因子 |
 | *gx3* | 纵向线性滑移修正因子 |
 | *gx4* | 纵向线性滑移摩擦修正因子 |
 | *gx5* | 纵向偏移修正因子 |
 
-### 侧向力
+### Lateral Force
 
 该模块使用以下方程将侧向力实现为车轮侧偏角状态的函数。
 
-| 计算 | 方程 |
+| Calculation | Equation |
 | --- | --- |
-| 名义滑移 | Fy=Cαtan(α)1−κf(z)+γCγ,其中f(z)={z(2−z)                 当 z<11                           当 z≥1z=μFz(1−κ)2(Ckκ)2+(Cαtan(α))2 |
-| 扩展滑移 | Fy=Cαtan(α)1−κf(z)gy+γCγ,其中f(z)={z(2−z)                当 z<11                           当 z≥1z=μFz(1−κ)2(Ckκ)2+(Cαtan(α))2gy=(μ+gy1)tan(α)+gy2 |
-| 摩擦系数 | μ=μ0(1−AsVs),其中Vs=uκ2+tan2(α) |
+| Nominal Slip | Fy=Cαtan(α)1−κf(z)+γCγ,wheref(z)={z(2−z)                 when z<11                            when z≥1z=μFz(1−κ)2(Ckκ)2+(Cαtan(α))2 |
+| Extended Slip | Fy=Cαtan(α)1−κf(z)gy+γCγ,wheref(z)={z(2−z)                when z<11                           when z≥1z=μFz(1−κ)2(Ckκ)2+(Cαtan(α))2gy=(μ+gy1)tan(α)+gy2 |
+| Friction Coefficient | μ=μ0(1−AsVs),whereVs=uκ2+tan2(α) |
 
 这些方程使用以下变量。
 
-| 变量 | 值 |
+| Variable | Value |
 | --- | --- |
 | *α* | 轮胎侧偏角 |
 | *Fy* | 沿轮胎固定 *y* 轴作用在车轴上的侧向力 |
-| *Fz* | 沿轮胎固定 *z* 轴的垂直接地印迹法向力 |
+| *Fz* | 沿轮胎固定 *z* 轴的垂直接触斑块法向力 |
 | *ɣ* | 外倾角 |
 | *Cɣ* | 外倾刚度 |
-| *Cα* | 每侧偏角的侧向刚度 |
+| *Cα* | 每角滑移的侧向刚度 |
 | *Ck* | 纵向刚度 |
 | *k* | 轮胎纵向滑移率 |
 | *u* | 车轮平面内的速度分量 |
@@ -2160,19 +2268,19 @@ Td(s)=1Le|ω|Res+1(FxRe+My)
 | *gy1* | 侧向最大摩擦修正因子 |
 | *gy2* | 侧向偏移修正因子 |
 
-### 垂向动力学
+### Vertical Dynamics
 
 该模块使用以下方程实现垂向动力学。
 
-| 计算 | 方程 |
+| Calculation | Equation |
 | --- | --- |
-| 垂向响应 | z¨m=Fztire+mg−Fz |
-| 轮胎法向力 | Fztire=ρzk−bz˙ |
-| 垂向侧壁变形 | ρz=zgnd−z,z≥0 |
+| Vertical response | z¨m=Fztire+mg−Fz |
+| Tire normal force | Fztire=ρzk−bz˙ |
+| Vertical sidewall deflection | ρz=zgnd−z,z≥0 |
 
 这些方程使用以下变量。
 
-| 变量 | 值 |
+| Variable | Value |
 | --- | --- |
 | *z* | 沿轮胎固定 *z* 轴的轮胎变形 |
 | *zgnd* | 沿轮胎固定 *z* 轴的地面位移 |
@@ -2182,60 +2290,60 @@ Td(s)=1Le|ω|Res+1(FxRe+My)
 | *k* | 垂向侧壁刚度 |
 | *b* | 垂向侧壁阻尼 |
 
-### 倾覆、回正和缩放
+### 翻转、回正和缩放
 
-下表总结了倾覆、回正和缩放的实现。
+下表总结了翻转、回正和缩放的实现。
 
 | 计算 | 实现 |
 | --- | --- |
-| 倾覆力矩 | Dugoff 模型未定义倾覆力矩。该模块实现此方程，所需参数最少。  Mx=FyRecos(γ) |
-| 回正力矩 | 该模块将回正力矩实现为横摆率阻尼和侧偏角状态的组合。  Mz={ψ˙bMz                                               当 |α'|>α'Criticaltanh(4α')wμ|Fz|(1−ξ)ξ3+ψ˙bMz    当 |α'|≤α'Criticalξ=1−Ca|tan(α')|3μ|Fz| |
+| 翻转力矩 | Dugoff 模型未定义翻转力矩。该模块实现此方程，所需参数最少。 Mx=FyRecos(γ) |
+| 回正力矩 | 该模块将回正力矩实现为横摆角速度阻尼和侧偏角状态的组合。 Mz={ψ˙bMz                                               when |α'|>α'Criticaltanh(4α')wμ|Fz|(1−ξ)ξ3+ψ˙bMz    when |α'|≤α'Criticalξ=1−Ca|tan(α')|3μ|Fz| |
 | 摩擦缩放 | 要改变摩擦系数，请使用 **ScaleFctr** 输入端口。 |
 
 这些方程使用以下变量。
 
 | 变量 | 值 |
 | --- | --- |
-| *Mx* | 绕轮胎固定 *x* 轴作用在车轴上的倾覆力矩 |
-| *Mz* | 绕轮胎固定 *z* 轴作用在车轴上的回正力矩 |
-| *Re* | 从有效接地印迹到车轮支架的径向距离 |
+| *Mx* | 作用于车轴、绕轮胎固定 *x* 轴的翻转力矩 |
+| *Mz* | 作用于车轴、绕轮胎固定 *z* 轴的回正力矩 |
+| *Re* | 有效接地点到轮架的径向距离 |
 | *ɣ* | 外倾角 |
-| *k* | 垂向侧壁刚度 |
-| *b* | 垂向侧壁阻尼 |
-| ψ˙ | 绕轮胎固定 *z* 轴的轮胎角速度（横摆率） |
+| *k* | 垂直侧壁刚度 |
+| *b* | 垂直侧壁阻尼 |
+| ψ˙ | 轮胎绕轮胎固定 *z* 轴的角速度（横摆角速度） |
 | *w* | 轮胎宽度 |
 | *α'* | 侧偏角状态 |
-| *bMz* | 线性横摆率阻力 |
-| *Fy* | 沿轮胎固定 *y* 轴作用在车轴上的侧向力 |
+| *bMz* | 线性横摆角速度阻力 |
+| *Fy* | 作用于车轴、沿轮胎固定 *y* 轴的侧向力 |
 | *Cɣ* | 外倾刚度 |
-| *Cα* | 每侧偏角的侧向刚度 |
+| *Cα* | 每侧偏角的侧偏刚度 |
 | *μ* | 摩擦系数 |
-| *Fz* | 沿轮胎固定 *z* 轴的垂直接地印迹法向力 |
+| *Fz* | 沿轮胎固定 *z* 轴作用于接地点的垂直法向力 |
 
 ### 轮胎和车轮坐标系
 
-为求解力和力矩，该模块使用轮胎和车轮坐标系的 Z-Up 方向。
+为了求解力和力矩，该模块使用轮胎和车轮坐标系的 Z-Up 方向。
 
-- 轮胎坐标系轴（*XT*、*YT*、*ZT*）固定在附着于轮胎的参考系中。原点位于轮胎与地面接触处。
+- 轮胎坐标系轴（*XT*、*YT*、*ZT*）固定在附着于轮胎的参考系中。原点位于轮胎与地面的接触点。
 - 车轮坐标系轴（*XW*、*YW*、*ZW*）固定在附着于车轮的参考系中。原点位于车轮中心。
 
-**Z-Up Orientation**1
+**Z-Up 方向**1
 
-Z-Up 轮胎和车轮坐标系，显示车轮平面和道路平面
+显示车轮平面和道路平面的 Z-Up 轮胎和车轮坐标系
 
-### 制动器
+### Brakes
 
 **Disc**
 
-如果将 **Brake Type** 参数指定为 `Disc`，该模块实现盘式制动器。下图显示盘式制动器的侧视图和前视图。
+如果将 **Brake Type** 参数指定为 `Disc`，则该模块实现盘式制动器。下图展示了盘式制动器的侧视图和前视图。
 
-盘式制动器的前视图和侧视图，显示制动块、制动盘和制动钳
+盘式制动器的前视图和侧视图，显示制动片、制动盘和制动钳
 
-盘式制动器将来自制动缸的制动缸压力转换为力。盘式制动器在制动块平均半径处施加该力。
+盘式制动器将制动缸压力转换为力。盘式制动器在制动片平均半径处施加力。
 
 该模块使用以下方程计算盘式制动器的制动力矩。
 
-T={μPπBa2RmNpads4                当 N≠0μstaticPπBa2RmNpads4         当 N=0
+T={μPπBa2RmNpads4                当 N≠0μstaticPπBa2RmNpads4          当 N=0
 
 Rm=Ro+Ri2
 
@@ -2246,27 +2354,27 @@ Rm=Ro+Ri2
 | *T* | 制动力矩 |
 | *P* | 施加的制动压力 |
 | *N* | 车轮转速 |
-| *Npads* | 盘式制动器总成中制动块的数量 |
-| *μstatic* | 制动块-制动盘静摩擦系数 |
-| *μ* | 制动块-制动盘动摩擦系数 |
-| *Ba* | 制动执行器孔径 |
-| *Rm* | 制动块在制动盘上施加力的平均半径 |
-| *Ro* | 制动块外半径 |
-| *Ri* | 制动块内半径 |
+| *Npads* | 盘式制动器总成中的制动片数量 |
+| *μstatic* | 制动片-制动盘静摩擦系数 |
+| *μ* | 制动片-制动盘动摩擦系数 |
+| *Ba* | 制动执行器缸径 |
+| *Rm* | 制动片在制动盘上施加力的平均半径 |
+| *Ro* | 制动片外半径 |
+| *Ri* | 制动片内半径 |
 
 **Drum**
 
-如果将 **Brake Type** 参数指定为 `Drum`，该模块实现静态（稳态）单工鼓式制动器。单工鼓式制动器由单个双面液压执行器和两个制动蹄组成。制动蹄不共享公共铰接销。
+如果将 **Brake Type** 参数指定为 `Drum`，则该模块实现静态（稳态）简单非平衡式鼓式制动器。简单非平衡式鼓式制动器由单个双面液压执行器和两个制动蹄组成。制动蹄不共享共同的铰接销。
 
-单工鼓式制动器模型使用施加的力和制动器几何参数计算每个制动蹄的净力矩。鼓式制动器模型假设两侧的执行器和制动蹄几何形状对称，因此两个制动蹄可使用同一组几何参数和摩擦参数。
+简单非平衡式鼓式制动器模型使用施加的力和制动器几何参数来计算每个制动蹄的净力矩。鼓式制动器模型假设两侧的执行器和制动蹄几何形状对称，因此两个制动蹄可以使用同一组几何参数和摩擦参数。
 
-该模块实现的方程由 *Fundamentals of Machine Elements* 中的这些方程推导而来。
+该模块实现的方程源自 *Fundamentals of Machine Elements* 中的以下方程。
 
 Trshoe=(πμcr(cosθ2−cosθ1)Ba22μ(2r(cosθ2−cosθ1)+a(cos2θ2−cos2θ1))+a(2θ1−2θ2+sin2θ2−sin2θ1))PTlshoe=(πμcr(cosθ2−cosθ1)Ba2−2μ(2r(cosθ2−cosθ1)+a(cos2θ2−cos2θ1))+a(2θ1−2θ2+sin2θ2−sin2θ1))P
 
-T={Trshoe+Tlshoe                 当 N≠0(Trshoe+Tlshoe)μstaticμ   当 N=0
+T={Trshoe+Tlshoe                 当 N≠0(Trshoe+Tlshoe)μstaticμ   当 N=0
 
-鼓式制动器的侧视图
+鼓式制动器侧视图
 
 这些方程使用以下变量。
 
@@ -2275,22 +2383,22 @@ T={Trshoe+Tlshoe                 当 N≠0(Trshoe+Tlshoe)μsta
 | *T* | 制动力矩 |
 | *P* | 施加的制动压力 |
 | *N* | 车轮转速 |
-| *μstatic* | 制动块-制动盘静摩擦系数 |
-| *μ* | 制动块-制动盘动摩擦系数 |
+| *μstatic* | 制动片-制动盘静摩擦系数 |
+| *μ* | 制动片-制动盘动摩擦系数 |
 | *Trshoe* | 右制动蹄制动力矩 |
 | *Tlshoe* | 左制动蹄制动力矩 |
 | *a* | 从制动鼓中心到制动蹄铰接销中心的距离 |
-| *c* | 从制动蹄铰接销中心到制动蹄上制动执行器连接处的距离 |
+| *c* | 从制动蹄铰接销中心到制动蹄上制动执行器连接点的距离 |
 | *r* | 制动鼓内半径 |
-| *Ba* | 制动执行器孔径 |
-| *Θ1* | 从制动蹄铰接销中心到制动蹄上制动衬片材料起点的角度 |
-| *Θ2* | 从制动蹄铰接销中心到制动蹄上制动衬片材料终点的角度 |
+| *Ba* | 制动执行器缸径 |
+| *Θ1* | 从制动蹄铰接销中心到制动蹄上制动片材料起点的角度 |
+| *Θ2* | 从制动蹄铰接销中心到制动蹄上制动片材料终点的角度 |
 
 **Mapped**
 
-如果将 **Brake Type** 参数指定为 `Mapped`，该模块使用查找表确定制动力矩。
+如果将 **Brake Type** 参数指定为 `Mapped`，则该模块使用查找表来确定制动力矩。
 
-T={fbrake(P,N)                   当 N≠0(μstaticμ)fbrake(P,N)    当 N=0
+T={fbrake(P,N)                   当 N≠0(μstaticμ)fbrake(P,N)    当 N=0
 
 这些方程使用以下变量。
 
@@ -2300,8 +2408,8 @@ T={fbrake(P,N)                   当 N≠0(μstaticμ)fbrake
 | fbrake(P,N) | 制动力矩查找表 |
 | *P* | 施加的制动压力 |
 | *N* | 车轮转速 |
-| *μstatic* | 静态条件下鼓式制动蹄片-鼓面界面的摩擦系数 |
-| *μ* | 盘式制动块-制动盘界面的摩擦系数 |
+| *μstatic* | 静态条件下鼓式制动片-端面界面的摩擦系数 |
+| *μ* | 制动片-制动盘界面的摩擦系数 |
 
 制动力矩查找表 fbrake(P,N) 是施加的制动压力和车轮转速的函数，其中：
 
@@ -2309,4 +2417,4 @@ T={fbrake(P,N)                   当 N≠0(μstaticμ)fbrake
 - *P* 是施加的制动压力，单位为 bar。
 - *N* 是车轮转速，单位为 rpm。
 
-制动力矩随车轮转速和施加的制动压力变化的图
+制动力矩作为车轮转速和施加的制动压力的函数图

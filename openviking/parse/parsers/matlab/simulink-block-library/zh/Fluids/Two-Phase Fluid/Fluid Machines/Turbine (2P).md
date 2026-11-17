@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Turbine (2P)'
-family: 'two-phase-fluid'
+family: 'hydro'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b
@@ -18,118 +18,132 @@ chinese_source: worker-translation
 
 ### 输入
 
-### **VN** — 喷嘴开度分数，unitless physical signal
+### **VN** — 喷嘴开度分数，无量纲物理信号
 
-可变喷嘴开度分数，指定为 unitless physical signal。修正质量流量与 **VN** 的值成线性比例。分数 `1` 对应于表格数据。喷嘴开度分数不影响等熵效率。
+可变喷嘴开度分数，指定为无量纲物理信号。修正质量流量与 **VN** 的值成线性比例关系。分数 `1` 对应于表格数据。喷嘴开度分数不影响等熵效率。
 
 #### 依赖关系
 
 要启用此端口，请选择 **Model variable nozzle** 参数。
-
 ### 守恒
 
-### **A** — 两相流体入口 two-phase fluid
+### **A** — 两相流体入口 两相流体
 
-与流体入口端口关联的 two-phase fluid conserving port。
+与流体入口端口关联的两相流体守恒端口。
 
-### **B** — 两相流体出口 two-phase fluid
+### **B** — 两相流体出口 两相流体
 
-与流体出口端口关联的 two-phase fluid conserving port。
+与流体出口端口关联的两相流体守恒端口。
 
-### **C** — 涡轮机壳 mechanical translational
+### **C** — 涡轮壳体 机械平移
 
-与涡轮机壳关联的端口。
+与涡轮壳体关联的端口。
 
-### **R** — 涡轮轴 mechanical translational
+### **R** — 涡轮轴 机械平移
 
 与涡轮轴扭矩和角速度关联的端口。
 
 ## 参数
 
-### 涡轮映射
+### 涡轮特性图
 
-### **Turbine map parameterization** — 性能参数化 `Analytical - Nominal pressure ratio and corrected mass flow rate`（默认）| `Tabulated data - Flow rate and efficiency vs. pressure ratio` | `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio`
+### **Turbine map parameterization** — 性能参数化方式 `Analytical - Nominal pressure ratio and corrected mass flow rate`（默认）| `Tabulated data - Flow rate and efficiency vs. pressure ratio` | `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio`
 
-性能参数化规格：
+性能参数化方式指定：
 
-- `Analytical - Nominal pressure ratio and corrected mass flow rate`：以解析方式参数化涡轮等熵效率和修正质量流量。
-- `Tabulated data - Flow rate and efficiency vs. pressure ratio`：按压力比参数化涡轮等熵效率和修正质量流量。
-- `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio`：按修正转速和压力比参数化涡轮等熵效率和修正质量流量。
+- `Analytical - Nominal pressure ratio and corrected mass flow
+  rate`：以解析方式参数化涡轮等熵效率和修正质量流量。
+- `表格数据 - 流量和效率与压力的关系
+  ratio`：按压力比参数化涡轮等熵效率和修正质量流量。
+- `表格数据 - 流量和效率与校正转速的关系
+  and pressure ratio`：按修正转速和压力比参数化涡轮等熵效率和修正质量流量。
 
 ### **Model variable nozzle** — 是否启用可变喷嘴输入端口 `Off`（默认）| `On`
 
-是否启用可变喷嘴输入端口 **VN**。当您未启用 **VN** 端口时，喷嘴保持为常量 `1`。
+是否启用可变喷嘴输入端口 **VN**。当不启用 **VN** 端口时，喷嘴保持恒定值为 `1`。
 
-### **Minimum nozzle opening fraction** — 最小开度分数 `1e-3`（默认）| 范围 (0,1] 内的正标量
+### **Minimum nozzle opening fraction** — 最小开度分数 `1e-3`（默认）| (0,1] 范围内的正标量
 
-最小喷嘴开度分数。此值是 **VN** 处信号的下边界。模块将此参数的值乘以质量流量，以获得通过涡轮的最小修正质量流量。
-
-#### 依赖关系
-
-要启用此参数，请选择 **Model variable nozzle**。
-
-### **Maximum nozzle opening fraction** — 最大开度分数 `1`（默认）| 范围 (0,1] 内的正标量
-
-最大喷嘴开度分数。此值是 **VN** 处信号的上边界。模块将此参数的值乘以质量流量，以获得通过涡轮的最大修正质量流量。
+最小喷嘴开度分数。该值是 **VN** 处信号的下边界。模块将该参数的值乘以质量流量，以获得通过涡轮的最小修正质量流量。
 
 #### 依赖关系
 
-要启用此参数，请选择 **Model variable nozzle**。
+要启用此参数，请选择 **Model variable
+nozzle**。
 
-### **Report when fluid is not fully vapor** — 流体未完全汽化通知 `None`（默认）| `Warning` | `Error`
+### **Maximum nozzle opening fraction** — 最大开度分数 `1`（默认）| (0,1] 范围内的正标量
+
+最大喷嘴开度分数。该值是 **VN** 处信号的上边界。模块将该参数的值乘以质量流量，以获得通过涡轮的最大修正质量流量。
+
+#### 依赖关系
+
+要启用此参数，请选择 **Model variable
+nozzle**。
+
+### **Report when fluid is not fully vapor** — 流体未完全汽化时的通知方式 `None`（默认）| `Warning` | `Error`
 
 当模块检测到流体未完全汽化时，模块是不执行任何操作、生成警告还是生成错误。
 
 ### **Corrected speed index vector, N** — 表格数据轴转速索引 `250 .* [50, 60, 70, 80, 90, 100, 110]` rpm（默认）| 正标量向量
 
-用于修正质量流量和等熵效率表格化参数化的恒定轴转速向量。
+用于修正质量流量和等熵效率表格参数化的恒定轴转速向量。
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio`。
+要启用此参数，请将 **Turbine map parameterization**
+设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and
+pressure ratio`。
 
 ### 流量数据
 
 ### **Nominal pressure ratio** — 压力比值 `2`（默认）| 正标量
 
-解析参数化在标称运行条件下的压力比值。
+解析参数化中额定工况下的压力比值。
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Analytical - Nominal pressure ratio and corrected mass flow rate`。
+要启用此参数，请将 **Turbine map parameterization**
+设置为 `Analytical - Nominal pressure ratio and corrected mass flow
+rate`。
 
 ### **Nominal corrected mass flow rate** — 修正质量流量值 `0.48` kg/s（默认）| 正标量
 
-解析参数化在标称运行条件下的修正质量流量值。
+解析参数化中额定工况下的修正质量流量值。
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Analytical - Nominal pressure ratio and corrected mass flow rate`。
+要启用此参数，请将 **Turbine map parameterization**
+设置为 `Analytical - Nominal pressure ratio and corrected mass flow
+rate`。
 
 ### **Pressure ratio vector, pr** — 压力比向量 `[1.251, 1.345, 1.442, 1.521, 1.596, 1.692, 1.849, 1.972, 2.1, 2.173, 2.259, 2.3424]`（默认）| 正标量向量
 
-用于修正质量流量表格化参数化的压力比值向量。此向量的元素数必须与 **Corrected mass flow rate vector, mdot(pr)** 参数相同，并且所有元素必须大于 1。最后一个元素必须是阻塞工况下的压力比。
+用于修正质量流量表格参数化的压力比值向量。该向量必须与 **Corrected mass flow rate vector, mdot(pr)** 参数具有相同数量的元素，且所有元素必须大于 1。最后一个元素必须是堵塞工况下的压力比。
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. pressure ratio`。
+要启用此参数，请将 **Turbine map parameterization**
+设置为 `Tabulated data - Flow rate and efficiency vs. pressure
+ratio`。
 
 ### **Corrected mass flow rate vector, mdot(pr)** — 修正质量流量值向量 `0.01.*[39.439, 43.01, 45.556, 46.801, 47.792, 48.388, 48.634, 48.67, 48.689, 48.747, 48.825, 48.912]` kg/s（默认）| 正标量向量
 
-用于修正质量流量表格化参数化的修正质量流量值向量。此向量的元素数必须与 **Pressure ratio vector, pr** 参数相同，并且所有元素必须大于 0。最后一个元素必须是阻塞工况下的修正质量流量。
+用于修正质量流量表格参数化的修正质量流量值向量。该向量必须与 **Pressure ratio vector, pr** 参数具有相同数量的元素，且所有元素必须大于 0。最后一个元素必须是堵塞工况下的修正质量流量。
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. pressure ratio`。
+要启用此参数，请将 **Turbine map parameterization**
+设置为 `Tabulated data - Flow rate and efficiency vs. pressure
+ratio`。
 
-### **Pressure ratio table, pr(N,beta)** — 涡轮映射压力比数据 *M*×*N* 矩阵（默认）
+### **Pressure ratio table, pr(N,beta)** — 涡轮特性图压力比数据 *M*×*N* 矩阵（默认）
 
-在指定修正轴转速和 β 值下，涡轮出口到入口压力比的 *M*×*N* 矩阵。模块在表元素之间采用线性插值。*M* 和 *N* 是相应向量的大小：
+在指定修正轴转速和 β 值下的涡轮出口-入口压力比 *M*×*N* 矩阵。模块在表格元素之间采用线性插值。*M* 和 *N* 是相应向量的大小：
 
-- *M* 是 **Corrected speed index vector, N** 参数中的向量元素数。
-- *N* 是表中 β 索引的数量。
+- *M* 是 **Corrected speed index vector, N** 参数中向量元素的数量。
+- *N* 是表格中 β 索引的数量。
 
-默认表值为：
+默认表格值为：
 
 `[1.217, 1.285, 1.323, 1.363, 1.402, 1.427, 1.495, 1.545, 1.6, 1.687,
 1.747, 1.8074; 1.231, 1.302, 1.356, 1.404, 1.443, 1.473, 1.525, 1.577, 1.635, 1.709,
@@ -142,16 +156,18 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio`。
+要启用此参数，请将 **Turbine map parameterization**
+设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and
+pressure ratio`。
 
-### **Corrected mass flow rate table, mdot(N,beta)** — 涡轮映射修正质量流量数据 *M*×*N* 矩阵（默认）
+### **Corrected mass flow rate table, mdot(N,beta)** — 涡轮特性图修正质量流量数据 *M*×*N* 矩阵（默认）
 
-在指定修正轴转速和 β 值下，修正质量流量的 *M*×*N* 矩阵。模块在表元素之间采用线性插值。*M* 和 *N* 是相应向量的大小：
+在指定的修正轴转速和 β 值下的修正质量流量 *M*×*N* 矩阵。该模块在表格元素之间采用线性插值。*M* 和 *N* 是相应向量的大小：
 
-- *M* 是 **Constant speed index vector, N** 参数中的向量元素数。
-- *N* 是表中 β 索引的数量。
+- *M* 是 **Constant speed index vector, N** 参数中向量元素的数量。
+- *N* 是表格中 β 索引的数量。
 
-默认表值为：
+默认表格值为：
 
 `0.01.*[40.403, 44.417, 46.653, 47.966, 48.97, 49.544, 50.001, 50.081,
 50.086, 50.095, 50.09, 50.0922; 40.044, 43.754, 46.125, 47.626, 48.513, 49.105,
@@ -165,42 +181,46 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio`。
+要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and
+pressure ratio`。
 
 ### 效率数据
 
 ### **Constant isentropic efficiency** — 等熵效率值 `0.8`（默认）| 正标量
 
-解析参数化在标称运行条件下的等熵效率。
+解析参数化在标称工况下的等熵效率。
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Analytical - Nominal pressure ratio and corrected mass flow rate`。
+要启用此参数，请将 **Turbine map parameterization** 设置为 `Analytical - Nominal pressure ratio and corrected mass flow
+rate`。
 
-### **Pressure ratio vector, pr** — 压力比向量 `[1.252, 1.328, 1.425, 1.544, 1.642, 1.757, 1.873, 2.005, 2.1, 2.204, 2.248, 2.28]`（默认）| 正标量向量
+### **Pressure ratio vector, pr** — 压比向量 `[1.252, 1.328, 1.425, 1.544, 1.642, 1.757, 1.873, 2.005, 2.1, 2.204, 2.248, 2.28]`（默认）| 正标量向量
 
-用于等熵效率表格化参数化的压力比值向量。此向量的元素数必须与 **Isentropic efficiency vector, eta(pr))** 参数相同，并且所有元素必须大于 1。
-
-#### 依赖关系
-
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. pressure ratio`。
-
-### **Isentropic efficiency vector, eta(pr)** — 等熵效率向量 `[.559, .61, .673, .741, .788, .835, .869, .895, .908, .899, .854, .751]`（默认）| 范围 (0,1] 内的元素向量
-
-用于等熵效率表格化参数化的等熵效率值向量。此向量的元素数必须与 **Pressure ratio vector, pr** 参数相同，并且所有元素必须大于 0 且小于或等于 1。
+用于等熵效率表格化参数化的压比值向量。此向量的元素数量必须与 **Isentropic efficiency vector, eta(pr))** 参数相同，且所有元素必须大于 1。
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. pressure ratio`。
+要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. pressure
+ratio`。
 
-### **Pressure ratio table, pr(N,beta)** — 涡轮映射压力比数据 *M*×*N* 矩阵（默认）
+### **Isentropic efficiency vector, eta(pr)** — 等熵效率向量 `[.559, .61, .673, .741, .788, .835, .869, .895, .908, .899, .854, .751]`（默认）| 取值范围为 (0,1] 的元素向量
 
-在指定修正轴转速和 β 值下，涡轮出口到入口压力比的 *M*×*N* 矩阵。模块在表元素之间采用线性插值。*M* 和 *N* 是相应向量的大小：
+用于等熵效率表格化参数化的等熵效率值向量。此向量的元素数量必须与 **Pressure ratio vector, pr** 参数相同，且所有元素必须大于 0 且小于或等于 1。
 
-- *M* 是 **Constant speed index vector, N** 参数中的向量元素数。
-- *N* 是表中 β 索引的数量。
+#### 依赖关系
 
-默认表值为：
+要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. pressure
+ratio`。
+
+### **Pressure ratio table, pr(N,beta)** — 涡轮特性图压比数据 *M*×*N* 矩阵（默认）
+
+在指定的修正轴转速和 β 值下的涡轮出口-入口压比 *M*×*N* 矩阵。该模块在表格元素之间采用线性插值。*M* 和 *N* 是相应向量的大小：
+
+- *M* 是 **Constant speed index vector, N** 参数中向量元素的数量。
+- *N* 是表格中 β 索引的数量。
+
+默认表格值为：
 
 `[1.224, 1.246, 1.292, 1.387, 1.457, 1.534, 1.61, 1.686, 1.743, 1.79,
 1.871, 1.914; 1.237, 1.25, 1.28, 1.369, 1.459, 1.553, 1.629, 1.716, 1.799, 1.846,
@@ -213,16 +233,17 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio`。
+要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and
+pressure ratio`。
 
-### **Isentropic efficiency table, eta(N,beta)** — 涡轮映射等熵效率数据 *M*×*N* 矩阵（默认）
+### **Isentropic efficiency table, eta(N,beta)** — 涡轮特性图等熵效率数据 *M*×*N* 矩阵（默认）
 
-在指定恒定轴转速和 β 值下，涡轮等熵效率的 *M*×*N* 矩阵。模块在表元素之间采用线性插值。*M* 和 *N* 是相应向量的大小：
+在指定的恒定轴转速和 β 值下的涡轮等熵效率 *M*×*N* 矩阵。该模块在表格元素之间采用线性插值。*M* 和 *N* 是相应向量的大小：
 
-- *M* 是 **Constant speed index vector, N** 参数中的向量元素数。
-- *N* 是表中 β 索引的数量。
+- *M* 是 **Constant speed index vector, N** 参数中向量元素的数量。
+- *N* 是表格中 β 索引的数量。
 
-默认表值为：
+默认表格值为：
 
 `[.72, .754, .759, .739, .714, .679, .643, .603, .554, .524, .494, .48;
 .716, .757, .794, .819, .812, .788, .761, .728, .692, .662, .632, .618; .629, .691,
@@ -234,19 +255,20 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio`。
+要启用此参数，请将 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and
+pressure ratio`。
 
 ### 参数
 
 ### **Reference pressure for corrected flow** — 修正压力 `0.101325` MPa（默认）| 正标量
 
-涡轮数据归并到修正趋势线时所用的压力。
+涡轮数据整合为修正趋势线时的压力。
 
 ### **Reference temperature for corrected flow** — 修正温度 `373.15` K（默认）| 正标量
 
-涡轮数据归并到修正趋势线时所用的温度。
+涡轮数据整合为修正趋势线时的温度。
 
-### **Mechanical efficiency** — 转换为扭矩的效率 `0.9`（默认）| 范围 [0,1] 内的正标量
+### **Mechanical efficiency** — 扭矩转换效率 `0.9`（默认）| 取值范围为 [0,1] 的正标量
 
 从比焓降低转换为轴扭矩的效率。
 
@@ -264,7 +286,7 @@ Simscape / Fluids / Two-Phase Fluid / Fluid Machines
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -274,7 +296,7 @@ Simscape / Fluids / Two-Phase Fluid / Fluid Machines
 
 **在 R2022b 中引入**
 
-### R2023a: 控制端口 VN 的可见性
+### R2023a：控制端口 VN 的可见性
 
 使用 **Model variable nozzle** 参数启用可变喷嘴控制端口 **VN**。
 
@@ -282,25 +304,25 @@ Simscape / Fluids / Two-Phase Fluid / Fluid Machines
 
 热力学循环中的两相涡轮
 
-Turbine (2P) 模块对两相流体网络中的涡轮建模。您可以将该模块参数化为表格化涡轮映射，该映射是压力比的一维函数，或者是压力比和修正质量流量的二维函数。从端口 **A** 流向端口 **B** 的流体产生扭矩。端口 **R** 报告相对于端口 **C** 的轴扭矩和角速度，端口 **C** 表示涡轮机壳。
+Turbine (2P) 模块对两相流体网络中的涡轮进行建模。您可以将该模块参数化为表格化涡轮特性图，其可以是压比的 1-D 函数，也可以是压比和修正质量流量的 2-D 函数。流体从端口 **A** 流向端口 **B** 产生扭矩。端口 **R** 报告相对于端口 **C**（表示涡轮壳体）的轴扭矩和角速度。
 
-启用时，端口 **VN** 表示喷嘴开度分数。该值线性缩放修正质量流量，但不影响涡轮效率。值 `1` 对应于涡轮映射中的数据。
+启用时，端口 **VN** 表示喷嘴开度分数。该值线性缩放修正质量流量，但不影响涡轮效率。值 `1` 对应于涡轮特性图中的数据。
 
-Turbine (2P) 模块假设过热流体进入入口。您可以使用 **Report when fluid is not fully vapor** 参数来选择当流体不满足过热条件时模块执行的操作。
+Turbine (2P) 模块假定过热流体进入入口。您可以使用 **Report when fluid is not fully vapor** 参数来选择当流体不满足过热条件时模块的行为。
 
 ### Turbine Map
 
-要可视化模块特性图，请右键单击该模块，然后选择 **Fluids** > **Plot Turbine Map**。
+要将模块映射可视化，请右键单击该模块并选择 **Fluids** > **Plot Turbine Map**。
 
-每次修改模块设置后，请在图形窗口中单击 **Reload Data**。
+每次修改模块设置时，请单击图形窗口上的 **Reload Data**。
 
-涡轮特性图将涡轮性能（作为压力比的函数）与修正质量流量和等熵效率关联起来。压力比是涡轮入口压力与出口压力之比。
+涡轮映射将涡轮性能（作为压力比的函数）与修正质量流量和等熵效率关联起来。压力比是涡轮进口压力与出口压力之比。
 
-涡轮特性图绘制两个单独的图：修正质量流量对压力比，以及等熵效率对压力比。当将 **Turbine map parameterization** 设置为 `Tabulated data - flow rate and efficiency vs. corrected speed and pressure ratio` 时，这些图还取决于修正转子转速 *N*。索引变量 β 在质量流量表和效率表之间不必相同。
+涡轮映射绘制两个单独的图：修正质量流量与压力比，以及等熵效率与压力比。当您将 **Turbine map parameterization** 设置为 `Tabulated data - flow rate and efficiency vs. corrected speed and pressure ratio` 时，这些图还取决于修正转子速度 *N*。索引变量 β 在质量流量表和效率表之间不必相同。
 
-**修正质量流量**
+**Corrected Mass Flow Rate**
 
-由于涡轮内部的压力和温度变化很大，涡轮特性图以修正质量流量表示性能。该模块使用修正压力和温度，从入口质量流量调整得到修正质量流量
+由于涡轮内部压力和温度变化很大，涡轮映射以修正质量流量的形式绘制性能。该模块通过使用修正压力和温度，根据进口质量流量调整修正质量流量
 
 m˙ATATcorr=m˙corrpApcorr,
 
@@ -308,7 +330,7 @@ m˙ATATcorr=m˙corrpApcorr,
 
 - m˙*A* 是端口 **A** 处的质量流量。
 - *TA* 是端口 **A** 处的温度。
-- *Tcorr* 是 **Reference temperature for corrected flow** 参数。有关此值，请参阅涡轮的数据表。
+- *Tcorr* 是 **Reference temperature for corrected flow** 参数。有关此值，请参阅您涡轮的数据表。
 - m˙*corr* 是修正质量流量。
 
   当 **Turbine map parameterization** 为 `Analytical - nominal pressure ratio and corrected mass flow rate` 时，这是 **Nominal corrected mass flow rate** 参数的值。
@@ -317,65 +339,65 @@ m˙ATATcorr=m˙corrpApcorr,
 
   当 **Turbine map parameterization** 为 `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio` 时，这是 **Corrected mass flow rate table, mdot(N,beta)** 参数的值。
 - *pA* 是端口 **A** 处的压力。
-- *pcorr* 是 **Reference pressure for corrected flow** 参数。有关此值，请参阅涡轮的数据表。
+- *pcorr* 是 **Reference pressure for corrected flow** 参数。有关此值，请参阅您涡轮的数据表。
 
-**修正转速**
+**Corrected Speed**
 
-该模块还根据参考温度调整轴转速 *ω*，使得修正轴转速为
+该模块还根据参考温度调整轴速度 *ω*，使得修正轴速度为
 
 ωcorr=ωTATref.
 
-### 轴转矩
+### Shaft Torque
 
-该模块按如下公式计算轴转矩 *τ*：
+该模块计算轴扭矩 *τ* 为
 
 τ=ηmm˙AΔhtotalω,
 
 其中：
 
-- *Δhtotal* 是流体比焓的总变化量。
+- *Δhtotal* 是流体比焓的总变化。
 - *ηm* 是 **Mechanical efficiency** 参数的值。
 - *ω* 是相对轴角速度，*ωR - ωC*。
 
-从端口 **B** 到端口 **A** 的反向流超出了典型涡轮运行模式，可能不会返回准确结果。当流量趋近于零时，阈值区域确保当流量接近零或反向时，该模块不产生转矩。
+从端口 **B** 到端口 **A** 的反向流超出了典型涡轮运行模式，可能不会返回准确结果。当流量接近零时的阈值区域确保当流量接近零或反向时，该模块不产生扭矩。
 
-### 解析参数化
+### Analytical Parametrization
 
-使用解析参数化可根据预期的标称运行工况创建涡轮。当 **Turbine map parameterization** 为 `Analytical – nominal pressure ratio and corrected mass flow rate` 时，涡轮等熵效率恒定，质量流量是压力比的函数。
+使用解析参数化根据预期的标称运行条件创建涡轮。当 **Turbine map parameterization** 为 `Analytical – nominal pressure ratio and corrected mass flow rate` 时，涡轮等熵效率恒定，质量流量是压力比的函数。
 
-此图显示使用解析参数化时的默认涡轮特性图。
+此图显示了使用解析参数化时的默认涡轮映射。
 
-解析涡轮特性图
+Analytical Turbine map
 
-### 按压力比参数化
+### Parameterization by Pressure Ratio
 
-当 **Turbine map parameterization** 为 `Tabulated data - Flow rate and efficiency vs. pressure ratio` 时，涡轮等熵效率和质量流量是压力比的函数，且不考虑涡轮转速的任何变化。
+当 **Turbine map parameterization** 为 `Tabulated data - Flow rate and efficiency vs. pressure ratio` 时，涡轮等熵效率和质量流量是压力比的函数，并且不考虑涡轮转速的任何变化。
 
-**Corrected mass flow rate vector, mdot(pr)** 和 **Pressure ratio vector, pr** 参数的最后一个元素表示阻塞流工况下的修正质量流量和压力比。
+**Corrected mass flow rate vector, mdot(pr)** 和 **Pressure ratio vector, pr** 参数的最后一个元素表示阻塞流条件下的修正质量流量和压力比。
 
-此图显示使用 1-D 参数化时的默认涡轮特性图。
+此图显示了使用一维参数化时的默认涡轮映射。
 
-1D 涡轮特性图
+1D Turbine map
 
-### 按压力比和修正质量流量参数化
+### Parameterization by Pressure Ratio and Corrected Mass Flow Rate
 
-当 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio` 时，涡轮等熵效率、压力比和修正质量流量是修正转速 *N* 和特性图索引 *β* 的函数。该模块对效率、压力比和修正质量流量参数的数据点之间使用线性插值。
+当 **Turbine map parameterization** 设置为 `Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio` 时，涡轮等熵效率、压力比和修正质量流量是修正速度 *N* 和映射索引 *β* 的函数。该模块对效率、压力比和修正质量流量参数的数据点之间使用线性插值。
 
-**Corrected mass flow rate table, mdot(N,beta)** 和 **Pressure ratio table, pr(N,beta)** 的最后一列表示阻塞流工况下的修正质量流量和压力比。
+**Corrected mass flow rate table, mdot(N,beta)** 和 **Pressure ratio table, pr(N,beta)** 的最后一列表示阻塞流条件下的修正质量流量和压力比。
 
-此图显示使用 2-D 参数化时的默认涡轮特性图。
+此图显示了使用二维参数化时的默认涡轮映射。
 
-2D 涡轮特性图
+2D Turbine map
 
-### 连续性方程
+### Continuity Equations
 
-质量在模块上守恒：
+质量在该模块上守恒：
 
 m˙A+m˙B=0,
 
 其中 m˙*B* 是端口 **B** 处的质量流量。
 
-该模块按如下公式计算能量平衡：
+该模块计算能量平衡为
 
 ΦA+ΦB−Pfluid=0,
 
@@ -387,4 +409,4 @@ m˙A+m˙B=0,
 
 ### 假设和限制
 
-- 在反向流工况下，轴不旋转。反向流期间的结果可能不准确。
+- 在反向流条件下，轴不旋转。反向流期间的结果可能不准确。

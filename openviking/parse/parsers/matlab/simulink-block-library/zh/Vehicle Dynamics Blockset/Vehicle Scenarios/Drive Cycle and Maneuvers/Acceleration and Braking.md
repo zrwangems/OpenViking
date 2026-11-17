@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Acceleration and Braking'
-family: 'vehicle-scenarios'
+family: 'vdynblks'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b
@@ -20,7 +20,7 @@ chinese_source: worker-translation
 
 ### **xdot** — 车辆纵向速度标量
 
-车辆在车体固定坐标系中的纵向速度，指定为标量，单位为 m/s。
+车辆在车身固定坐标系下的纵向速度，指定为标量，单位为 m/s。
 
 **数据类型：** `double`
 
@@ -30,7 +30,7 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用制动前故障跟踪**。
+要启用此参数，请选择 **Enable fault tracking before braking**。
 
 **数据类型：** `double`
 
@@ -40,7 +40,7 @@ chinese_source: worker-translation
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用制动前故障跟踪**。
+要启用此参数，请选择 **Enable fault tracking before braking**。
 
 **数据类型：** `double`
 
@@ -48,7 +48,7 @@ chinese_source: worker-translation
 
 ### **DrvRef** — 驾驶员参考数据总线
 
-驾驶员参考数据，返回为包含这些模块值的总线。
+驾驶员参考数据，以包含以下模块值的总线形式返回。
 
 | 信号 | 描述 | 单位 |
 | --- | --- | --- |
@@ -62,54 +62,54 @@ chinese_source: worker-translation
 
 **数据类型：** `bus`
 
-### **DrvCmd** — 驾驶员命令数据总线
+### **DrvCmd** — 驾驶员指令数据总线
 
-驾驶员参考数据，返回为包含这些模块值的总线。
+驾驶员参考数据，以包含以下模块值的总线形式返回。
 
 | 信号 | | 描述 | 单位 |
 | --- | --- | --- | --- |
-| `SteerCmd` | `EnblSteerCmd` | 用于覆盖驾驶员模型转向命令的布尔信号 | one |
+| `SteerCmd` | `EnblSteerCmd` | 用于覆盖驾驶员模型转向指令的布尔信号 | one |
 | `SteerCmd` | 方向盘转角 | one |
-| `SteerZero` | 当值为 `true` 时用于以零覆盖驾驶员模型转向命令的布尔信号 | one |
-| `SteerHld` | 当为 `true` 时用于保持当前驾驶员模型转向输出的布尔信号 | one |
-| `AccelCmd` | `EnblAccelCmd` | 用于覆盖驾驶员模型加速命令的布尔信号 | one |
+| `SteerZero` | 当值为 `true` 时，用于以零覆盖驾驶员模型转向指令的布尔信号 | one |
+| `SteerHld` | 当为 `true` 时，用于保持当前驾驶员模型转向输出的布尔信号 | one |
+| `AccelCmd` | `EnblAccelCmd` | 用于覆盖驾驶员模型加速指令的布尔信号 | one |
 | `AccelCmd` | 归一化加速踏板输入 | one |
-| `AccelHld` | 当为 `true` 时用于保持当前驾驶员模型加速输出的布尔信号 | one |
-| `AccelZero` | 当值为 `true` 时用于以零覆盖驾驶员模型加速命令的布尔信号 | one |
-| `DecelCmd` | `EnblDecelCmd` | 用于覆盖驾驶员模型减速命令的布尔信号 | one |
+| `AccelHld` | 当为 `true` 时，用于保持当前驾驶员模型加速输出的布尔信号 | one |
+| `AccelZero` | 当值为 `true` 时，用于以零覆盖驾驶员模型加速指令的布尔信号 | one |
+| `DecelCmd` | `EnblDecelCmd` | 用于覆盖驾驶员模型减速指令的布尔信号 | one |
 | `DecelCmd` | 归一化减速踏板或制动输入。 | one |
-| `DecelHld` | 当为 `true` 时用于保持当前驾驶员模型减速输出的布尔信号 | one |
-| `DecelZero` | 当值为 `true` 时用于以零覆盖驾驶员模型减速命令的布尔信号 | one |
+| `DecelHld` | 当为 `true` 时，用于保持当前驾驶员模型减速输出的布尔信号 | one |
+| `DecelZero` | 当值为 `true` 时，用于以零覆盖驾驶员模型减速指令的布尔信号 | one |
 | `HndBrkCmd` | 归一化手刹或驻车制动输入 | one |
-| `TransCmd` | `TransModeCmd` | 用于指定变速器模式的命令 | one |
-| `GearCmd` | 用于指定手动挡位编号或自动变速器换挡杆位置的命令 | one |
-| `UpShiftCmd` | 升挡命令 | one |
-| `DwnShiftCmd` | 降挡命令 | one |
-| `ClutchCmd` | 用于手动变速器的归一化离合器分离命令 | one |
+| `TransCmd` | `TransModeCmd` | 用于指定变速器模式的指令 | one |
+| `GearCmd` | 用于指定手动挡位编号或自动变速器换挡杆位置的指令 | one |
+| `UpShiftCmd` | 升挡指令 | one |
+| `DwnShiftCmd` | 降挡指令 | one |
+| `ClutchCmd` | 手动变速器的归一化离合器分离指令 | one |
 
 **注意**
 
-默认情况下，`TransCmd` 总线不会主动使用。使用 Bus Assignment 模块覆盖 `TransCmd` 总线，以自定义和扩展场景。
+默认情况下，`TransCmd` 总线不会被主动使用。使用 Bus Assignment 模块覆盖 `TransCmd` 总线，以自定义和扩展场景。
 
-其中 Bus Assignment 模块覆盖来自 Acceleration and Braking 模块的 TransModeCmd 输出的模块图。
+Bus Assignment 模块覆盖 Acceleration and Braking 模块的 TransModeCmd 输出的框图。
 
 **数据类型：** `bus`
 
 ## 参数
 
-要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **仿真** 选项卡上，在 **准备** 库中，选择 **属性检查器**。
+要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
 ### 机动参数
 
-### **机动开始时间，tStart [s]** — 开始时间 `2`（默认）| 正标量
+### **Maneuver start time, tStart [s]** — 起始时间 `2`（默认）| 正标量
 
-机动开始时间，单位为 s。
+机动起始时间，单位为 s。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -117,15 +117,15 @@ chinese_source: worker-translation
 | **值：** | `2`（默认）| 正标量 |
 | **数据类型：** | `double` |
 
-### **在 tStart 处的纵向加速度，ax [g]** — 仿真开始时的纵向加速度 `0.5`（默认）| 正标量
+### **tStart 处的纵向加速度，ax [g]** — 仿真开始时的纵向加速度 `0.5`（默认）| 正标量
 
-在仿真开始时间 **tStart** 处的纵向加速度，单位为 m/s^2。
+仿真开始时间 **tStart** 处的纵向加速度，单位为 m/s^2。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -133,15 +133,15 @@ chinese_source: worker-translation
 | **值：** | `0.5`（默认）| 正标量 |
 | **数据类型：** | `double` |
 
-### **纵向速度设定值，velRef** — 目标速度 `50`（默认）| 正标量
+### **纵向速度设定点，velRef** — 目标速度 `50`（默认）| 正标量
 
 目标速度。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -149,31 +149,31 @@ chinese_source: worker-translation
 | **值：** | `50`（默认）| 正标量 |
 | **数据类型：** | `double` |
 
-### **纵向速度设定值单位，velRefUnit []** — 单位 `mph`（默认）
+### **纵向速度设定点单位，velRefUnit []** — 单位 `mph`（默认）
 
 目标速度的单位。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
 | **参数：** | `velRefUnit` |
-| **值：** | `mph`（默认）| character vector |
+| **值：** | `mph`（默认）| 字符向量 |
 | **数据类型：** | `character vector` |
 
-### **制动踏板操作** — 制动踏板操作 `Time`（默认）| `Longitudinal displacement`
+### **制动踏板 actuation** — 制动踏板 actuation `Time`（默认）| `Longitudinal displacement`
 
 开始减速的方法。要指定开始使车辆减速的时间，请选择 `Time`。要指定开始使车辆减速的位移，请选择 `Longitudinal displacement`。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -181,19 +181,19 @@ chinese_source: worker-translation
 | **值：** | `Time`（默认）| `Longitudinal displacement` |
 | **数据类型：** | `character vector` |
 
-### **制动操作时间，tBrake [s]** — 制动操作时间 `15`（默认）| 正标量
+### **制动 actuation 时间，tBrake [s]** — 制动 actuation 时间 `15`（默认）| 正标量
 
-开始制动时的仿真时间，单位为 s。
+启动制动时的仿真时间，单位为 s。
 
 #### 依赖关系
 
-要启用此参数，请将 **制动踏板操作** 设置为 `Time`。
+要启用此参数，请将 **制动踏板 actuation** 设置为 `Time`。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -203,17 +203,17 @@ chinese_source: worker-translation
 
 ### **车辆 CG 的纵向位移，xBrake [m]** — 标称横向偏移 `200`（默认）| 正标量
 
-开始制动时车辆的纵向位移，单位为 m。
+启动制动时车辆的纵向位移，单位为 m。
 
 #### 依赖关系
 
-要启用此参数，请将 **制动踏板操作** 设置为 `Longitudinal displacement`。
+要启用此参数，请将 **制动踏板 actuation** 设置为 `Longitudinal displacement`。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -221,15 +221,15 @@ chinese_source: worker-translation
 | **值：** | `200`（默认）| 正标量 |
 | **数据类型：** | `double` |
 
-### **在 tBrake 处的纵向减速度，axDecel [g]** — 减速度 `1`（默认）| 正标量
+### **tBrake 处的纵向减速度，axDecel [g]** — 减速度 `1`（默认）| 正标量
 
-开始制动时的减速度，单位为 g。
+启动制动时的减速度，单位为 g。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -237,11 +237,11 @@ chinese_source: worker-translation
 | **值：** | `1`（默认）| 正标量 |
 | **数据类型：** | `double` |
 
-### **制动后将方向盘转角设置为 0 deg** — 用于在制动后将方向盘转角设置为零度的选项 `on`（默认）| `off`
+### **制动后将方向盘角度设置为 0 度** — 制动后将方向盘角度设置为零度的选项 `on`（默认）| `off`
 
-选择此参数以在制动后将方向盘转角设置为零度。
+选择此参数可在制动后将方向盘角度设置为零度。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -250,16 +250,16 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `steerZero` |
-| **值：** | `on`（默认）| `off` |
+| **值：** | `on`（默认） | `off` |
 | **数据类型：** | `character vector` |
 
 ### 跟踪参数
 
-### **启用制动前故障跟踪** — 用于启用制动前故障跟踪的选项 `off`（默认）| `on`
+### **Enable fault tracking before braking** — 在制动前启用故障跟踪的选项 `off`（默认） | `on`
 
-选择此参数以启用制动前故障跟踪。
+选择此参数以在制动前启用故障跟踪。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -268,18 +268,18 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `faultTracking` |
-| **值：** | `off`（默认）| `on` |
+| **值：** | `off`（默认） | `on` |
 | **数据类型：** | `character vector` |
 
-### **传输延迟缓冲区大小，bufferSize []** — 传输延迟缓冲区大小 `4096`（默认）| 正标量
+### **Transport delay buffer size, bufferSize []** — 传输延迟缓冲区大小 `4096`（默认） | 正标量
 
-传输延迟缓冲区大小。此参数用于在线诊断计算。使用仿真步长或硬件内存可用量来指定缓冲区大小。
+传输延迟缓冲区大小。此参数用于在线诊断计算。使用仿真步长或硬件内存可用性来指定缓冲区大小。
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用制动前故障跟踪**。
+要启用此参数，请选择 **Enable fault tracking before braking**。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -288,20 +288,20 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `bufferSize` |
-| **值：** | `4096`（默认）| 正标量 |
+| **值：** | `4096`（默认） | 正标量 |
 | **数据类型：** | `double` |
 
-### **纵向速度与平均纵向速度，velMaxDiff** — 速度差 `1`（默认）| 正标量
+### **Longitudinal velocity and mean longitudinal velocity, velMaxDiff** — 速度差 `1`（默认） | 正标量
 
-在开始制动之前的八秒时间区间内，纵向速度与平均纵向速度之间允许的最大差值，单位为 m/s。
+在制动开始前的八秒时间间隔内，纵向速度与平均纵向速度之间允许的最大差值，单位为 m/s。
 
-设置该值以符合 ISO 14512 中关于在具有分离摩擦系数路面上制动的规定。
+设置该值以符合 ISO 14512 关于在具有分离摩擦系数的表面上制动的规定。
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用制动前故障跟踪**。
+要启用此参数，请选择 **Enable fault tracking before braking**。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -310,20 +310,20 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `velMaxDiff` |
-| **值：** | `1`（默认）| 正标量 |
+| **值：** | `1`（默认） | 正标量 |
 | **数据类型：** | `double` |
 
-### **平均纵向速度与纵向速度参考值，velMeanDiff** — 速度容差 `2`（默认）| 正标量
+### **Mean longitudinal velocity and longitudinal velocity reference, velMeanDiff** — 速度容差 `2`（默认） | 正标量
 
-在开始制动之前的八秒时间区间内，平均纵向速度与纵向速度参考值之间允许的最大差值，单位为 m/s。
+在制动开始前的八秒时间间隔内，平均纵向速度与纵向速度参考值之间允许的最大差值，单位为 m/s。
 
-设置该值以符合 ISO 14512 中关于在具有分离摩擦系数路面上制动的规定。
+设置该值以符合 ISO 14512 关于在具有分离摩擦系数的表面上制动的规定。
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用制动前故障跟踪**。
+要启用此参数，请选择 **Enable fault tracking before braking**。
 
-#### 编程用法
+#### 程序化使用
 
 要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
@@ -332,24 +332,24 @@ chinese_source: worker-translation
 |  |  |
 | --- | --- |
 | **参数：** | `velMeanDiff` |
-| **值：** | `2`（默认）| 正标量 |
+| **值：** | `2`（默认） | 正标量 |
 | **数据类型：** | `double` |
 
-### **横摆角速度与平均横摆角速度，rMaxDiff [deg/s]** — 速度容差 `1`（默认）| 正标量
+### **Yaw velocity and mean yaw velocity, rMaxDiff [deg/s]** — 速度容差 `1`（默认） | 正标量
 
-在开始制动之前的八秒时间区间内，横摆角速度与平均横摆角速度之间允许的最大差值，单位为 deg/s。
+在制动开始前的八秒时间间隔内，横摆角速度与平均横摆角速度之间允许的最大差值，单位为 deg/s。
 
-设置该值以符合 ISO 14512 中关于在具有分离摩擦系数路面上制动的规定。
+设置该值以符合 ISO 14512 关于在具有分离摩擦系数的表面上制动的规定。
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用制动前故障跟踪**。
+要启用此参数，请选择 **Enable fault tracking before braking**。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -359,19 +359,19 @@ chinese_source: worker-translation
 
 ### **方向盘转角与平均方向盘转角，steerMaxDiff [deg]** — 方向盘转角容差 `3`（默认）| 正标量
 
-在开始制动之前的八秒时间区间内，方向盘转角与平均方向盘转角之间允许的最大差值，单位为 deg。
+在制动开始前的八秒时间间隔内，方向盘转角与平均方向盘转角之间允许的最大差值，单位为 deg。
 
-设置该值以符合 ISO 14512 中关于在具有分离摩擦系数路面上制动的规定。
+设置该值以符合 ISO 14512 关于在具有分离摩擦系数的表面上制动的规定。
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用制动前故障跟踪**。
+要启用此参数，请选择 **Enable fault tracking before braking**。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -379,19 +379,19 @@ chinese_source: worker-translation
 | **值：** | `3`（默认）| 正标量 |
 | **数据类型：** | `double` |
 
-### **发生故障时停止仿真** — 用于在发生故障时停止仿真的选项 `off`（默认）| `on`
+### **发生故障时停止仿真** — 发生故障时停止仿真的选项 `off`（默认）| `on`
 
-选择此参数以在发生故障时停止仿真。
+选择此参数可在发生故障时停止仿真。
 
 #### 依赖关系
 
-要启用此参数，请选择 **启用制动前故障跟踪**。
+要启用此参数，请选择 **Enable fault tracking before braking**。
 
-#### 编程用法
+#### 程序化使用
 
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
+要以程序化方式设置模块参数值，请使用 `set_param` 函数。
 
-要以编程方式获取模块参数值，请使用 `get_param` 函数。
+要以程序化方式获取模块参数值，请使用 `get_param` 函数。
 
 |  |  |
 | --- | --- |
@@ -405,7 +405,7 @@ Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 中未记录。
 
 ## 扩展功能
 
@@ -417,12 +417,12 @@ Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers
 
 ## 描述
 
-生成转向、加速踏板和制动命令
+生成转向、加速和制动命令
 
-Acceleration and Braking 模块根据纵向位移或时间生成直线参考轨迹。初始参考加速度和减速度可调。一旦达到目标纵向速度，该模块执行减速信号。此减速信号可以通过指定时间或纵向位移来执行。
+Acceleration and Braking 模块根据纵向位移或时间生成直线参考轨迹。初始参考加速度和减速度可调。一旦达到目标纵向速度，该模块执行减速度信号。该减速度信号可以按指定时间或纵向位移执行。
 
-附加的故障跟踪选项允许您在制动前监测参数的一致性。默认设置值是标准 split-mu 测试（ISO Standard 141512）的上限。
+一个额外的故障跟踪选项允许您在制动前监测参数的一致性。默认设定值是标准 split-mu 测试（ISO Standard 141512）的上限。
 
 **注意**
 
-有关制动测试参考应用中使用的参考生成器模块的信息，请参阅 Straight Maneuver Reference Generator。
+有关制动测试参考应用中使用的参考生成器模块的信息，请参见 Straight Maneuver Reference Generator。
