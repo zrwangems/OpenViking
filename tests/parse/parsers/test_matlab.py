@@ -65,20 +65,17 @@ def test_slx_nested_systems_ports_parameters_and_branches():
             assert content.startswith("---\ntype: simulink-subsystem\n"), path
         assert [line for line in content.splitlines() if line.startswith("## ")] == [
             "## 逻辑流程图",
-            "## 系统说明",
             "## 块参数",
         ]
-        assert content.index("## 逻辑流程图") < content.index("## 系统说明")
         assert "## 块知识模板" not in content
         assert "## 连接表" not in content
         assert "```mermaid" in content
-        # The system explanation talks about signals, not block counts.
+        # The page is the flowchart plus the block table, nothing else.
+        assert "系统说明" not in content
         assert "该层包含" not in content
         assert "未命名信号" not in content
         # SIDs are wiring internals; the reader-facing tables no longer show them.
         assert "| SID |" not in content
-        assert "## 系统说明\n\n" in content
-        assert "该层包含" not in content
         # Node labels carry only the block name; the type is in the block table.
         for block_type in ("Inport", "Outport", "SubSystem", "Product", "Switch", "Saturate"):
             assert f' / {block_type}"' not in content
@@ -794,10 +791,9 @@ def test_real_simscape_model_preserves_conserving_network_semantics():
     assert all(edge.kind == "physical-conserving" for edge in model.edges)
     document = system_documents(model)["main.md"]
     assert "未命名守恒连接" not in document
-    assert "--- " in document
-    assert "守恒连接（双向）：" in document
-    assert "| 守恒连接（双向） |" in document
-    assert "未命名：" not in document
+    mermaid = document.split("```mermaid", 1)[1].split("```", 1)[0]
+    assert sum(" ---" in line for line in mermaid.splitlines()) == len(model.edges)
+    assert "守恒端口（双向）" not in document
     assert not any("conn:" in line and "-->" in line for line in document.splitlines())
     assert "## 块参数" in document
     assert "SimscapeComponentBlock" in document
