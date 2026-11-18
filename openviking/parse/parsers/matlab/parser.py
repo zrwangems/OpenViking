@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import posixpath
 import time
 import zipfile
@@ -21,13 +22,21 @@ from openviking.parse.parsers.matlab.formats import (
     parse_additional,
 )
 from openviking.parse.parsers.matlab.mat import parse_mat_documents
-from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx, parse_p_file
-from openviking.parse.parsers.matlab.sldd import parse_sldd
+from openviking.parse.parsers.matlab.scripts import parse_m_file
 from openviking.parse.parsers.matlab.slx import parse_slx, system_documents
 from openviking.parse.parsers.matlab.stateflow import (
     chart_system_path,
     parse_stateflow,
     render_stateflow,
+)
+from openviking.parse.parsers.matlab.structured import (
+    parse_fig_tree,
+    parse_mlapp,
+    parse_mldatx,
+    parse_mlx_notebook,
+    parse_requirement_set,
+    parse_sldd_tree,
+    protected_metadata,
 )
 
 
@@ -91,16 +100,70 @@ class MatlabParser(BaseParser):
                 }
                 title = path.stem
             elif suffix == ".p":
-                content = await asyncio.to_thread(parse_p_file, path)
-                await writer.write_text(f"{path.stem}/index.md", content)
-                meta = {"matlab_format": "p", "parse_status": "opaque", "original_preserved": False}
+                folder = path.stem
+                await writer.write_bytes(
+                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                )
+                metadata = await asyncio.to_thread(protected_metadata, path, "pcode")
+                await writer.write_text(
+                    f"{folder}/{path.name}.json",
+                    json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
+                )
+                meta = {
+                    "matlab_format": "p",
+                    "parse_status": "opaque",
+                    "original_preserved": True,
+                }
+                title = path.stem
+            elif suffix in {".sldd", ".mlx", ".fig", ".mldatx", ".slreqx", ".slmx", ".mlapp"}:
+                payload: dict = {}
+                auxiliary: dict[str, bytes] = {}
+                if suffix == ".sldd":
+                    payload = await asyncio.to_thread(parse_sldd_tree, path)
+                elif suffix == ".mlx":
+                    payload, auxiliary = await asyncio.to_thread(parse_mlx_notebook, path)
+                elif suffix == ".fig":
+                    payload = await asyncio.to_thread(parse_fig_tree, path)
+                elif suffix == ".mldatx":
+                    payload = await asyncio.to_thread(parse_mldatx, path)
+                elif suffix in {".slreqx", ".slmx"}:
+                    payload = await asyncio.to_thread(parse_requirement_set, path)
+                else:
+                    payload, auxiliary = await asyncio.to_thread(parse_mlapp, path)
+                folder = path.stem if suffix in {".mlx", ".mlapp"} else ""
+                for name, data in auxiliary.items():
+                    await writer.write_bytes(f"{folder}/{name}" if folder else name, data)
+                target = f"{folder}/{path.name}.json" if folder else f"{path.name}.json"
+                await writer.write_text(
+                    target,
+                    json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                )
+                meta = {
+                    "matlab_format": suffix.removeprefix("."),
+                    "structured_format": payload.get("schema", ""),
+                    "original_preserved": False,
+                }
+                title = path.stem
+            elif suffix in {".slxp", ".mdlp", ".sscp"}:
+                folder = path.stem
+                await writer.write_bytes(
+                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                )
+                metadata = await asyncio.to_thread(
+                    protected_metadata, path, suffix.removeprefix(".")
+                )
+                await writer.write_text(
+                    f"{folder}/{path.name}.json",
+                    json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
+                )
+                meta = {
+                    "matlab_format": suffix.removeprefix("."),
+                    "parse_status": "opaque",
+                    "original_preserved": True,
+                }
                 title = path.stem
             else:
-                if suffix == ".sldd":
-                    content = await asyncio.to_thread(parse_sldd, path)
-                elif suffix == ".mlx":
-                    content = await asyncio.to_thread(parse_mlx, path)
-                elif suffix == ".mat":
+                if suffix == ".mat":
                     mat_documents, mat_warnings = await asyncio.to_thread(parse_mat_documents, path)
                     for name, document in mat_documents.items():
                         await writer.write_text(name, document)

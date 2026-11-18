@@ -35,6 +35,15 @@ from openviking.parse.parsers.matlab.structure import (
     validate_structured_document,
     without_structured_data,
 )
+from openviking.parse.parsers.matlab.structured import (
+    parse_fig_tree,
+    parse_mlapp,
+    parse_mldatx,
+    parse_mlx_notebook,
+    parse_requirement_set,
+    parse_sldd_tree,
+    protected_metadata,
+)
 from openviking.parse.parsers.matlab.templates import render_block_template
 from openviking.parse.registry import ParserRegistry
 
@@ -233,15 +242,25 @@ def test_stateflow_states_actions_default_transition_and_conditions():
 
 
 def test_sldd_entries_dimensions_types_and_references():
+    tree = parse_sldd_tree(SAMPLE / "HevIps.sldd")
+    assert tree["entry_count"] == 4
+    assert tree["references"] == ["VehCong.sldd"]
+    by_name = {entry["name"]: entry for entry in tree["entries"]}
+    assert by_name["VCU_Mode"]["value"]["class"] == "Simulink.Parameter"
+    assert by_name["VCU_Mode"]["value"]["Value"] == "2.0"
+    assert by_name["DRLEMS"]["value"]["class"] == "Simulink.VariantExpression"
+    assert by_name["DRLEMS"]["value"]["Condition"] == "VCU_Mode == 3"
+
+    config = parse_sldd_tree(SAMPLE / "VehCong.sldd")
+    assert config["entry_count"] == 2
+    assert config["classes"] == {"Simulink.ConfigSet": 2}
+    rendered = json.dumps(config, ensure_ascii=False)
+    assert "SolverName" in rendered and "ode4" in rendered
+
+    # The tree keeps the old flat Markdown renderer available for callers that
+    # still request a human-readable page.
     content = parse_sldd(SAMPLE / "HevIps.sldd")
     assert "| VCU_Mode | Simulink.Parameter | 1 × 1 | auto | 2.0;" in content
-    assert "Condition=VCU_Mode == 3" not in content  # no duplicated nested wrapper
-    assert "| DRLEMS | Simulink.VariantExpression | 未声明 | 未声明 | VCU_Mode == 3" in content
-    assert "`VehCong.sldd`" in content
-    assert "共提取 **4** 个条目" in content
-
-    config = parse_sldd(SAMPLE / "VehCong.sldd")
-    assert config.count("SolverName=ode4") == 1  # ConfigSet fields must not be duplicated.
 
 
 def test_slx_rejects_missing_model_root(tmp_path):
@@ -308,6 +327,93 @@ def test_mlx_preserves_headings_text_and_code():
     assert "仿真结果实验" in content
     assert "```matlab" in content
     assert "rlSimulinkEnv(mdl,agentblk,obsInfo,actInfo)" in content
+
+    notebook, files = parse_mlx_notebook(SAMPLE / "RunSACEMS.mlx")
+    kinds = [cell["type"] for cell in notebook["cells"]]
+    assert "heading" in kinds and "text" in kinds and "code" in kinds
+    code = "\n".join(cell["source"] for cell in notebook["cells"] if cell["type"] == "code")
+    assert "rlSimulinkEnv(mdl,agentblk,obsInfo,actInfo)" in code
+    assert notebook["outputs"], "saved outputs must be kept"
+    assert any(output["type"] == "image" for output in notebook["outputs"])
+    assert files and all(name.startswith("outputs/") for name in files)
+
+
+def test_fig_tree_keeps_handle_objects(tmp_path):
+    scipy_io = pytest.importorskip("scipy.io")
+    scipy_io.savemat(
+        tmp_path / "plot.fig",
+        {
+            "figure": {
+                "Type": "figure",
+                "Children": [{"Type": "axes", "Title": "speed"}],
+            }
+        },
+    )
+    tree = parse_fig_tree(tmp_path / "plot.fig")
+    assert tree["schema"] == "ov.matlab.figure/1"
+    rendered = json.dumps(tree, ensure_ascii=False)
+    assert "figure" in tree["objects"]
+    assert "axes" in rendered and "speed" in rendered
+
+
+def test_mldatx_keeps_all_suites_cases_and_results(tmp_path):
+    path = tmp_path / "tests.mldatx"
+    with zipfile.ZipFile(path, "w") as archive:
+        archive.writestr(
+            "testSuite.xml",
+            '<TestSuite name="battery"><TestCase name="heat"><Result verdict="pass"/></TestCase></TestSuite>',
+        )
+    tree = parse_mldatx(path)
+    names = {item["name"] for item in tree["tests"]}
+    assert {"battery", "heat"} <= names
+    assert any(item["tag"] == "Result" for item in tree["tests"])
+    assert tree["members"][0]["name"] == "testSuite.xml"
+
+
+def test_requirement_set_extracts_requirements_and_links(tmp_path):
+    path = tmp_path / "requirements.slreqx"
+    with zipfile.ZipFile(path, "w") as archive:
+        archive.writestr(
+            "requirements.xml",
+            '<requirements><requirement id="R1"><description>Battery below 45 C</description>'
+            '</requirement><link source="R1" target="block_42"/></requirements>',
+        )
+    tree = parse_requirement_set(path)
+    assert tree["requirements"][0]["id"] == "R1"
+    assert "Battery below 45 C" in json.dumps(tree, ensure_ascii=False)
+    assert tree["links"][0]["attributes"]["target"] == "block_42"
+
+
+def test_mlapp_keeps_classdef_and_component_tree(tmp_path):
+    scipy_io = pytest.importorskip("scipy.io")
+    path = tmp_path / "panel.mlapp"
+    document = (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+        "<w:body>"
+        '<w:p><w:pPr><w:pStyle w:val="code"/></w:pPr><w:r><w:t>classdef panel &lt; matlab.apps.AppBase</w:t></w:r></w:p>'
+        '<w:p><w:pPr><w:pStyle w:val="text"/></w:pPr><w:r><w:t>Battery panel</w:t></w:r></w:p>'
+        "</w:body></w:document>"
+    )
+    buffer = io.BytesIO()
+    scipy_io.savemat(buffer, {"components": {"Type": "uifigure", "Name": "panel"}})
+    with zipfile.ZipFile(path, "w") as archive:
+        archive.writestr("matlab/document.xml", document)
+        archive.writestr("appdesigner/appModel.mat", buffer.getvalue())
+    tree, files = parse_mlapp(path)
+    assert "classdef panel" in tree["code"]
+    assert tree["components"] is not None
+    assert tree["component_status"] == "parsed"
+    assert "code.m" in files
+
+
+def test_protected_metadata_is_verifiable(tmp_path):
+    path = tmp_path / "secret.p"
+    path.write_bytes(b"\x00pcode-bytes")
+    metadata = protected_metadata(path, "pcode")
+    assert metadata["parse_status"] == "opaque"
+    assert metadata["original_preserved"] is True
+    assert len(metadata["sha256"]) == 64
 
 
 def test_mat_shapes_struct_fields_and_m_source():
@@ -403,7 +509,9 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     assert "逼近 N 维函数" not in power
     assert "Output absolute value of input" not in power
     assert (root / "DRLHevIps5_4" / "DriveCycle" / "WLTC.mat.md").is_file()
-    assert (root / "DRLHevIps5_4" / "RunSACEMS.mlx.md").is_file()
+    assert (root / "DRLHevIps5_4" / "RunSACEMS" / "RunSACEMS.mlx.json").is_file()
+    assert (root / "DRLHevIps5_4" / "HevIps.sldd.json").is_file()
+    assert list((root / "DRLHevIps5_4" / "RunSACEMS" / "outputs").glob("*.png"))
     assert "P_max_kW" in (root / "DRLHevIps5_4" / "Eng" / "Eng_param.mat.md").read_text(
         encoding="utf-8"
     )
@@ -417,15 +525,16 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
         rows = list(csv.reader(stream))
     assert len(rows) == 3601
 
-    # Binary containers and opaque P-code are represented only by parsed artifacts.
-    pcode = root / "DRLHevIps5_4" / "VCU_Mode_Change"
-    assert not (pcode / "VCU_Mode_Change.p").exists()
-    assert "parse_status: opaque" in (pcode / "index.md").read_text(encoding="utf-8")
+    # Opaque P-code keeps the original bytes plus verified metadata.
+    pcode = root / "DRLHevIps5_4" / "VCU_Mode_Change" / "VCU_Mode_Change.p"
+    assert pcode.is_file()
+    metadata = json.loads(
+        (pcode.parent / "VCU_Mode_Change.p.json").read_text(encoding="utf-8")
+    )
+    assert metadata["parse_status"] == "opaque"
+    assert metadata["sha256"]
     sources = [path for path in SAMPLE.rglob("*") if path.is_file()]
     assert len(sources) == 23
-    for source in sources:
-        if source.suffix.lower() not in {".m"}:
-            assert not list(root.rglob(source.name)), source.name
 
 
 def test_registry_routes_all_matlab_extensions():
