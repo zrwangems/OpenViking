@@ -246,3 +246,54 @@ def chart_system_path(chart: Chart) -> str:
 def _slug(value: str) -> str:
     value = re.sub(r"[^\w.-]+", "_", value, flags=re.UNICODE).strip("._")
     return value or "stateflow"
+
+
+def chart_json(chart: Chart) -> dict:
+    """Return the chart as a JSON object with states, transitions and data."""
+    states = {state.ssid: state for state in chart.states}
+    return {
+        "schema": "ov.matlab.stateflow/1",
+        "chart_id": chart.chart_id,
+        "chart": chart.name,
+        "action_language": chart.action_language,
+        "states": [
+            {
+                "id": state.ssid,
+                "name": state.name,
+                "parent": state.parent,
+                "parent_name": states[state.parent].name
+                if state.parent in states
+                else "Chart",
+                "type": state.state_type,
+                "label": state.label,
+                "actions": state.actions,
+            }
+            for state in chart.states
+        ],
+        "transitions": [
+            {
+                "id": transition.ssid,
+                "from": transition.source,
+                "from_name": states[transition.source].name
+                if transition.source in states
+                else "[*]",
+                "to": transition.destination,
+                "to_name": states[transition.destination].name
+                if transition.destination in states
+                else "[*]",
+                "label": transition.label,
+                "order": transition.order,
+            }
+            for transition in chart.transitions
+        ],
+        "data": [
+            {
+                "id": item.ssid,
+                "name": item.name,
+                "scope": item.scope,
+                "data_type": item.data_type,
+                "size": item.size,
+            }
+            for item in chart.data
+        ],
+    }

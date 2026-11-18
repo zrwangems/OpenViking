@@ -472,9 +472,8 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     root = Path(result.artifact_ref.root)
     docs = [
         path
-        for path in root.rglob("*.md")
-        if "type: simulink-model" in path.read_text(encoding="utf-8")
-        or "type: simulink-subsystem" in path.read_text(encoding="utf-8")
+        for path in root.rglob("*.json")
+        if json.loads(path.read_text(encoding="utf-8")).get("schema") == "ov.matlab.simulink/1"
     ]
 
     assert result.meta["system_count"] == 65
@@ -484,26 +483,20 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     assert result.meta["stateflow_transition_count"] == 40
     assert len(docs) == 65
     model_root = root / "DRLHevIps"
-    assert (model_root / "main.md").is_file()
-    assert (model_root / "xCU" / "xCU_Output.md").is_file()
+    assert (model_root / "main.json").is_file()
+    assert (model_root / "xCU" / "xCU_Output.json").is_file()
     assert not (model_root / "xCU" / "xCU_Output").exists()
-    timer = model_root / "stateflow" / "chart_988.md"
+    timer = model_root / "stateflow" / "chart_988.json"
     assert "after(0.1, sec)" in timer.read_text(encoding="utf-8")
-    # Read the persisted artifact back and verify every generated relative link.
+    # Every child path in a system JSON resolves inside the artifact.
     for document in docs:
-        content = document.read_text(encoding="utf-8")
-        for link in re.findall(r"\]\(([^)]+\.md)\)", content):
-            if link.startswith("viking://"):
-                # Block-type cells point into the separate downloadable library resource.
-                continue
-            assert (document.parent / link).resolve().is_file(), (document, link)
+        payload = json.loads(document.read_text(encoding="utf-8"))
+        for child in payload.get("children", []):
+            assert (document.parent / child["path"]).resolve().is_file(), (document, child["path"])
+    assert (root / "DRLHevIps" / "coverage.json").is_file()
     assert (root / ".artifact_manifest.json").is_file()
     assert result.parser_name == "MatlabParser"
     assert not (root / "DRLHevIps" / "DRLHevIps.slx").exists()
-    for document in root.rglob("*.md"):
-        content = document.read_text(encoding="utf-8")
-        if "```mermaid" in content:
-            assert "\\n" not in content
 
 
 @pytest.mark.asyncio
@@ -521,16 +514,11 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     assert result.warnings == []
     system_pages = [
         path
-        for path in root.rglob("*.md")
-        if "type: simulink-model" in path.read_text(encoding="utf-8")
-        or "type: simulink-subsystem" in path.read_text(encoding="utf-8")
+        for path in root.rglob("*.json")
+        if json.loads(path.read_text(encoding="utf-8")).get("schema") == "ov.matlab.simulink/1"
     ]
     assert len(system_pages) == 85
-    assert not any(
-        path.name == "index.md" and "simulink-" in path.read_text(encoding="utf-8")
-        for path in system_pages
-    )
-    power = next(root.rglob("Mech_to_Elec_Power_Estimate.md")).read_text(encoding="utf-8")
+    power = next(root.rglob("Mech_to_Elec_Power_Estimate.json")).read_text(encoding="utf-8")
     assert "逼近 N 维函数" not in power
     assert "Output absolute value of input" not in power
     assert (root / "DRLHevIps5_4" / "DriveCycle" / "WLTC.mat.md").is_file()

@@ -152,8 +152,39 @@ _FORMATS = {
         "https://www.mathworks.com/help/simulink/",
         archive=True,
     ),
+    ".jar": FormatSpec(
+        "Java archive",
+        "ZIP 包清单与 XML/属性元数据；不加载 Java 类",
+        "https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html",
+        archive=True,
+    ),
+    ".ctf": FormatSpec(
+        "MATLAB Component Technology File",
+        "检测 ZIP 可读性；能列成员就列清单，否则保留原件和哈希",
+        "https://www.mathworks.com/help/compiler/ctf-files.html",
+        archive=True,
+        opaque=True,
+    ),
+    ".mdf": FormatSpec(
+        "ASAM MDF measurement data",
+        "保留原件并记录格式边界；通道数据需 ASAM MDF 解析库",
+        "https://www.asam.net/standards/detail/mdf/",
+        opaque=True,
+    ),
+    ".mf4": FormatSpec(
+        "ASAM MDF4 measurement data",
+        "保留原件并记录格式边界；通道数据需 ASAM MDF 解析库",
+        "https://www.asam.net/standards/detail/mdf/",
+        opaque=True,
+    ),
+    ".blf": FormatSpec(
+        "Vector Binary Logging Format",
+        "保留原件并记录格式边界；报文/信号需 Vector BLF 解析库",
+        "https://www.vector.com/int/en/products/products-a-z/software/canalyzer/",
+        opaque=True,
+    ),
 }
-_MEX_RE = re.compile(r"\.mex(?:a64|w64|maci64|maca64|glx|sol64)$")
+_MEX_RE = re.compile(r"\.mex(?:a64|w32|w64|maci64|maca64|glx|sol64)$")
 
 
 def is_additional_format(suffix: str) -> bool:
@@ -162,7 +193,7 @@ def is_additional_format(suffix: str) -> bool:
 
 
 def additional_extensions() -> list[str]:
-    return [*_FORMATS, ".mexa64", ".mexw64", ".mexmaci64", ".mexmaca64"]
+    return [*_FORMATS, ".mexa64", ".mexw32", ".mexw64", ".mexmaci64", ".mexmaca64"]
 
 
 def format_spec(suffix: str) -> FormatSpec:
@@ -198,6 +229,8 @@ def parse_additional(path: str | Path) -> tuple[str, str]:
         return _replace_type(content, "matlab-figure", spec), "fig"
     if suffix == ".mdl" and not zipfile.is_zipfile(path):
         return _legacy_mdl(path, spec), "mdl"
+    if suffix == ".prj" and not zipfile.is_zipfile(path):
+        return _replace_type(_decode(path.read_bytes()), "matlab-project", spec), "prj"
     if suffix == ".mlapp" and zipfile.is_zipfile(path):
         try:
             with zipfile.ZipFile(path) as archive:

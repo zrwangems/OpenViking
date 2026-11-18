@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import posixpath
 import re
 import zipfile
 from dataclasses import dataclass, field
@@ -456,3 +457,145 @@ def _endpoint(value: str) -> tuple[str, str]:
 def _endpoint_kind(value: str) -> str:
     match = re.fullmatch(r".*#(in|out|[lr]?conn):.+", value, flags=re.IGNORECASE)
     return match.group(1) if match else "port"
+
+
+def system_json_documents(model: System, language: str = "en") -> dict[str, dict]:
+    """Return one JSON object per system, keyed by its resource path.
+
+    The model root and systems with children use ``main.json``. A leaf system is
+    one sibling JSON file, for example ``xCU/xCU_Output.json``. The document is
+    the primary representation: blocks carry parameters and port order, edges
+    carry both endpoints and signal names.
+    """
+    documents: dict[str, dict] = {}
+
+    def visit(system: System, directory: str, is_root: bool = False) -> None:
+        if is_root:
+            path = "main.json"
+        elif system.children:
+            path = f"{directory}/main.json"
+        else:
+            path = f"{directory}.json"
+        documents[path] = _system_json(system, is_root, path, language)
+        for child in system.children:
+            child_dir = (
+                f"{directory}/{_child_directory(child)}" if directory else _child_directory(child)
+            )
+            visit(child, child_dir)
+
+    visit(model, "", True)
+    return documents
+
+
+def _system_json(system: System, is_root: bool, path: str, language: str) -> dict:
+    block_ids = {block.sid: f"b{_slug(block.sid)}" for block in system.blocks}
+    ports: dict[str, dict[str, list]] = {
+        sid: {"in": [], "out": [], "conn": []} for sid in block_ids
+    }
+    unresolved: list[dict] = []
+    seen_unresolved: set[str] = set()
+
+    def add_port(sid: str, kind: str, port: str) -> None:
+        if sid not in ports:
+            if sid not in seen_unresolved:
+                seen_unresolved.add(sid)
+                unresolved.append({"id": f"b{_slug(sid)}", "sys": sid})
+            return
+        bucket = "conn" if kind in {"conn", "lconn", "rconn"} else kind
+        if bucket not in ports[sid]:
+            bucket = "out"
+        value: object = int(port) if str(port).isdigit() else port
+        if value not in ports[sid][bucket]:
+            ports[sid][bucket].append(value)
+
+    edge_documents = []
+    for edge in system.edges:
+        source_sid, source_port = _endpoint(edge.source)
+        destination_sid, destination_port = _endpoint(edge.destination)
+        source_kind = _endpoint_kind(edge.source)
+        destination_kind = _endpoint_kind(edge.destination)
+        if edge.kind == "physical-conserving" or "conn" in {source_kind, destination_kind}:
+            source_kind = destination_kind = "conn"
+        add_port(source_sid, source_kind, source_port)
+        add_port(destination_sid, destination_kind if destination_kind in {"in", "conn"} else "in", destination_port)
+        edge_documents.append(
+            {
+                "from": block_ids.get(source_sid, f"b{_slug(source_sid)}"),
+                "from_port": int(source_port) if str(source_port).isdigit() else source_port,
+                "to": block_ids.get(destination_sid, f"b{_slug(destination_sid)}"),
+                "to_port": int(destination_port)
+                if str(destination_port).isdigit()
+                else destination_port,
+                "signal": edge.name or None,
+                "kind": edge.kind,
+            }
+        )
+
+    for block in system.blocks:
+        sid = block.sid
+        if block.block_type == "Inport":
+            add_port(sid, "out", block.parameters.get("Port", "1"))
+        elif block.block_type == "Outport":
+            add_port(sid, "in", block.parameters.get("Port", "1"))
+        elif block.block_type in {"ConnectionPort", "PMIOPort"}:
+            add_port(sid, "conn", block.parameters.get("Port", "1"))
+
+    blocks = []
+    for block in system.blocks:
+        sid = block.sid
+        block_ports = {
+            key: sorted(values, key=lambda value: (not isinstance(value, int), str(value)))
+            for key, values in ports[sid].items()
+            if values
+        }
+        blocks.append(
+            {
+                "id": block_ids[sid],
+                "name": block.name,
+                "block_type": block.block_type,
+                "source_block": block.source_block or block.parameters.get("SourceBlock", ""),
+                "ports": block_ports,
+                "params": _display_parameters(block),
+            }
+        )
+
+    children = []
+    for child in system.children:
+        if not child.owner:
+            continue
+        child_dir = _child_directory(child)
+        base = posixpath.dirname(path)
+        child_abs = posixpath.join(
+            base, f"{child_dir}/main.json" if child.children else f"{child_dir}.json"
+        )
+        child_path = posixpath.relpath(child_abs, base or ".")
+        children.append(
+            {
+                "name": child.name,
+                "path": child_path,
+                "system_ref": child.ref,
+                "block_id": block_ids.get(child.owner.sid, f"b{_slug(child.owner.sid)}"),
+                "type": "simulink-subsystem",
+            }
+        )
+
+    document = {
+        "schema": "ov.matlab.simulink/1",
+        "system": system.name,
+        "system_ref": system.ref,
+        "type": "simulink-model" if is_root else "simulink-subsystem",
+        "subsystem_types": system.subsystem_types,
+        "execution": {},
+        "blocks": blocks,
+        "edges": edge_documents,
+        "description": "",
+        "children": children,
+        "coverage": {
+            "blocks": len(blocks),
+            "edges": len(edge_documents),
+            "unresolved_endpoints": len(unresolved),
+        },
+    }
+    if unresolved:
+        document["unresolved_endpoints"] = unresolved
+    return document

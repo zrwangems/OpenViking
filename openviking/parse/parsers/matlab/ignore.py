@@ -13,7 +13,6 @@ same idea as ``.gitignore``; the built-in rules are equivalent to::
     codegen/
     *.slxc
     *.autosave
-    *.asv
 
 Where those folders appear is not fixed. Unless ``Simulink.fileGenControl`` has
 moved them, Simulink writes the cache to ``slprj`` and the generated code to
@@ -53,7 +52,7 @@ DEFAULT_BUILD_DIR_NAMES = frozenset({"slprj", "sfprj"})
 DEFAULT_BUILD_DIR_GLOBS = ("*_rtw",)
 PROJECT_BUILD_DIR_NAMES = frozenset({"codegen"})
 DEFAULT_DERIVED_FILE_GLOBS = ("*.slxc", "*.autosave")
-PROJECT_DERIVED_FILE_GLOBS = ("*.asv",)
+PROJECT_DERIVED_FILE_GLOBS: tuple[str, ...] = ()
 
 # Files that make an arbitrary directory a MATLAB/Simulink project. ``.m`` and
 # ``.mat`` alone are ambiguous (Objective-C, generic binary data), so only

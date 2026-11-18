@@ -104,3 +104,50 @@ def render_coverage(path: str | Path, model: System) -> str:
         ]
     )
     return "\n".join(lines)
+
+
+def coverage_json(path: str | Path, model: System) -> dict:
+    """Return the same coverage facts as ``render_coverage`` as a JSON object."""
+    path = Path(path)
+    systems = list(_flatten(model))
+    source_blocks = {
+        _one_line(block.source_block): block.block_type
+        for system in systems
+        for block in system.blocks
+        if block.source_block
+    }
+    standard = []
+    metadata_only = []
+    external = []
+    for name, block_type in sorted(source_blocks.items()):
+        match = find_block_reference(block_type, name)
+        if match and match.full_document:
+            standard.append(name)
+        elif match:
+            metadata_only.append(name)
+        else:
+            external.append(name)
+    with zipfile.ZipFile(path) as archive:
+        names = archive.namelist()
+    stateflow = sorted(
+        n for n in names if n.startswith("simulink/stateflow/chart_") and n.endswith(".xml")
+    )
+    workspaces = sorted(n for n in names if n.endswith(".mxarray"))
+    return {
+        "schema": "ov.matlab.simulink-coverage/1",
+        "model": path.stem,
+        "systems": len(systems),
+        "blocks": sum(len(system.blocks) for system in systems),
+        "edges": sum(len(system.edges) for system in systems),
+        "conserving_edges": sum(
+            edge.kind == "physical-conserving" for system in systems for edge in system.edges
+        ),
+        "physical_ports": sum(len(system.physical_ports) for system in systems),
+        "subsystem_types": sorted({kind for system in systems for kind in system.subsystem_types}),
+        "standard_library_references": standard,
+        "metadata_only_references": metadata_only,
+        "external_library_references": external,
+        "stateflow_charts": stateflow,
+        "workspace_data": workspaces,
+        "boundary": "Unresolved external library content is not inferred from block names.",
+    }

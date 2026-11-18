@@ -102,7 +102,7 @@ PROJECT_BUILD_DIR_NAMES = frozenset({"codegen"})
 BUILD_OUTPUT_DIR_NAMES = frozenset({"build", "output", "out", "bin", "target", "release", "debug"})
 RUNTIME_DIR_NAMES = frozenset({"rsim", "raccel", "sim"})
 
-DERIVED_EXTS = frozenset({".slxc", ".autosave", ".asv"})
+DERIVED_EXTS = frozenset({".slxc", ".autosave"})
 ALWAYS_EXCLUDED_EXTS = frozenset({".rtw", ".tmf"})
 TARGET_OUTPUT_EXTS = frozenset({".hex", ".s19", ".elf", ".bin"})
 GENERATED_CODE_EXTS = frozenset({".c", ".h", ".cpp", ".hpp", ".html", ".arxml", ".a2l"})

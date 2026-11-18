@@ -139,6 +139,7 @@ def test_scan_skips_build_cache_and_custom_folders(tmp_path: Path):
     assert [entry.rel_path for entry in result.processable] == [
         "Plant.sldd",
         "Plant.slx",
+        "old_script.asv",
         "run.m",
         "src/controller.m",
     ]
@@ -150,7 +151,6 @@ def test_scan_skips_build_cache_and_custom_folders(tmp_path: Path):
         "Simulation cache folder",
         "Plant.slxc",
         "Plant.slx.autosave",
-        "old_script.asv",
     } == {entry_path.split(" (")[0] for entry_path in result.skipped}
     assert all("matlab build/cache" in entry for entry in result.skipped)
 

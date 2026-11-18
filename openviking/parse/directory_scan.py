@@ -389,6 +389,15 @@ def scan_directory(
             )
             if labels is not None and labels["action"] == "attach":
                 classification = CLASS_PROCESSABLE
+            # MATLAB projects contain text formats that the global text
+            # allowlist does not know (.arxml/.dbc/.ldf/.a2l/.rsp/.map).
+            # The classification table is authoritative for project files.
+            if (
+                labels is not None
+                and labels["action"] == "import"
+                and "可读文本" in labels["categories"]
+            ):
+                classification = CLASS_PROCESSABLE
             classified = ClassifiedFile(
                 path=file_path,
                 rel_path=rel_path_norm,
