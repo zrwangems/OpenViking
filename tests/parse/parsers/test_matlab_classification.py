@@ -89,7 +89,8 @@ async def test_directory_import_writes_multilabel_manifest(tmp_path):
     assert "model.ssc" in imported
     assert "deliver/fw.hex" in imported
 
-    skipped = {item["path"]: item for item in manifest["skipped"]}
+    skipped_doc = json.loads((root / "skipped.json").read_text(encoding="utf-8"))
+    skipped = {item["path"]: item for item in skipped_doc["entries"]}
     assert "slprj" in skipped["slprj"]["tags"]
     assert "codegen" in skipped["Model_ert_rtw"]["tags"]
     assert "build" in skipped["build"]["tags"]

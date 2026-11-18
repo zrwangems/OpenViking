@@ -552,17 +552,30 @@ class DirectoryParser(BaseParser):
                     for item in scan_result.processable
                     if item.categories
                 ]
-                manifest = {
-                    "schema": "ov.matlab.classification/1",
-                    "summary": summarize(labeled),
-                    "files": labeled,
-                    "skipped": skipped_files,
-                }
+                summary = summarize(labeled)
                 await writer.write_text(
                     "matlab-classification.json",
-                    json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                    json.dumps(
+                        {
+                            "schema": "ov.matlab.classification/1",
+                            "summary": summary,
+                            "files": labeled,
+                        },
+                        ensure_ascii=False,
+                        indent=2,
+                    )
+                    + "\n",
                 )
-                result.meta["matlab_classification"] = manifest["summary"]
+                await writer.write_text(
+                    "skipped.json",
+                    json.dumps(
+                        {"schema": "ov.matlab.skipped/1", "entries": skipped_files},
+                        ensure_ascii=False,
+                        indent=2,
+                    )
+                    + "\n",
+                )
+                result.meta["matlab_classification"] = summary
 
             result.temp_dir_path = temp_uri
             result.artifact_ref = await writer.finalize(resource_rel=target_rel)
