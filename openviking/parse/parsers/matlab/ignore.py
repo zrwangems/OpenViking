@@ -9,20 +9,19 @@ same idea as ``.gitignore``; the built-in rules are equivalent to::
 
     slprj/
     sfprj/
-    codegen/
     *_rtw/
+    codegen/
     *.slxc
     *.autosave
     *.asv
 
-The two folders can be relocated with ``Simulink.fileGenControl``, usually from
-a startup script::
-
-    cfg = Simulink.fileGenControl('getConfig');
-    work_dir = pwd;
-    cfg.CacheFolder = fullfile(work_dir,'Simulation cache folder');
-    cfg.CodeGenFolder = fullfile(work_dir,'Simulation cache folder');
-    Simulink.fileGenControl('setConfig', 'config', cfg);
+Where those folders appear is not fixed. Unless ``Simulink.fileGenControl`` has
+moved them, Simulink writes the cache to ``slprj`` and the generated code to
+``<model>_<target>_rtw`` inside the folder MATLAB is working in (``pwd``), which
+can be any folder of the project and differs between sessions. They are
+therefore matched by name at any depth of the imported tree, not only next to
+the model. Relative ``CacheFolder`` / ``CodeGenFolder`` values are resolved
+against ``pwd`` too and become fixed only after ``setConfig``.
 
 MATLAB is not installed where OpenViking runs, so the setting cannot be queried
 through the API. Instead the project's ``.m`` scripts are read statically and the
@@ -31,7 +30,10 @@ path shapes MATLAB users write (``fullfile``, ``pwd``, ``mfilename``, string
 concatenation, variables). Folders that resolve to an absolute path outside the
 project fall back to their last path component, which is what identifies them
 inside the imported tree. Unresolved expressions (``getenv``, ``tempdir``,
-``matlabroot``) contribute nothing and the built-in defaults still apply.
+``matlabroot``) contribute nothing and the built-in defaults still apply. The
+same holds when the folders were changed through the Simulink preferences UI:
+their contents are still pruned because ``slprj/``, ``*_rtw/`` and ``*.slxc``
+are recognised on their own.
 """
 
 from __future__ import annotations
@@ -40,16 +42,18 @@ import fnmatch
 import os
 import posixpath
 import re
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
-# Equivalent .gitignore lines, kept as names so matching stays case-insensitive
-# on Windows, where folder names are. A directory matches when its own name
-# matches, at any depth below the imported root.
-BUILD_DIR_NAMES = frozenset({"slprj", "sfprj", "codegen"})
-BUILD_DIR_GLOBS = ("*_rtw",)
-DERIVED_FILE_GLOBS = ("*.slxc", "*.autosave", "*.asv")
+# Derived folder names, matched case-insensitively at any depth below the import
+# root. ``slprj``/``sfprj`` and ``*_rtw`` are Simulink-specific, so they are
+# always skipped; ``codegen`` is also used by other toolchains and only counts
+# inside a MATLAB/Simulink project.
+DEFAULT_BUILD_DIR_NAMES = frozenset({"slprj", "sfprj"})
+DEFAULT_BUILD_DIR_GLOBS = ("*_rtw",)
+PROJECT_BUILD_DIR_NAMES = frozenset({"codegen"})
+DEFAULT_DERIVED_FILE_GLOBS = ("*.slxc", "*.autosave")
+PROJECT_DERIVED_FILE_GLOBS = ("*.asv",)
 
 # Files that make an arbitrary directory a MATLAB/Simulink project. ``.m`` and
 # ``.mat`` alone are ambiguous (Objective-C, generic binary data), so only
@@ -73,7 +77,6 @@ PROJECT_MARKER_SUFFIXES = frozenset(
     }
 )
 
-_PROJECT_SCAN_MAX_DEPTH = 3
 _PROJECT_SCAN_MAX_ENTRIES = 20000
 _SCRIPT_MAX_BYTES = 2 * 1024 * 1024
 _SCRIPT_MAX_FILES = 2000
@@ -84,48 +87,68 @@ _FILE_GEN_CALL = "Simulink.fileGenControl"
 _FOLDER_FIELDS = {"cachefolder": "cache", "codegenfolder": "codegen"}
 
 
-@dataclass(frozen=True)
 class MatlabBuildIgnore:
-    """Filters derived MATLAB/Simulink folders and cache files for one import root."""
+    """Filters derived MATLAB/Simulink folders and cache files for one import root.
 
-    root: Path
-    # Folder paths learned from Simulink.fileGenControl, relative to the project
-    # root; a single component also matches that folder name at any depth.
-    custom_folders: Tuple[Tuple[str, ...], ...] = ()
+    Folder names learned from ``Simulink.fileGenControl`` and the generic
+    ``codegen/`` name are resolved lazily once per import and cached, so the
+    tree is inspected at most once even though every directory is checked.
+    """
+
+    def __init__(self, root: Path) -> None:
+        self.root = Path(root)
+        self._is_matlab_project: Optional[bool] = None
+        self._custom_folders: Tuple[Tuple[str, ...], ...] = ()
 
     def is_build_dir(self, path: Path) -> bool:
         """True for slprj/, <model>_*_rtw/, codegen/ and detected custom folders."""
         name = path.name.casefold()
-        if name in BUILD_DIR_NAMES or any(fnmatch.fnmatch(name, g) for g in BUILD_DIR_GLOBS):
+        if name in DEFAULT_BUILD_DIR_NAMES or any(
+            fnmatch.fnmatch(name, pattern) for pattern in DEFAULT_BUILD_DIR_GLOBS
+        ):
             return True
-        if not self.custom_folders:
+        if not self.is_matlab_project():
             return False
+        if name in PROJECT_BUILD_DIR_NAMES:
+            return True
         parts = _relative_parts(path, self.root)
-        for folder in self.custom_folders:
-            if len(parts) >= len(folder) and parts[-len(folder) :] == folder:
-                return True
-        return False
+        return any(
+            len(parts) >= len(folder) and parts[-len(folder) :] == folder
+            for folder in self._custom_folders
+        )
 
     def is_derived_file(self, path: Path) -> bool:
         """True for stand-alone build artifacts such as ``model.slxc``."""
         name = path.name.casefold()
-        return any(fnmatch.fnmatch(name, pattern) for pattern in DERIVED_FILE_GLOBS)
+        if any(fnmatch.fnmatch(name, pattern) for pattern in DEFAULT_DERIVED_FILE_GLOBS):
+            return True
+        return self.is_matlab_project() and any(
+            fnmatch.fnmatch(name, pattern) for pattern in PROJECT_DERIVED_FILE_GLOBS
+        )
+
+    def is_matlab_project(self) -> bool:
+        """Whether the import root contains MATLAB/Simulink project files."""
+        if self._is_matlab_project is None:
+            self._is_matlab_project = looks_like_matlab_project(self.root)
+            if self._is_matlab_project:
+                self._custom_folders = detect_build_folders(self.root)
+        return self._is_matlab_project
 
 
-def matlab_ignore_for(root: Path) -> Optional[MatlabBuildIgnore]:
-    """Return ignore rules when *root* looks like a MATLAB/Simulink project."""
-    root = Path(root).resolve()
-    if not looks_like_matlab_project(root):
-        return None
-    return MatlabBuildIgnore(root=root, custom_folders=detect_build_folders(root))
+def matlab_ignore_for(root: Path) -> MatlabBuildIgnore:
+    """Return the build/cache rules for an import root.
+
+    The default folder and cache-file patterns apply to any directory import;
+    MATLAB-specific additions (``codegen/``, ``*.asv`` and the folders named in
+    ``Simulink.fileGenControl``) activate when the tree contains a project.
+    """
+    return MatlabBuildIgnore(Path(root).resolve())
 
 
 def looks_like_matlab_project(root: Path) -> bool:
-    """Shallow, bounded check for MATLAB/Simulink project markers."""
+    """Bounded search of the whole tree for MATLAB/Simulink project markers."""
     root = Path(root)
-    for path in _walk_files(
-        root, max_depth=_PROJECT_SCAN_MAX_DEPTH, limit=_PROJECT_SCAN_MAX_ENTRIES
-    ):
+    for path in _walk_files(root, limit=_PROJECT_SCAN_MAX_ENTRIES):
         if path.suffix.casefold() in PROJECT_MARKER_SUFFIXES:
             return True
     return False
@@ -134,7 +157,7 @@ def looks_like_matlab_project(root: Path) -> bool:
 def detect_build_folders(root: Path) -> Tuple[Tuple[str, ...], ...]:
     """Read ``Simulink.fileGenControl`` calls from the project and resolve the folders."""
     folders: List[Tuple[str, ...]] = []
-    for script in _walk_files(root, max_depth=None, suffix=".m", limit=_SCRIPT_MAX_FILES):
+    for script in _walk_files(root, suffix=".m", limit=_SCRIPT_MAX_FILES):
         if script.stat().st_size > _SCRIPT_MAX_BYTES:
             continue
         try:
@@ -154,7 +177,6 @@ def detect_build_folders(root: Path) -> Tuple[Tuple[str, ...], ...]:
 
 def _walk_files(
     root: Path,
-    max_depth: Optional[int],
     suffix: Optional[str] = None,
     limit: int = _SCRIPT_MAX_FILES,
 ) -> Iterable[Path]:
@@ -163,13 +185,8 @@ def _walk_files(
     count = 0
     for dir_path, dir_names, file_names in os.walk(root, topdown=True):
         current = Path(dir_path)
-        depth = len(current.relative_to(root).parts)
         dir_names[:] = sorted(
-            name
-            for name in dir_names
-            if not name.startswith(".")
-            and not _is_build_name(name)
-            and (max_depth is None or depth < max_depth)
+            name for name in dir_names if not name.startswith(".") and not _is_build_name(name)
         )
         for name in sorted(file_names):
             if suffix is not None and not name.casefold().endswith(suffix):
@@ -185,7 +202,9 @@ def _walk_files(
 
 def _is_build_name(name: str) -> bool:
     folded = name.casefold()
-    return folded in BUILD_DIR_NAMES or any(fnmatch.fnmatch(folded, g) for g in BUILD_DIR_GLOBS)
+    if folded in DEFAULT_BUILD_DIR_NAMES or folded in PROJECT_BUILD_DIR_NAMES:
+        return True
+    return any(fnmatch.fnmatch(folded, pattern) for pattern in DEFAULT_BUILD_DIR_GLOBS)
 
 
 def _relative_parts(path: Path, root: Path) -> Tuple[str, ...]:
