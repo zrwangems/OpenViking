@@ -27,7 +27,7 @@ from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx
 from openviking.parse.parsers.matlab.sldd import parse_sldd
-from openviking.parse.parsers.matlab.slx import parse_slx, system_documents
+from openviking.parse.parsers.matlab.slx import parse_slx, system_json_documents
 from openviking.parse.parsers.matlab.stateflow import parse_stateflow, render_stateflow
 from openviking.parse.parsers.matlab.structure import (
     structure_block_document,
@@ -59,105 +59,54 @@ def flatten(system):
 def test_slx_nested_systems_ports_parameters_and_branches():
     model = parse_slx(SAMPLE / "DRLHevIps.slx")
     systems = list(flatten(model))
-    documents = system_documents(model)
+    documents = system_json_documents(model)
 
     assert len(systems) == 65
     assert len(documents) == len(systems)
     assert any(system.inputs for system in systems)
     assert any(system.outputs for system in systems)
-    assert documents["main.md"].startswith("---\ntype: simulink-model\n")
-    assert "xCU/xCU_Output.md" in documents
-    assert "xCU/xCU/main.md" in documents
-    assert not any(path.endswith("/index.md") or path == "index.md" for path in documents)
-    for path, content in documents.items():
-        if path != "main.md":
-            assert content.startswith("---\ntype: simulink-subsystem\n"), path
-        assert [line for line in content.splitlines() if line.startswith("## ")] == [
-            "## 逻辑流程图",
-            "## 块参数",
-        ]
-        assert "## 块知识模板" not in content
-        assert "## 连接表" not in content
-        assert "```mermaid" in content
-        # The page is the flowchart plus the block table, nothing else.
-        assert "系统说明" not in content
-        assert "该层包含" not in content
-        assert "未命名信号" not in content
-        # SIDs are wiring internals; the reader-facing tables no longer show them.
-        assert "| SID |" not in content
-        # Node labels carry only the block name; the type is in the block table.
-        for block_type in ("Inport", "Outport", "SubSystem", "Product", "Switch", "Saturate"):
-            assert f' / {block_type}"' not in content
+    assert documents["main.json"]["type"] == "simulink-model"
+    assert "xCU/xCU_Output.json" in documents
+    assert "xCU/xCU/main.json" in documents
+    assert not any(path.endswith("/index.json") or path == "index.json" for path in documents)
+    for path, document in documents.items():
+        assert document["schema"] == "ov.matlab.simulink/1"
+        assert document["type"] == ("simulink-model" if path == "main.json" else "simulink-subsystem")
+        assert isinstance(document["blocks"], list)
+        assert isinstance(document["edges"], list)
+        assert set(document) >= {"system", "system_ref", "subsystem_types", "children"}
+        assert "```mermaid" not in json.dumps(document)
     assert any("DRL_single" in path for path in documents)
 
     battery = parse_slx(SAMPLE / "Bat" / "Bat.slx")
-    battery_doc = system_documents(battery)["main.md"]
-    assert "BattTemp" in battery_doc
-    assert "BattSoc" in battery_doc
-    assert "Bidirectional DC-DC" in battery_doc
-    assert "Plimit" in battery_doc
-    # Every parsed edge remains in Mermaid, including unresolved endpoints and
-    # unlabeled signals (an unnamed line is drawn without a label).
-    mermaid = battery_doc.split("```mermaid", 1)[1].split("```", 1)[0]
-    assert sum(" -->" in line or " ---" in line for line in mermaid.splitlines()) == len(
-        battery.edges
-    )
+    battery_doc = system_json_documents(battery)["main.json"]
+    names = {block["name"] for block in battery_doc["blocks"]}
+    assert {"BattTemp", "BattSoc", "Constant", "DC-DC Converter"} <= names
+    # Every parsed edge is in the graph, including unresolved endpoints and
+    # unlabeled signals.
+    assert len(battery_doc["edges"]) == len(battery.edges)
     # Branch elements must become independent destinations, not disappear.
     assert sum(edge.destination == "465#in:1" for edge in battery.edges) == 1
     assert "464#out:1" in {edge.source for edge in battery.edges}
-
-
-def test_model_pages_stay_compact_and_keep_instance_parameters():
-    documents = system_documents(parse_slx(SAMPLE / "DRLHevIps.slx"), language="zh-CN")
-    power_path = next(path for path in documents if path.endswith("Mech_to_Elec_Power_Estimate.md"))
-    power = documents[power_path]
-    assert "Lookup_n-D" in power
-    assert "BreakpointsForDimension1" in power
-    assert "`Table` = `MotMapEff'`" in power
-    assert "逼近 N 维函数" not in power
-    assert len(power) < 10_000
-
-    battery = system_documents(parse_slx(SAMPLE / "Bat" / "Bat.slx"))["main.md"]
-    assert "Constant" in battery
-    assert "Datasheet Battery" in battery
-
-
-def test_block_type_cells_link_to_the_downloadable_block_library():
-    model = parse_slx(SAMPLE / "DRLHevIps.slx")
-    chinese = system_documents(model, language="zh-CN")
-    power = chinese[
-        next(path for path in chinese if path.endswith("Mech_to_Elec_Power_Estimate.md"))
-    ]
-    # The cell keeps the block type as its text and links to the library page.
-    assert (
-        "| Abs | [Abs](viking://resources/simulink-block-library/zh/Simulink/"
-        "Math%20Operations/Abs.md) |" in power
+def test_system_json_stays_compact_and_keeps_instance_parameters():
+    documents = system_json_documents(parse_slx(SAMPLE / "DRLHevIps.slx"), language="zh-CN")
+    power_path = next(
+        path for path in documents if path.endswith("Mech_to_Elec_Power_Estimate.json")
     )
-    assert "| Eff Map | [Lookup_n-D](viking://resources/simulink-block-library/zh/" in power
-    # No local copy of the library is needed to write the link.
-    assert "## 块参数" in power
+    power = documents[power_path]
+    payload = json.dumps(power, ensure_ascii=False)
+    assert "Lookup_n-D" in payload
+    assert "BreakpointsForDimension1" in payload
+    assert power["blocks"]
+    assert any(
+        block["params"].get("Table") == "MotMapEff'" for block in power["blocks"]
+    )
+    assert "逼近 N 维函数" not in payload
+    assert len(payload) < 10_000
 
-    english = system_documents(model, language="en")
-    english_power = english[
-        next(path for path in english if path.endswith("Mech_to_Elec_Power_Estimate.md"))
-    ]
-    assert "viking://resources/simulink-block-library/en/" in english_power
-
-    # Blocks outside the packaged library keep the plain type text.
-    external = system_documents(model)
-    external_power = external[
-        next(
-            path
-            for path in external
-            if path.endswith(
-                "Motor_Torque_Arbitration_and_Power_Management/Power_Management/main.md"
-            )
-        )
-    ]
-    assert "| div0protect - poly | Reference /" in external_power
-    assert "div0protect - poly](viking://" not in external_power
-
-
+    battery = system_json_documents(parse_slx(SAMPLE / "Bat" / "Bat.slx"))["main.json"]
+    assert "Constant" in {block["name"] for block in battery["blocks"]}
+    assert "Datasheet Battery" in json.dumps(battery, ensure_ascii=False)
 def test_block_library_resource_pack_keeps_block_documents_only(tmp_path):
     """The resource carries block pages: no hand-written index, no rule-based L0/L1."""
 
@@ -215,7 +164,7 @@ def test_block_library_language_pack_puts_products_at_the_root(tmp_path):
 
 def test_slx_deduplicates_colliding_directory_names():
     model = parse_slx(SAMPLE / "DRLHevIps.slx")
-    documents = system_documents(model)
+    documents = system_json_documents(model)
     assert len(documents) == len(set(documents))
 
 
@@ -1005,16 +954,10 @@ def test_real_simscape_model_preserves_conserving_network_semantics():
     model = parse_slx(path)
     assert len(model.edges) == 8
     assert all(edge.kind == "physical-conserving" for edge in model.edges)
-    document = system_documents(model)["main.md"]
-    assert "未命名守恒连接" not in document
-    mermaid = document.split("```mermaid", 1)[1].split("```", 1)[0]
-    assert sum(" ---" in line for line in mermaid.splitlines()) == len(model.edges)
-    assert "守恒端口（双向）" not in document
-    assert not any("conn:" in line and "-->" in line for line in document.splitlines())
-    assert "## 块参数" in document
-    assert "SimscapeComponentBlock" in document
-
-
+    document = system_json_documents(model)["main.json"]
+    assert len(document["edges"]) == len(model.edges)
+    assert all(edge["kind"] == "physical-conserving" for edge in document["edges"])
+    assert "SimscapeComponentBlock" in {block["block_type"] for block in document["blocks"]}
 def _write_semantic_slx(path: Path):
     def block(kind, name, sid, properties="", system=""):
         return (
@@ -1047,24 +990,27 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     path = tmp_path / "semantic.slx"
     _write_semantic_slx(path)
     model = parse_slx(path)
-    documents = system_documents(model)
+    documents = system_json_documents(model)
     assert model.subsystem_types == ["subsystem"]
     assert model.children[0].subsystem_types == ["enabled", "triggered"]
     assert model.children[1].subsystem_types == ["variant"]
-    root = documents["main.md"]
-    assert "type: simulink-model" in root
-    assert "StatesWhenEnabling" in documents["Enabled.md"]
-    assert "VariantControlMode" in documents["Variants/main.md"]
-    assert "VariantControl` = `V == 1" in documents["Variants/main.md"]
-    assert (
-        "| Electrical + | [ConnectionPort](" in root or "| Electrical + | ConnectionPort |" in root
+    root = documents["main.json"]
+    assert root["type"] == "simulink-model"
+    enabled = documents["Enabled.json"]
+    assert any(block["params"].get("StatesWhenEnabling") == "held" for block in enabled["blocks"])
+    variants = documents["Variants/main.json"]
+    assert variants["type"] == "simulink-subsystem"
+    root_blocks = {block["name"]: block for block in root["blocks"]}
+    assert root_blocks["Variants"]["params"]["VariantControlMode"] == "expression"
+    assert any(
+        block["params"].get("VariantControl") == "V == 1" for block in variants["blocks"]
     )
-    assert "Domain` = `electrical" in root
-    assert "`Port` = `1`" in root
-    assert "| Torque | [PMIOPort](" in root or "| Torque | PMIOPort |" in root
-    assert "bidirectional / conserving" in root
-
-
+    by_name = {block["name"]: block for block in root["blocks"]}
+    assert by_name["Electrical +"]["block_type"] == "ConnectionPort"
+    assert by_name["Electrical +"]["params"]["Domain"] == "electrical"
+    assert by_name["Electrical +"]["ports"]["conn"] == [1]
+    assert by_name["Torque"]["block_type"] == "PMIOPort"
+    assert by_name["Torque"]["ports"]["conn"] == [3]
 def test_additional_formats_text_containers_and_opaque_originals(tmp_path):
     ssc = (
         Path(__file__).parents[2]

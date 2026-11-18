@@ -8,10 +8,8 @@ import posixpath
 import re
 import zipfile
 from dataclasses import dataclass, field
-from functools import lru_cache
 from pathlib import Path
 from typing import Iterable
-from urllib.parse import quote
 
 from defusedxml import ElementTree as ET
 
@@ -272,28 +270,9 @@ def _display_parameters(block: Block) -> dict[str, str]:
     }
 
 
-def _cell(value: str) -> str:
-    return (value or " ").replace("|", "\\|").replace("\r", "").replace("\n", "<br>")
-
-
 def _slug(value: str) -> str:
     value = re.sub(r"[^\w.-]+", "_", value, flags=re.UNICODE).strip("._")
     return value or "subsystem"
-
-
-def _mermaid_text(value: str) -> str:
-    # Mermaid treats a literal ``\\n`` as label text and HTML ``<br>`` labels
-    # currently break Studio's strict SVG/XML parser. Keep generated labels
-    # single-line and escape the edge-label delimiter.
-    return (
-        value.replace('"', "'")
-        .replace("\\n", " ")
-        .replace("\n", " ")
-        .replace("\r", "")
-        .replace("|", "&#124;")
-        .replace("(", "&#40;")
-        .replace(")", "&#41;")
-    )
 
 
 def _child_directory(system: System) -> str:
@@ -301,152 +280,6 @@ def _child_directory(system: System) -> str:
     duplicates = sum(_slug(s.name) == _slug(system.name) for s in siblings)
     suffix = f"_{system.ref.removeprefix('system_')}" if duplicates > 1 else ""
     return _slug(system.name) + suffix
-
-
-BLOCK_LIBRARY_RESOURCE = "simulink-block-library"
-"""Resource name of the downloadable R2025b block library package."""
-
-
-@lru_cache(maxsize=4096)
-def _block_library_link(block_type: str, source_block: str, language: str) -> str:
-    """Viking URI of the library page describing this block, if one exists."""
-    if not block_type:
-        return ""
-    from openviking.parse.parsers.matlab.catalog import find_block_reference
-    from openviking.parse.parsers.matlab.library import library_root
-
-    reference = find_block_reference(block_type, source_block)
-    if reference is None:
-        return ""
-    key = "zh" if str(language).lower().startswith("zh") else "en"
-    path = reference.resource_path(key)
-    if not path or not (library_root() / path).is_file():
-        return ""
-    return f"viking://resources/{BLOCK_LIBRARY_RESOURCE}/{quote(path, safe='/')}"
-
-
-def _block_type_cell(block: Block, language: str) -> str:
-    """Type name (and library source) linked to its block-library page."""
-    label = _cell(block.block_type)
-    if block.source_block:
-        label += f" / `{_cell(block.source_block)}`"
-    target = _block_library_link(block.block_type, block.source_block, language)
-    return f"[{label}]({target})" if target else label
-
-
-def system_documents(model: System, language: str = "en") -> dict[str, str]:
-    """Return compact system pages with directories only for nested systems.
-
-    The model root and systems with children use ``main.md``. A leaf system is
-    one sibling Markdown file, for example ``xCU/xCU_Output.md``.
-    """
-    documents: dict[str, str] = {}
-    resolved_language = "zh-CN" if str(language).lower().startswith("zh") else "en"
-
-    def visit(system: System, directory: str, is_root: bool = False) -> None:
-        if is_root:
-            path = "main.md"
-        elif system.children:
-            path = f"{directory}/main.md"
-        else:
-            path = f"{directory}.md"
-        documents[path] = _render_system(system, is_root, resolved_language)
-        for child in system.children:
-            child_dir = (
-                f"{directory}/{_child_directory(child)}" if directory else _child_directory(child)
-            )
-            visit(child, child_dir)
-
-    visit(model, "", True)
-    return documents
-
-
-def _render_system(system: System, is_root: bool, language: str = "en") -> str:
-    """Render the graph and every block's parameters."""
-    blocks = {block.sid: block for block in system.blocks}
-    lines = [
-        "---",
-        f"type: {'simulink-model' if is_root else 'simulink-subsystem'}",
-        f"system_ref: {system.ref}",
-        f"subsystem_types: [{', '.join(system.subsystem_types)}]",
-        "---",
-        "",
-        f"# {system.name}",
-        "",
-        "## 逻辑流程图",
-        "",
-        "```mermaid",
-        "flowchart LR",
-    ]
-    for block in system.blocks:
-        node = f"b{_slug(block.sid)}"
-        shape_left, shape_right = (
-            ("([", "])") if block.block_type in {"Inport", "Outport"} else ("[", "]")
-        )
-        # Only the block name: the type is already in the block table below.
-        lines.append(f'  {node}{shape_left}"{_mermaid_text(block.name)}"{shape_right}')
-    unresolved: dict[str, str] = {}
-    for edge in system.edges:
-        source_sid, source_port = _endpoint(edge.source)
-        destination_sid, destination_port = _endpoint(edge.destination)
-        for sid, endpoint in ((source_sid, edge.source), (destination_sid, edge.destination)):
-            if sid not in blocks:
-                unresolved.setdefault(sid, endpoint)
-    for sid, endpoint in unresolved.items():
-        lines.append(f'  b{_slug(sid)}["未解析端点 / {_mermaid_text(endpoint)}"]')
-    for edge in system.edges:
-        source_sid, _ = _endpoint(edge.source)
-        destination_sid, _ = _endpoint(edge.destination)
-        connector = "---" if edge.kind == "physical-conserving" else "-->"
-        # Unnamed signals stay unlabeled; only a named signal is shown.
-        label = f"|{_mermaid_text(edge.name)}|" if edge.name else ""
-        lines.append(f"  b{_slug(source_sid)} {connector}{label} b{_slug(destination_sid)}")
-    lines.extend(
-        [
-            "```",
-            "",
-            "## 块参数",
-            "",
-            "| 块 | 类型 | 参数 |",
-            "| --- | --- | --- |",
-        ]
-    )
-    children = {child.owner.sid: child for child in system.children if child.owner}
-    rows = 0
-    if system.owner:
-        owner_params = _display_parameters(system.owner)
-        if owner_params:
-            param_text = "<br>".join(
-                f"`{_cell(key)}` = `{_cell(value)}`" for key, value in sorted(owner_params.items())
-            )
-            lines.append(
-                f"| 当前子系统 / {_cell(system.owner.name)} | {system.owner.block_type} "
-                f"| {param_text} |"
-            )
-            rows += 1
-    for block in system.blocks:
-        child = children.get(block.sid)
-        if child:
-            child_path = f"{_child_directory(child)}/{'main.md' if child.children else ''}"
-            if not child.children:
-                child_path = f"{_child_directory(child)}.md"
-            name = f"[{_cell(block.name)}]({child_path})"
-        else:
-            name = _cell(block.name)
-        params = _display_parameters(block)
-        if block.block_type in {"ConnectionPort", "PMIOPort"}:
-            params = {**params, "Direction": "bidirectional / conserving"}
-        param_text = "<br>".join(
-            f"`{_cell(key)}` = `{_cell(value)}`" for key, value in sorted(params.items())
-        )
-        lines.append(f"| {name} | {_block_type_cell(block, language)} | {param_text or '-'} |")
-        rows += 1
-    if not rows:
-        lines.append("| - | 无内部节点 | - | - |")
-    if is_root:
-        lines.extend(["", "- [解析覆盖清单](coverage.md)"])
-    lines.append("")
-    return "\n".join(lines)
 
 
 def _endpoint(value: str) -> tuple[str, str]:
