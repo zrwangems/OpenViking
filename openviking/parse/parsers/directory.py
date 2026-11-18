@@ -18,6 +18,7 @@ CodeRepositoryParser:
 """
 
 import asyncio
+import json
 import time
 from pathlib import Path, PurePosixPath
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
@@ -376,7 +377,7 @@ class DirectoryParser(BaseParser):
                 result.meta["processed_files"] = []
                 result.meta["failed_files"] = source_skipped_items
                 result.meta["unsupported_files"] = []
-                result.meta["skipped_files"] = self._parse_skipped(scan_result.skipped)
+                result.meta["skipped_files"] = self._skipped_from_scan(scan_result)
                 keep_temp = True
                 return result
 
@@ -516,8 +517,7 @@ class DirectoryParser(BaseParser):
                 for uf in scan_result.unsupported
             ]
 
-            # Parse skipped entries: format is "path (reason)"
-            skipped_files = self._parse_skipped(scan_result.skipped)
+            skipped_files = self._skipped_from_scan(scan_result)
 
             # ── Phase 3: build ParseResult ────────────────────────────
             root = ResourceNode(
@@ -537,6 +537,33 @@ class DirectoryParser(BaseParser):
                 parse_time=time.time() - start_time,
                 warnings=warnings,
             )
+            if scan_result.matlab_project and writer is not None:
+                from openviking.parse.parsers.matlab.classification import summarize
+
+                labeled = [
+                    {
+                        "path": item.rel_path,
+                        "extension": item.path.suffix.lower(),
+                        "categories": item.categories,
+                        "tags": item.tags,
+                        "location": item.location,
+                        "action": item.action,
+                    }
+                    for item in scan_result.processable
+                    if item.categories
+                ]
+                manifest = {
+                    "schema": "ov.matlab.classification/1",
+                    "summary": summarize(labeled),
+                    "files": labeled,
+                    "skipped": skipped_files,
+                }
+                await writer.write_text(
+                    "matlab-classification.json",
+                    json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                )
+                result.meta["matlab_classification"] = manifest["summary"]
+
             result.temp_dir_path = temp_uri
             result.artifact_ref = await writer.finalize(resource_rel=target_rel)
             result.meta["file_count"] = file_count
@@ -681,6 +708,30 @@ class DirectoryParser(BaseParser):
         return result
 
     @staticmethod
+    def _skipped_from_scan(scan_result: Any) -> List[Dict[str, Any]]:
+        """Prefer labelled skip details, then add unlabelled filter skips."""
+        details = getattr(scan_result, "skipped_details", None)
+        if not details:
+            return DirectoryParser._parse_skipped(scan_result.skipped)
+        entries: List[Dict[str, Any]] = []
+        seen = set()
+        for item in details:
+            entry: Dict[str, Any] = {
+                "path": item.get("path", ""),
+                "status": "ignore",
+                "reason": item.get("reason", "skip"),
+            }
+            for key in ("categories", "tags", "location", "action"):
+                if item.get(key):
+                    entry[key] = item[key]
+            entries.append(entry)
+            seen.add(entry["path"])
+        for entry in DirectoryParser._parse_skipped(scan_result.skipped):
+            if entry["path"] not in seen:
+                entries.append(entry)
+        return entries
+
+    @staticmethod
     def _source_skipped_items(source_meta: Any, source_path: Path) -> List[Dict[str, str]]:
         """Normalize skipped items reported by a remote source accessor."""
         if not isinstance(source_meta, dict):
@@ -751,6 +802,14 @@ class DirectoryParser(BaseParser):
             "path": classified_file.rel_path,
             "parser": parser_name,
         }
+        if classified_file.categories:
+            entry["categories"] = classified_file.categories
+        if classified_file.tags:
+            entry["tags"] = classified_file.tags
+        if classified_file.location:
+            entry["location"] = classified_file.location
+        if classified_file.action:
+            entry["action"] = classified_file.action
         meta = detail.get("meta")
         if isinstance(meta, dict):
             for key in (

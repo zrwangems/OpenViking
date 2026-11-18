@@ -33,11 +33,15 @@ MATLAB_BUILD_REASON = "matlab build/cache"
 
 @dataclass
 class ClassifiedFile:
-    """A single file with its classification and relative path."""
+    """A single file with its classification, labels and relative path."""
 
     path: Path
     rel_path: str
     classification: str  # CLASS_PROCESSABLE | CLASS_UNSUPPORTED
+    categories: List[str] = field(default_factory=list)
+    tags: List[str] = field(default_factory=list)
+    location: str = ""
+    action: str = ""
 
 
 @dataclass
@@ -48,6 +52,8 @@ class DirectoryScanResult:
     processable: List[ClassifiedFile] = field(default_factory=list)
     unsupported: List[ClassifiedFile] = field(default_factory=list)
     skipped: List[str] = field(default_factory=list)  # reason -> count or paths for debugging
+    skipped_details: List[dict] = field(default_factory=list)
+    matlab_project: bool = False
     warnings: List[str] = field(default_factory=list)
 
     def all_processable_files(self) -> List[ClassifiedFile]:
@@ -258,6 +264,7 @@ def scan_directory(
     exclude_patterns = _parse_patterns(exclude)
     gitignore_matcher = GitignoreMatcher(root)
     matlab_ignore = _matlab_build_ignore(root)
+    matlab_project = bool(matlab_ignore and matlab_ignore.is_matlab_project())
 
     # Normalize ignore_dirs:
     # - If caller passed a comma-separated string (common from CLI/HTTP),
@@ -294,9 +301,16 @@ def scan_directory(
             sub = dir_path / d
             skip, reason = _should_skip_directory(sub, root, ignore_dirs_set)
             if skip:
-                skipped_path = str(sub.relative_to(root))
-                skipped_path = _normalize_rel_path(skipped_path)
+                skipped_path = _normalize_rel_path(str(sub.relative_to(root)))
                 result.skipped.append(f"{skipped_path} ({reason})")
+                if matlab_project and reason == "IGNORE_DIRS":
+                    from openviking.parse.parsers.matlab.classification import (
+                        BUILD_OUTPUT_DIR_NAMES,
+                        classify_directory,
+                    )
+
+                    if sub.name.casefold() in BUILD_OUTPUT_DIR_NAMES:
+                        result.skipped_details.append(classify_directory(skipped_path))
                 continue
 
             if gitignore_matcher.is_ignored_dir(sub, dir_spec):
@@ -306,9 +320,14 @@ def scan_directory(
                 continue
 
             if matlab_ignore and matlab_ignore.is_build_dir(sub):
-                skipped_path = str(sub.relative_to(root))
-                skipped_path = _normalize_rel_path(skipped_path)
+                skipped_path = _normalize_rel_path(str(sub.relative_to(root)))
                 result.skipped.append(f"{skipped_path} ({MATLAB_BUILD_REASON})")
+                if matlab_project:
+                    from openviking.parse.parsers.matlab.classification import (
+                        classify_directory,
+                    )
+
+                    result.skipped_details.append(classify_directory(skipped_path))
                 continue
 
             kept.append(d)
@@ -330,8 +349,20 @@ def scan_directory(
             if gitignore_matcher.is_ignored_file(file_path, dir_spec):
                 result.skipped.append(f"{rel_path} (gitignore)")
                 continue
+            labels = None
+            if matlab_project:
+                from openviking.parse.parsers.matlab.classification import classify_path
+
+                labels = classify_path(rel_path_norm)
             if matlab_ignore and matlab_ignore.is_derived_file(file_path):
                 result.skipped.append(f"{rel_path_norm} ({MATLAB_BUILD_REASON})")
+                if labels is not None:
+                    labels["reason"] = MATLAB_BUILD_REASON
+                    result.skipped_details.append(labels)
+                continue
+            if labels is not None and labels["action"] == "exclude":
+                result.skipped.append(f"{rel_path_norm} ({MATLAB_BUILD_REASON})")
+                result.skipped_details.append(labels)
                 continue
 
             if include_patterns and not _matches_include(name, include_patterns):
@@ -356,8 +387,16 @@ def scan_directory(
                 if accepted_by_additional_parser
                 else _classify_file(file_path, effective_registry)
             )
+            if labels is not None and labels["action"] == "attach":
+                classification = CLASS_PROCESSABLE
             classified = ClassifiedFile(
-                path=file_path, rel_path=rel_path_norm, classification=classification
+                path=file_path,
+                rel_path=rel_path_norm,
+                classification=classification,
+                categories=list(labels["categories"]) if labels else [],
+                tags=list(labels["tags"]) if labels else [],
+                location=str(labels["location"]) if labels else "",
+                action=str(labels["action"]) if labels else "",
             )
             if classification == CLASS_PROCESSABLE:
                 result.processable.append(classified)
@@ -380,5 +419,7 @@ def scan_directory(
     result.processable.sort(key=lambda x: x.rel_path)
     result.unsupported.sort(key=lambda x: x.rel_path)
     result.skipped.sort()
+    result.skipped_details.sort(key=lambda item: item.get("path", ""))
+    result.matlab_project = matlab_project
     result.warnings.sort()
     return result
