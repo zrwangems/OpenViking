@@ -38,6 +38,15 @@ from openviking.storage.ovpack.validation import (
 from openviking_cli.utils.uri import VikingURI
 
 DEFAULT_ROOT = "simulink-block-library"
+INGEST_ARGS = {"parse_mode": "no_split"}
+"""Add-resource args a staged library must be imported with.
+
+One block document has to stay one Markdown file. In the default split mode
+OpenViking expands a document into ``<document>/<section>.md``; when a section
+heading repeats the block name the tree ends up with a duplicated level such as
+``.../LTE_OFDM_Modulator/LTE_OFDM_Modulator/参数.md``. ``no_split`` keeps
+``.../LTE_OFDM_Modulator.md`` as a single page.
+"""
 RESOURCE_SCOPE = "resources"
 INDEX_NAME = "index.md"
 """Per-directory navigation page. The resource keeps block documents only:
@@ -76,6 +85,7 @@ def build_tree(
     ``language`` ``"zh"``/``"en"`` stages just that language and makes it the
     resource root, so the Library Browser products sit directly under
     ``viking://resources/<root_name>/``. ``None`` keeps the two-language layout.
+    Import the result with ``INGEST_ARGS`` so each block stays one page.
     Directory ``index.md`` pages are dropped for the reason described on
     ``INDEX_NAME``; L0/L1 come from OpenViking's own ingestion, never from here.
     """
