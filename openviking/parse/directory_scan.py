@@ -27,6 +27,9 @@ logger = get_logger(__name__)
 CLASS_PROCESSABLE = "processable"
 CLASS_UNSUPPORTED = "unsupported"
 
+# Reason recorded for MATLAB/Simulink build and cache artifacts that are skipped.
+MATLAB_BUILD_REASON = "matlab build/cache"
+
 
 @dataclass
 class ClassifiedFile:
@@ -116,6 +119,16 @@ def _should_skip_directory(
             return True, "ignore_dirs"
 
     return False, ""
+
+
+def _matlab_build_ignore(root: Path):
+    """MATLAB build/cache rules when *root* is a MATLAB/Simulink project, else None."""
+    from openviking.parse.parsers.matlab.ignore import matlab_ignore_for
+
+    try:
+        return matlab_ignore_for(root)
+    except OSError:
+        return None
 
 
 def _parse_patterns(value: Optional[str]) -> List[str]:
@@ -244,6 +257,7 @@ def scan_directory(
     include_patterns = _parse_patterns(include)
     exclude_patterns = _parse_patterns(exclude)
     gitignore_matcher = GitignoreMatcher(root)
+    matlab_ignore = _matlab_build_ignore(root)
 
     # Normalize ignore_dirs:
     # - If caller passed a comma-separated string (common from CLI/HTTP),
@@ -291,6 +305,12 @@ def scan_directory(
                 result.skipped.append(f"{skipped_path} (gitignore)")
                 continue
 
+            if matlab_ignore and matlab_ignore.is_build_dir(sub):
+                skipped_path = str(sub.relative_to(root))
+                skipped_path = _normalize_rel_path(skipped_path)
+                result.skipped.append(f"{skipped_path} ({MATLAB_BUILD_REASON})")
+                continue
+
             kept.append(d)
 
         dir_names[:] = kept
@@ -309,6 +329,9 @@ def scan_directory(
                 continue
             if gitignore_matcher.is_ignored_file(file_path, dir_spec):
                 result.skipped.append(f"{rel_path} (gitignore)")
+                continue
+            if matlab_ignore and matlab_ignore.is_derived_file(file_path):
+                result.skipped.append(f"{rel_path_norm} ({MATLAB_BUILD_REASON})")
                 continue
 
             if include_patterns and not _matches_include(name, include_patterns):

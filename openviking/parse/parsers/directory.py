@@ -654,6 +654,7 @@ class DirectoryParser(BaseParser):
         "os error": "ignore",
         "IGNORE_DIRS": "ignore",
         "ignore_dirs": "ignore",
+        "matlab build/cache": "ignore",
         "excluded by include filter": "exclude",
         "excluded by exclude filter": "exclude",
     }
