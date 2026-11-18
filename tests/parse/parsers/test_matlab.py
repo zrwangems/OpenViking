@@ -416,6 +416,31 @@ def test_protected_metadata_is_verifiable(tmp_path):
     assert len(metadata["sha256"]) == 64
 
 
+@pytest.mark.asyncio
+async def test_parser_keeps_protected_original_and_requirement_json(tmp_path):
+    store = LocalParseOutputStore(tmp_path / "artifacts")
+    protected = tmp_path / "secret.slxp"
+    protected.write_bytes(b"protected-model")
+    result = await MatlabParser().parse(protected, parse_output_store=store)
+    root = Path(result.artifact_ref.root)
+    assert (root / "secret" / "secret.slxp").read_bytes() == b"protected-model"
+    metadata = json.loads((root / "secret" / "secret.slxp.json").read_text(encoding="utf-8"))
+    assert metadata["original_preserved"] is True
+
+    requirements = tmp_path / "requirements.slreqx"
+    with zipfile.ZipFile(requirements, "w") as archive:
+        archive.writestr(
+            "requirements.xml",
+            '<requirements><requirement id="R1"><description>Battery below 45 C</description>'
+            "</requirement></requirements>",
+        )
+    result = await MatlabParser().parse(requirements, parse_output_store=store)
+    root = Path(result.artifact_ref.root)
+    tree = json.loads((root / "requirements.slreqx.json").read_text(encoding="utf-8"))
+    assert tree["requirements"][0]["id"] == "R1"
+    assert "Battery below 45 C" in tree["requirements"][0]["text"]
+
+
 def test_mat_shapes_struct_fields_and_m_source():
     content, warnings = parse_mat(SAMPLE / "DriveCycle" / "WLTC.mat")
     assert "| WLTC | 1800 × 2 |" in content
