@@ -155,7 +155,7 @@ def test_scan_skips_build_cache_and_custom_folders(tmp_path: Path):
     assert all("matlab build/cache" in entry for entry in result.skipped)
 
 
-def test_scan_keeps_codegen_folder_in_non_matlab_project(tmp_path: Path):
+def test_non_matlab_project_keeps_codegen_but_drops_rtw(tmp_path: Path):
     write(tmp_path, "README.md", "# project")
     write(tmp_path, "codegen/app.py", "print(1)")
     write(tmp_path, "driver_rtw/notes.md", "notes")
@@ -165,8 +165,52 @@ def test_scan_keeps_codegen_folder_in_non_matlab_project(tmp_path: Path):
     assert [entry.rel_path for entry in result.processable] == [
         "README.md",
         "codegen/app.py",
-        "driver_rtw/notes.md",
     ]
+    assert "driver_rtw (matlab build/cache)" in result.skipped
+
+
+def test_default_build_folders_are_skipped_at_any_depth_without_a_model(tmp_path: Path):
+    write(tmp_path, "docs/readme.md", "# project")
+    write(tmp_path, "a/b/c/slprj/ert/Plant/Plant.c")
+    write(tmp_path, "a/b/c/Plant_ert_rtw/Plant.h")
+    write(tmp_path, "a/b/c/model.slxc")
+
+    result = scan_directory(tmp_path, strict=True)
+
+    assert [entry.rel_path for entry in result.processable] == ["docs/readme.md"]
+    skipped = {entry.split(" (")[0] for entry in result.skipped}
+    assert skipped == {
+        "a/b/c/slprj",
+        "a/b/c/Plant_ert_rtw",
+        "a/b/c/model.slxc",
+    }
+
+
+def test_codegen_and_custom_folders_at_any_depth_in_matlab_project(tmp_path: Path):
+    (tmp_path / "Plant.slx").write_bytes(b"PK\x03\x04")
+    write(
+        tmp_path,
+        "scripts/setup.m",
+        "cfg = Simulink.fileGenControl('getConfig');\n"
+        "cfg.CacheFolder = fullfile(pwd,'build','cache');\n"
+        "Simulink.fileGenControl('setConfig','config',cfg);\n",
+    )
+    write(tmp_path, "deep/a/codegen/lib/Plant/Plant.c")
+    write(tmp_path, "deep/a/build/cache/slprj/ert/Plant/Plant.c")
+    write(tmp_path, "deep/a/other/build/cache/model.slxc")
+
+    result = scan_directory(tmp_path, strict=True)
+
+    assert [entry.rel_path for entry in result.processable] == [
+        "Plant.slx",
+        "scripts/setup.m",
+    ]
+    skipped = {entry.split(" (")[0] for entry in result.skipped}
+    assert skipped == {
+        "deep/a/codegen",
+        "deep/a/build",
+        "deep/a/other/build",
+    }
 
 
 def test_scan_keeps_unrelated_folder_with_similar_name(tmp_path: Path):
