@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MATLAB 项目入库方案：分类、解析方式与案例</title>
+<style>
+  :root {
+    --bg:#f4f6f9; --card:#fff; --ink:#172033; --muted:#5b6678;
+    --line:#dde3ec; --blue:#0f6cbd; --blue-soft:#eaf3fc;
+    --green:#0f766e; --green-soft:#e6f4f1;
+    --violet:#6d28d9; --amber:#b45309; --red:#be123c; --slate:#475569;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font:15px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; }
+  .page { max-width:1240px; margin:0 auto; padding:34px 26px 70px; }
+  header.top { background:linear-gradient(125deg,#0b2a4a 0%,#0f3f6e 55%,#0f6cbd 100%);
+    border-radius:18px; color:#eaf4ff; padding:32px 36px 28px; box-shadow:0 18px 46px rgba(15,63,110,.20); }
+  header.top h1 { margin:0 0 8px; font-size:27px; line-height:1.32; }
+  header.top p { margin:0; color:#b9d7f5; max-width:980px; font-size:15px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .chip { font-size:12.6px; padding:5px 11px; border-radius:999px; text-decoration:none;
+    background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22); color:#dcecff; }
+  .chip b { color:#fff; }
+  .chip:hover { background:rgba(255,255,255,.2); }
+  h2 { font-size:21px; margin:42px 0 10px; display:flex; align-items:center; gap:10px; }
+  h2 .n { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+    border-radius:8px; background:var(--blue); color:#fff; font-size:14px; font-weight:600; }
+  .sub { color:var(--muted); margin:0 0 18px; max-width:1020px; }
+  .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--card); }
+  table { width:100%; border-collapse:collapse; min-width:860px; }
+  thead th { background:#f8fafc; text-align:left; font-size:12.4px; color:var(--muted);
+    font-weight:600; padding:11px 14px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  tbody td { padding:10px 14px; border-bottom:1px solid #eef2f7; font-size:13.4px; vertical-align:top; }
+  tbody tr:last-child td { border-bottom:none; }
+  tr.row { cursor:pointer; }
+  tr.row:hover td { background:#f7fbff; }
+  tr.row:focus-visible { outline:2px solid #0f6cbd; outline-offset:-2px; }
+  .cid { font-weight:700; color:var(--blue); }
+  .ext code { font-size:13.6px; font-weight:700; color:#0b3a66; }
+  .out { color:#2b3a50; }
+  .out .hint { display:block; font-size:10.5px; color:#94a3b8; }
+  tr.row:hover .out .hint { color:var(--blue); }
+  .labels { line-height:1.9; }
+  .lab { display:inline-block; font-size:11px; line-height:1.5; padding:1px 6px; border-radius:6px;
+    border:1px solid; margin:1px 3px 1px 0; white-space:nowrap; }
+  .lab.tag { border-style:dashed; }
+  .lab i { font-style:normal; color:#be123c; font-weight:700; margin-left:1px; }
+  .locs { font-size:12.3px; color:#334155; }
+  .loc { display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; margin:2px 0; }
+  .loc code { font-size:11.4px; color:#0b3a66; background:#eef4fb; padding:0 5px; border-radius:4px; }
+  .loc .to { color:#94a3b8; }
+  .loc .act { color:#334155; white-space:nowrap; }
+  .loc .act.stop { color:#be123c; }
+  .note { font-size:12.3px; color:var(--muted); margin:8px 0 0; }
+  .cat-box { background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:14px 16px 10px; box-shadow:0 6px 20px rgba(15,32,55,.04); }
+  .tabs { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 12px; }
+  .tab { display:inline-flex; align-items:center; justify-content:center; gap:7px; cursor:pointer;
+    flex:1 1 150px; font-family:inherit; font-size:13.2px; line-height:1.4;
+    color:#334155; background:var(--card);
+    border:1px solid var(--line); border-radius:12px; padding:10px 12px; }
+  .tab:hover { border-color:#b9c7da; box-shadow:0 2px 8px rgba(15,32,55,.05); }
+  .tab b { color:var(--c); font-weight:700; }
+  .tab .dot { width:8px; height:8px; border-radius:2px; }
+  .tab.active { background:var(--soft); border-color:var(--c); color:var(--c); font-weight:600; }
+  .tab.active b { color:var(--c); }
+  .cat-panel[hidden] { display:none; }
+  .cat-box .table-wrap { border:none; border-radius:0; }
+  .cat-box thead th { background:#fbfcfe; }
+  body.locked { overflow:hidden; }
+  #overlay { position:fixed; inset:0; background:rgba(11,26,42,.42); opacity:0; pointer-events:none; transition:opacity .18s; z-index:40; }
+  #overlay.open { opacity:1; pointer-events:auto; }
+  #drawer { position:fixed; top:0; right:0; height:100vh; width:800px; max-width:94vw; background:#fff;
+    box-shadow:-18px 0 50px rgba(15,32,55,.22); transform:translateX(102%); transition:transform .2s ease;
+    z-index:50; display:flex; flex-direction:column; }
+  #drawer.open { transform:none; }
+  .drawer-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    padding:20px 24px 14px; border-bottom:1px solid var(--line); background:#f8fafc; }
+  .dext { font-size:24px; font-weight:700; color:#0b3a66; font-family:ui-monospace,SFMono-Regular,Consolas,Menlo,monospace; }
+  .dsub { font-size:12.5px; color:var(--muted); margin-top:3px; }
+  #close { border:1px solid var(--line); background:#fff; width:34px; height:34px; border-radius:9px;
+    font-size:20px; line-height:1; color:#475569; cursor:pointer; }
+  #close:hover { border-color:#b9c7da; color:#0f172a; }
+  .drawer-body { padding:20px 24px 40px; overflow-y:auto; }
+  .drawer-body h3 { margin:20px 0 6px; font-size:14px; color:#0b3a66; }
+  .drawer-body h3:first-child { margin-top:0; }
+  .drawer-body ol { margin:0; padding-left:20px; color:#2b3a50; font-size:13.4px; }
+  .drawer-body li { margin:5px 0; }
+  .drawer-body p { margin:0; color:#2b3a50; font-size:13.4px; }
+  .drawer-body .lead { font-size:13.6px; color:#334155; background:#f1f7fd; border-left:3px solid #0f6cbd;
+    padding:10px 12px; border-radius:0 8px 8px 0; margin-bottom:8px; }
+  .meta { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:8px 0 2px; font-size:12.5px; }
+  .meta .form { color:var(--muted); }
+  .tag { display:inline-block; font-size:10.5px; line-height:1.5; padding:0 6px; border-radius:5px;
+    border:1px solid #0f6cbd33; color:#0f6cbd; background:#eef6fe; white-space:nowrap; }
+  .drawer-body pre { margin:10px 0 0; background:#0f1b2d; color:#d8e4f2; border-radius:10px; padding:15px 16px;
+    overflow:auto; font:12px/1.7 ui-monospace,SFMono-Regular,Consolas,Menlo,monospace; }
+  .loctab { width:100%; border-collapse:collapse; margin:8px 0 0; min-width:0; }
+  .loctab th { background:#f8fafc; text-align:left; font-size:11.5px; color:var(--muted);
+    font-weight:600; padding:7px 9px; border-bottom:1px solid var(--line); }
+  .loctab td { padding:7px 9px; border-bottom:1px solid #eef2f7; font-size:12.4px; vertical-align:top; }
+  .loctab code { font-size:11.4px; color:#0b3a66; background:#eef4fb; padding:0 5px; border-radius:4px; }
+  .drawer-body .bound { background:#fff7ed; border:1px solid #fed7aa; border-radius:8px; padding:10px 12px; color:#7c2d12; }
+  footer { margin-top:36px; color:var(--muted); font-size:12.4px; line-height:1.9; }
+  @media (max-width:760px) {
+    .page { padding:20px 14px 50px; }
+    header.top { padding:22px 20px; }
+    header.top h1 { font-size:22px; }
+    #drawer { width:100%; max-width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+<header class="top">
+  <h1>MATLAB 项目入库方案：分类、解析方式与案例</h1>
+  <p>65 种扩展名，每种可以同时带多个标签。同一个扩展名在不同位置处理不同：生成或缓存目录下排除，工程目录内直接导入；位置列写明条件。点任意一行，右栏看解析方式和案例样子。</p>
+</header>
+
+<h2 id="types"><span class="n">1</span>65 种扩展名：分类、解析方式与产出</h2>
+<p class="sub">类别在上面切换；每行列出标签和位置条件，解析方式和案例样子在右栏里；排除项也给出 skipped.json 记录。</p>
+<div class="tabs" role="tablist">
+<button class="tab active" data-cat="text" role="tab" aria-selected="true" style="--c:#0f766e;--soft:#e6f4f1"><span class="dot" style="background:#0f766e"></span>可读文本 <b>29</b></button>
+<button class="tab" data-cat="container" role="tab" aria-selected="false" style="--c:#1d4ed8;--soft:#e8eefc"><span class="dot" style="background:#1d4ed8"></span>ZIP/工具容器 <b>16</b></button>
+<button class="tab" data-cat="data" role="tab" aria-selected="false" style="--c:#b45309;--soft:#fdf3e3"><span class="dot" style="background:#b45309"></span>数据/目标二进制 <b>10</b></button>
+<button class="tab" data-cat="native" role="tab" aria-selected="false" style="--c:#be123c;--soft:#fdecef"><span class="dot" style="background:#be123c"></span>Windows 原生 <b>6</b></button>
+<button class="tab" data-cat="opaque" role="tab" aria-selected="false" style="--c:#6d28d9;--soft:#f1ebfd"><span class="dot" style="background:#6d28d9"></span>加密/保护 <b>4</b></button>
+<button class="tab" data-cat="derived" role="tab" aria-selected="false" style="--c:#475569;--soft:#eef1f5"><span class="dot" style="background:#475569"></span>派生/缓存 <b>2</b></button>
+</div>
+<p class="note">* 带星号的标签只在对应位置成立；路径优先：<code>slprj/</code>、<code>*_rtw/</code>、<code>html/</code> 下的文件默认排除，表中的“工程目录”指这些目录之外。实线是分类，虚线是标记；同一扩展名可同时属于多个类别，计数按标签统计。</p>
+<div class="cat-box">
+  <div class="panels">
+<section class="cat-panel" data-cat="text">
+    <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:13%">扩展名</th>
+        <th style="width:31%">标签</th>
+        <th style="width:35%">位置与处理</th>
+        <th style="width:21%">产出</th>
+      </tr></thead>
+      <tbody>
+<tr class="row" data-key="m" data-ext=".m" tabindex="0" role="button"><td class="ext"><code>.m</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mdl" data-ext=".mdl" tabindex="0" role="button"><td class="ext"><code>.mdl</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>模型目录</code><span class="to">→</span><span class="act">文本 Block/Line 解析成 JSON</span></div></td><td class="out">各系统 main.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="ssc" data-ext=".ssc" tabindex="0" role="button"><td class="ext"><code>.ssc</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="tlc" data-ext=".tlc" tabindex="0" role="button"><td class="ext"><code>.tlc</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="c" data-ext=".c" tabindex="0" role="button"><td class="ext"><code>.c</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span></td><td class="locs"><div class="loc"><code>工程源码目录</code><span class="to">→</span><span class="act">原文导入</span></div><div class="loc"><code>slprj/、*_rtw/、html/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="h" data-ext=".h" tabindex="0" role="button"><td class="ext"><code>.h</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span></td><td class="locs"><div class="loc"><code>工程源码目录</code><span class="to">→</span><span class="act">原文导入</span></div><div class="loc"><code>slprj/、*_rtw/、html/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="cpp" data-ext=".cpp" tabindex="0" role="button"><td class="ext"><code>.cpp</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span></td><td class="locs"><div class="loc"><code>工程源码目录</code><span class="to">→</span><span class="act">原文导入</span></div><div class="loc"><code>slprj/、*_rtw/、html/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="hpp" data-ext=".hpp" tabindex="0" role="button"><td class="ext"><code>.hpp</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span></td><td class="locs"><div class="loc"><code>工程源码目录</code><span class="to">→</span><span class="act">原文导入</span></div><div class="loc"><code>slprj/、*_rtw/、html/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mk" data-ext=".mk" tabindex="0" role="button"><td class="ext"><code>.mk</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span></td><td class="locs"><div class="loc"><code>工程脚本目录</code><span class="to">→</span><span class="act">原文导入</span></div><div class="loc"><code>slprj/、*_rtw/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">原文 / skipped.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="bat" data-ext=".bat" tabindex="0" role="button"><td class="ext"><code>.bat</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span></td><td class="locs"><div class="loc"><code>工程脚本目录</code><span class="to">→</span><span class="act">原文导入</span></div><div class="loc"><code>slprj/、*_rtw/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">原文 / skipped.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="rsp" data-ext=".rsp" tabindex="0" role="button"><td class="ext"><code>.rsp</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span></td><td class="locs"><div class="loc"><code>工程脚本目录</code><span class="to">→</span><span class="act">原文导入</span></div><div class="loc"><code>slprj/、*_rtw/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">原文 / skipped.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="rtw" data-ext=".rtw" tabindex="0" role="button"><td class="ext"><code>.rtw</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物</span></td><td class="locs"><div class="loc"><code>构建流程</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">skipped.json 条目<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="tmf" data-ext=".tmf" tabindex="0" role="button"><td class="ext"><code>.tmf</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物</span></td><td class="locs"><div class="loc"><code>构建流程</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">skipped.json 条目<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="map" data-ext=".map" tabindex="0" role="button"><td class="ext"><code>.map</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span></td><td class="locs"><div class="loc"><code>构建目录</code><span class="to">→</span><span class="act stop">默认排除</span></div><div class="loc"><code>单独交付</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文 / skipped.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="html" data-ext=".html" tabindex="0" role="button"><td class="ext"><code>.html</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span></td><td class="locs"><div class="loc"><code>docs/ 等普通目录</code><span class="to">→</span><span class="act">原文导入</span></div><div class="loc"><code>*_rtw/html/、slprj 报告目录</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="prj" data-ext=".prj" tabindex="0" role="button"><td class="ext"><code>.prj</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="asv" data-ext=".asv" tabindex="0" role="button"><td class="ext"><code>.asv</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="xml" data-ext=".xml" tabindex="0" role="button"><td class="ext"><code>.xml</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="json" data-ext=".json" tabindex="0" role="button"><td class="ext"><code>.json</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="yaml" data-ext=".yaml" tabindex="0" role="button"><td class="ext"><code>.yaml</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="yml" data-ext=".yml" tabindex="0" role="button"><td class="ext"><code>.yml</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="csv" data-ext=".csv" tabindex="0" role="button"><td class="ext"><code>.csv</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="txt" data-ext=".txt" tabindex="0" role="button"><td class="ext"><code>.txt</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="ini" data-ext=".ini" tabindex="0" role="button"><td class="ext"><code>.ini</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="arxml" data-ext=".arxml" tabindex="0" role="button"><td class="ext"><code>.arxml</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="dbc" data-ext=".dbc" tabindex="0" role="button"><td class="ext"><code>.dbc</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="ldf" data-ext=".ldf" tabindex="0" role="button"><td class="ext"><code>.ldf</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="a2l" data-ext=".a2l" tabindex="0" role="button"><td class="ext"><code>.a2l</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="md" data-ext=".md" tabindex="0" role="button"><td class="ext"><code>.md</code></td><td class="labels"><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原文导入</span></div></td><td class="out">原文（不生成派生文件）<span class="hint">右栏看细节 →</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+</section>
+<section class="cat-panel" data-cat="container" hidden>
+    <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:13%">扩展名</th>
+        <th style="width:31%">标签</th>
+        <th style="width:35%">位置与处理</th>
+        <th style="width:21%">产出</th>
+      </tr></thead>
+      <tbody>
+<tr class="row" data-key="slx" data-ext=".slx" tabindex="0" role="button"><td class="ext"><code>.slx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>模型目录</code><span class="to">→</span><span class="act">按系统解包成 JSON</span></div></td><td class="out">各系统 main.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="sldd" data-ext=".sldd" tabindex="0" role="button"><td class="ext"><code>.sldd</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">条目 JSONL + 数据文件</span></div></td><td class="out">entries.jsonl<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mlx" data-ext=".mlx" tabindex="0" role="button"><td class="ext"><code>.mlx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">notebook.json + outputs/<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mlapp" data-ext=".mlapp" tabindex="0" role="button"><td class="ext"><code>.mlapp</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">code.m + app.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mlproj" data-ext=".mlproj" tabindex="0" role="button"><td class="ext"><code>.mlproj</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mltbx" data-ext=".mltbx" tabindex="0" role="button"><td class="ext"><code>.mltbx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mlappinstall" data-ext=".mlappinstall" tabindex="0" role="button"><td class="ext"><code>.mlappinstall</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="sltx" data-ext=".sltx" tabindex="0" role="button"><td class="ext"><code>.sltx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json + template.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mlpkginstall" data-ext=".mlpkginstall" tabindex="0" role="button"><td class="ext"><code>.mlpkginstall</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="slreqx" data-ext=".slreqx" tabindex="0" role="button"><td class="ext"><code>.slreqx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">requirements.jsonl + links.jsonl<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="slmx" data-ext=".slmx" tabindex="0" role="button"><td class="ext"><code>.slmx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">links.jsonl<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mldatx" data-ext=".mldatx" tabindex="0" role="button"><td class="ext"><code>.mldatx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">tests.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="sfx" data-ext=".sfx" tabindex="0" role="button"><td class="ext"><code>.sfx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">stateflow.json（states/transitions）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="fmu" data-ext=".fmu" tabindex="0" role="button"><td class="ext"><code>.fmu</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json + modelDescription<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="ctf" data-ext=".ctf" tabindex="0" role="button"><td class="ext"><code>.ctf</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#6d28d9;background:#f1ebfd;border-color:#6d28d933">加密/保护</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">检测加密；能列成员就列清单</span></div></td><td class="out">manifest.json（能解就列成员）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="jar" data-ext=".jar" tabindex="0" role="button"><td class="ext"><code>.jar</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+</section>
+<section class="cat-panel" data-cat="data" hidden>
+    <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:13%">扩展名</th>
+        <th style="width:31%">标签</th>
+        <th style="width:35%">位置与处理</th>
+        <th style="width:21%">产出</th>
+      </tr></thead>
+      <tbody>
+<tr class="row" data-key="hex" data-ext=".hex" tabindex="0" role="button"><td class="ext"><code>.hex</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span></td><td class="locs"><div class="loc"><code>构建输出</code><span class="to">→</span><span class="act stop">默认排除</span></div><div class="loc"><code>交付固件</code><span class="to">→</span><span class="act">作为独立附件导入</span></div></td><td class="out">独立附件 / skipped.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="s19" data-ext=".s19" tabindex="0" role="button"><td class="ext"><code>.s19</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span></td><td class="locs"><div class="loc"><code>构建输出</code><span class="to">→</span><span class="act stop">默认排除</span></div><div class="loc"><code>交付固件</code><span class="to">→</span><span class="act">作为独立附件导入</span></div></td><td class="out">独立附件 / skipped.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="sldd" data-ext=".sldd" tabindex="0" role="button"><td class="ext"><code>.sldd</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">条目 JSONL + 数据文件</span></div></td><td class="out">entries.jsonl<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mat" data-ext=".mat" tabindex="0" role="button"><td class="ext"><code>.mat</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#0e7490;background:#cffafe;border-color:#0e749033">运行缓存<i>*</i></span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span></td><td class="locs"><div class="loc"><code>工程数据目录</code><span class="to">→</span><span class="act">变量清单 + 全量数据</span></div><div class="loc"><code>slprj/rsim、raccel、sim</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">variables.json + data/*.csv<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="fig" data-ext=".fig" tabindex="0" role="button"><td class="ext"><code>.fig</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">清单 + 数据文件</span></div></td><td class="out">figure.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mdf" data-ext=".mdf" tabindex="0" role="button"><td class="ext"><code>.mdf</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">清单 + 数据文件</span></div></td><td class="out">channels.json + data/*.csv<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="mf4" data-ext=".mf4" tabindex="0" role="button"><td class="ext"><code>.mf4</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">清单 + 数据文件</span></div></td><td class="out">channels.json + data/*.csv<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="blf" data-ext=".blf" tabindex="0" role="button"><td class="ext"><code>.blf</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">清单 + 数据文件</span></div></td><td class="out">channels.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="elf" data-ext=".elf" tabindex="0" role="button"><td class="ext"><code>.elf</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span></td><td class="locs"><div class="loc"><code>构建输出</code><span class="to">→</span><span class="act stop">默认排除</span></div><div class="loc"><code>交付固件</code><span class="to">→</span><span class="act">作为独立附件导入</span></div></td><td class="out">独立附件 / skipped.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="bin" data-ext=".bin" tabindex="0" role="button"><td class="ext"><code>.bin</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span></td><td class="locs"><div class="loc"><code>构建输出</code><span class="to">→</span><span class="act stop">默认排除</span></div><div class="loc"><code>交付固件</code><span class="to">→</span><span class="act">作为独立附件导入</span></div></td><td class="out">独立附件 / skipped.json<span class="hint">右栏看细节 →</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+</section>
+<section class="cat-panel" data-cat="native" hidden>
+    <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:13%">扩展名</th>
+        <th style="width:31%">标签</th>
+        <th style="width:35%">位置与处理</th>
+        <th style="width:21%">产出</th>
+      </tr></thead>
+      <tbody>
+<tr class="row" data-key="mexw64" data-ext=".mexw64" tabindex="0" role="button"><td class="ext"><code>.mexw64</code></td><td class="labels"><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原件 + 元数据</span></div><div class="loc"><code>slprj/、*_rtw/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">metadata.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="dll" data-ext=".dll" tabindex="0" role="button"><td class="ext"><code>.dll</code></td><td class="labels"><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原件 + 元数据</span></div><div class="loc"><code>slprj/、*_rtw/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">metadata.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="exe" data-ext=".exe" tabindex="0" role="button"><td class="ext"><code>.exe</code></td><td class="labels"><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原件 + 元数据</span></div><div class="loc"><code>slprj/、*_rtw/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">metadata.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="lib" data-ext=".lib" tabindex="0" role="button"><td class="ext"><code>.lib</code></td><td class="labels"><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">元件 + 符号元数据</span></div><div class="loc"><code>slprj/、*_rtw/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">metadata.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="obj" data-ext=".obj" tabindex="0" role="button"><td class="ext"><code>.obj</code></td><td class="labels"><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">符号元数据</span></div><div class="loc"><code>slprj/、*_rtw/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">metadata.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="pdb" data-ext=".pdb" tabindex="0" role="button"><td class="ext"><code>.pdb</code></td><td class="labels"><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">调试符号元数据</span></div><div class="loc"><code>slprj/、*_rtw/</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">metadata.json<span class="hint">右栏看细节 →</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+</section>
+<section class="cat-panel" data-cat="opaque" hidden>
+    <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:13%">扩展名</th>
+        <th style="width:31%">标签</th>
+        <th style="width:35%">位置与处理</th>
+        <th style="width:21%">产出</th>
+      </tr></thead>
+      <tbody>
+<tr class="row" data-key="ctf" data-ext=".ctf" tabindex="0" role="button"><td class="ext"><code>.ctf</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#6d28d9;background:#f1ebfd;border-color:#6d28d933">加密/保护</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">检测加密；能列成员就列清单</span></div></td><td class="out">manifest.json（能解就列成员）<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="p" data-ext=".p" tabindex="0" role="button"><td class="ext"><code>.p</code></td><td class="labels"><span class="lab cat" style="color:#6d28d9;background:#f1ebfd;border-color:#6d28d933">加密/保护</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原件 + 元数据</span></div></td><td class="out">metadata.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="slxp" data-ext=".slxp" tabindex="0" role="button"><td class="ext"><code>.slxp</code></td><td class="labels"><span class="lab cat" style="color:#6d28d9;background:#f1ebfd;border-color:#6d28d933">加密/保护</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原件 + 元数据</span></div></td><td class="out">metadata.json<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="sscp" data-ext=".sscp" tabindex="0" role="button"><td class="ext"><code>.sscp</code></td><td class="labels"><span class="lab cat" style="color:#6d28d9;background:#f1ebfd;border-color:#6d28d933">加密/保护</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">原件 + 元数据</span></div></td><td class="out">metadata.json<span class="hint">右栏看细节 →</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+</section>
+<section class="cat-panel" data-cat="derived" hidden>
+    <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:13%">扩展名</th>
+        <th style="width:31%">标签</th>
+        <th style="width:35%">位置与处理</th>
+        <th style="width:21%">产出</th>
+      </tr></thead>
+      <tbody>
+<tr class="row" data-key="slxc" data-ext=".slxc" tabindex="0" role="button"><td class="ext"><code>.slxc</code></td><td class="labels"><span class="lab cat" style="color:#475569;background:#eef1f5;border-color:#47556933">派生/缓存</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存</span><span class="lab tag" style="color:#0e7490;background:#cffafe;border-color:#0e749033">运行缓存</span></td><td class="locs"><div class="loc"><code>slprj/ 下</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">skipped.json 条目<span class="hint">右栏看细节 →</span></td></tr>
+<tr class="row" data-key="autosave" data-ext=".autosave" tabindex="0" role="button"><td class="ext"><code>.autosave</code></td><td class="labels"><span class="lab cat" style="color:#475569;background:#eef1f5;border-color:#47556933">派生/缓存</span></td><td class="locs"><div class="loc"><code>任意位置</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">skipped.json 条目<span class="hint">右栏看细节 →</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+</section>
+  </div>
+</div>
+
+<footer>
+  <p>判定以文件头和实际路径为准，扩展名只作线索；缓存、代码生成和构建目录按路径排除，但仍记入 <code>skipped.json</code>。</p>
+</footer>
+</div>
+
+<div id="sources" hidden>
+<div class="dsrc" id="d-m" hidden>
+  <p class="lead"><b>直读原文。</b>按 UTF-8 BOM → UTF-8 → GB18030 顺序解码，保留原始行尾和空白。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按 UTF-8 BOM → UTF-8 → GB18030 顺序解码，保留原始行尾和空白</li><li>整份源码直接入库；function/classdef/代码节只在原文上标记位置，不另存一份改写版</li><li>同目录同名 .m/.p 只做引用提示，不互相覆盖</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>function [y, info] = fcn(u)
+% 输入限幅
+y = min(max(u, 0), 1);
+info = struct(&#x27;sat&#x27;, y ~= u);
+end</pre>
+  <h3>AI 能读到什么</h3>
+  <p>完整的函数签名、注释、实现和调用；检索命中后 read 拿到的就是源码本身。</p>
+  <h3>边界</h3>
+  <p class="bound">不执行代码。eval、动态函数名、回调闭包和运行时类型推断，只能按静态文本判断。</p>
+</div>
+<div class="dsrc" id="d-mdl" hidden>
+  <p class="lead"><b>直读原文。</b>先看前 4 字节：PK 开头按 .slx 解包，否则按文本模型解析。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>模型目录</code></td><td>—</td><td>文本 Block/Line 解析成 JSON</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>先看前 4 字节：PK 开头按 .slx 解包，否则按文本模型解析</li><li>MDL 就是老版本的 SLX：按 Block / Line 声明做词法扫描再取字段，块的 BlockType、Name、Parameters、Ports，连线的 SrcBlock/SrcPort、DstBlock/DstPort、Branch、Labels</li><li>花括号层级先配对再进字段，子系统嵌套从 Subsystem 段还原；不按行用正则硬切，因为参数里可能有换行、引号和嵌套括号</li><li>产物的目录结构和图数据 schema 与 .slx 完全一样，只是数据来源从 XML 换成文本 token，两个版本能直接对比</li><li>每个系统落一个 JSON，和 .slx 同一套 schema</li></ol>
+  <h3>产出</h3>
+  <p><code>各系统 main.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;schema&quot;: &quot;ov.matlab.simulink/1&quot;,
+  &quot;system&quot;: &quot;Gen&quot;,
+  &quot;system_ref&quot;: &quot;system_42&quot;,
+  &quot;type&quot;: &quot;simulink-subsystem&quot;,
+  &quot;subsystem_types&quot;: [],
+  &quot;execution&quot;: {},
+  &quot;blocks&quot;: [
+    {&quot;id&quot;: &quot;n1&quot;, &quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
+    {&quot;id&quot;: &quot;n2&quot;, &quot;name&quot;: &quot;GenSpd&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
+    {&quot;id&quot;: &quot;n3&quot;, &quot;name&quot;: &quot;GenTrqCmd&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
+    {&quot;id&quot;: &quot;n4&quot;, &quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
+     &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;,
+     &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]},
+     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;,
+                &quot;torque_max&quot;: &quot;207*42/60&quot;, &quot;T_t&quot;: &quot;[0.09 0.08 0.07 0]&quot;,
+                &quot;param_by&quot;: &quot;Maximum torque and power&quot;}},
+    {&quot;id&quot;: &quot;n5&quot;, &quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
+    {&quot;id&quot;: &quot;n6&quot;, &quot;name&quot;: &quot;GenCurnt&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
+    {&quot;id&quot;: &quot;n7&quot;, &quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
+     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}}
+  ],
+  &quot;edges&quot;: [
+    {&quot;from&quot;: &quot;n1&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;BusVolt&quot;},
+    {&quot;from&quot;: &quot;n2&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 2, &quot;signal&quot;: &quot;GenSpd&quot;},
+    {&quot;from&quot;: &quot;n3&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 3, &quot;signal&quot;: &quot;GenTrqCmd&quot;},
+    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 3, &quot;to&quot;: &quot;n5&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;GenTrq&quot;},
+    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 2, &quot;to&quot;: &quot;n6&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;GenCurnt&quot;},
+    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n7&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: null}
+  ],
+  &quot;description&quot;: &quot;母线电压、发电机转速和扭矩指令进入查表模块，输出发电机扭矩和电流；第三路输出接 Terminator。&quot;,
+  &quot;children&quot;: []
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>老版模型的分层子系统、每个系统的图数据和参数；和 .slx 版落在同一套结构里。</p>
+  <h3>边界</h3>
+  <p class="bound">MDL 语法没有公开规范、版本差异大；认不出的段保留原文并列为未解析项，不猜块类型。</p>
+</div>
+<div class="dsrc" id="d-ssc" hidden>
+  <p class="lead"><b>直读原文。</b>按文本读 component、nodes、inputs、outputs、parameters、equations 段。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按文本读 component、nodes、inputs、outputs、parameters、equations 段</li><li>方程表达式保持原样，只标出行号位置</li><li>原文入库，不改写、不做方程变换</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>component Cap
+  nodes
+    p = foundation.electrical.electrical;
+    n = foundation.electrical.electrical;
+  end
+  parameters
+    C = {1e-6, &#x27;F&#x27;};
+  end
+  equations
+    I == C * V.der;
+  end
+end</pre>
+  <h3>AI 能读到什么</h3>
+  <p>组件接口、参数和方程原文。</p>
+  <h3>边界</h3>
+  <p class="bound">只读源码，不展开 Simscape 网络，不求解物理方程。</p>
+</div>
+<div class="dsrc" id="d-tlc" hidden>
+  <p class="lead"><b>直读原文。</b>按文本读模板，保留缩进和指令。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按文本读模板，保留缩进和指令</li><li>标出 %include、%assign、%foreach、%if 等指令位置</li><li>原文入库，按构建期输入对待</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>%include &quot;tmwtypes.tlc&quot;
+%assign modelName = &quot;DRLHevIps&quot;
+%foreach item in BlockType
+  /* generated */
+%endforeach</pre>
+  <h3>AI 能读到什么</h3>
+  <p>模板指令、include 依赖和目标文件线索。</p>
+  <h3>边界</h3>
+  <p class="bound">不执行 TLC；宏展开后的结果不在导入阶段生成。</p>
+</div>
+<div class="dsrc" id="d-c" hidden>
+  <p class="lead"><b>按位置判定。</b>原文直接导入，保留 include、宏和注释。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程源码目录</code></td><td>—</td><td>原文导入</td></tr><tr><td><code>slprj/、*_rtw/、html/</code></td><td>代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>原文直接导入，保留 include、宏和注释</li><li>在 slprj/、*_rtw/、html/ 下按目录规则跳过</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>#include &quot;DRLHevIps.h&quot;
+void DRLHevIps_step(void)
+{
+  Gen_Trq = Lookup(&amp;BusVolt, &amp;GenSpd);
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>函数、宏、结构体和 include 的原文。</p>
+  <h3>边界</h3>
+  <p class="bound">C 预处理分支不展开。</p>
+</div>
+<div class="dsrc" id="d-h" hidden>
+  <p class="lead"><b>按位置判定。</b>原文直接导入，保留声明、宏和 include guard。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程源码目录</code></td><td>—</td><td>原文导入</td></tr><tr><td><code>slprj/、*_rtw/、html/</code></td><td>代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>原文直接导入，保留声明、宏和 include guard</li><li>构建目录下的生成头文件按目录规则跳过</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>#ifndef DRLHEVIPS_H
+#define DRLHEVIPS_H
+extern void DRLHevIps_step(void);
+#endif</pre>
+  <h3>AI 能读到什么</h3>
+  <p>声明、宏和类型定义的原文。</p>
+  <h3>边界</h3>
+  <p class="bound">不展开条件编译分支。</p>
+</div>
+<div class="dsrc" id="d-cpp" hidden>
+  <p class="lead"><b>按位置判定。</b>按路径判定构建目录；源码目录内原文入库。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程源码目录</code></td><td>—</td><td>原文导入</td></tr><tr><td><code>slprj/、*_rtw/、html/</code></td><td>代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按路径判定构建目录，源码目录内原文入库</li><li>保留类声明、模板和命名空间原文</li><li>生成代码标 generated=true，不冒充手写源码</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>class Plant {
+public:
+  void step(double dt);
+private:
+  double speed_;
+};</pre>
+  <h3>AI 能读到什么</h3>
+  <p>类、函数、模板和 include 的原文。</p>
+  <h3>边界</h3>
+  <p class="bound">模板实例化和预处理分支不展开。</p>
+</div>
+<div class="dsrc" id="d-hpp" hidden>
+  <p class="lead"><b>按位置判定。</b>源码目录内原文入库。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程源码目录</code></td><td>—</td><td>原文导入</td></tr><tr><td><code>slprj/、*_rtw/、html/</code></td><td>代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>源码目录内原文入库</li><li>保留声明、模板和 include</li><li>构建目录下按路径跳过</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>#pragma once
+#include &lt;vector&gt;
+class Signal { /* ... */ };</pre>
+  <h3>AI 能读到什么</h3>
+  <p>声明和类型定义的原文。</p>
+  <h3>边界</h3>
+  <p class="bound">不展开条件编译。</p>
+</div>
+<div class="dsrc" id="d-mk" hidden>
+  <p class="lead"><b>按位置判定。</b>构建脚本；按路径/扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程脚本目录</code></td><td>—</td><td>原文导入</td></tr><tr><td><code>slprj/、*_rtw/</code></td><td>构建产物、slprj 缓存、代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>在 skipped.json 记路径、大小、修改时间、SHA-256、所属构建目录和跳过原因</li><li>确需交付构建脚本时，用显式 include 单独导入这一份</li></ol>
+  <h3>产出</h3>
+  <p><code>原文 / skipped.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.mk&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；AI 能看到“有什么、为什么没进”，不会以为工程缺文件。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；文件仍在工程里，只是不进知识库、不做向量。</p>
+</div>
+<div class="dsrc" id="d-bat" hidden>
+  <p class="lead"><b>按位置判定。</b>构建脚本；按路径/扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程脚本目录</code></td><td>—</td><td>原文导入</td></tr><tr><td><code>slprj/、*_rtw/</code></td><td>构建产物、slprj 缓存、代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>记入 skipped.json：路径、大小、哈希、所属构建目录、原因</li><li>需要排查构建问题时再单独导入</li></ol>
+  <h3>产出</h3>
+  <p><code>原文 / skipped.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.bat&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；不执行脚本。</p>
+</div>
+<div class="dsrc" id="d-rsp" hidden>
+  <p class="lead"><b>按位置判定。</b>编译器响应文件；按路径/扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程脚本目录</code></td><td>—</td><td>原文导入</td></tr><tr><td><code>slprj/、*_rtw/</code></td><td>构建产物、slprj 缓存、代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>记入 skipped.json，标明所属构建目录</li><li>需要核对链接参数时单独导入</li></ol>
+  <h3>产出</h3>
+  <p><code>原文 / skipped.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.rsp&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除。</p>
+</div>
+<div class="dsrc" id="d-rtw" hidden>
+  <p class="lead"><b>默认排除。</b>构建期模板；按扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>构建流程</code></td><td>构建产物、代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是代码生成中间文件</li><li>需要研究生成过程时单独导入</li></ol>
+  <h3>产出</h3>
+  <p><code>skipped.json 条目</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.rtw&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；中间文件可由代码生成重建。</p>
+</div>
+<div class="dsrc" id="d-tmf" hidden>
+  <p class="lead"><b>默认排除。</b>构建期模板；按扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>构建流程</code></td><td>构建产物、代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是目标模板</li><li>需要改目标配置时单独导入</li></ol>
+  <h3>产出</h3>
+  <p><code>skipped.json 条目</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.tmf&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除。</p>
+</div>
+<div class="dsrc" id="d-map" hidden>
+  <p class="lead"><b>按位置判定。</b>链接映射；按扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>构建目录</code></td><td>构建产物</td><td>默认排除</td></tr><tr><td><code>单独交付</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是链接产物</li><li>排查地址/段布局时单独导入原文</li></ol>
+  <h3>产出</h3>
+  <p><code>原文 / skipped.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.map&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；map 可重新链接生成。</p>
+</div>
+<div class="dsrc" id="d-hex" hidden>
+  <p class="lead"><b>按位置判定。</b>烧录产物；按扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>构建输出</code></td><td>目标产物、代码生成</td><td>默认排除</td></tr><tr><td><code>交付固件</code></td><td>—</td><td>作为独立附件导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是烧录镜像</li><li>交付固件时把镜像作为独立附件导入，不混进工程知识库</li></ol>
+  <h3>产出</h3>
+  <p><code>独立附件 / skipped.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.hex&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；镜像不是源码。</p>
+</div>
+<div class="dsrc" id="d-s19" hidden>
+  <p class="lead"><b>按位置判定。</b>烧录产物；按扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>构建输出</code></td><td>目标产物、代码生成</td><td>默认排除</td></tr><tr><td><code>交付固件</code></td><td>—</td><td>作为独立附件导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是烧录镜像</li><li>交付固件时作为独立附件导入</li></ol>
+  <h3>产出</h3>
+  <p><code>独立附件 / skipped.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.s19&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；镜像不是源码。</p>
+</div>
+<div class="dsrc" id="d-html" hidden>
+  <p class="lead"><b>按位置判定。</b>读生成报告 HTML 原文；*_rtw/html/、slprj 报告目录按代码生成排除。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>docs/ 等普通目录</code></td><td>—</td><td>原文导入</td></tr><tr><td><code>*_rtw/html/、slprj 报告目录</code></td><td>代码生成</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>先看路径：*_rtw/html/、slprj 报告目录下按代码生成排除</li><li>文档和源码目录里的 HTML 直接读标题、正文、表格和链接</li><li>原文入库，不执行页面脚本</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>&lt;html&gt;&lt;body&gt;
+&lt;h1&gt;Code Generation Report&lt;/h1&gt;
+&lt;table&gt;&lt;tr&gt;&lt;td&gt;Model&lt;/td&gt;&lt;td&gt;DRLHevIps&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/body&gt;&lt;/html&gt;</pre>
+  <h3>AI 能读到什么</h3>
+  <p>文档正文、表格和链接。</p>
+  <h3>边界</h3>
+  <p class="bound">动态渲染的内容只保留静态 DOM；报告目录默认不索引。</p>
+</div>
+<div class="dsrc" id="d-prj" hidden>
+  <p class="lead"><b>直读原文。</b>按 XML 原文读，保留工程文件清单、路径、启动文件和快捷方式。</p>
+  <div class="meta">
+    <span class="form">XML 文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按 XML 原文读，保留工程文件清单、路径、启动文件和快捷方式</li><li>盘符和反斜杠路径原样保留，另标出绝对路径</li><li>原文入库，不改写工程文件</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>&lt;Project xmlns=&quot;...&quot;&gt;
+  &lt;entry name=&quot;DRLHevIps.slx&quot; path=&quot;model/&quot;/&gt;
+  &lt;startup name=&quot;hev_init.m&quot;/&gt;
+&lt;/Project&gt;</pre>
+  <h3>AI 能读到什么</h3>
+  <p>工程包含哪些文件、入口脚本和路径设置。</p>
+  <h3>边界</h3>
+  <p class="bound">不改写路径，不自动修复失效引用。</p>
+</div>
+<div class="dsrc" id="d-asv" hidden>
+  <p class="lead"><b>直读原文。</b>按 M 源码读，原文入库。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按 M 源码读，原文入库</li><li>与同目录同名 .m 比对大小、修改时间和哈希</li><li>标 backup=true，只作恢复线索，不覆盖当前源码</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>function y = fcn(u)
+% autosave copy
+y = u * 2;
+end</pre>
+  <h3>AI 能读到什么</h3>
+  <p>备份里的代码内容，以及它对应哪个源文件。</p>
+  <h3>边界</h3>
+  <p class="bound">备份可能过期或来自崩溃现场；不自动合并。</p>
+</div>
+<div class="dsrc" id="d-xml" hidden>
+  <p class="lead"><b>直读原文。</b>检测编码、命名空间和根元素。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>检测编码、命名空间和根元素</li><li>已知形态（.prj、.slreqx、.arxml、.slmx）走对应规则，其余按通用 XML 原文读</li><li>原文入库，只加根元素和元素计数这类定位信息</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;root&gt;
+  &lt;item name=&quot;VCU_Mode&quot; value=&quot;2&quot;/&gt;
+&lt;/root&gt;</pre>
+  <h3>AI 能读到什么</h3>
+  <p>根元素、命名空间、元素路径和关键属性。</p>
+  <h3>边界</h3>
+  <p class="bound">私有 schema 不猜含义；原文是唯一依据。</p>
+</div>
+<div class="dsrc" id="d-json" hidden>
+  <p class="lead"><b>直读原文。</b>原文入库，不重新格式化。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>原文入库，不重新格式化</li><li>读顶层键、数组长度和嵌套深度做定位</li><li>识别 OV manifest、模型配置等已知形态</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;name&quot;: &quot;VCU_Mode&quot;,
+  &quot;value&quot;: 2,
+  &quot;unit&quot;: &quot;&quot;
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>配置项原文和键路径。</p>
+  <h3>边界</h3>
+  <p class="bound">不推断业务含义；JSON5、带注释的文件按文本原样保留。</p>
+</div>
+<div class="dsrc" id="d-yaml" hidden>
+  <p class="lead"><b>直读原文。</b>用安全加载器解析，禁止任意对象构造。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>用安全加载器解析，禁止任意对象构造</li><li>原文入库，保留锚点、别名和多文档</li><li>按文档拆分定位</li><li>与 .yml 同一套规则，两者只按后缀区分，不合并成一条记录</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>name: DRLHevIps
+signals:
+  - BusVolt
+  - GenSpd</pre>
+  <h3>AI 能读到什么</h3>
+  <p>键路径、类型和多文档内容。</p>
+  <h3>边界</h3>
+  <p class="bound">自定义 tag 不展开，只保留原文。</p>
+</div>
+<div class="dsrc" id="d-yml" hidden>
+  <p class="lead"><b>直读原文。</b>用安全加载器解析，禁止任意对象构造。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>用安全加载器解析，禁止任意对象构造</li><li>原文入库，保留锚点、别名和多文档</li><li>按文档拆分定位</li><li>与 .yaml 同一套规则，两者只按后缀区分，不合并成一条记录</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>name: DRLHevIps
+signals:
+  - BusVolt
+  - GenSpd</pre>
+  <h3>AI 能读到什么</h3>
+  <p>键路径、类型和多文档内容。</p>
+  <h3>边界</h3>
+  <p class="bound">自定义 tag 不展开，只保留原文。</p>
+</div>
+<div class="dsrc" id="d-csv" hidden>
+  <p class="lead"><b>直读原文。</b>原文入库，按需识别分隔符、编码和表头。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>原文入库，按需识别分隔符、编码和表头</li><li>记录行列数、列名和列类型，作为定位信息</li><li>大文件不整表切碎进索引，需要哪段读哪段</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>time,speed
+0,0
+1,0.12
+2,0.35</pre>
+  <h3>AI 能读到什么</h3>
+  <p>表头、列名和样本行；细节直接读原文。</p>
+  <h3>边界</h3>
+  <p class="bound">列类型推断可能误判，混合类型列标 mixed；原文优先。</p>
+</div>
+<div class="dsrc" id="d-txt" hidden>
+  <p class="lead"><b>直读原文。</b>探测编码（BOM/UTF-8/GB18030）后原文入库。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>探测编码（BOM/UTF-8/GB18030）后原文入库</li><li>判断是说明、日志还是数据，只加类型标记</li><li>日志保留原文，需要时按时间或级别再筛</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>WLTC 工况说明
+1. 低速段 ...
+2. 高速段 ...</pre>
+  <h3>AI 能读到什么</h3>
+  <p>全文；日志能定位到关键行。</p>
+  <h3>边界</h3>
+  <p class="bound">伪装成 .txt 的二进制按文件头拒绝文本解码。</p>
+</div>
+<div class="dsrc" id="d-ini" hidden>
+  <p class="lead"><b>直读原文。</b>按节/键读，保留注释和顺序。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按节/键读，保留注释和顺序</li><li>原文入库</li><li>重复键按出现顺序保留</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>[model]
+name=DRLHevIps
+solver=ode45
+
+[output]
+save_format=v7</pre>
+  <h3>AI 能读到什么</h3>
+  <p>节、键、值和注释。</p>
+  <h3>边界</h3>
+  <p class="bound">不做变量展开。</p>
+</div>
+<div class="dsrc" id="d-arxml" hidden>
+  <p class="lead"><b>直读原文。</b>按文本流式读，避免整棵树进内存。</p>
+  <div class="meta">
+    <span class="form">XML 文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按文本流式读，避免整棵树进内存</li><li>定位 AR-PACKAGE、SWC、Port、Interface 和引用路径</li><li>原文入库，超大文件也只做行级定位</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>&lt;AR-PACKAGES&gt;
+  &lt;AR-PACKAGE&gt;
+    &lt;SHORT-NAME&gt;VCU&lt;/SHORT-NAME&gt;
+  &lt;/AR-PACKAGE&gt;
+&lt;/AR-PACKAGES&gt;</pre>
+  <h3>AI 能读到什么</h3>
+  <p>包、组件、接口和引用路径原文。</p>
+  <h3>边界</h3>
+  <p class="bound">不做 AUTOSAR 元模型校验；未知元素保留原文。</p>
+</div>
+<div class="dsrc" id="d-dbc" hidden>
+  <p class="lead"><b>直读原文。</b>按文本读 BO_、SG_、VAL_ 等段。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按文本读 BO_、SG_、VAL_ 等段</li><li>报文 ID、DLC、信号位置、因子、偏移、单位按行定位</li><li>原文入库</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>BO_ 100 VCU_1: 8 VCU
+ SG_ Speed : 0|16@1+ (0.1,0) [0|250] &quot;km/h&quot; ECU</pre>
+  <h3>AI 能读到什么</h3>
+  <p>报文和信号定义，含单位和取值范围。</p>
+  <h3>边界</h3>
+  <p class="bound">厂商扩展段只保留原文。</p>
+</div>
+<div class="dsrc" id="d-ldf" hidden>
+  <p class="lead"><b>直读原文。</b>按文本读 Frames、Signals、Schedule 段。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按文本读 Frames、Signals、Schedule 段</li><li>帧 ID、长度、信号位置和发布节点按行定位</li><li>原文入库</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>Frames {
+  Frame VCU_1 : 0x64, 8 {
+    Speed, 0, 16;
+  }
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>LIN 帧、信号和调度定义。</p>
+  <h3>边界</h3>
+  <p class="bound">厂商扩展段只保留原文。</p>
+</div>
+<div class="dsrc" id="d-a2l" hidden>
+  <p class="lead"><b>直读原文。</b>按文本读 MEASUREMENT、CHARACTERISTIC、AXIS_PTS、COMPU_METHOD。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按文本读 MEASUREMENT、CHARACTERISTIC、AXIS_PTS、COMPU_METHOD</li><li>名称、地址、数据类型、维度、换算和上下限按条目定位</li><li>原文入库</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre>MEASUREMENT Speed &quot;vehicle speed&quot;
+  /begin MEASUREMENT Speed
+    UBYTE Conversion
+  /end MEASUREMENT</pre>
+  <h3>AI 能读到什么</h3>
+  <p>标定量、观测量、地址和换算定义。</p>
+  <h3>边界</h3>
+  <p class="bound">地址和具体 ECU 构建相关，不保证跨版本有效。</p>
+</div>
+<div class="dsrc" id="d-md" hidden>
+  <p class="lead"><b>直读原文。</b>按 UTF-8 读，原文直接作为文档入库。</p>
+  <div class="meta">
+    <span class="form">纯文本</span><span class="lab cat" style="color:#0f766e;background:#e6f4f1;border-color:#0f766e33">可读文本</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原文导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按 UTF-8 读，原文直接作为文档入库</li><li>标题树、代码块和链接只做定位</li><li>不重写成别的格式</li></ol>
+  <h3>产出</h3>
+  <p><code>原文（不生成派生文件）</code></p>
+  <h3>案例样子</h3>
+  <pre># HEV 模型说明
+
+## 入口
+`hev_init.m` 载入 DRLHevIps.slx。</pre>
+  <h3>AI 能读到什么</h3>
+  <p>正文、标题和代码块原文。</p>
+  <h3>边界</h3>
+  <p class="bound">外部链接只检查可达性，不抓取正文。</p>
+</div>
+<div class="dsrc" id="d-slx" hidden>
+  <p class="lead"><b>解包直读。</b>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml。</p>
+  <div class="meta">
+    <span class="form">ZIP/OPC</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>模型目录</code></td><td>—</td><td>按系统解包成 JSON</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口顺序、参数）、edges（源/目标、端口、信号）、子系统类型和说明</li><li>流程图和参数表视图从 JSON 生成，不单独落文件</li><li>原文入库；匹配本地块库只作参考，不覆盖模型里的实例参数</li></ol>
+  <h3>产出</h3>
+  <p><code>各系统 main.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;schema&quot;: &quot;ov.matlab.simulink/1&quot;,
+  &quot;system&quot;: &quot;Gen&quot;,
+  &quot;system_ref&quot;: &quot;system_42&quot;,
+  &quot;type&quot;: &quot;simulink-subsystem&quot;,
+  &quot;subsystem_types&quot;: [],
+  &quot;execution&quot;: {},
+  &quot;blocks&quot;: [
+    {&quot;id&quot;: &quot;n1&quot;, &quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
+    {&quot;id&quot;: &quot;n2&quot;, &quot;name&quot;: &quot;GenSpd&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
+    {&quot;id&quot;: &quot;n3&quot;, &quot;name&quot;: &quot;GenTrqCmd&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
+    {&quot;id&quot;: &quot;n4&quot;, &quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
+     &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;,
+     &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]},
+     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;,
+                &quot;torque_max&quot;: &quot;207*42/60&quot;, &quot;T_t&quot;: &quot;[0.09 0.08 0.07 0]&quot;,
+                &quot;param_by&quot;: &quot;Maximum torque and power&quot;}},
+    {&quot;id&quot;: &quot;n5&quot;, &quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
+    {&quot;id&quot;: &quot;n6&quot;, &quot;name&quot;: &quot;GenCurnt&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
+     &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
+    {&quot;id&quot;: &quot;n7&quot;, &quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
+     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}}
+  ],
+  &quot;edges&quot;: [
+    {&quot;from&quot;: &quot;n1&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;BusVolt&quot;},
+    {&quot;from&quot;: &quot;n2&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 2, &quot;signal&quot;: &quot;GenSpd&quot;},
+    {&quot;from&quot;: &quot;n3&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 3, &quot;signal&quot;: &quot;GenTrqCmd&quot;},
+    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 3, &quot;to&quot;: &quot;n5&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;GenTrq&quot;},
+    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 2, &quot;to&quot;: &quot;n6&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;GenCurnt&quot;},
+    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n7&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: null}
+  ],
+  &quot;description&quot;: &quot;母线电压、发电机转速和扭矩指令进入查表模块，输出发电机扭矩和电流；第三路输出接 Terminator。&quot;,
+  &quot;children&quot;: []
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>完整的模型结构和参数；按系统树一层层往下读，每个 JSON 都是完整的一层。</p>
+  <h3>边界</h3>
+  <p class="bound">不仿真；Variant 实际选择、Stateflow 动态调度、外部库内部实现不声称已验证。</p>
+</div>
+<div class="dsrc" id="d-sldd" hidden>
+  <p class="lead"><b>解析直读。</b>OOXML 解 data/chunk*.xml；每条数据一行 JSONL。</p>
+  <div class="meta">
+    <span class="form">ZIP/OOXML</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>条目 JSONL + 数据文件</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按 OOXML 解开，读 data/chunk*.xml 和 manifest</li><li>每条数据读名称、对象类型（Simulink.Parameter / Signal / VariantExpression / Bus / Enum / NumericType）、维度、数据类型、初值或条件、单位、存储类、描述</li><li>值是数组、Bus 结构这类大块数据时单独落数据文件，和 .mat 用同一套读法</li><li>原文入库；引用到的其他 .sldd 单列，不合并成假数据</li></ol>
+  <h3>产出</h3>
+  <p><code>entries.jsonl</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;name&quot;: &quot;VCU_Mode&quot;, &quot;class&quot;: &quot;Simulink.Parameter&quot;, &quot;dims&quot;: [1, 1], &quot;dtype&quot;: &quot;auto&quot;, &quot;value&quot;: 2.0, &quot;unit&quot;: &quot;&quot;, &quot;storage&quot;: &quot;&quot;, &quot;description&quot;: &quot;&quot;}
+{&quot;name&quot;: &quot;RBEMS&quot;, &quot;class&quot;: &quot;VariantExpression&quot;, &quot;condition&quot;: &quot;VCU_Mode == 1&quot;, &quot;dimensions&quot;: null, &quot;dtype&quot;: null}
+{&quot;name&quot;: &quot;DRLEMS&quot;, &quot;class&quot;: &quot;VariantExpression&quot;, &quot;condition&quot;: &quot;VCU_Mode == 3&quot;, &quot;dimensions&quot;: null, &quot;dtype&quot;: null}
+{&quot;name&quot;: &quot;BatteryBus&quot;, &quot;class&quot;: &quot;Simulink.Bus&quot;, &quot;elements&quot;: [{&quot;name&quot;: &quot;Volt&quot;, &quot;dtype&quot;: &quot;single&quot;, &quot;dims&quot;: [1, 1]}, {&quot;name&quot;: &quot;Curr&quot;, &quot;dtype&quot;: &quot;single&quot;, &quot;dims&quot;: [1, 1]}]}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>数据清单：每条数据的名字、类型、维度、值、单位；模型引用的参数和信号能直接查到定义。</p>
+  <h3>边界</h3>
+  <p class="bound">未声明的维度或类型不按值猜；ConfigSet 等嵌套对象保留原文，不拆成虚构标量。</p>
+</div>
+<div class="dsrc" id="d-mlx" hidden>
+  <p class="lead"><b>解包直读。</b>OOXML 解 document.xml 与 output.xml；单元和保存输出进 notebook.json。</p>
+  <div class="meta">
+    <span class="form">ZIP/OOXML</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开 OOXML，读 matlab/document.xml 的段落、样式和代码</li><li>读 matlab/output.xml 的保存输出，文本和图像分开</li><li>原文入库；代码单元直接读，不重新执行</li></ol>
+  <h3>产出</h3>
+  <p><code>notebook.json + outputs/</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;hev_init.mlx&quot;,
+  &quot;cells&quot;: [
+    {&quot;type&quot;: &quot;heading&quot;, &quot;level&quot;: 1, &quot;text&quot;: &quot;HEV 初始化&quot;},
+    {&quot;type&quot;: &quot;markdown&quot;, &quot;text&quot;: &quot;载入模型并跑一轮 WLTC。&quot;},
+    {&quot;type&quot;: &quot;code&quot;, &quot;source&quot;: &quot;mdl = &#x27;DRLHevIps&#x27;;\nload_system(mdl);&quot;},
+    {&quot;type&quot;: &quot;code&quot;, &quot;source&quot;: &quot;out = sim(mdl);&quot;,
+     &quot;outputs&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;SimulationOutput with properties: ...&quot;}]}
+  ],
+  &quot;outputs_dir&quot;: &quot;outputs/&quot;
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>文本单元、代码单元和保存时的输出。</p>
+  <h3>边界</h3>
+  <p class="bound">输出是保存时快照，不保证和当前代码一致；交互控件状态不重放。</p>
+</div>
+<div class="dsrc" id="d-mlapp" hidden>
+  <p class="lead"><b>解包直读。</b>OPC 解包读 document.xml 的 classdef 和 appModel.mat 组件树。</p>
+  <div class="meta">
+    <span class="form">ZIP/OPC</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按 OPC 解包，读 matlab/document.xml 里的 classdef 源码</li><li>读 appdesigner/appModel.mat 的组件树：名称、类型、父子关系和布局属性</li><li>原文入库；组件树读不出时只保留代码并标边界</li></ol>
+  <h3>产出</h3>
+  <p><code>code.m + app.json</code></p>
+  <h3>案例样子</h3>
+  <pre>code.m
+classdef HevApp &lt; matlab.apps.AppBase
+  properties (Access = public)
+    UIFigure  matlab.ui.Figure
+    UIAxes    matlab.ui.control.UIAxes
+  end
+  methods (Access = private)
+    function startupFcn(app)
+      % ...
+    end
+  end
+end
+
+app.json
+{
+  &quot;components&quot;: [
+    {&quot;name&quot;: &quot;UIFigure&quot;, &quot;type&quot;: &quot;figure&quot;, &quot;parent&quot;: null},
+    {&quot;name&quot;: &quot;UIAxes&quot;, &quot;type&quot;: &quot;axes&quot;, &quot;parent&quot;: &quot;UIFigure&quot;},
+    {&quot;name&quot;: &quot;StartButton&quot;, &quot;type&quot;: &quot;button&quot;, &quot;parent&quot;: &quot;UIFigure&quot;}
+  ]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>App 的完整 classdef 代码；能读就读组件树。</p>
+  <h3>边界</h3>
+  <p class="bound">mlapp 是未公开、随版本变化的格式；不重建 GUI，版本不兼容时不硬猜。</p>
+</div>
+<div class="dsrc" id="d-mlproj" hidden>
+  <p class="lead"><b>解包直读。</b>解开 ZIP，读工程定义和 metadata。</p>
+  <div class="meta">
+    <span class="form">ZIP</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开 ZIP，读工程定义和 metadata</li><li>列出包含的文件、文件夹、启动文件和快捷方式</li><li>原文入库，内部文件不自动展开成独立资源</li></ol>
+  <h3>产出</h3>
+  <p><code>manifest.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;HevProject.mlproj&quot;,
+  &quot;type&quot;: &quot;mlproj&quot;,
+  &quot;members&quot;: [
+    {&quot;path&quot;: &quot;project.xml&quot;, &quot;size&quot;: 2311},
+    {&quot;path&quot;: &quot;resources/&quot;, &quot;kind&quot;: &quot;folder&quot;}
+  ],
+  &quot;startup&quot;: [&quot;hev_init.m&quot;]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>工程归档里有什么、入口在哪。</p>
+  <h3>边界</h3>
+  <p class="bound">不执行工程启动脚本，不自动安装。</p>
+</div>
+<div class="dsrc" id="d-mltbx" hidden>
+  <p class="lead"><b>解包直读。</b>解开 ZIP，读 metadata/ 和工具箱清单。</p>
+  <div class="meta">
+    <span class="form">ZIP</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开 ZIP，读 metadata/ 和工具箱清单</li><li>列工具箱名、版本、发布者、依赖和文件</li><li>原文入库；内部的 .m/.mlx 可按需展开</li></ol>
+  <h3>产出</h3>
+  <p><code>manifest.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;hev-tools.mltbx&quot;,
+  &quot;type&quot;: &quot;mltbx&quot;,
+  &quot;toolbox&quot;: {&quot;name&quot;: &quot;HEV Tools&quot;, &quot;version&quot;: &quot;1.2.0&quot;, &quot;publisher&quot;: &quot;...&quot;},
+  &quot;members&quot;: [{&quot;path&quot;: &quot;toolbox/+hev/init.m&quot;}, {&quot;path&quot;: &quot;metadata/&quot;}]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>工具箱版本、依赖和内容清单。</p>
+  <h3>边界</h3>
+  <p class="bound">不执行安装脚本；许可证字段可能不全。</p>
+</div>
+<div class="dsrc" id="d-mlappinstall" hidden>
+  <p class="lead"><b>解包直读。</b>解开 ZIP，读 app 清单和 metadata。</p>
+  <div class="meta">
+    <span class="form">ZIP</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开 ZIP，读 app 清单和 metadata</li><li>列应用名、版本、依赖和内部 .mlapp</li><li>原文入库；内部 .mlapp 按上面的规则读</li></ol>
+  <h3>产出</h3>
+  <p><code>manifest.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;HevApp.mlappinstall&quot;,
+  &quot;type&quot;: &quot;mlappinstall&quot;,
+  &quot;app&quot;: {&quot;name&quot;: &quot;HevApp&quot;, &quot;version&quot;: &quot;1.0&quot;},
+  &quot;members&quot;: [{&quot;path&quot;: &quot;HevApp.mlapp&quot;}, {&quot;path&quot;: &quot;metadata/&quot;}]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>应用版本、依赖和内部组件清单。</p>
+  <h3>边界</h3>
+  <p class="bound">不执行安装脚本；签名和许可证字段可能缺失。</p>
+</div>
+<div class="dsrc" id="d-sltx" hidden>
+  <p class="lead"><b>解包直读。</b>解开 ZIP，读模板描述、工程骨架和示例模型清单。</p>
+  <div class="meta">
+    <span class="form">ZIP</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>先看 PK 头确认是 ZIP；.sltx 是 Simulink 起始页的工程模板</li><li>列模板名、版本、必需产品和附带文件（工程定义、模型、脚本）</li><li>内部成员按各自后缀走本表规则；模板本身不实例化</li></ol>
+  <h3>产出</h3>
+  <p><code>manifest.json + template.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;hev_template.sltx&quot;,
+  &quot;type&quot;: &quot;sltx&quot;,
+  &quot;template&quot;: {&quot;name&quot;: &quot;HEV Project&quot;, &quot;version&quot;: &quot;1.0&quot;, &quot;products&quot;: [&quot;Simulink&quot;]},
+  &quot;members&quot;: [{&quot;path&quot;: &quot;project.prj&quot;}, {&quot;path&quot;: &quot;model/DRLHevIps.slx&quot;}]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>模板名、版本、必需产品和骨架文件清单。</p>
+  <h3>边界</h3>
+  <p class="bound">不实例化模板；模板内的 .slx 要图数据时按 .slx 规则单独解析。</p>
+</div>
+<div class="dsrc" id="d-mlpkginstall" hidden>
+  <p class="lead"><b>解包直读。</b>解开 ZIP，读支持包清单、目标硬件和第三方组件。</p>
+  <div class="meta">
+    <span class="form">ZIP</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开 ZIP，读支持包清单、目标硬件和安装脚本</li><li>列包名、版本和依赖的第三方组件（库、驱动、插件）</li><li>安装脚本只登记内容和哈希，不执行、不联网下载</li></ol>
+  <h3>产出</h3>
+  <p><code>manifest.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;arduino_support.mlpkginstall&quot;,
+  &quot;type&quot;: &quot;mlpkginstall&quot;,
+  &quot;package&quot;: {&quot;name&quot;: &quot;Arduino Hardware Support&quot;, &quot;version&quot;: &quot;25.2&quot;},
+  &quot;members&quot;: [{&quot;path&quot;: &quot;install.m&quot;}, {&quot;path&quot;: &quot;thirdparty/&quot;}]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>支持包名、版本、目标硬件和所需第三方组件。</p>
+  <h3>边界</h3>
+  <p class="bound">不执行安装脚本，不下载第三方依赖。</p>
+</div>
+<div class="dsrc" id="d-slreqx" hidden>
+  <p class="lead"><b>解包直读。</b>解 ZIP/XML 读 requirements/references；需求条目和链接都展开。</p>
+  <div class="meta">
+    <span class="form">ZIP/XML</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开 ZIP/XML，读 requirements、justifications、references</li><li>读需求 ID、标题、描述、理由、状态、父级和链接</li><li>原文入库，需求正文保持原文</li></ol>
+  <h3>产出</h3>
+  <p><code>requirements.jsonl + links.jsonl</code></p>
+  <h3>案例样子</h3>
+  <pre>requirements.jsonl
+{&quot;id&quot;: &quot;REQ-001&quot;, &quot;title&quot;: &quot;WLTC 工况下电量维持&quot;, &quot;status&quot;: &quot;approved&quot;, &quot;parent&quot;: null}
+{&quot;id&quot;: &quot;REQ-002&quot;, &quot;title&quot;: &quot;SOC 越限时报警&quot;, &quot;status&quot;: &quot;draft&quot;, &quot;parent&quot;: &quot;REQ-001&quot;}
+
+links.jsonl
+{&quot;requirement&quot;: &quot;REQ-001&quot;, &quot;element&quot;: &quot;system_42/n4&quot;, &quot;block&quot;: &quot;Mapped Generator&quot;, &quot;type&quot;: &quot;implement&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>需求原文、层级和链接。</p>
+  <h3>边界</h3>
+  <p class="bound">不判断需求是否被实现；链接目标只在同一工程内解析。</p>
+</div>
+<div class="dsrc" id="d-slmx" hidden>
+  <p class="lead"><b>解包直读。</b>读链接集；需求 ID 与模型元素路径成对输出。</p>
+  <div class="meta">
+    <span class="form">XML/容器</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按 XML/容器读链接集</li><li>读需求 ID、模型元素 SID/路径、链接类型和描述</li><li>原文入库，悬空链接单独列出</li></ol>
+  <h3>产出</h3>
+  <p><code>links.jsonl</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;requirement&quot;: &quot;REQ-001&quot;, &quot;element&quot;: &quot;system_42/n4&quot;, &quot;block&quot;: &quot;Mapped Generator&quot;, &quot;type&quot;: &quot;implement&quot;}
+{&quot;requirement&quot;: &quot;REQ-002&quot;, &quot;element&quot;: &quot;system_42/n4&quot;, &quot;block&quot;: &quot;Mapped Generator&quot;, &quot;type&quot;: &quot;verify&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>某条需求关联哪些块/子系统，或某个块对应哪些需求。</p>
+  <h3>边界</h3>
+  <p class="bound">跨工程/跨模型的链接可能悬空；悬空项明确列出，不猜目标。</p>
+</div>
+<div class="dsrc" id="d-mldatx" hidden>
+  <p class="lead"><b>解包直读。</b>解容器读套件/用例 XML；输入、期望、结果全量展开。</p>
+  <div class="meta">
+    <span class="form">工具容器</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开容器，读测试套件和用例 XML</li><li>读套件名、用例名、harness、输入、期望和结果状态</li><li>原文入库，结果作为历史快照保留</li></ol>
+  <h3>产出</h3>
+  <p><code>tests.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;HEV_Tests.mldatx&quot;,
+  &quot;suites&quot;: [
+    {&quot;name&quot;: &quot;HEV_TestSuite&quot;, &quot;cases&quot;: [
+      {&quot;name&quot;: &quot;WLTC_charge_sustain&quot;, &quot;harness&quot;: &quot;harness_WLTC&quot;,
+       &quot;inputs&quot;: [{&quot;signal&quot;: &quot;SOC_init&quot;, &quot;value&quot;: 0.6}],
+       &quot;expectations&quot;: [{&quot;signal&quot;: &quot;SOC_end&quot;, &quot;op&quot;: &quot;&lt;=&quot;, &quot;value&quot;: 0.3}],
+       &quot;result&quot;: {&quot;status&quot;: &quot;passed&quot;, &quot;duration_s&quot;: 12.4}}
+    ]}
+  ]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>测试用例、覆盖的模型和结果状态。</p>
+  <h3>边界</h3>
+  <p class="bound">不重新运行测试，不判断当前模型是否通过。</p>
+</div>
+<div class="dsrc" id="d-sfx" hidden>
+  <p class="lead"><b>解包直读。</b>解开 XML/容器，读状态、转移、动作和数据。</p>
+  <div class="meta">
+    <span class="form">XML/容器</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开 XML/容器，读状态、转移、动作和数据</li><li>保留状态层级、entry/during/exit 和转移条件原文</li><li>原文入库，和 .slx 内 chart 共用一套读法</li></ol>
+  <h3>产出</h3>
+  <p><code>stateflow.json（states/transitions）</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;chart&quot;: &quot;shift_logic&quot;,
+  &quot;states&quot;: [
+    {&quot;id&quot;: &quot;s1&quot;, &quot;name&quot;: &quot;Init&quot;, &quot;parent&quot;: null, &quot;entry&quot;: &quot;gear = 1;&quot;},
+    {&quot;id&quot;: &quot;s2&quot;, &quot;name&quot;: &quot;Drive&quot;, &quot;parent&quot;: null, &quot;during&quot;: &quot;...&quot;}
+  ],
+  &quot;transitions&quot;: [
+    {&quot;from&quot;: &quot;s1&quot;, &quot;to&quot;: &quot;s2&quot;, &quot;condition&quot;: &quot;enable&quot;}
+  ]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>状态层级、转移条件和动作表达式。</p>
+  <h3>边界</h3>
+  <p class="bound">不模拟事件调度；状态动作只保留静态表达式。</p>
+</div>
+<div class="dsrc" id="d-fmu" hidden>
+  <p class="lead"><b>解包直读。</b>解开 ZIP，读 modelDescription.xml。</p>
+  <div class="meta">
+    <span class="form">ZIP</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开 ZIP，读 modelDescription.xml</li><li>读模型名、FMI 版本、ME/Co-Simulation 能力和变量表</li><li>列平台二进制和资源文件；原文入库</li></ol>
+  <h3>产出</h3>
+  <p><code>manifest.json + modelDescription</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;plant.fmu&quot;,
+  &quot;type&quot;: &quot;fmu&quot;,
+  &quot;members&quot;: [
+    {&quot;path&quot;: &quot;modelDescription.xml&quot;, &quot;size&quot;: 4211},
+    {&quot;path&quot;: &quot;binaries/win64/plant.dll&quot;, &quot;size&quot;: 98432}
+  ],
+  &quot;model&quot;: {&quot;name&quot;: &quot;Plant&quot;, &quot;fmi_version&quot;: &quot;3.0&quot;,
+            &quot;variables&quot;: [{&quot;name&quot;: &quot;T_in&quot;, &quot;causality&quot;: &quot;input&quot;, &quot;unit&quot;: &quot;K&quot;}]}
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>输入输出变量、单位、能力和平台支持。</p>
+  <h3>边界</h3>
+  <p class="bound">不加载 FMU、不运行联合仿真；二进制只做清单和哈希。</p>
+</div>
+<div class="dsrc" id="d-ctf" hidden>
+  <p class="lead"><b>原件直导。</b>按字节入库，先检测是否加密。</p>
+  <div class="meta">
+    <span class="form">压缩归档</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#6d28d9;background:#f1ebfd;border-color:#6d28d933">加密/保护</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>检测加密；能列成员就列清单</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库，先检测是否加密</li><li>能按 ZIP 列成员就列清单、类型和大小，不能就记原因</li><li>原文入库，不反编译内部 MEX/DLL</li></ol>
+  <h3>产出</h3>
+  <p><code>manifest.json（能解就列成员）</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;HevApp.ctf&quot;,
+  &quot;type&quot;: &quot;ctf&quot;,
+  &quot;parse_status&quot;: &quot;encrypted_or_opaque&quot;,
+  &quot;members&quot;: [],
+  &quot;reason&quot;: &quot;无法按普通 ZIP 读取成员&quot;
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>归档清单、版本线索和可读成员。</p>
+  <h3>边界</h3>
+  <p class="bound">加密 CTF 无法还原源码。</p>
+</div>
+<div class="dsrc" id="d-jar" hidden>
+  <p class="lead"><b>解包直读。</b>解开 ZIP，读 META-INF/MANIFEST.MF。</p>
+  <div class="meta">
+    <span class="form">ZIP</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>解开 ZIP，读 META-INF/MANIFEST.MF</li><li>列包名、类文件、资源和版本</li><li>原文入库；.class 不反编译</li></ol>
+  <h3>产出</h3>
+  <p><code>manifest.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;hev.jar&quot;,
+  &quot;type&quot;: &quot;jar&quot;,
+  &quot;manifest&quot;: {&quot;Main-Class&quot;: &quot;com.example.Hev&quot;},
+  &quot;classes&quot;: [&quot;com/example/Hev.class&quot;],
+  &quot;resources&quot;: [&quot;META-INF/MANIFEST.MF&quot;]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>类、版本、依赖和资源清单。</p>
+  <h3>边界</h3>
+  <p class="bound">不反编译 .class；字节码只做清单和哈希。</p>
+</div>
+<div class="dsrc" id="d-mat" hidden>
+  <p class="lead"><b>按位置判定。</b>v5/v7 按 MAT 二进制、v7.3 按 HDF5；遍历变量，按变量导出全部数值。</p>
+  <div class="meta">
+    <span class="form">MAT 二进制</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#0e7490;background:#cffafe;border-color:#0e749033">运行缓存<i>*</i></span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程数据目录</code></td><td>—</td><td>变量清单 + 全量数据</td></tr><tr><td><code>slprj/rsim、raccel、sim</code></td><td>运行缓存、slprj 缓存</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>识别版本：v5/v7 按 MAT 二进制读，v7.3 按 HDF5 读</li><li>遍历顶层变量，记名字、类、维度、dtype、复数/稀疏/字段</li><li>数值按变量原样读出，按变量分别给，不把整份数据塞进上下文</li><li>原文入库；对象、函数句柄读不全时标 opaque</li></ol>
+  <h3>产出</h3>
+  <p><code>variables.json + data/*.csv</code></p>
+  <h3>案例样子</h3>
+  <pre>variables.json
+{
+  &quot;file&quot;: &quot;HevIps.mat&quot;,
+  &quot;mat_version&quot;: &quot;v7&quot;,
+  &quot;variables&quot;: [
+    {&quot;name&quot;: &quot;WLTC&quot;, &quot;class&quot;: &quot;double&quot;, &quot;dims&quot;: [1800, 2],
+     &quot;complex&quot;: false, &quot;sparse&quot;: false,
+     &quot;data&quot;: &quot;data/0001_WLTC.csv&quot;, &quot;rows&quot;: 1800, &quot;cols&quot;: 2},
+    {&quot;name&quot;: &quot;opaque_object&quot;, &quot;class&quot;: &quot;opaque&quot;, &quot;dims&quot;: [1, 1],
+     &quot;data&quot;: &quot;data/0002_opaque.csv&quot;}
+  ]
+}
+
+data/0001_WLTC.csv（节选，实际 1800 行）
+time,speed
+0,0
+1,0
+2,0.12
+...
+1799,0</pre>
+  <h3>AI 能读到什么</h3>
+  <p>变量清单，以及每个变量的实际数值和类型。</p>
+  <h3>边界</h3>
+  <p class="bound">MATLAB 对象、函数句柄和部分 table/categorical 元数据可能读不全；原文保留。</p>
+</div>
+<div class="dsrc" id="d-fig" hidden>
+  <p class="lead"><b>解析直读。</b>MAT v5/v7.3 读 figure 对象树，记录对象父子关系和关键属性。</p>
+  <div class="meta">
+    <span class="form">MAT 变体</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>清单 + 数据文件</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按 MAT v5/v7.3 读 figure 对象树</li><li>读 Figure/Axes/Line/Text 对象的父子关系和关键属性</li><li>原文入库，不承诺像素级还原</li></ol>
+  <h3>产出</h3>
+  <p><code>figure.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;eff_map.fig&quot;,
+  &quot;figure&quot;: {&quot;name&quot;: &quot;eff_map&quot;, &quot;color&quot;: [1, 1, 1]},
+  &quot;axes&quot;: [
+    {&quot;tag&quot;: &quot;axes1&quot;, &quot;xlabel&quot;: &quot;speed [rpm]&quot;, &quot;ylabel&quot;: &quot;torque [Nm]&quot;,
+     &quot;lines&quot;: [
+       {&quot;name&quot;: &quot;eff&quot;, &quot;xdata&quot;: [0, 1000, 2000, 3000], &quot;ydata&quot;: [0.7, 0.9, 0.86, 0.8]}
+     ]}
+  ]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>图窗包含哪些坐标轴、曲线和文本，以及属性值。</p>
+  <h3>边界</h3>
+  <p class="bound">不加载 MATLAB 图形系统；自定义绘制和回调不保证还原。</p>
+</div>
+<div class="dsrc" id="d-mdf" hidden>
+  <p class="lead"><b>解析直读。</b>检测 MDF 版本和文件头。</p>
+  <div class="meta">
+    <span class="form">MDF 二进制</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>清单 + 数据文件</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>检测 MDF 版本和文件头</li><li>读通道组、通道名、单位、采样率、时间范围和样本数</li><li>按通道给数据，默认先给清单和统计；原文入库</li></ol>
+  <h3>产出</h3>
+  <p><code>channels.json + data/*.csv</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;drive.mdf&quot;,
+  &quot;channels&quot;: [
+    {&quot;name&quot;: &quot;Speed&quot;, &quot;unit&quot;: &quot;km/h&quot;, &quot;rate_hz&quot;: 100, &quot;samples&quot;: 180000,
+     &quot;data&quot;: &quot;data/Speed.csv&quot;}
+  ]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>通道清单、单位、时间范围和样本数；需要波形时按通道读。</p>
+  <h3>边界</h3>
+  <p class="bound">厂商扩展和压缩块可能读不了；读不了时保留原件和原因。</p>
+</div>
+<div class="dsrc" id="d-mf4" hidden>
+  <p class="lead"><b>解析直读。</b>检测 MDF4 的 IDBLOCK。</p>
+  <div class="meta">
+    <span class="form">MDF4 二进制</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>清单 + 数据文件</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>检测 MDF4 的 IDBLOCK</li><li>读通道组、通道、单位、采样率和时间范围</li><li>按通道给数据，默认清单加统计；原文入库</li></ol>
+  <h3>产出</h3>
+  <p><code>channels.json + data/*.csv</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;drive.mf4&quot;,
+  &quot;channels&quot;: [
+    {&quot;name&quot;: &quot;Speed&quot;, &quot;unit&quot;: &quot;km/h&quot;, &quot;rate_hz&quot;: 100, &quot;samples&quot;: 180000,
+     &quot;data&quot;: &quot;data/Speed.csv&quot;}
+  ]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>通道、单位、时间范围、采样率。</p>
+  <h3>边界</h3>
+  <p class="bound">加密或厂商自定义压缩可能不可读；不伪造缺失通道。</p>
+</div>
+<div class="dsrc" id="d-blf" hidden>
+  <p class="lead"><b>解析直读。</b>读 BLF 头、对象表和通道。</p>
+  <div class="meta">
+    <span class="form">二进制日志</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>清单 + 数据文件</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>读 BLF 头、对象表和通道</li><li>统计帧数、时间范围、CAN/LIN 通道和 ID 分布</li><li>有配对 .dbc 时按报文/信号解码，没有就只给帧级信息；原文入库</li></ol>
+  <h3>产出</h3>
+  <p><code>channels.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{
+  &quot;file&quot;: &quot;bus.blf&quot;,
+  &quot;channels&quot;: [
+    {&quot;name&quot;: &quot;VCU_1&quot;, &quot;id&quot;: 100, &quot;count&quot;: 5231, &quot;data&quot;: &quot;data/VCU_1.csv&quot;}
+  ]
+}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>时间范围、通道、报文 ID 和帧数；有 DBC 时能读信号。</p>
+  <h3>边界</h3>
+  <p class="bound">不重放总线；未知对象和厂商扩展只保留元数据。</p>
+</div>
+<div class="dsrc" id="d-elf" hidden>
+  <p class="lead"><b>按位置判定。</b>目标程序；按扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">ELF 可执行</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>构建输出</code></td><td>目标产物、代码生成</td><td>默认排除</td></tr><tr><td><code>交付固件</code></td><td>—</td><td>作为独立附件导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是交叉编译目标程序</li><li>交付固件时作为独立附件导入</li></ol>
+  <h3>产出</h3>
+  <p><code>独立附件 / skipped.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.elf&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；目标程序不是源码。</p>
+</div>
+<div class="dsrc" id="d-bin" hidden>
+  <p class="lead"><b>按位置判定。</b>目标数据；按扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">原始二进制</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>构建输出</code></td><td>目标产物、代码生成</td><td>默认排除</td></tr><tr><td><code>交付固件</code></td><td>—</td><td>作为独立附件导入</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是烧录镜像/目标数据</li><li>交付固件时作为独立附件导入</li></ol>
+  <h3>产出</h3>
+  <p><code>独立附件 / skipped.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.bin&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；原始镜像没有可读语义。</p>
+</div>
+<div class="dsrc" id="d-mexw64" hidden>
+  <p class="lead"><b>按位置判定。</b>按字节入库，禁止 UTF-8/GBK 文本解码。</p>
+  <div class="meta">
+    <span class="form">PE32+ DLL</span><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原件 + 元数据</td></tr><tr><td><code>slprj/、*_rtw/</code></td><td>构建产物、slprj 缓存</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库，禁止 UTF-8/GBK 文本解码</li><li>读 PE 头：架构、子系统、节表、导入/导出符号、版本资源和 SHA-256</li><li>确认导出 mexFunction、位数和 MATLAB 版本线索</li><li>在 slprj/*_rtw 下时按目录规则跳过</li></ol>
+  <h3>产出</h3>
+  <p><code>metadata.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;file&quot;: &quot;controller.mexw64&quot;, &quot;size&quot;: 184320, &quot;sha256&quot;: &quot;9b1f...&quot;,
+ &quot;parse_status&quot;: &quot;binary_metadata_only&quot;,
+ &quot;pe&quot;: {&quot;machine&quot;: &quot;x64&quot;, &quot;exports&quot;: [&quot;mexFunction&quot;]},
+ &quot;matlab_bits&quot;: &quot;x64&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>文件名、架构、导出符号、版本和哈希；机器码本身不索引。</p>
+  <h3>边界</h3>
+  <p class="bound">不反编译、不执行；导入导出表可能被裁剪。</p>
+</div>
+<div class="dsrc" id="d-dll" hidden>
+  <p class="lead"><b>按位置判定。</b>按字节入库，不做文本解码。</p>
+  <div class="meta">
+    <span class="form">PE</span><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原件 + 元数据</td></tr><tr><td><code>slprj/、*_rtw/</code></td><td>构建产物、slprj 缓存</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库，不做文本解码</li><li>读 PE 头、导入/导出符号、版本资源和哈希</li><li>在 slprj/*_rtw 下时按目录规则跳过</li></ol>
+  <h3>产出</h3>
+  <p><code>metadata.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;file&quot;: &quot;plant.dll&quot;, &quot;size&quot;: 262144, &quot;sha256&quot;: &quot;5e2d...&quot;,
+ &quot;parse_status&quot;: &quot;binary_metadata_only&quot;,
+ &quot;pe&quot;: {&quot;machine&quot;: &quot;x64&quot;, &quot;kind&quot;: &quot;dll&quot;, &quot;imports&quot;: [&quot;KERNEL32.dll&quot;], &quot;exports&quot;: [&quot;plant_step&quot;]}}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>依赖关系、导出符号、架构和版本。</p>
+  <h3>边界</h3>
+  <p class="bound">不反编译、不执行；机器码只做元数据。</p>
+</div>
+<div class="dsrc" id="d-exe" hidden>
+  <p class="lead"><b>按位置判定。</b>按字节入库，不做文本解码。</p>
+  <div class="meta">
+    <span class="form">PE</span><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原件 + 元数据</td></tr><tr><td><code>slprj/、*_rtw/</code></td><td>构建产物、slprj 缓存</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库，不做文本解码</li><li>读 PE 头、子系统、版本资源和哈希，并找 MCR 线索</li><li>原文入库，作为可下载附件</li></ol>
+  <h3>产出</h3>
+  <p><code>metadata.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;file&quot;: &quot;plant.exe&quot;, &quot;size&quot;: 262144, &quot;sha256&quot;: &quot;5e2d...&quot;,
+ &quot;parse_status&quot;: &quot;binary_metadata_only&quot;,
+ &quot;pe&quot;: {&quot;machine&quot;: &quot;x64&quot;, &quot;kind&quot;: &quot;exe&quot;, &quot;imports&quot;: [&quot;KERNEL32.dll&quot;], &quot;entry&quot;: &quot;mainCRTStartup&quot;}}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>是什么程序、依赖什么运行库、版本和哈希。</p>
+  <h3>边界</h3>
+  <p class="bound">不反编译、不执行。</p>
+</div>
+<div class="dsrc" id="d-lib" hidden>
+  <p class="lead"><b>按位置判定。</b>按字节入库，不做文本解码。</p>
+  <div class="meta">
+    <span class="form">COFF 库</span><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>元件 + 符号元数据</td></tr><tr><td><code>slprj/、*_rtw/</code></td><td>构建产物、slprj 缓存</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库，不做文本解码</li><li>读 COFF 归档成员和符号表</li><li>在 slprj/*_rtw 下按目录规则跳过；独立存在的按原件导入</li></ol>
+  <h3>产出</h3>
+  <p><code>metadata.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;file&quot;: &quot;model.lib&quot;, &quot;size&quot;: 92160, &quot;sha256&quot;: &quot;6a4b...&quot;,
+ &quot;parse_status&quot;: &quot;binary_metadata_only&quot;,
+ &quot;format&quot;: &quot;coff_archive&quot;,
+ &quot;members&quot;: [&quot;model.obj&quot;, &quot;rtw.obj&quot;],
+ &quot;symbols&quot;: [&quot;DRLHevIps_step&quot;]}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>库成员、符号和架构。</p>
+  <h3>边界</h3>
+  <p class="bound">不反编译；符号可能被裁剪。</p>
+</div>
+<div class="dsrc" id="d-obj" hidden>
+  <p class="lead"><b>按位置判定。</b>按字节入库，不做文本解码。</p>
+  <div class="meta">
+    <span class="form">COFF 目标文件</span><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>符号元数据</td></tr><tr><td><code>slprj/、*_rtw/</code></td><td>构建产物、slprj 缓存</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库，不做文本解码</li><li>读 COFF 头、节表和符号</li><li>在 slprj/*_rtw 下按目录规则跳过；独立存在的按原件导入</li></ol>
+  <h3>产出</h3>
+  <p><code>metadata.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;file&quot;: &quot;model.obj&quot;, &quot;size&quot;: 51200, &quot;sha256&quot;: &quot;8c3d...&quot;,
+ &quot;parse_status&quot;: &quot;binary_metadata_only&quot;,
+ &quot;format&quot;: &quot;coff&quot;,
+ &quot;symbols&quot;: [&quot;DRLHevIps_step&quot;, &quot;Lookup&quot;]}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>目标文件的架构、节和符号线索。</p>
+  <h3>边界</h3>
+  <p class="bound">不反编译；中间产物可由源码重建。</p>
+</div>
+<div class="dsrc" id="d-pdb" hidden>
+  <p class="lead"><b>按位置判定。</b>按字节入库，不做文本解码。</p>
+  <div class="meta">
+    <span class="form">PDB 调试符号</span><span class="lab cat" style="color:#be123c;background:#fdecef;border-color:#be123c33">Windows 原生</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span><span class="lab tag" style="color:#be123c;background:#fdecef;border-color:#be123c33">构建产物<i>*</i></span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>调试符号元数据</td></tr><tr><td><code>slprj/、*_rtw/</code></td><td>构建产物、slprj 缓存</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库，不做文本解码</li><li>读 PDB 头、GUID、签名和模块清单</li><li>在 slprj/*_rtw 下按目录规则跳过；独立存在的按原件导入</li></ol>
+  <h3>产出</h3>
+  <p><code>metadata.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;file&quot;: &quot;model.pdb&quot;, &quot;size&quot;: 401408, &quot;sha256&quot;: &quot;1f9e...&quot;,
+ &quot;parse_status&quot;: &quot;binary_metadata_only&quot;,
+ &quot;format&quot;: &quot;pdb&quot;,
+ &quot;guid&quot;: &quot;8A1C...&quot;, &quot;age&quot;: 3,
+ &quot;modules&quot;: [&quot;model.obj&quot;, &quot;lookup.obj&quot;]}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>调试符号版本和模块线索。</p>
+  <h3>边界</h3>
+  <p class="bound">不保证含源码路径；不反编译。</p>
+</div>
+<div class="dsrc" id="d-p" hidden>
+  <p class="lead"><b>原件直导。</b>按字节入库；读头、哈希和版本线索，标 opaque。</p>
+  <div class="meta">
+    <span class="form">混淆字节码</span><span class="lab cat" style="color:#6d28d9;background:#f1ebfd;border-color:#6d28d933">加密/保护</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原件 + 元数据</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库</li><li>读 P-code 头、字节数、SHA-256，识别可能的 MATLAB 版本</li><li>扫描工程里同名 .m/.mlx 调用，只作线索</li><li>标 parse_status=opaque，不反编译</li></ol>
+  <h3>产出</h3>
+  <p><code>metadata.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;file&quot;: &quot;model.p&quot;, &quot;size&quot;: 20480, &quot;sha256&quot;: &quot;3c7a...&quot;,
+ &quot;parse_status&quot;: &quot;opaque&quot;,
+ &quot;version_hint&quot;: &quot;R2023b&quot;,
+ &quot;members&quot;: null}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>文件名、哈希和版本线索；没有内部逻辑。</p>
+  <h3>边界</h3>
+  <p class="bound">无公开格式，不能还原源码；需要源码或授权环境。</p>
+</div>
+<div class="dsrc" id="d-slxp" hidden>
+  <p class="lead"><b>原件直导。</b>按字节入库；检测容器头，能列成员就列，标 opaque。</p>
+  <div class="meta">
+    <span class="form">加密容器</span><span class="lab cat" style="color:#6d28d9;background:#f1ebfd;border-color:#6d28d933">加密/保护</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原件 + 元数据</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库</li><li>检测容器/加密头和可读元数据，能列成员就列，不能就记原因</li><li>标 parse_status=opaque，不推断模型内容</li></ol>
+  <h3>产出</h3>
+  <p><code>metadata.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;file&quot;: &quot;model.slxp&quot;, &quot;size&quot;: 20480, &quot;sha256&quot;: &quot;3c7a...&quot;,
+ &quot;parse_status&quot;: &quot;opaque&quot;,
+ &quot;format&quot;: &quot;protected_model&quot;,
+ &quot;members&quot;: null}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>文件名、哈希和容器元数据。</p>
+  <h3>边界</h3>
+  <p class="bound">不反编译、不绕过保护；内部结构不在解析范围。</p>
+</div>
+<div class="dsrc" id="d-sscp" hidden>
+  <p class="lead"><b>原件直导。</b>按字节入库；记录大小、哈希和可读元数据，标 opaque。</p>
+  <div class="meta">
+    <span class="form">加密文件</span><span class="lab cat" style="color:#6d28d9;background:#f1ebfd;border-color:#6d28d933">加密/保护</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>原件 + 元数据</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按字节入库</li><li>记录大小、哈希和可读元数据</li><li>标 parse_status=opaque，不伪造组件或方程</li></ol>
+  <h3>产出</h3>
+  <p><code>metadata.json</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;file&quot;: &quot;model.sscp&quot;, &quot;size&quot;: 20480, &quot;sha256&quot;: &quot;3c7a...&quot;,
+ &quot;parse_status&quot;: &quot;opaque&quot;,
+ &quot;format&quot;: &quot;protected_ssc&quot;,
+ &quot;members&quot;: null}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>文件名、哈希和容器线索。</p>
+  <h3>边界</h3>
+  <p class="bound">不反编译、不绕过保护；看不到组件和方程。</p>
+</div>
+<div class="dsrc" id="d-slxc" hidden>
+  <p class="lead"><b>默认排除。</b>仿真缓存；按路径/扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">缓存容器</span><span class="lab cat" style="color:#475569;background:#eef1f5;border-color:#47556933">派生/缓存</span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存</span><span class="lab tag" style="color:#0e7490;background:#cffafe;border-color:#0e749033">运行缓存</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>slprj/ 下</code></td><td>slprj 缓存、运行缓存</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是仿真缓存</li><li>需要研究缓存行为时单独导入</li></ol>
+  <h3>产出</h3>
+  <p><code>skipped.json 条目</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.slxc&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；缓存可由模型重建。</p>
+</div>
+<div class="dsrc" id="d-autosave" hidden>
+  <p class="lead"><b>默认排除。</b>自动保存副本；按扩展名命中排除规则。</p>
+  <div class="meta">
+    <span class="form">模型副本</span><span class="lab cat" style="color:#475569;background:#eef1f5;border-color:#47556933">派生/缓存</span>
+  </div>
+  <h3>位置与处理</h3>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>任意位置</code></td><td>—</td><td>默认排除</td></tr></tbody></table>
+  <h3>解析方式</h3>
+  <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是自动保存副本</li><li>需要恢复模型时再单独导入</li></ol>
+  <h3>产出</h3>
+  <p><code>skipped.json 条目</code></p>
+  <h3>案例样子</h3>
+  <pre>{&quot;path&quot;: &quot;slprj/ert/DRLHevIps/model.autosave&quot;, &quot;size&quot;: 81234,
+ &quot;mtime&quot;: &quot;2026-11-18T10:12:00Z&quot;, &quot;sha256&quot;: &quot;7d0c...&quot;,
+ &quot;reason&quot;: &quot;excluded_by_rule&quot;}</pre>
+  <h3>AI 能读到什么</h3>
+  <p>默认检索不到；只保留跳过清单条目。</p>
+  <h3>边界</h3>
+  <p class="bound">排除不等于删除；副本可能来自崩溃现场。</p>
+</div>
+</div>
+
+<div id="overlay"></div>
+<aside id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <div class="dext" id="drawerTitle">.slx</div>
+      <div class="dsub" id="drawerSub"></div>
+    </div>
+    <button id="close" type="button" aria-label="关闭">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.cat-panel'));
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (x) {
+        var on = x === tab;
+        x.classList.toggle('active', on);
+        x.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      panels.forEach(function (p) {
+        p.hidden = p.dataset.cat !== tab.dataset.cat;
+      });
+    });
+  });
+
+  var rows = Array.prototype.slice.call(document.querySelectorAll('tr.row'));
+  var drawer = document.getElementById('drawer');
+  var overlay = document.getElementById('overlay');
+  var body = document.getElementById('drawerBody');
+  var title = document.getElementById('drawerTitle');
+  var sub = document.getElementById('drawerSub');
+  var closeBtn = document.getElementById('close');
+  var last = null;
+
+  function openDrawer(tr) {
+    var src = document.getElementById('d-' + tr.dataset.key);
+    if (!src) return;
+    var cat = tr.querySelector('.cat');
+    title.textContent = tr.dataset.ext;
+    sub.textContent = cat ? cat.textContent : '';
+    body.innerHTML = src.innerHTML;
+    body.scrollTop = 0;
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('locked');
+    last = tr;
+    closeBtn.focus();
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('locked');
+    if (last) last.focus();
+  }
+  rows.forEach(function (tr) {
+    tr.addEventListener('click', function () { openDrawer(tr); });
+    tr.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDrawer(tr); }
+    });
+  });
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+  });
+})();
+</script>
+</body>
+</html>
