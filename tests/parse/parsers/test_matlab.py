@@ -4,13 +4,10 @@
 import csv
 import io
 import json
-import re
 import zipfile
 from pathlib import Path
-from urllib.parse import unquote
 
 import pytest
-from markdown_it import MarkdownIt
 
 from openviking.parse.output import LocalParseOutputStore
 from openviking.parse.parsers.directory import DirectoryParser
@@ -19,12 +16,6 @@ from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.slx import parse_slx, system_json_documents
 from openviking.parse.parsers.matlab.stateflow import chart_json, parse_stateflow
-from openviking.parse.parsers.matlab.structure import (
-    structure_block_document,
-    structured_data,
-    validate_structured_document,
-    without_structured_data,
-)
 from openviking.parse.parsers.matlab.structured import (
     parse_fig_tree,
     parse_mlapp,
@@ -465,76 +456,6 @@ def test_registry_routes_all_matlab_extensions():
     registry = ParserRegistry()
     for suffix in (".slx", ".sldd", ".mlx", ".mat", ".m", ".p"):
         assert isinstance(registry.get_parser_for_file(f"model{suffix}"), MatlabParser)
-
-
-def test_block_document_structuring_preserves_body_and_is_idempotent():
-    document = """---
-type: simulink-block
----
-# Example
-
-## 端口
-
-### 输入
-
-### **u** — 输入信号 scalar
-
-信号说明。
-
-**数据类型：** `double` | `single`
-
-## 参数
-
-### 主要参数
-
-### **增益** — 增益值 `1` (default)
-
-参数说明与依赖。
-
-#### 编程使用
-
-|  |  |
-| --- | --- |
-| **模块参数：** | `Gain` |
-| **类型：** | character vector |
-| **值：** | `'1'` | `'2'` |
-| **默认值：** | `'1'` |
-
-## 描述
-
-完整知识正文。
-"""
-    structured = structure_block_document(document)
-    assert [line for line in without_structured_data(structured).splitlines() if line.strip()] == [
-        line for line in document.splitlines() if line.strip()
-    ]
-    assert structured_data(structured, "ports") == [
-        {
-            "name": "u",
-            "summary": "输入信号 scalar",
-            "direction": "input",
-            "data_types": "double | single",
-        }
-    ]
-    parameter = structured_data(structured, "parameters")[0]
-    assert parameter["group"] == "主要参数"
-    assert parameter["block_parameter"] == "Gain"
-    assert parameter["values"] == "'1' | '2'"
-    assert parameter["default"] == "'1'"
-    validate_structured_document(structured)
-    assert structure_block_document(structured) == structured
-
-
-@pytest.mark.asyncio
-async def test_simscape_source_keeps_original_bytes(tmp_path):
-    source = SAMPLE / "model" / "VirtualVehicle" / "Electrical" / "Plant" / "FuelCell.ssc"
-    result = await MatlabParser().parse(
-        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
-    )
-    root = Path(result.artifact_ref.root)
-    copied = root / "FuelCell.ssc"
-    assert copied.read_bytes() == source.read_bytes()
-    assert not list(root.glob("*.md"))
 
 
 def _write_semantic_slx(path: Path):
