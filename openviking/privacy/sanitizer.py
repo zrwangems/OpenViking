@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 import time
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Callable
@@ -20,7 +21,9 @@ if TYPE_CHECKING:
 _AMBIGUOUS_PLACEHOLDER = "{{ov_privacy:ambiguous}}"
 MIN_PROTECTED_VALUE_CHARS = 6
 DEFAULT_MATCHER_CACHE_TTL_SECONDS = 3600.0
-DEFAULT_SANITIZER_MAX_CONTENT_BYTES = 16 * 1024 * 1024
+DEFAULT_SANITIZER_MAX_CONTENT_BYTES = int(
+    os.environ.get("OPENVIKING_PRIVACY_MAX_CONTENT_BYTES", 16 * 1024 * 1024)
+)
 DEFAULT_SANITIZER_MAX_REPLACEMENTS = 10000
 
 
