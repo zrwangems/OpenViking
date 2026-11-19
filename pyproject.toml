@@ -100,10 +100,6 @@ matlab = [
   "scipy>=1.10",
   "h5py>=3.8",
 ]
-matlab-docs = [
-  "beautifulsoup4>=4.12",
-  "markdownify>=1.0",
-]
 reporting = [
     "kafka-python>=3.0.12,<4",
 ]
@@ -270,8 +266,6 @@ openviking_gateway = ["client-rules.json", "lua/*.lua"]
 "vikingbot.studio.providers.feishu" = ["icon.png"]
 "openviking.parse.parsers.code.ast" = ["assets/parsers.ghproxy.json"]
 openviking = [
-    "parse/parsers/matlab/simulink-block-library/**/*.md",
-    "parse/parsers/matlab/simulink-block-library/*.json",
     "prompts/templates/**/*.yaml",
     "system_assets/**/*",
     "server/static/**/*",
