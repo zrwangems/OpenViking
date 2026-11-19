@@ -9,7 +9,7 @@ from pathlib import Path
 
 from openviking.parse.parsers.matlab.slx import Block, Edge, System
 
-_TOKEN = re.compile(r'"(?:[^"\\]|\\.)*"|[{}]|[^\s{}]+')
+_TOKEN = re.compile(r'"(?:[^"\\]|\\.)*"|\[[^\]]*\]|[{}]|[^\s{}]+')
 _SCALAR_SKIP = {"BlockType", "Name", "SID"}
 
 
@@ -124,7 +124,7 @@ def parse_mdl(path: str | Path) -> System:
     model_name = path.stem
     model_entries = entries
     for key, value in entries:
-        if key == "Model" and isinstance(value, list):
+        if key in {"Model", "Library"} and isinstance(value, list):
             model_entries = value
             model_name = _scalars(value).get("Name", model_name)
             break

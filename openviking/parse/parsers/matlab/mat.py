@@ -107,6 +107,31 @@ def _array_csv(value: Any) -> str:
     return output.getvalue()
 
 
+def _matlab_class(value: Any) -> str:
+    try:
+        import numpy as np
+        from scipy import sparse
+
+        if sparse.issparse(value):
+            return "double"
+        dtype = np.asarray(value).dtype
+        if dtype.names:
+            return "struct"
+        if dtype.kind == "f":
+            return "double" if dtype.itemsize <= 8 else "single"
+        if dtype.kind == "c":
+            return "double"
+        if dtype.kind == "b":
+            return "logical"
+        if dtype.kind in {"i", "u"}:
+            return dtype.name
+        if dtype.kind in {"U", "S"}:
+            return "char"
+        return str(dtype)
+    except ImportError:
+        return str(getattr(value, "dtype", type(value).__name__))
+
+
 def _csv_name(index: int, path: str) -> str:
     stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", path).strip("._")[:80] or "array"
     digest = hashlib.sha256(path.encode("utf-8")).hexdigest()[:8]
@@ -199,7 +224,7 @@ def parse_mat_documents(path: str | Path) -> tuple[dict[str, str], list[str]]:
         variables.append(
             {
                 "name": array_path,
-                "class": str(getattr(value, "dtype", type(value).__name__)),
+                "class": _matlab_class(value),
                 "dims": shape,
                 "complex": "complex" in str(getattr(value, "dtype", "")),
                 "sparse": hasattr(value, "toarray"),

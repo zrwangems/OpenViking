@@ -174,21 +174,18 @@ _FORMATS = {
     ),
     ".mdf": FormatSpec(
         "ASAM MDF measurement data",
-        "保留原件并记录格式边界；通道数据需 ASAM MDF 解析库",
+        "解压通道组/通道并导出 CSV；未知压缩块保留原因",
         "https://www.asam.net/standards/detail/mdf/",
-        opaque=True,
     ),
     ".mf4": FormatSpec(
         "ASAM MDF4 measurement data",
-        "保留原件并记录格式边界；通道数据需 ASAM MDF 解析库",
+        "解压通道组/通道并导出 CSV；未知压缩块保留原因",
         "https://www.asam.net/standards/detail/mdf/",
-        opaque=True,
     ),
     ".blf": FormatSpec(
         "Vector Binary Logging Format",
-        "保留原件并记录格式边界；报文/信号需 Vector BLF 解析库",
+        "统计帧、通道和报文 ID；有 DBC 时保留帧级信息",
         "https://www.vector.com/int/en/products/products-a-z/software/canalyzer/",
-        opaque=True,
     ),
 }
 _MEX_RE = re.compile(r"\.mex(?:a64|w32|w64|maci64|maca64|glx|sol64)$")

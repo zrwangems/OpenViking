@@ -21,6 +21,7 @@ from typing import Any
 from defusedxml import ElementTree as ET
 
 from openviking.parse.parsers.matlab._zip import read_xml_member
+from openviking.parse.parsers.matlab.requirements import parse_requirements_container
 
 _W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
@@ -278,8 +279,73 @@ def _mat_object(value: Any) -> Any:
     return _mat_scalar(value)
 
 
+def _fig_type(value: Any) -> str:
+    if isinstance(value, dict):
+        raw = value.get("Type") or value.get("type")
+    else:
+        raw = getattr(value, "dtype", None)
+        names = getattr(raw, "names", None)
+        if names and "type" in names:
+            raw = value["type"]
+        else:
+            raw = None
+    try:
+        import numpy as np
+
+        while isinstance(raw, np.ndarray):
+            raw = raw.ravel()[0] if raw.size else ""
+        if isinstance(raw, (list, tuple)) and raw:
+            raw = raw[0]
+    except ImportError:
+        pass
+    return str(raw or "").strip()
+
+
+def _fig_node(value: Any, depth: int = 0) -> dict[str, Any]:
+    """Convert one MATLAB handle object into a compact parent/child tree."""
+    if depth > 32:
+        return {"type": "truncated"}
+    if isinstance(value, dict):
+        node_type = _fig_type(value)
+        props = value.get("properties") or value.get("Properties") or {}
+        children = value.get("children") or value.get("Children") or []
+        handle = value.get("handle") or value.get("Handle")
+        properties = _mat_object(props) if props else {}
+        child_nodes = [_fig_node(item, depth + 1) for item in children] if isinstance(children, list) else []
+        return {
+            "type": node_type or "object",
+            "handle": _mat_scalar(handle) if handle is not None else None,
+            "properties": properties,
+            "children": child_nodes,
+        }
+    import numpy as np
+
+    if isinstance(value, np.void) and value.dtype.names:
+        raw_type = _fig_type(value)
+        raw_props = value["properties"] if "properties" in value.dtype.names else {}
+        raw_children = value["children"] if "children" in value.dtype.names else []
+        raw_handle = value["handle"] if "handle" in value.dtype.names else None
+        return {
+            "type": raw_type or "object",
+            "handle": _mat_scalar(raw_handle) if raw_handle is not None else None,
+            "properties": _mat_object(raw_props) if raw_props is not None else {},
+            "children": [_fig_node(item, depth + 1) for item in raw_children.flat]
+            if isinstance(raw_children, np.ndarray)
+            else [],
+        }
+    if isinstance(value, np.ndarray):
+        if value.dtype.names:
+            nodes = [_fig_node(item, depth + 1) for item in value.flat]
+            return nodes[0] if len(nodes) == 1 else {"type": "group", "children": nodes}
+        if value.dtype == object:
+            nodes = [_fig_node(item, depth + 1) for item in value.flat]
+            return nodes[0] if len(nodes) == 1 else {"type": "group", "children": nodes}
+        return {"type": "array", "value": _mat_scalar(value)}
+    return {"type": type(value).__name__, "value": _mat_scalar(value)}
+
+
 def parse_fig_tree(path: str | Path) -> dict[str, Any]:
-    """FIG -> JSON object tree from the MAT handle structure."""
+    """FIG -> a compact Figure/Axes/Line/Text object tree from the MAT handle data."""
     path = Path(path)
     try:
         from scipy.io import loadmat
@@ -289,13 +355,36 @@ def parse_fig_tree(path: str | Path) -> dict[str, Any]:
         ) from exc
     values = loadmat(path, squeeze_me=False, struct_as_record=True)
     objects: dict[str, Any] = {}
+    roots: list[dict[str, Any]] = []
     for name, value in values.items():
         if name.startswith("__"):
             continue
         objects[name] = _mat_object(value)
+        node = _fig_node(value)
+        if node.get("type") == "figure":
+            roots.append(node)
+        elif node.get("children"):
+            roots.extend(
+                child for child in node["children"] if child.get("type") == "figure"
+            )
+    if not roots and objects:
+        roots = [_fig_node(next(iter(objects.values())))]
+
+    def count(nodes: list[dict[str, Any]]) -> dict[str, int]:
+        counts: dict[str, int] = {}
+        stack = list(nodes)
+        while stack:
+            node = stack.pop()
+            kind = node.get("type", "object")
+            counts[kind] = counts.get(kind, 0) + 1
+            stack.extend(node.get("children", []))
+        return counts
+
     return {
         "schema": "ov.matlab.figure/1",
         "figure": path.stem,
+        "tree": roots[0] if roots else None,
+        "object_counts": count(roots),
         "objects": objects,
         "boundary": "MAT handle tree; custom drawing callbacks and pixel rendering are not evaluated.",
     }
@@ -328,14 +417,67 @@ def _xml_members(archive: zipfile.ZipFile) -> list[dict[str, Any]]:
     return documents
 
 
+def _local_tag(tag: str) -> str:
+    return tag.rsplit("}", 1)[-1]
+
+
+def _xml_dict(element) -> dict[str, Any]:
+    node: dict[str, Any] = {}
+    if element.attrib:
+        node["attributes"] = dict(element.attrib)
+    text = _scalar(element.text)
+    if text:
+        node["text"] = text
+    for child in list(element):
+        key = _local_tag(child.tag)
+        value = _xml_dict(child)
+        if key in node:
+            if not isinstance(node[key], list):
+                node[key] = [node[key]]
+            node[key].append(value)
+        else:
+            node[key] = value
+    return node
+
+
+def _find_first(node: Any, name: str) -> Any:
+    if isinstance(node, dict):
+        for key, value in node.items():
+            if key == name:
+                return value
+            found = _find_first(value, name)
+            if found is not None:
+                return found
+    elif isinstance(node, list):
+        for item in node:
+            found = _find_first(item, name)
+            if found is not None:
+                return found
+    return None
+
+
+def _flat_values(node: Any, names: set[str]) -> list[Any]:
+    found: list[Any] = []
+    if isinstance(node, dict):
+        for key, value in node.items():
+            if key in names:
+                found.append(value)
+            found.extend(_flat_values(value, names))
+    elif isinstance(node, list):
+        for item in node:
+            found.extend(_flat_values(item, names))
+    return found
+
+
 def parse_mldatx(path: str | Path) -> dict[str, Any]:
-    """Simulink Test container -> every member and all suite/result XML trees."""
+    """Simulink Test container -> suites, cases, inputs, criteria and results."""
     path = Path(path)
     if not zipfile.is_zipfile(path):
         return {
             "schema": "ov.matlab.mldatx/1",
             "file": path.name,
-            "documents": [],
+            "members": [],
+            "suites": [],
             "tests": [],
             "boundary": "Not a ZIP container; no test structure was readable.",
         }
@@ -345,37 +487,115 @@ def parse_mldatx(path: str | Path) -> dict[str, Any]:
             for info in sorted(archive.infolist(), key=lambda item: item.filename)
             if not info.is_dir()
         ]
-        documents = _xml_members(archive)
-    tests: list[dict[str, Any]] = []
-    for document in documents:
-        stack = [document["root"]]
+        raw_xml: dict[str, bytes] = {}
+        for name in archive.namelist():
+            if name.endswith(".xml") and not name.startswith("metadata/"):
+                raw_xml[name] = read_xml_member(archive, name)
+
+    suites_by_path: dict[str, dict[str, Any]] = {}
+    case_documents: list[tuple[str, dict[str, Any], str]] = []
+    generic_tests: list[dict[str, Any]] = []
+    for member, raw in sorted(raw_xml.items()):
+        try:
+            root = ET.fromstring(raw)
+        except ET.ParseError:
+            continue
+        document = _xml_dict(root)
+        root_tag = _local_tag(root.tag)
+        if root_tag == "TestSuiteDefinition":
+            model = document.get("model", {})
+            if isinstance(model, list):
+                model = model[0] if model else {}
+            suite_path = str(Path(member).parent)
+            suites_by_path[suite_path] = {
+                "name": (model.get("Name") or {}).get("text", ""),
+                "uuid": (model.get("UUID") or {}).get("text", ""),
+                "description": (model.get("Description") or {}).get("text", ""),
+                "enabled": (model.get("Enabled") or {}).get("text", ""),
+                "location": (model.get("Location") or {}).get("text", ""),
+                "member": member,
+                "parent": None,
+                "cases": [],
+            }
+        elif root_tag == "TestCaseDefinition":
+            case_documents.append((str(Path(member).parent), document, member))
+        # Keep a compact flat index for callers that only scan tags.
+        stack = [root]
         while stack:
-            node = stack.pop()
-            tag = node["tag"].lower()
-            if any(word in tag for word in ("suit", "case", "result", "test", "verdict", "outcome")):
-                attributes = node.get("attributes", {})
-                label = (
-                    attributes.get("name")
-                    or attributes.get("id")
-                    or attributes.get("Name")
-                    or node.get("text", "")
-                )
-                tests.append(
+            element = stack.pop()
+            tag = _local_tag(element.tag)
+            if "suit" in tag.lower() or "case" in tag.lower() or "result" in tag.lower():
+                attributes = dict(element.attrib)
+                label = attributes.get("name") or attributes.get("Name") or _scalar(element.text)
+                generic_tests.append(
                     {
-                        "tag": node["tag"],
+                        "tag": tag,
                         "name": _scalar(label)[:300],
                         "attributes": attributes,
-                        "text": node.get("text", "")[:2000],
-                        "member": document["member"],
+                        "text": _scalar(element.text)[:2000],
+                        "member": member,
                     }
                 )
-            stack.extend(node.get("children", []))
+            stack.extend(list(element))
+
+    for suite_path, suite in suites_by_path.items():
+        parent = None
+        for candidate in suites_by_path:
+            if candidate != suite_path and suite_path.startswith(candidate + "/"):
+                if parent is None or len(candidate) > len(parent):
+                    parent = candidate
+        suite["parent"] = suites_by_path[parent]["name"] if parent else None
+
+    for suite_path, document, member in case_documents:
+        model = document.get("model", {})
+        if isinstance(model, list):
+            model = model[0] if model else {}
+        permutation = _find_first(document, "TestCasePermutationDefinition") or {}
+        criteria = document.get("Criteria") or {}
+        results = _flat_values(document, {"Result", "ResultStatus", "Verdict", "Outcome"})
+        statuses = [
+            item.get("text") if isinstance(item, dict) else _scalar(str(item))
+            for item in results
+        ]
+        case = {
+            "name": (model.get("Name") or {}).get("text", ""),
+            "hierarchy": (model.get("Hiearchy") or {}).get("text", ""),
+            "description": (model.get("Description") or {}).get("text", ""),
+            "enabled": (model.get("Enabled") or {}).get("text", ""),
+            "uuid": (model.get("UUID") or {}).get("text", ""),
+            "type": (model.get("TestCaseType") or {}).get("text", ""),
+            "member": member,
+            "inputs": permutation,
+            "criteria": criteria,
+            "results": statuses,
+            "definition": document,
+        }
+        suite = suites_by_path.get(suite_path)
+        if suite is None:
+            suite = {
+                "name": suite_path.split("/")[-1] if suite_path else "tests",
+                "uuid": "",
+                "description": "",
+                "enabled": "",
+                "location": "",
+                "member": f"{suite_path}/TestSuiteInfo.xml",
+                "parent": None,
+                "cases": [],
+            }
+            suites_by_path[suite_path] = suite
+        suite["cases"].append(case)
+
+    suites = list(suites_by_path.values())
     return {
         "schema": "ov.matlab.mldatx/1",
         "file": path.name,
         "members": members,
-        "documents": documents,
-        "tests": tests,
+        "suites": suites,
+        "tests": generic_tests,
+        "coverage": {
+            "suites": len(suites),
+            "cases": sum(len(suite["cases"]) for suite in suites),
+        },
         "boundary": "Static test structure and results; tests are not executed.",
     }
 
@@ -427,6 +647,10 @@ def parse_requirement_set(path: str | Path) -> dict[str, Any]:
     """Requirement set or requirement link set -> JSON requirements and links."""
     path = Path(path)
     suffix = path.suffix.lower()
+    if zipfile.is_zipfile(path):
+        with zipfile.ZipFile(path) as archive:
+            if "slrequirements/data.xml" in archive.namelist():
+                return parse_requirements_container(path)
     if not zipfile.is_zipfile(path):
         documents = [
             {
@@ -515,7 +739,7 @@ def parse_mlapp(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
 def protected_metadata(path: str | Path, kind: str) -> dict[str, Any]:
     path = Path(path)
     raw = path.read_bytes()
-    return {
+    metadata: dict[str, Any] = {
         "schema": "ov.matlab.protected/1",
         "file": path.name,
         "format": kind,
@@ -526,6 +750,106 @@ def protected_metadata(path: str | Path, kind: str) -> dict[str, Any]:
         "original_preserved": True,
         "boundary": "Original bytes are kept; no decompilation or source recovery is attempted.",
     }
+    if raw.startswith(b"PK") and zipfile.is_zipfile(path):
+        metadata["container"] = "zip"
+        try:
+            with zipfile.ZipFile(path) as archive:
+                metadata["members"] = [
+                    {"name": info.filename, "bytes": info.file_size}
+                    for info in sorted(archive.infolist(), key=lambda item: item.filename)
+                    if not info.is_dir()
+                ]
+        except (zipfile.BadZipFile, OSError):
+            metadata["members"] = []
+    header = raw[:16].decode("latin-1", errors="replace")
+    version = next(
+        (part for part in ("v01.00", "v00.00", "R20", "R201") if part in header),
+        "",
+    )
+    if version:
+        metadata["version_hint"] = version
+    if raw[:4] == b"v01." or raw[:1] == b"v":
+        metadata["version_hint"] = raw[:8].decode("latin-1", errors="replace")
+    return metadata
+
+
+def _dimension_list(value: Any) -> Any:
+    """Normalize SLDD dimensions to a compact list of integers."""
+    if isinstance(value, list):
+        return [int(item) for item in value]
+    if isinstance(value, (int, float)):
+        return [int(value)]
+    if isinstance(value, dict):
+        # ``Dimensions`` carries the real shape in value; ``Elements_internal``
+        # uses the dimension attribute only as a container shape.
+        raw = value.get("value") if value.get("value") not in (None, "") else value.get("dimension")
+        value = raw
+    if isinstance(value, str):
+        text = value.strip()
+        if not text:
+            return None
+        parts = [part for part in re.split(r"[*,\s]+", text) if part]
+        try:
+            return [int(float(part)) for part in parts]
+        except ValueError:
+            return None
+    return value
+
+
+def _entry_value(value: Any) -> Any:
+    if not isinstance(value, dict):
+        return value
+    for container in ("Elements_internal", "Elements", "Components"):
+        child = value.get(container)
+        if isinstance(child, dict):
+            return child.get("items", child)
+    nested = value.get("Value")
+    if nested is not None:
+        if isinstance(nested, dict) and "value" in nested:
+            raw = nested.get("value")
+            if isinstance(raw, str) and re.search(r"[-+]?\d", raw):
+                parts = [part for part in re.split(r"[\s,;]+", raw.strip()) if part]
+                numbers = []
+                for part in parts:
+                    try:
+                        numbers.append(float(part))
+                    except ValueError:
+                        return raw
+                return numbers[0] if len(numbers) == 1 else numbers
+            return raw
+        return nested
+    return value
+
+
+def _container_items(value: Any) -> list[dict[str, Any]]:
+    if isinstance(value, dict) and "value" in value:
+        value = value["value"]
+    if isinstance(value, dict):
+        value = value.get("items", value)
+    if isinstance(value, dict):
+        value = [value]
+    if isinstance(value, list):
+        return [item for item in value if isinstance(item, dict)]
+    return []
+
+
+def _bus_elements(value: Any) -> list[dict[str, Any]]:
+    if not isinstance(value, dict):
+        return []
+    raw = value.get("Elements_internal") or value.get("Elements")
+    elements = []
+    for item in _container_items(raw):
+        elements.append(
+            {
+                "name": item.get("Name", ""),
+                "class": item.get("class", ""),
+                "dimensions": _dimension_list(item.get("Dimensions")),
+                "dtype": item.get("DataType_internal") or item.get("DataType"),
+                "unit": item.get("DocUnits") or item.get("Unit"),
+                "description": item.get("Description"),
+            }
+        )
+    return elements
 
 
 def sldd_entry_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
@@ -536,40 +860,53 @@ def sldd_entry_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
         row: dict[str, Any] = {"name": entry.get("name", "")}
         if isinstance(value, dict):
             row["class"] = value.get("class", "未知")
+            coder = value.get("CoderInfo")
+            storage = coder.get("StorageClass") if isinstance(coder, dict) else None
+            if storage:
+                row["storage"] = storage
             if value.get("Condition") is not None:
                 row["condition"] = value.get("Condition")
             if value.get("Value") is not None:
-                row["value"] = value.get("Value")
-            if value.get("Dimensions") is not None:
-                row["dimensions"] = value.get("Dimensions")
-            if value.get("DataType") is not None:
-                row["dtype"] = value.get("DataType")
+                row["value"] = _entry_value(value)
+            dimensions = _dimension_list(value.get("Dimensions"))
+            if dimensions is not None:
+                row["dimensions"] = dimensions
+            dtype = value.get("DataType") or value.get("DataType_internal")
+            if dtype:
+                row["dtype"] = dtype
+            unit = value.get("DocUnits") or value.get("Unit")
+            if unit:
+                row["unit"] = unit
+            description = value.get("Description")
+            if description:
+                row["description"] = description
+            elements = _bus_elements(value)
+            if elements:
+                row["elements"] = elements
+            components = _container_items(value.get("Components"))
+            if components:
+                row["components"] = [
+                    item.get("class", "") for item in components if item.get("class")
+                ]
         elif value is not None:
             row["value"] = value
-        for source, target in (("Unit", "unit"), ("StorageClass", "storage"), ("Description", "description")):
-            if isinstance(value, dict) and value.get(source) not in (None, ""):
-                row[target] = value.get(source)
-        if "dimensions" not in row and isinstance(value, dict):
-            dims = value.get("Dimensions")
-            if dims not in (None, ""):
-                row["dimensions"] = dims
         rows.append(row)
     return rows
 
-
 def requirement_rows(payload: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    """Map generic requirement/link nodes to the plan's JSONL fields."""
+    """Map requirement/link nodes to the plan's JSONL fields."""
     requirements = []
     for item in payload.get("requirements", []):
+        if "id" in item and "title" in item:
+            requirements.append(item)
+            continue
         attributes = item.get("attributes", {})
         text = str(item.get("text", ""))
         title = (
             attributes.get("title")
             or attributes.get("name")
             or attributes.get("summary")
-            or text.splitlines()[0][:300]
-            if text
-            else ""
+            or (text.splitlines()[0][:300] if text else "")
         )
         requirements.append(
             {
@@ -582,6 +919,9 @@ def requirement_rows(payload: dict[str, Any]) -> tuple[list[dict[str, Any]], lis
         )
     links = []
     for item in payload.get("links", []):
+        if "requirement" in item:
+            links.append(item)
+            continue
         attributes = item.get("attributes", {})
         links.append(
             {

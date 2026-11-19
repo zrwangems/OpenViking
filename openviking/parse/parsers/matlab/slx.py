@@ -393,7 +393,15 @@ def _system_json(system: System, is_root: bool, path: str, language: str) -> dic
                 "id": block_ids[sid],
                 "name": block.name,
                 "block_type": block.block_type,
-                "source_block": block.source_block or block.parameters.get("SourceBlock", ""),
+                "source_block": block.source_block
+                or block.parameters.get("SourceBlock", "")
+                or (
+                    f"built-in/{block.block_type}"
+                    if block.block_type
+                    and block.block_type
+                    not in {"SubSystem", "Reference", "ModelReference", "Unknown"}
+                    else ""
+                ),
                 "ports": block_ports,
                 "params": _display_parameters(block),
             }
