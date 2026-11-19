@@ -55,7 +55,6 @@ def test_legacy_mdl_becomes_system_json(tmp_path):
     assert document["schema"] == "ov.matlab.simulink/1"
     assert [block["name"] for block in document["blocks"]] == ["u", "g", "y"]
     assert len(document["edges"]) == 2
-    assert (root / "legacy" / "coverage.json").is_file()
 
 
 @pytest.mark.asyncio

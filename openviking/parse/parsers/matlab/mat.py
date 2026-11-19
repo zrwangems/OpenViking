@@ -7,6 +7,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import io
+import json
 import re
 from pathlib import Path
 from typing import Any, Iterator
@@ -189,62 +190,34 @@ def parse_mat_documents(path: str | Path) -> tuple[dict[str, str], list[str]]:
     header = values.get("__header__", b"")
     if isinstance(header, bytes):
         header = header.decode("latin-1", errors="replace")
-    lines = [
-        "---",
-        "type: matlab-data",
-        "---",
-        "",
-        f"# {path.name}",
-        "",
-        f"格式：{fmt}。所有可读取的数值、逻辑和字符数组均完整导出为 CSV，不使用预览截断。CSV 索引从 1 开始，浮点数使用可往返精度。",
-        "",
-        "| 变量 | 维度 | MATLAB / 存储类型 | 结构字段或值预览 |",
-        "| --- | --- | --- | --- |",
-    ]
-    count = 0
-    for name, value in values.items():
-        if name.startswith("__"):
-            continue
-        shape = hdf_shapes[name] if name in hdf_shapes else getattr(value, "shape", None)
-        dtype = hdf_dtypes[name] if name in hdf_dtypes else getattr(value, "dtype", None)
-        kind = str(dtype) if dtype is not None else type(value).__name__
-        dimensions = " × ".join(str(v) for v in shape) if shape is not None else "未知"
-        if name == "None":
-            name = "未知名（MATLAB opaque 对象）"
-            warnings.append(
-                f"{path.name}: SciPy 无法恢复 MATLAB opaque 对象本身及其变量名；已完整导出其中可读取的数组"
-            )
-        preview = (
-            hdf_previews.get(name, _preview(value))
-            .replace("|", "\\|")
-            .replace("\r", "")
-            .replace("\n", "<br>")
+    documents: dict[str, str] = {}
+    variables = []
+    for index, (array_path, value) in enumerate(arrays, 1):
+        name = _csv_name(index, array_path)
+        documents[name] = _array_csv(value)
+        shape = list(getattr(value, "shape", ()))
+        variables.append(
+            {
+                "name": array_path,
+                "class": str(getattr(value, "dtype", type(value).__name__)),
+                "dims": shape,
+                "complex": "complex" in str(getattr(value, "dtype", "")),
+                "sparse": hasattr(value, "toarray"),
+                "data": name,
+                "rows": shape[0] if shape else 1,
+                "cols": shape[1] if len(shape) > 1 else 1,
+            }
         )
-        lines.append(f"| {name} | {dimensions} | {kind} | {preview} |")
-        count += 1
-    if not count:
-        lines.append("| - | - | - | 未读取到顶层变量 |")
-
-    documents = {f"{path.name}.md": ""}
-    lines.extend(["", "## 全量数组数据", ""])
-    if arrays:
-        lines.extend(["| 数组路径 | 维度 | 类型 | 完整数据 |", "| --- | --- | --- | --- |"])
-        for index, (array_path, value) in enumerate(arrays, 1):
-            name = _csv_name(index, array_path)
-            documents[name] = _array_csv(value)
-            shape = getattr(value, "shape", ())
-            dimensions = " × ".join(str(part) for part in shape) or "标量"
-            escaped_path = array_path.replace("|", "\\|")
-            lines.append(
-                f"| `{escaped_path}` | {dimensions} | `{getattr(value, 'dtype', type(value).__name__)}` | [{name.removeprefix('data/')}]({name}) |"
-            )
-    else:
-        lines.append("未读取到可导出的数组。")
-    lines.extend(["", f"原始文件头：`{str(header).strip()}`", ""])
-    documents[f"{path.name}.md"] = "\n".join(lines)
+    payload = {
+        "schema": "ov.matlab.variables/1",
+        "file": path.name,
+        "mat_version": "v7.3" if fmt.startswith("MAT v7.3") else "v7",
+        "header": str(header).strip(),
+        "variables": variables,
+    }
+    documents["variables.json"] = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
     return documents, warnings
-
 
 def parse_mat(path: str | Path) -> tuple[str, list[str]]:
     documents, warnings = parse_mat_documents(path)
-    return documents[f"{Path(path).name}.md"], warnings
+    return documents["variables.json"], warnings

@@ -176,7 +176,7 @@ def _mlx_cells(archive: zipfile.ZipFile) -> list[dict[str, Any]]:
                 level = 2
             cells.append({"type": "heading", "level": level, "text": text})
         else:
-            cells.append({"type": "text", "text": text})
+            cells.append({"type": "markdown", "text": text})
     return cells
 
 
@@ -229,6 +229,7 @@ def parse_mlx_notebook(path: str | Path) -> tuple[dict[str, Any], dict[str, byte
     return (
         {
             "schema": "ov.matlab.notebook/1",
+            "file": path.name,
             "name": path.stem,
             "release": metadata.get("matlabRelease", ""),
             "cells": cells,
@@ -525,3 +526,74 @@ def protected_metadata(path: str | Path, kind: str) -> dict[str, Any]:
         "original_preserved": True,
         "boundary": "Original bytes are kept; no decompilation or source recovery is attempted.",
     }
+
+
+def sldd_entry_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
+    """Flatten dictionary entries into the plan's one-object-per-line shape."""
+    rows: list[dict[str, Any]] = []
+    for entry in tree.get("entries", []):
+        value = entry.get("value")
+        row: dict[str, Any] = {"name": entry.get("name", "")}
+        if isinstance(value, dict):
+            row["class"] = value.get("class", "未知")
+            if value.get("Condition") is not None:
+                row["condition"] = value.get("Condition")
+            if value.get("Value") is not None:
+                row["value"] = value.get("Value")
+            if value.get("Dimensions") is not None:
+                row["dimensions"] = value.get("Dimensions")
+            if value.get("DataType") is not None:
+                row["dtype"] = value.get("DataType")
+        elif value is not None:
+            row["value"] = value
+        for source, target in (("Unit", "unit"), ("StorageClass", "storage"), ("Description", "description")):
+            if isinstance(value, dict) and value.get(source) not in (None, ""):
+                row[target] = value.get(source)
+        if "dimensions" not in row and isinstance(value, dict):
+            dims = value.get("Dimensions")
+            if dims not in (None, ""):
+                row["dimensions"] = dims
+        rows.append(row)
+    return rows
+
+
+def requirement_rows(payload: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Map generic requirement/link nodes to the plan's JSONL fields."""
+    requirements = []
+    for item in payload.get("requirements", []):
+        attributes = item.get("attributes", {})
+        text = str(item.get("text", ""))
+        title = (
+            attributes.get("title")
+            or attributes.get("name")
+            or attributes.get("summary")
+            or text.splitlines()[0][:300]
+            if text
+            else ""
+        )
+        requirements.append(
+            {
+                "id": item.get("id") or attributes.get("id") or attributes.get("ID"),
+                "title": title,
+                "description": text,
+                "status": attributes.get("status"),
+                "parent": attributes.get("parent") or attributes.get("parentId"),
+            }
+        )
+    links = []
+    for item in payload.get("links", []):
+        attributes = item.get("attributes", {})
+        links.append(
+            {
+                "requirement": attributes.get("requirement")
+                or attributes.get("source")
+                or attributes.get("id"),
+                "element": attributes.get("element")
+                or attributes.get("target")
+                or attributes.get("sid"),
+                "block": attributes.get("block") or attributes.get("blockPath"),
+                "type": attributes.get("type") or item.get("tag"),
+                "description": item.get("text", ""),
+            }
+        )
+    return requirements, links

@@ -97,6 +97,13 @@ def _get_understanding_limiter(max_concurrent: int) -> asyncio.Semaphore:
     return limiter
 
 
+_MATLAB_PASSTHROUGH = {
+    ".m", ".ssc", ".tlc", ".c", ".h", ".cpp", ".hpp", ".mk", ".bat", ".rsp",
+    ".map", ".html", ".prj", ".asv", ".xml", ".json", ".yaml", ".yml", ".csv",
+    ".txt", ".ini", ".arxml", ".dbc", ".ldf", ".a2l", ".md", ".xlsx",
+}
+
+
 class DirectoryParser(BaseParser):
     """
     Parser for local directories.
@@ -278,9 +285,20 @@ class DirectoryParser(BaseParser):
                 )
                 use_understanding = bool(split_content and configured_for_understanding)
                 native_parser = None if use_understanding else self._assign_parser(cf, registry)
+                if scan_result.matlab_project and Path(cf.path).suffix.lower() in _MATLAB_PASSTHROUGH:
+                    # Plan: these formats are stored as the original file, not as
+                    # parser-generated Markdown/JSON pages.
+                    native_parser = None
+                    use_understanding = False
                 file_parser = parser_router if use_understanding else native_parser
+                file_split_content = bool(
+                    split_content
+                    and not (scan_result.matlab_project and native_parser is not None)
+                )
                 native_parser_unavailable = bool(
-                    not split_content and native_parser is None and not is_text_file(cf.path)
+                    not file_split_content
+                    and native_parser is None
+                    and not is_text_file(cf.path)
                 )
                 parser_name = (
                     "UnderstandingAPI"
@@ -303,6 +321,7 @@ class DirectoryParser(BaseParser):
                     "classified_file": cf,
                     "file_parser": file_parser,
                     "parser_name": parser_name,
+                    "split_content": file_split_content,
                     "use_understanding": use_understanding,
                     "native_parser_unavailable": native_parser_unavailable,
                     "direct_upload": bool(
@@ -443,7 +462,7 @@ class DirectoryParser(BaseParser):
                                 viking_fs,
                                 target_writer=writer,
                                 preserve_structure=preserve_structure,
-                                split_content=split_content,
+                                split_content=job["split_content"],
                             )
                             detail = {
                                 "ok": True,
@@ -486,7 +505,7 @@ class DirectoryParser(BaseParser):
                         output_store=output_store,
                         preserve_structure=preserve_structure,
                         import_root=str(source_path),
-                        split_content=split_content,
+                        split_content=job["split_content"],
                         # Nested archives parse their members through a new DirectoryParser.
                         parse_options={**account_options, **job.get("parse_options", {})},
                     )

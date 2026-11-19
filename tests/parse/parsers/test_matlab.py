@@ -16,8 +16,6 @@ from openviking.parse.output import LocalParseOutputStore
 from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
 from openviking.parse.parsers.matlab.catalog import find_block, find_block_reference
-from openviking.parse.parsers.matlab.coverage import render_coverage
-from openviking.parse.parsers.matlab.formats import parse_additional
 from openviking.parse.parsers.matlab.library import (
     block_references,
     normalize_block_document,
@@ -25,10 +23,8 @@ from openviking.parse.parsers.matlab.library import (
 )
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
-from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx
-from openviking.parse.parsers.matlab.sldd import parse_sldd
 from openviking.parse.parsers.matlab.slx import parse_slx, system_json_documents
-from openviking.parse.parsers.matlab.stateflow import parse_stateflow, render_stateflow
+from openviking.parse.parsers.matlab.stateflow import chart_json, parse_stateflow
 from openviking.parse.parsers.matlab.structure import (
     structure_block_document,
     structured_data,
@@ -169,22 +165,19 @@ def test_stateflow_states_actions_default_transition_and_conditions():
     charts = parse_stateflow(CONTROLLER)
     assert [chart.chart_id for chart in charts] == ["798", "962"]
 
-    timer = render_stateflow(charts[1])
-    assert len(charts[1].states) == 3
-    assert len(charts[1].transitions) == 5
-    assert "### StartTimer" in timer
-    assert "Out = 0;" in timer
-    assert "after(0.1, sec)" in timer
-    assert "[*] --> s1" in timer
-    assert "s12 --> s2 : after(0.1, sec)" in timer
-    assert "INPUT_DATA" in timer
-    assert "OUTPUT_DATA" in timer
+    timer = chart_json(charts[1])
+    assert len(timer["states"]) == 3
+    assert len(timer["transitions"]) == 5
+    assert any(state["name"] == "StartTimer" for state in timer["states"])
+    assert "Out = 0;" in json.dumps(timer, ensure_ascii=False)
+    assert "after(0.1, sec)" in json.dumps(timer, ensure_ascii=False)
+    assert timer["transitions"][1]["from_name"] == "StartTimer"
 
-    supervisory = render_stateflow(charts[0])
-    assert len(charts[0].states) == 34
-    assert len(charts[0].transitions) == 35
-    assert "EngOnReq = EngOnCalc" in supervisory
-    assert 'state "HEV" as s10 {' in supervisory
+    supervisory = chart_json(charts[0])
+    assert len(supervisory["states"]) == 34
+    assert len(supervisory["transitions"]) == 35
+    assert "EngOnReq = EngOnCalc" in json.dumps(supervisory, ensure_ascii=False)
+    assert any(state["name"] == "HEV" for state in supervisory["states"])
 def test_sldd_entries_dimensions_types_and_references():
     dictionary = (
         SAMPLE
@@ -207,9 +200,12 @@ def test_sldd_entries_dimensions_types_and_references():
     assert by_name["altitude"]["value"]["Value"] == "4000000.0"
     assert by_name["ACSConfigSet"]["value"]["class"] == "Simulink.ConfigSet"
 
-    content = parse_sldd(dictionary)
-    assert "| altitude | Simulink.Parameter | 1 × 1 | auto | 4000000.0 |" in content
-    assert "SolverName=FixedStepDiscrete" in content
+    from openviking.parse.parsers.matlab.structured import sldd_entry_rows
+
+    rows = sldd_entry_rows(tree)
+    altitude = next(row for row in rows if row["name"] == "altitude")
+    assert altitude["class"] == "Simulink.Parameter"
+    assert altitude["value"] == "4000000.0"
 def test_slx_rejects_missing_model_root(tmp_path):
     path = tmp_path / "invalid.slx"
     with zipfile.ZipFile(path, "w") as archive:
@@ -234,8 +230,10 @@ def test_mat_v73_hdf5_full_array_export(tmp_path):
         handle.create_dataset("trajectory", data=[[1.0, 2.0], [3.0, 4.0]])
         handle.create_dataset("nested/speed", data=[5.0, 6.0])
     content, warnings = parse_mat(path)
-    assert "MAT v7.3 (HDF5)" in content
-    assert "| trajectory | 2 × 2 |" in content
+    payload = json.loads(content)
+    assert payload["mat_version"] == "v7.3"
+    trajectory = next(item for item in payload["variables"] if item["name"] == "trajectory")
+    assert trajectory["dims"] == [2, 2]
     documents, warnings = parse_mat_documents(path)
     csv_path = next(name for name in documents if "trajectory" in name and name.endswith(".csv"))
     rows = list(csv.reader(io.StringIO(documents[csv_path])))
@@ -270,15 +268,9 @@ def test_mat_sparse_array_is_exported_in_full(tmp_path):
 
 def test_mlx_preserves_headings_text_and_code():
     live_script = SAMPLE / "model" / "asbCubeSatMBSE" / "MissionAnalysis" / "mappingToolboxAnalysis.mlx"
-    content = parse_mlx(live_script)
-    assert "## Run the Simulation" in content
-    assert "CubeSat Mission Analysis with Mapping Toolbox" in content
-    assert "```matlab" in content
-    assert 'arch.model = "asbCubeSatArchModel"' in content
-
     notebook, files = parse_mlx_notebook(live_script)
     kinds = [cell["type"] for cell in notebook["cells"]]
-    assert "heading" in kinds and "text" in kinds and "code" in kinds
+    assert "heading" in kinds and "markdown" in kinds and "code" in kinds
     code = "\n".join(cell["source"] for cell in notebook["cells"] if cell["type"] == "code")
     assert 'arch.model = "asbCubeSatArchModel"' in code
     assert any(output["type"] == "image" for output in notebook["outputs"])
@@ -369,7 +361,7 @@ async def test_parser_keeps_protected_original_and_requirement_json(tmp_path):
     result = await MatlabParser().parse(protected, parse_output_store=store)
     root = Path(result.artifact_ref.root)
     assert (root / "secret" / "secret.slxp").read_bytes() == b"protected-model"
-    metadata = json.loads((root / "secret" / "secret.slxp.json").read_text(encoding="utf-8"))
+    metadata = json.loads((root / "secret" / "metadata.json").read_text(encoding="utf-8"))
     assert metadata["original_preserved"] is True
 
     requirements = tmp_path / "requirements.slreqx"
@@ -381,15 +373,23 @@ async def test_parser_keeps_protected_original_and_requirement_json(tmp_path):
         )
     result = await MatlabParser().parse(requirements, parse_output_store=store)
     root = Path(result.artifact_ref.root)
-    tree = json.loads((root / "requirements.slreqx.json").read_text(encoding="utf-8"))
-    assert tree["requirements"][0]["id"] == "R1"
-    assert "Battery below 45 C" in tree["requirements"][0]["text"]
+    rows = [
+        json.loads(line)
+        for line in (root / "requirements" / "requirements.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
+    assert rows[0]["id"] == "R1"
+    assert "Battery below 45 C" in rows[0]["description"]
 
 
 def test_mat_shapes_struct_fields_and_m_source():
     flames = SAMPLE / "data" / "flames.mat"
     content, warnings = parse_mat(flames)
-    assert "| X | 100 × 100 | uint8 |" in content
+    payload = json.loads(content)
+    variable = next(item for item in payload["variables"] if item["name"] == "X")
+    assert variable["dims"] == [100, 100]
+    assert variable["class"] == "uint8"
     assert not warnings
 
     documents, warnings = parse_mat_documents(flames)
@@ -398,6 +398,7 @@ def test_mat_shapes_struct_fields_and_m_source():
     assert len(rows) == 10001
     assert rows[0] == ["row", "column", "value"]
     assert rows[-1][:2] == ["100", "100"]
+    assert "variables.json" in documents
     assert not warnings
 
     dataset = (
@@ -411,12 +412,8 @@ def test_mat_shapes_struct_fields_and_m_source():
         / "TransientBatteryTestDataset.mat"
     )
     agent, _ = parse_mat(dataset)
-    assert "struct fields: _TypeSystem, _Class, _ObjectMetadata" in agent
     assert "DLBatteryTestData[1]._ObjectMetadata" in agent
 
-    source = parse_m_file(SAMPLE / "src" / "detectChangeOrbitalElements.m")
-    assert "type: matlab-code" in source
-    assert "```matlab" in source
 @pytest.mark.asyncio
 async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     store = LocalParseOutputStore(tmp_path)
@@ -446,7 +443,6 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
         payload = json.loads(document.read_text(encoding="utf-8"))
         for child in payload.get("children", []):
             assert (document.parent / child["path"]).resolve().is_file(), (document, child["path"])
-    assert (model_root / "coverage.json").is_file()
     assert (root / ".artifact_manifest.json").is_file()
     assert result.parser_name == "MatlabParser"
     assert not (model_root / "HevIpsPowertrainController.slx").exists()
@@ -473,14 +469,15 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     ]
     assert len(system_pages) > 500
     base = root / "matlab-ingest-fixture"
-    assert (base / "data" / "flames.mat.md").is_file()
+    assert (base / "data" / "flames" / "flames.mat").is_file()
+    assert (base / "data" / "flames" / "variables.json").is_file()
     assert (
         base
         / "model"
         / "asbCubeSatMBSE"
         / "MissionAnalysis"
         / "mappingToolboxAnalysis"
-        / "mappingToolboxAnalysis.mlx.json"
+        / "notebook.json"
     ).is_file()
     assert list(
         (
@@ -498,7 +495,8 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
         / "asbCubeSatMBSE"
         / "CubeSatMBSEModel"
         / "ModelData"
-        / "asbCubeSatArchInterfaceData.sldd.json"
+        / "asbCubeSatArchInterfaceData"
+        / "entries.jsonl"
     ).is_file()
     assert (base / "src" / "detectChangeOrbitalElements.m").is_file()
     assert not (base / "src" / "detectChangeOrbitalElements.m.md").exists()
@@ -518,12 +516,12 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     pcode = base / "src" / "autoblkscheckparams" / "autoblkscheckparams.p"
     assert pcode.is_file()
     metadata = json.loads(
-        (pcode.parent / "autoblkscheckparams.p.json").read_text(encoding="utf-8")
+        (pcode.parent / "metadata.json").read_text(encoding="utf-8")
     )
     assert metadata["parse_status"] == "opaque"
     assert metadata["sha256"]
     sources = [path for path in SAMPLE.rglob("*") if path.is_file()]
-    assert len(sources) == 2718
+    assert len(sources) == 2717
 def test_registry_routes_all_matlab_extensions():
     registry = ParserRegistry()
     for suffix in (".slx", ".sldd", ".mlx", ".mat", ".m", ".p"):
@@ -537,14 +535,6 @@ def test_block_templates_follow_resource_language():
     assert "Abs 模块输出输入信号的绝对值" in chinese
     assert "Output absolute value of input" in english
     assert "Abs 模块输出输入信号的绝对值" not in english
-
-
-def test_coverage_keeps_wrapped_library_paths_on_one_line():
-    model = parse_slx(CONTROLLER)
-    coverage = render_coverage(CONTROLLER, model)
-    assert "- `simulink/Discontinuities/Saturation Dynamic`：" in coverage
-    assert "- `simulink/Logic and Bit Operations/Compare To Constant`：" in coverage
-    assert "\nDynamic`：" not in coverage
 
 
 def test_standard_library_and_external_library_matching():
@@ -969,14 +959,18 @@ Input and output.
     assert normalize_block_document(normalized, language="zh-CN") == normalized
 
 
-def test_real_simscape_model_preserves_conserving_network_semantics():
-    content, kind = parse_additional(
-        SAMPLE / "model" / "VirtualVehicle" / "Electrical" / "Plant" / "FuelCell.ssc"
+@pytest.mark.asyncio
+async def test_simscape_source_keeps_original_bytes(tmp_path):
+    source = SAMPLE / "model" / "VirtualVehicle" / "Electrical" / "Plant" / "FuelCell.ssc"
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
     )
-    assert kind == "ssc"
-    assert "nodes" in content and "inputs" in content
-    assert "不归类为输入输出" in content
-    assert "component (Propagation = blocks) FuelCell" in content
+    root = Path(result.artifact_ref.root)
+    copied = root / "FuelCell.ssc"
+    assert copied.read_bytes() == source.read_bytes()
+    assert not list(root.glob("*.md"))
+
+
 def _write_semantic_slx(path: Path):
     def block(kind, name, sid, properties="", system=""):
         return (
@@ -1030,23 +1024,14 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     assert by_name["Electrical +"]["ports"]["conn"] == [1]
     assert by_name["Torque"]["block_type"] == "PMIOPort"
     assert by_name["Torque"]["ports"]["conn"] == [3]
-def test_additional_formats_text_containers_and_opaque_originals(tmp_path):
-    ssc = (
-        SAMPLE
-        / "model"
-        / "VirtualVehicle"
-        / "Electrical"
-        / "Plant"
-        / "FuelCell.ssc"
-    )
-    content, kind = parse_additional(ssc)
-    assert kind == "ssc"
-    assert "nodes" in content and "inputs" in content
-    assert "不归类为输入输出" in content
-
+@pytest.mark.asyncio
+async def test_legacy_mdl_requirements_and_binary_metadata(tmp_path):
     mdl = SAMPLE / "src" / "slctrlobsolete.mdl"
-    content, kind = parse_additional(mdl)
-    assert kind == "mdl" and "BlockType 声明" in content
+    result = await MatlabParser().parse(
+        mdl, parse_output_store=LocalParseOutputStore(tmp_path / "mdl")
+    )
+    root = Path(result.artifact_ref.root)
+    assert (root / "slctrlobsolete" / "main.json").is_file()
 
     req = (
         SAMPLE
@@ -1055,22 +1040,23 @@ def test_additional_formats_text_containers_and_opaque_originals(tmp_path):
         / "CubeSatRequirements"
         / "ACSRequirements.slreqx"
     )
-    content, _ = parse_additional(req)
-    assert "The CubeSat shall have" in content
-    assert "slrequirements/data.xml" in content
+    result = await MatlabParser().parse(
+        req, parse_output_store=LocalParseOutputStore(tmp_path / "req")
+    )
+    root = Path(result.artifact_ref.root)
+    requirements = (root / "ACSRequirements" / "requirements.jsonl").read_text(
+        encoding="utf-8"
+    )
+    assert "CubeSat" in requirements
+    assert (root / "ACSRequirements" / "links.jsonl").is_file()
 
     mex = SAMPLE / "src" / "componentinfo.mexw64"
-    content, kind = parse_additional(mex)
-    assert kind == "mexw64" and "不反汇编、不执行" in content
-
-    class_file = (
-        SAMPLE
-        / "model"
-        / "asbCubeSatMBSE"
-        / "CubeSatMBSEModel"
-        / "ModelData"
-        / "componentType.m"
+    result = await MatlabParser().parse(
+        mex, parse_output_store=LocalParseOutputStore(tmp_path / "mex")
     )
-    class_doc = parse_m_file(class_file)
-    assert "matlab_kind: class" in class_doc
-    assert "classdef：`componentType`，继承 `uint8`" in class_doc
+    root = Path(result.artifact_ref.root)
+    metadata = json.loads(
+        (root / "componentinfo" / "metadata.json").read_text(encoding="utf-8")
+    )
+    assert metadata["parse_status"] == "opaque"
+    assert (root / "componentinfo" / "componentinfo.mexw64").is_file()

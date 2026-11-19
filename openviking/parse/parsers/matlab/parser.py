@@ -14,16 +14,12 @@ from typing import List, Optional, Union
 from openviking.parse.base import NodeType, ParseResult, ResourceNode, create_parse_result
 from openviking.parse.output import create_parse_artifact_writer
 from openviking.parse.parsers.base_parser import BaseParser
-from openviking.parse.parsers.matlab.coverage import coverage_json
 from openviking.parse.parsers.matlab.formats import (
     additional_extensions,
     archive_manifest,
-    is_additional_format,
-    parse_additional,
 )
 from openviking.parse.parsers.matlab.mat import parse_mat_documents
 from openviking.parse.parsers.matlab.mdl import parse_mdl
-from openviking.parse.parsers.matlab.scripts import parse_m_file
 from openviking.parse.parsers.matlab.slx import parse_slx, system_json_documents
 from openviking.parse.parsers.matlab.stateflow import (
     chart_json,
@@ -38,6 +34,8 @@ from openviking.parse.parsers.matlab.structured import (
     parse_requirement_set,
     parse_sldd_tree,
     protected_metadata,
+    requirement_rows,
+    sldd_entry_rows,
 )
 
 _NATIVE_BINARY_SUFFIXES = {
@@ -56,11 +54,23 @@ _NATIVE_BINARY_SUFFIXES = {
 }
 _MEASUREMENT_BINARY_SUFFIXES = {".mdf", ".mf4", ".blf"}
 _PRESERVED_CONTAINER_SUFFIXES = {".jar", ".ctf"}
-_PACKAGE_MANIFEST_SUFFIXES = {".mlpkginstall", ".sltx"}
+_PACKAGE_MANIFEST_SUFFIXES = {
+    ".mlpkginstall",
+    ".sltx",
+    ".mlproj",
+    ".mltbx",
+    ".mlappinstall",
+    ".fmu",
+}
+
+
+def _zip_member_bytes(path: Path, name: str) -> bytes:
+    with zipfile.ZipFile(path) as archive:
+        return archive.read(name)
 
 
 class MatlabParser(BaseParser):
-    """Convert MATLAB containers into searchable Markdown without executing code."""
+    """Parse MATLAB project files into the plan's JSON, JSONL and original-file set."""
 
     @property
     def supported_extensions(self) -> List[str]:
@@ -113,11 +123,6 @@ class MatlabParser(BaseParser):
                         f"{root_dir}/{name}",
                         json.dumps(document, ensure_ascii=False, indent=2) + "\n",
                     )
-                coverage = await asyncio.to_thread(coverage_json, path, model)
-                await writer.write_text(
-                    f"{root_dir}/coverage.json",
-                    json.dumps(coverage, ensure_ascii=False, indent=2) + "\n",
-                )
                 systems = list(_flatten(model))
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
@@ -141,29 +146,6 @@ class MatlabParser(BaseParser):
                         json.dumps(document, ensure_ascii=False, indent=2) + "\n",
                     )
                 systems = list(_flatten(model))
-                coverage = {
-                    "schema": "ov.matlab.simulink-coverage/1",
-                    "model": path.stem,
-                    "systems": len(systems),
-                    "blocks": sum(len(system.blocks) for system in systems),
-                    "edges": sum(len(system.edges) for system in systems),
-                    "conserving_edges": sum(
-                        edge.kind == "physical-conserving"
-                        for system in systems
-                        for edge in system.edges
-                    ),
-                    "physical_ports": sum(len(system.physical_ports) for system in systems),
-                    "subsystem_types": sorted(
-                        {kind for system in systems for kind in system.subsystem_types}
-                    ),
-                    "stateflow_charts": [],
-                    "workspace_data": [],
-                    "boundary": "Text MDL grammar is not public; unresolved sections are kept out of the graph.",
-                }
-                await writer.write_text(
-                    f"{root_dir}/coverage.json",
-                    json.dumps(coverage, ensure_ascii=False, indent=2) + "\n",
-                )
                 meta = {
                     "matlab_format": "mdl",
                     "system_count": len(systems),
@@ -176,6 +158,20 @@ class MatlabParser(BaseParser):
                     "language": "zh-CN" if str(language).lower().startswith("zh") else "en",
                 }
                 title = path.stem
+            elif suffix == ".mat":
+                folder = path.stem
+                await writer.write_bytes(
+                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                )
+                documents, mat_warnings = await asyncio.to_thread(parse_mat_documents, path)
+                for name, document in documents.items():
+                    await writer.write_text(f"{folder}/{name}", document)
+                warnings.extend(mat_warnings)
+                meta = {
+                    "matlab_format": "mat",
+                    "original_preserved": True,
+                }
+                title = path.stem
             elif suffix == ".p":
                 folder = path.stem
                 await writer.write_bytes(
@@ -183,7 +179,7 @@ class MatlabParser(BaseParser):
                 )
                 metadata = await asyncio.to_thread(protected_metadata, path, "pcode")
                 await writer.write_text(
-                    f"{folder}/{path.name}.json",
+                    f"{folder}/metadata.json",
                     json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
                 )
                 meta = {
@@ -207,18 +203,93 @@ class MatlabParser(BaseParser):
                     payload = await asyncio.to_thread(parse_requirement_set, path)
                 else:
                     payload, auxiliary = await asyncio.to_thread(parse_mlapp, path)
-                folder = path.stem if suffix in {".mlx", ".mlapp"} else ""
-                for name, data in auxiliary.items():
-                    await writer.write_bytes(f"{folder}/{name}" if folder else name, data)
-                target = f"{folder}/{path.name}.json" if folder else f"{path.name}.json"
-                await writer.write_text(
-                    target,
-                    json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                folder = path.stem
+                await writer.write_bytes(
+                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
                 )
+                for name, data in auxiliary.items():
+                    await writer.write_bytes(f"{folder}/{name}", data)
+                if suffix == ".sldd":
+                    rows = await asyncio.to_thread(sldd_entry_rows, payload)
+                    for index, row in enumerate(rows, 1):
+                        value = row.get("value")
+                        if isinstance(value, (dict, list)) and len(
+                            json.dumps(value, ensure_ascii=False)
+                        ) > 2000:
+                            data_name = f"data/{index:04d}_{row['name']}.json"
+                            await writer.write_text(
+                                f"{folder}/{data_name}",
+                                json.dumps(value, ensure_ascii=False, indent=2) + "\n",
+                            )
+                            row["data"] = data_name
+                            row.pop("value", None)
+                    await writer.write_text(
+                        f"{folder}/entries.jsonl",
+                        "\n".join(json.dumps(row, ensure_ascii=False) for row in rows) + "\n",
+                    )
+                elif suffix == ".mlx":
+                    await writer.write_text(
+                        f"{folder}/notebook.json",
+                        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                    )
+                elif suffix == ".fig":
+                    await writer.write_text(
+                        f"{folder}/figure.json",
+                        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                    )
+                elif suffix == ".mldatx":
+                    await writer.write_text(
+                        f"{folder}/tests.json",
+                        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                    )
+                elif suffix in {".slreqx", ".slmx"}:
+                    requirements, links = await asyncio.to_thread(requirement_rows, payload)
+                    if suffix == ".slreqx":
+                        await writer.write_text(
+                            f"{folder}/requirements.jsonl",
+                            "\n".join(
+                                json.dumps(row, ensure_ascii=False) for row in requirements
+                            )
+                            + "\n",
+                        )
+                    await writer.write_text(
+                        f"{folder}/links.jsonl",
+                        "\n".join(json.dumps(row, ensure_ascii=False) for row in links) + "\n",
+                    )
+                else:
+                    await writer.write_text(
+                        f"{folder}/app.json",
+                        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                    )
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
                     "structured_format": payload.get("schema", ""),
-                    "original_preserved": False,
+                    "original_preserved": True,
+                }
+                title = path.stem
+            elif suffix == ".sfx":
+                folder = path.stem
+                await writer.write_bytes(
+                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                )
+                charts = await asyncio.to_thread(parse_stateflow, path)
+                await writer.write_text(
+                    f"{folder}/stateflow.json",
+                    json.dumps(
+                        {
+                            "schema": "ov.matlab.stateflow/1",
+                            "file": path.name,
+                            "charts": [chart_json(chart) for chart in charts],
+                        },
+                        ensure_ascii=False,
+                        indent=2,
+                    )
+                    + "\n",
+                )
+                meta = {
+                    "matlab_format": "sfx",
+                    "original_preserved": True,
+                    "stateflow_chart_count": len(charts),
                 }
                 title = path.stem
             elif suffix in _NATIVE_BINARY_SUFFIXES:
@@ -252,7 +323,7 @@ class MatlabParser(BaseParser):
                     "Vector BLF library; this parser does not guess signal values."
                 )
                 await writer.write_text(
-                    f"{folder}/{path.name}.json",
+                    f"{folder}/metadata.json",
                     json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
                 )
                 await writer.write_text(
@@ -280,9 +351,8 @@ class MatlabParser(BaseParser):
                 await writer.write_bytes(
                     f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
                 )
-                content, _ = await asyncio.to_thread(parse_additional, path)
-                await writer.write_text(f"{folder}/{path.name}.md", content)
                 manifest = await asyncio.to_thread(archive_manifest, path)
+                manifest["type"] = suffix.removeprefix(".")
                 await writer.write_text(
                     f"{folder}/manifest.json",
                     json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
@@ -299,10 +369,24 @@ class MatlabParser(BaseParser):
                     f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
                 )
                 manifest = await asyncio.to_thread(archive_manifest, path)
+                manifest["type"] = suffix.removeprefix(".")
+                if suffix == ".fmu":
+                    members = [member["name"] for member in manifest["members"]]
+                    if "modelDescription.xml" in members:
+                        manifest["modelDescription"] = "modelDescription.xml"
                 await writer.write_text(
                     f"{folder}/manifest.json",
                     json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
                 )
+                if suffix == ".fmu" and "modelDescription.xml" in {
+                    member["name"] for member in manifest["members"]
+                }:
+                    await writer.write_bytes(
+                        f"{folder}/modelDescription.xml",
+                        await asyncio.to_thread(
+                            _zip_member_bytes, path, "modelDescription.xml"
+                        ),
+                    )
                 if suffix == ".sltx":
                     template_members = [
                         member["name"]
@@ -337,7 +421,7 @@ class MatlabParser(BaseParser):
                     protected_metadata, path, suffix.removeprefix(".")
                 )
                 await writer.write_text(
-                    f"{folder}/{path.name}.json",
+                    f"{folder}/metadata.json",
                     json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
                 )
                 meta = {
@@ -347,36 +431,12 @@ class MatlabParser(BaseParser):
                 }
                 title = path.stem
             else:
-                if suffix == ".mat":
-                    mat_documents, mat_warnings = await asyncio.to_thread(parse_mat_documents, path)
-                    for name, document in mat_documents.items():
-                        await writer.write_text(name, document)
-                    warnings.extend(mat_warnings)
-                    content = mat_documents[f"{path.name}.md"]
-                elif suffix == ".m":
-                    content = await asyncio.to_thread(parse_m_file, path)
-                elif is_additional_format(suffix):
-                    content, _ = await asyncio.to_thread(parse_additional, path)
-                    if zipfile.is_zipfile(path):
-                        manifest = await asyncio.to_thread(archive_manifest, path)
-                        await writer.write_text(
-                            f"{path.stem}/manifest.json",
-                            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
-                        )
-                else:
-                    raise ValueError(f"Unsupported MATLAB extension: {suffix}")
-                # Plain MATLAB source stays a code resource. Containers become
-                # parsed Markdown/data only; never expose their binary as text.
-                if suffix in {".m", ".asv", ".ssc", ".tlc"} or (
-                    suffix == ".prj" and not zipfile.is_zipfile(path)
-                ):
-                    await writer.write_bytes(path.name, await asyncio.to_thread(path.read_bytes))
-                elif suffix != ".mat":
-                    await writer.write_text(f"{path.name}.md", content)
+                # Plan: plain source/configuration files are stored as the
+                # original bytes, never as a parser-generated Markdown page.
+                await writer.write_bytes(path.name, await asyncio.to_thread(path.read_bytes))
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
-                    "original_preserved": suffix in {".m", ".asv", ".ssc", ".tlc"}
-                    or (suffix == ".prj" and not zipfile.is_zipfile(path)),
+                    "original_preserved": True,
                 }
                 title = path.stem
 

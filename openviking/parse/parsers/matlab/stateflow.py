@@ -1,6 +1,6 @@
 # Copyright (c) 2026 Beijing Volcano Engine Technology Co., Ltd.
 # SPDX-License-Identifier: AGPL-3.0
-"""Stateflow chart XML to hierarchical Markdown and Mermaid state diagrams."""
+"""Stateflow chart XML to structured JSON states, transitions and data."""
 
 from __future__ import annotations
 
@@ -121,121 +121,6 @@ def parse_stateflow(path: str | Path) -> list[Chart]:
                 )
             charts.append(chart)
     return charts
-
-
-def _mermaid(value: str) -> str:
-    return value.replace('"', "'").replace("\r", "").replace("\n", " ").strip()
-
-
-def _cell(value: str) -> str:
-    return (value or "-").replace("|", "\\|").replace("\r", "").replace("\n", "<br>")
-
-
-def render_stateflow(chart: Chart) -> str:
-    states = {state.ssid: state for state in chart.states}
-    lines = [
-        "---",
-        "type: stateflow-chart",
-        f"chart_id: {chart.chart_id}",
-        "---",
-        "",
-        f"# Stateflow：{chart.name.rsplit('/', 1)[-1]}",
-        "",
-        f"Chart 路径：`{chart.name}`；Chart ID：`{chart.chart_id}`；ActionLanguage 字段：`{chart.action_language}`。",
-        "",
-        "状态、转移和动作来自 Stateflow XML。动作原文保留，不执行动作，也不推断定时器或事件调度结果。",
-        "",
-        "## 数据接口",
-        "",
-        "| 名称 | Scope | 维度 | 数据类型 | SSID |",
-        "| --- | --- | --- | --- | --- |",
-    ]
-    for data in chart.data:
-        lines.append(
-            f"| {_cell(data.name)} | {data.scope} | {_cell(data.size)} | {_cell(data.data_type)} | {data.ssid} |"
-        )
-    if not chart.data:
-        lines.append("| - | 无 Chart 级数据 | - | - | - |")
-
-    lines.extend(["", "## 状态层级与动作", ""])
-    for state in chart.states:
-        parent = states.get(state.parent)
-        parent_name = parent.name if parent else "Chart"
-        lines.extend(
-            [
-                f"### {state.name}",
-                "",
-                f"- SSID：`{state.ssid}`",
-                f"- 父级：`{parent_name}`",
-                f"- 类型：`{state.state_type}`",
-                "",
-            ]
-        )
-        if state.actions:
-            lines.extend(["```matlab", state.actions, "```", ""])
-        else:
-            lines.extend(["无 entry/during/exit 等动作原文。", ""])
-
-    lines.extend(
-        [
-            "## 转移表",
-            "",
-            "空来源表示默认转移。执行顺序按 XML 原值记录，不在此处重排。",
-            "",
-            "| 来源 | 条件 / 事件 / 动作 | 去向 | 执行顺序 | SSID |",
-            "| --- | --- | --- | --- | --- |",
-        ]
-    )
-    for transition in chart.transitions:
-        source = states.get(transition.source)
-        destination = states.get(transition.destination)
-        lines.append(
-            f"| {_cell(source.name if source else transition.source or '[*]')} "
-            f"| {_cell(transition.label)} "
-            f"| {_cell(destination.name if destination else transition.destination)} "
-            f"| {transition.order} | {transition.ssid} |"
-        )
-    if not chart.transitions:
-        lines.append("| - | 无转移 | - | - | - |")
-
-    lines.extend(["", "## 状态转移图", "", "```mermaid", "stateDiagram-v2"])
-    children: dict[str, list[State]] = {}
-    for state in chart.states:
-        children.setdefault(state.parent, []).append(state)
-
-    declared: set[str] = set()
-
-    def declare(state: State, indent: int) -> None:
-        declared.add(state.ssid)
-        prefix = " " * indent
-        nested = children.get(state.ssid, [])
-        if nested:
-            lines.append(f'{prefix}state "{_mermaid(state.name)}" as s{state.ssid} {{')
-            for child in nested:
-                declare(child, indent + 2)
-            lines.append(prefix + "}")
-        else:
-            lines.append(f'{prefix}state "{_mermaid(state.name)}" as s{state.ssid}')
-
-    for state in children.get(chart.chart_id, []):
-        declare(state, 2)
-    # Malformed or externally owned states still remain visible.
-    for state in chart.states:
-        if state.ssid not in declared and state.parent not in states:
-            declare(state, 2)
-    for transition in chart.transitions:
-        source = f"s{transition.source}" if transition.source in states else "[*]"
-        destination = (
-            f"s{transition.destination}"
-            if transition.destination in states
-            else transition.destination
-        )
-        if not destination:
-            continue
-        suffix = f" : {_mermaid(transition.label)}" if transition.label else ""
-        lines.append(f"  {source} --> {destination}{suffix}")
-    lines.extend(["```", ""])
-    return "\n".join(lines)
 
 
 def chart_system_path(chart: Chart) -> str:
