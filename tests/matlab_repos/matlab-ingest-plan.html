@@ -324,7 +324,8 @@
 
 <footer>
   <p>判定以文件头和实际路径为准，扩展名只作线索；缓存、代码生成和构建目录按路径排除，但仍记入 <code>skipped.json</code>。</p>
-  <p>处理代码列里的模块都在 <code>openviking/parse/parsers/</code> 下，解析入口是 <code>openviking/parse/parsers/matlab/parser.py</code> 的 <code>MatlabParser.parse</code>，先按扩展名分发再调具体模块；行号对应 commit <code>2d15193f2</code>，改动后请一并更新。</p>
+  <p>处理代码列里的模块都在 <code>openviking/parse/parsers/</code> 下，解析入口是 <code>openviking/parse/parsers/matlab/parser.py</code> 的 <code>MatlabParser.parse</code>，先按扩展名分发再调具体模块；行号对应 commit <code>62029f696</code>，改动后请一并更新。</p>
+  <p>本分支不再随包分发 Simulink 块库：<code>catalog.py</code>、<code>library.py</code>、<code>library_pack.py</code>、<code>templates.py</code> 和 <code>scripts/matlab/</code> 已删除，块文档在独立仓库 <code>openviking-engineering-resources</code>；入库只记模型自带的块类型与库链接，不依赖块库。</p>
 </footer>
 </div>
 
@@ -340,7 +341,7 @@
   <ol><li>按 UTF-8 BOM → UTF-8 → GB18030 顺序解码，保留原始行尾和空白</li><li>整份源码直接入库；function/classdef/代码节只在原文上标记位置，不另存一份改写版</li><li>同目录同名 .m/.p 只做引用提示，不互相覆盖</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">工程导入时命中 _MATLAB_PASSTHROUGH，直接写原始字节；单文件导入落到 MatlabParser 的兜底分支，同样只写原始字节，不生成派生 Markdown。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -366,7 +367,7 @@ end</pre>
   <ol><li>先看前 4 字节：PK 开头按 .slx 解包，否则按文本模型解析</li><li>MDL 就是老版本的 SLX：按 Block / Line 声明做词法扫描再取字段，块的 BlockType、Name、Parameters、Ports，连线的 SrcBlock/SrcPort、DstBlock/DstPort、Branch、Labels</li><li>花括号层级先配对再进字段，子系统嵌套从 Subsystem 段还原；不按行用正则硬切，因为参数里可能有换行、引号和嵌套括号</li><li>产物的目录结构和图数据 schema 与 .slx 完全一样，只是数据来源从 XML 换成文本 token，两个版本能直接对比</li><li>每个系统落一个 JSON，和 .slx 同一套 schema</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/mdl.py</code><br>parse_mdl() → System/Block/Edge</p>
-  <p class="note">分发位置：<code>parser.py:193（PK 开头的 .mdl 走 .slx 分支 parser.py:155）</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:193（PK 开头的 .mdl 走 .slx 分支 parser.py:155）</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">文本 token 解析 <code>Block {…}</code> / <code>Line {…}</code>，端口向量 <code>[1, 1]</code> 保持成对；系统 JSON 复用 slx.py 的 system_json_documents()。</p>
   <h3>产出</h3>
   <p><code>各系统 main.json</code></p>
@@ -425,7 +426,7 @@ end</pre>
   <ol><li>按文本读 component、nodes、inputs、outputs、parameters、equations 段</li><li>方程表达式保持原样，只标出行号位置</li><li>原文入库，不改写、不做方程变换</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">Simscape 源码按原文直导，组件/节点/方程不做二次结构化。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -458,7 +459,7 @@ end</pre>
   <ol><li>按文本读模板，保留缩进和指令</li><li>标出 %include、%assign、%foreach、%if 等指令位置</li><li>原文入库，按构建期输入对待</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">TLC 源码按原文直导，不执行代码生成。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -484,7 +485,7 @@ end</pre>
   <ol><li>原文直接导入，保留 include、宏和注释</li><li>在 slprj/、*_rtw/、html/ 下按目录规则跳过</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">工程源码目录按原文直导；构建目录（*_rtw/、slprj/）下由 classification.py:117 打 codegen 标签后按路径排除。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -510,7 +511,7 @@ void DRLHevIps_step(void)
   <ol><li>原文直接导入，保留声明、宏和 include guard</li><li>构建目录下的生成头文件按目录规则跳过</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">同 .c：工程源码目录原文直导，构建目录下打 codegen 标签后排除。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -535,7 +536,7 @@ extern void DRLHevIps_step(void);
   <ol><li>按路径判定构建目录，源码目录内原文入库</li><li>保留类声明、模板和命名空间原文</li><li>生成代码标 generated=true，不冒充手写源码</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">同 .c：工程源码目录原文直导，构建目录下打 codegen 标签后排除。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -562,7 +563,7 @@ private:
   <ol><li>源码目录内原文入库</li><li>保留声明、模板和 include</li><li>构建目录下按路径跳过</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">同 .c：工程源码目录原文直导，构建目录下打 codegen 标签后排除。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -586,7 +587,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>在 skipped.json 记路径、大小、修改时间、SHA-256、所属构建目录和跳过原因</li><li>确需交付构建脚本时，用显式 include 单独导入这一份</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">工程脚本目录原文直导；slprj/、*_rtw/ 下由 classification.py:118 打 slprj/build 标签后排除。</p>
   <h3>产出</h3>
   <p><code>原文 / skipped.json</code></p>
@@ -610,7 +611,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>记入 skipped.json：路径、大小、哈希、所属构建目录、原因</li><li>需要排查构建问题时再单独导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">工程脚本目录原文直导；slprj/、*_rtw/ 下由 classification.py:118 打 slprj/build 标签后排除。</p>
   <h3>产出</h3>
   <p><code>原文 / skipped.json</code></p>
@@ -634,7 +635,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>记入 skipped.json，标明所属构建目录</li><li>需要核对链接参数时单独导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">工程脚本目录原文直导；slprj/、*_rtw/ 下由 classification.py:118 打 slprj/build 标签后排除。</p>
   <h3>产出</h3>
   <p><code>原文 / skipped.json</code></p>
@@ -658,7 +659,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是代码生成中间文件</li><li>需要研究生成过程时单独导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/classification.py</code><br>ALWAYS_EXCLUDED_EXTS · classify_path()</p>
-  <p class="note">分发位置：<code>classification.py:115 · directory_scan.py:380</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>classification.py:115 · directory_scan.py:380</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">无条件排除，不读内容；每条仍写进 skipped.json（paths/size/reason），不是静默丢弃。</p>
   <h3>产出</h3>
   <p><code>skipped.json 条目</code></p>
@@ -682,7 +683,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是目标模板</li><li>需要改目标配置时单独导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/classification.py</code><br>ALWAYS_EXCLUDED_EXTS · classify_path()</p>
-  <p class="note">分发位置：<code>classification.py:115 · directory_scan.py:380</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>classification.py:115 · directory_scan.py:380</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">无条件排除，不读内容；每条仍写进 skipped.json。</p>
   <h3>产出</h3>
   <p><code>skipped.json 条目</code></p>
@@ -706,7 +707,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是链接产物</li><li>排查地址/段布局时单独导入原文</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">构建目录下的 .map 由 classification.py:221 排除；单独交付的映射文件由 classification.py:224 判为 import，按原文直导。</p>
   <h3>产出</h3>
   <p><code>原文 / skipped.json</code></p>
@@ -730,7 +731,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是烧录镜像</li><li>交付固件时把镜像作为独立附件导入，不混进工程知识库</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/classification.py</code><br>classify_path() · TARGET_OUTPUT_EXTS</p>
-  <p class="note">分发位置：<code>classification.py:116,221 · directory_scan.py:407</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>classification.py:116,221 · directory_scan.py:407</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">构建目录下排除；判为交付固件时 ACTION_ATTACH，按原始字节导入，不解析 Intel HEX。</p>
   <h3>产出</h3>
   <p><code>独立附件 / skipped.json</code></p>
@@ -754,7 +755,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是烧录镜像</li><li>交付固件时作为独立附件导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/classification.py</code><br>classify_path() · TARGET_OUTPUT_EXTS</p>
-  <p class="note">分发位置：<code>classification.py:116,221 · directory_scan.py:407</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>classification.py:116,221 · directory_scan.py:407</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">构建目录下排除；交付固件按原始字节导入，不解析 S-record。</p>
   <h3>产出</h3>
   <p><code>独立附件 / skipped.json</code></p>
@@ -778,7 +779,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>先看路径：*_rtw/html/、slprj 报告目录下按代码生成排除</li><li>文档和源码目录里的 HTML 直接读标题、正文、表格和链接</li><li>原文入库，不执行页面脚本</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">docs/ 等普通目录原文直导；*_rtw/html/ 报告目录由 classification.py:117 打 codegen 标签后按路径排除。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -803,7 +804,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按 XML 原文读，保留工程文件清单、路径、启动文件和快捷方式</li><li>盘符和反斜杠路径原样保留，另标出绝对路径</li><li>原文入库，不改写工程文件</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">工程定义文件按原文直导；formats.py:74 只登记格式说明，解析路径仍是原文导入。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -828,7 +829,7 @@ class Signal { /* ... */ };</pre>
   <ol><li>按 M 源码读，原文入库</li><li>与同目录同名 .m 比对大小、修改时间和哈希</li><li>标 backup=true，只作恢复线索，不覆盖当前源码</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">自动保存副本按原文直导；formats.py:36 只登记格式说明。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -853,7 +854,7 @@ end</pre>
   <ol><li>检测编码、命名空间和根元素</li><li>已知形态（.prj、.slreqx、.arxml、.slmx）走对应规则，其余按通用 XML 原文读</li><li>原文入库，只加根元素和元素计数这类定位信息</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">配置 XML 按原文直导。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -878,7 +879,7 @@ end</pre>
   <ol><li>原文入库，不重新格式化</li><li>读顶层键、数组长度和嵌套深度做定位</li><li>识别 OV manifest、模型配置等已知形态</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">配置 JSON 按原文直导。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -904,7 +905,7 @@ end</pre>
   <ol><li>用安全加载器解析，禁止任意对象构造</li><li>原文入库，保留锚点、别名和多文档</li><li>按文档拆分定位</li><li>与 .yml 同一套规则，两者只按后缀区分，不合并成一条记录</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">配置 YAML 按原文直导。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -929,7 +930,7 @@ signals:
   <ol><li>用安全加载器解析，禁止任意对象构造</li><li>原文入库，保留锚点、别名和多文档</li><li>按文档拆分定位</li><li>与 .yaml 同一套规则，两者只按后缀区分，不合并成一条记录</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">配置 YAML 按原文直导。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -954,7 +955,7 @@ signals:
   <ol><li>原文入库，按需识别分隔符、编码和表头</li><li>记录行列数、列名和列类型，作为定位信息</li><li>大文件不整表切碎进索引，需要哪段读哪段</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">表格按原文直导，不再生成派生 Markdown。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -979,7 +980,7 @@ signals:
   <ol><li>探测编码（BOM/UTF-8/GB18030）后原文入库</li><li>判断是说明、日志还是数据，只加类型标记</li><li>日志保留原文，需要时按时间或级别再筛</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">文本按原文直导。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -1003,7 +1004,7 @@ signals:
   <ol><li>按节/键读，保留注释和顺序</li><li>原文入库</li><li>重复键按出现顺序保留</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">配置按原文直导。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -1030,7 +1031,7 @@ save_format=v7</pre>
   <ol><li>按文本流式读，避免整棵树进内存</li><li>定位 AR-PACKAGE、SWC、Port、Interface 和引用路径</li><li>原文入库，超大文件也只做行级定位</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">AUTOSAR XML 原文直导；构建目录下由 classification.py:117 打 codegen 标签后排除。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -1056,7 +1057,7 @@ save_format=v7</pre>
   <ol><li>按文本读 BO_、SG_、VAL_ 等段</li><li>报文 ID、DLC、信号位置、因子、偏移、单位按行定位</li><li>原文入库</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">CAN 数据库原文直导。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -1079,7 +1080,7 @@ save_format=v7</pre>
   <ol><li>按文本读 Frames、Signals、Schedule 段</li><li>帧 ID、长度、信号位置和发布节点按行定位</li><li>原文入库</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">LIN 描述文件原文直导。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -1105,7 +1106,7 @@ save_format=v7</pre>
   <ol><li>按文本读 MEASUREMENT、CHARACTERISTIC、AXIS_PTS、COMPU_METHOD</li><li>名称、地址、数据类型、维度、换算和上下限按条目定位</li><li>原文入库</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">标定描述文件原文直导；构建目录下由 classification.py:117 打 codegen 标签后排除。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -1130,7 +1131,7 @@ save_format=v7</pre>
   <ol><li>按 UTF-8 读，原文直接作为文档入库</li><li>标题树、代码块和链接只做定位</li><li>不重写成别的格式</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/directory.py</code><br>_MATLAB_PASSTHROUGH</p>
-  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>directory.py:100 · parser.py:485</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">说明文档原文直导。</p>
   <h3>产出</h3>
   <p><code>原文（不生成派生文件）</code></p>
@@ -1152,11 +1153,11 @@ save_format=v7</pre>
   <h3>位置与处理</h3>
   <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>模型目录</code></td><td>—</td><td>按系统解包成 JSON</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口顺序、参数）、edges（源/目标、端口、信号）、子系统类型和说明</li><li>流程图和参数表视图从 JSON 生成，不单独落文件</li><li>原文入库；匹配本地块库只作参考，不覆盖模型里的实例参数</li></ol>
+  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口顺序、参数）、edges（源/目标、端口、信号）、子系统类型和说明</li><li>流程图和参数表视图从 JSON 生成，不单独落文件</li><li>块类型和库来源只取模型里的 BlockType/SourceBlock，缺 SourceBlock 时写 built-in/&lt;BlockType&gt;；不再对照随包块库，块库文档已迁到独立仓库 openviking-engineering-resources</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/slx.py</code><br>parse_slx() · system_json_documents() · _system_json()</p>
-  <p class="note">分发位置：<code>parser.py:155</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
-  <p class="note">解包 simulink/systems/*.xml 建 System/Block/Edge；Stateflow 由 stateflow.py:66 解出后挂到对应系统 JSON 的 stateflow 字段。每个系统一个 JSON，子系统落到 <code>&lt;system&gt;/main.json</code>。</p>
+  <p class="note">分发位置：<code>parser.py:155</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
+  <p class="note">解包 simulink/systems/*.xml 建 System/Block/Edge；Stateflow 由 stateflow.py:66 解出后挂到对应系统 JSON 的 stateflow 字段。每个系统一个 JSON，子系统落到 <code>&lt;system&gt;/main.json</code>。source_block 取模型里的 SourceBlock，缺失时由 _system_json() 写 built-in/&lt;BlockType&gt;，不查块库。</p>
   <h3>产出</h3>
   <p><code>各系统 main.json</code></p>
   <h3>案例样子</h3>
@@ -1214,7 +1215,7 @@ save_format=v7</pre>
   <ol><li>按 OOXML 解开，读 data/chunk*.xml 和 manifest</li><li>每条数据读名称、对象类型（Simulink.Parameter / Signal / VariantExpression / Bus / Enum / NumericType）、维度、数据类型、初值或条件、单位、存储类、描述</li><li>值是数组、Bus 结构这类大块数据时单独落数据文件，和 .mat 用同一套读法</li><li>原文入库；引用到的其他 .sldd 单列，不合并成假数据</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_sldd_tree() · sldd_entry_rows() · _bus_elements()</p>
-  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">一条 entry 一行 entries.jsonl；Bus 展开 elements，ConfigSet 展开 components，维度归一化；超过 2000 字符的值拆到 data/NNNN_&lt;name&gt;.json 并在行里留 data 字段。</p>
   <h3>产出</h3>
   <p><code>entries.jsonl</code></p>
@@ -1239,7 +1240,7 @@ save_format=v7</pre>
   <ol><li>解开 OOXML，读 matlab/document.xml 的段落、样式和代码</li><li>读 matlab/output.xml 的保存输出，文本和图像分开</li><li>原文入库；代码单元直接读，不重新执行</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_mlx_notebook() · _mlx_cells() · _mlx_outputs()</p>
-  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">读 matlab/document.xml 的代码单元格、文本单元格和嵌入输出，写 notebook.json 并把输出文件落到 outputs/。</p>
   <h3>产出</h3>
   <p><code>notebook.json + outputs/</code></p>
@@ -1271,7 +1272,7 @@ save_format=v7</pre>
   <ol><li>按 OPC 解包，读 matlab/document.xml 里的 classdef 源码</li><li>读 appdesigner/appModel.mat 的组件树：名称、类型、父子关系和布局属性</li><li>原文入库；组件树读不出时只保留代码并标边界</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_mlapp()</p>
-  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">抽 Live Code 源码写 code.m，App 结构写 app.json，原 .mlapp 一并保留。</p>
   <h3>产出</h3>
   <p><code>code.m + app.json</code></p>
@@ -1313,7 +1314,7 @@ app.json
   <ol><li>解开 ZIP，读工程定义和 metadata</li><li>列出包含的文件、文件夹、启动文件和快捷方式</li><li>原文入库，内部文件不自动展开成独立资源</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/packages.py</code><br>package_metadata() · _project_metadata() ← archive_manifest()</p>
-  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">成员清单 + project XML：标题、版本、release、入口、启动脚本、文件列表都写进 manifest.json。</p>
   <h3>产出</h3>
   <p><code>manifest.json</code></p>
@@ -1343,7 +1344,7 @@ app.json
   <ol><li>解开 ZIP，读 metadata/ 和工具箱清单</li><li>列工具箱名、版本、发布者、依赖和文件</li><li>原文入库；内部的 .m/.mlx 可按需展开</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/packages.py</code><br>package_metadata() · _addon() ← archive_manifest()</p>
-  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">toolbox XML 的 identifier/version/required products/files 写进 manifest.json。</p>
   <h3>产出</h3>
   <p><code>manifest.json</code></p>
@@ -1370,7 +1371,7 @@ app.json
   <ol><li>解开 ZIP，读 app 清单和 metadata</li><li>列应用名、版本、依赖和内部 .mlapp</li><li>原文入库；内部 .mlapp 按上面的规则读</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/packages.py</code><br>package_metadata() · _addon() ← archive_manifest()</p>
-  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">addon XML 的应用名、标识、版本、入口与成员清单写进 manifest.json。</p>
   <h3>产出</h3>
   <p><code>manifest.json</code></p>
@@ -1397,7 +1398,7 @@ app.json
   <ol><li>先看 PK 头确认是 ZIP；.sltx 是 Simulink 起始页的工程模板</li><li>列模板名、版本、必需产品和附带文件（工程定义、模型、脚本）</li><li>内部成员按各自后缀走本表规则；模板本身不实例化</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/packages.py</code><br>package_metadata() · _template_properties() ← archive_manifest()</p>
-  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">manifest.json 之外再写 template.json：模板必需产品、第三方组件、模板成员。</p>
   <h3>产出</h3>
   <p><code>manifest.json + template.json</code></p>
@@ -1424,7 +1425,7 @@ app.json
   <ol><li>解开 ZIP，读支持包清单、目标硬件和安装脚本</li><li>列包名、版本和依赖的第三方组件（库、驱动、插件）</li><li>安装脚本只登记内容和哈希，不执行、不联网下载</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/packages.py</code><br>package_metadata() · _support_package() ← archive_manifest()</p>
-  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">支持包 XML 的名称、标识、版本、依赖写进 manifest.json。</p>
   <h3>产出</h3>
   <p><code>manifest.json</code></p>
@@ -1451,7 +1452,7 @@ app.json
   <ol><li>解开 ZIP/XML，读 requirements、justifications、references</li><li>读需求 ID、标题、描述、理由、状态、父级和链接</li><li>原文入库，需求正文保持原文</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_requirement_set() · requirement_rows()</p>
-  <p class="note">分发位置：<code>parser.py:245 · requirements.py:120</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:245 · requirements.py:120</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">解 slrequirements/data.xml：需求一条一行写 requirements.jsonl（id/title/description/status/parent），链接写 links.jsonl（requirement/element/block/type）。</p>
   <h3>产出</h3>
   <p><code>requirements.jsonl + links.jsonl</code></p>
@@ -1478,7 +1479,7 @@ links.jsonl
   <ol><li>按 XML/容器读链接集</li><li>读需求 ID、模型元素 SID/路径、链接类型和描述</li><li>原文入库，悬空链接单独列出</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_requirement_set() · requirement_rows()</p>
-  <p class="note">分发位置：<code>parser.py:245 · requirements.py:120</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:245 · requirements.py:120</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">同一套 XML 解析只产 links.jsonl：需求 ID、模型元素路径、链接类型。</p>
   <h3>产出</h3>
   <p><code>links.jsonl</code></p>
@@ -1501,7 +1502,7 @@ links.jsonl
   <ol><li>解开容器，读测试套件和用例 XML</li><li>读套件名、用例名、harness、输入、期望和结果状态</li><li>原文入库，结果作为历史快照保留</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_mldatx()</p>
-  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">suite/case 层级、inputs、criteria、结果字段写进 tests.json，不执行测试。</p>
   <h3>产出</h3>
   <p><code>tests.json</code></p>
@@ -1533,7 +1534,7 @@ links.jsonl
   <ol><li>解开 XML/容器，读状态、转移、动作和数据</li><li>保留状态层级、entry/during/exit 和转移条件原文</li><li>原文入库，和 .slx 内 chart 共用一套读法</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/stateflow.py</code><br>parse_stateflow() · chart_json()</p>
-  <p class="note">分发位置：<code>parser.py:333</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:333</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">解 chart XML 的 state/transition/data 和标签，写 stateflow.json（states/transitions 计数进 meta）。</p>
   <h3>产出</h3>
   <p><code>stateflow.json（states/transitions）</code></p>
@@ -1564,7 +1565,7 @@ links.jsonl
   <ol><li>解开 ZIP，读 modelDescription.xml</li><li>读模型名、FMI 版本、ME/Co-Simulation 能力和变量表</li><li>列平台二进制和资源文件；原文入库</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/packages.py</code><br>fmu_metadata() ← archive_manifest()</p>
-  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:420</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">manifest.json 记成员清单，modelDescription.xml 原样导出并解析出模型名、FMI 版本、能力、单位、变量。</p>
   <h3>产出</h3>
   <p><code>manifest.json + modelDescription</code></p>
@@ -1595,7 +1596,7 @@ links.jsonl
   <ol><li>按字节入库，先检测是否加密</li><li>能按 ZIP 列成员就列清单、类型和大小，不能就记原因</li><li>原文入库，不反编译内部 MEX/DLL</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/formats.py</code><br>archive_manifest()（含 encrypted 标记）</p>
-  <p class="note">分发位置：<code>parser.py:401</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:401</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">能列 ZIP 成员就列清单并逐成员标 encrypted；列不出就只留原件 + sha256，不尝试解密。</p>
   <h3>产出</h3>
   <p><code>manifest.json（能解就列成员）</code></p>
@@ -1623,7 +1624,7 @@ links.jsonl
   <ol><li>解开 ZIP，读 META-INF/MANIFEST.MF</li><li>列包名、类文件、资源和版本</li><li>原文入库；.class 不反编译</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/packages.py</code><br>jar_metadata() ← archive_manifest()</p>
-  <p class="note">分发位置：<code>parser.py:401</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:401</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">META-INF/MANIFEST.MF、class 列表、资源清单写进 manifest.json，不加载 Java 类。</p>
   <h3>产出</h3>
   <p><code>manifest.json</code></p>
@@ -1651,7 +1652,7 @@ links.jsonl
   <ol><li>识别版本：v5/v7 按 MAT 二进制读，v7.3 按 HDF5 读</li><li>遍历顶层变量，记名字、类、维度、dtype、复数/稀疏/字段</li><li>数值按变量原样读出，按变量分别给，不把整份数据塞进上下文</li><li>原文入库；对象、函数句柄读不全时标 opaque</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/mat.py</code><br>parse_mat_documents() · _walk_arrays() · _matlab_class()</p>
-  <p class="note">分发位置：<code>parser.py:215</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:215</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">variables.json 记每个变量的 MATLAB class（uint8/double/logical/struct/char）和尺寸，数值数组按 data/*.csv 全量导出。</p>
   <h3>产出</h3>
   <p><code>variables.json + data/*.csv</code></p>
@@ -1692,7 +1693,7 @@ time,speed
   <ol><li>按 MAT v5/v7.3 读 figure 对象树</li><li>读 Figure/Axes/Line/Text 对象的父子关系和关键属性</li><li>原文入库，不承诺像素级还原</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_fig_tree() · _fig_node() · _fig_type()</p>
-  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">按 MAT 句柄树还原 Figure/Axes/Text/uicontrol 层级写 figure.json，不还原像素。</p>
   <h3>产出</h3>
   <p><code>figure.json</code></p>
@@ -1723,7 +1724,7 @@ time,speed
   <ol><li>检测 MDF 版本和文件头</li><li>读通道组、通道名、单位、采样率、时间范围和样本数</li><li>按通道给数据，默认先给清单和统计；原文入库</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/measurement.py</code><br>parse_measurement() · _decode_mdf3()</p>
-  <p class="note">分发位置：<code>parser.py:376</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:376</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">MDF3 通道组/通道解出采样值和单位，写 channels.json，每通道一条 data/NNNN_&lt;channel&gt;.csv；无法解的自定义压缩块不猜测，只在 boundary/parse_status 里说明。</p>
   <h3>产出</h3>
   <p><code>channels.json + data/*.csv</code></p>
@@ -1751,7 +1752,7 @@ time,speed
   <ol><li>检测 MDF4 的 IDBLOCK</li><li>读通道组、通道、单位、采样率和时间范围</li><li>按通道给数据，默认清单加统计；原文入库</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/measurement.py</code><br>parse_measurement() · _decode_mdf4()</p>
-  <p class="note">分发位置：<code>parser.py:376</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:376</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">MDF4 块链、通道组、通道解出采样值，写 channels.json，每通道一条 data/NNNN_&lt;channel&gt;.csv。</p>
   <h3>产出</h3>
   <p><code>channels.json + data/*.csv</code></p>
@@ -1779,7 +1780,7 @@ time,speed
   <ol><li>读 BLF 头、对象表和通道</li><li>统计帧数、时间范围、CAN/LIN 通道和 ID 分布</li><li>有配对 .dbc 时按报文/信号解码，没有就只给帧级信息；原文入库</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/measurement.py</code><br>parse_measurement() · _decode_blf()</p>
-  <p class="note">分发位置：<code>parser.py:376</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:376</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">解 LOGG/LOBJ 块，统计 CAN 帧数、通道、报文 ID 并保留帧级 channel/id/dlc/data/timestamp，全部写进 channels.json；BLF 通道没有数值序列，附带的 data/NNNN_CANx.csv 是空表。</p>
   <h3>产出</h3>
   <p><code>channels.json</code></p>
@@ -1806,7 +1807,7 @@ time,speed
   <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是交叉编译目标程序</li><li>交付固件时作为独立附件导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/classification.py</code><br>classify_path() · TARGET_OUTPUT_EXTS</p>
-  <p class="note">分发位置：<code>classification.py:116,221 · directory_scan.py:407</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>classification.py:116,221 · directory_scan.py:407</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">构建输出下排除；交付固件按原始字节导入，不解析 ELF 符号。</p>
   <h3>产出</h3>
   <p><code>独立附件 / skipped.json</code></p>
@@ -1830,7 +1831,7 @@ time,speed
   <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是烧录镜像/目标数据</li><li>交付固件时作为独立附件导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/classification.py</code><br>classify_path() · TARGET_OUTPUT_EXTS</p>
-  <p class="note">分发位置：<code>classification.py:116,221 · directory_scan.py:407</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>classification.py:116,221 · directory_scan.py:407</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">构建输出下排除；交付固件按原始字节导入。</p>
   <h3>产出</h3>
   <p><code>独立附件 / skipped.json</code></p>
@@ -1854,7 +1855,7 @@ time,speed
   <ol><li>按字节入库，禁止 UTF-8/GBK 文本解码</li><li>读 PE 头：架构、子系统、节表、导入/导出符号、版本资源和 SHA-256</li><li>确认导出 mexFunction、位数和 MATLAB 版本线索</li><li>在 slprj/*_rtw 下时按目录规则跳过</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>protected_metadata()</p>
-  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">保留原件 + metadata.json（大小、sha256、头部字节、版本线索）；slprj/、*_rtw/ 下按路径排除。</p>
   <h3>产出</h3>
   <p><code>metadata.json</code></p>
@@ -1879,7 +1880,7 @@ time,speed
   <ol><li>按字节入库，不做文本解码</li><li>读 PE 头、导入/导出符号、版本资源和哈希</li><li>在 slprj/*_rtw 下时按目录规则跳过</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>protected_metadata()</p>
-  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">同 .mexw64：原件 + metadata.json，不做反编译。</p>
   <h3>产出</h3>
   <p><code>metadata.json</code></p>
@@ -1903,7 +1904,7 @@ time,speed
   <ol><li>按字节入库，不做文本解码</li><li>读 PE 头、子系统、版本资源和哈希，并找 MCR 线索</li><li>原文入库，作为可下载附件</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>protected_metadata()</p>
-  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">同 .mexw64：原件 + metadata.json，不做反编译。</p>
   <h3>产出</h3>
   <p><code>metadata.json</code></p>
@@ -1927,7 +1928,7 @@ time,speed
   <ol><li>按字节入库，不做文本解码</li><li>读 COFF 归档成员和符号表</li><li>在 slprj/*_rtw 下按目录规则跳过；独立存在的按原件导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>protected_metadata()</p>
-  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">原件 + metadata.json（大小、sha256、头部字节）。目前不解析 COFF 符号表，符号信息只到头部/版本线索。</p>
   <h3>产出</h3>
   <p><code>metadata.json</code></p>
@@ -1953,7 +1954,7 @@ time,speed
   <ol><li>按字节入库，不做文本解码</li><li>读 COFF 头、节表和符号</li><li>在 slprj/*_rtw 下按目录规则跳过；独立存在的按原件导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>protected_metadata()</p>
-  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">原件 + metadata.json。目前不解析 COFF 符号表。</p>
   <h3>产出</h3>
   <p><code>metadata.json</code></p>
@@ -1978,7 +1979,7 @@ time,speed
   <ol><li>按字节入库，不做文本解码</li><li>读 PDB 头、GUID、签名和模块清单</li><li>在 slprj/*_rtw 下按目录规则跳过；独立存在的按原件导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>protected_metadata()</p>
-  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:358</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">原件 + metadata.json。目前不解析 PDB 调试符号。</p>
   <h3>产出</h3>
   <p><code>metadata.json</code></p>
@@ -2004,7 +2005,7 @@ time,speed
   <ol><li>按字节入库</li><li>读 P-code 头、字节数、SHA-256，识别可能的 MATLAB 版本</li><li>扫描工程里同名 .m/.mlx 调用，只作线索</li><li>标 parse_status=opaque，不反编译</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>protected_metadata(path, "pcode")</p>
-  <p class="note">分发位置：<code>parser.py:229</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:229</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">保留 .p 原件，metadata.json 记头部版本串（v01./R20xx 线索），不反编译 p-code。</p>
   <h3>产出</h3>
   <p><code>metadata.json</code></p>
@@ -2029,7 +2030,7 @@ time,speed
   <ol><li>按字节入库</li><li>检测容器/加密头和可读元数据，能列成员就列，不能就记原因</li><li>标 parse_status=opaque，不推断模型内容</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>protected_metadata()</p>
-  <p class="note">分发位置：<code>parser.py:467</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:467</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">保留原件；若容器可解 ZIP 则列出成员清单，不伪造可读模型。</p>
   <h3>产出</h3>
   <p><code>metadata.json</code></p>
@@ -2054,7 +2055,7 @@ time,speed
   <ol><li>按字节入库</li><li>记录大小、哈希和可读元数据</li><li>标 parse_status=opaque，不伪造组件或方程</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>protected_metadata()</p>
-  <p class="note">分发位置：<code>parser.py:467</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>parser.py:467</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">保留原件 + 哈希/头部元数据，不声称恢复 Simscape 源码。</p>
   <h3>产出</h3>
   <p><code>metadata.json</code></p>
@@ -2079,7 +2080,7 @@ time,speed
   <ol><li>按路径和扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是仿真缓存</li><li>需要研究缓存行为时单独导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/classification.py</code><br>classify_path() · DERIVED_EXTS</p>
-  <p class="note">分发位置：<code>classification.py:114 · ignore.py:54 · directory_scan.py:374</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>classification.py:114 · ignore.py:54 · directory_scan.py:374</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">派生缓存，只记 skipped.json 条目（路径、大小、原因），不读内容。</p>
   <h3>产出</h3>
   <p><code>skipped.json 条目</code></p>
@@ -2103,7 +2104,7 @@ time,speed
   <ol><li>按扩展名命中排除规则，不读内容</li><li>记入 skipped.json，注明是自动保存副本</li><li>需要恢复模型时再单独导入</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/classification.py</code><br>classify_path() · DERIVED_EXTS</p>
-  <p class="note">分发位置：<code>classification.py:114 · ignore.py:54 · directory_scan.py:374</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 2d15193f2。</p>
+  <p class="note">分发位置：<code>classification.py:114 · ignore.py:54 · directory_scan.py:374</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
   <p class="note">自动保存副本，只记 skipped.json 条目，不猜测其主文件版本。</p>
   <h3>产出</h3>
   <p><code>skipped.json 条目</code></p>
