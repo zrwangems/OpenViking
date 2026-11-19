@@ -105,6 +105,19 @@
   .loctab code { font-size:11.4px; color:#0b3a66; background:#eef4fb; padding:0 5px; border-radius:4px; }
   .drawer-body .bound { background:#fff7ed; border:1px solid #fed7aa; border-radius:8px; padding:10px 12px; color:#7c2d12; }
   footer { margin-top:36px; color:var(--muted); font-size:12.4px; line-height:1.9; }
+  .searchbar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:0 0 14px; }
+  .searchbar input { flex:1 1 260px; min-width:200px; font:inherit; font-size:13.6px; padding:10px 14px;
+    border:1px solid var(--line); border-radius:10px; background:var(--card); color:var(--ink); }
+  .searchbar input:focus { outline:none; border-color:#0f6cbd; box-shadow:0 0 0 3px rgba(15,108,189,.16); }
+  .searchbar button { border:1px solid var(--line); background:#fff; color:#475569; border-radius:9px;
+    padding:8px 12px; font:inherit; font-size:12.6px; cursor:pointer; }
+  .searchbar button:hover { border-color:#b9c7da; color:#0f172a; }
+  .searchbar .count { color:var(--muted); font-size:12.4px; }
+  .searchbar .key { border:1px solid var(--line); border-bottom-width:2px; border-radius:5px;
+    padding:0 5px; font-size:11.4px; color:var(--muted); background:#f8fafc; }
+  body.searching .tabs { opacity:.55; }
+  tr.row[hidden] { display:none; }
+  .cat-panel.empty { display:none; }
   @media (max-width:760px) {
     .page { padding:20px 14px 50px; }
     header.top { padding:22px 20px; }
@@ -122,6 +135,13 @@
 
 <h2 id="types"><span class="n">1</span>65 种扩展名：分类、解析方式与产出</h2>
 <p class="sub">类别在上面切换；每行列出标签和位置条件，解析方式和案例样子在右栏里；排除项也给出 skipped.json 记录。</p>
+<div class="searchbar" role="search">
+  <input id="search" type="search" autocomplete="off" spellcheck="false"
+    placeholder="按扩展名过滤，例如 .slx、slx、mat" aria-label="按扩展名搜索">
+  <button id="searchClear" type="button" hidden>清除</button>
+  <span class="count" id="searchCount" aria-live="polite"></span>
+  <span class="count">按 <span class="key">/</span> 聚焦搜索框</span>
+</div>
 <div class="tabs" role="tablist">
 <button class="tab active" data-cat="text" role="tab" aria-selected="true" style="--c:#0f766e;--soft:#e6f4f1"><span class="dot" style="background:#0f766e"></span>可读文本 <b>29</b></button>
 <button class="tab" data-cat="container" role="tab" aria-selected="false" style="--c:#1d4ed8;--soft:#e8eefc"><span class="dot" style="background:#1d4ed8"></span>ZIP/工具容器 <b>16</b></button>
@@ -1838,20 +1858,72 @@ time,speed
 (function () {
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   var panels = Array.prototype.slice.call(document.querySelectorAll('.cat-panel'));
+  var rows = Array.prototype.slice.call(document.querySelectorAll('tr.row'));
+  var search = document.getElementById('search');
+  var count = document.getElementById('searchCount');
+  var clearBtn = document.getElementById('searchClear');
+  var activeCat = (document.querySelector('.tab.active') || tabs[0]).dataset.cat;
+
+  function normalize(value) {
+    return String(value || '').toLowerCase().trim().replace(/^\.+/, '');
+  }
+
+  function rowMatches(tr, query) {
+    return normalize(tr.dataset.ext).indexOf(query) !== -1
+      || normalize(tr.dataset.key).indexOf(query) !== -1;
+  }
+
+  function applyFilter() {
+    var query = normalize(search.value);
+    var searching = query !== '';
+    var matches = 0;
+    var firstShown = null;
+    panels.forEach(function (panel) {
+      var visible = 0;
+      Array.prototype.forEach.call(panel.querySelectorAll('tr.row'), function (tr) {
+        var hit = !searching || rowMatches(tr, query);
+        tr.hidden = searching && !hit;
+        if (searching && hit) visible += 1;
+      });
+      panel.hidden = searching ? visible === 0 : panel.dataset.cat !== activeCat;
+      if (searching && !panel.hidden && !firstShown) firstShown = panel;
+      var head = panel.querySelector('thead');
+      if (head) head.hidden = searching && panel !== firstShown;
+      matches += visible;
+    });
+    count.textContent = searching ? (matches ? matches + ' 个扩展名匹配' : '没有匹配的扩展名') : '';
+    clearBtn.hidden = !searching;
+    document.body.classList.toggle('searching', searching);
+  }
+
   tabs.forEach(function (tab) {
     tab.addEventListener('click', function () {
+      activeCat = tab.dataset.cat;
       tabs.forEach(function (x) {
         var on = x === tab;
         x.classList.toggle('active', on);
         x.setAttribute('aria-selected', on ? 'true' : 'false');
       });
-      panels.forEach(function (p) {
-        p.hidden = p.dataset.cat !== tab.dataset.cat;
-      });
+      if (search.value) search.value = '';
+      applyFilter();
     });
   });
 
-  var rows = Array.prototype.slice.call(document.querySelectorAll('tr.row'));
+  search.addEventListener('input', applyFilter);
+  clearBtn.addEventListener('click', function () {
+    search.value = '';
+    applyFilter();
+    search.focus();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== search
+        && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      e.preventDefault();
+      search.focus();
+      search.select();
+    }
+  });
+
   var drawer = document.getElementById('drawer');
   var overlay = document.getElementById('overlay');
   var body = document.getElementById('drawerBody');
@@ -1893,6 +1965,8 @@ time,speed
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
   });
+
+  applyFilter();
 })();
 </script>
 </body>
