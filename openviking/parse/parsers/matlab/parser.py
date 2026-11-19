@@ -387,6 +387,8 @@ class MatlabParser(BaseParser):
                 for name, document in documents.items():
                     await writer.write_text(f"{folder}/{name}", document)
                 warnings.extend(measurement_warnings)
+                channel_payload = json.loads(documents["channels.json"])
+                metadata["parse_status"] = channel_payload.get("parse_status", "metadata-only")
                 await writer.write_text(
                     f"{folder}/metadata.json",
                     json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
