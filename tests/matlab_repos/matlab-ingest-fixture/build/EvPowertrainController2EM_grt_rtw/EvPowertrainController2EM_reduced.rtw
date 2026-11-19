@@ -1,0 +1,6002 @@
+CompiledModel {
+  Name			  "EvPowertrainController2EM"
+  OrigName		  "EvPowertrainController2EM"
+  PrmModelName		  SLDataModelName(EvPowertrainController2EM)
+  IsPreCodeGenPhase	  1
+  ModelReferenceTargetType "NONE"
+  ExternalInputs {
+    ExternalInputDefaults {
+      RecordType	      "ExternalInput"
+    }
+    NumExternalInputs	    12
+    ExternalInput {
+      ExternalInputIdx	      0
+      RecordIdx		      [0]
+    }
+    ExternalInput {
+      ExternalInputIdx	      1
+      RecordIdx		      [1]
+    }
+    ExternalInput {
+      ExternalInputIdx	      2
+      RecordIdx		      [2]
+    }
+    ExternalInput {
+      ExternalInputIdx	      3
+      RecordIdx		      [3]
+    }
+    ExternalInput {
+      ExternalInputIdx	      4
+      RecordIdx		      [4]
+    }
+    ExternalInput {
+      ExternalInputIdx	      5
+      RecordIdx		      [5]
+    }
+    ExternalInput {
+      ExternalInputIdx	      6
+      RecordIdx		      [6]
+    }
+    ExternalInput {
+      ExternalInputIdx	      7
+      RecordIdx		      [7]
+    }
+    ExternalInput {
+      ExternalInputIdx	      8
+      RecordIdx		      [8]
+    }
+    ExternalInput {
+      ExternalInputIdx	      9
+      RecordIdx		      [9]
+    }
+    ExternalInput {
+      ExternalInputIdx	      10
+      RecordIdx		      [10]
+    }
+    ExternalInput {
+      ExternalInputIdx	      11
+      RecordIdx		      [11]
+    }
+  }
+  ExternalOutputs {
+    ExternalOutputDefaults {
+      RecordType	      "ExternalOutput"
+    }
+    NumExternalOutputs	    8
+    ExternalOutput {
+      ExternalOutputIdx	      0
+      RecordIdx		      [0]
+    }
+    ExternalOutput {
+      ExternalOutputIdx	      1
+      RecordIdx		      [1]
+    }
+    ExternalOutput {
+      ExternalOutputIdx	      2
+      RecordIdx		      [2]
+    }
+    ExternalOutput {
+      ExternalOutputIdx	      3
+      RecordIdx		      [3]
+    }
+    ExternalOutput {
+      ExternalOutputIdx	      4
+      RecordIdx		      [4]
+    }
+    ExternalOutput {
+      ExternalOutputIdx	      5
+      RecordIdx		      [5]
+    }
+    ExternalOutput {
+      ExternalOutputIdx	      6
+      RecordIdx		      [6]
+    }
+    ExternalOutput {
+      ExternalOutputIdx	      7
+      RecordIdx		      [7]
+    }
+  }
+  DataTypes {
+    DataTypeDefaults {
+      RecordType	      "DataType"
+    }
+    ElementsDefaults {
+      RecordType	      "DataTypeElements"
+    }
+    NumDataTypes	    17
+    DataType {
+      Id		      0
+      RecordIdx		      [0]
+    }
+    DataType {
+      Id		      1
+      RecordIdx		      [1]
+    }
+    DataType {
+      Id		      2
+      RecordIdx		      [2]
+    }
+    DataType {
+      Id		      3
+      RecordIdx		      [3]
+    }
+    DataType {
+      Id		      4
+      RecordIdx		      [4]
+    }
+    DataType {
+      Id		      5
+      RecordIdx		      [5]
+    }
+    DataType {
+      Id		      6
+      RecordIdx		      [6]
+    }
+    DataType {
+      Id		      7
+      RecordIdx		      [7]
+    }
+    DataType {
+      Id		      8
+      RecordIdx		      [8]
+    }
+    DataType {
+      Id		      9
+      RecordIdx		      [9]
+    }
+    DataType {
+      Id		      10
+      RecordIdx		      [10]
+    }
+    DataType {
+      Id		      11
+      RecordIdx		      [11]
+    }
+    DataType {
+      Id		      12
+      RecordIdx		      [12]
+    }
+    DataType {
+      Id		      13
+      RecordIdx		      [13]
+    }
+    DataType {
+      Id		      14
+      RecordIdx		      [14]
+    }
+    DataType {
+      Id		      15
+      RecordIdx		      [15]
+    }
+    DataType {
+      Id		      16
+      RecordIdx		      [16]
+    }
+  }
+  Solver		  FixedStepDiscrete
+  SolverType		  FixedStep
+  StartTime		  0.0
+  StopTime		  10.0
+  Subsystem {
+    Name		    "<Root>/Accel Pedal to Traction Wheel Torque Request"
+  }
+  Subsystem {
+    Name		    "<Root>/Brake Pedal to Total Braking Pressure Request"
+  }
+  Subsystem {
+    Name		    "<Root>/Energy Management"
+  }
+  Subsystem {
+    Name		    "<Root>/Power Limit Calculations"
+  }
+  Subsystem {
+    Name		    "<Root>/SOC Calculation"
+  }
+  Subsystem {
+    Name		    "<Root>/Torque Vectoring"
+  }
+  Subsystem {
+    Name		    "<Root>/Trailer Brake Pressure Command"
+  }
+  Subsystem {
+    Name		    "<S1>/EM2WhlTrq"
+  }
+  Subsystem {
+    Name		    "<S8>/2EM"
+  }
+  Subsystem {
+    Name		    "<S9>/EMTrq2WhlTrqFrnt"
+  }
+  Subsystem {
+    Name		    "<S9>/EMTrq2WhlTrqRear"
+  }
+  Subsystem {
+    Name		    "<S9>/Maximum Torque Front Axle"
+  }
+  Subsystem {
+    Name		    "<S9>/Maximum Torque Rear Axle"
+  }
+  Subsystem {
+    Name		    "<S9>/VehSpd2EMSpd"
+  }
+  Subsystem {
+    Name		    "<S10>/Single Speed Transmission"
+  }
+  Subsystem {
+    Name		    "<S15>/Diff Eta"
+  }
+  Subsystem {
+    Name		    "<S11>/Single Speed Transmission"
+  }
+  Subsystem {
+    Name		    "<S17>/Diff Eta"
+  }
+  Subsystem {
+    Name		    "<S14>/Single Speed Transmission"
+  }
+  Subsystem {
+    Name		    "<S3>/Calculate Average EMSpd and Wheel Torque Curves for Front and Rear Axles"
+  }
+  Subsystem {
+    Name		    "<S3>/Control Domain "
+  }
+  Subsystem {
+    Name		    "<S3>/Convert Whl to EMTrq Vector"
+  }
+  Subsystem {
+    Name		    "<S3>/Hamiltonian computation  and minimization"
+    SLName		    "<S3>/Hamiltonian computation \nand minimization"
+  }
+  Subsystem {
+    Name		    "<S3>/Powertrain Constraints "
+  }
+  Subsystem {
+    Name		    "<S20>/2EM"
+  }
+  Subsystem {
+    Name		    "<S25>/EMTrq2WhlTrqFrnt"
+  }
+  Subsystem {
+    Name		    "<S25>/EMTrq2WhlTrqRear"
+  }
+  Subsystem {
+    Name		    "<S25>/Maximum Torque Front Axle"
+  }
+  Subsystem {
+    Name		    "<S25>/Maximum Torque Rear Axle"
+  }
+  Subsystem {
+    Name		    "<S26>/Single Speed Transmission"
+  }
+  Subsystem {
+    Name		    "<S30>/Diff Eta"
+  }
+  Subsystem {
+    Name		    "<S27>/Single Speed Transmission"
+  }
+  Subsystem {
+    Name		    "<S32>/Diff Eta"
+  }
+  Subsystem {
+    Name		    "<S21>/Front Axle EM Torque Vector"
+  }
+  Subsystem {
+    Name		    "<S21>/Rear Axle EM Torque Vector"
+  }
+  Subsystem {
+    Name		    "<S21>/Series Regen Braking"
+  }
+  Subsystem {
+    Name		    "<S34>/2EM or 3EM Dual Rear"
+  }
+  Subsystem {
+    Name		    "<S37>/Diff Eta"
+  }
+  Subsystem {
+    Name		    "<S35>/2EM"
+  }
+  Subsystem {
+    Name		    "<S39>/Diff Eta"
+  }
+  Subsystem {
+    Name		    "<S36>/BrkTrqEstimate"
+  }
+  Subsystem {
+    Name		    "<S22>/2EM"
+  }
+  Subsystem {
+    Name		    "<S42>/Diff Eta"
+  }
+  Subsystem {
+    Name		    "<S42>/Diff Eta1"
+  }
+  Subsystem {
+    Name		    "<S23>/MATLAB Function"
+  }
+  Subsystem {
+    Name		    "<S23>/Pwr Rate Limit"
+  }
+  Subsystem {
+    Name		    "<S24>/Battery Constraint"
+  }
+  Subsystem {
+    Name		    "<S24>/EM Constraint Front"
+  }
+  Subsystem {
+    Name		    "<S24>/EM Constraint Rear"
+  }
+  Subsystem {
+    Name		    "<S24>/Wheel Torque Vector Logic"
+  }
+  Subsystem {
+    Name		    "<S47>/Electrical Current"
+  }
+  Subsystem {
+    Name		    "<S47>/Power Limit Calculations"
+  }
+  Subsystem {
+    Name		    "<S47>/Saturation Dynamic"
+    SLName		    "<S47>/Saturation\nDynamic"
+  }
+  Subsystem {
+    Name		    "<S51>/DC-DC Eta"
+  }
+  Subsystem {
+    Name		    "<S54>/No DC-DC"
+  }
+  Subsystem {
+    Name		    "<S52>/div0protect - poly"
+  }
+  Subsystem {
+    Name		    "<S52>/div0protect - poly1"
+  }
+  Subsystem {
+    Name		    "<S56>/Compare To Constant"
+    SLName		    "<S56>/Compare\nTo Constant"
+  }
+  Subsystem {
+    Name		    "<S56>/Compare To Constant1"
+    SLName		    "<S56>/Compare\nTo Constant1"
+  }
+  Subsystem {
+    Name		    "<S57>/Compare To Constant"
+    SLName		    "<S57>/Compare\nTo Constant"
+  }
+  Subsystem {
+    Name		    "<S57>/Compare To Constant1"
+    SLName		    "<S57>/Compare\nTo Constant1"
+  }
+  Subsystem {
+    Name		    "<S48>/Maximum Torque"
+  }
+  Subsystem {
+    Name		    "<S48>/Tabular Power Loss Data"
+  }
+  Subsystem {
+    Name		    "<S48>/Wheel Torque Saturation for Max g Rates"
+  }
+  Subsystem {
+    Name		    "<S62>/Compare To Zero"
+    SLName		    "<S62>/Compare\nTo Zero"
+  }
+  Subsystem {
+    Name		    "<S62>/Compare To Zero1"
+    SLName		    "<S62>/Compare\nTo Zero1"
+  }
+  Subsystem {
+    Name		    "<S62>/Saturation Dynamic"
+    SLName		    "<S62>/Saturation\nDynamic"
+  }
+  Subsystem {
+    Name		    "<S63>/2EM or 3EM Dual Rear"
+  }
+  Subsystem {
+    Name		    "<S68>/WhlTrq2EMTrq"
+  }
+  Subsystem {
+    Name		    "<S69>/Diff Eta"
+  }
+  Subsystem {
+    Name		    "<S64>/Saturation Dynamic3"
+    SLName		    "<S64>/Saturation\nDynamic3"
+  }
+  Subsystem {
+    Name		    "<S64>/Wheel Torque Limit at Max g Rates"
+  }
+  Subsystem {
+    Name		    "<S72>/Wheel Torque at Max Acceleration Rate"
+  }
+  Subsystem {
+    Name		    "<S72>/Wheel Torque at Max Deceleration Rate"
+  }
+  Subsystem {
+    Name		    "<S49>/Maximum Torque"
+  }
+  Subsystem {
+    Name		    "<S49>/Tabular Power Loss Data"
+  }
+  Subsystem {
+    Name		    "<S49>/Wheel Torque Saturation for Max g Rates"
+  }
+  Subsystem {
+    Name		    "<S75>/Compare To Zero"
+    SLName		    "<S75>/Compare\nTo Zero"
+  }
+  Subsystem {
+    Name		    "<S75>/Compare To Zero1"
+    SLName		    "<S75>/Compare\nTo Zero1"
+  }
+  Subsystem {
+    Name		    "<S75>/Saturation Dynamic"
+    SLName		    "<S75>/Saturation\nDynamic"
+  }
+  Subsystem {
+    Name		    "<S76>/2EM"
+  }
+  Subsystem {
+    Name		    "<S81>/WhlTrq2EMTrq"
+  }
+  Subsystem {
+    Name		    "<S82>/Diff Eta"
+  }
+  Subsystem {
+    Name		    "<S77>/Saturation Dynamic3"
+    SLName		    "<S77>/Saturation\nDynamic3"
+  }
+  Subsystem {
+    Name		    "<S77>/Wheel Torque Limit at Max g Rates"
+  }
+  Subsystem {
+    Name		    "<S85>/Wheel Torque at Max Acceleration Rate"
+  }
+  Subsystem {
+    Name		    "<S85>/Wheel Torque at Max Deceleration Rate"
+  }
+  Subsystem {
+    Name		    "<S50>/Regen"
+  }
+  Subsystem {
+    Name		    "<S50>/Traction"
+  }
+  Subsystem {
+    Name		    "<S88>/Saturation Dynamic"
+    SLName		    "<S88>/Saturation\nDynamic"
+  }
+  Subsystem {
+    Name		    "<S6>/No Torque Vectoring"
+  }
+  ExprCommentInfoDefaults {
+    SysIdxList		    []
+    BlkIdxList		    []
+    PortIdxList		    []
+  }
+  ExprCommentSrcIdxDefaults {
+    SysIdx		    -1
+    BlkIdx		    -1
+    PortIdx		    -1
+  }
+  BlockDefaults {
+    UserDefinedRWork	    0
+    UserDefinedIWork	    0
+    UserDefinedPWork	    0
+    NumRWorkDefines	    -1
+    NumIWorkDefines	    -1
+    NumPWorkDefines	    -1
+    RecordType		    "Block"
+    InMask		    no
+    ExecuteBlockFcns	    1
+    UseTLC		    0
+    AccessesDataThatPreservesDims 0
+    DeletedInIR		    0
+    AlgebraicLoopId	    0
+    PortBasedSampleTimes    no
+    ContStates		    [0,0,0]
+    ModeVector		    [0,-1]
+    RWork		    [0,-1]
+    IWork		    [0,-1]
+    PWork		    [0,-1]
+    DiscStates		    [0,-1]
+    MassMatrixPr	    [0,-1]
+    NumDWork		    0
+    NumNonsampledZCs	    0
+    ZCEvents		    [0,0]
+    NumBlkZcRecs	    0
+    RollRegions		    []
+    RollRegionTypes	    []
+    NumDataInputPorts	    0
+    NumControlInputPorts    0
+    NumDataOutputPorts	    1
+    Parameters		    [0,0]
+    NumParameterGroups	    0
+    Description		    []
+    PolySpaceStartComment   []
+    PolySpaceEndComment	    []
+    ReducedBlocksConnected  []
+    HaveBlockComment	    0
+    InFixptMode		    0
+    GrSrc		    [-1, -1]
+    NeedOutputsFcnInMdlStart 0
+    AsyncSfcn		    0
+    TriggeredBlockConstantSampleTimePorts []
+    HasSymbolicDims	    0
+    OutputBlockFcnIdx	    -1
+    HasLocalSolver	    no
+    LocalSolverInputCompensationMode 0
+    LocalSolverOutputCompensationMode 0
+  }
+  NumSystems		  29
+  tSS_LONG		  -2147483648
+  tSS_ULONG		  -2147483645
+  tSS_LONG_LONG		  -2147483644
+  tSS_ULONG_LONG	  -2147483643
+  tSS_VOID		  -2147483647
+  tSS_SIZET		  -2147483646
+  tSS_UINTEGER		  -2147483642
+  tSS_CHAR		  -2147483641
+  tSS_UCHAR		  -2147483640
+  tSS_TIME		  -2147483639
+  tSS_DOUBLE		  0
+  tSS_SINGLE		  1
+  tSS_INT8		  2
+  tSS_UINT8		  3
+  tSS_INT16		  4
+  tSS_UINT16		  5
+  tSS_INT32		  6
+  tSS_UINT32		  7
+  tSS_BOOLEAN		  8
+  tSS_FCN_CALL		  9
+  tSS_INTEGER		  10
+  tSS_POINTER		  11
+  tSS_ACTION		  12
+  tSS_TIMER_UINT32_PAIR	  13
+  tSS_INVALID_DATA_TYPE_ID -10
+  BlockHierarchyMap {
+    Subsystem {
+      Name		      "<Root>"
+      Block {
+	Name			"<Root>/AccelPdl"
+      }
+      Block {
+	Name			"<Root>/BcuBrkPrsCmd"
+      }
+      Block {
+	Name			"<Root>/VehSpdFdbk"
+      }
+      Block {
+	Name			"<Root>/EMSpd"
+      }
+      Block {
+	Name			"<Root>/TransGear"
+      }
+      Block {
+	Name			"<Root>/BMSSOC"
+      }
+      Block {
+	Name			"<Root>/BattPackVolt"
+      }
+      Block {
+	Name			"<Root>/BMSDischrgCurrLmt"
+      }
+      Block {
+	Name			"<Root>/BMSChrgCurrLmt"
+      }
+      Block {
+	Name			"<Root>/pqr"
+      }
+      Block {
+	Name			"<Root>/SteerWhlAng"
+      }
+      Block {
+	Name			"<Root>/SteerCmd"
+      }
+      Block {
+	Name			"<Root>/EngTrqCmd"
+      }
+      Block {
+	Name			"<Root>/EMTrqCmd"
+      }
+      Block {
+	Name			"<Root>/VcuBrkPrsCmd"
+      }
+      Block {
+	Name			"<Root>/Cltch1Cmd"
+      }
+      Block {
+	Name			"<Root>/Neutral"
+      }
+      Block {
+	Name			"<Root>/FuelCellCurrCmd"
+      }
+      Block {
+	Name			"<Root>/FuelCellTempCmd"
+      }
+      Block {
+	Name			"<Root>/VcuTrlrBrkPrsCmd"
+      }
+      Block {
+	Name			"<Root>/Accel Pedal to Traction Wheel Torque Request"
+      }
+      Block {
+	Name			"<Root>/Brake Pedal to Total Braking Pressure Request"
+      }
+      Block {
+	Name			"<Root>/Energy Management"
+      }
+      Block {
+	Name			"<Root>/Power Limit Calculations"
+      }
+      Block {
+	Name			"<Root>/SOC Calculation"
+      }
+      Block {
+	Name			"<Root>/Torque Vectoring"
+      }
+      Block {
+	Name			"<Root>/Trailer Brake Pressure Command"
+      }
+      Block {
+	Name			"<Root>/Constant"
+      }
+      Block {
+	Name			"<Root>/Constant1"
+      }
+      Block {
+	Name			"<Root>/Constant2"
+      }
+      Block {
+	Name			"<Root>/Constant3"
+      }
+      Block {
+	Name			"<Root>/Constant4"
+      }
+      Block {
+	Name			"<Root>/Constant5"
+      }
+      Block {
+	Name			"<Root>/Rate Limiter"
+      }
+    }
+    Subsystem {
+      Name		      "<Root>/Accel Pedal to Traction Wheel Torque Request"
+      Block {
+	Name			"<S1>/EM2WhlTrq"
+      }
+      Block {
+	Name			"<S1>/Product1"
+      }
+    }
+    Subsystem {
+      Name		      "<Root>/Brake Pedal to Total Braking Pressure Request"
+      Block {
+	Name			"<S2>/Front Bias"
+      }
+      Block {
+	Name			"<S2>/Rear Bias"
+      }
+      Block {
+	Name			"<S2>/Gain4"
+      }
+      Block {
+	Name			"<S2>/Product"
+      }
+    }
+    Subsystem {
+      Name		      "<Root>/Energy Management"
+      Block {
+	Name			"<S3>/Calculate Average EMSpd and Wheel Torque Curves for Front and Rear Axles"
+      }
+      Block {
+	Name			"<S3>/Control Domain "
+      }
+      Block {
+	Name			"<S3>/Convert Whl to EMTrq Vector"
+      }
+      Block {
+	Name			"<S3>/Hamiltonian computation  and minimization"
+      }
+      Block {
+	Name			"<S3>/Powertrain Constraints "
+      }
+      Block {
+	Name			"<S3>/Constant"
+      }
+    }
+    Subsystem {
+      Name		      "<Root>/Power Limit Calculations"
+      Block {
+	Name			"<S4>/Gain"
+      }
+      Block {
+	Name			"<S4>/Gain1"
+      }
+      Block {
+	Name			"<S4>/Product"
+      }
+      Block {
+	Name			"<S4>/Product1"
+      }
+    }
+    Subsystem {
+      Name		      "<Root>/SOC Calculation"
+      Block {
+	Name			"<S5>/convert2percent"
+      }
+    }
+    Subsystem {
+      Name		      "<Root>/Torque Vectoring"
+      Block {
+	Name			"<S6>/No Torque Vectoring"
+      }
+    }
+    Subsystem {
+      Name		      "<Root>/Trailer Brake Pressure Command"
+      Block {
+	Name			"<S7>/Gain1"
+      }
+      Block {
+	Name			"<S7>/Probe"
+      }
+      Block {
+	Name			"<S7>/Product"
+      }
+      Block {
+	Name			"<S7>/Sum"
+      }
+    }
+    Subsystem {
+      Name		      "<S1>/EM2WhlTrq"
+      Block {
+	Name			"<S8>/2EM"
+      }
+    }
+    Subsystem {
+      Name		      "<S3>/Calculate Average EMSpd and Wheel Torque Curves for Front and Rear Axles"
+      Block {
+	Name			"<S20>/2EM"
+      }
+    }
+    Subsystem {
+      Name		      "<S3>/Control Domain "
+      Block {
+	Name			"<S21>/Front Axle EM Torque Vector"
+      }
+      Block {
+	Name			"<S21>/Rear Axle EM Torque Vector"
+      }
+      Block {
+	Name			"<S21>/Series Regen Braking"
+      }
+      Block {
+	Name			"<S21>/Vector Concatenate"
+      }
+      Block {
+	Name			"<S21>/Vector Concatenate1"
+      }
+      Block {
+	Name			"<S21>/Accel Decel Switch"
+      }
+      Block {
+	Name			"<S21>/Accel Decel Switch1"
+      }
+      Block {
+	Name			"<S21>/Accel Decel Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S3>/Convert Whl to EMTrq Vector"
+      Block {
+	Name			"<S22>/2EM"
+      }
+    }
+    Subsystem {
+      Name		      "<S3>/Hamiltonian computation \nand minimization"
+      Block {
+	Name			"<S23>/Pwr Rate Limit"
+      }
+      Block {
+	Name			"<S23>/MATLAB Function"
+      }
+      Block {
+	Name			"<S23>/Data Type Conversion1"
+      }
+      Block {
+	Name			"<S23>/Dead Zone"
+      }
+      Block {
+	Name			"<S23>/TracPwrErr Penalty"
+      }
+      Block {
+	Name			"<S23>/Veh2WhlSpd"
+      }
+      Block {
+	Name			"<S23>/W2kW "
+      }
+      Block {
+	Name			"<S23>/W2kW 1"
+      }
+      Block {
+	Name			"<S23>/Index Vector"
+      }
+      Block {
+	Name			"<S23>/Index Vector1"
+      }
+      Block {
+	Name			"<S23>/Product3"
+      }
+      Block {
+	Name			"<S23>/Add"
+      }
+      Block {
+	Name			"<S23>/Switch"
+      }
+      Block {
+	Name			"<S23>/Switch1"
+      }
+      Block {
+	Name			"<S23>/Unit Delay1"
+      }
+      Block {
+	Name			"<S23>/Unit Delay2"
+      }
+    }
+    Subsystem {
+      Name		      "<S3>/Powertrain Constraints "
+      Block {
+	Name			"<S24>/Battery Constraint"
+      }
+      Block {
+	Name			"<S24>/EM Constraint Front"
+      }
+      Block {
+	Name			"<S24>/EM Constraint Rear"
+      }
+      Block {
+	Name			"<S24>/Wheel Torque Vector Logic"
+      }
+      Block {
+	Name			"<S24>/Abs"
+      }
+      Block {
+	Name			"<S24>/Constraint Penalty Factor"
+      }
+      Block {
+	Name			"<S24>/Constraint Penalty Factor1"
+      }
+      Block {
+	Name			"<S24>/Constraint Penalty Factor2"
+      }
+      Block {
+	Name			"<S24>/Veh2WhlSpd"
+      }
+      Block {
+	Name			"<S24>/Infeasible conditions"
+      }
+      Block {
+	Name			"<S24>/Product"
+      }
+      Block {
+	Name			"<S24>/Saturation1"
+      }
+      Block {
+	Name			"<S24>/Add"
+      }
+      Block {
+	Name			"<S24>/Add1"
+      }
+      Block {
+	Name			"<S24>/Add2"
+      }
+      Block {
+	Name			"<S24>/Add4"
+      }
+      Block {
+	Name			"<S24>/Unit Delay"
+      }
+      Block {
+	Name			"<S24>/Unit Delay1"
+      }
+    }
+    Subsystem {
+      Name		      "<S6>/No Torque Vectoring"
+    }
+    Subsystem {
+      Name		      "<S8>/2EM"
+      Block {
+	Name			"<S9>/EMTrq2WhlTrqFrnt"
+      }
+      Block {
+	Name			"<S9>/EMTrq2WhlTrqRear"
+      }
+      Block {
+	Name			"<S9>/Maximum Torque Front Axle"
+      }
+      Block {
+	Name			"<S9>/Maximum Torque Rear Axle"
+      }
+      Block {
+	Name			"<S9>/VehSpd2EMSpd"
+      }
+      Block {
+	Name			"<S9>/Add"
+      }
+    }
+    Subsystem {
+      Name		      "<S20>/2EM"
+      Block {
+	Name			"<S25>/EMTrq2WhlTrqFrnt"
+      }
+      Block {
+	Name			"<S25>/EMTrq2WhlTrqRear"
+      }
+      Block {
+	Name			"<S25>/Maximum Torque Front Axle"
+      }
+      Block {
+	Name			"<S25>/Maximum Torque Rear Axle"
+      }
+      Block {
+	Name			"<S25>/Vector Concatenate"
+      }
+      Block {
+	Name			"<S25>/Vector Concatenate1"
+      }
+    }
+    Subsystem {
+      Name		      "<S21>/Front Axle EM Torque Vector"
+      Block {
+	Name			"<S34>/2EM or 3EM Dual Rear"
+      }
+    }
+    Subsystem {
+      Name		      "<S21>/Rear Axle EM Torque Vector"
+      Block {
+	Name			"<S35>/2EM"
+      }
+    }
+    Subsystem {
+      Name		      "<S21>/Series Regen Braking"
+      Block {
+	Name			"<S36>/BrkTrqEstimate"
+      }
+      Block {
+	Name			"<S36>/Constant1"
+      }
+      Block {
+	Name			"<S36>/Gain1"
+      }
+      Block {
+	Name			"<S36>/Gain6"
+      }
+      Block {
+	Name			"<S36>/ChrgLmt"
+      }
+      Block {
+	Name			"<S36>/RegenBrakingCutoff"
+      }
+      Block {
+	Name			"<S36>/MinMax"
+      }
+      Block {
+	Name			"<S36>/Product1"
+      }
+      Block {
+	Name			"<S36>/Product3"
+      }
+      Block {
+	Name			"<S36>/Product4"
+      }
+      Block {
+	Name			"<S36>/Negative 1"
+      }
+      Block {
+	Name			"<S36>/Negative 5"
+      }
+      Block {
+	Name			"<S36>/Saturation"
+      }
+      Block {
+	Name			"<S36>/Add1"
+      }
+      Block {
+	Name			"<S36>/Subtract"
+      }
+      Block {
+	Name			"<S36>/Sum of Elements"
+      }
+    }
+    Subsystem {
+      Name		      "<S22>/2EM"
+      Block {
+	Name			"<S42>/Diff Eta"
+      }
+      Block {
+	Name			"<S42>/Diff Eta1"
+      }
+      Block {
+	Name			"<S42>/Vector Concatenate1"
+      }
+      Block {
+	Name			"<S42>/Gain1"
+      }
+      Block {
+	Name			"<S42>/Gain3"
+      }
+      Block {
+	Name			"<S42>/Divide1"
+      }
+      Block {
+	Name			"<S42>/Divide2"
+      }
+      Block {
+	Name			"<S42>/Unit Delay"
+      }
+      Block {
+	Name			"<S42>/Unit Delay1"
+      }
+    }
+    Subsystem {
+      Name		      "<S23>/Pwr Rate Limit"
+      Block {
+	Name			"<S46>/W2kW"
+      }
+      Block {
+	Name			"<S46>/1-D Lookup Table"
+      }
+      Block {
+	Name			"<S46>/Product"
+      }
+      Block {
+	Name			"<S46>/Product1"
+      }
+      Block {
+	Name			"<S46>/Product6"
+      }
+      Block {
+	Name			"<S46>/Product7"
+      }
+      Block {
+	Name			"<S46>/Subtract"
+      }
+      Block {
+	Name			"<S46>/Sqrt1"
+      }
+    }
+    Subsystem {
+      Name		      "<S23>/MATLAB Function"
+    }
+    Subsystem {
+      Name		      "<S24>/Battery Constraint"
+      Block {
+	Name			"<S47>/Electrical Current"
+      }
+      Block {
+	Name			"<S47>/Power Limit Calculations"
+      }
+      Block {
+	Name			"<S47>/Saturation Dynamic"
+      }
+      Block {
+	Name			"<S47>/Logical Operator"
+      }
+      Block {
+	Name			"<S47>/Relational Operator"
+      }
+      Block {
+	Name			"<S47>/Relational Operator1"
+      }
+      Block {
+	Name			"<S47>/Relational Operator2"
+      }
+      Block {
+	Name			"<S47>/Relational Operator3"
+      }
+    }
+    Subsystem {
+      Name		      "<S24>/EM Constraint Front"
+      Block {
+	Name			"<S48>/Maximum Torque"
+      }
+      Block {
+	Name			"<S48>/Tabular Power Loss Data"
+      }
+      Block {
+	Name			"<S48>/Wheel Torque Saturation for Max g Rates"
+      }
+    }
+    Subsystem {
+      Name		      "<S24>/EM Constraint Rear"
+      Block {
+	Name			"<S49>/Maximum Torque"
+      }
+      Block {
+	Name			"<S49>/Tabular Power Loss Data"
+      }
+      Block {
+	Name			"<S49>/Wheel Torque Saturation for Max g Rates"
+      }
+    }
+    Subsystem {
+      Name		      "<S24>/Wheel Torque Vector Logic"
+      Block {
+	Name			"<S50>/Regen"
+      }
+      Block {
+	Name			"<S50>/Traction"
+      }
+      Block {
+	Name			"<S50>/If"
+      }
+      Block {
+	Name			"<S50>/Merge"
+      }
+      Block {
+	Name			"<S50>/Merge1"
+      }
+    }
+    Subsystem {
+      Name		      "<S9>/EMTrq2WhlTrqFrnt"
+      Block {
+	Name			"<S10>/Single Speed Transmission"
+      }
+    }
+    Subsystem {
+      Name		      "<S9>/EMTrq2WhlTrqRear"
+      Block {
+	Name			"<S11>/Single Speed Transmission"
+      }
+    }
+    Subsystem {
+      Name		      "<S9>/Maximum Torque Front Axle"
+      Block {
+	Name			"<S12>/MaxEMTrqVsSpd"
+      }
+    }
+    Subsystem {
+      Name		      "<S9>/Maximum Torque Rear Axle"
+      Block {
+	Name			"<S13>/MaxEMTrqVsSpd"
+      }
+    }
+    Subsystem {
+      Name		      "<S9>/VehSpd2EMSpd"
+      Block {
+	Name			"<S14>/Single Speed Transmission"
+      }
+    }
+    Subsystem {
+      Name		      "<S25>/EMTrq2WhlTrqFrnt"
+      Block {
+	Name			"<S26>/Single Speed Transmission"
+      }
+    }
+    Subsystem {
+      Name		      "<S25>/EMTrq2WhlTrqRear"
+      Block {
+	Name			"<S27>/Single Speed Transmission"
+      }
+    }
+    Subsystem {
+      Name		      "<S25>/Maximum Torque Front Axle"
+      Block {
+	Name			"<S28>/MaxEMTrqVsSpd"
+      }
+    }
+    Subsystem {
+      Name		      "<S25>/Maximum Torque Rear Axle"
+      Block {
+	Name			"<S29>/MaxEMTrqVsSpd"
+      }
+    }
+    Subsystem {
+      Name		      "<S34>/2EM or 3EM Dual Rear"
+      Block {
+	Name			"<S37>/Diff Eta"
+      }
+      Block {
+	Name			"<S37>/EMTrq Control Vector Traction"
+      }
+      Block {
+	Name			"<S37>/Gain"
+      }
+      Block {
+	Name			"<S37>/Gain3"
+      }
+      Block {
+	Name			"<S37>/Divide2"
+      }
+    }
+    Subsystem {
+      Name		      "<S35>/2EM"
+      Block {
+	Name			"<S39>/Diff Eta"
+      }
+      Block {
+	Name			"<S39>/EMTrq Control Vector Traction"
+      }
+      Block {
+	Name			"<S39>/Gain"
+      }
+      Block {
+	Name			"<S39>/Gain3"
+      }
+      Block {
+	Name			"<S39>/Divide2"
+      }
+    }
+    Subsystem {
+      Name		      "<S36>/BrkTrqEstimate"
+      Block {
+	Name			"<S41>/Front Brakes"
+      }
+      Block {
+	Name			"<S41>/Rear Brakes"
+      }
+      Block {
+	Name			"<S41>/Product1"
+      }
+      Block {
+	Name			"<S41>/Product2"
+      }
+      Block {
+	Name			"<S41>/Product3"
+      }
+      Block {
+	Name			"<S41>/Product5"
+      }
+      Block {
+	Name			"<S41>/Add"
+      }
+    }
+    Subsystem {
+      Name		      "<S42>/Diff Eta"
+      Block {
+	Name			"<S43>/Constant"
+      }
+      Block {
+	Name			"<S43>/Constant1"
+      }
+      Block {
+	Name			"<S43>/Constant2"
+      }
+      Block {
+	Name			"<S43>/Math Function1"
+      }
+      Block {
+	Name			"<S43>/Product1"
+      }
+      Block {
+	Name			"<S43>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S42>/Diff Eta1"
+      Block {
+	Name			"<S44>/Constant"
+      }
+      Block {
+	Name			"<S44>/Constant1"
+      }
+      Block {
+	Name			"<S44>/Constant2"
+      }
+      Block {
+	Name			"<S44>/Math Function1"
+      }
+      Block {
+	Name			"<S44>/Product1"
+      }
+      Block {
+	Name			"<S44>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S47>/Electrical Current"
+      Block {
+	Name			"<S51>/DC-DC Eta"
+      }
+      Block {
+	Name			"<S51>/Divide"
+      }
+      Block {
+	Name			"<S51>/Saturation"
+      }
+    }
+    Subsystem {
+      Name		      "<S47>/Power Limit Calculations"
+      Block {
+	Name			"<S52>/div0protect - poly"
+      }
+      Block {
+	Name			"<S52>/div0protect - poly1"
+      }
+      Block {
+	Name			"<S52>/Divide"
+      }
+      Block {
+	Name			"<S52>/Divide1"
+      }
+    }
+    Subsystem {
+      Name		      "<S47>/Saturation\nDynamic"
+      Block {
+	Name			"<S53>/LowerRelop1"
+      }
+      Block {
+	Name			"<S53>/UpperRelop"
+      }
+      Block {
+	Name			"<S53>/Switch"
+      }
+      Block {
+	Name			"<S53>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S48>/Maximum Torque"
+      Block {
+	Name			"<S62>/Compare To Zero"
+      }
+      Block {
+	Name			"<S62>/Compare To Zero1"
+      }
+      Block {
+	Name			"<S62>/Saturation Dynamic"
+      }
+      Block {
+	Name			"<S62>/Gain"
+      }
+      Block {
+	Name			"<S62>/Logical Operator"
+      }
+      Block {
+	Name			"<S62>/Logical Operator1"
+      }
+      Block {
+	Name			"<S62>/Relational Operator"
+      }
+      Block {
+	Name			"<S62>/Relational Operator1"
+      }
+    }
+    Subsystem {
+      Name		      "<S48>/Tabular Power Loss Data"
+      Block {
+	Name			"<S63>/2EM or 3EM Dual Rear"
+      }
+    }
+    Subsystem {
+      Name		      "<S48>/Wheel Torque Saturation for Max g Rates"
+      Block {
+	Name			"<S64>/Saturation Dynamic3"
+      }
+      Block {
+	Name			"<S64>/Wheel Torque Limit at Max g Rates"
+      }
+      Block {
+	Name			"<S64>/Constant"
+      }
+      Block {
+	Name			"<S64>/Road mu"
+      }
+      Block {
+	Name			"<S64>/Road mu1"
+      }
+      Block {
+	Name			"<S64>/Safety Factor"
+      }
+      Block {
+	Name			"<S64>/Safety Factor1"
+      }
+      Block {
+	Name			"<S64>/Switch"
+      }
+      Block {
+	Name			"<S64>/Switch1"
+      }
+    }
+    Subsystem {
+      Name		      "<S49>/Maximum Torque"
+      Block {
+	Name			"<S75>/Compare To Zero"
+      }
+      Block {
+	Name			"<S75>/Compare To Zero1"
+      }
+      Block {
+	Name			"<S75>/Saturation Dynamic"
+      }
+      Block {
+	Name			"<S75>/Gain"
+      }
+      Block {
+	Name			"<S75>/Logical Operator"
+      }
+      Block {
+	Name			"<S75>/Logical Operator1"
+      }
+      Block {
+	Name			"<S75>/Relational Operator"
+      }
+      Block {
+	Name			"<S75>/Relational Operator1"
+      }
+    }
+    Subsystem {
+      Name		      "<S49>/Tabular Power Loss Data"
+      Block {
+	Name			"<S76>/2EM"
+      }
+    }
+    Subsystem {
+      Name		      "<S49>/Wheel Torque Saturation for Max g Rates"
+      Block {
+	Name			"<S77>/Saturation Dynamic3"
+      }
+      Block {
+	Name			"<S77>/Wheel Torque Limit at Max g Rates"
+      }
+      Block {
+	Name			"<S77>/Constant"
+      }
+      Block {
+	Name			"<S77>/Road mu"
+      }
+      Block {
+	Name			"<S77>/Road mu1"
+      }
+      Block {
+	Name			"<S77>/Safety Factor"
+      }
+      Block {
+	Name			"<S77>/Safety Factor1"
+      }
+      Block {
+	Name			"<S77>/Switch"
+      }
+      Block {
+	Name			"<S77>/Switch1"
+      }
+    }
+    Subsystem {
+      Name		      "<S50>/Regen"
+      Block {
+	Name			"<S88>/Saturation Dynamic"
+      }
+      Block {
+	Name			"<S88>/Constant1"
+      }
+      Block {
+	Name			"<S88>/WhlEMTrqSplitVecFrnt"
+      }
+      Block {
+	Name			"<S88>/Relational Operator"
+      }
+      Block {
+	Name			"<S88>/Add3"
+      }
+      Block {
+	Name			"<S88>/Switch1"
+      }
+    }
+    Subsystem {
+      Name		      "<S50>/Traction"
+      Block {
+	Name			"<S89>/WhlEMTrqSplitVecRear"
+      }
+      Block {
+	Name			"<S89>/Relational Operator"
+      }
+      Block {
+	Name			"<S89>/Add3"
+      }
+      Block {
+	Name			"<S89>/Switch1"
+      }
+    }
+    Subsystem {
+      Name		      "<S10>/Single Speed Transmission"
+      Block {
+	Name			"<S15>/Diff Eta"
+      }
+      Block {
+	Name			"<S15>/Gain3"
+      }
+      Block {
+	Name			"<S15>/Divide2"
+      }
+    }
+    Subsystem {
+      Name		      "<S11>/Single Speed Transmission"
+      Block {
+	Name			"<S17>/Diff Eta"
+      }
+      Block {
+	Name			"<S17>/Gain3"
+      }
+      Block {
+	Name			"<S17>/Divide2"
+      }
+    }
+    Subsystem {
+      Name		      "<S14>/Single Speed Transmission"
+      Block {
+	Name			"<S19>/Gain1"
+      }
+      Block {
+	Name			"<S19>/Gain2"
+      }
+      Block {
+	Name			"<S19>/Gain3"
+      }
+      Block {
+	Name			"<S19>/Gain4"
+      }
+    }
+    Subsystem {
+      Name		      "<S26>/Single Speed Transmission"
+      Block {
+	Name			"<S30>/Diff Eta"
+      }
+      Block {
+	Name			"<S30>/Gain3"
+      }
+      Block {
+	Name			"<S30>/Divide2"
+      }
+    }
+    Subsystem {
+      Name		      "<S27>/Single Speed Transmission"
+      Block {
+	Name			"<S32>/Diff Eta"
+      }
+      Block {
+	Name			"<S32>/Gain3"
+      }
+      Block {
+	Name			"<S32>/Divide2"
+      }
+    }
+    Subsystem {
+      Name		      "<S37>/Diff Eta"
+      Block {
+	Name			"<S38>/Constant"
+      }
+      Block {
+	Name			"<S38>/Constant1"
+      }
+      Block {
+	Name			"<S38>/Constant2"
+      }
+      Block {
+	Name			"<S38>/Math Function1"
+      }
+      Block {
+	Name			"<S38>/Product1"
+      }
+      Block {
+	Name			"<S38>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S39>/Diff Eta"
+      Block {
+	Name			"<S40>/Constant"
+      }
+      Block {
+	Name			"<S40>/Constant1"
+      }
+      Block {
+	Name			"<S40>/Constant2"
+      }
+      Block {
+	Name			"<S40>/Math Function1"
+      }
+      Block {
+	Name			"<S40>/Product1"
+      }
+      Block {
+	Name			"<S40>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S51>/DC-DC Eta"
+      Block {
+	Name			"<S54>/No DC-DC"
+      }
+    }
+    Subsystem {
+      Name		      "<S52>/div0protect - poly"
+      Block {
+	Name			"<S56>/Compare To Constant"
+      }
+      Block {
+	Name			"<S56>/Compare To Constant1"
+      }
+      Block {
+	Name			"<S56>/Constant"
+      }
+      Block {
+	Name			"<S56>/Fcn"
+      }
+      Block {
+	Name			"<S56>/Logical Operator"
+      }
+      Block {
+	Name			"<S56>/Product"
+      }
+      Block {
+	Name			"<S56>/Switch"
+      }
+      Block {
+	Name			"<S56>/Switch1"
+      }
+      Block {
+	Name			"<S56>/Unary Minus"
+      }
+    }
+    Subsystem {
+      Name		      "<S52>/div0protect - poly1"
+      Block {
+	Name			"<S57>/Compare To Constant"
+      }
+      Block {
+	Name			"<S57>/Compare To Constant1"
+      }
+      Block {
+	Name			"<S57>/Constant"
+      }
+      Block {
+	Name			"<S57>/Fcn"
+      }
+      Block {
+	Name			"<S57>/Logical Operator"
+      }
+      Block {
+	Name			"<S57>/Product"
+      }
+      Block {
+	Name			"<S57>/Switch"
+      }
+      Block {
+	Name			"<S57>/Switch1"
+      }
+      Block {
+	Name			"<S57>/Unary Minus"
+      }
+    }
+    Subsystem {
+      Name		      "<S62>/Compare\nTo Zero"
+      Block {
+	Name			"<S65>/Constant"
+      }
+      Block {
+	Name			"<S65>/Compare"
+      }
+    }
+    Subsystem {
+      Name		      "<S62>/Compare\nTo Zero1"
+      Block {
+	Name			"<S66>/Constant"
+      }
+      Block {
+	Name			"<S66>/Compare"
+      }
+    }
+    Subsystem {
+      Name		      "<S62>/Saturation\nDynamic"
+      Block {
+	Name			"<S67>/LowerRelop1"
+      }
+      Block {
+	Name			"<S67>/UpperRelop"
+      }
+      Block {
+	Name			"<S67>/Switch"
+      }
+      Block {
+	Name			"<S67>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S63>/2EM or 3EM Dual Rear"
+      Block {
+	Name			"<S68>/WhlTrq2EMTrq"
+      }
+      Block {
+	Name			"<S68>/Abs"
+      }
+      Block {
+	Name			"<S68>/Abs1"
+      }
+      Block {
+	Name			"<S68>/Constant1"
+      }
+      Block {
+	Name			"<S68>/Constant2"
+      }
+      Block {
+	Name			"<S68>/Gain2"
+      }
+      Block {
+	Name			"<S68>/Eff Map"
+      }
+      Block {
+	Name			"<S68>/Math Function1"
+      }
+      Block {
+	Name			"<S68>/Product1"
+      }
+      Block {
+	Name			"<S68>/Product4"
+      }
+      Block {
+	Name			"<S68>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S64>/Saturation\nDynamic3"
+      Block {
+	Name			"<S71>/LowerRelop1"
+      }
+      Block {
+	Name			"<S71>/UpperRelop"
+      }
+      Block {
+	Name			"<S71>/Switch"
+      }
+      Block {
+	Name			"<S71>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S64>/Wheel Torque Limit at Max g Rates"
+      Block {
+	Name			"<S72>/Wheel Torque at Max Acceleration Rate"
+      }
+      Block {
+	Name			"<S72>/Wheel Torque at Max Deceleration Rate"
+      }
+      Block {
+	Name			"<S72>/Constant6"
+      }
+      Block {
+	Name			"<S72>/Constant7"
+      }
+      Block {
+	Name			"<S72>/Gain"
+      }
+    }
+    Subsystem {
+      Name		      "<S75>/Compare\nTo Zero"
+      Block {
+	Name			"<S78>/Constant"
+      }
+      Block {
+	Name			"<S78>/Compare"
+      }
+    }
+    Subsystem {
+      Name		      "<S75>/Compare\nTo Zero1"
+      Block {
+	Name			"<S79>/Constant"
+      }
+      Block {
+	Name			"<S79>/Compare"
+      }
+    }
+    Subsystem {
+      Name		      "<S75>/Saturation\nDynamic"
+      Block {
+	Name			"<S80>/LowerRelop1"
+      }
+      Block {
+	Name			"<S80>/UpperRelop"
+      }
+      Block {
+	Name			"<S80>/Switch"
+      }
+      Block {
+	Name			"<S80>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S76>/2EM"
+      Block {
+	Name			"<S81>/WhlTrq2EMTrq"
+      }
+      Block {
+	Name			"<S81>/Abs"
+      }
+      Block {
+	Name			"<S81>/Abs1"
+      }
+      Block {
+	Name			"<S81>/Constant1"
+      }
+      Block {
+	Name			"<S81>/Constant2"
+      }
+      Block {
+	Name			"<S81>/Gain2"
+      }
+      Block {
+	Name			"<S81>/Eff Map"
+      }
+      Block {
+	Name			"<S81>/Math Function1"
+      }
+      Block {
+	Name			"<S81>/Product1"
+      }
+      Block {
+	Name			"<S81>/Product4"
+      }
+      Block {
+	Name			"<S81>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S77>/Saturation\nDynamic3"
+      Block {
+	Name			"<S84>/LowerRelop1"
+      }
+      Block {
+	Name			"<S84>/UpperRelop"
+      }
+      Block {
+	Name			"<S84>/Switch"
+      }
+      Block {
+	Name			"<S84>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S77>/Wheel Torque Limit at Max g Rates"
+      Block {
+	Name			"<S85>/Wheel Torque at Max Acceleration Rate"
+      }
+      Block {
+	Name			"<S85>/Wheel Torque at Max Deceleration Rate"
+      }
+      Block {
+	Name			"<S85>/Constant6"
+      }
+      Block {
+	Name			"<S85>/Constant7"
+      }
+      Block {
+	Name			"<S85>/Gain"
+      }
+    }
+    Subsystem {
+      Name		      "<S88>/Saturation\nDynamic"
+      Block {
+	Name			"<S90>/LowerRelop1"
+      }
+      Block {
+	Name			"<S90>/UpperRelop"
+      }
+      Block {
+	Name			"<S90>/Switch"
+      }
+      Block {
+	Name			"<S90>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S15>/Diff Eta"
+      Block {
+	Name			"<S16>/Constant"
+      }
+      Block {
+	Name			"<S16>/Constant1"
+      }
+      Block {
+	Name			"<S16>/Constant2"
+      }
+      Block {
+	Name			"<S16>/Math Function1"
+      }
+      Block {
+	Name			"<S16>/Product1"
+      }
+      Block {
+	Name			"<S16>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S17>/Diff Eta"
+      Block {
+	Name			"<S18>/Constant"
+      }
+      Block {
+	Name			"<S18>/Constant1"
+      }
+      Block {
+	Name			"<S18>/Constant2"
+      }
+      Block {
+	Name			"<S18>/Math Function1"
+      }
+      Block {
+	Name			"<S18>/Product1"
+      }
+      Block {
+	Name			"<S18>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S30>/Diff Eta"
+      Block {
+	Name			"<S31>/Constant"
+      }
+      Block {
+	Name			"<S31>/Constant1"
+      }
+      Block {
+	Name			"<S31>/Constant2"
+      }
+      Block {
+	Name			"<S31>/Math Function1"
+      }
+      Block {
+	Name			"<S31>/Product1"
+      }
+      Block {
+	Name			"<S31>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S32>/Diff Eta"
+      Block {
+	Name			"<S33>/Constant"
+      }
+      Block {
+	Name			"<S33>/Constant1"
+      }
+      Block {
+	Name			"<S33>/Constant2"
+      }
+      Block {
+	Name			"<S33>/Math Function1"
+      }
+      Block {
+	Name			"<S33>/Product1"
+      }
+      Block {
+	Name			"<S33>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S54>/No DC-DC"
+    }
+    Subsystem {
+      Name		      "<S56>/Compare\nTo Constant"
+      Block {
+	Name			"<S58>/Constant"
+      }
+      Block {
+	Name			"<S58>/Compare"
+      }
+    }
+    Subsystem {
+      Name		      "<S56>/Compare\nTo Constant1"
+      Block {
+	Name			"<S59>/Constant"
+      }
+      Block {
+	Name			"<S59>/Compare"
+      }
+    }
+    Subsystem {
+      Name		      "<S57>/Compare\nTo Constant"
+      Block {
+	Name			"<S60>/Constant"
+      }
+      Block {
+	Name			"<S60>/Compare"
+      }
+    }
+    Subsystem {
+      Name		      "<S57>/Compare\nTo Constant1"
+      Block {
+	Name			"<S61>/Constant"
+      }
+      Block {
+	Name			"<S61>/Compare"
+      }
+    }
+    Subsystem {
+      Name		      "<S68>/WhlTrq2EMTrq"
+      Block {
+	Name			"<S69>/Diff Eta"
+      }
+      Block {
+	Name			"<S69>/Gain3"
+      }
+      Block {
+	Name			"<S69>/Divide2"
+      }
+      Block {
+	Name			"<S69>/Unit Delay"
+      }
+    }
+    Subsystem {
+      Name		      "<S72>/Wheel Torque at Max Acceleration Rate"
+      Block {
+	Name			"<S73>/Constant1"
+      }
+      Block {
+	Name			"<S73>/Constant11"
+      }
+      Block {
+	Name			"<S73>/Constant12"
+      }
+      Block {
+	Name			"<S73>/Constant13"
+      }
+      Block {
+	Name			"<S73>/Constant14"
+      }
+      Block {
+	Name			"<S73>/Constant2"
+      }
+      Block {
+	Name			"<S73>/Constant20"
+      }
+      Block {
+	Name			"<S73>/Constant3"
+      }
+      Block {
+	Name			"<S73>/Constant4"
+      }
+      Block {
+	Name			"<S73>/Constant5"
+      }
+      Block {
+	Name			"<S73>/Constant6"
+      }
+      Block {
+	Name			"<S73>/Constant7"
+      }
+      Block {
+	Name			"<S73>/Constant8"
+      }
+      Block {
+	Name			"<S73>/Constant9"
+      }
+      Block {
+	Name			"<S73>/TireRadius"
+      }
+      Block {
+	Name			"<S73>/TireRadius1"
+      }
+      Block {
+	Name			"<S73>/Divide"
+      }
+      Block {
+	Name			"<S73>/Product"
+      }
+      Block {
+	Name			"<S73>/Product1"
+      }
+      Block {
+	Name			"<S73>/Add2"
+      }
+      Block {
+	Name			"<S73>/Add3"
+      }
+      Block {
+	Name			"<S73>/Add4"
+      }
+    }
+    Subsystem {
+      Name		      "<S72>/Wheel Torque at Max Deceleration Rate"
+      Block {
+	Name			"<S74>/Constant1"
+      }
+      Block {
+	Name			"<S74>/Constant11"
+      }
+      Block {
+	Name			"<S74>/Constant12"
+      }
+      Block {
+	Name			"<S74>/Constant13"
+      }
+      Block {
+	Name			"<S74>/Constant14"
+      }
+      Block {
+	Name			"<S74>/Constant2"
+      }
+      Block {
+	Name			"<S74>/Constant20"
+      }
+      Block {
+	Name			"<S74>/Constant3"
+      }
+      Block {
+	Name			"<S74>/Constant4"
+      }
+      Block {
+	Name			"<S74>/Constant5"
+      }
+      Block {
+	Name			"<S74>/Constant6"
+      }
+      Block {
+	Name			"<S74>/Constant7"
+      }
+      Block {
+	Name			"<S74>/Constant8"
+      }
+      Block {
+	Name			"<S74>/Constant9"
+      }
+      Block {
+	Name			"<S74>/TireRadius"
+      }
+      Block {
+	Name			"<S74>/TireRadius1"
+      }
+      Block {
+	Name			"<S74>/Divide"
+      }
+      Block {
+	Name			"<S74>/Divide1"
+      }
+      Block {
+	Name			"<S74>/Product"
+      }
+      Block {
+	Name			"<S74>/Product1"
+      }
+      Block {
+	Name			"<S74>/Product2"
+      }
+      Block {
+	Name			"<S74>/Product3"
+      }
+      Block {
+	Name			"<S74>/Add1"
+      }
+      Block {
+	Name			"<S74>/Add2"
+      }
+      Block {
+	Name			"<S74>/Add3"
+      }
+      Block {
+	Name			"<S74>/Add4"
+      }
+      Block {
+	Name			"<S74>/Add5"
+      }
+      Block {
+	Name			"<S74>/Add6"
+      }
+    }
+    Subsystem {
+      Name		      "<S81>/WhlTrq2EMTrq"
+      Block {
+	Name			"<S82>/Diff Eta"
+      }
+      Block {
+	Name			"<S82>/Gain3"
+      }
+      Block {
+	Name			"<S82>/Divide2"
+      }
+      Block {
+	Name			"<S82>/Unit Delay"
+      }
+    }
+    Subsystem {
+      Name		      "<S85>/Wheel Torque at Max Acceleration Rate"
+      Block {
+	Name			"<S86>/Constant1"
+      }
+      Block {
+	Name			"<S86>/Constant11"
+      }
+      Block {
+	Name			"<S86>/Constant12"
+      }
+      Block {
+	Name			"<S86>/Constant13"
+      }
+      Block {
+	Name			"<S86>/Constant14"
+      }
+      Block {
+	Name			"<S86>/Constant2"
+      }
+      Block {
+	Name			"<S86>/Constant20"
+      }
+      Block {
+	Name			"<S86>/Constant3"
+      }
+      Block {
+	Name			"<S86>/Constant4"
+      }
+      Block {
+	Name			"<S86>/Constant5"
+      }
+      Block {
+	Name			"<S86>/Constant6"
+      }
+      Block {
+	Name			"<S86>/Constant7"
+      }
+      Block {
+	Name			"<S86>/Constant8"
+      }
+      Block {
+	Name			"<S86>/Constant9"
+      }
+      Block {
+	Name			"<S86>/TireRadius"
+      }
+      Block {
+	Name			"<S86>/TireRadius1"
+      }
+      Block {
+	Name			"<S86>/Divide1"
+      }
+      Block {
+	Name			"<S86>/Product2"
+      }
+      Block {
+	Name			"<S86>/Product3"
+      }
+      Block {
+	Name			"<S86>/Add1"
+      }
+      Block {
+	Name			"<S86>/Add5"
+      }
+      Block {
+	Name			"<S86>/Add6"
+      }
+    }
+    Subsystem {
+      Name		      "<S85>/Wheel Torque at Max Deceleration Rate"
+      Block {
+	Name			"<S87>/Constant1"
+      }
+      Block {
+	Name			"<S87>/Constant11"
+      }
+      Block {
+	Name			"<S87>/Constant12"
+      }
+      Block {
+	Name			"<S87>/Constant13"
+      }
+      Block {
+	Name			"<S87>/Constant14"
+      }
+      Block {
+	Name			"<S87>/Constant2"
+      }
+      Block {
+	Name			"<S87>/Constant20"
+      }
+      Block {
+	Name			"<S87>/Constant3"
+      }
+      Block {
+	Name			"<S87>/Constant4"
+      }
+      Block {
+	Name			"<S87>/Constant5"
+      }
+      Block {
+	Name			"<S87>/Constant6"
+      }
+      Block {
+	Name			"<S87>/Constant7"
+      }
+      Block {
+	Name			"<S87>/Constant8"
+      }
+      Block {
+	Name			"<S87>/Constant9"
+      }
+      Block {
+	Name			"<S87>/TireRadius"
+      }
+      Block {
+	Name			"<S87>/TireRadius1"
+      }
+      Block {
+	Name			"<S87>/Divide"
+      }
+      Block {
+	Name			"<S87>/Divide1"
+      }
+      Block {
+	Name			"<S87>/Product"
+      }
+      Block {
+	Name			"<S87>/Product1"
+      }
+      Block {
+	Name			"<S87>/Product2"
+      }
+      Block {
+	Name			"<S87>/Product3"
+      }
+      Block {
+	Name			"<S87>/Add1"
+      }
+      Block {
+	Name			"<S87>/Add2"
+      }
+      Block {
+	Name			"<S87>/Add3"
+      }
+      Block {
+	Name			"<S87>/Add4"
+      }
+      Block {
+	Name			"<S87>/Add5"
+      }
+      Block {
+	Name			"<S87>/Add6"
+      }
+    }
+    Subsystem {
+      Name		      "<S69>/Diff Eta"
+      Block {
+	Name			"<S70>/Constant"
+      }
+      Block {
+	Name			"<S70>/Constant1"
+      }
+      Block {
+	Name			"<S70>/Constant2"
+      }
+      Block {
+	Name			"<S70>/Math Function1"
+      }
+      Block {
+	Name			"<S70>/Product1"
+      }
+      Block {
+	Name			"<S70>/Switch2"
+      }
+    }
+    Subsystem {
+      Name		      "<S82>/Diff Eta"
+      Block {
+	Name			"<S83>/Constant"
+      }
+      Block {
+	Name			"<S83>/Constant1"
+      }
+      Block {
+	Name			"<S83>/Constant2"
+      }
+      Block {
+	Name			"<S83>/Math Function1"
+      }
+      Block {
+	Name			"<S83>/Product1"
+      }
+      Block {
+	Name			"<S83>/Switch2"
+      }
+    }
+  }
+  DWorkDefaults {
+    RecordType		    "BlockDWork"
+  }
+  ParameterDefaults {
+    RecordType		    "BlockParameter"
+    Tunable		    yes
+  }
+  DataInputPortDefaults {
+    RecordType		    "DataInputPort"
+  }
+  DataOutputPortDefaults {
+    RecordType		    "DataOutputPort"
+  }
+  SampleTimeDefaults {
+    NonInlinedModelWideEvent -1
+  }
+  SampleTime {
+    TID			    0
+  }
+  ModelIsLinearlyImplicit no
+  GenUtilsSrcInSharedLocation 0
+  System {
+    SystemIdx		    0
+    Name		    "<S31>/TmpAtomicSubsysAtSwitch2Inport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S31>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [0, 0]
+      BlockIdx		      [0, 0, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[0, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[0, 0, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    1
+    Name		    "<S31>/TmpAtomicSubsysAtSwitch2Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S31>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [1, 0]
+      BlockIdx		      [1, 1, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[1, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[1, 0, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    2
+    Name		    "<S33>/TmpAtomicSubsysAtSwitch2Inport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S33>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [2, 0]
+      BlockIdx		      [2, 2, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[2, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[2, 0, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    3
+    Name		    "<S33>/TmpAtomicSubsysAtSwitch2Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S33>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [3, 0]
+      BlockIdx		      [3, 3, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[3, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[3, 0, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    4
+    Name		    "<S21>/TmpAtomicSubsysAtAccel Decel Switch1Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    0
+  }
+  System {
+    SystemIdx		    5
+    Name		    "<S21>/TmpAtomicSubsysAtAccel Decel Switch2Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    0
+  }
+  System {
+    SystemIdx		    6
+    Name		    "<S16>/TmpAtomicSubsysAtSwitch2Inport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S16>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [6, 0]
+      BlockIdx		      [6, 6, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[6, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[6, 0, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    7
+    Name		    "<S18>/TmpAtomicSubsysAtSwitch2Inport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S18>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [7, 0]
+      BlockIdx		      [7, 7, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[7, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[7, 0, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    8
+    Name		    "<S16>/TmpAtomicSubsysAtSwitch2Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S16>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [8, 0]
+      BlockIdx		      [8, 8, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[8, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[8, 0, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    9
+    Name		    "<S18>/TmpAtomicSubsysAtSwitch2Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S18>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [9, 0]
+      BlockIdx		      [9, 9, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[9, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[9, 0, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    10
+    Name		    "<S21>/TmpAtomicSubsysAtAccel Decel SwitchInport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    6
+    Block {
+      Type		      SubSystem
+      Name		      "<S18>/TmpAtomicSubsysAtSwitch2Inport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [10, 0]
+      BlockIdx		      [10, 7, 0]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S18>/TmpAtomicSubsysAtSwitch2Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [10, 1]
+      BlockIdx		      [10, 9, 1]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S18>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [10, 2]
+      BlockIdx		      [10, 10, 2]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[10, 2, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[10, 2, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntl2Eff*PlntEM2TransEff"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S16>/TmpAtomicSubsysAtSwitch2Inport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [10, 3]
+      BlockIdx		      [10, 6, 3]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S16>/TmpAtomicSubsysAtSwitch2Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [10, 4]
+      BlockIdx		      [10, 8, 4]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S16>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [10, 5]
+      BlockIdx		      [10, 10, 5]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[10, 5, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[10, 5, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntlEff*PlntEM1TransEff"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    11
+    Name		    "<S21>/TmpAtomicSubsysAtAccel Decel SwitchInport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    0
+  }
+  System {
+    SystemIdx		    12
+    Name		    "<S43>/TmpAtomicSubsysAtSwitch2Inport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S43>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [12, 0]
+      BlockIdx		      [12, 12, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[12, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[12, 0, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    13
+    Name		    "<S43>/TmpAtomicSubsysAtSwitch2Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S43>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [13, 0]
+      BlockIdx		      [13, 13, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[13, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[13, 0, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    14
+    Name		    "<S44>/TmpAtomicSubsysAtSwitch2Inport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S44>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [14, 0]
+      BlockIdx		      [14, 14, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[14, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[14, 0, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    15
+    Name		    "<S44>/TmpAtomicSubsysAtSwitch2Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S44>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [15, 0]
+      BlockIdx		      [15, 15, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[15, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[15, 0, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    16
+    Name		    "<S23>/MATLAB Function"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      "S-Function"
+      Name		      "<S45>/ SFunction "
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [16, 0]
+      BlockIdx		      [16, 16, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      2
+      DataInputPort {
+	RecordIdx		[16, 0, 0]
+	RollRegions		[0:200]
+      }
+      DataInputPort {
+	RecordIdx		[16, 0, 1]
+	RollRegions		[0:200]
+      }
+      NumDataOutputPorts      4
+      DataOutputPort {
+	RecordIdx		[16, 0, 0]
+      }
+      DataOutputPort {
+	RecordIdx		[16, 0, 1]
+      }
+      DataOutputPort {
+	RecordIdx		[16, 0, 2]
+      }
+      DataOutputPort {
+	RecordIdx		[16, 0, 3]
+      }
+      NumDWork		      0
+      Parameters	      [0]
+    }
+  }
+  System {
+    SystemIdx		    17
+    Name		    "<S56>/TmpAtomicSubsysAtSwitch1Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    0
+  }
+  System {
+    SystemIdx		    18
+    Name		    "<S56>/TmpAtomicSubsysAtSwitchInport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      SubSystem
+      Name		      "<S56>/TmpAtomicSubsysAtSwitch1Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [18, 0]
+      BlockIdx		      [18, 17, 0]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+  }
+  System {
+    SystemIdx		    19
+    Name		    "<S57>/TmpAtomicSubsysAtSwitch1Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    0
+  }
+  System {
+    SystemIdx		    20
+    Name		    "<S57>/TmpAtomicSubsysAtSwitchInport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      SubSystem
+      Name		      "<S57>/TmpAtomicSubsysAtSwitch1Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [20, 0]
+      BlockIdx		      [20, 19, 0]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+  }
+  System {
+    SystemIdx		    21
+    Name		    "<S64>/TmpAtomicSubsysAtSwitch1Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    15
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant12"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 0]
+      BlockIdx		      [21, 21, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 0, 0]
+	Value			[1.7]
+	String			"PlntVehDstCGRearAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant11"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 1]
+      BlockIdx		      [21, 21, 1]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 1, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 1, 0]
+	Value			[1.09]
+	String			"PlntVehDstCGFrntAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant14"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 2]
+      BlockIdx		      [21, 21, 2]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 2, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 2, 0]
+	Value			[0.327]
+	String			"PlntWhlLdRadiusRear"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant13"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 3]
+      BlockIdx		      [21, 21, 3]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 3, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 3, 0]
+	Value			[0.3]
+	String			"PlntVehCGHgtAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 4]
+      BlockIdx		      [21, 21, 4]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 4, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 4, 0]
+	Value			[9.81]
+	String			"EnvGrvty"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant8"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 5]
+      BlockIdx		      [21, 21, 5]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 5, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 5, 0]
+	Value			[1623.0]
+	String			"PlntVehMass"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S72>/Constant6"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 6]
+      BlockIdx		      [21, 21, 6]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 6, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 6, 0]
+	Value			[-1.5]
+	String			"CtrlVcuMaxDecelG"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 7]
+      BlockIdx		      [21, 21, 7]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 7, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 7, 0]
+	Value			[1.09]
+	String			"PlntVehDstCGFrntAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant6"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 8]
+      BlockIdx		      [21, 21, 8]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 8, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 8, 0]
+	Value			[1.7]
+	String			"PlntVehDstCGRearAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant5"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 9]
+      BlockIdx		      [21, 21, 9]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 9, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 9, 0]
+	Value			[1.09]
+	String			"PlntVehDstCGFrntAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant9"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 10]
+      BlockIdx		      [21, 21, 10]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 10, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 10, 0]
+	Value			[0.327]
+	String			"PlntWhlLdRadiusFrnt"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant7"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 11]
+      BlockIdx		      [21, 21, 11]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 11, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 11, 0]
+	Value			[0.3]
+	String			"PlntVehCGHgtAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant20"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 12]
+      BlockIdx		      [21, 21, 12]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 12, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 12, 0]
+	Value			[9.81]
+	String			"EnvGrvty"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant4"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 13]
+      BlockIdx		      [21, 21, 13]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 13, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 13, 0]
+	Value			[1623.0]
+	String			"PlntVehMass"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S74>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [21, 14]
+      BlockIdx		      [21, 21, 14]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[21, 14, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[21, 14, 0]
+	Value			[1.7]
+	String			"PlntVehDstCGRearAxl"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    22
+    Name		    "<S64>/TmpAtomicSubsysAtSwitchInport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    8
+    Block {
+      Type		      Constant
+      Name		      "<S73>/Constant6"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [22, 0]
+      BlockIdx		      [22, 22, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[22, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[22, 0, 0]
+	Value			[1.7]
+	String			"PlntVehDstCGRearAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S73>/Constant5"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [22, 1]
+      BlockIdx		      [22, 22, 1]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[22, 1, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[22, 1, 0]
+	Value			[1.09]
+	String			"PlntVehDstCGFrntAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S72>/Constant7"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [22, 2]
+      BlockIdx		      [22, 22, 2]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[22, 2, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[22, 2, 0]
+	Value			[1.0]
+	String			"CtrlVcuMaxAccelG"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S73>/Constant9"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [22, 3]
+      BlockIdx		      [22, 22, 3]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[22, 3, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[22, 3, 0]
+	Value			[0.327]
+	String			"PlntWhlLdRadiusFrnt"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S73>/Constant7"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [22, 4]
+      BlockIdx		      [22, 22, 4]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[22, 4, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[22, 4, 0]
+	Value			[0.3]
+	String			"PlntVehCGHgtAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S73>/Constant20"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [22, 5]
+      BlockIdx		      [22, 22, 5]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[22, 5, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[22, 5, 0]
+	Value			[9.81]
+	String			"EnvGrvty"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S73>/Constant4"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [22, 6]
+      BlockIdx		      [22, 22, 6]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[22, 6, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[22, 6, 0]
+	Value			[1623.0]
+	String			"PlntVehMass"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S73>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [22, 7]
+      BlockIdx		      [22, 22, 7]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[22, 7, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[22, 7, 0]
+	Value			[1.7]
+	String			"PlntVehDstCGRearAxl"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    23
+    Name		    "<S77>/TmpAtomicSubsysAtSwitch1Inport3"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    15
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant12"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 0]
+      BlockIdx		      [23, 23, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 0, 0]
+	Value			[1.7]
+	String			"PlntVehDstCGRearAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant11"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 1]
+      BlockIdx		      [23, 23, 1]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 1, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 1, 0]
+	Value			[1.09]
+	String			"PlntVehDstCGFrntAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant14"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 2]
+      BlockIdx		      [23, 23, 2]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 2, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 2, 0]
+	Value			[0.327]
+	String			"PlntWhlLdRadiusRear"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant13"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 3]
+      BlockIdx		      [23, 23, 3]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 3, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 3, 0]
+	Value			[0.3]
+	String			"PlntVehCGHgtAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 4]
+      BlockIdx		      [23, 23, 4]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 4, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 4, 0]
+	Value			[9.81]
+	String			"EnvGrvty"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant8"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 5]
+      BlockIdx		      [23, 23, 5]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 5, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 5, 0]
+	Value			[1623.0]
+	String			"PlntVehMass"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S85>/Constant6"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 6]
+      BlockIdx		      [23, 23, 6]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 6, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 6, 0]
+	Value			[-1.5]
+	String			"CtrlVcuMaxDecelG"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 7]
+      BlockIdx		      [23, 23, 7]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 7, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 7, 0]
+	Value			[1.09]
+	String			"PlntVehDstCGFrntAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant6"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 8]
+      BlockIdx		      [23, 23, 8]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 8, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 8, 0]
+	Value			[1.7]
+	String			"PlntVehDstCGRearAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant5"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 9]
+      BlockIdx		      [23, 23, 9]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 9, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 9, 0]
+	Value			[1.09]
+	String			"PlntVehDstCGFrntAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant9"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 10]
+      BlockIdx		      [23, 23, 10]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 10, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 10, 0]
+	Value			[0.327]
+	String			"PlntWhlLdRadiusFrnt"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant7"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 11]
+      BlockIdx		      [23, 23, 11]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 11, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 11, 0]
+	Value			[0.3]
+	String			"PlntVehCGHgtAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant20"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 12]
+      BlockIdx		      [23, 23, 12]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 12, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 12, 0]
+	Value			[9.81]
+	String			"EnvGrvty"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant4"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 13]
+      BlockIdx		      [23, 23, 13]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 13, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 13, 0]
+	Value			[1623.0]
+	String			"PlntVehMass"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S87>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [23, 14]
+      BlockIdx		      [23, 23, 14]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[23, 14, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[23, 14, 0]
+	Value			[1.7]
+	String			"PlntVehDstCGRearAxl"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    24
+    Name		    "<S77>/TmpAtomicSubsysAtSwitchInport1"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    8
+    Block {
+      Type		      Constant
+      Name		      "<S86>/Constant12"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [24, 0]
+      BlockIdx		      [24, 24, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[24, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[24, 0, 0]
+	Value			[1.7]
+	String			"PlntVehDstCGRearAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S86>/Constant11"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [24, 1]
+      BlockIdx		      [24, 24, 1]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[24, 1, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[24, 1, 0]
+	Value			[1.09]
+	String			"PlntVehDstCGFrntAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S85>/Constant7"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [24, 2]
+      BlockIdx		      [24, 24, 2]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[24, 2, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[24, 2, 0]
+	Value			[1.0]
+	String			"CtrlVcuMaxAccelG"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S86>/Constant14"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [24, 3]
+      BlockIdx		      [24, 24, 3]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[24, 3, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[24, 3, 0]
+	Value			[0.327]
+	String			"PlntWhlLdRadiusRear"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S86>/Constant13"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [24, 4]
+      BlockIdx		      [24, 24, 4]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[24, 4, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[24, 4, 0]
+	Value			[0.3]
+	String			"PlntVehCGHgtAxl"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S86>/Constant3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [24, 5]
+      BlockIdx		      [24, 24, 5]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[24, 5, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[24, 5, 0]
+	Value			[9.81]
+	String			"EnvGrvty"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S86>/Constant8"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [24, 6]
+      BlockIdx		      [24, 24, 6]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[24, 6, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[24, 6, 0]
+	Value			[1623.0]
+	String			"PlntVehMass"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S86>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [24, 7]
+      BlockIdx		      [24, 24, 7]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[24, 7, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[24, 7, 0]
+	Value			[1.09]
+	String			"PlntVehDstCGFrntAxl"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    25
+    Name		    "<S50>/Traction"
+    Type		    "action"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    0
+  }
+  System {
+    SystemIdx		    26
+    Name		    "<S50>/Regen"
+    Type		    "action"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    1
+    Block {
+      Type		      Constant
+      Name		      "<S88>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [26, 0]
+      BlockIdx		      [26, 26, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[26, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[26, 0, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    27
+    Name		    "<Root>/Energy Management"
+    Type		    "atomic"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    58
+    Block {
+      Type		      Constant
+      Name		      "<S31>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 0]
+      BlockIdx		      [27, 27, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 0, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntlEff*PlntEM1TransEff"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S31>/TmpAtomicSubsysAtSwitch2Inport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 1]
+      BlockIdx		      [27, 0, 1]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S31>/TmpAtomicSubsysAtSwitch2Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 2]
+      BlockIdx		      [27, 1, 2]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S33>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 3]
+      BlockIdx		      [27, 27, 3]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 3, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 3, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntl2Eff*PlntEM2TransEff"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S33>/TmpAtomicSubsysAtSwitch2Inport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 4]
+      BlockIdx		      [27, 2, 4]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S33>/TmpAtomicSubsysAtSwitch2Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 5]
+      BlockIdx		      [27, 3, 5]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S41>/Front Brakes"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 6]
+      BlockIdx		      [27, 27, 6]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 6, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 6, 0]
+	Value			[0.00020616701789183018]
+	String			"(PlntBrkKinFricCffFrnt*pi*PlntBrkActrBoreFrnt^2*PlntBrkPadMeanRadiusFrnt*PlntBrkNumPadsFrnt/4)"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S41>/Rear Brakes"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 7]
+      BlockIdx		      [27, 27, 7]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 7, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 7, 0]
+	Value			[0.00020616701789183018]
+	String			"(PlntBrkKinFricCffRear*pi*PlntBrkActrBoreRear^2*PlntBrkPadMeanRadiusRear*PlntBrkNumPadsRear/4)"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S21>/TmpAtomicSubsysAtAccel Decel SwitchInport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 8]
+      BlockIdx		      [27, 10, 8]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S21>/TmpAtomicSubsysAtAccel Decel SwitchInport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 9]
+      BlockIdx		      [27, 11, 9]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S40>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 10]
+      BlockIdx		      [27, 27, 10]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 10, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 10, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntl2Eff*PlntEM2TransEff"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S40>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 11]
+      BlockIdx		      [27, 27, 11]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 11, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 11, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S39>/EMTrq Control Vector Traction"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 12]
+      BlockIdx		      [27, 27, 12]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 12, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 12, 0]
+	Value			SLData(0)
+	String			"linspace(0, max(PlntEM2Trq), CtrlVcuEMTrqSplitGrid)"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S40>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 13]
+      BlockIdx		      [27, 27, 13]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 13, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 13, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S21>/TmpAtomicSubsysAtAccel Decel Switch1Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 14]
+      BlockIdx		      [27, 4, 14]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S38>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 15]
+      BlockIdx		      [27, 27, 15]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 15, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 15, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntlEff*PlntEM1TransEff"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S38>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 16]
+      BlockIdx		      [27, 27, 16]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 16, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 16, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S37>/EMTrq Control Vector Traction"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 17]
+      BlockIdx		      [27, 27, 17]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 17, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 17, 0]
+	Value			SLData(1)
+	String			"linspace(0, max(PlntEM1Trq), CtrlVcuEMTrqSplitGrid)"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S38>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 18]
+      BlockIdx		      [27, 27, 18]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 18, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 18, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S21>/TmpAtomicSubsysAtAccel Decel Switch2Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 19]
+      BlockIdx		      [27, 5, 19]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S57>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 20]
+      BlockIdx		      [27, 27, 20]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 20, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 20, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S60>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 21]
+      BlockIdx		      [27, 27, 21]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 21, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 21, 0]
+	Value			[-0.01]
+	String			"const"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S61>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 22]
+      BlockIdx		      [27, 27, 22]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 22, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 22, 0]
+	Value			[0.01]
+	String			"const"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S57>/TmpAtomicSubsysAtSwitchInport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 23]
+      BlockIdx		      [27, 20, 23]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S70>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 24]
+      BlockIdx		      [27, 27, 24]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 24, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 24, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntlEff*PlntEM1TransEff"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S70>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 25]
+      BlockIdx		      [27, 27, 25]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 25, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 25, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S70>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 26]
+      BlockIdx		      [27, 27, 26]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 26, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 26, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S64>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 27]
+      BlockIdx		      [27, 27, 27]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 27, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 27, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S64>/TmpAtomicSubsysAtSwitchInport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 28]
+      BlockIdx		      [27, 22, 28]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S50>/Traction"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 29]
+      BlockIdx		      [27, 25, 29]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S50>/Regen"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 30]
+      BlockIdx		      [27, 26, 30]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S64>/TmpAtomicSubsysAtSwitch1Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 31]
+      BlockIdx		      [27, 21, 31]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S68>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 32]
+      BlockIdx		      [27, 27, 32]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 32, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 32, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S68>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 33]
+      BlockIdx		      [27, 27, 33]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 33, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 33, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S83>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 34]
+      BlockIdx		      [27, 27, 34]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 34, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 34, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntl2Eff*PlntEM2TransEff"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S83>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 35]
+      BlockIdx		      [27, 27, 35]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 35, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 35, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S83>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 36]
+      BlockIdx		      [27, 27, 36]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 36, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 36, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S77>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 37]
+      BlockIdx		      [27, 27, 37]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 37, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 37, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S77>/TmpAtomicSubsysAtSwitchInport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 38]
+      BlockIdx		      [27, 24, 38]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S77>/TmpAtomicSubsysAtSwitch1Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 39]
+      BlockIdx		      [27, 23, 39]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S81>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 40]
+      BlockIdx		      [27, 27, 40]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 40, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 40, 0]
+	Value			[-1.0]
+	String			"-1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S81>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 41]
+      BlockIdx		      [27, 27, 41]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 41, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 41, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S56>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 42]
+      BlockIdx		      [27, 27, 42]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 42, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 42, 0]
+	Value			[1.0]
+	String			"1"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S58>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 43]
+      BlockIdx		      [27, 27, 43]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 43, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 43, 0]
+	Value			[-0.01]
+	String			"const"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S59>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 44]
+      BlockIdx		      [27, 27, 44]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 44, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 44, 0]
+	Value			[0.01]
+	String			"const"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S56>/TmpAtomicSubsysAtSwitchInport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 45]
+      BlockIdx		      [27, 18, 45]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S23>/MATLAB Function"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 46]
+      BlockIdx		      [27, 16, 46]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S36>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 47]
+      BlockIdx		      [27, 27, 47]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 47, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 47, 0]
+	Value			[0.00065973445725385656]
+	String			"2*((PlntBrkFrntBias*PlntBrkKinFricCffFrnt*pi*PlntBrkActrBoreFrnt^2*PlntBrkPadMeanRadiusFrnt*PlntBrkNumPadsF"
+	"rnt/4) + (PlntBrkRearBias*PlntBrkKinFricCffRear*pi*PlntBrkActrBoreRear^2*PlntBrkPadMeanRadiusRear*PlntBrkNumPadsRear/"
+	"4))"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S43>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 48]
+      BlockIdx		      [27, 27, 48]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 48, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 48, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntlEff*PlntEM1TransEff"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S43>/TmpAtomicSubsysAtSwitch2Inport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 49]
+      BlockIdx		      [27, 12, 49]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S43>/TmpAtomicSubsysAtSwitch2Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 50]
+      BlockIdx		      [27, 13, 50]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S44>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 51]
+      BlockIdx		      [27, 27, 51]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 51, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 51, 0]
+	Value			[0.96039999999999992]
+	String			"PlntDiffrntl2Eff*PlntEM2TransEff"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S44>/TmpAtomicSubsysAtSwitch2Inport1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 52]
+      BlockIdx		      [27, 14, 52]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<S44>/TmpAtomicSubsysAtSwitch2Inport3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 53]
+      BlockIdx		      [27, 15, 53]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      0
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S65>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 54]
+      BlockIdx		      [27, 27, 54]
+      TID		      constant
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 54, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 54, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S66>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 55]
+      BlockIdx		      [27, 27, 55]
+      TID		      constant
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 55, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 55, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S78>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 56]
+      BlockIdx		      [27, 27, 56]
+      TID		      constant
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 56, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 56, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S79>/Constant"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [27, 57]
+      BlockIdx		      [27, 27, 57]
+      TID		      constant
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[27, 57, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[27, 57, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+  }
+  System {
+    SystemIdx		    28
+    Name		    "<Root>"
+    Type		    "root"
+    FileNameOwnerIdx	    28
+    SystemNamespaceFlag	    0
+    NumBlocks		    16
+    Block {
+      Type		      Constant
+      Name		      "<Root>/Constant1"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 0]
+      BlockIdx		      [28, 28, 0]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[28, 0, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[28, 0, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Outport
+      Name		      "<Root>/EngTrqCmd"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 1]
+      BlockIdx		      [28, 28, 1]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      1
+      DataInputPort {
+	RecordIdx		[28, 1, 0]
+      }
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S2>/Front Bias"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 2]
+      BlockIdx		      [28, 28, 2]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[28, 2, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[28, 2, 0]
+	Value			[1.0]
+	String			"PlntBrkFrntBias"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<S2>/Rear Bias"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 3]
+      BlockIdx		      [28, 28, 3]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[28, 3, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[28, 3, 0]
+	Value			[0.6]
+	String			"PlntBrkRearBias"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      SubSystem
+      Name		      "<Root>/Energy Management"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 4]
+      BlockIdx		      [28, 27, 4]
+      TID		      Subsystem
+      SubsystemTID	      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Outport
+      Name		      "<Root>/EMTrqCmd"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 5]
+      BlockIdx		      [28, 28, 5]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      1
+      DataInputPort {
+	RecordIdx		[28, 5, 0]
+      }
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Outport
+      Name		      "<Root>/VcuBrkPrsCmd"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 6]
+      BlockIdx		      [28, 28, 6]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      1
+      DataInputPort {
+	RecordIdx		[28, 6, 0]
+      }
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Outport
+      Name		      "<Root>/VcuTrlrBrkPrsCmd"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 7]
+      BlockIdx		      [28, 28, 7]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      1
+      DataInputPort {
+	RecordIdx		[28, 7, 0]
+      }
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<Root>/Constant2"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 8]
+      BlockIdx		      [28, 28, 8]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[28, 8, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[28, 8, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Outport
+      Name		      "<Root>/Cltch1Cmd"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 9]
+      BlockIdx		      [28, 28, 9]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      1
+      DataInputPort {
+	RecordIdx		[28, 9, 0]
+      }
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<Root>/Constant3"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 10]
+      BlockIdx		      [28, 28, 10]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[28, 10, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[28, 10, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Outport
+      Name		      "<Root>/Neutral"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 11]
+      BlockIdx		      [28, 28, 11]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      1
+      DataInputPort {
+	RecordIdx		[28, 11, 0]
+      }
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<Root>/Constant4"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 12]
+      BlockIdx		      [28, 28, 12]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[28, 12, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[28, 12, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Outport
+      Name		      "<Root>/FuelCellCurrCmd"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 13]
+      BlockIdx		      [28, 28, 13]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      1
+      DataInputPort {
+	RecordIdx		[28, 13, 0]
+      }
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+    Block {
+      Type		      Constant
+      Name		      "<Root>/Constant5"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 14]
+      BlockIdx		      [28, 28, 14]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      0
+      NumDataOutputPorts      1
+      DataOutputPort {
+	RecordIdx		[28, 14, 0]
+      }
+      NumDWork		      0
+      Parameters	      [1]
+      Parameter {
+	BlockParamIdx		0
+	Name			"Value"
+	RecordIdx		[28, 14, 0]
+	Value			[0.0]
+	String			"0"
+      }
+      Value		      Parameter[0]
+    }
+    Block {
+      Type		      Outport
+      Name		      "<Root>/FuelCellTempCmd"
+      RecordType	      "CompiledBlock"
+      RecordIdx		      [28, 15]
+      BlockIdx		      [28, 28, 15]
+      TID		      0
+      PID		      -1
+      firstEntryOfTsMapIsGCD  yes
+      ExecuteBlockFcns	      0
+      NumDataInputPorts	      1
+      DataInputPort {
+	RecordIdx		[28, 15, 0]
+      }
+      NumDataOutputPorts      0
+      NumDWork		      0
+      Parameters	      [0]
+    }
+  }
+}

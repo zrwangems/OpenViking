@@ -1,0 +1,155 @@
+component ee_BSC019N02KS
+% Component automatically generated from a SPICE netlist for subcircuit BSC019N02KS.
+%   MATLAB version: 9.8.
+%   Simscape Electrical version: 7.2.
+%   Simscape code generated on: 07-Aug-2019 19:34:56
+
+nodes
+        drain = foundation.electrical.electrical; % drain
+        gate = foundation.electrical.electrical; % gate
+        source = foundation.electrical.electrical; % source
+        tj = foundation.electrical.electrical; % tj
+        tcase = foundation.electrical.electrical; % tcase
+    end
+
+
+    nodes(Access=protected, ExternalAccess=none)
+        drainInternal = foundation.electrical.electrical; % internal drain
+        gateInternal = foundation.electrical.electrical; % internal gate
+        sourceInternal = foundation.electrical.electrical; % internal source
+        d1 = foundation.electrical.electrical;
+        g = foundation.electrical.electrical;
+        s = foundation.electrical.electrical;
+        g1 = foundation.electrical.electrical;
+        s1 = foundation.electrical.electrical;
+        d2 = foundation.electrical.electrical;
+        t1 = foundation.electrical.electrical;
+        t2 = foundation.electrical.electrical;
+        t3 = foundation.electrical.electrical;
+        t4 = foundation.electrical.electrical;
+    end
+
+    parameters
+        dvth = {0, '1'};
+        drdson = {0, '1'};
+        dgfs = {0, '1'};
+        dc = {0, '1'};
+        zthtype = {0, '1'};
+        ls = {1e-09, '1'};
+        ld = {1e-09, '1'};
+        lg = {3e-09, '1'};
+    end
+
+    parameters(Access=private,ExternalAccess=none)
+        rs = {0.000482, '1'};
+        rg = {1.9, '1'};
+        rd = {5e-05, '1'};
+        rm = {0.0004, '1'};
+        inn = {50, '1'};
+        unn = {4.5, '1'};
+        rmax = {0.00195, '1'};
+        gmin = {100, '1'};
+        act = {11.03, '1'};
+    end
+
+    variables
+        idrain = {value={0,'A'},priority=priority.none};
+        igate = {value={0,'A'},priority=priority.none};
+        isource = {value={0,'A'},priority=priority.none};
+        GS = {value={0,'A'},priority=priority.none};
+    end
+
+    components(ExternalAccess=observe)
+        X1 = comparison.s3_20_s_var(a=act,dvth=dvth,dr=drdson,dgfs=dgfs,inn=inn,unn=unn,rmax=rmax,gmin=gmin,rs=rs, ...
+            rp=rd,dc=dc,rm=rm);
+        RG = foundation.electrical.elements.resistor(R={rg,'Ohm'});
+        LG = foundation.electrical.elements.inductor(l={lg*(if dgfs==99, 0 else 1 end),'H'},r={0,'Ohm'},g={0,'1/Ohm'}, ...
+            i_L.priority=priority.none);
+        RSA = foundation.electrical.elements.resistor(R={(1*1000000),'Ohm'});
+        LS = foundation.electrical.elements.inductor(l={ls*(if dgfs==99, 0 else 1 end),'H'},r={0,'Ohm'},g={0,'1/Ohm'}, ...
+            i_L.priority=priority.none);
+        RDA = foundation.electrical.elements.resistor(R={rd,'Ohm'});
+        LD = foundation.electrical.elements.inductor(l={ld*(if dgfs==99, 0 else 1 end),'H'},r={0,'Ohm'},g={0,'1/Ohm'}, ...
+            i_L.priority=priority.none);
+        RLS = foundation.electrical.elements.resistor(R={10,'Ohm'});
+        RLG = foundation.electrical.elements.resistor(R={10,'Ohm'});
+        RLD = foundation.electrical.elements.resistor(R={10,'Ohm'});
+        RTH1 = foundation.electrical.elements.resistor(R={(2.39*0.001)+simscape.function.limit(zthtype, 0, 1, 1)*(878.98*1e-06),'Ohm'});
+        RTH2 = foundation.electrical.elements.resistor(R={(32.13*0.001)+simscape.function.limit(zthtype, 0, 1, 1)*(11.89*0.001),'Ohm'});
+        RTH3 = foundation.electrical.elements.resistor(R={(123.34*0.001)+simscape.function.limit(zthtype, 0, 1, 1)*( ...
+            39.62*0.001),'Ohm'});
+        RTH4 = foundation.electrical.elements.resistor(R={(129.59*0.001)+simscape.function.limit(zthtype, 0, 1, 1)*( ...
+            217.61*0.001),'Ohm'});
+        RTH5 = foundation.electrical.elements.resistor(R={(239.83*0.001)+simscape.function.limit(zthtype, 0, 1, 1)*( ...
+            402.72*0.001),'Ohm'});
+        CTH1 = foundation.electrical.elements.capacitor(c={(76.781*1e-06),'F'},r={0,'Ohm'},g={0,'1/Ohm'},vc.priority=priority.none);
+        CTH2 = foundation.electrical.elements.capacitor(c={(435.464*1e-06),'F'},r={0,'Ohm'},g={0,'1/Ohm'},vc.priority=priority.none);
+        CTH3 = foundation.electrical.elements.capacitor(c={(2.72*0.001),'F'},r={0,'Ohm'},g={0,'1/Ohm'},vc.priority=priority.none);
+        CTH4 = foundation.electrical.elements.capacitor(c={(1.944*0.001),'F'},r={0,'Ohm'},g={0,'1/Ohm'},vc.priority=priority.none);
+        CTH5 = foundation.electrical.elements.capacitor(c={(47.017*0.001),'F'},r={0,'Ohm'},g={0,'1/Ohm'},vc.priority=priority.none);
+        CTH6 = foundation.electrical.elements.capacitor(c={(30*0.001),'F'},r={0,'Ohm'},g={0,'1/Ohm'},vc.priority=priority.none);
+    end
+
+    connections
+        connect(X1.dd,d1);
+        connect(X1.g,g);
+        connect(X1.s0,s);
+        connect(X1.tj,tj);
+        connect(RG.p,g1);
+        connect(RG.n,g);
+        connect(LG.p,gateInternal);
+        connect(LG.n,g1);
+        connect(RSA.p,s1);
+        connect(RSA.n,s);
+        connect(LS.p,sourceInternal);
+        connect(LS.n,s1);
+        connect(RDA.p,d1);
+        connect(RDA.n,d2);
+        connect(LD.p,drainInternal);
+        connect(LD.n,d2);
+        connect(RLS.p,sourceInternal);
+        connect(RLS.n,s1);
+        connect(RLG.p,gate);
+        connect(RLG.n,g1);
+        connect(RLD.p,drainInternal);
+        connect(RLD.n,d2);
+        connect(RTH1.p,tj);
+        connect(RTH1.n,t1);
+        connect(RTH2.p,t1);
+        connect(RTH2.n,t2);
+        connect(RTH3.p,t2);
+        connect(RTH3.n,t3);
+        connect(RTH4.p,t3);
+        connect(RTH4.n,t4);
+        connect(RTH5.p,t4);
+        connect(RTH5.n,tcase);
+        connect(CTH1.p,tj);
+        connect(CTH1.n,*);
+        connect(CTH2.p,t1);
+        connect(CTH2.n,*);
+        connect(CTH3.p,t2);
+        connect(CTH3.n,*);
+        connect(CTH4.p,t3);
+        connect(CTH4.n,*);
+        connect(CTH5.p,t4);
+        connect(CTH5.n,*);
+        connect(CTH6.p,tcase);
+        connect(CTH6.n,*);
+    end
+
+    branches
+        idrain : drain.i -> drainInternal.i;
+        igate : gate.i -> gateInternal.i;
+        isource : source.i -> sourceInternal.i;
+        GS: s1.i -> s.i;
+    end
+
+    equations
+        drain.v == drainInternal.v;
+        gate.v == gateInternal.v;
+        source.v == sourceInternal.v;
+        value(GS,'A') == value(s1.v-s.v,'V')/(rs*(1+(simscape.function.limit(value(tj.v,'V'), -200, 999, 1)-25)*( ...
+            4*0.001))-rm);
+    end
+
+end

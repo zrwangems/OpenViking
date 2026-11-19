@@ -1,0 +1,26 @@
+%implements s28_b0_rhfvq_ModelExternalOutputInit "C"
+
+%function ModelExternalOutputInit(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+(void)memset(&EvPowertrainController2EM_Y, 0, sizeof(ExtY_EvPowertrainController2E_T));
+%<SLibCG_TrackEO(7)>\
+%<SLibCG_TrackEO(6)>\
+%<SLibCG_TrackEO(5)>\
+%<SLibCG_TrackEO(4)>\
+%<SLibCG_TrackEO(3)>\
+%<SLibCG_TrackEO(2)>\
+%<SLibCG_TrackEO(1)>\
+%<SLibCG_TrackEO(0)>\
+%closefile cfgTxt
+%<cfgTxt>
+%endfunction
+%function ModelExternalOutputInitFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void ModelExternalOutputInit(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 5, fcnProtoType)>
+%endfunction

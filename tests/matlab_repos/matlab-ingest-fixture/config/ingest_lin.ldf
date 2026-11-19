@@ -1,0 +1,70 @@
+LIN_description_file;
+LIN_protocol_version = "2.2";
+LIN_language_version = "2.2";
+LIN_speed = 19.2 kbps;
+
+Nodes {
+  Master: VCU, 10 ms, 0.1 ms;
+  Slaves: BMS;
+}
+
+Signals {
+  VehSpeed: 16, 0, VCU, BMS;
+  SysVolt: 12, 0, VCU, BMS;
+  AliveCnt: 4, 0, VCU, BMS;
+}
+
+Diagnostic_signals {
+  MasterReqB0: 8, 0;
+  MasterReqB1: 8, 0;
+  SlaveRespB0: 8, 0;
+  SlaveRespB1: 8, 0;
+}
+
+Frames {
+  StatusFrame: 0x10, VCU, 8 {
+    VehSpeed, 0;
+    SysVolt, 16;
+    AliveCnt, 28;
+  }
+}
+
+Sporadic_frames {
+}
+
+Event_triggered_frames {
+}
+
+Diagnostic_frames {
+  MasterReq: 0x3C {
+    MasterReqB0, 0;
+    MasterReqB1, 8;
+  }
+  SlaveResp: 0x3D {
+    SlaveRespB0, 0;
+    SlaveRespB1, 8;
+  }
+}
+
+Node_attributes {
+  BMS {
+    LIN_protocol = "2.2";
+    configured_NAD = 0x20;
+  }
+}
+
+Schedule_tables {
+  NormalSchedule {
+    StatusFrame delay 10 ms;
+  }
+}
+
+Signal_encoding_types {
+  Speed_Encoding {
+    physical_value, 0, 65535, 0.01, "km/h";
+  }
+}
+
+Signal_representation {
+  Speed_Encoding: VehSpeed;
+}

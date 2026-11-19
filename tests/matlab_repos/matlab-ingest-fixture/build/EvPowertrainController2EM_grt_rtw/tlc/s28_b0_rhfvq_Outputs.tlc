@@ -1,0 +1,1348 @@
+%implements s28_b0_rhfvq_Outputs "C"
+
+%function Outputs(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+
+real_T rtb_Divide[201];
+real_T rtb_Divide2_ir[201];
+real_T rtb_Divide2_p[201];
+real_T rtb_Product4[201];
+real_T rtb_Sqrt1[201];
+real_T rtb_Switch2[201];
+real_T rtb_Switch2_l[201];
+real_T rtb_VectorConcatenate1[201];
+real_T rtb_VectorConcatenate_i[201];
+real_T fractions[2];
+real_T rtb_VectorConcatenate1_l[2];
+real_T EMSpd;
+real_T rtb_BrkTrqReqTotal;
+real_T rtb_BrkTrqReqTotal_tmp;
+real_T rtb_Gain1_n;
+real_T rtb_Product;
+real_T rtb_Product1;
+real_T rtb_RateLimiter_idx_0;
+real_T rtb_RateLimiter_idx_0_tmp;
+real_T rtb_RateLimiter_idx_1;
+real_T rtb_RateLimiter_idx_1_tmp;
+real_T rtb_RegenFactor;
+real_T rtb_UnitDelay2;
+real_T rtb_VectorConcatenate_j;
+real_T rtb_WhlEMTrqMax_tmp;
+real_T rtb_WhlEMTrqMax_tmp_0;
+real_T rtb_whlpureelectrictraction;
+int32_T i;
+int32_T tmp;
+int32_T tmp_0;
+uint32_T bpIndices[2];
+uint32_T bpIndices_0[2];
+uint32_T tmp_1;
+boolean_T rtb_LogicalOperator_c[201];
+boolean_T rtb_LogicalOperator_f[201];
+boolean_T rtb_LogicalOperator_he[201];
+boolean_T rtb_Switch2_g_tmp[201];
+boolean_T exitg1;
+boolean_T rtb_Compare_n;
+boolean_T rtb_LogicalOperator_l;
+boolean_T rtb_Switch2_g_tmp_0;
+%closefile localVarDecl
+%assign _modelSS = ""
+
+%if SLibCG_FcnCallArgAccessed(0,4,1,0)
+%<SLibCG_TrackEI(6)>
+%endif
+
+%if SLibCG_FcnCallArgAccessed(0,4,0,0)
+%<SLibCG_TrackEI(6)>
+%endif
+
+%<SLibCG_TrackEO(7)>\
+%<SLibCG_TrackEO(6)>\
+%<SLibCG_TrackEO(5)>\
+%<SLibCG_TrackEO(4)>\
+%<SLibCG_TrackEO(3)>\
+%<SLibCG_TrackEO(2)>\
+%<SLibCG_TrackEO(1)>\
+%<SLibCG_TrackEO(0)>\
+%<SLibCG_TrackEI(8)>\
+%<SLibCG_TrackEI(7)>\
+%<SLibCG_TrackEI(6)>\
+%<SLibCG_TrackEI(5)>\
+%<SLibCG_TrackEI(3)>\
+%<SLibCG_TrackEI(2)>\
+%<SLibCG_TrackEI(1)>\
+%<SLibCG_TrackEI(0)>\
+/* {S!d42}Outport: '<Root>/EngTrqCmd' incorporates:
+ *  Constant: '<Root>/Constant1'
+ */
+EvPowertrainController2EM_Y.EngTrqCmd = EvPowertrainController2EM_P.Constant1_Value_gn;
+/* {S!d44}Product: '<S4>/Product' incorporates:
+ *  Gain: '<S4>/Gain1'
+ *  Inport: '<Root>/BMSDischrgCurrLmt'
+ *  Inport: '<Root>/BattPackVolt'
+ */
+rtb_Product = EvPowertrainController2EM_P.Gain1_Gain_i * EvPowertrainController2EM_U.BMSDischrgCurrLmt * EvPowertrainController2EM_U.BattPackVolt;
+/* {S!d46}Product: '<S4>/Product1' incorporates:
+ *  Gain: '<S4>/Gain'
+ *  Inport: '<Root>/BMSChrgCurrLmt'
+ *  Inport: '<Root>/BattPackVolt'
+ */
+rtb_Product1 = EvPowertrainController2EM_P.Gain_Gain_e * EvPowertrainController2EM_U.BMSChrgCurrLmt * EvPowertrainController2EM_U.BattPackVolt;
+/* {S!d27}Outputs for Atomic SubSystem: '<Root>/Energy Management' */
+/* {S!d48}Lookup_n-D: '<S28>/MaxEMTrqVsSpd' incorporates:
+ *  Inport: '<Root>/EMSpd'
+ */
+rtb_Gain1_n = look1_binlcapw(EvPowertrainController2EM_U.EMSpd[0], EvPowertrainController2EM_P.PlntEM1Spd, EvPowertrainController2EM_P.PlntEM1Trq, 13U);
+/* {S!d50}Switch: '<S31>/Switch2' incorporates:
+ *  Constant: '<S31>/Constant1'
+ *  Constant: '<S31>/Constant2'
+ *  Inport: '<Root>/EMSpd'
+ *  Product: '<S31>/Product1'
+ */
+if (rtb_Gain1_n * EvPowertrainController2EM_U.EMSpd[0] >= EvPowertrainController2EM_P.Switch2_Threshold_g) {
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Constant1_Value;
+} else {
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Constant2_Value;
+}
+/* {E!d50}End of Switch: '<S31>/Switch2' */
+
+/* {S!d52}Math: '<S31>/Math Function1' incorporates:
+ *  Constant: '<S16>/Constant'
+ *  Constant: '<S31>/Constant'
+ *  Constant: '<S38>/Constant'
+ *  Constant: '<S43>/Constant'
+ *  Math: '<S16>/Math Function1'
+ *  Math: '<S38>/Math Function1'
+ *  Math: '<S43>/Math Function1'
+ *  Switch: '<S21>/Accel Decel Switch'
+ */
+rtb_WhlEMTrqMax_tmp = EvPowertrainController2EM_P.PlntDiffrntlEff * EvPowertrainController2EM_P.PlntEM1TransEff;
+if ((rtb_WhlEMTrqMax_tmp < 0.0) && (rtb_UnitDelay2 > floor(rtb_UnitDelay2))) {
+    rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp", "rtb_UnitDelay2"], 0, 4, 18))>;
+} else {
+    rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp", "rtb_UnitDelay2"], 0, 4, 5))>;
+}
+/* {S!d54}Gain: '<S30>/Gain3' incorporates:
+ *  Gain: '<S15>/Gain3'
+ *  Gain: '<S19>/Gain1'
+ *  Gain: '<S37>/Gain3'
+ *  Gain: '<S69>/Gain3'
+ *  Switch: '<S21>/Accel Decel Switch'
+ */
+rtb_RateLimiter_idx_0_tmp = EvPowertrainController2EM_P.PlntDiffrntlRatio * EvPowertrainController2EM_P.PlntEM1TransGearRatio;
+/* {S!d56}Product: '<S30>/Divide2' incorporates:
+ *  Gain: '<S30>/Gain3'
+ *  Math: '<S31>/Math Function1'
+ */
+rtb_RateLimiter_idx_0 = rtb_RateLimiter_idx_0_tmp * rtb_Gain1_n * rtb_BrkTrqReqTotal_tmp;
+/* {S!d58}Lookup_n-D: '<S29>/MaxEMTrqVsSpd' incorporates:
+ *  Inport: '<Root>/EMSpd'
+ */
+rtb_UnitDelay2 = look1_binlcapw(EvPowertrainController2EM_U.EMSpd[1], EvPowertrainController2EM_P.PlntEM2Spd, EvPowertrainController2EM_P.PlntEM2Trq, 13U);
+/* {S!d60}Switch: '<S33>/Switch2' incorporates:
+ *  Constant: '<S33>/Constant1'
+ *  Constant: '<S33>/Constant2'
+ *  Inport: '<Root>/EMSpd'
+ *  Product: '<S33>/Product1'
+ */
+if (rtb_UnitDelay2 * EvPowertrainController2EM_U.EMSpd[1] >= EvPowertrainController2EM_P.Switch2_Threshold_h) {
+    rtb_Gain1_n = EvPowertrainController2EM_P.Constant1_Value_g;
+} else {
+    rtb_Gain1_n = EvPowertrainController2EM_P.Constant2_Value_j;
+}
+/* {E!d60}End of Switch: '<S33>/Switch2' */
+
+/* {S!d62}Math: '<S33>/Math Function1' incorporates:
+ *  Constant: '<S33>/Constant'
+ *  Constant: '<S40>/Constant'
+ *  Constant: '<S44>/Constant'
+ *  Constant: '<S83>/Constant'
+ *  Math: '<S40>/Math Function1'
+ *  Math: '<S44>/Math Function1'
+ *  Math: '<S83>/Math Function1'
+ */
+rtb_WhlEMTrqMax_tmp_0 = EvPowertrainController2EM_P.PlntDiffrntl2Eff * EvPowertrainController2EM_P.PlntEM2TransEff;
+if ((rtb_WhlEMTrqMax_tmp_0 < 0.0) && (rtb_Gain1_n > floor(rtb_Gain1_n))) {
+    rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp_0", "rtb_Gain1_n"], 0, 4, 19))>;
+} else {
+    rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp_0", "rtb_Gain1_n"], 0, 4, 6))>;
+}
+/* {S!d64}Gain: '<S32>/Gain3' incorporates:
+ *  Gain: '<S17>/Gain3'
+ *  Gain: '<S19>/Gain2'
+ *  Gain: '<S39>/Gain3'
+ *  Gain: '<S82>/Gain3'
+ *  Switch: '<S21>/Accel Decel Switch'
+ */
+rtb_RateLimiter_idx_1_tmp = EvPowertrainController2EM_P.PlntDiffrntl2Ratio * EvPowertrainController2EM_P.PlntEM2TransGearRatio;
+/* {S!d66}Product: '<S32>/Divide2' incorporates:
+ *  Gain: '<S32>/Gain3'
+ *  Math: '<S33>/Math Function1'
+ */
+rtb_RateLimiter_idx_1 = rtb_RateLimiter_idx_1_tmp * rtb_UnitDelay2 * rtb_BrkTrqReqTotal_tmp;
+/* {S!d68}Product: '<S41>/Product5' incorporates:
+ *  Constant: '<S41>/Front Brakes'
+ *  Product: '<S41>/Product2'
+ */
+rtb_BrkTrqReqTotal = EvPowertrainController2EM_P.PlntBrkKinFricCffFrnt * 3.1415926535897931 * 0.0025000000000000005 * EvPowertrainController2EM_P.PlntBrkPadMeanRadiusFrnt * EvPowertrainController2EM_P.PlntBrkNumPadsFrnt / 4.0;
+/* {S!d70}Product: '<S41>/Product3' incorporates:
+ *  Constant: '<S41>/Rear Brakes'
+ *  Product: '<S41>/Product1'
+ */
+rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.PlntBrkKinFricCffRear * 3.1415926535897931 * 0.0025000000000000005 * EvPowertrainController2EM_P.PlntBrkPadMeanRadiusRear * EvPowertrainController2EM_P.PlntBrkNumPadsRear / 4.0;
+/* {S!d72}Sum: '<S41>/Add' incorporates:
+ *  Constant: '<S2>/Front Bias'
+ *  Constant: '<S2>/Rear Bias'
+ *  Constant: '<S41>/Front Brakes'
+ *  Constant: '<S41>/Rear Brakes'
+ *  Gain: '<S2>/Gain4'
+ *  Inport: '<Root>/BcuBrkPrsCmd'
+ *  Product: '<S2>/Product'
+ *  Product: '<S41>/Product1'
+ *  Product: '<S41>/Product2'
+ *  Product: '<S41>/Product3'
+ *  Product: '<S41>/Product5'
+ */
+rtb_BrkTrqReqTotal = ((EvPowertrainController2EM_P.PlntBrkFrntBias * EvPowertrainController2EM_U.BcuBrkPrsCmd[0] * EvPowertrainController2EM_P.PlntBrkPrsFctr * rtb_BrkTrqReqTotal + EvPowertrainController2EM_P.PlntBrkFrntBias * EvPowertrainController2EM_U.BcuBrkPrsCmd[1] * EvPowertrainController2EM_P.PlntBrkPrsFctr * rtb_BrkTrqReqTotal) + EvPowertrainController2EM_P.PlntBrkRearBias * EvPowertrainController2EM_U.BcuBrkPrsCmd[2] * EvPowertrainController2EM_P.PlntBrkPrsFctr * rtb_BrkTrqReqTotal_tmp) + EvPowertrainController2EM_P.PlntBrkRearBias * EvPowertrainController2EM_U.BcuBrkPrsCmd[3] * EvPowertrainController2EM_P.PlntBrkPrsFctr * rtb_BrkTrqReqTotal_tmp;
+/* {S!d92}Switch: '<S21>/Accel Decel Switch' incorporates:
+ *  Gain: '<S15>/Gain3'
+ *  Gain: '<S36>/Gain1'
+ *  Gain: '<S5>/convert2percent'
+ *  Inport: '<Root>/AccelPdl'
+ *  Inport: '<Root>/BMSSOC'
+ *  Inport: '<Root>/VehSpdFdbk'
+ *  Lookup_n-D: '<S36>/ChrgLmt'
+ *  Lookup_n-D: '<S36>/RegenBrakingCutoff'
+ *  Math: '<S16>/Math Function1'
+ *  MinMax: '<S36>/MinMax'
+ *  Product: '<S15>/Divide2'
+ *  Product: '<S17>/Divide2'
+ *  Product: '<S1>/Product1'
+ *  Product: '<S36>/Product1'
+ *  Product: '<S36>/Product3'
+ *  Sum: '<S36>/Sum of Elements'
+ *  Sum: '<S9>/Add'
+ */
+if (EvPowertrainController2EM_U.AccelPdl > EvPowertrainController2EM_P.AccelDecelSwitch_Threshold) {
+    /* {S!d74}Gain: '<S19>/Gain2' incorporates:
+ *  Gain: '<S19>/Gain4'
+ *  Inport: '<Root>/VehSpdFdbk'
+ */
+    rtb_RegenFactor = 1.0 / EvPowertrainController2EM_P.PlntWhlLdRadiusRear * EvPowertrainController2EM_U.VehSpdFdbk * rtb_RateLimiter_idx_1_tmp;
+    /* {S!d76}Lookup_n-D: '<S13>/MaxEMTrqVsSpd' incorporates:
+ *  Lookup_n-D: '<S12>/MaxEMTrqVsSpd'
+ */
+    rtb_Gain1_n = look1_binlcapw(rtb_RegenFactor, EvPowertrainController2EM_P.PlntEM2Spd, EvPowertrainController2EM_P.PlntEM2Trq, 13U);
+    /* {S!d78}Gain: '<S17>/Gain3' */
+    rtb_whlpureelectrictraction = rtb_RateLimiter_idx_1_tmp * rtb_Gain1_n;
+    /* {S!d80}Switch: '<S18>/Switch2' incorporates:
+ *  Constant: '<S18>/Constant1'
+ *  Constant: '<S18>/Constant2'
+ *  Product: '<S18>/Product1'
+ */
+    if (rtb_Gain1_n * rtb_RegenFactor >= EvPowertrainController2EM_P.Switch2_Threshold) {
+        rtb_Gain1_n = EvPowertrainController2EM_P.Constant1_Value_kl;
+    } else {
+        rtb_Gain1_n = EvPowertrainController2EM_P.Constant2_Value_b;
+    }
+    /* {E!d80}End of Switch: '<S18>/Switch2' */
+
+    /* {S!d82}Math: '<S18>/Math Function1' incorporates:
+ *  Constant: '<S33>/Constant'
+ *  Math: '<S33>/Math Function1'
+ */
+    if ((rtb_WhlEMTrqMax_tmp_0 < 0.0) && (rtb_Gain1_n > floor(rtb_Gain1_n))) {
+        rtb_UnitDelay2 = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp_0", "rtb_Gain1_n"], 0, 4, 20))>;
+    } else {
+        rtb_UnitDelay2 = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp_0", "rtb_Gain1_n"], 0, 4, 4))>;
+    }
+    /* {E!d82}End of Math: '<S18>/Math Function1' */
+
+    /* {S!d84}Gain: '<S19>/Gain1' incorporates:
+ *  Gain: '<S19>/Gain3'
+ *  Inport: '<Root>/VehSpdFdbk'
+ */
+    rtb_Gain1_n = 1.0 / EvPowertrainController2EM_P.PlntWhlLdRadiusFrnt * EvPowertrainController2EM_U.VehSpdFdbk * rtb_RateLimiter_idx_0_tmp;
+    /* {S!d86}Lookup_n-D: '<S12>/MaxEMTrqVsSpd' incorporates:
+ *  Math: '<S16>/Math Function1'
+ */
+    rtb_RegenFactor = look1_binlcapw(rtb_Gain1_n, EvPowertrainController2EM_P.PlntEM1Spd, EvPowertrainController2EM_P.PlntEM1Trq, 13U);
+    /* {S!d88}Switch: '<S16>/Switch2' incorporates:
+ *  Constant: '<S16>/Constant1'
+ *  Constant: '<S16>/Constant2'
+ *  Product: '<S16>/Product1'
+ */
+    if (rtb_RegenFactor * rtb_Gain1_n >= EvPowertrainController2EM_P.Switch2_Threshold_l) {
+        rtb_Gain1_n = EvPowertrainController2EM_P.Constant1_Value_k;
+    } else {
+        rtb_Gain1_n = EvPowertrainController2EM_P.Constant2_Value_jm;
+    }
+    /* {E!d88}End of Switch: '<S16>/Switch2' */
+
+    /* {S!d90}Math: '<S16>/Math Function1' */
+    if ((rtb_WhlEMTrqMax_tmp < 0.0) && (rtb_Gain1_n > floor(rtb_Gain1_n))) {
+        rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp", "rtb_Gain1_n"], 0, 4, 23))>;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp", "rtb_Gain1_n"], 0, 4, 11))>;
+    }
+    rtb_whlpureelectrictraction = (rtb_RateLimiter_idx_0_tmp * rtb_RegenFactor * rtb_BrkTrqReqTotal_tmp + rtb_UnitDelay2 * rtb_whlpureelectrictraction) * EvPowertrainController2EM_U.AccelPdl;
+} else {
+    rtb_whlpureelectrictraction = look1_binlcapw(EvPowertrainController2EM_P.convert2percent_Gain * EvPowertrainController2EM_U.BMSSOC, EvPowertrainController2EM_P.CtrlVcuEvSocBpt, EvPowertrainController2EM_P.CtrlVcuEvChrgLmtBpt, 10U) * look1_binlcapw(EvPowertrainController2EM_U.VehSpdFdbk, EvPowertrainController2EM_P.CtrlVcuEvRegenBrkSpdBpt, EvPowertrainController2EM_P.CtrlVcuEvRegenBrkCutOff, 1U) * fmin(rtb_BrkTrqReqTotal, rtb_RateLimiter_idx_0 + rtb_RateLimiter_idx_1) * EvPowertrainController2EM_P.Gain1_Gain;
+}
+for (i = 0; i < 200; i++) {
+    /* {S!d106}Switch: '<S21>/Accel Decel Switch1' incorporates:
+ *  Constant: '<S39>/EMTrq Control Vector Traction'
+ *  Gain: '<S39>/Gain'
+ *  Gain: '<S39>/Gain3'
+ *  Inport: '<Root>/AccelPdl'
+ *  Math: '<S40>/Math Function1'
+ *  Product: '<S39>/Divide2'
+ */
+    if (EvPowertrainController2EM_U.AccelPdl > EvPowertrainController2EM_P.AccelDecelSwitch1_Threshold) {
+        /* {S!d94}Product: '<S40>/Product1' incorporates:
+ *  Constant: '<S39>/EMTrq Control Vector Traction'
+ */
+        rtb_RegenFactor = EvPowertrainController2EM_P.EMTrqControlVectorTraction_Valu[i];
+        /* {S!d96}Switch: '<S40>/Switch2' incorporates:
+ *  Constant: '<S39>/EMTrq Control Vector Traction'
+ *  Constant: '<S40>/Constant1'
+ *  Constant: '<S40>/Constant2'
+ *  Inport: '<Root>/EMSpd'
+ *  Product: '<S40>/Product1'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ */
+        if (rtb_RegenFactor * EvPowertrainController2EM_U.EMSpd[1] >= EvPowertrainController2EM_P.Switch2_Threshold_k) {
+            rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant1_Value_ky;
+        } else {
+            rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant2_Value_bd;
+        }
+        /* {S!d98}Math: '<S40>/Math Function1' */
+        if ((rtb_WhlEMTrqMax_tmp_0 < 0.0) && (rtb_BrkTrqReqTotal_tmp > floor(rtb_BrkTrqReqTotal_tmp))) {
+            rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp_0", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 22))>;
+        } else {
+            rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp_0", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 8))>;
+        }
+        rtb_VectorConcatenate_i[i + 1] = rtb_RateLimiter_idx_1_tmp * rtb_RegenFactor * rtb_BrkTrqReqTotal_tmp;
+    } else {
+        /* {S!d100}Product: '<S40>/Product1' incorporates:
+ *  Constant: '<S39>/EMTrq Control Vector Traction'
+ */
+        rtb_RegenFactor = EvPowertrainController2EM_P.EMTrqControlVectorTraction_Valu[i];
+        /* {S!d102}Switch: '<S40>/Switch2' incorporates:
+ *  Constant: '<S39>/EMTrq Control Vector Traction'
+ *  Constant: '<S40>/Constant1'
+ *  Constant: '<S40>/Constant2'
+ *  Inport: '<Root>/EMSpd'
+ *  Product: '<S40>/Product1'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ */
+        if (rtb_RegenFactor * EvPowertrainController2EM_U.EMSpd[1] >= EvPowertrainController2EM_P.Switch2_Threshold_k) {
+            rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant1_Value_ky;
+        } else {
+            rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant2_Value_bd;
+        }
+        /* {S!d104}Math: '<S40>/Math Function1' */
+        if ((rtb_WhlEMTrqMax_tmp_0 < 0.0) && (rtb_BrkTrqReqTotal_tmp > floor(rtb_BrkTrqReqTotal_tmp))) {
+            rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp_0", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 21))>;
+        } else {
+            rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp_0", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 7))>;
+        }
+        rtb_VectorConcatenate_i[i + 1] = rtb_RateLimiter_idx_1_tmp * rtb_RegenFactor * rtb_BrkTrqReqTotal_tmp * EvPowertrainController2EM_P.Gain_Gain;
+    }
+    /* {E!d106}End of Switch: '<S21>/Accel Decel Switch1' */
+
+    /* {S!d120}Switch: '<S21>/Accel Decel Switch2' incorporates:
+ *  Constant: '<S37>/EMTrq Control Vector Traction'
+ *  Gain: '<S37>/Gain'
+ *  Gain: '<S37>/Gain3'
+ *  Inport: '<Root>/AccelPdl'
+ *  Math: '<S38>/Math Function1'
+ *  Product: '<S37>/Divide2'
+ */
+    if (EvPowertrainController2EM_U.AccelPdl > EvPowertrainController2EM_P.AccelDecelSwitch2_Threshold) {
+        /* {S!d108}Product: '<S38>/Product1' incorporates:
+ *  Constant: '<S37>/EMTrq Control Vector Traction'
+ */
+        rtb_RegenFactor = EvPowertrainController2EM_P.EMTrqControlVectorTraction_Va_j[i];
+        /* {S!d110}Switch: '<S38>/Switch2' incorporates:
+ *  Constant: '<S37>/EMTrq Control Vector Traction'
+ *  Constant: '<S38>/Constant1'
+ *  Constant: '<S38>/Constant2'
+ *  Inport: '<Root>/EMSpd'
+ *  Product: '<S38>/Product1'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ */
+        if (rtb_RegenFactor * EvPowertrainController2EM_U.EMSpd[0] >= EvPowertrainController2EM_P.Switch2_Threshold_j) {
+            rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant1_Value_n;
+        } else {
+            rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant2_Value_jmm;
+        }
+        /* {S!d112}Math: '<S38>/Math Function1' */
+        if ((rtb_WhlEMTrqMax_tmp < 0.0) && (rtb_BrkTrqReqTotal_tmp > floor(rtb_BrkTrqReqTotal_tmp))) {
+            rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 25))>;
+        } else {
+            rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 10))>;
+        }
+        rtb_VectorConcatenate1[i + 1] = rtb_RateLimiter_idx_0_tmp * rtb_RegenFactor * rtb_BrkTrqReqTotal_tmp;
+    } else {
+        /* {S!d114}Product: '<S38>/Product1' incorporates:
+ *  Constant: '<S37>/EMTrq Control Vector Traction'
+ */
+        rtb_RegenFactor = EvPowertrainController2EM_P.EMTrqControlVectorTraction_Va_j[i];
+        /* {S!d116}Switch: '<S38>/Switch2' incorporates:
+ *  Constant: '<S37>/EMTrq Control Vector Traction'
+ *  Constant: '<S38>/Constant1'
+ *  Constant: '<S38>/Constant2'
+ *  Inport: '<Root>/EMSpd'
+ *  Product: '<S38>/Product1'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ */
+        if (rtb_RegenFactor * EvPowertrainController2EM_U.EMSpd[0] >= EvPowertrainController2EM_P.Switch2_Threshold_j) {
+            rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant1_Value_n;
+        } else {
+            rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant2_Value_jmm;
+        }
+        /* {S!d118}Math: '<S38>/Math Function1' */
+        if ((rtb_WhlEMTrqMax_tmp < 0.0) && (rtb_BrkTrqReqTotal_tmp > floor(rtb_BrkTrqReqTotal_tmp))) {
+            rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 24))>;
+        } else {
+            rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 9))>;
+        }
+        rtb_VectorConcatenate1[i + 1] = rtb_RateLimiter_idx_0_tmp * rtb_RegenFactor * rtb_BrkTrqReqTotal_tmp * EvPowertrainController2EM_P.Gain_Gain_d;
+    }
+    /* {E!d120}End of Switch: '<S21>/Accel Decel Switch2' */
+}
+/* {S!d122}SignalConversion generated from: '<S21>/Vector Concatenate1' */
+rtb_VectorConcatenate1[0] = rtb_whlpureelectrictraction;
+/* {S!d124}SignalConversion generated from: '<S21>/Vector Concatenate' */
+rtb_VectorConcatenate_i[0] = rtb_whlpureelectrictraction;
+/* {S!d128}Switch: '<S57>/Switch' incorporates:
+ *  Constant: '<S60>/Constant'
+ *  Constant: '<S61>/Constant'
+ *  Fcn: '<S57>/Fcn'
+ *  Inport: '<Root>/BattPackVolt'
+ *  Logic: '<S57>/Logical Operator'
+ *  Product: '<S57>/Product'
+ *  RelationalOperator: '<S60>/Compare'
+ *  RelationalOperator: '<S61>/Compare'
+ *  Switch: '<S57>/Switch1'
+ */
+if ((EvPowertrainController2EM_U.BattPackVolt >= -EvPowertrainController2EM_P.div0protectpoly1_thresh) && (EvPowertrainController2EM_U.BattPackVolt <= EvPowertrainController2EM_P.div0protectpoly1_thresh)) {
+    /* {S!d126}Switch: '<S57>/Switch1' incorporates:
+ *  Constant: '<S57>/Constant'
+ *  UnaryMinus: '<S57>/Unary Minus'
+ */
+    if (EvPowertrainController2EM_U.BattPackVolt >= EvPowertrainController2EM_P.Switch1_Threshold_p) {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant_Value_i;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = -EvPowertrainController2EM_P.Constant_Value_i;
+    }
+    rtb_RegenFactor = 0.02 / (3.0 - %<(SLibCGCallSubFcn("rt_powd_snf", ["EvPowertrainController2EM_U.BattPackVolt / 0.01", "2.0"], 0, 4, 0))>) * rtb_BrkTrqReqTotal_tmp;
+} else {
+    rtb_RegenFactor = EvPowertrainController2EM_U.BattPackVolt;
+}
+/* {E!d128}End of Switch: '<S57>/Switch' */
+
+/* {S!d130}Product: '<S52>/Divide' */
+rtb_RegenFactor = rtb_Product / rtb_RegenFactor;
+/* {S!d132}Switch: '<S64>/Switch' incorporates:
+ *  Constant: '<S64>/Constant'
+ *  Constant: '<S72>/Constant7'
+ *  Constant: '<S73>/Constant2'
+ *  Constant: '<S73>/Constant20'
+ *  Constant: '<S73>/Constant4'
+ *  Constant: '<S73>/Constant5'
+ *  Constant: '<S73>/Constant6'
+ *  Constant: '<S73>/Constant7'
+ *  Constant: '<S73>/Constant9'
+ *  Gain: '<S64>/Road mu'
+ *  Gain: '<S64>/Safety Factor'
+ *  Gain: '<S73>/TireRadius'
+ *  Product: '<S73>/Divide'
+ *  Product: '<S73>/Product'
+ *  Product: '<S73>/Product1'
+ *  Sum: '<S73>/Add2'
+ *  Sum: '<S73>/Add3'
+ *  Sum: '<S73>/Add4'
+ */
+if (rtb_whlpureelectrictraction > EvPowertrainController2EM_P.Switch_Threshold) {
+    rtb_Gain1_n = (EvPowertrainController2EM_P.PlntVehDstCGRearAxl * EvPowertrainController2EM_P.PlntVehMass * EvPowertrainController2EM_P.EnvGrvty - EvPowertrainController2EM_P.EnvGrvty * EvPowertrainController2EM_P.PlntVehMass * (EvPowertrainController2EM_P.PlntVehCGHgtAxl + EvPowertrainController2EM_P.PlntWhlLdRadiusFrnt) * EvPowertrainController2EM_P.CtrlVcuMaxAccelG) / (EvPowertrainController2EM_P.PlntVehDstCGFrntAxl + EvPowertrainController2EM_P.PlntVehDstCGRearAxl) * EvPowertrainController2EM_P.PlntWhlLdRadiusFrnt * EvPowertrainController2EM_P.CtrlVcuRoadMuEst * EvPowertrainController2EM_P.CtrlVcuSftyFctr;
+} else {
+    rtb_Gain1_n = EvPowertrainController2EM_P.Constant_Value_p;
+}
+/* {E!d132}End of Switch: '<S64>/Switch' */
+
+/* {S!d28}Outputs for IfAction SubSystem: '<S50>/Regen' incorporates:
+ *  ActionPort: '<S88>/Action Port'
+ */
+for (i = 0; i < 201; i++) {
+    /* {S!d150}If: '<S50>/If' */
+    if (rtb_whlpureelectrictraction >= 0.0) {
+        /* {S!d29}Outputs for IfAction SubSystem: '<S50>/Traction' incorporates:
+ *  ActionPort: '<S89>/Action Port'
+ */
+        /* {S!d134}Switch: '<S89>/Switch1' incorporates:
+ *  RelationalOperator: '<S89>/Relational Operator'
+ *  SignalConversion generated from: '<S89>/WhlEMTrqSplitVecRear'
+ *  Sum: '<S89>/Add3'
+ *  UnitDelay: '<S24>/Unit Delay'
+ */
+        if (rtb_whlpureelectrictraction <= rtb_VectorConcatenate_i[i]) {
+            rtb_VectorConcatenate1[i] = rtb_whlpureelectrictraction - EvPowertrainController2EM_DW.UnitDelay_DSTATE_p[i];
+        }
+        /* {E!d134}End of Switch: '<S89>/Switch1' */
+        /* {E!d29}End of Outputs for SubSystem: '<S50>/Traction' */
+    } else {
+        /* {S!d136}Switch: '<S88>/Switch1' incorporates:
+ *  SignalConversion generated from: '<S88>/WhlEMTrqSplitVecFrnt'
+ */
+        rtb_VectorConcatenate_j = rtb_VectorConcatenate_i[i];
+        /* {S!d138}SignalConversion generated from: '<S88>/WhlEMTrqSplitVecFrnt' */
+        rtb_BrkTrqReqTotal_tmp = rtb_VectorConcatenate1[i];
+        /* {S!d140}Switch: '<S88>/Switch1' incorporates:
+ *  RelationalOperator: '<S88>/Relational Operator'
+ *  SignalConversion generated from: '<S88>/WhlEMTrqSplitVecFrnt'
+ *  Sum: '<S88>/Add3'
+ *  UnitDelay: '<S24>/Unit Delay1'
+ */
+        if (rtb_whlpureelectrictraction >= rtb_BrkTrqReqTotal_tmp) {
+            rtb_VectorConcatenate_j = rtb_whlpureelectrictraction - EvPowertrainController2EM_DW.UnitDelay1_DSTATE[i];
+        }
+        /* {S!d146}Switch: '<S90>/Switch2' incorporates:
+ *  Constant: '<S88>/Constant1'
+ *  RelationalOperator: '<S90>/LowerRelop1'
+ *  RelationalOperator: '<S90>/UpperRelop'
+ *  SignalConversion generated from: '<S88>/WhlEMTrqSplitVecFrnt'
+ *  Switch: '<S90>/Switch'
+ */
+        if (rtb_VectorConcatenate_j > EvPowertrainController2EM_P.Constant1_Value_h5) {
+            /* {S!d142}SignalConversion generated from: '<S88>/WhlEMTrqSplitVecRear1' */
+            rtb_VectorConcatenate_j = EvPowertrainController2EM_P.Constant1_Value_h5;
+        } else if (rtb_VectorConcatenate_j < rtb_BrkTrqReqTotal_tmp) {
+            /* {S!d144}Switch: '<S90>/Switch' incorporates:
+ *  SignalConversion generated from: '<S88>/WhlEMTrqSplitVecRear1'
+ *  SignalConversion generated from: '<S88>/WhlEMTrqSplitVecFrnt'
+ */
+            rtb_VectorConcatenate_j = rtb_BrkTrqReqTotal_tmp;
+        }
+        /* {E!d146}End of Switch: '<S90>/Switch2' */
+
+        /* {S!d148}SignalConversion generated from: '<S88>/WhlEMTrqSplitVecRear1' incorporates:
+ *  RelationalOperator: '<S90>/LowerRelop1'
+ */
+        rtb_VectorConcatenate_i[i] = rtb_VectorConcatenate_j;
+    }
+    /* {E!d150}End of If: '<S50>/If' */
+}
+/* {E!d28}End of Outputs for SubSystem: '<S50>/Regen' */
+
+/* {S!d152}Switch: '<S64>/Switch1' incorporates:
+ *  Constant: '<S64>/Constant'
+ *  Constant: '<S72>/Constant6'
+ *  Constant: '<S74>/Constant2'
+ *  Constant: '<S74>/Constant20'
+ *  Constant: '<S74>/Constant4'
+ *  Constant: '<S74>/Constant5'
+ *  Constant: '<S74>/Constant6'
+ *  Constant: '<S74>/Constant7'
+ *  Constant: '<S74>/Constant9'
+ *  Gain: '<S64>/Road mu1'
+ *  Gain: '<S64>/Safety Factor1'
+ *  Gain: '<S72>/Gain'
+ *  Gain: '<S74>/TireRadius'
+ *  Product: '<S74>/Divide'
+ *  Product: '<S74>/Product'
+ *  Product: '<S74>/Product1'
+ *  Sum: '<S74>/Add2'
+ *  Sum: '<S74>/Add3'
+ *  Sum: '<S74>/Add4'
+ */
+if (rtb_whlpureelectrictraction > EvPowertrainController2EM_P.Switch1_Threshold_h) {
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Constant_Value_p;
+} else {
+    rtb_UnitDelay2 = (EvPowertrainController2EM_P.PlntVehDstCGRearAxl * EvPowertrainController2EM_P.PlntVehMass * EvPowertrainController2EM_P.EnvGrvty - EvPowertrainController2EM_P.EnvGrvty * EvPowertrainController2EM_P.PlntVehMass * (EvPowertrainController2EM_P.PlntVehCGHgtAxl + EvPowertrainController2EM_P.PlntWhlLdRadiusFrnt) * EvPowertrainController2EM_P.CtrlVcuMaxDecelG) / (EvPowertrainController2EM_P.PlntVehDstCGFrntAxl + EvPowertrainController2EM_P.PlntVehDstCGRearAxl) * EvPowertrainController2EM_P.PlntWhlLdRadiusFrnt * EvPowertrainController2EM_P.Gain_Gain_o * EvPowertrainController2EM_P.CtrlVcuRoadMuEst * EvPowertrainController2EM_P.CtrlVcuSftyFctr;
+}
+/* {E!d152}End of Switch: '<S64>/Switch1' */
+
+/* {S!d158}Switch: '<S71>/Switch2' incorporates:
+ *  RelationalOperator: '<S71>/LowerRelop1'
+ *  RelationalOperator: '<S71>/UpperRelop'
+ *  Switch: '<S71>/Switch'
+ */
+for (i = 0; i < 201; i++) {
+    /* {S!d154}RelationalOperator: '<S71>/LowerRelop1' */
+    rtb_BrkTrqReqTotal_tmp = rtb_VectorConcatenate1[i];
+    if (rtb_BrkTrqReqTotal_tmp > rtb_Gain1_n) {
+        rtb_VectorConcatenate1[i] = rtb_Gain1_n;
+    } else if (rtb_BrkTrqReqTotal_tmp < rtb_UnitDelay2) {
+        /* {S!d156}Switch: '<S71>/Switch' */
+        rtb_VectorConcatenate1[i] = rtb_UnitDelay2;
+    }
+}
+/* {E!d158}End of Switch: '<S71>/Switch2' */
+
+/* {S!d160}Gain: '<S62>/Gain' */
+rtb_Gain1_n = EvPowertrainController2EM_P.Gain_Gain_h * rtb_RateLimiter_idx_0;
+/* {S!d162}Gain: '<S69>/Gain3' incorporates:
+ *  Gain: '<S42>/Gain3'
+ */
+rtb_RateLimiter_idx_0_tmp = 1.0 / rtb_RateLimiter_idx_0_tmp;
+/* {S!d164}SignalConversion generated from: '<S25>/Vector Concatenate1' incorporates:
+ *  Inport: '<Root>/EMSpd'
+ */
+EMSpd = EvPowertrainController2EM_U.EMSpd[0];
+for (i = 0; i < 201; i++) {
+    /* {S!d166}RelationalOperator: '<S67>/UpperRelop' incorporates:
+ *  RelationalOperator: '<S62>/Relational Operator1'
+ */
+    rtb_BrkTrqReqTotal_tmp = rtb_VectorConcatenate1[i];
+    rtb_Compare_n = (rtb_BrkTrqReqTotal_tmp < rtb_Gain1_n);
+    rtb_LogicalOperator_he[i] = rtb_Compare_n;
+    /* {S!d170}Switch: '<S67>/Switch2' incorporates:
+ *  RelationalOperator: '<S67>/LowerRelop1'
+ *  RelationalOperator: '<S67>/UpperRelop'
+ *  Switch: '<S67>/Switch'
+ */
+    if (rtb_BrkTrqReqTotal_tmp > rtb_RateLimiter_idx_0) {
+        rtb_Switch2[i] = rtb_RateLimiter_idx_0;
+    } else if (rtb_Compare_n) {
+        /* {S!d168}Switch: '<S67>/Switch' */
+        rtb_Switch2[i] = rtb_Gain1_n;
+    } else {
+        rtb_Switch2[i] = rtb_BrkTrqReqTotal_tmp;
+    }
+    /* {E!d170}End of Switch: '<S67>/Switch2' */
+
+    /* {S!d172}Switch: '<S70>/Switch2' incorporates:
+ *  Constant: '<S70>/Constant1'
+ *  Constant: '<S70>/Constant2'
+ *  Product: '<S70>/Product1'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ *  UnitDelay: '<S69>/Unit Delay'
+ */
+    if (EvPowertrainController2EM_DW.UnitDelay_DSTATE[i] * EMSpd >= EvPowertrainController2EM_P.Switch2_Threshold_m) {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant1_Value_o;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant2_Value_d;
+    }
+    /* {E!d172}End of Switch: '<S70>/Switch2' */
+
+    /* {S!d174}Math: '<S70>/Math Function1' */
+    if ((rtb_WhlEMTrqMax_tmp < 0.0) && (rtb_BrkTrqReqTotal_tmp > floor(rtb_BrkTrqReqTotal_tmp))) {
+        rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 26))>;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 12))>;
+    }
+    /* {S!d176}Product: '<S69>/Divide2' incorporates:
+ *  Gain: '<S69>/Gain3'
+ *  Math: '<S70>/Math Function1'
+ */
+    rtb_BrkTrqReqTotal_tmp = 1.0 / rtb_BrkTrqReqTotal_tmp * (rtb_RateLimiter_idx_0_tmp * rtb_Switch2[i]);
+    rtb_Divide2_p[i] = rtb_BrkTrqReqTotal_tmp;
+    /* {S!d178}Product: '<S68>/Product1' incorporates:
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ */
+    rtb_Divide[i] = EMSpd * rtb_BrkTrqReqTotal_tmp;
+    /* {S!d180}Abs: '<S68>/Abs1' */
+    rtb_Switch2_l[i] = fabs(rtb_BrkTrqReqTotal_tmp);
+}
+/* {S!d182}Lookup_n-D: '<S68>/Eff Map' incorporates:
+ *  Abs: '<S68>/Abs'
+ *  Inport: '<Root>/EMSpd'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ */
+bpIndices[0U] = plook_bincpa(fabs(EvPowertrainController2EM_U.EMSpd[0]), EvPowertrainController2EM_P.PlntEM1SpdEff, 13U, &rtb_Gain1_n, &EvPowertrainController2EM_DW.m_Cache01);
+rtb_VectorConcatenate1_l[0U] = rtb_Gain1_n;
+for (i = 0; i < 201; i++) {
+    bpIndices[1U] = plook_bincpa(rtb_Switch2_l[i], EvPowertrainController2EM_P.PlntEM1TrqEff, 10U, &rtb_Gain1_n, &EvPowertrainController2EM_DW.m_Cache02[i]);
+    rtb_VectorConcatenate1_l[1U] = rtb_Gain1_n;
+    rtb_Switch2_l[i] = intrp2d_la_pw(bpIndices, rtb_VectorConcatenate1_l, EvPowertrainController2EM_P.PlntEM1EffTbl, 14U, EvPowertrainController2EM_P.EffMap_maxIndex);
+}
+/* {E!d182}End of Lookup_n-D: '<S68>/Eff Map' */
+
+/* {S!d190}Product: '<S68>/Product4' incorporates:
+ *  Math: '<S68>/Math Function1'
+ */
+for (i = 0; i < 201; i++) {
+    rtb_VectorConcatenate_j = rtb_Divide[i];
+    /* {S!d184}Switch: '<S68>/Switch2' incorporates:
+ *  Constant: '<S68>/Constant1'
+ *  Constant: '<S68>/Constant2'
+ */
+    if (rtb_VectorConcatenate_j >= EvPowertrainController2EM_P.Switch2_Threshold_p) {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant1_Value_n0;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant2_Value_i;
+    }
+    /* {E!d184}End of Switch: '<S68>/Switch2' */
+
+    /* {S!d186}Gain: '<S68>/Gain2' */
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Gain2_Gain * rtb_Switch2_l[i];
+    /* {S!d188}Math: '<S68>/Math Function1' */
+    if ((rtb_UnitDelay2 < 0.0) && (rtb_BrkTrqReqTotal_tmp > floor(rtb_BrkTrqReqTotal_tmp))) {
+        rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_UnitDelay2", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 27))>;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_UnitDelay2", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 13))>;
+    }
+    rtb_Product4[i] = rtb_VectorConcatenate_j * rtb_BrkTrqReqTotal_tmp;
+}
+/* {E!d190}End of Product: '<S68>/Product4' */
+
+/* {S!d192}Switch: '<S77>/Switch' incorporates:
+ *  Constant: '<S77>/Constant'
+ *  Constant: '<S85>/Constant7'
+ *  Constant: '<S86>/Constant1'
+ *  Constant: '<S86>/Constant11'
+ *  Constant: '<S86>/Constant12'
+ *  Constant: '<S86>/Constant13'
+ *  Constant: '<S86>/Constant14'
+ *  Constant: '<S86>/Constant3'
+ *  Constant: '<S86>/Constant8'
+ *  Gain: '<S77>/Road mu'
+ *  Gain: '<S77>/Safety Factor'
+ *  Gain: '<S86>/TireRadius1'
+ *  Product: '<S86>/Divide1'
+ *  Product: '<S86>/Product2'
+ *  Product: '<S86>/Product3'
+ *  Sum: '<S86>/Add1'
+ *  Sum: '<S86>/Add5'
+ *  Sum: '<S86>/Add6'
+ */
+if (rtb_whlpureelectrictraction > EvPowertrainController2EM_P.Switch_Threshold_c) {
+    rtb_UnitDelay2 = (EvPowertrainController2EM_P.EnvGrvty * EvPowertrainController2EM_P.PlntVehMass * (EvPowertrainController2EM_P.PlntVehCGHgtAxl + EvPowertrainController2EM_P.PlntWhlLdRadiusRear) * EvPowertrainController2EM_P.CtrlVcuMaxAccelG + EvPowertrainController2EM_P.PlntVehDstCGFrntAxl * EvPowertrainController2EM_P.PlntVehMass * EvPowertrainController2EM_P.EnvGrvty) / (EvPowertrainController2EM_P.PlntVehDstCGFrntAxl + EvPowertrainController2EM_P.PlntVehDstCGRearAxl) * EvPowertrainController2EM_P.PlntWhlLdRadiusRear * EvPowertrainController2EM_P.CtrlVcuRoadMuEst * EvPowertrainController2EM_P.CtrlVcuSftyFctr;
+} else {
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Constant_Value_a;
+}
+/* {E!d192}End of Switch: '<S77>/Switch' */
+
+/* {S!d194}Switch: '<S77>/Switch1' incorporates:
+ *  Constant: '<S77>/Constant'
+ *  Constant: '<S85>/Constant6'
+ *  Constant: '<S87>/Constant1'
+ *  Constant: '<S87>/Constant11'
+ *  Constant: '<S87>/Constant12'
+ *  Constant: '<S87>/Constant13'
+ *  Constant: '<S87>/Constant14'
+ *  Constant: '<S87>/Constant3'
+ *  Constant: '<S87>/Constant8'
+ *  Gain: '<S77>/Road mu1'
+ *  Gain: '<S77>/Safety Factor1'
+ *  Gain: '<S85>/Gain'
+ *  Gain: '<S87>/TireRadius1'
+ *  Product: '<S87>/Divide1'
+ *  Product: '<S87>/Product2'
+ *  Product: '<S87>/Product3'
+ *  Sum: '<S87>/Add1'
+ *  Sum: '<S87>/Add5'
+ *  Sum: '<S87>/Add6'
+ */
+if (rtb_whlpureelectrictraction > EvPowertrainController2EM_P.Switch1_Threshold_m) {
+    rtb_Gain1_n = EvPowertrainController2EM_P.Constant_Value_a;
+} else {
+    rtb_Gain1_n = (EvPowertrainController2EM_P.EnvGrvty * EvPowertrainController2EM_P.PlntVehMass * (EvPowertrainController2EM_P.PlntVehCGHgtAxl + EvPowertrainController2EM_P.PlntWhlLdRadiusRear) * EvPowertrainController2EM_P.CtrlVcuMaxDecelG + EvPowertrainController2EM_P.PlntVehDstCGFrntAxl * EvPowertrainController2EM_P.PlntVehMass * EvPowertrainController2EM_P.EnvGrvty) / (EvPowertrainController2EM_P.PlntVehDstCGFrntAxl + EvPowertrainController2EM_P.PlntVehDstCGRearAxl) * EvPowertrainController2EM_P.PlntWhlLdRadiusRear * EvPowertrainController2EM_P.Gain_Gain_l * EvPowertrainController2EM_P.CtrlVcuRoadMuEst * EvPowertrainController2EM_P.CtrlVcuSftyFctr;
+}
+/* {E!d194}End of Switch: '<S77>/Switch1' */
+
+/* {S!d200}Switch: '<S84>/Switch2' incorporates:
+ *  RelationalOperator: '<S84>/LowerRelop1'
+ *  RelationalOperator: '<S84>/UpperRelop'
+ *  Switch: '<S84>/Switch'
+ */
+for (i = 0; i < 201; i++) {
+    /* {S!d196}RelationalOperator: '<S84>/LowerRelop1' */
+    rtb_VectorConcatenate_j = rtb_VectorConcatenate_i[i];
+    if (rtb_VectorConcatenate_j > rtb_UnitDelay2) {
+        rtb_VectorConcatenate_i[i] = rtb_UnitDelay2;
+    } else if (rtb_VectorConcatenate_j < rtb_Gain1_n) {
+        /* {S!d198}Switch: '<S84>/Switch' */
+        rtb_VectorConcatenate_i[i] = rtb_Gain1_n;
+    }
+}
+/* {E!d200}End of Switch: '<S84>/Switch2' */
+
+/* {S!d202}Gain: '<S75>/Gain' */
+rtb_UnitDelay2 = EvPowertrainController2EM_P.Gain_Gain_dl * rtb_RateLimiter_idx_1;
+/* {S!d204}Gain: '<S82>/Gain3' incorporates:
+ *  Gain: '<S42>/Gain1'
+ */
+rtb_RateLimiter_idx_1_tmp = 1.0 / rtb_RateLimiter_idx_1_tmp;
+/* {S!d206}SignalConversion generated from: '<S25>/Vector Concatenate1' incorporates:
+ *  Inport: '<Root>/EMSpd'
+ */
+EMSpd = EvPowertrainController2EM_U.EMSpd[1];
+for (i = 0; i < 201; i++) {
+    /* {S!d208}RelationalOperator: '<S80>/UpperRelop' incorporates:
+ *  RelationalOperator: '<S75>/Relational Operator1'
+ */
+    rtb_VectorConcatenate_j = rtb_VectorConcatenate_i[i];
+    rtb_Compare_n = (rtb_VectorConcatenate_j < rtb_UnitDelay2);
+    rtb_LogicalOperator_c[i] = rtb_Compare_n;
+    /* {S!d212}Switch: '<S80>/Switch2' incorporates:
+ *  RelationalOperator: '<S80>/LowerRelop1'
+ *  RelationalOperator: '<S80>/UpperRelop'
+ *  Switch: '<S80>/Switch'
+ */
+    if (rtb_VectorConcatenate_j > rtb_RateLimiter_idx_1) {
+        rtb_VectorConcatenate_j = rtb_RateLimiter_idx_1;
+    } else if (rtb_Compare_n) {
+        /* {S!d210}Switch: '<S80>/Switch' */
+        rtb_VectorConcatenate_j = rtb_UnitDelay2;
+    }
+    rtb_Switch2_l[i] = rtb_VectorConcatenate_j;
+    /* {E!d212}End of Switch: '<S80>/Switch2' */
+
+    /* {S!d214}Switch: '<S83>/Switch2' incorporates:
+ *  Constant: '<S83>/Constant1'
+ *  Constant: '<S83>/Constant2'
+ *  Product: '<S83>/Product1'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ *  UnitDelay: '<S82>/Unit Delay'
+ */
+    if (EvPowertrainController2EM_DW.UnitDelay_DSTATE_n[i] * EMSpd >= EvPowertrainController2EM_P.Switch2_Threshold_c) {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant1_Value_gm;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant2_Value_iu;
+    }
+    /* {E!d214}End of Switch: '<S83>/Switch2' */
+
+    /* {S!d216}Math: '<S83>/Math Function1' */
+    if ((rtb_WhlEMTrqMax_tmp_0 < 0.0) && (rtb_BrkTrqReqTotal_tmp > floor(rtb_BrkTrqReqTotal_tmp))) {
+        rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp_0", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 28))>;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp_0", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 14))>;
+    }
+    /* {S!d218}Product: '<S82>/Divide2' incorporates:
+ *  Gain: '<S82>/Gain3'
+ *  Math: '<S83>/Math Function1'
+ */
+    rtb_BrkTrqReqTotal_tmp = 1.0 / rtb_BrkTrqReqTotal_tmp * (rtb_RateLimiter_idx_1_tmp * rtb_VectorConcatenate_j);
+    rtb_Divide2_ir[i] = rtb_BrkTrqReqTotal_tmp;
+    /* {S!d220}Product: '<S81>/Product1' incorporates:
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ */
+    rtb_Sqrt1[i] = EMSpd * rtb_BrkTrqReqTotal_tmp;
+    /* {S!d222}Abs: '<S81>/Abs1' */
+    rtb_Divide[i] = fabs(rtb_BrkTrqReqTotal_tmp);
+}
+/* {S!d224}Lookup_n-D: '<S81>/Eff Map' incorporates:
+ *  Abs: '<S81>/Abs'
+ *  Inport: '<Root>/EMSpd'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ */
+bpIndices_0[0U] = plook_bincpa(fabs(EvPowertrainController2EM_U.EMSpd[1]), EvPowertrainController2EM_P.PlntEM2SpdEff, 13U, &rtb_Gain1_n, &EvPowertrainController2EM_DW.m_Cache01_a);
+fractions[0U] = rtb_Gain1_n;
+for (i = 0; i < 201; i++) {
+    bpIndices_0[1U] = plook_bincpa(rtb_Divide[i], EvPowertrainController2EM_P.PlntEM2TrqEff, 10U, &rtb_Gain1_n, &EvPowertrainController2EM_DW.m_Cache02_g[i]);
+    fractions[1U] = rtb_Gain1_n;
+    rtb_Divide[i] = intrp2d_la_pw(bpIndices_0, fractions, EvPowertrainController2EM_P.PlntEM2EffTbl, 14U, EvPowertrainController2EM_P.EffMap_maxIndex_l);
+}
+/* {E!d224}End of Lookup_n-D: '<S81>/Eff Map' */
+
+/* {S!d226}Saturate: '<S51>/Saturation' incorporates:
+ *  Inport: '<Root>/BattPackVolt'
+ */
+if (EvPowertrainController2EM_U.BattPackVolt > EvPowertrainController2EM_P.Saturation_UpperSat) {
+    rtb_Gain1_n = EvPowertrainController2EM_P.Saturation_UpperSat;
+} else if (EvPowertrainController2EM_U.BattPackVolt < EvPowertrainController2EM_P.Saturation_LowerSat) {
+    rtb_Gain1_n = EvPowertrainController2EM_P.Saturation_LowerSat;
+} else {
+    rtb_Gain1_n = EvPowertrainController2EM_U.BattPackVolt;
+}
+/* {E!d226}End of Saturate: '<S51>/Saturation' */
+for (i = 0; i < 201; i++) {
+    /* {S!d228}Product: '<S81>/Product4' incorporates:
+ *  Sum: '<S24>/Add2'
+ */
+    rtb_VectorConcatenate_j = rtb_Sqrt1[i];
+    /* {S!d230}Math: '<S81>/Math Function1' incorporates:
+ *  Constant: '<S81>/Constant1'
+ *  Constant: '<S81>/Constant2'
+ *  Gain: '<S81>/Gain2'
+ *  Sum: '<S24>/Add2'
+ *  Switch: '<S81>/Switch2'
+ */
+    if (rtb_VectorConcatenate_j >= EvPowertrainController2EM_P.Switch2_Threshold_i) {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant1_Value_m;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant2_Value_m;
+    }
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Gain2_Gain_j * rtb_Divide[i];
+    if ((rtb_UnitDelay2 < 0.0) && (rtb_BrkTrqReqTotal_tmp > floor(rtb_BrkTrqReqTotal_tmp))) {
+        rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_UnitDelay2", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 29))>;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_UnitDelay2", "rtb_BrkTrqReqTotal_tmp"], 0, 4, 15))>;
+    }
+    /* {S!d232}Sum: '<S24>/Add2' incorporates:
+ *  Math: '<S81>/Math Function1'
+ *  Product: '<S81>/Product4'
+ */
+    rtb_VectorConcatenate_j = rtb_VectorConcatenate_j * rtb_BrkTrqReqTotal_tmp + rtb_Product4[i];
+    rtb_Sqrt1[i] = rtb_VectorConcatenate_j;
+    /* {S!d234}Product: '<S51>/Divide' */
+    rtb_Divide[i] = rtb_VectorConcatenate_j / rtb_Gain1_n;
+}
+/* {S!d238}Switch: '<S56>/Switch' incorporates:
+ *  Constant: '<S58>/Constant'
+ *  Constant: '<S59>/Constant'
+ *  Fcn: '<S56>/Fcn'
+ *  Inport: '<Root>/BattPackVolt'
+ *  Logic: '<S56>/Logical Operator'
+ *  Product: '<S56>/Product'
+ *  RelationalOperator: '<S58>/Compare'
+ *  RelationalOperator: '<S59>/Compare'
+ *  Switch: '<S56>/Switch1'
+ */
+if ((EvPowertrainController2EM_U.BattPackVolt >= -EvPowertrainController2EM_P.div0protectpoly_thresh) && (EvPowertrainController2EM_U.BattPackVolt <= EvPowertrainController2EM_P.div0protectpoly_thresh)) {
+    /* {S!d236}Switch: '<S56>/Switch1' incorporates:
+ *  Constant: '<S56>/Constant'
+ *  UnaryMinus: '<S56>/Unary Minus'
+ */
+    if (EvPowertrainController2EM_U.BattPackVolt >= EvPowertrainController2EM_P.Switch1_Threshold) {
+        rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.Constant_Value_ag;
+    } else {
+        rtb_BrkTrqReqTotal_tmp = -EvPowertrainController2EM_P.Constant_Value_ag;
+    }
+    rtb_Gain1_n = 0.02 / (3.0 - %<(SLibCGCallSubFcn("rt_powd_snf", ["EvPowertrainController2EM_U.BattPackVolt / 0.01", "2.0"], 0, 4, 1))>) * rtb_BrkTrqReqTotal_tmp;
+} else {
+    rtb_Gain1_n = EvPowertrainController2EM_U.BattPackVolt;
+}
+/* {E!d238}End of Switch: '<S56>/Switch' */
+
+/* {S!d240}Product: '<S52>/Divide1' */
+rtb_Gain1_n = 1.0 / rtb_Gain1_n * rtb_Product1;
+/* {S!d242}RelationalOperator: '<S66>/Compare' incorporates:
+ *  Constant: '<S66>/Constant'
+ */
+rtb_Compare_n = (rtb_whlpureelectrictraction >= EvPowertrainController2EM_P.Constant_Value_c);
+for (i = 0; i < 201; i++) {
+    /* {S!d244}RelationalOperator: '<S53>/LowerRelop1' incorporates:
+ *  RelationalOperator: '<S47>/Relational Operator'
+ */
+    rtb_VectorConcatenate_j = rtb_Divide[i];
+    rtb_LogicalOperator_l = (rtb_VectorConcatenate_j > rtb_RegenFactor);
+    rtb_LogicalOperator_f[i] = rtb_LogicalOperator_l;
+    /* {S!d246}RelationalOperator: '<S53>/UpperRelop' incorporates:
+ *  RelationalOperator: '<S47>/Relational Operator3'
+ */
+    rtb_Switch2_g_tmp_0 = (rtb_VectorConcatenate_j < rtb_Gain1_n);
+    rtb_Switch2_g_tmp[i] = rtb_Switch2_g_tmp_0;
+    /* {S!d250}Switch: '<S53>/Switch2' incorporates:
+ *  RelationalOperator: '<S53>/LowerRelop1'
+ *  RelationalOperator: '<S53>/UpperRelop'
+ *  Switch: '<S53>/Switch'
+ */
+    if (rtb_LogicalOperator_l) {
+        rtb_VectorConcatenate_j = rtb_RegenFactor;
+    } else if (rtb_Switch2_g_tmp_0) {
+        /* {S!d248}Switch: '<S53>/Switch' */
+        rtb_VectorConcatenate_j = rtb_Gain1_n;
+    }
+    rtb_Divide[i] = rtb_VectorConcatenate_j;
+    /* {E!d250}End of Switch: '<S53>/Switch2' */
+
+    /* {S!d252}RelationalOperator: '<S62>/Relational Operator' */
+    rtb_BrkTrqReqTotal_tmp = rtb_VectorConcatenate1[i];
+    /* {S!d254}Logic: '<S62>/Logical Operator' incorporates:
+ *  Constant: '<S65>/Constant'
+ *  Logic: '<S62>/Logical Operator1'
+ *  RelationalOperator: '<S62>/Relational Operator'
+ *  RelationalOperator: '<S62>/Relational Operator1'
+ *  RelationalOperator: '<S65>/Compare'
+ */
+    rtb_LogicalOperator_he[i] = ((rtb_RateLimiter_idx_0 < rtb_BrkTrqReqTotal_tmp) || rtb_LogicalOperator_he[i] || ((rtb_BrkTrqReqTotal_tmp < EvPowertrainController2EM_P.Constant_Value) && rtb_Compare_n));
+}
+/* {S!d256}RelationalOperator: '<S79>/Compare' incorporates:
+ *  Constant: '<S79>/Constant'
+ */
+rtb_Compare_n = (rtb_whlpureelectrictraction >= EvPowertrainController2EM_P.Constant_Value_l);
+/* {S!d258}Gain: '<S24>/Veh2WhlSpd' incorporates:
+ *  Gain: '<S23>/Veh2WhlSpd'
+ *  Inport: '<Root>/VehSpdFdbk'
+ */
+rtb_RateLimiter_idx_0 = 1.0 / ((EvPowertrainController2EM_P.PlntWhlLdRadiusFrnt + EvPowertrainController2EM_P.PlntWhlLdRadiusRear) / 2.0);
+rtb_RegenFactor = rtb_RateLimiter_idx_0 * EvPowertrainController2EM_U.VehSpdFdbk;
+/* {S!d260}Saturate: '<S24>/Saturation1' */
+if (rtb_RegenFactor > EvPowertrainController2EM_P.Saturation1_UpperSat) {
+    rtb_RegenFactor = EvPowertrainController2EM_P.Saturation1_UpperSat;
+} else if (rtb_RegenFactor < EvPowertrainController2EM_P.Saturation1_LowerSat) {
+    rtb_RegenFactor = EvPowertrainController2EM_P.Saturation1_LowerSat;
+}
+/* {E!d260}End of Saturate: '<S24>/Saturation1' */
+for (i = 0; i < 201; i++) {
+    /* {S!d262}RelationalOperator: '<S75>/Relational Operator' */
+    rtb_VectorConcatenate_j = rtb_VectorConcatenate_i[i];
+    /* {S!d264}Logic: '<S75>/Logical Operator' incorporates:
+ *  Constant: '<S78>/Constant'
+ *  Logic: '<S75>/Logical Operator1'
+ *  RelationalOperator: '<S75>/Relational Operator'
+ *  RelationalOperator: '<S75>/Relational Operator1'
+ *  RelationalOperator: '<S78>/Compare'
+ */
+    rtb_LogicalOperator_c[i] = ((rtb_RateLimiter_idx_1 < rtb_VectorConcatenate_j) || rtb_LogicalOperator_c[i] || ((rtb_VectorConcatenate_j < EvPowertrainController2EM_P.Constant_Value_h) && rtb_Compare_n));
+    /* {S!d266}RelationalOperator: '<S47>/Relational Operator1' incorporates:
+ *  RelationalOperator: '<S47>/Relational Operator'
+ */
+    rtb_VectorConcatenate_j = rtb_Sqrt1[i];
+    /* {S!d268}Logic: '<S47>/Logical Operator' incorporates:
+ *  RelationalOperator: '<S47>/Relational Operator'
+ *  RelationalOperator: '<S47>/Relational Operator1'
+ *  RelationalOperator: '<S47>/Relational Operator2'
+ *  RelationalOperator: '<S47>/Relational Operator3'
+ */
+    rtb_LogicalOperator_f[i] = (rtb_LogicalOperator_f[i] || rtb_Switch2_g_tmp[i] || (rtb_VectorConcatenate_j > rtb_Product) || (rtb_VectorConcatenate_j < rtb_Product1));
+    /* {S!d270}Abs: '<S24>/Abs' incorporates:
+ *  Product: '<S24>/Product'
+ *  Sum: '<S24>/Add'
+ *  Sum: '<S24>/Add1'
+ */
+    rtb_VectorConcatenate_i[i] = fabs((rtb_whlpureelectrictraction - (rtb_Switch2[i] + rtb_Switch2_l[i])) * rtb_RegenFactor);
+}
+/* {S!d272}DeadZone: '<S23>/Dead Zone' incorporates:
+ *  Inport: '<Root>/VehSpdFdbk'
+ */
+if (EvPowertrainController2EM_U.VehSpdFdbk > EvPowertrainController2EM_P.DeadZone_End) {
+    rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_U.VehSpdFdbk - EvPowertrainController2EM_P.DeadZone_End;
+} else if (EvPowertrainController2EM_U.VehSpdFdbk >= EvPowertrainController2EM_P.DeadZone_Start) {
+    rtb_BrkTrqReqTotal_tmp = 0.0;
+} else {
+    rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_U.VehSpdFdbk - EvPowertrainController2EM_P.DeadZone_Start;
+}
+/* {S!d274}Gain: '<S23>/Veh2WhlSpd' incorporates:
+ *  DeadZone: '<S23>/Dead Zone'
+ */
+rtb_RegenFactor = rtb_RateLimiter_idx_0 * rtb_BrkTrqReqTotal_tmp;
+/* {S!d276}Switch: '<S23>/Switch1' incorporates:
+ *  UnitDelay: '<S23>/Unit Delay1'
+ *  UnitDelay: '<S23>/Unit Delay2'
+ */
+if (rtb_whlpureelectrictraction >= EvPowertrainController2EM_P.Switch1_Threshold_o) {
+    rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_DW.UnitDelay1_DSTATE_p;
+} else {
+    rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_DW.UnitDelay2_DSTATE;
+}
+/* {S!d278}Product: '<S46>/Product1' incorporates:
+ *  Switch: '<S23>/Switch1'
+ */
+rtb_Product = rtb_RegenFactor * rtb_BrkTrqReqTotal_tmp;
+for (i = 0; i < 201; i++) {
+    /* {S!d280}Switch: '<S23>/Switch' */
+    if (rtb_whlpureelectrictraction >= EvPowertrainController2EM_P.Switch_Threshold_k) {
+        rtb_BrkTrqReqTotal_tmp = rtb_Switch2[i];
+    } else {
+        rtb_BrkTrqReqTotal_tmp = rtb_Switch2_l[i];
+    }
+    /* {S!d282}Sum: '<S46>/Subtract' incorporates:
+ *  Product: '<S46>/Product6'
+ *  Switch: '<S23>/Switch'
+ */
+    rtb_VectorConcatenate_j = rtb_BrkTrqReqTotal_tmp * rtb_RegenFactor - rtb_Product;
+    /* {S!d284}Sqrt: '<S46>/Sqrt1' incorporates:
+ *  Product: '<S46>/Product7'
+ */
+    rtb_Sqrt1[i] = sqrt(rtb_VectorConcatenate_j * rtb_VectorConcatenate_j);
+}
+/* {S!d286}Lookup_n-D: '<S46>/1-D Lookup Table' incorporates:
+ *  Inport: '<Root>/AccelPdl'
+ */
+rtb_RegenFactor = look1_pbinlcapw(EvPowertrainController2EM_U.AccelPdl, EvPowertrainController2EM_P.CtrlVcuAccelPdlBpts, EvPowertrainController2EM_P.CtrlVcuPwrRatePnlty, &EvPowertrainController2EM_DW.m_bpIndex_b, 2U);
+/* {S!d304}MATLAB Function: '<S23>/MATLAB Function' */
+rtb_Compare_n = true;
+i = 0;
+exitg1 = false;
+while ((!exitg1) && (i < 201)) {
+    if ((!rtb_LogicalOperator_he[i]) || (!rtb_LogicalOperator_c[i]) || (!rtb_LogicalOperator_f[i])) {
+        rtb_Compare_n = false;
+        exitg1 = true;
+    } else {
+        i++;
+    }
+}
+if (rtb_Compare_n) {
+    /* {S!d294}Sum: '<S23>/Add' incorporates:
+ *  DataTypeConversion: '<S23>/Data Type Conversion1'
+ *  Gain: '<S23>/TracPwrErr Penalty'
+ *  Gain: '<S23>/W2kW '
+ *  Gain: '<S23>/W2kW 1'
+ *  Gain: '<S24>/Constraint Penalty Factor'
+ *  Gain: '<S24>/Constraint Penalty Factor1'
+ *  Gain: '<S24>/Constraint Penalty Factor2'
+ *  Gain: '<S46>/W2kW'
+ *  Inport: '<Root>/BattPackVolt'
+ *  Product: '<S23>/Product3'
+ *  Product: '<S46>/Product'
+ *  Sum: '<S24>/Add4'
+ */
+    for (i = 0; i < 201; i++) {
+        /* {S!d288}Gain: '<S24>/Constraint Penalty Factor2' incorporates:
+ *  Product: '<S23>/Product3'
+ */
+        if (rtb_LogicalOperator_he[i]) {
+            tmp = EvPowertrainController2EM_P.CtrlVcuEMPnlty;
+        } else {
+            tmp = 0;
+        }
+        /* {S!d290}Gain: '<S24>/Constraint Penalty Factor1' incorporates:
+ *  Product: '<S23>/Product3'
+ */
+        if (rtb_LogicalOperator_c[i]) {
+            tmp_0 = EvPowertrainController2EM_P.CtrlVcuEMPnlty;
+        } else {
+            tmp_0 = 0;
+        }
+        /* {S!d292}Gain: '<S24>/Constraint Penalty Factor' incorporates:
+ *  Product: '<S23>/Product3'
+ */
+        if (rtb_LogicalOperator_f[i]) {
+            tmp_1 = EvPowertrainController2EM_P.CtrlVcuBattPnlty;
+        } else {
+            tmp_1 = 0U;
+        }
+        rtb_VectorConcatenate1[i] = (((real_T)((((uint32_T)tmp << 7) + ((uint32_T)tmp_0 << 7)) + tmp_1) * 0.00390625 + EvPowertrainController2EM_U.BattPackVolt * rtb_Divide[i] * EvPowertrainController2EM_P.W2kW_Gain) + EvPowertrainController2EM_P.W2kW1_Gain * rtb_VectorConcatenate_i[i] * EvPowertrainController2EM_P.CtrlVcuTracPwrErrPnlty) + EvPowertrainController2EM_P.W2kW_Gain_a * rtb_Sqrt1[i] * rtb_RegenFactor;
+    }
+    %<(SLibCGCallSubFcn("EvPowertrainController2_minimum", ["rtb_VectorConcatenate1", "&rtb_Product", "&i"], 0, 4, 2))>;
+    rtb_Product = i;
+} else {
+    /* {S!d302}Sum: '<S23>/Add' incorporates:
+ *  DataTypeConversion: '<S23>/Data Type Conversion1'
+ *  Gain: '<S23>/TracPwrErr Penalty'
+ *  Gain: '<S23>/W2kW '
+ *  Gain: '<S23>/W2kW 1'
+ *  Gain: '<S24>/Constraint Penalty Factor'
+ *  Gain: '<S24>/Constraint Penalty Factor1'
+ *  Gain: '<S24>/Constraint Penalty Factor2'
+ *  Gain: '<S46>/W2kW'
+ *  Inport: '<Root>/BattPackVolt'
+ *  Product: '<S23>/Product3'
+ *  Product: '<S46>/Product'
+ *  Sum: '<S24>/Add4'
+ */
+    for (i = 0; i < 201; i++) {
+        /* {S!d296}Gain: '<S24>/Constraint Penalty Factor2' incorporates:
+ *  Product: '<S23>/Product3'
+ */
+        if (rtb_LogicalOperator_he[i]) {
+            tmp = EvPowertrainController2EM_P.CtrlVcuEMPnlty;
+        } else {
+            tmp = 0;
+        }
+        /* {S!d298}Gain: '<S24>/Constraint Penalty Factor1' incorporates:
+ *  Product: '<S23>/Product3'
+ */
+        if (rtb_LogicalOperator_c[i]) {
+            tmp_0 = EvPowertrainController2EM_P.CtrlVcuEMPnlty;
+        } else {
+            tmp_0 = 0;
+        }
+        /* {S!d300}Gain: '<S24>/Constraint Penalty Factor' incorporates:
+ *  Product: '<S23>/Product3'
+ */
+        if (rtb_LogicalOperator_f[i]) {
+            tmp_1 = EvPowertrainController2EM_P.CtrlVcuBattPnlty;
+        } else {
+            tmp_1 = 0U;
+        }
+        rtb_VectorConcatenate1[i] = (((real_T)((((uint32_T)tmp << 7) + ((uint32_T)tmp_0 << 7)) + tmp_1) * 0.00390625 + EvPowertrainController2EM_U.BattPackVolt * rtb_Divide[i] * EvPowertrainController2EM_P.W2kW_Gain) + EvPowertrainController2EM_P.W2kW1_Gain * rtb_VectorConcatenate_i[i] * EvPowertrainController2EM_P.CtrlVcuTracPwrErrPnlty) + EvPowertrainController2EM_P.W2kW_Gain_a * rtb_Sqrt1[i] * rtb_RegenFactor;
+    }
+    %<(SLibCGCallSubFcn("EvPowertrainController2_minimum", ["rtb_VectorConcatenate1", "&rtb_Product", "&i"], 0, 4, 3))>;
+    rtb_Product = i;
+}
+/* {E!d304}End of MATLAB Function: '<S23>/MATLAB Function' */
+
+/* {S!d306}MultiPortSwitch: '<S23>/Index Vector' incorporates:
+ *  MultiPortSwitch: '<S23>/Index Vector1'
+ */
+i = (int32_T)rtb_Product - 1;
+rtb_RateLimiter_idx_0 = rtb_Switch2[i];
+/* {S!d308}MultiPortSwitch: '<S23>/Index Vector1' */
+rtb_Product = rtb_Switch2_l[i];
+/* {S!d310}Sum: '<S36>/Add1' incorporates:
+ *  MultiPortSwitch: '<S23>/Index Vector'
+ *  MultiPortSwitch: '<S23>/Index Vector1'
+ */
+rtb_UnitDelay2 = rtb_RateLimiter_idx_0 + rtb_Product;
+/* {S!d312}Saturate: '<S36>/Negative 1' */
+if (rtb_UnitDelay2 > EvPowertrainController2EM_P.Negative1_UpperSat) {
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Negative1_UpperSat;
+} else if (rtb_UnitDelay2 < EvPowertrainController2EM_P.Negative1_LowerSat) {
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Negative1_LowerSat;
+}
+/* {S!d314}Sum: '<S36>/Subtract' incorporates:
+ *  Saturate: '<S36>/Negative 1'
+ */
+rtb_UnitDelay2 += rtb_BrkTrqReqTotal;
+/* {S!d316}Saturate: '<S36>/Negative 5' */
+if (rtb_UnitDelay2 > EvPowertrainController2EM_P.Negative5_UpperSat) {
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Negative5_UpperSat;
+} else if (rtb_UnitDelay2 < EvPowertrainController2EM_P.Negative5_LowerSat) {
+    rtb_UnitDelay2 = EvPowertrainController2EM_P.Negative5_LowerSat;
+}
+/* {S!d318}Gain: '<S36>/Gain6' incorporates:
+ *  Constant: '<S36>/Constant1'
+ *  Product: '<S36>/Product4'
+ *  Saturate: '<S36>/Negative 5'
+ */
+rtb_BrkTrqReqTotal = rtb_UnitDelay2 / ((EvPowertrainController2EM_P.PlntBrkFrntBias * EvPowertrainController2EM_P.PlntBrkKinFricCffFrnt * 3.1415926535897931 * 0.0025000000000000005 * EvPowertrainController2EM_P.PlntBrkPadMeanRadiusFrnt * EvPowertrainController2EM_P.PlntBrkNumPadsFrnt / 4.0 + EvPowertrainController2EM_P.PlntBrkRearBias * EvPowertrainController2EM_P.PlntBrkKinFricCffRear * 3.1415926535897931 * 0.0025000000000000005 * EvPowertrainController2EM_P.PlntBrkPadMeanRadiusRear * EvPowertrainController2EM_P.PlntBrkNumPadsRear / 4.0) * 2.0) * (1.0 / EvPowertrainController2EM_P.PlntBrkPrsFctr);
+/* {S!d320}Saturate: '<S36>/Saturation' */
+if (rtb_BrkTrqReqTotal > EvPowertrainController2EM_P.Saturation_UpperSat_n) {
+    rtb_BrkTrqReqTotal = EvPowertrainController2EM_P.Saturation_UpperSat_n;
+} else if (rtb_BrkTrqReqTotal < EvPowertrainController2EM_P.Saturation_LowerSat_j) {
+    rtb_BrkTrqReqTotal = EvPowertrainController2EM_P.Saturation_LowerSat_j;
+}
+/* {E!d320}End of Saturate: '<S36>/Saturation' */
+
+/* {S!d322}Switch: '<S43>/Switch2' incorporates:
+ *  Constant: '<S43>/Constant1'
+ *  Constant: '<S43>/Constant2'
+ *  Inport: '<Root>/EMSpd'
+ *  Product: '<S43>/Product1'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ *  UnitDelay: '<S42>/Unit Delay'
+ */
+if (EvPowertrainController2EM_DW.UnitDelay_DSTATE_l * EvPowertrainController2EM_U.EMSpd[0] >= EvPowertrainController2EM_P.Switch2_Threshold_py) {
+    rtb_RegenFactor = EvPowertrainController2EM_P.Constant1_Value_h;
+} else {
+    rtb_RegenFactor = EvPowertrainController2EM_P.Constant2_Value_o;
+}
+/* {E!d322}End of Switch: '<S43>/Switch2' */
+
+/* {S!d324}Math: '<S43>/Math Function1' */
+if ((rtb_WhlEMTrqMax_tmp < 0.0) && (rtb_RegenFactor > floor(rtb_RegenFactor))) {
+    rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp", "rtb_RegenFactor"], 0, 4, 30))>;
+} else {
+    rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp", "rtb_RegenFactor"], 0, 4, 16))>;
+}
+/* {S!d326}Product: '<S42>/Divide2' incorporates:
+ *  Gain: '<S42>/Gain3'
+ *  Math: '<S43>/Math Function1'
+ */
+rtb_Product1 = rtb_RateLimiter_idx_0_tmp * rtb_RateLimiter_idx_0 * (1.0 / rtb_BrkTrqReqTotal_tmp);
+/* {S!d328}Switch: '<S44>/Switch2' incorporates:
+ *  Constant: '<S44>/Constant1'
+ *  Constant: '<S44>/Constant2'
+ *  Inport: '<Root>/EMSpd'
+ *  Product: '<S44>/Product1'
+ *  SignalConversion generated from: '<S25>/Vector Concatenate1'
+ *  UnitDelay: '<S42>/Unit Delay1'
+ */
+if (EvPowertrainController2EM_DW.UnitDelay1_DSTATE_o * EvPowertrainController2EM_U.EMSpd[1] >= EvPowertrainController2EM_P.Switch2_Threshold_o) {
+    rtb_RegenFactor = EvPowertrainController2EM_P.Constant1_Value_j;
+} else {
+    rtb_RegenFactor = EvPowertrainController2EM_P.Constant2_Value_h;
+}
+/* {E!d328}End of Switch: '<S44>/Switch2' */
+
+/* {S!d330}Math: '<S44>/Math Function1' */
+if ((rtb_WhlEMTrqMax_tmp_0 < 0.0) && (rtb_RegenFactor > floor(rtb_RegenFactor))) {
+    rtb_BrkTrqReqTotal_tmp = -%<(SLibCGCallSubFcn("rt_powd_snf", ["-rtb_WhlEMTrqMax_tmp_0", "rtb_RegenFactor"], 0, 4, 31))>;
+} else {
+    rtb_BrkTrqReqTotal_tmp = %<(SLibCGCallSubFcn("rt_powd_snf", ["rtb_WhlEMTrqMax_tmp_0", "rtb_RegenFactor"], 0, 4, 17))>;
+}
+/* {S!d332}Product: '<S42>/Divide1' incorporates:
+ *  Gain: '<S42>/Gain1'
+ *  Math: '<S44>/Math Function1'
+ */
+rtb_Gain1_n = rtb_RateLimiter_idx_1_tmp * rtb_Product * (1.0 / rtb_BrkTrqReqTotal_tmp);
+/* {S!d334}Update for UnitDelay: '<S69>/Unit Delay' */
+memcpy(&EvPowertrainController2EM_DW.UnitDelay_DSTATE[0], &rtb_Divide2_p[0], 201U * sizeof(real_T));
+/* {S!d336}Update for UnitDelay: '<S24>/Unit Delay' */
+memcpy(&EvPowertrainController2EM_DW.UnitDelay_DSTATE_p[0], &rtb_Switch2_l[0], 201U * sizeof(real_T));
+/* {S!d338}Update for UnitDelay: '<S24>/Unit Delay1' */
+memcpy(&EvPowertrainController2EM_DW.UnitDelay1_DSTATE[0], &rtb_Switch2[0], 201U * sizeof(real_T));
+/* {S!d340}Update for UnitDelay: '<S82>/Unit Delay' */
+memcpy(&EvPowertrainController2EM_DW.UnitDelay_DSTATE_n[0], &rtb_Divide2_ir[0], 201U * sizeof(real_T));
+/* {S!d342}Update for UnitDelay: '<S23>/Unit Delay1' */
+EvPowertrainController2EM_DW.UnitDelay1_DSTATE_p = rtb_RateLimiter_idx_0;
+/* {S!d344}Update for UnitDelay: '<S23>/Unit Delay2' */
+EvPowertrainController2EM_DW.UnitDelay2_DSTATE = rtb_Product;
+/* {S!d346}Update for UnitDelay: '<S42>/Unit Delay' */
+EvPowertrainController2EM_DW.UnitDelay_DSTATE_l = rtb_Product1;
+/* {S!d348}Update for UnitDelay: '<S42>/Unit Delay1' */
+EvPowertrainController2EM_DW.UnitDelay1_DSTATE_o = rtb_Gain1_n;
+/* {E!d27}End of Outputs for SubSystem: '<Root>/Energy Management' */
+
+/* {S!d350}RateLimiter: '<Root>/Rate Limiter' incorporates:
+ *  SignalConversion generated from: '<S42>/Vector Concatenate1'
+ */
+rtb_BrkTrqReqTotal_tmp = EvPowertrainController2EM_P.CtrlVcuRiseRate * EvPowertrainController2E_period;
+rtb_WhlEMTrqMax_tmp = EvPowertrainController2EM_P.CtrlVcuFallRate * EvPowertrainController2E_period;
+/* {S!d33}Outputs for Atomic SubSystem: '<Root>/Energy Management' */
+rtb_WhlEMTrqMax_tmp_0 = rtb_Product1 - EvPowertrainController2EM_DW.PrevY[0];
+/* {E!d33}End of Outputs for SubSystem: '<Root>/Energy Management' */
+if (rtb_WhlEMTrqMax_tmp_0 > rtb_BrkTrqReqTotal_tmp) {
+    rtb_WhlEMTrqMax_tmp_0 = EvPowertrainController2EM_DW.PrevY[0] + rtb_BrkTrqReqTotal_tmp;
+} else if (rtb_WhlEMTrqMax_tmp_0 < rtb_WhlEMTrqMax_tmp) {
+    rtb_WhlEMTrqMax_tmp_0 = EvPowertrainController2EM_DW.PrevY[0] + rtb_WhlEMTrqMax_tmp;
+} else {
+    /* {S!d35}Outputs for Atomic SubSystem: '<Root>/Energy Management' */
+    rtb_WhlEMTrqMax_tmp_0 = rtb_Product1;
+    /* {E!d35}End of Outputs for SubSystem: '<Root>/Energy Management' */
+}
+EvPowertrainController2EM_DW.PrevY[0] = rtb_WhlEMTrqMax_tmp_0;
+/* {S!d352}Outport: '<Root>/EMTrqCmd' */
+EvPowertrainController2EM_Y.EMTrqCmd[0] = rtb_WhlEMTrqMax_tmp_0;
+/* {S!d37}Outputs for Atomic SubSystem: '<Root>/Energy Management' */
+/* {S!d354}RateLimiter: '<Root>/Rate Limiter' incorporates:
+ *  SignalConversion generated from: '<S42>/Vector Concatenate1'
+ */
+rtb_WhlEMTrqMax_tmp_0 = rtb_Gain1_n - EvPowertrainController2EM_DW.PrevY[1];
+/* {E!d37}End of Outputs for SubSystem: '<Root>/Energy Management' */
+if (rtb_WhlEMTrqMax_tmp_0 > rtb_BrkTrqReqTotal_tmp) {
+    rtb_WhlEMTrqMax_tmp_0 = EvPowertrainController2EM_DW.PrevY[1] + rtb_BrkTrqReqTotal_tmp;
+} else if (rtb_WhlEMTrqMax_tmp_0 < rtb_WhlEMTrqMax_tmp) {
+    rtb_WhlEMTrqMax_tmp_0 = EvPowertrainController2EM_DW.PrevY[1] + rtb_WhlEMTrqMax_tmp;
+} else {
+    /* {S!d39}Outputs for Atomic SubSystem: '<Root>/Energy Management' */
+    rtb_WhlEMTrqMax_tmp_0 = rtb_Gain1_n;
+    /* {E!d39}End of Outputs for SubSystem: '<Root>/Energy Management' */
+}
+EvPowertrainController2EM_DW.PrevY[1] = rtb_WhlEMTrqMax_tmp_0;
+/* {S!d356}Outport: '<Root>/EMTrqCmd' */
+EvPowertrainController2EM_Y.EMTrqCmd[1] = rtb_WhlEMTrqMax_tmp_0;
+/* {S!d358}Outport: '<Root>/VcuBrkPrsCmd' */
+EvPowertrainController2EM_Y.VcuBrkPrsCmd[0] = rtb_BrkTrqReqTotal;
+EvPowertrainController2EM_Y.VcuBrkPrsCmd[1] = rtb_BrkTrqReqTotal;
+EvPowertrainController2EM_Y.VcuBrkPrsCmd[2] = rtb_BrkTrqReqTotal;
+EvPowertrainController2EM_Y.VcuBrkPrsCmd[3] = rtb_BrkTrqReqTotal;
+/* {S!d360}Gain: '<S7>/Gain1' incorporates:
+ *  Product: '<S7>/Product'
+ *  Sum: '<S7>/Sum'
+ */
+rtb_Gain1_n = (((rtb_BrkTrqReqTotal + rtb_BrkTrqReqTotal) + rtb_BrkTrqReqTotal) + rtb_BrkTrqReqTotal) / EvPowertrainController2EM_B.Probe * EvPowertrainController2EM_P.CtrlBcuTrlrBrkGain;
+/* {S!d362}Outport: '<Root>/VcuTrlrBrkPrsCmd' */
+EvPowertrainController2EM_Y.VcuTrlrBrkPrsCmd[0] = rtb_Gain1_n;
+EvPowertrainController2EM_Y.VcuTrlrBrkPrsCmd[1] = rtb_Gain1_n;
+EvPowertrainController2EM_Y.VcuTrlrBrkPrsCmd[2] = rtb_Gain1_n;
+EvPowertrainController2EM_Y.VcuTrlrBrkPrsCmd[3] = rtb_Gain1_n;
+EvPowertrainController2EM_Y.VcuTrlrBrkPrsCmd[4] = rtb_Gain1_n;
+EvPowertrainController2EM_Y.VcuTrlrBrkPrsCmd[5] = rtb_Gain1_n;
+/* {S!d364}Outport: '<Root>/Cltch1Cmd' incorporates:
+ *  Constant: '<Root>/Constant2'
+ */
+EvPowertrainController2EM_Y.Cltch1Cmd = EvPowertrainController2EM_P.Constant2_Value_f;
+/* {S!d366}Outport: '<Root>/Neutral' incorporates:
+ *  Constant: '<Root>/Constant3'
+ */
+EvPowertrainController2EM_Y.Neutral = EvPowertrainController2EM_P.Constant3_Value;
+/* {S!d368}Outport: '<Root>/FuelCellCurrCmd' incorporates:
+ *  Constant: '<Root>/Constant4'
+ */
+EvPowertrainController2EM_Y.FuelCellCurrCmd = EvPowertrainController2EM_P.Constant4_Value;
+/* {S!d370}Outport: '<Root>/FuelCellTempCmd' incorporates:
+ *  Constant: '<Root>/Constant5'
+ */
+EvPowertrainController2EM_Y.FuelCellTempCmd = EvPowertrainController2EM_P.Constant5_Value;
+%<SLibInsertSolverResetCode()>\
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction
+%function OutputsFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 4, fcnProtoType)>
+%endfunction

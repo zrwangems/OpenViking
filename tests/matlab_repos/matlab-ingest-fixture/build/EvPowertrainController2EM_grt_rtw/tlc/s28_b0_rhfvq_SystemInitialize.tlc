@@ -1,0 +1,48 @@
+%implements s28_b0_rhfvq_SystemInitialize "C"
+
+%function SystemInitialize(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+
+int32_T i;
+%closefile localVarDecl
+%<SLibInsertAsyncTaskInitializeCode(system)>
+%<SLibWriteMachineInitialize()>
+/* {S!d10}InitializeConditions for RateLimiter: '<Root>/Rate Limiter' */
+EvPowertrainController2EM_DW.PrevY[0] = EvPowertrainController2EM_P.RateLimiter_IC;
+EvPowertrainController2EM_DW.PrevY[1] = EvPowertrainController2EM_P.RateLimiter_IC;
+/* {S!d7}SystemInitialize for Atomic SubSystem: '<Root>/Energy Management' */
+for (i = 0; i < 201; i++) {
+    /* {S!d12}InitializeConditions for UnitDelay: '<S69>/Unit Delay' */
+    EvPowertrainController2EM_DW.UnitDelay_DSTATE[i] = EvPowertrainController2EM_P.UnitDelay_InitialCondition;
+    /* {S!d14}InitializeConditions for UnitDelay: '<S24>/Unit Delay' */
+    EvPowertrainController2EM_DW.UnitDelay_DSTATE_p[i] = EvPowertrainController2EM_P.UnitDelay_InitialCondition_o;
+    /* {S!d16}InitializeConditions for UnitDelay: '<S24>/Unit Delay1' */
+    EvPowertrainController2EM_DW.UnitDelay1_DSTATE[i] = EvPowertrainController2EM_P.UnitDelay1_InitialCondition;
+    /* {S!d18}InitializeConditions for UnitDelay: '<S82>/Unit Delay' */
+    EvPowertrainController2EM_DW.UnitDelay_DSTATE_n[i] = EvPowertrainController2EM_P.UnitDelay_InitialCondition_a;
+}
+/* {S!d20}InitializeConditions for UnitDelay: '<S23>/Unit Delay1' */
+EvPowertrainController2EM_DW.UnitDelay1_DSTATE_p = EvPowertrainController2EM_P.UnitDelay1_InitialCondition_m;
+/* {S!d22}InitializeConditions for UnitDelay: '<S23>/Unit Delay2' */
+EvPowertrainController2EM_DW.UnitDelay2_DSTATE = EvPowertrainController2EM_P.UnitDelay2_InitialCondition;
+/* {S!d24}InitializeConditions for UnitDelay: '<S42>/Unit Delay' */
+EvPowertrainController2EM_DW.UnitDelay_DSTATE_l = EvPowertrainController2EM_P.UnitDelay_InitialCondition_p;
+/* {S!d26}InitializeConditions for UnitDelay: '<S42>/Unit Delay1' */
+EvPowertrainController2EM_DW.UnitDelay1_DSTATE_o = EvPowertrainController2EM_P.UnitDelay1_InitialCondition_a;
+/* {E!d7}End of SystemInitialize for SubSystem: '<Root>/Energy Management' */
+%<SLibInsertInitPeriodicCStatesFcn(system)>
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedSystemInitializeLocalVars", localVarDecl)>
+%endfunction
+%function SystemInitializeFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void SystemInitialize(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 3, fcnProtoType)>
+%endfunction

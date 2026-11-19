@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-0-3.xsd">
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 L="EN" xml:space="preserve">English</L-10>
+    </USED-LANGUAGES>
+    <DOC-REVISIONS>
+      <DOC-REVISION>
+        <REVISION-LABEL>0.2.0</REVISION-LABEL>
+        <DATE>2010-07-01</DATE>
+      </DOC-REVISION>
+    </DOC-REVISIONS>
+  </ADMIN-DATA>
+  <INTRODUCTION>
+    <P>
+      <L-1 L="EN">This file contains Blueprints for the platform dependent information for the AUTOSAR PlatformTypes</L-1>
+    </P>
+    <NOTE NOTE-TYPE="HINT">
+      <P>
+        <L-1 L="EN">The platform independent parts are specified in the 
+        <XFILE>
+            <SHORT-NAME>AUTOSAR_MOD_PlatformTypes</SHORT-NAME>
+            <URL>AUTOSAR_MOD_PlatformTypes.arxml</URL>
+          </XFILE></L-1>
+      </P>
+    </NOTE>
+  </INTRODUCTION>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>AUTOSAR_PlatformTypes</SHORT-NAME>
+      <ADMIN-DATA />
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>BaseTypes</SHORT-NAME>
+          <LONG-NAME>
+            <L-4 L="EN">Blueprints for AUTOSAR Base Types for AUTOSAR Platform types for TC1796</L-4>
+          </LONG-NAME>
+          <ELEMENTS>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>boolean</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Boolean</L-4>
+              </LONG-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <INTRODUCTION>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM060</SHORT-NAME>
+                  <CATEGORY>SPECIFICATION_ITEM</CATEGORY>
+                  <P>
+                    <L-1 L="EN">The boolean type shall always be mapped to a platform specific type where pointers can be applied to to enable a passing of parameters via API. There are specific BIT types of some HW platforms which are very efficient but where no pointers can point to.</L-1>
+                  </P>
+                </TRACE>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM026</SHORT-NAME>
+                  <P>
+                    <L-1 L="EN">This standard AUTOSAR type shall only be used together with the definitions TRUE and FALSE. See PLATFORM027 for implementation and usage.</L-1>
+                  </P>
+                </TRACE>
+              </INTRODUCTION>
+              <BASE-TYPE-SIZE>8</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>BOOLEAN</BASE-TYPE-ENCODING>
+              <MEM-ALIGNMENT>0</MEM-ALIGNMENT>
+              <NATIVE-DECLARATION>unsigned char</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>uint8</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">unsigned integer 8bit</L-4>
+              </LONG-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <INTRODUCTION>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM013</SHORT-NAME>
+                  <CATEGORY>SPECIFICATION_ITEM</CATEGORY>
+                  <P>
+                    <L-1 L="EN">This standard AUTOSAR type shall be of 8 bit unsigned.</L-1>
+                  </P>
+                </TRACE>
+              </INTRODUCTION>
+              <BASE-TYPE-SIZE>8</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>NONE</BASE-TYPE-ENCODING>
+              <MEM-ALIGNMENT>0</MEM-ALIGNMENT>
+              <NATIVE-DECLARATION>unsigned char</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>uint16</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">unsigned integer 16bit</L-4>
+              </LONG-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <INTRODUCTION>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM014</SHORT-NAME>
+                  <CATEGORY>SPECIFICATION_ITEM</CATEGORY>
+                  <P>
+                    <L-1 L="EN">This standard AUTOSAR type shall be of 16 bit unsigned.</L-1>
+                  </P>
+                </TRACE>
+              </INTRODUCTION>
+              <BASE-TYPE-SIZE>16</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>NONE</BASE-TYPE-ENCODING>
+              <MEM-ALIGNMENT>0</MEM-ALIGNMENT>
+              <NATIVE-DECLARATION>unsigned short</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>uint32</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">unsigned integer 32bit</L-4>
+              </LONG-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <INTRODUCTION>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM015</SHORT-NAME>
+                  <P>
+                    <L-1 L="EN">This standard AUTOSAR type shall be 32 bit unsigned</L-1>
+                  </P>
+                </TRACE>
+              </INTRODUCTION>
+              <BASE-TYPE-SIZE>32</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>NONE</BASE-TYPE-ENCODING>
+              <MEM-ALIGNMENT>0</MEM-ALIGNMENT>
+              <NATIVE-DECLARATION>unsigned int</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>sint8</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">signed integer 8bit</L-4>
+              </LONG-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <INTRODUCTION>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM016</SHORT-NAME>
+                  <CATEGORY>SPECIFICATION_ITEM</CATEGORY>
+                  <P>
+                    <L-1 L="EN">This standard AUTOSAR type shall be 8 bit signed</L-1>
+                  </P>
+                </TRACE>
+              </INTRODUCTION>
+              <BASE-TYPE-SIZE>8</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>2C</BASE-TYPE-ENCODING>
+              <MEM-ALIGNMENT>0</MEM-ALIGNMENT>
+              <NATIVE-DECLARATION>char</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>sint16</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">signed integer 16bit</L-4>
+              </LONG-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <INTRODUCTION>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM017</SHORT-NAME>
+                  <CATEGORY>SPECIFICATION_ITEM</CATEGORY>
+                  <P>
+                    <L-1 L="EN">This standard AUTOSAR type shall be 16 bit signed.</L-1>
+                  </P>
+                </TRACE>
+              </INTRODUCTION>
+              <BASE-TYPE-SIZE>16</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>2C</BASE-TYPE-ENCODING>
+              <MEM-ALIGNMENT>0</MEM-ALIGNMENT>
+              <NATIVE-DECLARATION>short</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>sint32</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">signed integer 32bit</L-4>
+              </LONG-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <INTRODUCTION>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM018</SHORT-NAME>
+                  <CATEGORY>SPECIFICATION_ITEM</CATEGORY>
+                  <P>
+                    <L-1 L="EN">This standard AUTOSAR type shall be 32 bit signed.</L-1>
+                  </P>
+                </TRACE>
+              </INTRODUCTION>
+              <BASE-TYPE-SIZE>32</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>2C</BASE-TYPE-ENCODING>
+              <MEM-ALIGNMENT>0</MEM-ALIGNMENT>
+              <NATIVE-DECLARATION>int</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>float32</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Float</L-4>
+              </LONG-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <INTRODUCTION>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM041</SHORT-NAME>
+                  <CATEGORY>SPECIFICATION_ITEM</CATEGORY>
+                  <P>
+                    <L-1 L="EN">This standard AUTOSAR type shall be mapped as a single precision (32 bit) floating-point number.</L-1>
+                  </P>
+                </TRACE>
+              </INTRODUCTION>
+              <BASE-TYPE-SIZE>32</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>IEEE754</BASE-TYPE-ENCODING>
+              <MEM-ALIGNMENT>0</MEM-ALIGNMENT>
+              <NATIVE-DECLARATION>float</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>float64</SHORT-NAME>
+              <LONG-NAME>
+                <L-4 L="EN">Float</L-4>
+              </LONG-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <INTRODUCTION>
+                <TRACE>
+                  <SHORT-NAME>PLATFORM042</SHORT-NAME>
+                  <CATEGORY>SPECIFICATION_ITEM</CATEGORY>
+                  <P>
+                    <L-1 L="EN">PLATFORM042</L-1>
+                  </P>
+                </TRACE>
+              </INTRODUCTION>
+              <BASE-TYPE-SIZE>64</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>IEEE754</BASE-TYPE-ENCODING>
+              <MEM-ALIGNMENT>0</MEM-ALIGNMENT>
+              <NATIVE-DECLARATION>float</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE UUID="DCE:336cc76e-0d98-686d-b4be-b6ab21908e9d">
+              <SHORT-NAME>void</SHORT-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <BASE-TYPE-SIZE>32</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>VOID</BASE-TYPE-ENCODING>
+              <NATIVE-DECLARATION>void</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

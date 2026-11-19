@@ -19,6 +19,9 @@ lib/
 !examples/opencode-plugin/lib/**
 !examples/pi-coding-agent-extension/lib/
 !examples/pi-coding-agent-extension/lib/**
+# MATLAB ingest fixture: build/ 下的代码生成产物是入库跳过用例的一部分，需要入库。
+!tests/matlab_repos/matlab-ingest-fixture/build/
+!tests/matlab_repos/matlab-ingest-fixture/build/**
 lib64/
 parts/
 sdist/
@@ -253,3 +256,8 @@ examples/opencode-plugin/lib/shared/
 examples/dsh-memory-plugin/shared/
 examples/magpie-memory-plugin/shared/
 examples/pi-coding-agent-extension/shared/
+
+# MATLAB ingest fixture: data/ 与原生二进制（*.pdb）属于入库用例，需放在文件末尾覆盖上面的忽略规则。
+!tests/matlab_repos/matlab-ingest-fixture/data/
+!tests/matlab_repos/matlab-ingest-fixture/data/**
+!tests/matlab_repos/matlab-ingest-fixture/bin/*.pdb
