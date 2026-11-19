@@ -252,7 +252,7 @@ def _file_gen_folder_values(text: str) -> List[str]:
             if action == "reset":
                 applied.clear()
                 continue
-            if action != "setconfig":
+            if action not in {"setconfig", "set"}:
                 continue
             for index in range(1, len(args) - 1):
                 key = _string_literal(args[index])

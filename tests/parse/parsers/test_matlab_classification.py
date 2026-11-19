@@ -91,9 +91,10 @@ async def test_directory_import_writes_multilabel_manifest(tmp_path):
 
     skipped_doc = json.loads((root / "skipped.json").read_text(encoding="utf-8"))
     skipped = {item["path"]: item for item in skipped_doc["entries"]}
-    assert "slprj" in skipped["slprj"]["tags"]
-    assert "codegen" in skipped["Model_ert_rtw"]["tags"]
-    assert "build" in skipped["build"]["tags"]
+    assert "slprj" in skipped["slprj/ert/Model/generated.c"]["tags"]
+    assert "codegen" in skipped["Model_ert_rtw/generated.h"]["tags"]
+    assert {"codegen", "target"} <= set(skipped["build/fw.hex"]["tags"])
+    assert all(item["reason"] == "matlab build/cache" for item in skipped.values())
 
     # A .c file is source text here, so the manifest counts the readable category.
     assert manifest["summary"]["categories"]["可读文本"] >= 2

@@ -56,6 +56,18 @@ _FORMATS = {
         "https://www.mathworks.com/help/matlab/ref/matlab.apputil.install.html",
         archive=True,
     ),
+    ".mlpkginstall": FormatSpec(
+        "MATLAB support package installer",
+        "ZIP 包清单与 XML 元数据",
+        "https://www.mathworks.com/help/matlab/ref/matlab.addons.install.html",
+        archive=True,
+    ),
+    ".sltx": FormatSpec(
+        "Simulink project template",
+        "ZIP 包清单与模板元数据",
+        "https://www.mathworks.com/help/simulink/ug/create-a-simulink-project-template.html",
+        archive=True,
+    ),
     ".mltbx": FormatSpec(
         "MATLAB toolbox installer",
         "ZIP 包清单与 XML 元数据",
@@ -299,11 +311,57 @@ def _simscape_source(path: Path, spec: FormatSpec) -> str:
     return "\n".join(lines)
 
 
+def archive_manifest(path: str | Path) -> dict:
+    """Return a stable member manifest for a ZIP-based MATLAB package.
+
+    Listing works for encrypted archives too; the per-member ``encrypted`` flag
+    records that the bytes were not read. A central-directory failure returns an
+    empty member list instead of raising.
+    """
+    path = Path(path)
+    try:
+        with zipfile.ZipFile(path) as archive:
+            infos = sorted(archive.infolist(), key=lambda item: item.filename)
+            members = [
+                {
+                    "name": info.filename,
+                    "size": info.file_size,
+                    "compressed_size": info.compress_size,
+                    "encrypted": bool(info.flag_bits & 0x1),
+                }
+                for info in infos
+                if not info.is_dir()
+            ]
+    except (zipfile.BadZipFile, OSError, RuntimeError):
+        members = []
+    return {
+        "schema": "ov.matlab.container/1",
+        "file": path.name,
+        "format": path.suffix.lower().lstrip("."),
+        "bytes": path.stat().st_size,
+        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "encrypted": any(member["encrypted"] for member in members),
+        "member_count": len(members),
+        "members": members,
+        "boundary": "Members are listed, not executed; encrypted bytes were not read.",
+    }
+
+
 def _archive_inventory(path: Path, spec: FormatSpec) -> str:
     lines = _header(path, "matlab-container", spec)
     with zipfile.ZipFile(path) as archive:
         infos = sorted(archive.infolist(), key=lambda item: item.filename)
-        lines.extend(["## 容器清单", "", "| 成员 | 未压缩字节 |", "| --- | ---: |"])
+        encrypted = any(info.flag_bits & 0x1 for info in infos)
+        lines.extend(
+            [
+                f"加密状态：**{'有加密成员' if encrypted else '未检测到加密成员'}**。",
+                "",
+                "## 容器清单",
+                "",
+                "| 成员 | 未压缩字节 |",
+                "| --- | ---: |",
+            ]
+        )
         for info in infos[:300]:
             member_name = info.filename.replace("|", "\\|")
             lines.append(f"| `{member_name}` | {info.file_size} |")
@@ -320,7 +378,9 @@ def _archive_inventory(path: Path, spec: FormatSpec) -> str:
         for name in xml_names[:20]:
             try:
                 root = ET.fromstring(read_xml_member(archive, name))
-            except (ET.ParseError, ValueError):
+            except (ET.ParseError, ValueError, RuntimeError, NotImplementedError):
+                # Encrypted or unsupported-compression members can be listed
+                # but not read; the manifest keeps their names and sizes.
                 continue
             texts = []
             for element in root.iter():

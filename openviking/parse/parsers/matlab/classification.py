@@ -43,6 +43,13 @@ _EXTENSION_CATEGORY: dict[str, tuple[str, ...]] = {
     ".html": (CATEGORY_TEXT,),
     ".prj": (CATEGORY_TEXT,),
     ".asv": (CATEGORY_TEXT,),
+    ".dmr": (CATEGORY_DATA,),
+    ".tlh": (CATEGORY_TEXT,),
+    ".tmw": (CATEGORY_DATA,),
+    ".stl": (CATEGORY_DATA,),
+    ".png": (CATEGORY_DATA,),
+    ".py": (CATEGORY_TEXT,),
+    ".xlsx": (CATEGORY_DATA,),
     ".xml": (CATEGORY_TEXT,),
     ".json": (CATEGORY_TEXT,),
     ".yaml": (CATEGORY_TEXT,),
@@ -62,6 +69,8 @@ _EXTENSION_CATEGORY: dict[str, tuple[str, ...]] = {
     ".mlproj": (CATEGORY_CONTAINER,),
     ".mltbx": (CATEGORY_CONTAINER,),
     ".mlappinstall": (CATEGORY_CONTAINER,),
+    ".mlpkginstall": (CATEGORY_CONTAINER,),
+    ".sltx": (CATEGORY_CONTAINER,),
     ".slreqx": (CATEGORY_CONTAINER,),
     ".slmx": (CATEGORY_CONTAINER,),
     ".mldatx": (CATEGORY_CONTAINER,),
@@ -99,7 +108,7 @@ INHERENT_TAGS: dict[str, tuple[str, ...]] = {
 BUILD_DIR_NAMES = frozenset({"slprj", "sfprj"})
 BUILD_DIR_GLOBS = ("*_rtw",)
 PROJECT_BUILD_DIR_NAMES = frozenset({"codegen"})
-BUILD_OUTPUT_DIR_NAMES = frozenset({"build", "output", "out", "bin", "target", "release", "debug"})
+BUILD_OUTPUT_DIR_NAMES = frozenset({"build", "output", "out", "target", "release", "debug"})
 RUNTIME_DIR_NAMES = frozenset({"rsim", "raccel", "sim"})
 
 DERIVED_EXTS = frozenset({".slxc", ".autosave"})
@@ -212,6 +221,8 @@ def classify_path(
         action, reason = ACTION_ATTACH, "交付附件"
     elif ext == ".map" and not generated:
         action, reason = ACTION_IMPORT, "单独交付的映射文件"
+    elif ext == ".stl":
+        action, reason = ACTION_ATTACH, "三维模型附件"
 
     return {
         "path": Path(*parts).as_posix(),

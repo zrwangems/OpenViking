@@ -300,6 +300,16 @@ def scan_directory(
         for d in dir_names:
             sub = dir_path / d
             skip, reason = _should_skip_directory(sub, root, ignore_dirs_set)
+            if (
+                skip
+                and matlab_project
+                and reason == "IGNORE_DIRS"
+                and sub.name.casefold() in {"bin", "build"}
+            ):
+                # MATLAB projects keep tool binaries (bin/) and generated
+                # outputs (build/) addressable so classification can import or
+                # record each file. Other projects keep the global pruning.
+                skip = False
             if skip:
                 skipped_path = _normalize_rel_path(str(sub.relative_to(root)))
                 result.skipped.append(f"{skipped_path} ({reason})")
@@ -321,13 +331,20 @@ def scan_directory(
 
             if matlab_ignore and matlab_ignore.is_build_dir(sub):
                 skipped_path = _normalize_rel_path(str(sub.relative_to(root)))
-                result.skipped.append(f"{skipped_path} ({MATLAB_BUILD_REASON})")
                 if matlab_project:
-                    from openviking.parse.parsers.matlab.classification import (
-                        classify_directory,
-                    )
+                    from openviking.parse.parsers.matlab.classification import classify_path
 
-                    result.skipped_details.append(classify_directory(skipped_path))
+                    for generated in sorted(sub.rglob("*")):
+                        if not generated.is_file():
+                            continue
+                        generated_rel = _normalize_rel_path(
+                            str(generated.relative_to(root))
+                        )
+                        labels = classify_path(generated_rel)
+                        result.skipped.append(f"{generated_rel} ({MATLAB_BUILD_REASON})")
+                        result.skipped_details.append(labels)
+                else:
+                    result.skipped.append(f"{skipped_path} ({MATLAB_BUILD_REASON})")
                 continue
 
             kept.append(d)

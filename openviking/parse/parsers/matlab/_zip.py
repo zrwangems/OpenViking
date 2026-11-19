@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import zipfile
 
-MAX_XML_MEMBER_BYTES = 64 * 1024 * 1024
+MAX_XML_MEMBER_BYTES = 128 * 1024 * 1024
 
 
 def read_xml_member(archive: zipfile.ZipFile, name: str, *, max_bytes: int | None = None) -> bytes:

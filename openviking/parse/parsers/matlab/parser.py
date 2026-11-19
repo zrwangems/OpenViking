@@ -17,6 +17,7 @@ from openviking.parse.parsers.base_parser import BaseParser
 from openviking.parse.parsers.matlab.coverage import coverage_json
 from openviking.parse.parsers.matlab.formats import (
     additional_extensions,
+    archive_manifest,
     is_additional_format,
     parse_additional,
 )
@@ -55,6 +56,7 @@ _NATIVE_BINARY_SUFFIXES = {
 }
 _MEASUREMENT_BINARY_SUFFIXES = {".mdf", ".mf4", ".blf"}
 _PRESERVED_CONTAINER_SUFFIXES = {".jar", ".ctf"}
+_PACKAGE_MANIFEST_SUFFIXES = {".mlpkginstall", ".sltx"}
 
 
 class MatlabParser(BaseParser):
@@ -228,7 +230,7 @@ class MatlabParser(BaseParser):
                     protected_metadata, path, f"native-{suffix.removeprefix('.')}"
                 )
                 await writer.write_text(
-                    f"{folder}/{path.name}.json",
+                    f"{folder}/metadata.json",
                     json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
                 )
                 meta = {
@@ -280,9 +282,50 @@ class MatlabParser(BaseParser):
                 )
                 content, _ = await asyncio.to_thread(parse_additional, path)
                 await writer.write_text(f"{folder}/{path.name}.md", content)
+                manifest = await asyncio.to_thread(archive_manifest, path)
+                await writer.write_text(
+                    f"{folder}/manifest.json",
+                    json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                )
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
                     "original_preserved": True,
+                    "encrypted": manifest["encrypted"],
+                }
+                title = path.stem
+            elif suffix in _PACKAGE_MANIFEST_SUFFIXES:
+                folder = path.stem
+                await writer.write_bytes(
+                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                )
+                manifest = await asyncio.to_thread(archive_manifest, path)
+                await writer.write_text(
+                    f"{folder}/manifest.json",
+                    json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                )
+                if suffix == ".sltx":
+                    template_members = [
+                        member["name"]
+                        for member in manifest["members"]
+                        if "template" in member["name"].casefold()
+                    ]
+                    await writer.write_text(
+                        f"{folder}/template.json",
+                        json.dumps(
+                            {
+                                "schema": "ov.matlab.template/1",
+                                "file": path.name,
+                                "members": template_members,
+                            },
+                            ensure_ascii=False,
+                            indent=2,
+                        )
+                        + "\n",
+                    )
+                meta = {
+                    "matlab_format": suffix.removeprefix("."),
+                    "original_preserved": True,
+                    "encrypted": manifest["encrypted"],
                 }
                 title = path.stem
             elif suffix in {".slxp", ".mdlp", ".sscp"}:
@@ -314,6 +357,12 @@ class MatlabParser(BaseParser):
                     content = await asyncio.to_thread(parse_m_file, path)
                 elif is_additional_format(suffix):
                     content, _ = await asyncio.to_thread(parse_additional, path)
+                    if zipfile.is_zipfile(path):
+                        manifest = await asyncio.to_thread(archive_manifest, path)
+                        await writer.write_text(
+                            f"{path.stem}/manifest.json",
+                            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                        )
                 else:
                     raise ValueError(f"Unsupported MATLAB extension: {suffix}")
                 # Plain MATLAB source stays a code resource. Containers become

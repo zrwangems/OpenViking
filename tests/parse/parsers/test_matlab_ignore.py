@@ -14,7 +14,7 @@ from openviking.parse.parsers.matlab.ignore import (
     matlab_ignore_for,
 )
 
-SAMPLE = Path(__file__).parents[2] / "matlab_repos" / "DRLHevIps5_4"
+SAMPLE = Path(__file__).parents[2] / "matlab_repos" / "matlab-ingest-fixture"
 
 DEFAULT_SCRIPT = """
 cfg = Simulink.fileGenControl('getConfig');
@@ -42,12 +42,13 @@ def write(root: Path, relative: str, content: str = "x = 1;") -> Path:
 
 
 def test_detects_custom_cache_folder_from_file_gen_control():
-    assert detect_build_folders(SAMPLE) == (("simulation cache folder",),)
+    assert detect_build_folders(SAMPLE) == (("build",), ("cache",))
     rules = matlab_ignore_for(SAMPLE)
     assert rules is not None
-    assert rules.is_build_dir(SAMPLE / "Simulation cache folder")
-    assert rules.is_build_dir(SAMPLE / "sub" / "Simulation Cache Folder")
-    assert not rules.is_build_dir(SAMPLE / "DriveCycle")
+    assert rules.is_build_dir(SAMPLE / "build")
+    assert rules.is_build_dir(SAMPLE / "cache")
+    assert rules.is_build_dir(SAMPLE / "model" / "build")
+    assert not rules.is_build_dir(SAMPLE / "model" / "VirtualVehicle")
 
 
 def test_detects_direct_set_config_arguments(tmp_path: Path):
@@ -146,9 +147,13 @@ def test_scan_skips_build_cache_and_custom_folders(tmp_path: Path):
     assert result.unsupported == []
     assert result.warnings == []
     assert {
-        "slprj",
-        "Plant_ert_rtw",
-        "Simulation cache folder",
+        "slprj/ert/Plant/Plant.c",
+        "slprj/ert/Plant/Plant.obj",
+        "Plant_ert_rtw/Plant.c",
+        "Plant_ert_rtw/Plant.h",
+        "Plant_ert_rtw/html/report.html",
+        "Simulation cache folder/slprj/ert/Plant/Plant.c",
+        "Simulation cache folder/cache.slxc",
         "Plant.slxc",
         "Plant.slx.autosave",
     } == {entry_path.split(" (")[0] for entry_path in result.skipped}
@@ -207,9 +212,9 @@ def test_codegen_and_custom_folders_at_any_depth_in_matlab_project(tmp_path: Pat
     ]
     skipped = {entry.split(" (")[0] for entry in result.skipped}
     assert skipped == {
-        "deep/a/codegen",
-        "deep/a/build",
-        "deep/a/other/build",
+        "deep/a/codegen/lib/Plant/Plant.c",
+        "deep/a/build/cache/slprj/ert/Plant/Plant.c",
+        "deep/a/other/build/cache/model.slxc",
     }
 
 
@@ -228,9 +233,19 @@ def test_whole_sample_project_still_imports_every_source_file(tmp_path: Path):
     result = scan_directory(SAMPLE, strict=True)
 
     processable = [entry.rel_path for entry in result.processable]
-    assert len(processable) == 23
+    assert len(processable) == 2645
+    assert len(result.skipped_details) == 73
+    assert len(processable) + len(result.skipped_details) == 2718
     assert not result.unsupported
-    assert not any("build/cache" in entry for entry in result.skipped)
+    assert "src/autoblkscheckparams.p" in processable
+    assert "src/detectChangeOrbitalElements.m" in processable
+    assert "bin/AddOnInstaller.exe" in processable
+    assert not any(entry.endswith("(IGNORE_DIRS)") for entry in result.skipped)
+    assert {entry["reason"] for entry in result.skipped_details} <= {
+        "matlab build/cache",
+        "matlab derived file",
+        "matlab build output",
+    }
 
 
 def test_skipped_reason_is_reported_as_ignore():
@@ -263,4 +278,4 @@ def test_default_build_folder_names_are_skipped(tmp_path: Path, folder: str):
     result = scan_directory(tmp_path)
 
     assert f"{folder}/generated.c" not in [entry.rel_path for entry in result.processable]
-    assert any(entry.startswith(f"{folder} ") for entry in result.skipped)
+    assert any(entry.startswith(f"{folder}/generated.c ") for entry in result.skipped)

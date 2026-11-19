@@ -160,6 +160,17 @@ def parse_mat_documents(path: str | Path) -> tuple[dict[str, str], list[str]]:
                 if name.startswith("#refs#") or "/#refs#/" in name:
                     return
                 if isinstance(dataset, h5py.Dataset):
+                    if h5py.check_dtype(ref=dataset.dtype) is not None:
+                        # Simulink signal-editor files store HDF5 references;
+                        # they point at #refs# objects rather than numeric data.
+                        hdf_previews[name] = (
+                            f"HDF5 reference array {getattr(dataset, 'shape', '')}".strip()
+                        )
+                        warnings.append(
+                            f"{path.name}: `{name}` 是 HDF5 引用数组，"
+                            "引用目标未作为数组展开；原件保留"
+                        )
+                        return
                     arrays.append((name, dataset[()]))
 
             handle.visititems(collect_dataset)

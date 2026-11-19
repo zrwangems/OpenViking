@@ -85,7 +85,7 @@ def render_coverage(path: str | Path, model: System) -> str:
         lines.append("无。")
     lines.extend(["", "## Stateflow", ""])
     lines.extend(
-        f"- `{name}`：已展开到对应子系统的 `stateflow_<chart-id>.md`，包含状态层级、动作原文和转移；不执行事件调度。"
+        f"- `{name}`：已展开到对应子系统的 `stateflow/chart_<chart-id>.json`，包含状态层级、动作原文和转移；不执行事件调度。"
         for name in stateflow
     )
     if not stateflow:
@@ -99,7 +99,7 @@ def render_coverage(path: str | Path, model: System) -> str:
             "",
             "## Compile 约束",
             "",
-            "引用本模型时必须同时检查对应子系统的 `main.md` 或叶系统 Markdown。上述未展开项是明确的未知边界，不得根据块名补写实现，也不得声称模型已完成动态仿真验证。",
+            "引用本模型时必须同时检查对应子系统的 `main.json` 或叶子系统 JSON。上述未展开项是明确的未知边界，不得根据块名补写实现，也不得声称模型已完成动态仿真验证。",
             "",
         ]
     )

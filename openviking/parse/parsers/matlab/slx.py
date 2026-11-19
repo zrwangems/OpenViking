@@ -150,6 +150,13 @@ def parse_slx(path: str | Path) -> System:
         model = root_xml.find("./Model")
         root_ref_element = model.find("./System") if model is not None else None
         if root_ref_element is None:
+            # R2025b writes <ModelInformation><Subsystem><System Ref=.../>.
+            # Older releases use <Model><System Ref=.../>.
+            root_ref_element = root_xml.find("./Subsystem/System")
+        if root_ref_element is None:
+            # Block libraries store the root under <Library><System>.
+            root_ref_element = root_xml.find("./Library/System")
+        if root_ref_element is None:
             raise ValueError(f"SLX archive has no model root System: {path.name}")
         root_ref = root_ref_element.get("Ref", "")
         if not root_ref:

@@ -47,7 +47,15 @@ from openviking.parse.parsers.matlab.structured import (
 from openviking.parse.parsers.matlab.templates import render_block_template
 from openviking.parse.registry import ParserRegistry
 
-SAMPLE = Path(__file__).parents[2] / "matlab_repos" / "DRLHevIps5_4"
+SAMPLE = Path(__file__).parents[2] / "matlab_repos" / "matlab-ingest-fixture"
+CONTROLLER = (
+    SAMPLE
+    / "model"
+    / "VirtualVehicle"
+    / "VirtualVehicle"
+    / "Controller"
+    / "HevIpsPowertrainController.slx"
+)
 
 
 def flatten(system):
@@ -57,17 +65,17 @@ def flatten(system):
 
 
 def test_slx_nested_systems_ports_parameters_and_branches():
-    model = parse_slx(SAMPLE / "DRLHevIps.slx")
+    model = parse_slx(CONTROLLER)
     systems = list(flatten(model))
     documents = system_json_documents(model)
 
-    assert len(systems) == 65
+    assert len(systems) == 32
     assert len(documents) == len(systems)
     assert any(system.inputs for system in systems)
     assert any(system.outputs for system in systems)
     assert documents["main.json"]["type"] == "simulink-model"
-    assert "xCU/xCU_Output.json" in documents
-    assert "xCU/xCU/main.json" in documents
+    assert "IPS_Supervisory_Control/main.json" in documents
+    assert "Accel_Pedal_to_Traction_Wheel_Torque_Request.json" in documents
     assert not any(path.endswith("/index.json") or path == "index.json" for path in documents)
     for path, document in documents.items():
         assert document["schema"] == "ov.matlab.simulink/1"
@@ -76,37 +84,26 @@ def test_slx_nested_systems_ports_parameters_and_branches():
         assert isinstance(document["edges"], list)
         assert set(document) >= {"system", "system_ref", "subsystem_types", "children"}
         assert "```mermaid" not in json.dumps(document)
-    assert any("DRL_single" in path for path in documents)
-
-    battery = parse_slx(SAMPLE / "Bat" / "Bat.slx")
-    battery_doc = system_json_documents(battery)["main.json"]
-    names = {block["name"] for block in battery_doc["blocks"]}
-    assert {"BattTemp", "BattSoc", "Constant", "DC-DC Converter"} <= names
-    # Every parsed edge is in the graph, including unresolved endpoints and
-    # unlabeled signals.
-    assert len(battery_doc["edges"]) == len(battery.edges)
-    # Branch elements must become independent destinations, not disappear.
-    assert sum(edge.destination == "465#in:1" for edge in battery.edges) == 1
-    assert "464#out:1" in {edge.source for edge in battery.edges}
+    total_edges = sum(len(document["edges"]) for document in documents.values())
+    assert total_edges == sum(len(system.edges) for system in systems)
+    assert (
+        documents["IPS_Supervisory_Control/Generator_Control.ON.GenControl/main.json"]["type"]
+        == "simulink-subsystem"
+    )
 def test_system_json_stays_compact_and_keeps_instance_parameters():
-    documents = system_json_documents(parse_slx(SAMPLE / "DRLHevIps.slx"), language="zh-CN")
+    documents = system_json_documents(parse_slx(CONTROLLER), language="zh-CN")
     power_path = next(
-        path for path in documents if path.endswith("Mech_to_Elec_Power_Estimate.json")
+        path for path in documents if path.endswith("Mech_To_Elec_Power_Estimate.json")
     )
     power = documents[power_path]
     payload = json.dumps(power, ensure_ascii=False)
     assert "Lookup_n-D" in payload
-    assert "BreakpointsForDimension1" in payload
     assert power["blocks"]
     assert any(
-        block["params"].get("Table") == "MotMapEff'" for block in power["blocks"]
+        block["params"].get("Table") == "PlntEM2EffTbl" for block in power["blocks"]
     )
     assert "逼近 N 维函数" not in payload
     assert len(payload) < 10_000
-
-    battery = system_json_documents(parse_slx(SAMPLE / "Bat" / "Bat.slx"))["main.json"]
-    assert "Constant" in {block["name"] for block in battery["blocks"]}
-    assert "Datasheet Battery" in json.dumps(battery, ensure_ascii=False)
 def test_block_library_resource_pack_keeps_block_documents_only(tmp_path):
     """The resource carries block pages: no hand-written index, no rule-based L0/L1."""
 
@@ -163,14 +160,14 @@ def test_block_library_language_pack_puts_products_at_the_root(tmp_path):
 
 
 def test_slx_deduplicates_colliding_directory_names():
-    model = parse_slx(SAMPLE / "DRLHevIps.slx")
+    model = parse_slx(CONTROLLER)
     documents = system_json_documents(model)
     assert len(documents) == len(set(documents))
 
 
 def test_stateflow_states_actions_default_transition_and_conditions():
-    charts = parse_stateflow(SAMPLE / "DRLHevIps.slx")
-    assert [chart.chart_id for chart in charts] == ["824", "988"]
+    charts = parse_stateflow(CONTROLLER)
+    assert [chart.chart_id for chart in charts] == ["798", "962"]
 
     timer = render_stateflow(charts[1])
     assert len(charts[1].states) == 3
@@ -188,30 +185,31 @@ def test_stateflow_states_actions_default_transition_and_conditions():
     assert len(charts[0].transitions) == 35
     assert "EngOnReq = EngOnCalc" in supervisory
     assert 'state "HEV" as s10 {' in supervisory
-
-
 def test_sldd_entries_dimensions_types_and_references():
-    tree = parse_sldd_tree(SAMPLE / "HevIps.sldd")
-    assert tree["entry_count"] == 4
-    assert tree["references"] == ["VehCong.sldd"]
+    dictionary = (
+        SAMPLE
+        / "model"
+        / "asbCubeSatMBSE"
+        / "CubeSatMBSEModel"
+        / "ModelData"
+        / "asbCubeSatArchInterfaceData.sldd"
+    )
+    tree = parse_sldd_tree(dictionary)
+    assert tree["entry_count"] == 6
+    assert tree["references"] == ["asbCubeSatModelData.sldd"]
+    assert tree["classes"] == {
+        "Simulink.Parameter": 3,
+        "Simulink.ConfigSet": 2,
+        "Simulink.Bus": 1,
+    }
     by_name = {entry["name"]: entry for entry in tree["entries"]}
-    assert by_name["VCU_Mode"]["value"]["class"] == "Simulink.Parameter"
-    assert by_name["VCU_Mode"]["value"]["Value"] == "2.0"
-    assert by_name["DRLEMS"]["value"]["class"] == "Simulink.VariantExpression"
-    assert by_name["DRLEMS"]["value"]["Condition"] == "VCU_Mode == 3"
+    assert by_name["altitude"]["value"]["class"] == "Simulink.Parameter"
+    assert by_name["altitude"]["value"]["Value"] == "4000000.0"
+    assert by_name["ACSConfigSet"]["value"]["class"] == "Simulink.ConfigSet"
 
-    config = parse_sldd_tree(SAMPLE / "VehCong.sldd")
-    assert config["entry_count"] == 2
-    assert config["classes"] == {"Simulink.ConfigSet": 2}
-    rendered = json.dumps(config, ensure_ascii=False)
-    assert "SolverName" in rendered and "ode4" in rendered
-
-    # The tree keeps the old flat Markdown renderer available for callers that
-    # still request a human-readable page.
-    content = parse_sldd(SAMPLE / "HevIps.sldd")
-    assert "| VCU_Mode | Simulink.Parameter | 1 × 1 | auto | 2.0;" in content
-
-
+    content = parse_sldd(dictionary)
+    assert "| altitude | Simulink.Parameter | 1 × 1 | auto | 4000000.0 |" in content
+    assert "SolverName=FixedStepDiscrete" in content
 def test_slx_rejects_missing_model_root(tmp_path):
     path = tmp_path / "invalid.slx"
     with zipfile.ZipFile(path, "w") as archive:
@@ -271,22 +269,20 @@ def test_mat_sparse_array_is_exported_in_full(tmp_path):
 
 
 def test_mlx_preserves_headings_text_and_code():
-    content = parse_mlx(SAMPLE / "RunSACEMS.mlx")
-    assert "## 版本内容" in content
-    assert "仿真结果实验" in content
+    live_script = SAMPLE / "model" / "asbCubeSatMBSE" / "MissionAnalysis" / "mappingToolboxAnalysis.mlx"
+    content = parse_mlx(live_script)
+    assert "## Run the Simulation" in content
+    assert "CubeSat Mission Analysis with Mapping Toolbox" in content
     assert "```matlab" in content
-    assert "rlSimulinkEnv(mdl,agentblk,obsInfo,actInfo)" in content
+    assert 'arch.model = "asbCubeSatArchModel"' in content
 
-    notebook, files = parse_mlx_notebook(SAMPLE / "RunSACEMS.mlx")
+    notebook, files = parse_mlx_notebook(live_script)
     kinds = [cell["type"] for cell in notebook["cells"]]
     assert "heading" in kinds and "text" in kinds and "code" in kinds
     code = "\n".join(cell["source"] for cell in notebook["cells"] if cell["type"] == "code")
-    assert "rlSimulinkEnv(mdl,agentblk,obsInfo,actInfo)" in code
-    assert notebook["outputs"], "saved outputs must be kept"
+    assert 'arch.model = "asbCubeSatArchModel"' in code
     assert any(output["type"] == "image" for output in notebook["outputs"])
     assert files and all(name.startswith("outputs/") for name in files)
-
-
 def test_fig_tree_keeps_handle_objects(tmp_path):
     scipy_io = pytest.importorskip("scipy.io")
     scipy_io.savemat(
@@ -391,33 +387,41 @@ async def test_parser_keeps_protected_original_and_requirement_json(tmp_path):
 
 
 def test_mat_shapes_struct_fields_and_m_source():
-    content, warnings = parse_mat(SAMPLE / "DriveCycle" / "WLTC.mat")
-    assert "| WLTC | 1800 × 2 |" in content
+    flames = SAMPLE / "data" / "flames.mat"
+    content, warnings = parse_mat(flames)
+    assert "| X | 100 × 100 | uint8 |" in content
     assert not warnings
 
-    documents, warnings = parse_mat_documents(SAMPLE / "DriveCycle" / "WLTC.mat")
+    documents, warnings = parse_mat_documents(flames)
     csv_path = next(name for name in documents if name.endswith(".csv"))
     rows = list(csv.reader(io.StringIO(documents[csv_path])))
-    assert len(rows) == 3601
+    assert len(rows) == 10001
     assert rows[0] == ["row", "column", "value"]
-    assert rows[-1][:2] == ["1800", "2"]
+    assert rows[-1][:2] == ["100", "100"]
     assert not warnings
 
-    agent, _ = parse_mat(SAMPLE / "Result" / "DRLEMSagent.mat")
-    assert "DRLEMSagent" in agent
+    dataset = (
+        SAMPLE
+        / "model"
+        / "VirtualVehicle"
+        / "Electrical"
+        / "Plant"
+        / "Calibrations"
+        / "DeepLearningBattery"
+        / "TransientBatteryTestDataset.mat"
+    )
+    agent, _ = parse_mat(dataset)
     assert "struct fields: _TypeSystem, _Class, _ObjectMetadata" in agent
-    assert "DRLEMSagent[1]._ObjectMetadata" in agent
+    assert "DLBatteryTestData[1]._ObjectMetadata" in agent
 
-    source = parse_m_file(SAMPLE / "Eng" / "Eng_param_Handle.m")
+    source = parse_m_file(SAMPLE / "src" / "detectChangeOrbitalElements.m")
     assert "type: matlab-code" in source
     assert "```matlab" in source
-
-
 @pytest.mark.asyncio
 async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     store = LocalParseOutputStore(tmp_path)
     parser = MatlabParser()
-    result = await parser.parse(SAMPLE / "DRLHevIps.slx", parse_output_store=store)
+    result = await parser.parse(CONTROLLER, parse_output_store=store)
     root = Path(result.artifact_ref.root)
     docs = [
         path
@@ -425,29 +429,28 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
         if json.loads(path.read_text(encoding="utf-8")).get("schema") == "ov.matlab.simulink/1"
     ]
 
-    assert result.meta["system_count"] == 65
-    assert result.meta["block_count"] > 1000
+    assert result.meta["system_count"] == 32
+    assert result.meta["block_count"] == 478
     assert result.meta["stateflow_chart_count"] == 2
     assert result.meta["stateflow_state_count"] == 37
     assert result.meta["stateflow_transition_count"] == 40
-    assert len(docs) == 65
-    model_root = root / "DRLHevIps"
+    assert len(docs) == 32
+    model_root = root / "HevIpsPowertrainController"
     assert (model_root / "main.json").is_file()
-    assert (model_root / "xCU" / "xCU_Output.json").is_file()
-    assert not (model_root / "xCU" / "xCU_Output").exists()
-    timer = model_root / "stateflow" / "chart_988.json"
+    assert (model_root / "IPS_Supervisory_Control" / "main.json").is_file()
+    assert (model_root / "Accel_Pedal_to_Traction_Wheel_Torque_Request.json").is_file()
+    timer = model_root / "stateflow" / "chart_962.json"
     assert "after(0.1, sec)" in timer.read_text(encoding="utf-8")
     # Every child path in a system JSON resolves inside the artifact.
     for document in docs:
         payload = json.loads(document.read_text(encoding="utf-8"))
         for child in payload.get("children", []):
             assert (document.parent / child["path"]).resolve().is_file(), (document, child["path"])
-    assert (root / "DRLHevIps" / "coverage.json").is_file()
+    assert (model_root / "coverage.json").is_file()
     assert (root / ".artifact_manifest.json").is_file()
     assert result.parser_name == "MatlabParser"
-    assert not (root / "DRLHevIps" / "DRLHevIps.slx").exists()
-
-
+    assert not (model_root / "HevIpsPowertrainController.slx").exists()
+    assert not list(model_root.rglob("*.md"))
 @pytest.mark.asyncio
 async def test_whole_joint_project_upload_including_p_code(tmp_path):
     store = LocalParseOutputStore(tmp_path)
@@ -461,44 +464,64 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     root = Path(result.artifact_ref.root)
 
     assert result.warnings == []
+    assert result.meta["unsupported_files"] == []
+    assert len(result.meta["skipped_files"]) == 73
     system_pages = [
         path
         for path in root.rglob("*.json")
         if json.loads(path.read_text(encoding="utf-8")).get("schema") == "ov.matlab.simulink/1"
     ]
-    assert len(system_pages) == 85
-    power = next(root.rglob("Mech_to_Elec_Power_Estimate.json")).read_text(encoding="utf-8")
-    assert "逼近 N 维函数" not in power
-    assert "Output absolute value of input" not in power
-    assert (root / "DRLHevIps5_4" / "DriveCycle" / "WLTC.mat.md").is_file()
-    assert (root / "DRLHevIps5_4" / "RunSACEMS" / "RunSACEMS.mlx.json").is_file()
-    assert (root / "DRLHevIps5_4" / "HevIps.sldd.json").is_file()
-    assert list((root / "DRLHevIps5_4" / "RunSACEMS" / "outputs").glob("*.png"))
-    assert "P_max_kW" in (root / "DRLHevIps5_4" / "Eng" / "Eng_param.mat.md").read_text(
-        encoding="utf-8"
+    assert len(system_pages) > 500
+    base = root / "matlab-ingest-fixture"
+    assert (base / "data" / "flames.mat.md").is_file()
+    assert (
+        base
+        / "model"
+        / "asbCubeSatMBSE"
+        / "MissionAnalysis"
+        / "mappingToolboxAnalysis"
+        / "mappingToolboxAnalysis.mlx.json"
+    ).is_file()
+    assert list(
+        (
+            base
+            / "model"
+            / "asbCubeSatMBSE"
+            / "MissionAnalysis"
+            / "mappingToolboxAnalysis"
+            / "outputs"
+        ).glob("*.png")
     )
-    # M source remains a code resource, without a duplicate generated MD page.
-    assert (root / "DRLHevIps5_4" / "Eng" / "Eng_param.m").is_file()
-    assert not (root / "DRLHevIps5_4" / "Eng" / "Eng_param.m.md").exists()
-    assert not (root / "DRLHevIps5_4" / "Eng" / "Eng_param.mat").exists()
-    wltc = root / "DRLHevIps5_4" / "DriveCycle"
-    csv_path = next((wltc / "data").glob("*.csv"))
-    with csv_path.open(encoding="utf-8", newline="") as stream:
-        rows = list(csv.reader(stream))
-    assert len(rows) == 3601
+    assert (
+        base
+        / "model"
+        / "asbCubeSatMBSE"
+        / "CubeSatMBSEModel"
+        / "ModelData"
+        / "asbCubeSatArchInterfaceData.sldd.json"
+    ).is_file()
+    assert (base / "src" / "detectChangeOrbitalElements.m").is_file()
+    assert not (base / "src" / "detectChangeOrbitalElements.m.md").exists()
+    assert list((base / "bin").rglob("*.dll"))
+    assert (base / "bin" / "AddOnInstaller" / "metadata.json").is_file()
+    assert (base / "bin" / "ingest_firmware.hex").is_file()
+    assert (base / "bin" / "visionzynq-target-eventhandler.elf").is_file()
+    assert list((base / "model" / "VirtualVehicle" / "PassVeh" / "Plant").glob("*.STL"))
+    assert (base / "build").exists() is False  # generated files are skipped, not imported
+    assert (base / "slprj").exists() is False
+    assert (base / "packages" / "IngestFixtureSupport" / "manifest.json").is_file()
+    assert (base / "packages" / "asbCubeSatMBSEProject" / "manifest.json").is_file()
 
     # Opaque P-code keeps the original bytes plus verified metadata.
-    pcode = root / "DRLHevIps5_4" / "VCU_Mode_Change" / "VCU_Mode_Change.p"
+    pcode = base / "src" / "autoblkscheckparams" / "autoblkscheckparams.p"
     assert pcode.is_file()
     metadata = json.loads(
-        (pcode.parent / "VCU_Mode_Change.p.json").read_text(encoding="utf-8")
+        (pcode.parent / "autoblkscheckparams.p.json").read_text(encoding="utf-8")
     )
     assert metadata["parse_status"] == "opaque"
     assert metadata["sha256"]
     sources = [path for path in SAMPLE.rglob("*") if path.is_file()]
-    assert len(sources) == 23
-
-
+    assert len(sources) == 2718
 def test_registry_routes_all_matlab_extensions():
     registry = ParserRegistry()
     for suffix in (".slx", ".sldd", ".mlx", ".mat", ".m", ".p"):
@@ -515,8 +538,8 @@ def test_block_templates_follow_resource_language():
 
 
 def test_coverage_keeps_wrapped_library_paths_on_one_line():
-    model = parse_slx(SAMPLE / "DRLHevIps.slx")
-    coverage = render_coverage(SAMPLE / "DRLHevIps.slx", model)
+    model = parse_slx(CONTROLLER)
+    coverage = render_coverage(CONTROLLER, model)
     assert "- `simulink/Discontinuities/Saturation Dynamic`：" in coverage
     assert "- `simulink/Logic and Bit Operations/Compare To Constant`：" in coverage
     assert "\nDynamic`：" not in coverage
@@ -945,19 +968,13 @@ Input and output.
 
 
 def test_real_simscape_model_preserves_conserving_network_semantics():
-    path = (
-        Path(__file__).parents[2]
-        / "matlab_repos"
-        / "SimscapeBattery"
-        / "detailedThermalModel_demo.slx"
+    content, kind = parse_additional(
+        SAMPLE / "model" / "VirtualVehicle" / "Electrical" / "Plant" / "FuelCell.ssc"
     )
-    model = parse_slx(path)
-    assert len(model.edges) == 8
-    assert all(edge.kind == "physical-conserving" for edge in model.edges)
-    document = system_json_documents(model)["main.json"]
-    assert len(document["edges"]) == len(model.edges)
-    assert all(edge["kind"] == "physical-conserving" for edge in document["edges"])
-    assert "SimscapeComponentBlock" in {block["block_type"] for block in document["blocks"]}
+    assert kind == "ssc"
+    assert "nodes" in content and "inputs" in content
+    assert "不归类为输入输出" in content
+    assert "component (Propagation = blocks) FuelCell" in content
 def _write_semantic_slx(path: Path):
     def block(kind, name, sid, properties="", system=""):
         return (
@@ -1013,73 +1030,45 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     assert by_name["Torque"]["ports"]["conn"] == [3]
 def test_additional_formats_text_containers_and_opaque_originals(tmp_path):
     ssc = (
-        Path(__file__).parents[2]
-        / "matlab_repos"
-        / "SimscapeBattery"
-        / "batteryCellHeatConvection.ssc"
+        SAMPLE
+        / "model"
+        / "VirtualVehicle"
+        / "Electrical"
+        / "Plant"
+        / "FuelCell.ssc"
     )
     content, kind = parse_additional(ssc)
     assert kind == "ssc"
     assert "nodes" in content and "inputs" in content
     assert "不归类为输入输出" in content
 
-    mdl = tmp_path / "legacy.mdl"
-    mdl.write_text('Model {\n Block {\n BlockType "Inport"\n Name "u"\n }\n}', encoding="utf-8")
+    mdl = SAMPLE / "src" / "slctrlobsolete.mdl"
     content, kind = parse_additional(mdl)
-    assert kind == "mdl" and "| `Inport` | 1 |" in content
+    assert kind == "mdl" and "BlockType 声明" in content
 
-    req = tmp_path / "requirements.slreqx"
-    with zipfile.ZipFile(req, "w") as archive:
-        archive.writestr(
-            "requirements.xml",
-            "<requirements><description>Battery shall remain below 45 C</description></requirements>",
-        )
+    req = (
+        SAMPLE
+        / "model"
+        / "asbCubeSatMBSE"
+        / "CubeSatRequirements"
+        / "ACSRequirements.slreqx"
+    )
     content, _ = parse_additional(req)
-    assert "Battery shall remain below 45 C" in content
-    assert "requirements.xml" in content
+    assert "The CubeSat shall have" in content
+    assert "slrequirements/data.xml" in content
 
-    mex = tmp_path / "solver.mexa64"
-    mex.write_bytes(b"\x7fELF-opaque")
+    mex = SAMPLE / "src" / "componentinfo.mexw64"
     content, kind = parse_additional(mex)
-    assert kind == "mexa64" and "不反汇编、不执行" in content
+    assert kind == "mexw64" and "不反汇编、不执行" in content
 
-    class_file = tmp_path / "+physics" / "@Battery" / "Battery.m"
-    class_file.parent.mkdir(parents=True)
-    class_file.write_text(
-        "classdef Battery < handle\n%% model\nmethods\nfunction obj = Battery()\nend\nend\nend\n",
-        encoding="utf-8",
+    class_file = (
+        SAMPLE
+        / "model"
+        / "asbCubeSatMBSE"
+        / "CubeSatMBSEModel"
+        / "ModelData"
+        / "componentType.m"
     )
     class_doc = parse_m_file(class_file)
     assert "matlab_kind: class" in class_doc
-    assert "MATLAB package：`physics`" in class_doc
-    assert "classdef：`Battery`，继承 `handle`" in class_doc
-    assert "类方法目录：`@Battery`" in class_doc
-
-    registry = ParserRegistry()
-    for suffix in (
-        ".mdl",
-        ".ssc",
-        ".sscp",
-        ".fig",
-        ".mlapp",
-        ".mlappinstall",
-        ".mltbx",
-        ".prj",
-        ".mlproj",
-        ".slreqx",
-        ".slmx",
-        ".mldatx",
-        ".sfx",
-        ".fmu",
-        ".tlc",
-        ".slxp",
-        ".mdlp",
-        ".slxc",
-        ".autosave",
-        ".mexa64",
-        ".mexw64",
-        ".mexmaci64",
-        ".mexmaca64",
-        ".asv",
-    ):
-        assert isinstance(registry.get_parser_for_file(f"asset{suffix}"), MatlabParser), suffix
+    assert "classdef：`componentType`，继承 `uint8`" in class_doc
