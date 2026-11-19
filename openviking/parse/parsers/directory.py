@@ -554,7 +554,7 @@ class DirectoryParser(BaseParser):
                 ]
                 summary = summarize(labeled)
                 await writer.write_text(
-                    "matlab-classification.json",
+                    f"{dir_name}/matlab-classification.json",
                     json.dumps(
                         {
                             "schema": "ov.matlab.classification/1",
@@ -567,7 +567,7 @@ class DirectoryParser(BaseParser):
                     + "\n",
                 )
                 await writer.write_text(
-                    "skipped.json",
+                    f"{dir_name}/skipped.json",
                     json.dumps(
                         {"schema": "ov.matlab.skipped/1", "entries": skipped_files},
                         ensure_ascii=False,

@@ -82,14 +82,14 @@ async def test_directory_import_writes_multilabel_manifest(tmp_path):
 
     import json
 
-    manifest = json.loads((root / "matlab-classification.json").read_text(encoding="utf-8"))
+    manifest = json.loads((root / "proj" / "matlab-classification.json").read_text(encoding="utf-8"))
     assert manifest["schema"] == "ov.matlab.classification/1"
     imported = {item["path"] for item in manifest["files"]}
     assert "src/controller.c" in imported
     assert "model.ssc" in imported
     assert "deliver/fw.hex" in imported
 
-    skipped_doc = json.loads((root / "skipped.json").read_text(encoding="utf-8"))
+    skipped_doc = json.loads((root / "proj" / "skipped.json").read_text(encoding="utf-8"))
     skipped = {item["path"]: item for item in skipped_doc["entries"]}
     assert "slprj" in skipped["slprj/ert/Model/generated.c"]["tags"]
     assert "codegen" in skipped["Model_ert_rtw/generated.h"]["tags"]

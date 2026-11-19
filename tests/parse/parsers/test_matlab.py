@@ -509,6 +509,8 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     assert list((base / "model" / "VirtualVehicle" / "PassVeh" / "Plant").glob("*.STL"))
     assert (base / "build").exists() is False  # generated files are skipped, not imported
     assert (base / "slprj").exists() is False
+    assert (base / "skipped.json").is_file()
+    assert (base / "matlab-classification.json").is_file()
     assert (base / "packages" / "IngestFixtureSupport" / "manifest.json").is_file()
     assert (base / "packages" / "asbCubeSatMBSEProject" / "manifest.json").is_file()
 
