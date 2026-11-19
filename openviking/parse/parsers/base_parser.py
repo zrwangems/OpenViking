@@ -17,6 +17,12 @@ class BaseParser(ABC):
     All parsers use async interface for parsing operations.
     """
 
+    #: Directory imports flatten a single-file artifact into the parent folder so
+    #: text-like sources do not gain an extra wrapper directory. Parsers whose
+    #: output folder is the model/container itself (MATLAB) keep the wrapper:
+    #: several sources in one folder would otherwise overwrite each other.
+    keeps_output_folder: bool = False
+
     @abstractmethod
     async def parse(self, source: Union[str, Path], instruction: str = "", **kwargs) -> ParseResult:
         """

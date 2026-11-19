@@ -463,6 +463,7 @@ class DirectoryParser(BaseParser):
                                 target_writer=writer,
                                 preserve_structure=preserve_structure,
                                 split_content=job["split_content"],
+                                parser=file_parser,
                             )
                             detail = {
                                 "ok": True,
@@ -993,9 +994,15 @@ class DirectoryParser(BaseParser):
         target_writer: Optional[ParseArtifactWriter] = None,
         preserve_structure: bool,
         split_content: bool,
+        parser: Optional[Union[BaseParser, "ParserRouter"]] = None,
     ) -> None:
         """Merge one completed parser result in source-file order."""
         no_content_error = "Parse failed: no content generated"
+        flatten_single_output = bool(
+            not split_content
+            and preserve_structure
+            and not getattr(parser, "keeps_output_folder", False)
+        )
         if sub_result.warnings:
             no_content_error += "; " + "; ".join(sub_result.warnings)
         if not sub_result.temp_dir_path:
@@ -1026,7 +1033,7 @@ class DirectoryParser(BaseParser):
                     target=target_writer,
                     target_rel=target_rel,
                     allowed_hidden=_MERGE_SIDECAR_ALLOWLIST,
-                    flatten_single_output=bool(not split_content and preserve_structure),
+                    flatten_single_output=flatten_single_output,
                 )
             finally:
                 await source_store.cleanup(source_ref)
@@ -1039,7 +1046,7 @@ class DirectoryParser(BaseParser):
                 viking_fs,
                 sub_result.temp_dir_path,
                 dest,
-                flatten_single_output=bool(not split_content and preserve_structure),
+                flatten_single_output=flatten_single_output,
             )
         except BaseException:
             try:
@@ -1105,6 +1112,7 @@ class DirectoryParser(BaseParser):
                     target_writer=target_writer,
                     preserve_structure=preserve_structure,
                     split_content=split_content,
+                    parser=parser,
                 )
                 return {
                     "ok": True,

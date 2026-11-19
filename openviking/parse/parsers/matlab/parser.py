@@ -126,6 +126,11 @@ def _zip_member_bytes(path: Path, name: str) -> bytes:
 class MatlabParser(BaseParser):
     """Parse MATLAB project files into the plan's JSON, JSONL and original-file set."""
 
+    # One source file maps to one output folder named after it; flattening that
+    # folder would make every single-system model in a directory write the same
+    # <dir>/main.json and lose the rest.
+    keeps_output_folder = True
+
     @property
     def supported_extensions(self) -> List[str]:
         return [

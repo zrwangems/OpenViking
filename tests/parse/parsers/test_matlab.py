@@ -4,6 +4,7 @@
 import csv
 import io
 import json
+import shutil
 import zipfile
 from pathlib import Path
 
@@ -452,6 +453,34 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     assert metadata["sha256"]
     sources = [path for path in SAMPLE.rglob("*") if path.is_file()]
     assert len(sources) == 2717
+
+
+@pytest.mark.asyncio
+async def test_directory_import_keeps_one_folder_per_slx_model(tmp_path):
+    """Single-system models in one folder must not overwrite each other's main.json."""
+    plant = SAMPLE / "model" / "VirtualVehicle" / "PassVeh" / "Plant"
+    names = ["SteeringSystem", "NoSuspension", "IMUSensor"]
+    source = tmp_path / "plant"
+    source.mkdir()
+    for name in names:
+        shutil.copyfile(plant / f"{name}.slx", source / f"{name}.slx")
+
+    result = await DirectoryParser().parse(
+        source,
+        parse_output_store=LocalParseOutputStore(tmp_path / "artifacts"),
+        preserve_structure=True,
+    )
+    root = Path(result.artifact_ref.root)
+    systems = {
+        json.loads(path.read_text(encoding="utf-8"))["system"]: path
+        for path in root.rglob("main.json")
+    }
+
+    assert set(names) <= set(systems)
+    for name in names:
+        assert systems[name].parent.name == name
+
+
 def test_registry_routes_all_matlab_extensions():
     registry = ParserRegistry()
     for suffix in (".slx", ".sldd", ".mlx", ".mat", ".m", ".p"):
