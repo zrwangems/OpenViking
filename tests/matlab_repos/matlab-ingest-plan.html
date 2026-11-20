@@ -218,8 +218,8 @@
       </tr></thead>
       <tbody>
 <tr class="row" data-key="slx" data-ext=".slx" tabindex="0" role="button"><td class="ext"><code>.slx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>模型目录</code><span class="to">→</span><span class="act">按系统解包成 JSON</span></div></td><td class="out">各系统 main.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/slx.py</code><span class="fn">parse_slx() · system_json_documents() · _system_json()</span><span class="stage">parser.py:155</span></td></tr>
-<tr class="row" data-key="sldd" data-ext=".sldd" tabindex="0" role="button"><td class="ext"><code>.sldd</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">条目 JSONL + 数据文件</span></div></td><td class="out">entries.jsonl<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_sldd_tree() · sldd_entry_rows() · _bus_elements()</span><span class="stage">parser.py:245</span></td></tr>
-<tr class="row" data-key="mlx" data-ext=".mlx" tabindex="0" role="button"><td class="ext"><code>.mlx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">notebook.json + outputs/<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_mlx_notebook() · _mlx_cells() · _mlx_outputs()</span><span class="stage">parser.py:245</span></td></tr>
+<tr class="row" data-key="sldd" data-ext=".sldd" tabindex="0" role="button"><td class="ext"><code>.sldd</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">条目 JSONL + 数值 CSV</span></div></td><td class="out">entries.jsonl + *.csv<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_sldd_tree() · sldd_entry_documents() · _bus_element_rows()</span><span class="stage">parser.py:245</span></td></tr>
+<tr class="row" data-key="mlx" data-ext=".mlx" tabindex="0" role="button"><td class="ext"><code>.mlx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">notebook.json + outputs/<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_mlx_notebook() · _mlx_blocks() · _mlx_output_blocks()</span><span class="stage">parser.py:245</span></td></tr>
 <tr class="row" data-key="mlapp" data-ext=".mlapp" tabindex="0" role="button"><td class="ext"><code>.mlapp</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">code.m + app.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_mlapp()</span><span class="stage">parser.py:245</span></td></tr>
 <tr class="row" data-key="mlproj" data-ext=".mlproj" tabindex="0" role="button"><td class="ext"><code>.mlproj</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/packages.py</code><span class="fn">package_metadata() · _project_metadata() ← archive_manifest()</span><span class="stage">parser.py:420</span></td></tr>
 <tr class="row" data-key="mltbx" data-ext=".mltbx" tabindex="0" role="button"><td class="ext"><code>.mltbx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/packages.py</code><span class="fn">package_metadata() · _addon() ← archive_manifest()</span><span class="stage">parser.py:420</span></td></tr>
@@ -250,7 +250,7 @@
       <tbody>
 <tr class="row" data-key="hex" data-ext=".hex" tabindex="0" role="button"><td class="ext"><code>.hex</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span></td><td class="locs"><div class="loc"><code>构建输出</code><span class="to">→</span><span class="act stop">默认排除</span></div><div class="loc"><code>交付固件</code><span class="to">→</span><span class="act">作为独立附件导入</span></div></td><td class="out">独立附件 / skipped.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/classification.py</code><span class="fn">classify_path() · TARGET_OUTPUT_EXTS</span><span class="stage">classification.py:116,221 · directory_scan.py:407</span></td></tr>
 <tr class="row" data-key="s19" data-ext=".s19" tabindex="0" role="button"><td class="ext"><code>.s19</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#7c3aed;background:#f3e8ff;border-color:#7c3aed33">代码生成<i>*</i></span><span class="lab tag" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">目标产物<i>*</i></span></td><td class="locs"><div class="loc"><code>构建输出</code><span class="to">→</span><span class="act stop">默认排除</span></div><div class="loc"><code>交付固件</code><span class="to">→</span><span class="act">作为独立附件导入</span></div></td><td class="out">独立附件 / skipped.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/classification.py</code><span class="fn">classify_path() · TARGET_OUTPUT_EXTS</span><span class="stage">classification.py:116,221 · directory_scan.py:407</span></td></tr>
-<tr class="row" data-key="sldd" data-ext=".sldd" tabindex="0" role="button"><td class="ext"><code>.sldd</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">条目 JSONL + 数据文件</span></div></td><td class="out">entries.jsonl<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_sldd_tree() · sldd_entry_rows() · _bus_elements()</span><span class="stage">parser.py:245</span></td></tr>
+<tr class="row" data-key="sldd" data-ext=".sldd" tabindex="0" role="button"><td class="ext"><code>.sldd</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">条目 JSONL + 数值 CSV</span></div></td><td class="out">entries.jsonl + *.csv<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_sldd_tree() · sldd_entry_documents() · _bus_element_rows()</span><span class="stage">parser.py:245</span></td></tr>
 <tr class="row" data-key="mat" data-ext=".mat" tabindex="0" role="button"><td class="ext"><code>.mat</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span><span class="lab tag" style="color:#0e7490;background:#cffafe;border-color:#0e749033">运行缓存<i>*</i></span><span class="lab tag" style="color:#0369a1;background:#e0f2fe;border-color:#0369a133">slprj 缓存<i>*</i></span></td><td class="locs"><div class="loc"><code>工程数据目录</code><span class="to">→</span><span class="act">变量清单 + 全量数据</span></div><div class="loc"><code>slprj/rsim、raccel、sim</code><span class="to">→</span><span class="act stop">默认排除</span></div></td><td class="out">variables.json + data/*.csv<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/mat.py</code><span class="fn">parse_mat_documents() · _walk_arrays() · _matlab_class()</span><span class="stage">parser.py:215</span></td></tr>
 <tr class="row" data-key="fig" data-ext=".fig" tabindex="0" role="button"><td class="ext"><code>.fig</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">清单 + 数据文件</span></div></td><td class="out">figure.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_fig_tree() · _fig_node() · _fig_type()</span><span class="stage">parser.py:245</span></td></tr>
 <tr class="row" data-key="mdf" data-ext=".mdf" tabindex="0" role="button"><td class="ext"><code>.mdf</code></td><td class="labels"><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">清单 + 数据文件</span></div></td><td class="out">channels.json + data/*.csv<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/measurement.py</code><span class="fn">parse_measurement() · _decode_mdf3()</span><span class="stage">parser.py:376</span></td></tr>
@@ -380,34 +380,27 @@ end</pre>
   &quot;subsystem_types&quot;: [],
   &quot;execution&quot;: {},
   &quot;blocks&quot;: [
-    {&quot;id&quot;: &quot;n1&quot;, &quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
-    {&quot;id&quot;: &quot;n2&quot;, &quot;name&quot;: &quot;GenSpd&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
-    {&quot;id&quot;: &quot;n3&quot;, &quot;name&quot;: &quot;GenTrqCmd&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
-    {&quot;id&quot;: &quot;n4&quot;, &quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
+    {&quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
+     &quot;source_block&quot;: &quot;&quot;, &quot;ports&quot;: {&quot;out&quot;: [&quot;BusVolt&quot;]},
+     &quot;params&quot;: {&quot;Port&quot;: &quot;1&quot;}},
+    {&quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
      &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]},
-     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;,
-                &quot;torque_max&quot;: &quot;207*42/60&quot;, &quot;T_t&quot;: &quot;[0.09 0.08 0.07 0]&quot;,
-                &quot;param_by&quot;: &quot;Maximum torque and power&quot;}},
-    {&quot;id&quot;: &quot;n5&quot;, &quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
-    {&quot;id&quot;: &quot;n6&quot;, &quot;name&quot;: &quot;GenCurnt&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
-    {&quot;id&quot;: &quot;n7&quot;, &quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
-     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}}
+     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;}},
+    {&quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
+     &quot;source_block&quot;: &quot;&quot;, &quot;ports&quot;: {&quot;in&quot;: [&quot;GenTrq&quot;]},
+     &quot;params&quot;: {&quot;Port&quot;: &quot;1&quot;}},
+    {&quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
+     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]},
+     &quot;params&quot;: {}}
   ],
   &quot;edges&quot;: [
-    {&quot;from&quot;: &quot;n1&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;BusVolt&quot;},
-    {&quot;from&quot;: &quot;n2&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 2, &quot;signal&quot;: &quot;GenSpd&quot;},
-    {&quot;from&quot;: &quot;n3&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 3, &quot;signal&quot;: &quot;GenTrqCmd&quot;},
-    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 3, &quot;to&quot;: &quot;n5&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;GenTrq&quot;},
-    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 2, &quot;to&quot;: &quot;n6&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;GenCurnt&quot;},
-    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n7&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: null}
+    {&quot;from&quot;: [&quot;BusVolt&quot;, &quot;BusVolt&quot;],
+     &quot;to&quot;: [[&quot;Mapped Generator&quot;, 1], [&quot;Terminator&quot;, 1]], &quot;signal&quot;: &quot;BusVolt&quot;},
+    {&quot;from&quot;: [&quot;Mapped Generator&quot;, 1],
+     &quot;to&quot;: [[&quot;GenTrq&quot;, &quot;GenTrq&quot;]], &quot;signal&quot;: &quot;GenTrq&quot;}
   ],
-  &quot;description&quot;: &quot;母线电压、发电机转速和扭矩指令进入查表模块，输出发电机扭矩和电流；第三路输出接 Terminator。&quot;,
+  &quot;description&quot;: &quot;&quot;,
   &quot;children&quot;: []
 }</pre>
   <h3>AI 能读到什么</h3>
@@ -1153,11 +1146,11 @@ save_format=v7</pre>
   <h3>位置与处理</h3>
   <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>模型目录</code></td><td>—</td><td>按系统解包成 JSON</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口顺序、参数）、edges（源/目标、端口、信号）、子系统类型和说明</li><li>流程图和参数表视图从 JSON 生成，不单独落文件</li><li>块类型和库来源只取模型里的 BlockType/SourceBlock，缺 SourceBlock 时写 built-in/&lt;BlockType&gt;；不再对照随包块库，块库文档已迁到独立仓库 openviking-engineering-resources</li></ol>
+  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口名、参数）、edges（一条连线一行：from 是「块名 + 端口名」，to 是扇出目标列表，signal 是信号名）、子系统类型和说明</li><li>流程图和参数表视图从 JSON 生成，不单独落文件</li><li>块类型和库来源只取模型里的 BlockType/SourceBlock，读不到就留空，不按规则拼值；端口名取 ModelReference 的 InputPortNames/OutputPortNames 和子系统内 Inport/Outport 的块名，没有名字的端口保留端口编号；不再对照随包块库，块库文档已迁到独立仓库 openviking-engineering-resources</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/slx.py</code><br>parse_slx() · system_json_documents() · _system_json()</p>
   <p class="note">分发位置：<code>parser.py:155</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
-  <p class="note">解包 simulink/systems/*.xml 建 System/Block/Edge；Stateflow 由 stateflow.py:66 解出后挂到对应系统 JSON 的 stateflow 字段。每个系统一个 JSON，子系统落到 <code>&lt;system&gt;/main.json</code>。source_block 取模型里的 SourceBlock，缺失时由 _system_json() 写 built-in/&lt;BlockType&gt;，不查块库。</p>
+  <p class="note">解包 simulink/systems/*.xml 建 System/Block/Edge；Stateflow 由 stateflow.py:66 解出后挂到对应系统 JSON 的 stateflow 字段。每个系统一个 JSON，子系统落到 <code>&lt;system&gt;/main.json</code>。blocks 只有 name/block_type/source_block/ports/params，children 只有 name/path/system_ref/type，不写 b20 这类内部 id。parse_slx() 只做确定性的 XML 读取：读不到的端口名、source_block、标签一律留空，不做任何推断。</p>
   <h3>产出</h3>
   <p><code>各系统 main.json</code></p>
   <h3>案例样子</h3>
@@ -1169,34 +1162,27 @@ save_format=v7</pre>
   &quot;subsystem_types&quot;: [],
   &quot;execution&quot;: {},
   &quot;blocks&quot;: [
-    {&quot;id&quot;: &quot;n1&quot;, &quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
-    {&quot;id&quot;: &quot;n2&quot;, &quot;name&quot;: &quot;GenSpd&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
-    {&quot;id&quot;: &quot;n3&quot;, &quot;name&quot;: &quot;GenTrqCmd&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Inport&quot;, &quot;ports&quot;: {&quot;out&quot;: [1]}},
-    {&quot;id&quot;: &quot;n4&quot;, &quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
+    {&quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
+     &quot;source_block&quot;: &quot;&quot;, &quot;ports&quot;: {&quot;out&quot;: [&quot;BusVolt&quot;]},
+     &quot;params&quot;: {&quot;Port&quot;: &quot;1&quot;}},
+    {&quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
      &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]},
-     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;,
-                &quot;torque_max&quot;: &quot;207*42/60&quot;, &quot;T_t&quot;: &quot;[0.09 0.08 0.07 0]&quot;,
-                &quot;param_by&quot;: &quot;Maximum torque and power&quot;}},
-    {&quot;id&quot;: &quot;n5&quot;, &quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
-    {&quot;id&quot;: &quot;n6&quot;, &quot;name&quot;: &quot;GenCurnt&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
-     &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
-    {&quot;id&quot;: &quot;n7&quot;, &quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
-     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}}
+     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;}},
+    {&quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
+     &quot;source_block&quot;: &quot;&quot;, &quot;ports&quot;: {&quot;in&quot;: [&quot;GenTrq&quot;]},
+     &quot;params&quot;: {&quot;Port&quot;: &quot;1&quot;}},
+    {&quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
+     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]},
+     &quot;params&quot;: {}}
   ],
   &quot;edges&quot;: [
-    {&quot;from&quot;: &quot;n1&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;BusVolt&quot;},
-    {&quot;from&quot;: &quot;n2&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 2, &quot;signal&quot;: &quot;GenSpd&quot;},
-    {&quot;from&quot;: &quot;n3&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n4&quot;, &quot;to_port&quot;: 3, &quot;signal&quot;: &quot;GenTrqCmd&quot;},
-    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 3, &quot;to&quot;: &quot;n5&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;GenTrq&quot;},
-    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 2, &quot;to&quot;: &quot;n6&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: &quot;GenCurnt&quot;},
-    {&quot;from&quot;: &quot;n4&quot;, &quot;from_port&quot;: 1, &quot;to&quot;: &quot;n7&quot;, &quot;to_port&quot;: 1, &quot;signal&quot;: null}
+    {&quot;from&quot;: [&quot;BusVolt&quot;, &quot;BusVolt&quot;],
+     &quot;to&quot;: [[&quot;Mapped Generator&quot;, 1], [&quot;Terminator&quot;, 1]], &quot;signal&quot;: &quot;BusVolt&quot;},
+    {&quot;from&quot;: [&quot;Mapped Generator&quot;, 1],
+     &quot;to&quot;: [[&quot;GenTrq&quot;, &quot;GenTrq&quot;]], &quot;signal&quot;: &quot;GenTrq&quot;}
   ],
-  &quot;description&quot;: &quot;母线电压、发电机转速和扭矩指令进入查表模块，输出发电机扭矩和电流；第三路输出接 Terminator。&quot;,
+  &quot;description&quot;: &quot;&quot;,
   &quot;children&quot;: []
 }</pre>
   <h3>AI 能读到什么</h3>
@@ -1210,56 +1196,76 @@ save_format=v7</pre>
     <span class="form">ZIP/OOXML</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span>
   </div>
   <h3>位置与处理</h3>
-  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>条目 JSONL + 数据文件</td></tr></tbody></table>
+  <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>条目 JSONL + 数值 CSV</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>按 OOXML 解开，读 data/chunk*.xml 和 manifest</li><li>每条数据读名称、对象类型（Simulink.Parameter / Signal / VariantExpression / Bus / Enum / NumericType）、维度、数据类型、初值或条件、单位、存储类、描述</li><li>值是数组、Bus 结构这类大块数据时单独落数据文件，和 .mat 用同一套读法</li><li>原文入库；引用到的其他 .sldd 单列，不合并成假数据</li></ol>
+  <ol><li>按 OOXML 解开，读 data/chunk*.xml 和 manifest；每个字典一个同名目录，不再保留 .sldd 原文件</li><li>每条数据一行 entries.jsonl，名称、对象类型（Simulink.Parameter / Signal / Bus / ConfigSet / Enum 等）、维度、数据类型、复杂度、Min/Max、单位、Argument、存储类、描述、LastModified/LastModifiedBy、UUID、Namespace、IsDerived 全部写出；对象上还有别的属性也按属性名展开，不省略字段</li><li>一维数据（标量和一维数组）留在行内，行内直接带 value；二维及以上一律写 CSV，行里只留 data 指针，dimensions/dtype/unit 等元信息留在行里。CSV 文件名 <code>&lt;序号四位&gt;_&lt;条目名&gt;.csv</code>，与 entries.jsonl 同目录</li><li>二维 CSV 按维度写成矩阵（dimensions[0] 行 × dimensions[1] 列，列主序）；三维及以上写成 dim_1..dim_N,value 的长表，首行是表头</li><li>结构体内部的二维及以上数组同样落 CSV，原位换成带 dimension 的 data 指针；引用到的其他 .sldd 单列，不合并成假数据</li></ol>
   <h3>处理代码</h3>
-  <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_sldd_tree() · sldd_entry_rows() · _bus_elements()</p>
+  <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_sldd_tree() · sldd_entry_documents() · _bus_element_rows()</p>
   <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
-  <p class="note">一条 entry 一行 entries.jsonl；Bus 展开 elements，ConfigSet 展开 components，维度归一化；超过 2000 字符的值拆到 data/NNNN_&lt;name&gt;.json 并在行里留 data 字段。</p>
+  <p class="note">一条 entry 一行 entries.jsonl；Bus 展开 elements，ConfigSet 展开 components，维度归一化。Status、DataSource、Argument 这几个 MATLAB 数据字典界面上的列在 .sldd XML 里没有对应属性，写成 null，不按规则猜；一维数值超过 2048 字符时也落 CSV，避免 entries.jsonl 出现几 MB 的单行。</p>
   <h3>产出</h3>
-  <p><code>entries.jsonl</code></p>
+  <p><code>entries.jsonl + NNNN_&lt;name&gt;.csv</code></p>
   <h3>案例样子</h3>
-  <pre>{&quot;name&quot;: &quot;VCU_Mode&quot;, &quot;class&quot;: &quot;Simulink.Parameter&quot;, &quot;dims&quot;: [1, 1], &quot;dtype&quot;: &quot;auto&quot;, &quot;value&quot;: 2.0, &quot;unit&quot;: &quot;&quot;, &quot;storage&quot;: &quot;&quot;, &quot;description&quot;: &quot;&quot;}
-{&quot;name&quot;: &quot;RBEMS&quot;, &quot;class&quot;: &quot;VariantExpression&quot;, &quot;condition&quot;: &quot;VCU_Mode == 1&quot;, &quot;dimensions&quot;: null, &quot;dtype&quot;: null}
-{&quot;name&quot;: &quot;DRLEMS&quot;, &quot;class&quot;: &quot;VariantExpression&quot;, &quot;condition&quot;: &quot;VCU_Mode == 3&quot;, &quot;dimensions&quot;: null, &quot;dtype&quot;: null}
-{&quot;name&quot;: &quot;BatteryBus&quot;, &quot;class&quot;: &quot;Simulink.Bus&quot;, &quot;elements&quot;: [{&quot;name&quot;: &quot;Volt&quot;, &quot;dtype&quot;: &quot;single&quot;, &quot;dims&quot;: [1, 1]}, {&quot;name&quot;: &quot;Curr&quot;, &quot;dtype&quot;: &quot;single&quot;, &quot;dims&quot;: [1, 1]}]}</pre>
+  <pre>CiEngineCore/
+├── entries.jsonl
+├── 0008_PlntEngCIGIMepMap.csv
+└── 0003_PlntEngCITurbEff.csv
+
+entries.jsonl（二维及以上只留指针，元信息留在行里）
+{&quot;name&quot;: &quot;PlntEngCIGIMepMap&quot;, &quot;class&quot;: &quot;Simulink.Parameter&quot;, &quot;status&quot;: null, &quot;complexity&quot;: &quot;real&quot;,
+ &quot;min&quot;: null, &quot;max&quot;: null, &quot;dtype&quot;: &quot;double&quot;, &quot;dimensions&quot;: [15, 16], &quot;unit&quot;: null,
+ &quot;argument&quot;: null, &quot;storage&quot;: &quot;Auto&quot;, &quot;data_source&quot;: null,
+ &quot;last_modified&quot;: &quot;20211111T193004.774728&quot;, &quot;last_modified_by&quot;: &quot;The MathWorks, Inc.&quot;,
+ &quot;data&quot;: &quot;0008_PlntEngCIGIMepMap.csv&quot;}
+{&quot;name&quot;: &quot;PlntEngCITurbEff&quot;, ..., &quot;dimensions&quot;: [60, 80, 6], &quot;data&quot;: &quot;0003_PlntEngCITurbEff.csv&quot;}
+
+entries.jsonl（一维留在行内）
+{&quot;name&quot;: &quot;CubeSatTimeStep&quot;, &quot;value&quot;: &quot;1.0&quot;, &quot;dimensions&quot;: [1, 1], &quot;dtype&quot;: &quot;double&quot;}
+
+0008_PlntEngCIGIMepMap.csv（前 3 行 × 4 列，文件本身 15 行 × 16 列）
+0.0,0.0,0.0,0.0
+158686.5347223494,158686.5347223494,158686.5347223494,158686.5347223494
+343074.26558752632,343074.26558752632,343074.26558752632,343074.26558752632</pre>
   <h3>AI 能读到什么</h3>
-  <p>数据清单：每条数据的名字、类型、维度、值、单位；模型引用的参数和信号能直接查到定义。</p>
+  <p>数据清单：每条数据的名字、类型、维度、数据类型、复杂度、范围、单位、存储类、修改时间，以及二维以上数值的完整 CSV；模型引用的参数和信号能直接查到定义。</p>
   <h3>边界</h3>
-  <p class="bound">未声明的维度或类型不按值猜；ConfigSet 等嵌套对象保留原文，不拆成虚构标量。</p>
+  <p class="bound">未声明的维度或类型不按值猜；Status/DataSource/Argument 不在 .sldd 文件里，写 null；ConfigSet 等嵌套对象保留原文，不拆成虚构标量。</p>
 </div>
 <div class="dsrc" id="d-mlx" hidden>
-  <p class="lead"><b>解包直读。</b>OOXML 解 document.xml 与 output.xml；单元和保存输出进 notebook.json。</p>
+  <p class="lead"><b>解包直读。</b>OOXML 解 document.xml 与 output.xml；按 document.xml 的顺序写成 code / markdown / output 三类块。</p>
   <div class="meta">
     <span class="form">ZIP/OOXML</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
   </div>
   <h3>位置与处理</h3>
   <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>解开 OOXML，读 matlab/document.xml 的段落、样式和代码</li><li>读 matlab/output.xml 的保存输出，文本和图像分开</li><li>原文入库；代码单元直接读，不重新执行</li></ol>
+  <ol><li>解开 OOXML，按 matlab/document.xml 的段落顺序走：代码段落成 code 块，连续的文本/标题段落合成一个 markdown 块（标题写成 ##），段落分隔成块边界</li><li>读 matlab/output.xml 的保存输出，按 lineNumbers 找它所属的代码块，output 块紧跟在该代码块后面；文本原样保留，图片落到 outputs/ 并在内容里给出路径</li><li>三类块统一用 type + content 两个字段，不再有 heading 类型、source/text 两套键，也没有文档级 outputs 数组</li><li>原文入库；代码单元直接读，不重新执行</li></ol>
   <h3>处理代码</h3>
-  <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_mlx_notebook() · _mlx_cells() · _mlx_outputs()</p>
+  <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_mlx_notebook() · _mlx_blocks() · _mlx_output_blocks()</p>
   <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
-  <p class="note">读 matlab/document.xml 的代码单元格、文本单元格和嵌入输出，写 notebook.json 并把输出文件落到 outputs/。</p>
+  <p class="note">读 matlab/document.xml 的代码段落、文本段落和 matlab/output.xml 的保存输出，写 notebook.json（blocks 数组）并把图片落到 outputs/。output 块的归属由 output.xml 的 lineNumbers 对应到代码块的行号区间决定，不按顺序猜。</p>
   <h3>产出</h3>
   <p><code>notebook.json + outputs/</code></p>
   <h3>案例样子</h3>
   <pre>{
-  &quot;file&quot;: &quot;hev_init.mlx&quot;,
-  &quot;cells&quot;: [
-    {&quot;type&quot;: &quot;heading&quot;, &quot;level&quot;: 1, &quot;text&quot;: &quot;HEV 初始化&quot;},
-    {&quot;type&quot;: &quot;markdown&quot;, &quot;text&quot;: &quot;载入模型并跑一轮 WLTC。&quot;},
-    {&quot;type&quot;: &quot;code&quot;, &quot;source&quot;: &quot;mdl = &#x27;DRLHevIps&#x27;;\nload_system(mdl);&quot;},
-    {&quot;type&quot;: &quot;code&quot;, &quot;source&quot;: &quot;out = sim(mdl);&quot;,
-     &quot;outputs&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;SimulationOutput with properties: ...&quot;}]}
+  &quot;file&quot;: &quot;mappingToolboxAnalysis.mlx&quot;,
+  &quot;blocks&quot;: [
+    {&quot;type&quot;: &quot;markdown&quot;,
+     &quot;content&quot;: &quot;## Run the Simulation\n\nRun the simulation if the simulation output object out does not exist.&quot;},
+    {&quot;type&quot;: &quot;code&quot;,
+     &quot;content&quot;: &quot;arch.model = \&quot;asbCubeSatArchModel\&quot;;\nif ~exist(&#x27;out&#x27;,&#x27;var&#x27;)\n    open_system(arch.model);\n    out = sim(arch.model);\nend&quot;},
+    {&quot;type&quot;: &quot;output&quot;, &quot;media&quot;: &quot;text&quot;,
+     &quot;content&quot;: &quot;Updating initCond structure with initial values from stereotypes defined in:\n  asbCubeSatArchModel/CubeSat Mission Enterprise (CubeSatProfile.CubeSatEnterprise)\nUpdate complete.&quot;},
+    {&quot;type&quot;: &quot;code&quot;, &quot;content&quot;: &quot;figure;\nworldmap(&#x27;World&#x27;);&quot;},
+    {&quot;type&quot;: &quot;output&quot;, &quot;media&quot;: &quot;image&quot;, &quot;content&quot;: &quot;outputs/figure_001.png&quot;}
   ],
-  &quot;outputs_dir&quot;: &quot;outputs/&quot;
+  &quot;block_count&quot;: 34,
+  &quot;counts&quot;: {&quot;code&quot;: 12, &quot;markdown&quot;: 15, &quot;output&quot;: 7}
 }</pre>
   <h3>AI 能读到什么</h3>
-  <p>文本单元、代码单元和保存时的输出。</p>
+  <p>和 document.xml 一一对应的 markdown、代码和输出块，输出紧跟在产生它的代码块后面，图文顺序可直接阅读。</p>
   <h3>边界</h3>
-  <p class="bound">输出是保存时快照，不保证和当前代码一致；交互控件状态不重放。</p>
+  <p class="bound">输出是保存时快照，不保证和当前代码一致；交互控件状态不重放。一个图被多个代码块修改时，按 output.xml 的 lineNumbers 归到最后一个覆盖该行的代码块。</p>
 </div>
 <div class="dsrc" id="d-mlapp" hidden>
   <p class="lead"><b>解包直读。</b>OPC 解包读 document.xml 的 classdef 和 appModel.mat 组件树。</p>

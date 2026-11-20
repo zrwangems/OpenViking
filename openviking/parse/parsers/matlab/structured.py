@@ -11,6 +11,7 @@ requirement sets and App Designer apps.
 from __future__ import annotations
 
 import base64
+import csv
 import hashlib
 import io
 import re
@@ -52,7 +53,11 @@ def _xml_object(element) -> dict[str, Any]:
             continue
         value = _xml_value(prop)
         if prop.get("Dimension"):
-            value = {"dimension": prop.get("Dimension"), "value": value}
+            value = {
+                "dimension": prop.get("Dimension"),
+                "class": prop.get("Class", ""),
+                "value": value,
+            }
         node[name] = value
     return node
 
@@ -116,10 +121,15 @@ def parse_sldd_tree(path: str | Path) -> dict[str, Any]:
                 entry["namespace"] = _scalar(props["Namespace"].text)
             if "LastMod" in props:
                 entry["last_modified"] = _scalar(props["LastMod"].text)
+            if "LastModBy" in props:
+                entry["last_modified_by"] = _scalar(props["LastModBy"].text)
             if "IsDerived" in props:
                 entry["derived"] = _scalar(props["IsDerived"].text) in {"1", "true"}
             value = props.get("Value")
             if value is not None:
+                # A plain numeric value stores its shape and class on the P itself.
+                entry["value_dimension"] = value.get("Dimension") or ""
+                entry["value_class"] = value.get("Class") or ""
                 payload = [child for child in list(value) if child.tag in {"Element", "Object"}]
                 entry["value"] = _xml_object(payload[0]) if payload else _scalar(value.text)
             entries.append(entry)
@@ -142,12 +152,7 @@ def parse_sldd_tree(path: str | Path) -> dict[str, Any]:
 
 
 def _paragraph_text(paragraph) -> str:
-    texts = [
-        node.text or ""
-        for run in paragraph.findall("./" + _W + "r")
-        for node in run.iter(_W + "t")
-    ]
-    return "".join(texts)
+    return "".join(node.text or "" for node in paragraph.iter(_W + "t"))
 
 
 def _paragraph_style(paragraph) -> str:
@@ -157,35 +162,77 @@ def _paragraph_style(paragraph) -> str:
     return style_node.get(_W + "val", "text") if style_node is not None else "text"
 
 
-def _mlx_cells(archive: zipfile.ZipFile) -> list[dict[str, Any]]:
+def _markdown_paragraph(paragraph, text: str) -> str:
+    """Keep one Live Script paragraph as the Markdown a reader would expect."""
+    style = _paragraph_style(paragraph)
+    if style == "title":
+        return f"# {text}"
+    heading = re.fullmatch(r"heading([1-6])?", style)
+    if heading:
+        level = 2 if heading.group(1) is None else min(6, int(heading.group(1)) + 1)
+        return f"{'#' * level} {text}"
+    if style.lower().startswith("tocheading"):
+        return f"## {text}"
+    if paragraph.find("./" + _W + "pPr/" + _W + "numPr") is not None:
+        return f"- {text}"
+    return text
+
+
+def _mlx_blocks(
+    archive: zipfile.ZipFile,
+) -> tuple[list[dict[str, Any]], dict[int, tuple[int, int]]]:
+    """Document blocks in document order, with the code line range of each.
+
+    Consecutive Markdown paragraphs stay in one block, so a heading and the text
+    under it are not split. Code blocks record their cumulative code line range,
+    which is what ``matlab/output.xml`` line numbers refer to.
+    """
     document = ET.fromstring(read_xml_member(archive, "matlab/document.xml"))
-    cells: list[dict[str, Any]] = []
+    blocks: list[dict[str, Any]] = []
+    code_ranges: dict[int, tuple[int, int]] = {}
+    markdown: list[str] = []
+    code_line = 0
+
+    def flush_markdown() -> None:
+        if markdown:
+            blocks.append({"type": "markdown", "content": "\n\n".join(markdown)})
+            markdown.clear()
+
     for paragraph in document.iter(_W + "p"):
         text = _paragraph_text(paragraph)
-        if not text.strip():
-            continue
         style = _paragraph_style(paragraph)
         if style == "code":
-            if cells and cells[-1]["type"] == "code":
-                cells[-1]["source"] += "\n" + text
+            flush_markdown()
+            lines = text.count("\n") + 1 if text else 0
+            start = code_line + 1
+            code_line += lines
+            if not text:
+                continue
+            if blocks and blocks[-1]["type"] == "code":
+                blocks[-1]["content"] += "\n" + text
+                code_ranges[len(blocks) - 1] = (code_ranges[len(blocks) - 1][0], code_line)
             else:
-                cells.append({"type": "code", "source": text})
-        elif style.startswith("heading"):
-            try:
-                level = min(6, max(2, int(style.removeprefix("heading") or 1) + 1))
-            except ValueError:
-                level = 2
-            cells.append({"type": "heading", "level": level, "text": text})
-        else:
-            cells.append({"type": "markdown", "text": text})
-    return cells
+                blocks.append({"type": "code", "content": text})
+                code_ranges[len(blocks) - 1] = (start, code_line)
+            continue
+        if not text.strip():
+            if paragraph.find("./" + _W + "pPr/" + _W + "sectPr") is not None:
+                flush_markdown()
+            continue
+        markdown.append(_markdown_paragraph(paragraph, text.strip()))
+    flush_markdown()
+    return blocks, code_ranges
 
 
-def _mlx_outputs(archive: zipfile.ZipFile) -> tuple[list[dict[str, Any]], dict[str, bytes]]:
+def _mlx_output_blocks(
+    archive: zipfile.ZipFile,
+) -> tuple[list[dict[str, Any]], dict[str, bytes], list[tuple[int, int]]]:
+    """Saved outputs in document order, with the code lines they cover."""
     if "matlab/output.xml" not in archive.namelist():
-        return [], {}
+        return [], {}, []
     root = ET.fromstring(read_xml_member(archive, "matlab/output.xml"))
     outputs: list[dict[str, Any]] = []
+    spans: list[tuple[int, int]] = []
     files: dict[str, bytes] = {}
     image_index = 0
     for element in root.iter("element"):
@@ -193,10 +240,11 @@ def _mlx_outputs(archive: zipfile.ZipFile) -> tuple[list[dict[str, Any]], dict[s
         data = element.find("outputData")
         if data is None:
             continue
+        block: dict[str, Any] | None = None
         if kind == "text":
-            text = (data.findtext("text") or "").strip()
-            if text:
-                outputs.append({"type": "text", "text": text})
+            text = (data.findtext("text") or "").strip("\n")
+            if text.strip():
+                block = {"type": "output", "content": text, "media": "text"}
         elif kind == "figure":
             uri = (data.findtext("figureUri") or "").strip()
             match = re.match(r"data:image/([a-zA-Z0-9+.-]+);base64,(.+)", uri, re.DOTALL)
@@ -205,38 +253,84 @@ def _mlx_outputs(archive: zipfile.ZipFile) -> tuple[list[dict[str, Any]], dict[s
                 image_type = match.group(1).replace("jpeg", "jpg")
                 name = f"outputs/figure_{image_index:03d}.{image_type}"
                 files[name] = base64.b64decode(match.group(2))
-                outputs.append({"type": "image", "path": name})
+                block = {"type": "output", "content": name, "media": "image"}
         else:
             text = " ".join(
                 _scalar(node.text) for node in data.iter() if _scalar(node.text)
             )
             if text:
-                outputs.append({"type": kind or "value", "text": text})
-    return outputs, files
+                block = {"type": "output", "content": text, "media": kind or "value"}
+        if block is None:
+            continue
+        numbers = [
+            int(item.text)
+            for item in element.findall("lineNumbers/element")
+            if (item.text or "").strip().isdigit()
+        ]
+        outputs.append(block)
+        spans.append((min(numbers), max(numbers)) if numbers else (0, 0))
+    return outputs, files, spans
+
+
+def _mlx_attach_outputs(
+    blocks: list[dict[str, Any]],
+    code_ranges: dict[int, tuple[int, int]],
+    outputs: list[dict[str, Any]],
+    spans: list[tuple[int, int]],
+) -> list[dict[str, Any]]:
+    """Place each output right after the code block whose lines produced it."""
+    by_block: dict[int, list[dict[str, Any]]] = {}
+    trailing: list[dict[str, Any]] = []
+    for output, span in zip(outputs, spans, strict=False):
+        target: int | None = None
+        for index, (start, end) in code_ranges.items():
+            if start <= span[1] <= end:
+                target = index
+        if target is None:
+            for index, (start, _) in code_ranges.items():
+                if start <= span[1]:
+                    target = index
+        if target is None:
+            trailing.append(output)
+        else:
+            by_block.setdefault(target, []).append(output)
+    ordered: list[dict[str, Any]] = list(trailing)
+    for index, block in enumerate(blocks):
+        ordered.append(block)
+        ordered.extend(by_block.get(index, []))
+    return ordered
 
 
 def parse_mlx_notebook(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
-    """Live Script -> notebook JSON (cells + saved outputs), images as files."""
+    """Live Script -> the document's own blocks: code, markdown and output.
+
+    The three block types share the ``type`` and ``content`` fields, outputs sit
+    right after the code block they belong to, and figures are saved next to the
+    notebook and referenced from the block's content.
+    """
     path = Path(path)
     try:
         with zipfile.ZipFile(path) as archive:
-            cells = _mlx_cells(archive)
-            outputs, files = _mlx_outputs(archive)
+            blocks, code_ranges = _mlx_blocks(archive)
+            outputs, files, spans = _mlx_output_blocks(archive)
             metadata = _metadata(archive)
     except zipfile.BadZipFile as exc:
         raise ValueError(f"Not a valid MLX archive: {path.name}") from exc
     except KeyError as exc:
         raise ValueError(f"MLX archive has no matlab/document.xml: {path.name}") from exc
+    blocks = _mlx_attach_outputs(blocks, code_ranges, outputs, spans)
+    counts = {"code": 0, "markdown": 0, "output": 0}
+    for block in blocks:
+        counts[block["type"]] = counts.get(block["type"], 0) + 1
     return (
         {
             "schema": "ov.matlab.notebook/1",
             "file": path.name,
             "name": path.stem,
             "release": metadata.get("matlabRelease", ""),
-            "cells": cells,
-            "cell_count": len(cells),
-            "outputs": outputs,
-            "output_assignment": "document-level; saved output index has no cell id",
+            "blocks": blocks,
+            "block_count": len(blocks),
+            "counts": counts,
             "metadata": metadata,
         },
         files,
@@ -702,7 +796,7 @@ def parse_mlapp(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
     with zipfile.ZipFile(path) as archive:
         names = set(archive.namelist())
         if "matlab/document.xml" in names:
-            code_cells = _mlx_cells(archive)
+            code_cells = [block for block in _mlx_blocks(archive)[0] if block["type"] == "code"]
         if "appdesigner/appModel.mat" in names:
             try:
                 from scipy.io import loadmat
@@ -717,9 +811,7 @@ def parse_mlapp(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
                 component_status = "parsed"
             except Exception as exc:  # noqa: BLE001 - version dependent container
                 component_status = f"unreadable: {type(exc).__name__}"
-    code = "\n".join(
-        cell["source"] for cell in code_cells if cell.get("type") == "code"
-    )
+    code = "\n".join(cell["content"] for cell in code_cells)
     if code:
         files["code.m"] = code.encode("utf-8")
     return (
@@ -773,10 +865,58 @@ def protected_metadata(path: str | Path, kind: str) -> dict[str, Any]:
     return metadata
 
 
+_SLDD_INLINE_LIMIT = 2048
+_NUMBER = re.compile(
+    r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?|[-+]?(?:NaN|Inf|nan|inf)"
+)
+_SLDD_PROPERTY_MAP = {
+    "Name": "name",
+    "Class": "class",
+    "DataType": "dtype",
+    "DataType_internal": "dtype",
+    "Dimensions": "dimensions",
+    "Complexity": "complexity",
+    "Min": "min",
+    "Min_internal": "min",
+    "Max": "max",
+    "Max_internal": "max",
+    "DocUnits": "unit",
+    "Units": "unit",
+    "Unit": "unit",
+    "Argument": "argument",
+    "Description": "description",
+    "Condition": "condition",
+    "SampleTime": "sample_time",
+    "DimensionsMode": "dimensions_mode",
+    "SamplingMode": "sampling_mode",
+    "DataScope": "data_scope",
+    "HeaderFile": "header_file",
+    "Alignment": "alignment",
+    "PreserveElementDimensions": "preserve_element_dimensions",
+    "InitialValue": "initial_value",
+    "DefaultValue": "default_value",
+    "StorageType": "storage_type",
+    "AddClassNameToEnumNames": "add_class_name_to_enum_names",
+}
+
+
+def _snake(name: str) -> str:
+    text = re.sub(r"(?<=[a-z0-9])([A-Z])", r"_\1", name)
+    text = re.sub(r"[^0-9A-Za-z_]+", "_", text)
+    return text.strip("_").lower() or "field"
+
+
+def _csv_stem(name: str) -> str:
+    return re.sub(r"[^\w.-]+", "_", name, flags=re.UNICODE).strip("._") or "entry"
+
+
 def _dimension_list(value: Any) -> Any:
     """Normalize SLDD dimensions to a compact list of integers."""
     if isinstance(value, list):
-        return [int(item) for item in value]
+        try:
+            return [int(item) for item in value]
+        except (TypeError, ValueError):
+            return None
     if isinstance(value, (int, float)):
         return [int(value)]
     if isinstance(value, dict):
@@ -793,37 +933,229 @@ def _dimension_list(value: Any) -> Any:
             return [int(float(part)) for part in parts]
         except ValueError:
             return None
+    return None
+
+
+def _number_tokens(text: str) -> list[str] | None:
+    parts = [part for part in re.split(r"[\s,;]+", text.strip()) if part]
+    if not parts or any(_NUMBER.fullmatch(part) is None for part in parts):
+        return None
+    return parts
+
+
+def _array_payload(raw: Any, dimensions: Any, dtype: str = "") -> list[str] | None:
+    """Numeric tokens when one value is an array that belongs in a CSV file.
+
+    Every array of two or more dimensions is externalized; a one-dimensional
+    array stays inline while it is small enough to keep the JSONL line readable.
+    """
+    if isinstance(raw, list):
+        if not raw or not all(isinstance(item, (int, float)) for item in raw):
+            return None
+        tokens = [repr(item) for item in raw]
+    elif isinstance(raw, str):
+        tokens = _number_tokens(raw)
+    else:
+        return None
+    if not tokens or not dimensions:
+        return None
+    product = 1
+    for dimension in dimensions:
+        product *= dimension
+    if product != len(tokens):
+        return None
+    if sum(1 for dimension in dimensions if dimension > 1) < 2:
+        text = raw if isinstance(raw, str) else ",".join(tokens)
+        if len(text) <= _SLDD_INLINE_LIMIT:
+            return None
+    return tokens
+
+
+def _matlab_index_order(dimensions: list[int]):
+    from itertools import product
+
+    for index in product(*[range(dimension) for dimension in reversed(dimensions)]):
+        yield tuple(reversed(index))
+
+
+def _array_csv(tokens: list[str], dimensions: list[int]) -> str:
+    """Write an array column-major; 2-D keeps the matrix shape of the value."""
+    output = io.StringIO(newline="")
+    writer = csv.writer(output, lineterminator="\n")
+    if len(dimensions) >= 3:
+        writer.writerow([f"dim_{index + 1}" for index in range(len(dimensions))] + ["value"])
+        for flat, index in enumerate(_matlab_index_order(dimensions)):
+            writer.writerow([str(part + 1) for part in index] + [tokens[flat]])
+        return output.getvalue()
+    rows = dimensions[0]
+    for row in range(rows):
+        writer.writerow(tokens[row::rows])
+    return output.getvalue()
+
+
+class _SlddCsvCollector:
+    """Collects the CSV files referenced by the entry rows of one dictionary."""
+
+    def __init__(self) -> None:
+        self.files: dict[str, str] = {}
+
+    def add(self, stem: str, tokens: list[str], dimensions: list[int]) -> str:
+        name = f"{_csv_stem(stem)}.csv"
+        base = name[: -len(".csv")]
+        counter = 1
+        while name in self.files:
+            counter += 1
+            name = f"{base}_{counter}.csv"
+        self.files[name] = _array_csv(tokens, dimensions)
+        return name
+
+
+def _unwrap(value: Any) -> Any:
+    if isinstance(value, dict) and "value" in value and set(value) <= {
+        "dimension",
+        "class",
+        "value",
+        "data",
+    }:
+        return value["value"]
     return value
 
 
-def _entry_value(value: Any) -> Any:
-    if not isinstance(value, dict):
-        return value
-    for container in ("Elements_internal", "Elements", "Components"):
-        child = value.get(container)
-        if isinstance(child, dict):
-            return child.get("items", child)
-    nested = value.get("Value")
-    if nested is not None:
-        if isinstance(nested, dict) and "value" in nested:
-            raw = nested.get("value")
-            if isinstance(raw, str) and re.search(r"[-+]?\d", raw):
-                parts = [part for part in re.split(r"[\s,;]+", raw.strip()) if part]
-                numbers = []
-                for part in parts:
-                    try:
-                        numbers.append(float(part))
-                    except ValueError:
-                        return raw
-                return numbers[0] if len(numbers) == 1 else numbers
-            return raw
-        return nested
+def _clean(value: Any) -> Any:
+    value = _unwrap(value)
+    if isinstance(value, str):
+        return value if value.strip() else None
     return value
+
+
+def _inline_value(value: Any) -> Any:
+    """Inline value for scalars and small one-dimensional arrays."""
+    value = _unwrap(value)
+    if isinstance(value, str):
+        tokens = _number_tokens(value)
+        if tokens and len(tokens) > 1:
+            return [float(token) for token in tokens]
+        return value.strip() or None
+    return value
+
+
+def _rewrite_arrays(
+    node: Any, collector: _SlddCsvCollector, path: str, root: bool = False
+) -> Any:
+    """Replace every numeric array inside a value tree with a CSV pointer.
+
+    ``root`` marks the entry's own value object, whose ``Value`` property names
+    the data file after the entry instead of after ``<entry>.Value``.
+    """
+    if isinstance(node, dict):
+        dimensions = node.get("dimension")
+        if dimensions is not None and "value" in node and not isinstance(node["value"], dict):
+            dims = _dimension_list(dimensions)
+            tokens = _array_payload(node["value"], dims, str(node.get("class") or ""))
+            if tokens is not None and dims is not None:
+                pointer = {key: item for key, item in node.items() if key != "value"}
+                pointer["data"] = collector.add(path or "value", tokens, dims)
+                return pointer
+        return {
+            key: (
+                item
+                if key == "class"
+                else _rewrite_arrays(
+                    item,
+                    collector,
+                    path if root and key == "Value" else (f"{path}.{key}" if path else key),
+                )
+            )
+            for key, item in node.items()
+        }
+    if isinstance(node, list):
+        return [
+            _rewrite_arrays(item, collector, f"{path}[{index}]" if path else f"[{index}]")
+            for index, item in enumerate(node)
+        ]
+    return node
+
+
+def _property_row(properties: dict[str, Any], skip: set[str]) -> dict[str, Any]:
+    """Flatten one SLDD object's properties, keeping every field it carries."""
+    row: dict[str, Any] = {}
+    for name, prop in properties.items():
+        if name in skip:
+            continue
+        key = _SLDD_PROPERTY_MAP.get(name) or _snake(name)
+        if key in row:
+            continue
+        if name == "Dimensions":
+            row[key] = _dimension_list(prop)
+            continue
+        if name in ("Elements_internal", "Elements"):
+            row["elements"] = _bus_element_rows(prop)
+            continue
+        if name == "Components":
+            components = _container_items(prop)
+            if components:
+                row["components"] = [
+                    item.get("class", "") for item in components if item.get("class")
+                ]
+            continue
+        if name == "Enumerals":
+            enumerals = _container_items(prop)
+            if enumerals:
+                row["enumerals"] = [
+                    {
+                        "name": _clean(item.get("Name")),
+                        "value": _clean(item.get("Value")),
+                        "description": _clean(item.get("Description")),
+                    }
+                    for item in enumerals
+                ]
+            continue
+        if name == "CoderInfo":
+            if isinstance(prop, dict):
+                storage = _clean(prop.get("StorageClass"))
+                if storage:
+                    row["storage"] = storage
+                row["coder_info"] = {
+                    _snake(item): _clean(value)
+                    for item, value in prop.items()
+                    if item not in {"class", "dimension"}
+                }
+            continue
+        row[key] = _clean(prop)
+    return row
+
+
+def _bus_element_rows(value: Any) -> list[dict[str, Any]]:
+    if isinstance(value, dict):
+        raw = value.get("Elements_internal") or value.get("Elements") or value
+    else:
+        raw = value
+    elements = []
+    for item in _container_items(raw):
+        row = {
+            "name": item.get("Name", ""),
+            "class": item.get("class", ""),
+        }
+        row.update(
+            _property_row(
+                item,
+                {
+                    "Name",
+                    "class",
+                    "dimension",
+                    "Elements_internal",
+                    "Elements",
+                    "Components",
+                    "CoderInfo",
+                },
+            )
+        )
+        elements.append(row)
+    return elements
 
 
 def _container_items(value: Any) -> list[dict[str, Any]]:
-    if isinstance(value, dict) and "value" in value:
-        value = value["value"]
+    value = _unwrap(value)
     if isinstance(value, dict):
         value = value.get("items", value)
     if isinstance(value, dict):
@@ -833,65 +1165,77 @@ def _container_items(value: Any) -> list[dict[str, Any]]:
     return []
 
 
-def _bus_elements(value: Any) -> list[dict[str, Any]]:
-    if not isinstance(value, dict):
-        return []
-    raw = value.get("Elements_internal") or value.get("Elements")
-    elements = []
-    for item in _container_items(raw):
-        elements.append(
-            {
-                "name": item.get("Name", ""),
-                "class": item.get("class", ""),
-                "dimensions": _dimension_list(item.get("Dimensions")),
-                "dtype": item.get("DataType_internal") or item.get("DataType"),
-                "unit": item.get("DocUnits") or item.get("Unit"),
-                "description": item.get("Description"),
-            }
-        )
-    return elements
+def sldd_entry_documents(tree: dict[str, Any]) -> tuple[list[dict[str, Any]], dict[str, str]]:
+    """One row per dictionary entry, plus the CSV files multi-dimensional values need."""
+    collector = _SlddCsvCollector()
+    rows: list[dict[str, Any]] = []
+    for index, entry in enumerate(tree.get("entries", []), 1):
+        stem = f"{index:04d}_{_csv_stem(entry.get('name', ''))}"
+        row: dict[str, Any] = {
+            "name": entry.get("name", ""),
+            "class": "",
+            "status": None,
+            "complexity": None,
+            "min": None,
+            "max": None,
+            "dtype": None,
+            "dimensions": None,
+            "unit": None,
+            "argument": None,
+            "storage": None,
+            "data_source": None,
+            "description": None,
+            "last_modified": entry.get("last_modified") or None,
+            "last_modified_by": entry.get("last_modified_by") or None,
+            "uuid": entry.get("uuid") or None,
+            "namespace": entry.get("namespace") or None,
+            "is_derived": entry.get("derived"),
+        }
+        value = entry.get("value")
+        if isinstance(value, dict) and isinstance(value.get("class"), str) and value[
+            "class"
+        ].startswith("Simulink"):
+            row["class"] = value["class"]
+            rewritten = _rewrite_arrays(value, collector, stem, root=True)
+            row.update(
+                _property_row(
+                    rewritten,
+                    {"Name", "class", "dimension", "Value", "Dimensions"},
+                )
+            )
+            row["dimensions"] = _dimension_list(rewritten.get("Dimensions"))
+            nested = rewritten.get("Value")
+            if isinstance(nested, dict) and "data" in nested:
+                row["data"] = nested["data"]
+                dimensions = _dimension_list(nested.get("dimension"))
+                if dimensions is not None:
+                    row["dimensions"] = dimensions
+                if row["dtype"] is None:
+                    row["dtype"] = _clean(nested.get("class")) or None
+            elif "Value" in rewritten:
+                row["value"] = _inline_value(nested)
+        elif isinstance(value, dict):
+            row["class"] = value["class"] if isinstance(value.get("class"), str) else ""
+            row["value"] = _rewrite_arrays(value, collector, stem)
+        else:
+            dimensions = _dimension_list(entry.get("value_dimension")) or [1, 1]
+            dtype = entry.get("value_class") or ""
+            tokens = _array_payload(value, dimensions, dtype) if isinstance(value, str) else None
+            row["dimensions"] = dimensions
+            if dtype:
+                row["dtype"] = dtype
+            if tokens is not None:
+                row["data"] = collector.add(stem, tokens, dimensions)
+            elif value is not None:
+                row["value"] = _inline_value(value)
+        rows.append(row)
+    return rows, collector.files
 
 
 def sldd_entry_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
     """Flatten dictionary entries into the plan's one-object-per-line shape."""
-    rows: list[dict[str, Any]] = []
-    for entry in tree.get("entries", []):
-        value = entry.get("value")
-        row: dict[str, Any] = {"name": entry.get("name", "")}
-        if isinstance(value, dict):
-            row["class"] = value.get("class", "未知")
-            coder = value.get("CoderInfo")
-            storage = coder.get("StorageClass") if isinstance(coder, dict) else None
-            if storage:
-                row["storage"] = storage
-            if value.get("Condition") is not None:
-                row["condition"] = value.get("Condition")
-            if value.get("Value") is not None:
-                row["value"] = _entry_value(value)
-            dimensions = _dimension_list(value.get("Dimensions"))
-            if dimensions is not None:
-                row["dimensions"] = dimensions
-            dtype = value.get("DataType") or value.get("DataType_internal")
-            if dtype:
-                row["dtype"] = dtype
-            unit = value.get("DocUnits") or value.get("Unit")
-            if unit:
-                row["unit"] = unit
-            description = value.get("Description")
-            if description:
-                row["description"] = description
-            elements = _bus_elements(value)
-            if elements:
-                row["elements"] = elements
-            components = _container_items(value.get("Components"))
-            if components:
-                row["components"] = [
-                    item.get("class", "") for item in components if item.get("class")
-                ]
-        elif value is not None:
-            row["value"] = value
-        rows.append(row)
-    return rows
+    return sldd_entry_documents(tree)[0]
+
 
 def requirement_rows(payload: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     """Map requirement/link nodes to the plan's JSONL fields."""

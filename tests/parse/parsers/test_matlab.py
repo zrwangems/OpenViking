@@ -25,6 +25,7 @@ from openviking.parse.parsers.matlab.structured import (
     parse_requirement_set,
     parse_sldd_tree,
     protected_metadata,
+    sldd_entry_rows,
 )
 from openviking.parse.registry import ParserRegistry
 
@@ -65,8 +66,25 @@ def test_slx_nested_systems_ports_parameters_and_branches():
         assert isinstance(document["edges"], list)
         assert set(document) >= {"system", "system_ref", "subsystem_types", "children"}
         assert "```mermaid" not in json.dumps(document)
-    total_edges = sum(len(document["edges"]) for document in documents.values())
-    assert total_edges == sum(len(system.edges) for system in systems)
+        for block in document["blocks"]:
+            assert set(block) == {"name", "block_type", "source_block", "ports", "params"}
+        for edge in document["edges"]:
+            assert set(edge) == {"from", "to", "signal"}
+            assert isinstance(edge["from"], list) and len(edge["from"]) == 2
+            assert edge["to"] and all(
+                isinstance(target, list) and len(target) == 2 for target in edge["to"]
+            )
+        for child in document["children"]:
+            assert set(child) == {"name", "path", "system_ref", "type"}
+
+    total_rows = sum(len(document["edges"]) for document in documents.values())
+    total_edges = sum(len(system.edges) for system in systems)
+    assert 0 < total_rows <= total_edges
+    assert any(
+        len(edge["to"]) > 1
+        for document in documents.values()
+        for edge in document["edges"]
+    )
     assert (
         documents["IPS_Supervisory_Control/Generator_Control.ON.GenControl/main.json"]["type"]
         == "simulink-subsystem"
@@ -131,12 +149,137 @@ def test_sldd_entries_dimensions_types_and_references():
     assert by_name["altitude"]["value"]["Value"] == "4000000.0"
     assert by_name["ACSConfigSet"]["value"]["class"] == "Simulink.ConfigSet"
 
-    from openviking.parse.parsers.matlab.structured import sldd_entry_rows
-
     rows = sldd_entry_rows(tree)
     altitude = next(row for row in rows if row["name"] == "altitude")
     assert altitude["class"] == "Simulink.Parameter"
     assert altitude["value"] == "4000000.0"
+    assert altitude["complexity"] is None
+    assert altitude["storage"] == "Auto"
+    assert altitude["dimensions"] == [1, 1]
+    assert altitude["dtype"] == "auto"
+    assert altitude["unit"] is None
+    assert altitude["last_modified"] == "20210206T043926.586625"
+    assert altitude["last_modified_by"] == "The MathWorks, Inc."
+    assert altitude["uuid"] == "fa2b4ae4-c15f-40b5-b2d7-83c715c6f939"
+    assert altitude["namespace"] == "dacaf35e-55a5-454d-a7c1-93db038a210e"
+    assert altitude["is_derived"] is False
+    for column in (
+        "status",
+        "complexity",
+        "min",
+        "max",
+        "unit",
+        "argument",
+        "storage",
+        "data_source",
+        "last_modified",
+        "last_modified_by",
+    ):
+        assert column in altitude
+def test_slx_block_ports_edges_and_children_have_no_generated_ids():
+    model = parse_slx(
+        SAMPLE / "model" / "asbCubeSatMBSE" / "CubeSatMBSEModel" / "asbCubeSatArchModel.slx"
+    )
+    document = system_json_documents(model)["main.json"]
+    blocks = {block["name"]: block for block in document["blocks"]}
+
+    # Port names come from the file: the ModelReference port lists and the
+    # subsystem's own Inport/Outport blocks.
+    space = blocks["Space Environment"]
+    assert space["ports"] == {"in": ["CubeSatStates"], "out": ["Env"]}
+    assert space["source_block"] == ""
+    assert "id" not in space
+
+    edge = next(
+        item for item in document["edges"] if item["from"] == ["Space Environment", "Env"]
+    )
+    assert edge["signal"] is None
+    assert len(edge["to"]) >= 2
+    assert all(target[1] for target in edge["to"])
+    assert len([item for item in document["edges"] if item["from"] == ["Space Environment", "Env"]]) == 1
+
+    for child in document["children"]:
+        assert "block_id" not in child
+        assert child["path"].endswith(".json")
+
+
+def test_slx_unnamed_ports_fall_back_to_port_index():
+    documents = system_json_documents(parse_slx(CONTROLLER))
+    document = documents["main.json"]
+    lookup = next(block for block in document["blocks"] if block["name"] == "ChargeFactor")
+    assert lookup["block_type"] == "Lookup_n-D"
+    assert lookup["ports"]["in"] == [1]
+    assert lookup["source_block"] == ""
+
+
+@pytest.mark.asyncio
+async def test_sldd_multidimensional_values_are_csv_and_original_is_dropped(tmp_path):
+    dictionary = (
+        SAMPLE
+        / "model"
+        / "VirtualVehicle"
+        / "EngineData"
+        / "Dictionaries"
+        / "CiEngineCore.sldd"
+    )
+    result = await MatlabParser().parse(
+        dictionary, parse_output_store=LocalParseOutputStore(tmp_path)
+    )
+    root = Path(result.artifact_ref.root) / "CiEngineCore"
+    assert not list(root.glob("*.sldd"))
+    assert result.meta["original_preserved"] is False
+    rows = {
+        row["name"]: row
+        for row in map(
+            json.loads, (root / "entries.jsonl").read_text(encoding="utf-8").splitlines()
+        )
+    }
+
+    mep = rows["PlntEngCIGIMepMap"]
+    assert mep["dimensions"] == [15, 16]
+    assert mep["dtype"] == "double"
+    assert mep["complexity"] == "real"
+    assert "value" not in mep
+    assert mep["data"] == "0008_PlntEngCIGIMepMap.csv"
+    matrix = list(csv.reader(io.StringIO((root / mep["data"]).read_text(encoding="utf-8"))))
+    assert len(matrix) == 15 and len(matrix[0]) == 16
+    assert matrix[0][:4] == ["0.0", "0.0", "0.0", "0.0"]
+    assert float(matrix[1][0]) == pytest.approx(158686.535, rel=1e-6)
+    assert float(matrix[2][0]) == pytest.approx(343074.266, rel=1e-6)
+
+    turb = rows["PlntEngCITurbEff"]
+    assert turb["dimensions"] == [60, 80, 6]
+    assert turb["data"] == "0003_PlntEngCITurbEff.csv"
+    turb_rows = (root / turb["data"]).read_text(encoding="utf-8").splitlines()
+    assert turb_rows[0] == "dim_1,dim_2,dim_3,value"
+    assert len(turb_rows) == 60 * 80 * 6 + 1
+    assert not (root / "data").exists()
+
+
+@pytest.mark.asyncio
+async def test_sldd_one_dimensional_values_stay_inline(tmp_path):
+    dictionary = (
+        SAMPLE
+        / "model"
+        / "VirtualVehicle"
+        / "EngineData"
+        / "Dictionaries"
+        / "CiEngineCore.sldd"
+    )
+    result = await MatlabParser().parse(
+        dictionary, parse_output_store=LocalParseOutputStore(tmp_path)
+    )
+    root = Path(result.artifact_ref.root) / "CiEngineCore"
+    rows = [
+        json.loads(line)
+        for line in (root / "entries.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
+    inline = [row for row in rows if "value" in row]
+    assert inline
+    assert all("data" not in row for row in inline)
+    assert all(row["dimensions"] and len(row["dimensions"]) == 2 for row in inline)
+
+
 def test_slx_rejects_missing_model_root(tmp_path):
     path = tmp_path / "invalid.slx"
     with zipfile.ZipFile(path, "w") as archive:
@@ -197,14 +340,42 @@ def test_mat_sparse_array_is_exported_in_full(tmp_path):
     assert not warnings
 
 
-def test_mlx_preserves_headings_text_and_code():
+def test_mlx_blocks_are_code_markdown_and_output():
     live_script = SAMPLE / "model" / "asbCubeSatMBSE" / "MissionAnalysis" / "mappingToolboxAnalysis.mlx"
     notebook, files = parse_mlx_notebook(live_script)
-    kinds = [cell["type"] for cell in notebook["cells"]]
-    assert "heading" in kinds and "markdown" in kinds and "code" in kinds
-    code = "\n".join(cell["source"] for cell in notebook["cells"] if cell["type"] == "code")
-    assert 'arch.model = "asbCubeSatArchModel"' in code
-    assert any(output["type"] == "image" for output in notebook["outputs"])
+    kinds = {block["type"] for block in notebook["blocks"]}
+    assert kinds == {"code", "markdown", "output"}
+    assert notebook["counts"] == {
+        "code": sum(block["type"] == "code" for block in notebook["blocks"]),
+        "markdown": sum(block["type"] == "markdown" for block in notebook["blocks"]),
+        "output": sum(block["type"] == "output" for block in notebook["blocks"]),
+    }
+    assert all(set(block) >= {"type", "content"} for block in notebook["blocks"])
+    assert "heading" not in notebook
+    assert "cells" not in notebook and "outputs" not in notebook
+
+    # A heading and the text under it stay in one markdown block.
+    markdown = [block["content"] for block in notebook["blocks"] if block["type"] == "markdown"]
+    assert (
+        "## Run the Simulation\n\nRun the simulation if the simulation output object out "
+        "does not exist." in markdown
+    )
+
+    code = [block["content"] for block in notebook["blocks"] if block["type"] == "code"]
+    assert 'arch.model = "asbCubeSatArchModel";' in code[0]
+    assert code[0].endswith("end")
+
+    # Every output follows the code block that produced it, and images point at saved files.
+    for index, block in enumerate(notebook["blocks"]):
+        if block["type"] != "output":
+            continue
+        previous = index - 1
+        while previous >= 0 and notebook["blocks"][previous]["type"] == "output":
+            previous -= 1
+        assert previous < 0 or notebook["blocks"][previous]["type"] == "code"
+        if block["media"] == "image":
+            assert block["content"] in files
+    assert any(block.get("media") == "image" for block in notebook["blocks"])
     assert files and all(name.startswith("outputs/") for name in files)
 def test_fig_tree_keeps_handle_objects(tmp_path):
     scipy_io = pytest.importorskip("scipy.io")
@@ -420,15 +591,17 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
             / "outputs"
         ).glob("*.png")
     )
-    assert (
+    dictionary = (
         base
         / "model"
         / "asbCubeSatMBSE"
         / "CubeSatMBSEModel"
         / "ModelData"
         / "asbCubeSatArchInterfaceData"
-        / "entries.jsonl"
-    ).is_file()
+    )
+    assert (dictionary / "entries.jsonl").is_file()
+    assert not list(dictionary.glob("*.sldd"))
+    assert not (dictionary / "data").exists()
     assert (base / "src" / "detectChangeOrbitalElements.m").is_file()
     assert not (base / "src" / "detectChangeOrbitalElements.m.md").exists()
     assert list((base / "bin").rglob("*.dll"))
@@ -537,9 +710,9 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     by_name = {block["name"]: block for block in root["blocks"]}
     assert by_name["Electrical +"]["block_type"] == "ConnectionPort"
     assert by_name["Electrical +"]["params"]["Domain"] == "electrical"
-    assert by_name["Electrical +"]["ports"]["conn"] == [1]
+    assert by_name["Electrical +"]["ports"]["conn"] == ["Electrical +"]
     assert by_name["Torque"]["block_type"] == "PMIOPort"
-    assert by_name["Torque"]["ports"]["conn"] == [3]
+    assert by_name["Torque"]["ports"]["conn"] == ["Torque"]
 @pytest.mark.asyncio
 async def test_legacy_mdl_requirements_and_binary_metadata(tmp_path):
     mdl = SAMPLE / "src" / "slctrlobsolete.mdl"
