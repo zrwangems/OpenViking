@@ -21,6 +21,7 @@ from openviking.parse.parsers.matlab.formats import (
 from openviking.parse.parsers.matlab.mat import parse_mat_documents
 from openviking.parse.parsers.matlab.mdl import parse_mdl
 from openviking.parse.parsers.matlab.measurement import parse_measurement
+from openviking.parse.parsers.matlab.official_block_templates import load_catalog_for_parse
 from openviking.parse.parsers.matlab.packages import (
     fmu_metadata,
     jar_metadata,
@@ -157,9 +158,20 @@ class MatlabParser(BaseParser):
         warnings: list[str] = []
         try:
             suffix = path.suffix.lower()
+            catalog = None
+            if suffix in {".slx", ".mdl"}:
+                viking_fs = None
+                if output_store is None:
+                    try:
+                        viking_fs = self._get_viking_fs()
+                    except Exception:
+                        viking_fs = None
+                catalog = await load_catalog_for_parse(language, viking_fs)
             if suffix == ".slx" or (suffix == ".mdl" and zipfile.is_zipfile(path)):
                 model = await asyncio.to_thread(parse_slx, path)
-                documents = await asyncio.to_thread(system_json_documents, model, language)
+                documents = await asyncio.to_thread(
+                    system_json_documents, model, language, catalog
+                )
                 charts = await asyncio.to_thread(parse_stateflow, path)
                 for chart in charts:
                     system_path = chart_system_path(chart)
@@ -197,7 +209,9 @@ class MatlabParser(BaseParser):
                 title = path.stem
             elif suffix == ".mdl":
                 model = await asyncio.to_thread(parse_mdl, path)
-                documents = await asyncio.to_thread(system_json_documents, model, language)
+                documents = await asyncio.to_thread(
+                    system_json_documents, model, language, catalog
+                )
                 root_dir = _output_folder(path)
                 for name, document in documents.items():
                     await writer.write_text(

@@ -364,7 +364,7 @@ end</pre>
   <h3>位置与处理</h3>
   <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>模型目录</code></td><td>—</td><td>文本 Block/Line 解析成 JSON</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>先看前 4 字节：PK 开头按 .slx 解包，否则按文本模型解析</li><li>MDL 就是老版本的 SLX：按 Block / Line 声明做词法扫描再取字段，块的 BlockType、Name、块参数、Ports（块参数只用于套模板生成描述，不再作为 JSON 字段输出），连线的 SrcBlock/SrcPort、DstBlock/DstPort、Branch、Labels</li><li>花括号层级先配对再进字段，子系统嵌套从 Subsystem 段还原；不按行用正则硬切，因为参数里可能有换行、引号和嵌套括号</li><li>产物的目录结构和图数据 schema 与 .slx 完全一样，只是数据来源从 XML 换成文本 token，两个版本能直接对比</li><li>每个系统落一个 JSON，和 .slx 同一套 schema</li></ol>
+  <ol><li>先看前 4 字节：PK 开头按 .slx 解包，否则按文本模型解析</li><li>MDL 就是老版本的 SLX：按 Block / Line 声明做词法扫描再取字段，块的 BlockType、Name、块参数、Ports（块参数只用于套官方块描述模板，不再作为 JSON 字段输出），连线的 SrcBlock/SrcPort、DstBlock/DstPort、Branch、Labels</li><li>花括号层级先配对再进字段，子系统嵌套从 Subsystem 段还原；不按行用正则硬切，因为参数里可能有换行、引号和嵌套括号</li><li>产物的目录结构和图数据 schema 与 .slx 完全一样，只是数据来源从 XML 换成文本 token，两个版本能直接对比</li><li>每个系统落一个 JSON，和 .slx 同一套 schema</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/mdl.py</code><br>parse_mdl() → System/Block/Edge</p>
   <p class="note">分发位置：<code>parser.py:193（PK 开头的 .mdl 走 .slx 分支 parser.py:155）</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
@@ -1151,7 +1151,7 @@ save_format=v7</pre>
   <h3>位置与处理</h3>
   <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>模型目录</code></td><td>—</td><td>按系统解包成 JSON</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口顺序、模板生成的块描述）、edges（源/目标、端口、信号）、子系统类型和说明</li><li>流程图和块描述视图从 JSON 生成，不单独落文件</li><li>块类型和库来源只取模型里的 BlockType/SourceBlock，缺 SourceBlock 时写 built-in/&lt;BlockType&gt;；不再对照随包块库，块库文档已迁到独立仓库 openviking-engineering-resources</li></ol>
+  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口顺序、官方块库模板生成的块描述）、edges（源/目标、端口、信号）、子系统类型和说明</li><li>流程图和块描述视图从 JSON 生成，不单独落文件</li><li>块类型和库来源只取模型里的 BlockType/SourceBlock，缺 SourceBlock 时写 built-in/&lt;BlockType&gt;；块描述优先读独立仓库 openviking-engineering-resources 里的 templates.json，未命中才回退随包手写模板</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/slx.py</code><br>parse_slx() · system_json_documents() · _system_json()</p>
   <p class="note">分发位置：<code>parser.py:155</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>

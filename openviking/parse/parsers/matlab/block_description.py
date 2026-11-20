@@ -15,6 +15,7 @@ from typing import TYPE_CHECKING, Any
 from openviking.parse.parsers.matlab.block_templates import GENERIC, TEMPLATES, BlockTemplate
 
 if TYPE_CHECKING:  # pragma: no cover - imported only for type checkers
+    from openviking.parse.parsers.matlab.official_block_templates import OfficialBlockCatalog
     from openviking.parse.parsers.matlab.slx import Block
 
 # Presentation-only parameters that say nothing about what a block computes.
@@ -126,9 +127,30 @@ def template_for(block_type: str) -> BlockTemplate:
     return TEMPLATES.get(block_type, GENERIC)
 
 
-def describe_block(block: "Block", language: str = "en") -> str:
-    """Render one block description from its template and own parameters."""
+def _with_note(text: str, block: "Block", language: str) -> str:
+    note = _clip(_collapse(block.parameters.get("Description")), 300)
+    if note:
+        text += f" 模型内块描述：{note}" if language.startswith("zh") else (
+            f" Model block description: {note}"
+        )
+    return text
+
+
+def describe_block(
+    block: "Block",
+    language: str = "en",
+    catalog: "OfficialBlockCatalog | None" = None,
+) -> str:
+    """Render one block description, preferring the official block catalog.
+
+    Order: official library template -> hand-written type template -> generic.
+    """
     zh = str(language).lower().startswith("zh")
+    if catalog is not None:
+        official = catalog.describe(block, display_parameters(block.parameters))
+        if official:
+            return _with_note(official, block, "zh" if zh else "en")
+
     template = template_for(block.block_type)
     items = _config_items(block.parameters)
     values: dict[str, Any] = {
@@ -146,7 +168,4 @@ def describe_block(block: "Block", language: str = "en") -> str:
         }
     )
     text = (template.zh if zh else template.en).format_map(_Values(values, "zh" if zh else "en"))
-    note = _clip(_collapse(block.parameters.get("Description")), 300)
-    if note:
-        text += f" 模型内块描述：{note}" if zh else f" Model block description: {note}"
-    return text
+    return _with_note(text, block, "zh" if zh else "en")

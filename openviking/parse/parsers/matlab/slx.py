@@ -9,12 +9,15 @@ import re
 import zipfile
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
 
 from defusedxml import ElementTree as ET
 
 from openviking.parse.parsers.matlab._zip import read_xml_member
 from openviking.parse.parsers.matlab.block_description import describe_block
+
+if TYPE_CHECKING:  # pragma: no cover - imported only for type checkers
+    from openviking.parse.parsers.matlab.official_block_templates import OfficialBlockCatalog
 
 
 @dataclass
@@ -262,7 +265,11 @@ def _endpoint_kind(value: str) -> str:
     return match.group(1) if match else "port"
 
 
-def system_json_documents(model: System, language: str = "en") -> dict[str, dict]:
+def system_json_documents(
+    model: System,
+    language: str = "en",
+    catalog: "OfficialBlockCatalog | None" = None,
+) -> dict[str, dict]:
     """Return one JSON object per system, keyed by its resource path.
 
     The model root and systems with children use ``main.json``. A leaf system is
@@ -279,7 +286,7 @@ def system_json_documents(model: System, language: str = "en") -> dict[str, dict
             path = f"{directory}/main.json"
         else:
             path = f"{directory}.json"
-        documents[path] = _system_json(system, is_root, path, language)
+        documents[path] = _system_json(system, is_root, path, language, catalog)
         for child in system.children:
             child_dir = (
                 f"{directory}/{_child_directory(child)}" if directory else _child_directory(child)
@@ -290,7 +297,13 @@ def system_json_documents(model: System, language: str = "en") -> dict[str, dict
     return documents
 
 
-def _system_json(system: System, is_root: bool, path: str, language: str) -> dict:
+def _system_json(
+    system: System,
+    is_root: bool,
+    path: str,
+    language: str,
+    catalog: "OfficialBlockCatalog | None" = None,
+) -> dict:
     block_ids = {block.sid: f"b{_slug(block.sid)}" for block in system.blocks}
     ports: dict[str, dict[str, list]] = {
         sid: {"in": [], "out": [], "conn": []} for sid in block_ids
@@ -366,7 +379,7 @@ def _system_json(system: System, is_root: bool, path: str, language: str) -> dic
                     else ""
                 ),
                 "ports": block_ports,
-                "description": describe_block(block, language),
+                "description": describe_block(block, language, catalog),
             }
         )
 
