@@ -11,6 +11,7 @@ from openviking.parse.parsers.matlab.block_description import describe_block
 from openviking.parse.parsers.matlab.official_block_templates import (
     OfficialBlockCatalog,
     load_catalog,
+    load_catalog_for_parse,
 )
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.slx import Block, parse_slx, system_json_documents
@@ -170,3 +171,28 @@ async def test_parser_loads_catalog_from_configured_local_library(monkeypatch, t
         for block in json.loads(document.read_text(encoding="utf-8")).get("blocks", [])
     ]
     assert any(text.startswith("将输入乘以常数") for text in descriptions)
+
+
+@pytest.mark.asyncio
+async def test_load_catalog_from_openviking_asset(monkeypatch):
+    class FakeVikingFS:
+        async def read_file(self, uri):
+            assert uri.endswith(
+                "openviking-engineering-resources/matlab/zh/simulink-block-library/templates.json"
+            )
+            return json.dumps(_payload(), ensure_ascii=False)
+
+    monkeypatch.delenv("OPENVIKING_MATLAB_BLOCK_LIBRARY", raising=False)
+    catalog = await load_catalog_for_parse("zh-CN", FakeVikingFS())
+    assert catalog is not None
+    assert catalog.resolve("Gain", "").key == "Simulink/Commonly Used Blocks/Gain"
+
+
+@pytest.mark.asyncio
+async def test_missing_asset_is_silent_fallback(monkeypatch):
+    class MissingVikingFS:
+        async def read_file(self, uri):
+            raise FileNotFoundError(uri)
+
+    monkeypatch.delenv("OPENVIKING_MATLAB_BLOCK_LIBRARY", raising=False)
+    assert await load_catalog_for_parse("zh-CN", MissingVikingFS()) is None
