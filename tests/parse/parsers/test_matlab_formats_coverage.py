@@ -54,6 +54,9 @@ def test_legacy_mdl_becomes_system_json(tmp_path):
     document = json.loads((root / "legacy" / "main.json").read_text(encoding="utf-8"))
     assert document["schema"] == "ov.matlab.simulink/1"
     assert [block["name"] for block in document["blocks"]] == ["u", "g", "y"]
+    assert all(block["description"].strip() for block in document["blocks"])
+    assert all("params" not in block for block in document["blocks"])
+    assert "Gain" in document["blocks"][1]["description"]
     assert len(document["edges"]) == 2
 
 

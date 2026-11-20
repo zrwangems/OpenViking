@@ -13,6 +13,8 @@ import pytest
 from openviking.parse.output import LocalParseOutputStore
 from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
+from openviking.parse.parsers.matlab.block_description import describe_block
+from openviking.parse.parsers.matlab.block_templates import TEMPLATES
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.slx import parse_slx, system_json_documents
@@ -71,7 +73,7 @@ def test_slx_nested_systems_ports_parameters_and_branches():
         documents["IPS_Supervisory_Control/Generator_Control.ON.GenControl/main.json"]["type"]
         == "simulink-subsystem"
     )
-def test_system_json_stays_compact_and_keeps_instance_parameters():
+def test_system_json_stays_compact_and_keeps_instance_configuration_in_description():
     documents = system_json_documents(parse_slx(CONTROLLER), language="zh-CN")
     power_path = next(
         path for path in documents if path.endswith("Mech_To_Elec_Power_Estimate.json")
@@ -81,7 +83,7 @@ def test_system_json_stays_compact_and_keeps_instance_parameters():
     assert "Lookup_n-D" in payload
     assert power["blocks"]
     assert any(
-        block["params"].get("Table") == "PlntEM2EffTbl" for block in power["blocks"]
+        "PlntEM2EffTbl" in block["description"] for block in power["blocks"]
     )
     assert "逼近 N 维函数" not in payload
     assert len(payload) < 10_000
@@ -526,17 +528,15 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     root = documents["main.json"]
     assert root["type"] == "simulink-model"
     enabled = documents["Enabled.json"]
-    assert any(block["params"].get("StatesWhenEnabling") == "held" for block in enabled["blocks"])
+    assert any("held" in block["description"] for block in enabled["blocks"])
     variants = documents["Variants/main.json"]
     assert variants["type"] == "simulink-subsystem"
     root_blocks = {block["name"]: block for block in root["blocks"]}
-    assert root_blocks["Variants"]["params"]["VariantControlMode"] == "expression"
-    assert any(
-        block["params"].get("VariantControl") == "V == 1" for block in variants["blocks"]
-    )
+    assert "expression" in root_blocks["Variants"]["description"]
+    assert any("V == 1" in block["description"] for block in variants["blocks"])
     by_name = {block["name"]: block for block in root["blocks"]}
     assert by_name["Electrical +"]["block_type"] == "ConnectionPort"
-    assert by_name["Electrical +"]["params"]["Domain"] == "electrical"
+    assert "electrical" in by_name["Electrical +"]["description"]
     assert by_name["Electrical +"]["ports"]["conn"] == [1]
     assert by_name["Torque"]["block_type"] == "PMIOPort"
     assert by_name["Torque"]["ports"]["conn"] == [3]
@@ -576,3 +576,64 @@ async def test_legacy_mdl_requirements_and_binary_metadata(tmp_path):
     )
     assert metadata["parse_status"] == "opaque"
     assert (root / "componentinfo" / "componentinfo.mexw64").is_file()
+
+
+def test_blocks_have_template_description_instead_of_params():
+    model = parse_slx(CONTROLLER)
+    assert system_json_documents(model, language="zh-CN") == system_json_documents(
+        model, language="zh-CN"
+    )
+    for language in ("en", "zh-CN"):
+        documents = system_json_documents(model, language=language)
+        for document in documents.values():
+            for block in document["blocks"]:
+                assert "params" not in block, block
+                assert block["description"].strip(), block
+
+    zh = system_json_documents(model, language="zh-CN")
+    descriptions = [
+        block["description"]
+        for document in zh.values()
+        for block in document["blocks"]
+    ]
+    assert any(text.startswith("输出端口") for text in descriptions)
+    assert any("增益模块" in text and "1/100" in text for text in descriptions)
+
+
+def test_every_fixture_block_type_resolves_to_its_own_template():
+    types = set()
+    for path in Path(__file__).parents[2].joinpath("matlab_repos").rglob("*.slx"):
+        try:
+            model = parse_slx(path)
+        except ValueError:
+            continue
+        stack = [model]
+        while stack:
+            system = stack.pop()
+            stack.extend(system.children)
+            for block in system.blocks:
+                types.add(block.block_type)
+                assert describe_block(block, "zh-CN").strip(), block
+    assert types
+    assert types <= set(TEMPLATES), sorted(types - set(TEMPLATES))
+
+
+def test_unknown_block_type_uses_generic_template_with_its_parameters():
+    from openviking.parse.parsers.matlab.block_description import template_for
+    from openviking.parse.parsers.matlab.block_templates import GENERIC
+    from openviking.parse.parsers.matlab.slx import Block
+
+    block = Block(
+        sid="99",
+        name="ToolboxOnly",
+        block_type="SomeToolboxBlock",
+        parameters={"Algorithm": "fast", "Threshold": "3", "Position": "[0, 0, 10, 10]"},
+        source_block="toolbox/Some Toolbox Block",
+    )
+    assert template_for(block.block_type) is GENERIC
+    description = describe_block(block, "zh-CN")
+    assert "SomeToolboxBlock" in description
+    assert "toolbox/Some Toolbox Block" in description
+    assert "Algorithm=fast" in description
+    assert "Threshold=3" in description
+    assert "Position" not in description

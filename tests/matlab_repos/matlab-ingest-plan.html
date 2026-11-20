@@ -364,7 +364,7 @@ end</pre>
   <h3>位置与处理</h3>
   <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>模型目录</code></td><td>—</td><td>文本 Block/Line 解析成 JSON</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>先看前 4 字节：PK 开头按 .slx 解包，否则按文本模型解析</li><li>MDL 就是老版本的 SLX：按 Block / Line 声明做词法扫描再取字段，块的 BlockType、Name、Parameters、Ports，连线的 SrcBlock/SrcPort、DstBlock/DstPort、Branch、Labels</li><li>花括号层级先配对再进字段，子系统嵌套从 Subsystem 段还原；不按行用正则硬切，因为参数里可能有换行、引号和嵌套括号</li><li>产物的目录结构和图数据 schema 与 .slx 完全一样，只是数据来源从 XML 换成文本 token，两个版本能直接对比</li><li>每个系统落一个 JSON，和 .slx 同一套 schema</li></ol>
+  <ol><li>先看前 4 字节：PK 开头按 .slx 解包，否则按文本模型解析</li><li>MDL 就是老版本的 SLX：按 Block / Line 声明做词法扫描再取字段，块的 BlockType、Name、块参数、Ports（块参数只用于套模板生成描述，不再作为 JSON 字段输出），连线的 SrcBlock/SrcPort、DstBlock/DstPort、Branch、Labels</li><li>花括号层级先配对再进字段，子系统嵌套从 Subsystem 段还原；不按行用正则硬切，因为参数里可能有换行、引号和嵌套括号</li><li>产物的目录结构和图数据 schema 与 .slx 完全一样，只是数据来源从 XML 换成文本 token，两个版本能直接对比</li><li>每个系统落一个 JSON，和 .slx 同一套 schema</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/mdl.py</code><br>parse_mdl() → System/Block/Edge</p>
   <p class="note">分发位置：<code>parser.py:193（PK 开头的 .mdl 走 .slx 分支 parser.py:155）</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
@@ -389,9 +389,7 @@ end</pre>
     {&quot;id&quot;: &quot;n4&quot;, &quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
      &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]},
-     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;,
-                &quot;torque_max&quot;: &quot;207*42/60&quot;, &quot;T_t&quot;: &quot;[0.09 0.08 0.07 0]&quot;,
-                &quot;param_by&quot;: &quot;Maximum torque and power&quot;}},
+     &quot;description&quot;: &quot;库引用模块，引用 autolibmappedmotor/Mapped Motor。实例配置：J=5e-6，T_eff=0.08，power_max=42000，torque_max=207*42/60，T_t=[0.09 0.08 0.07 0]，param_by=Maximum torque and power&quot;}
     {&quot;id&quot;: &quot;n5&quot;, &quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
      &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
     {&quot;id&quot;: &quot;n6&quot;, &quot;name&quot;: &quot;GenCurnt&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
@@ -411,7 +409,7 @@ end</pre>
   &quot;children&quot;: []
 }</pre>
   <h3>AI 能读到什么</h3>
-  <p>老版模型的分层子系统、每个系统的图数据和参数；和 .slx 版落在同一套结构里。</p>
+  <p>老版模型的分层子系统、每个系统的图数据和块描述；和 .slx 版落在同一套结构里。</p>
   <h3>边界</h3>
   <p class="bound">MDL 语法没有公开规范、版本差异大；认不出的段保留原文并列为未解析项，不猜块类型。</p>
 </div>
@@ -1153,7 +1151,7 @@ save_format=v7</pre>
   <h3>位置与处理</h3>
   <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>模型目录</code></td><td>—</td><td>按系统解包成 JSON</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口顺序、参数）、edges（源/目标、端口、信号）、子系统类型和说明</li><li>流程图和参数表视图从 JSON 生成，不单独落文件</li><li>块类型和库来源只取模型里的 BlockType/SourceBlock，缺 SourceBlock 时写 built-in/&lt;BlockType&gt;；不再对照随包块库，块库文档已迁到独立仓库 openviking-engineering-resources</li></ol>
+  <ol><li>按 ZIP/OPC 打开，读 blockdiagram.xml、systems/*.xml、stateflow/chart_*.xml</li><li>以模型名建根文件夹，每个系统一个 JSON：有子系统的建文件夹放 main.json，叶子系统直接 &lt;子系统名&gt;.json</li><li>JSON 存完整系统：blocks（名字、类型、库来源、端口顺序、模板生成的块描述）、edges（源/目标、端口、信号）、子系统类型和说明</li><li>流程图和块描述视图从 JSON 生成，不单独落文件</li><li>块类型和库来源只取模型里的 BlockType/SourceBlock，缺 SourceBlock 时写 built-in/&lt;BlockType&gt;；不再对照随包块库，块库文档已迁到独立仓库 openviking-engineering-resources</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/slx.py</code><br>parse_slx() · system_json_documents() · _system_json()</p>
   <p class="note">分发位置：<code>parser.py:155</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
@@ -1178,9 +1176,7 @@ save_format=v7</pre>
     {&quot;id&quot;: &quot;n4&quot;, &quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
      &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]},
-     &quot;params&quot;: {&quot;J&quot;: &quot;5e-6&quot;, &quot;T_eff&quot;: &quot;0.08&quot;, &quot;power_max&quot;: &quot;42000&quot;,
-                &quot;torque_max&quot;: &quot;207*42/60&quot;, &quot;T_t&quot;: &quot;[0.09 0.08 0.07 0]&quot;,
-                &quot;param_by&quot;: &quot;Maximum torque and power&quot;}},
+     &quot;description&quot;: &quot;库引用模块，引用 autolibmappedmotor/Mapped Motor。实例配置：J=5e-6，T_eff=0.08，power_max=42000，torque_max=207*42/60，T_t=[0.09 0.08 0.07 0]，param_by=Maximum torque and power&quot;}
     {&quot;id&quot;: &quot;n5&quot;, &quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
      &quot;source_block&quot;: &quot;built-in/Outport&quot;, &quot;ports&quot;: {&quot;in&quot;: [1]}},
     {&quot;id&quot;: &quot;n6&quot;, &quot;name&quot;: &quot;GenCurnt&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
@@ -1200,7 +1196,7 @@ save_format=v7</pre>
   &quot;children&quot;: []
 }</pre>
   <h3>AI 能读到什么</h3>
-  <p>完整的模型结构和参数；按系统树一层层往下读，每个 JSON 都是完整的一层。</p>
+  <p>完整的模型结构和块描述；按系统树一层层往下读，每个 JSON 都是完整的一层。</p>
   <h3>边界</h3>
   <p class="bound">不仿真；Variant 实际选择、Stateflow 动态调度、外部库内部实现不声称已验证。</p>
 </div>

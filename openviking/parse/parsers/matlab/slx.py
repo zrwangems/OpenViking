@@ -14,6 +14,7 @@ from typing import Iterable
 from defusedxml import ElementTree as ET
 
 from openviking.parse.parsers.matlab._zip import read_xml_member
+from openviking.parse.parsers.matlab.block_description import describe_block
 
 
 @dataclass
@@ -239,44 +240,6 @@ def _read_line(
         _read_line(branch, edges, source, name)
 
 
-_UI_PARAMETERS = {
-    "Position",
-    "ZOrder",
-    "ShowName",
-    "HideAutomaticName",
-    "FontSize",
-    "FontName",
-    "FontWeight",
-    "FontAngle",
-    "ForegroundColor",
-    "BackgroundColor",
-    "DropShadow",
-    "NameLocation",
-    "NamePlacement",
-    "IconDisplay",
-    "PortRotation",
-    "BlockRotation",
-    "BlockMirror",
-    "LibraryVersion",
-    "RTWMemSecFuncInitTerm",
-    "RTWMemSecFuncExecute",
-    "RTWMemSecDataParameters",
-    "RTWMemSecDataConstants",
-    "RTWMemSecDataInternal",
-    "ContentPreviewEnabled",
-    "RefBlkName",
-    "VectorParamsAs1DForOutWhenUnconnected",
-}
-
-
-def _display_parameters(block: Block) -> dict[str, str]:
-    return {
-        k: v
-        for k, v in block.parameters.items()
-        if k not in _UI_PARAMETERS and not k.startswith("SID")
-    }
-
-
 def _slug(value: str) -> str:
     value = re.sub(r"[^\w.-]+", "_", value, flags=re.UNICODE).strip("._")
     return value or "subsystem"
@@ -304,8 +267,8 @@ def system_json_documents(model: System, language: str = "en") -> dict[str, dict
 
     The model root and systems with children use ``main.json``. A leaf system is
     one sibling JSON file, for example ``xCU/xCU_Output.json``. The document is
-    the primary representation: blocks carry parameters and port order, edges
-    carry both endpoints and signal names.
+    the primary representation: blocks carry a deterministic template-generated
+    description and port order, edges carry both endpoints and signal names.
     """
     documents: dict[str, dict] = {}
 
@@ -403,7 +366,7 @@ def _system_json(system: System, is_root: bool, path: str, language: str) -> dic
                     else ""
                 ),
                 "ports": block_ports,
-                "params": _display_parameters(block),
+                "description": describe_block(block, language),
             }
         )
 
