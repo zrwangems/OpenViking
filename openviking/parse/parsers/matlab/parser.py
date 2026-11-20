@@ -41,7 +41,7 @@ from openviking.parse.parsers.matlab.structured import (
     parse_sldd_tree,
     protected_metadata,
     requirement_rows,
-    sldd_entry_rows,
+    sldd_entry_documents,
 )
 
 _NATIVE_BINARY_SUFFIXES = {
@@ -263,34 +263,18 @@ class MatlabParser(BaseParser):
                 else:
                     payload, auxiliary = await asyncio.to_thread(parse_mlapp, path)
                 folder = _output_folder(path)
-                await writer.write_bytes(
-                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
-                )
+                if suffix != ".sldd":
+                    # Only parsed content is kept: the dictionary archive itself
+                    # has no search value and can be tens of megabytes.
+                    await writer.write_bytes(
+                        f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                    )
                 for name, data in auxiliary.items():
                     await writer.write_bytes(f"{folder}/{name}", data)
                 if suffix == ".sldd":
-                    rows = await asyncio.to_thread(sldd_entry_rows, payload)
-                    for index, row in enumerate(rows, 1):
-                        value = row.get("value")
-                        if isinstance(value, (dict, list)) and len(
-                            json.dumps(value, ensure_ascii=False)
-                        ) > 2000:
-                            data_name = f"data/{index:04d}_{row['name']}.json"
-                            await writer.write_text(
-                                f"{folder}/{data_name}",
-                                json.dumps(
-                                    {
-                                        "schema": "ov.matlab.sldd-data/1",
-                                        "name": row["name"],
-                                        "value": value,
-                                    },
-                                    ensure_ascii=False,
-                                    indent=2,
-                                )
-                                + "\n",
-                            )
-                            row["data"] = data_name
-                            row.pop("value", None)
+                    rows, data_files = await asyncio.to_thread(sldd_entry_documents, payload)
+                    for name, content in data_files.items():
+                        await writer.write_text(f"{folder}/{name}", content)
                     await writer.write_text(
                         f"{folder}/entries.jsonl",
                         "\n".join(json.dumps(row, ensure_ascii=False) for row in rows) + "\n",
@@ -332,7 +316,7 @@ class MatlabParser(BaseParser):
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
                     "structured_format": payload.get("schema", ""),
-                    "original_preserved": True,
+                    "original_preserved": suffix != ".sldd",
                 }
                 title = path.stem
             elif suffix == ".sfx":

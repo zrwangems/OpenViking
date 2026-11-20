@@ -24,6 +24,10 @@ class Block:
     parameters: dict[str, str] = field(default_factory=dict)
     source_block: str = ""
     system_ref: str = ""
+    # Port names the SLX file states for this block: the <List ListType="InputPortNames">
+    # lists of a ModelReference block, keyed by one-based port index.
+    port_names: dict[str, dict[int, str]] = field(default_factory=dict)
+    port_counts: dict[str, int] = field(default_factory=dict)
 
 
 @dataclass
@@ -193,6 +197,22 @@ def parse_slx(path: str | Path) -> System:
                         if key:
                             block.parameters[key] = prop.text or ""
                 block.source_block = block.parameters.get("SourceBlock", "")
+                for prop in node.findall("./PortCounts"):
+                    for kind in ("in", "out"):
+                        if (prop.get(kind) or "").isdigit():
+                            block.port_counts[kind] = int(prop.get(kind))
+                for kind, list_type in (
+                    ("in", "InputPortNames"),
+                    ("out", "OutputPortNames"),
+                ):
+                    names: dict[int, str] = {}
+                    for prop in node.findall(f'./List[@ListType="{list_type}"]/P'):
+                        index = re.fullmatch(r"port(\d+)", prop.get("Name") or "")
+                        text = (prop.text or "").strip()
+                        if index and text:
+                            names[int(index.group(1)) + 1] = text
+                    if names:
+                        block.port_names[kind] = names
                 child_ref = node.find("./System")
                 if child_ref is not None:
                     block.system_ref = child_ref.get("Ref", "")
@@ -304,8 +324,9 @@ def system_json_documents(model: System, language: str = "en") -> dict[str, dict
 
     The model root and systems with children use ``main.json``. A leaf system is
     one sibling JSON file, for example ``xCU/xCU_Output.json``. The document is
-    the primary representation: blocks carry parameters and port order, edges
-    carry both endpoints and signal names.
+    the primary representation: each block carries its ports (by name when the
+    file states one, otherwise by port index) and parameters, and each line
+    carries one source endpoint and every destination it fans out to.
     """
     documents: dict[str, dict] = {}
 
@@ -327,28 +348,76 @@ def system_json_documents(model: System, language: str = "en") -> dict[str, dict
     return documents
 
 
+def _port_sort_key(index: str) -> tuple[int, int, str]:
+    return (0, int(index), "") if str(index).isdigit() else (1, 0, str(index))
+
+
+def _port_names(system: System) -> dict[str, dict[str, dict[int, str]]]:
+    """Port names the SLX file itself states, per block and port index.
+
+    Subsystem blocks take the names of the Inport/Outport blocks inside the
+    referenced system; ModelReference blocks take their ``InputPortNames`` /
+    ``OutputPortNames`` lists; port blocks are named after the block. Ordinary
+    blocks store no port names in Simulink, so their ports stay unnamed here and
+    fall back to the port index when written.
+    """
+    child_systems = {child.ref: child for child in system.children}
+    names: dict[str, dict[str, dict[int, str]]] = {}
+    for block in system.blocks:
+        entry = {kind: dict(values) for kind, values in block.port_names.items()}
+        child = child_systems.get(block.system_ref)
+        if child is not None:
+            for kind, child_ports in (("in", child.inputs), ("out", child.outputs)):
+                named = {}
+                for port in child_ports:
+                    index = port.parameters.get("Port", "1")
+                    if index.isdigit() and port.name:
+                        named[int(index)] = port.name
+                if named:
+                    entry[kind] = named
+        self_kind = {
+            "Inport": "out",
+            "Outport": "in",
+            "ConnectionPort": "conn",
+            "PMIOPort": "conn",
+        }.get(block.block_type)
+        # A port block has exactly one port of its own; the ``Port`` parameter is
+        # its position in the parent system's port list, not this port's index.
+        if self_kind and block.name:
+            entry.setdefault(self_kind, {})[1] = block.name
+        names[block.sid] = entry
+    return names
+
+
 def _system_json(system: System, is_root: bool, path: str, language: str) -> dict:
-    block_ids = {block.sid: f"b{_slug(block.sid)}" for block in system.blocks}
-    ports: dict[str, dict[str, list]] = {
-        sid: {"in": [], "out": [], "conn": []} for sid in block_ids
+    block_names = {block.sid: block.name for block in system.blocks}
+    port_names = _port_names(system)
+    ports: dict[str, dict[str, dict[str, object]]] = {
+        block.sid: {"in": {}, "out": {}, "conn": {}} for block in system.blocks
     }
     unresolved: list[dict] = []
-    seen_unresolved: set[str] = set()
+    seen_unresolved: set[tuple[str, str, str]] = set()
 
-    def add_port(sid: str, kind: str, port: str) -> None:
-        if sid not in ports:
-            if sid not in seen_unresolved:
-                seen_unresolved.add(sid)
-                unresolved.append({"id": f"b{_slug(sid)}", "sys": sid})
-            return
+    def port_value(sid: str, kind: str, index: str) -> object:
+        if str(index).isdigit():
+            named = port_names.get(sid, {}).get(kind, {}).get(int(index))
+            return named or int(index)
+        return index
+
+    def add_port(sid: str, kind: str, index: str) -> None:
         bucket = "conn" if kind in {"conn", "lconn", "rconn"} else kind
+        if sid not in ports:
+            key = (sid, str(index), bucket)
+            if key not in seen_unresolved:
+                seen_unresolved.add(key)
+                unresolved.append({"sid": sid, "port": index, "kind": bucket})
+            return
         if bucket not in ports[sid]:
             bucket = "out"
-        value: object = int(port) if str(port).isdigit() else port
-        if value not in ports[sid][bucket]:
-            ports[sid][bucket].append(value)
+        ports[sid][bucket].setdefault(str(index), port_value(sid, bucket, index))
 
-    edge_documents = []
+    edge_documents: list[dict] = []
+    edge_index: dict[tuple[str, str, str], dict] = {}
     for edge in system.edges:
         source_sid, source_port = _endpoint(edge.source)
         destination_sid, destination_port = _endpoint(edge.destination)
@@ -357,51 +426,61 @@ def _system_json(system: System, is_root: bool, path: str, language: str) -> dic
         if edge.kind == "physical-conserving" or "conn" in {source_kind, destination_kind}:
             source_kind = destination_kind = "conn"
         add_port(source_sid, source_kind, source_port)
-        add_port(destination_sid, destination_kind if destination_kind in {"in", "conn"} else "in", destination_port)
-        edge_documents.append(
-            {
-                "from": block_ids.get(source_sid, f"b{_slug(source_sid)}"),
-                "from_port": int(source_port) if str(source_port).isdigit() else source_port,
-                "to": block_ids.get(destination_sid, f"b{_slug(destination_sid)}"),
-                "to_port": int(destination_port)
-                if str(destination_port).isdigit()
-                else destination_port,
-                "signal": edge.name or None,
-                "kind": edge.kind,
-            }
+        add_port(
+            destination_sid,
+            destination_kind if destination_kind in {"in", "conn"} else "in",
+            destination_port,
         )
+        key = (source_sid, source_port, edge.name)
+        row = edge_index.get(key)
+        if row is None:
+            row = {
+                "from": [
+                    block_names.get(source_sid, ""),
+                    port_value(
+                        source_sid,
+                        "conn" if source_kind in {"conn", "lconn", "rconn"} else source_kind,
+                        source_port,
+                    ),
+                ],
+                "to": [],
+                "signal": edge.name or None,
+            }
+            edge_index[key] = row
+            edge_documents.append(row)
+        destination = [
+            block_names.get(destination_sid, ""),
+            port_value(
+                destination_sid,
+                "conn" if destination_kind == "conn" else "in",
+                destination_port,
+            ),
+        ]
+        if destination not in row["to"]:
+            row["to"].append(destination)
 
     for block in system.blocks:
-        sid = block.sid
-        if block.block_type == "Inport":
-            add_port(sid, "out", block.parameters.get("Port", "1"))
-        elif block.block_type == "Outport":
-            add_port(sid, "in", block.parameters.get("Port", "1"))
-        elif block.block_type in {"ConnectionPort", "PMIOPort"}:
-            add_port(sid, "conn", block.parameters.get("Port", "1"))
+        for kind in ("in", "out", "conn"):
+            count = block.port_counts.get(kind, 0)
+            if not count:
+                count = max(port_names.get(block.sid, {}).get(kind, {}) or [0])
+            for index in range(1, count + 1):
+                ports[block.sid][kind].setdefault(
+                    str(index), port_value(block.sid, kind, str(index))
+                )
 
     blocks = []
     for block in system.blocks:
-        sid = block.sid
-        block_ports = {
-            key: sorted(values, key=lambda value: (not isinstance(value, int), str(value)))
-            for key, values in ports[sid].items()
-            if values
-        }
+        block_ports = {}
+        for kind, values in ports[block.sid].items():
+            if not values:
+                continue
+            block_ports[kind] = [values[index] for index in sorted(values, key=_port_sort_key)]
         blocks.append(
             {
-                "id": block_ids[sid],
                 "name": block.name,
                 "block_type": block.block_type,
-                "source_block": block.source_block
-                or block.parameters.get("SourceBlock", "")
-                or (
-                    f"built-in/{block.block_type}"
-                    if block.block_type
-                    and block.block_type
-                    not in {"SubSystem", "Reference", "ModelReference", "Unknown"}
-                    else ""
-                ),
+                "source_block": block.source_block,
                 "ports": block_ports,
                 "params": _display_parameters(block),
             }
@@ -422,7 +501,6 @@ def _system_json(system: System, is_root: bool, path: str, language: str) -> dic
                 "name": child.name,
                 "path": child_path,
                 "system_ref": child.ref,
-                "block_id": block_ids.get(child.owner.sid, f"b{_slug(child.owner.sid)}"),
                 "type": "simulink-subsystem",
             }
         )
